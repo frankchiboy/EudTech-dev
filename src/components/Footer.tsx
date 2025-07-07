@@ -21,9 +21,9 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
     products: {
       title: isEnglish ? 'Products' : '產品',
       links: [
-        { name: isEnglish ? 'AI Server' : 'AI伺服器', href: '#products' },
-        { name: isEnglish ? 'Cloud AI Services' : '雲端AI服務', href: '#products' },
-        { name: isEnglish ? 'Financial AI System' : '金融AI系統', href: '#products' },
+        { name: isEnglish ? 'AI Server' : 'AI伺服器', href: '#eudtech-products' },
+        { name: isEnglish ? 'Cloud AI Services' : '雲端AI服務', href: '#eudtech-products' },
+        { name: isEnglish ? 'Comino Grando' : 'Comino Grando', href: '#comino-products' },
       ],
     },
     legal: {

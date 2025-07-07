@@ -49,7 +49,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isEnglish }) => {
 
             <div className="mt-10">
               <a
-                href="#products"
+                href="#eudtech-products"
                 className="text-blue-800 font-medium hover:text-blue-900 transition-colors duration-200 flex items-center"
               >
                 {isEnglish ? 'Explore our products' : '探索我們的產品'}{' '}

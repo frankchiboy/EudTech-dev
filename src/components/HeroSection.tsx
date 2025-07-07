@@ -51,7 +51,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isEnglish }) => {
         </p>
         <div className="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <a
-            href="#products"
+            href="#eudtech-products"
             className="px-8 py-3 text-base font-medium rounded-md text-white bg-gradient-to-r from-blue-800 to-teal-800 hover:from-blue-700 hover:to-teal-700 shadow-lg transition-all duration-200 transform hover:-translate-y-1"
           >
             {isEnglish ? 'Our Solutions' : '我們的產品'}

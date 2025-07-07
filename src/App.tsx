@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import HeroSection from './components/HeroSection';
-import ProductsSection from './components/ProductsSection';
+import EudTechProductsSection from './components/EudTechProductsSection';
+import ComimoBrandIntro from './components/ComimoBrandIntro';
+import CominoProductsSection from './components/CominoProductsSection';
 import AboutSection from './components/AboutSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
@@ -23,7 +25,9 @@ function App() {
           <Route path="/" element={
             <>
               <HeroSection isEnglish={isEnglish} />
-              <ProductsSection isEnglish={isEnglish} />
+              <EudTechProductsSection isEnglish={isEnglish} />
+              <ComimoBrandIntro isEnglish={isEnglish} />
+              <CominoProductsSection isEnglish={isEnglish} />
               <AboutSection isEnglish={isEnglish} />
               <ContactSection isEnglish={isEnglish} />
             </>
