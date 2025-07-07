@@ -407,6 +407,176 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       }
     },
     {
+      id: 8,
+      title: isEnglish ? 'Comino Grando FPGA Solutions' : 'Comino Grando FPGA解決方案',
+      description: isEnglish
+        ? 'Ultra-compact liquid-cooled FPGA computing platform. Supports up to 160 FPGA per rack with 30kW power consumption in 4U form factor.'
+        : '超緊湊液冷FPGA運算平台。支援每機架最多160個FPGA，4U機箱規格下功耗30kW。',
+      icon: <Cpu className="h-8 w-8 text-orange-700" />,
+      image: "/grando-fpga-cards.png",
+      features: isEnglish
+        ? [
+            'Up to 160 FPGA per Rack',
+            '30kW Power per Rack',
+            '4U Form Factor',
+            'BittWare CVP-13 Compatible',
+            'Liquid Cooling System',
+            'Heat Recovery Capable'
+          ]
+        : [
+            '每機架最多160個FPGA',
+            '每機架30kW功率',
+            '4U機箱規格',
+            '相容BittWare CVP-13',
+            '液冷系統',
+            '熱回收功能'
+          ],
+      specs: isEnglish ? {
+        'FPGA': 'Up to 160 per rack',
+        'Power': '30kW per rack',
+        'Form Factor': '4U Rackmount',
+        'Cooling': 'Liquid Cooling',
+        'Compatibility': 'BittWare CVP-13'
+      } : {
+        'FPGA': '每機架最多160個',
+        '功率': '每機架30kW',
+        '機箱規格': '4U機架式',
+        '散熱': '液冷系統',
+        '相容性': 'BittWare CVP-13'
+      },
+      comingSoon: false,
+      images: [
+        "/grando-fpga-cards.png",
+        "/grando-three-racks.png",
+        "/comino-heat-recovery.png"
+      ],
+      detailedDescription: isEnglish ? {
+        title: 'Comino Grando FPGA Solutions - Ultra-Compact FPGA Computing',
+        formFactor: '4U Rackmount FPGA Computing Platform',
+        introduction: 'The Comino Grando FPGA solution represents the pinnacle of ultra-compact liquid-cooled FPGA computing technology. Designed for applications requiring massive parallel processing power with field-programmable flexibility, this system delivers exceptional performance in a remarkably compact 4U form factor while maintaining optimal thermal management through advanced liquid cooling.',
+        keyFeatures: [
+          'Up to 160 FPGA cards per standard 42U rack configuration',
+          '30kW power consumption per rack with advanced power management',
+          'Ultra-compact 4U form factor maximizing compute density',
+          'BittWare CVP-13 FPGA card compatibility with Intel Stratix 10',
+          'Advanced liquid cooling system for optimal thermal performance',
+          'Heat recovery capability for energy efficiency',
+          'Modular architecture supporting various FPGA configurations',
+          'Quick-disconnect liquid cooling fittings for easy maintenance',
+          'Integrated monitoring and management system',
+          'Support for high-speed interconnects and networking'
+        ],
+        technicalSpecs: {
+          'Product Series': 'Comino Grando FPGA Computing Platform',
+          'Form Factor': '4U Rackmount Server',
+          'FPGA Capacity': 'Up to 160 FPGA cards per rack',
+          'FPGA Compatibility': 'BittWare CVP-13 with Intel Stratix 10 FPGAs',
+          'Power Consumption': '30kW per rack (advanced power management)',
+          'Cooling System': 'Comino liquid cooling with heat recovery',
+          'Rack Configuration': 'Standard 42U rack (10 Grando U blocks)',
+          'Management': 'Integrated monitoring and remote management',
+          'Interconnect': 'High-speed FPGA-to-FPGA communication',
+          'Operating Temperature': 'Extended range with liquid cooling',
+          'Applications': 'HPC, AI acceleration, signal processing, cryptography',
+          'Deployment': 'Enterprise data centers, research institutions'
+        },
+        orderInfo: [
+          {
+            type: 'FPGA Computing Platform',
+            pn: 'GRANDO-FPGA-RACK',
+            model: 'Grando FPGA Rack System',
+            description: 'Complete 42U rack with up to 160 FPGA cards, liquid cooling system, power distribution, and management infrastructure'
+          },
+          {
+            type: 'FPGA U-Block',
+            pn: 'GRANDO-FPGA-U',
+            model: 'Grando FPGA U-Block',
+            description: '4U server unit supporting up to 16 FPGA cards with integrated liquid cooling and power management'
+          },
+          {
+            type: 'BittWare CVP-13 Card',
+            pn: 'BITTWARE-CVP13',
+            model: 'CVP-13 FPGA Card',
+            description: 'Intel Stratix 10 FPGA card with high-speed interconnects and memory subsystem'
+          },
+          {
+            type: 'Cooling Infrastructure',
+            pn: 'GRANDO-COOL-FPGA',
+            model: 'FPGA Cooling System',
+            description: 'Complete liquid cooling infrastructure including pumps, heat exchangers, and distribution manifolds'
+          },
+          {
+            type: 'Management Software',
+            pn: 'GRANDO-MGMT-FPGA',
+            model: 'FPGA Management Suite',
+            description: 'Comprehensive monitoring, configuration, and management software for FPGA infrastructure'
+          }
+        ]
+      } : {
+        title: 'Comino Grando FPGA解決方案 - 超緊湊FPGA運算',
+        formFactor: '4U機架式FPGA運算平台',
+        introduction: 'Comino Grando FPGA解決方案代表超緊湊液冷FPGA運算技術的巔峰。專為需要大規模並行處理能力和現場可程式靈活性的應用而設計，該系統在極其緊湊的4U外形尺寸中提供卓越性能，同時通過先進液冷技術保持最佳熱管理。',
+        keyFeatures: [
+          '標準42U機架配置中最多160個FPGA卡',
+          '每機架30kW功耗配備先進電源管理',
+          '超緊湊4U外形尺寸實現最大運算密度',
+          'BittWare CVP-13 FPGA卡相容性，搭載Intel Stratix 10',
+          '先進液冷系統確保最佳熱性能',
+          '熱回收功能提升能源效率',
+          '模組化架構支援各種FPGA配置',
+          '快速接頭液冷配件便於維護',
+          '整合監控和管理系統',
+          '支援高速互連和網路功能'
+        ],
+        technicalSpecs: {
+          '產品系列': 'Comino Grando FPGA運算平台',
+          '外形尺寸': '4U機架式伺服器',
+          'FPGA容量': '每機架最多160個FPGA卡',
+          'FPGA相容性': 'BittWare CVP-13搭載Intel Stratix 10 FPGA',
+          '功耗': '每機架30kW（先進電源管理）',
+          '散熱系統': 'Comino液冷配備熱回收',
+          '機架配置': '標準42U機架（10個Grando U塊）',
+          '管理': '整合監控和遠程管理',
+          '互連': '高速FPGA對FPGA通信',
+          '操作溫度': '液冷擴展溫度範圍',
+          '應用': 'HPC、AI加速、信號處理、密碼學',
+          '部署': '企業數據中心、研究機構'
+        },
+        orderInfo: [
+          {
+            type: 'FPGA運算平台',
+            pn: 'GRANDO-FPGA-RACK',
+            model: 'Grando FPGA機架系統',
+            description: '完整42U機架配備最多160個FPGA卡、液冷系統、電源分配和管理基礎設施'
+          },
+          {
+            type: 'FPGA U塊',
+            pn: 'GRANDO-FPGA-U',
+            model: 'Grando FPGA U塊',
+            description: '4U伺服器單元支援最多16個FPGA卡，配備整合液冷和電源管理'
+          },
+          {
+            type: 'BittWare CVP-13卡',
+            pn: 'BITTWARE-CVP13',
+            model: 'CVP-13 FPGA卡',
+            description: 'Intel Stratix 10 FPGA卡配備高速互連和記憶體子系統'
+          },
+          {
+            type: '散熱基礎設施',
+            pn: 'GRANDO-COOL-FPGA',
+            model: 'FPGA散熱系統',
+            description: '完整液冷基礎設施包括泵浦、熱交換器和分配歧管'
+          },
+          {
+            type: '管理軟體',
+            pn: 'GRANDO-MGMT-FPGA',
+            model: 'FPGA管理套件',
+            description: 'FPGA基礎設施的全面監控、配置和管理軟體'
+          }
+        ]
+      }
+    },
+    {
       id: 7,
       title: isEnglish ? 'Comino Grando Container' : 'Comino Grando 移動數據中心',
       description: isEnglish

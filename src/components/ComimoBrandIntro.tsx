@@ -70,14 +70,16 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
         {/* Brand Introduction */}
         <div className="text-center mb-16">
           <div className="flex justify-center mb-8">
-            <img 
-              src="/comino-logo.png" 
-              alt="Comino Grando Logo" 
-              className="h-16 object-contain"
-            />
+            <div className="flex items-center space-x-4">
+              <img 
+                src="https://cdn.prod.website-files.com/628295a883124981fd568435/63dd331994de0e0afc29f236_Comino_Grando.png" 
+                alt="Comino Grando Logo" 
+                className="h-16 object-contain"
+              />
+            </div>
           </div>
           <h2 className="text-base font-semibold tracking-wide text-blue-800 uppercase mb-4">
-            {isEnglish ? 'Authorized Partner' : '授權合作夥伴'}
+            {isEnglish ? 'Authorized Distributor' : '授權經銷商'}
           </h2>
           <h3 className="text-4xl font-bold text-gray-900 sm:text-5xl mb-6">
             {isEnglish ? 'Comino Grando' : 'Comino Grando'}
@@ -87,6 +89,23 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
               ? 'EudTech is the authorized distributor of Comino, the world leader in liquid-cooled AI computing solutions. Comino Grando systems deliver unprecedented performance for AI training, inference, and high-performance computing workloads.'
               : 'EudTech是Comino的授權經銷商，Comino是液冷AI運算解決方案的全球領導者。Comino Grando系統為AI訓練、推論和高效能運算工作負載提供前所未有的效能。'}
           </p>
+          
+          {/* Authorization Information */}
+          <div className="bg-blue-50 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
+            <p className="text-blue-800 font-medium">
+              {isEnglish
+                ? 'EudTech is listed as an official Comino distributor. You can verify our authorization on '
+                : 'EudTech已列為Comino官方經銷商。您可以在Comino官網經銷商頁面查證我們的授權：'}
+              <a 
+                href="https://www.comino.com/en/company" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="underline hover:text-blue-900"
+              >
+                {isEnglish ? 'Comino\'s distributor page' : 'Comino經銷商頁面'}
+              </a>
+            </p>
+          </div>
           
           {/* AMD Partner Badge */}
           <div className="flex justify-center mb-12">

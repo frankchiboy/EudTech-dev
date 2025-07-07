@@ -7,22 +7,14 @@ interface HeroSectionProps {
 const HeroSection: React.FC<HeroSectionProps> = ({ isEnglish }) => {
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background video */}
+      {/* Background image */}
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute inset-0 bg-black/60 z-10"></div>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <img
+          src="/grando-8gpu-server.jpg"
+          alt="AI Server Background"
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source
-            src="/server.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+        />
       </div>
 
       {/* Content */}
