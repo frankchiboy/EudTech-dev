@@ -1,6 +1,3 @@
-Here's the fixed version with all missing closing brackets and required whitespace added:
-
-```javascript
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Server, Cpu, Shield, Cloud } from 'lucide-react';
@@ -433,3 +430,329 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
             '13個19英寸48U機架',
             '熱回收系統',
             '移動部署'
+          ],
+      specs: isEnglish ? {
+        'GPU': 'Up to 2240 GPUs',
+        'Power': '500kW total power consumption',
+        'Operating Temperature': '-30°C to +50°C',
+        'Racks': '13x 19" 48U racks',
+        'Cooling': 'Integrated liquid cooling'
+      } : {
+        'GPU': '最高2240個GPU',
+        '功率': '500kW總功耗',
+        '操作溫度': '-30°C至+50°C',
+        '機架': '13個19英寸48U機架',
+        '散熱': '整合液冷系統'
+      },
+      comingSoon: false,
+      images: [
+        "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ],
+      detailedDescription: isEnglish ? {
+        title: 'Comino Grando Container - Mobile Data Center Solution',
+        formFactor: '40ft shipping container',
+        introduction: 'The Comino Grando Container represents the ultimate in mobile AI computing infrastructure. This 40-foot shipping container houses up to 140 Grando U blocks, providing massive parallel computing power with up to 2240 GPUs. Designed for deployment in any location worldwide, it offers enterprise-grade AI computing capabilities in a portable, weather-resistant enclosure.',
+        keyFeatures: [
+          'Up to 140 Grando U blocks with liquid cooling',
+          'Total capacity of up to 2240 GPUs',
+          '500kW total power consumption',
+          'Operating temperature range: -30°C to +50°C',
+          '13x standard 19" 48U server racks',
+          'Integrated heat recovery system',
+          'Mobile deployment capability',
+          'Weather-resistant construction',
+          'Remote monitoring and management',
+          'Redundant power and cooling systems'
+        ],
+        technicalSpecs: {
+          'Container Type': 'Standard 40ft shipping container',
+          'Computing Units': 'Up to 140 Grando U blocks',
+          'GPU Capacity': 'Up to 2240 GPUs total',
+          'Power Consumption': '500kW maximum',
+          'Operating Temperature': '-30°C to +50°C ambient',
+          'Rack Configuration': '13x 19" 48U standard racks',
+          'Cooling System': 'Integrated liquid cooling with heat recovery',
+          'Connectivity': 'Multiple fiber optic and copper connections',
+          'Monitoring': 'Remote monitoring and diagnostics',
+          'Dimensions': '12.19m x 2.44m x 2.59m (40ft container)',
+          'Weight': 'Varies based on configuration',
+          'Certification': 'ISO container standards, local electrical codes'
+        },
+        orderInfo: [
+          {
+            type: 'Standard Configuration',
+            pn: 'CONTAINER-STD',
+            model: 'Grando Container Standard',
+            description: '40ft container with 100 Grando U blocks, integrated cooling, power distribution'
+          },
+          {
+            type: 'Maximum Configuration',
+            pn: 'CONTAINER-MAX',
+            model: 'Grando Container Maximum',
+            description: '40ft container with 140 Grando U blocks, maximum GPU density configuration'
+          },
+          {
+            type: 'Custom Configuration',
+            pn: 'CONTAINER-CUSTOM',
+            model: 'Custom Container Solution',
+            description: 'Fully customizable container solution based on specific requirements'
+          }
+        ]
+      } : {
+        title: 'Comino Grando 移動數據中心 - 移動數據中心解決方案',
+        formFactor: '40英尺貨櫃',
+        introduction: 'Comino Grando移動數據中心代表移動AI運算基礎設施的巔峰。這個40英尺貨櫃可容納最多140個Grando U塊，提供多達2240個GPU的大規模並行運算能力。專為全球任何地點部署而設計，在便攜、防風雨的外殼中提供企業級AI運算能力。',
+        keyFeatures: [
+          '最多140個Grando U塊配備液冷',
+          '總容量最多2240個GPU',
+          '500kW總功耗',
+          '操作溫度範圍：-30°C至+50°C',
+          '13個標準19英寸48U伺服器機架',
+          '整合熱回收系統',
+          '移動部署能力',
+          '防風雨結構',
+          '遠程監控和管理',
+          '備援電源和散熱系統'
+        ],
+        technicalSpecs: {
+          '貨櫃類型': '標準40英尺貨櫃',
+          '運算單元': '最多140個Grando U塊',
+          'GPU容量': '最多2240個GPU總計',
+          '功耗': '最大500kW',
+          '操作溫度': '環境溫度-30°C至+50°C',
+          '機架配置': '13個19英寸48U標準機架',
+          '散熱系統': '整合液冷配備熱回收',
+          '連接性': '多種光纖和銅線連接',
+          '監控': '遠程監控和診斷',
+          '尺寸': '12.19m x 2.44m x 2.59m（40英尺貨櫃）',
+          '重量': '根據配置而定',
+          '認證': 'ISO貨櫃標準，當地電氣規範'
+        },
+        orderInfo: [
+          {
+            type: '標準配置',
+            pn: 'CONTAINER-STD',
+            model: 'Grando移動數據中心標準版',
+            description: '40英尺貨櫃配備100個Grando U塊，整合散熱，電源分配'
+          },
+          {
+            type: '最大配置',
+            pn: 'CONTAINER-MAX',
+            model: 'Grando移動數據中心最大版',
+            description: '40英尺貨櫃配備140個Grando U塊，最大GPU密度配置'
+          },
+          {
+            type: '客製化配置',
+            pn: 'CONTAINER-CUSTOM',
+            model: '客製化貨櫃解決方案',
+            description: '根據特定需求完全客製化的貨櫃解決方案'
+          }
+        ]
+      }
+    }
+  ];
+
+  const product = products.find(p => p.id === parseInt(id || '1'));
+
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            {isEnglish ? 'Product Not Found' : '找不到產品'}
+          </h1>
+          <Link to="/" className="text-blue-600 hover:text-blue-800">
+            {isEnglish ? 'Back to Home' : '返回首頁'}
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Back Button */}
+      <div className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <Link 
+            to="/" 
+            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
+          >
+            <ArrowLeft className="h-5 w-5 mr-2" />
+            {isEnglish ? 'Back to Products' : '返回產品列表'}
+          </Link>
+        </div>
+      </div>
+
+      {/* Product Header */}
+      <div className="bg-white">
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+              <div className="flex items-center mb-6">
+                {product.icon}
+                <h1 className="text-4xl font-bold text-gray-900 ml-4">
+                  {product.title}
+                </h1>
+              </div>
+              <p className="text-xl text-gray-600 mb-8">
+                {product.description}
+              </p>
+              
+              {/* Key Features */}
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  {isEnglish ? 'Key Features' : '主要特色'}
+                </h3>
+                <ul className="space-y-3">
+                  {product.features.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <div className="h-2 w-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <span className="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <img 
+                src={product.image} 
+                alt={product.title}
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Specifications */}
+      <div className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            {isEnglish ? 'Technical Specifications' : '技術規格'}
+          </h2>
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+              {Object.entries(product.specs).map(([key, value], index) => (
+                <div 
+                  key={index} 
+                  className={`p-6 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
+                >
+                  <div className="flex justify-between items-start">
+                    <span className="font-semibold text-gray-900 mr-4">{key}</span>
+                    <span className="text-gray-700 text-right">{value}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Detailed Description */}
+      {product.detailedDescription && (
+        <div className="bg-white py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+              {product.detailedDescription.title}
+            </h2>
+            
+            <div className="prose prose-lg max-w-none">
+              <p className="text-gray-600 mb-8 text-lg">
+                {product.detailedDescription.introduction}
+              </p>
+
+              {/* Key Features Section */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  {isEnglish ? 'Key Features' : '主要特色'}
+                </h3>
+                <ul className="space-y-3">
+                  {product.detailedDescription.keyFeatures.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <div className="h-2 w-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <span className="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Technical Specifications Table */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  {isEnglish ? 'Technical Specifications' : '技術規格'}
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full bg-white border border-gray-200">
+                    <tbody className="divide-y divide-gray-200">
+                      {Object.entries(product.detailedDescription.technicalSpecs).map(([key, value], index) => (
+                        <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 w-1/3">
+                            {key}
+                          </td>
+                          <td className="px-6 py-4 text-sm text-gray-700">
+                            {value}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Order Information */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  {isEnglish ? 'Available Configurations' : '可用配置'}
+                </h3>
+                <div className="space-y-4">
+                  {product.detailedDescription.orderInfo.map((item, index) => (
+                    <div key={index} className="bg-gray-50 p-6 rounded-lg">
+                      <div className="flex justify-between items-start mb-3">
+                        <h4 className="text-lg font-semibold text-gray-900">{item.type}</h4>
+                        <span className="text-sm text-gray-500">{item.model}</span>
+                      </div>
+                      {item.pn && (
+                        <p className="text-sm text-gray-600 mb-2">
+                          <span className="font-medium">P/N:</span> {item.pn}
+                        </p>
+                      )}
+                      <p className="text-gray-700">{item.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Image Gallery */}
+      {product.images && product.images.length > 0 && (
+        <div className="bg-gray-50 py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+              {isEnglish ? 'Product Gallery' : '產品圖庫'}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {product.images.map((image, index) => (
+                <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img 
+                    src={image} 
+                    alt={`${product.title} ${index + 1}`}
+                    className="w-full h-64 object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ProductDetails;
