@@ -743,12 +743,29 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Back Button */}
+      {/* Navigation Header */}
       <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="max-w-7xl mx-auto px-4 py-4 space-y-4">
+          {/* Logo */}
+          <div className="flex justify-center">
+            <div className="flex items-center">
+              <div className="relative">
+                <Server className="h-8 w-8 text-teal-600" />
+                <CircuitBoard className="h-5 w-5 absolute -top-1 -right-1 text-blue-800" />
+              </div>
+              <div className="ml-2 flex flex-col leading-none">
+                <span className="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-teal-600">
+                  EudTech
+                </span>
+                <span className="text-xs tracking-wide opacity-80">Eudaemonia Technology</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Back Button */}
           <Link 
             to="/" 
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
+            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors justify-center"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             {isEnglish ? 'Back to Products' : '返回產品列表'}
