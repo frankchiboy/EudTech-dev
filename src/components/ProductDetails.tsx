@@ -236,41 +236,39 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
     },
     {
       id: 5,
-      title: isEnglish ? 'Comino Grando AI Server Series' : 'Comino Grando AI伺服器系列',
+      title: isEnglish ? 'Comino Grando Multi-GPU Server' : 'Comino Grando 多GPU伺服器',
       description: isEnglish
-        ? 'Liquid-cooled multi-GPU servers designed for extreme performance in AI, deep learning, and HPC. EudTech is an authorized distributor of Comino products.'
-        : '液冷式多GPU伺服器，專為AI、深度學習和高效能運算提供極致效能。EudTech是Comino產品的授權經銷商。',
+        ? 'Liquid-cooled multi-GPU servers with up to 8x RTX 4090/H100 GPUs. Designed for extreme performance in AI training, inference, and HPC workloads.'
+        : '液冷式多GPU伺服器，最高支援8個RTX 4090/H100 GPU。專為AI訓練、推論和高效能運算工作負載的極致效能而設計。',
       icon: <Server className="h-8 w-8 text-purple-700" />,
       image: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       features: isEnglish
-        ? [
-            'Comino Liquid Cooling Technology',
-            'Up to 8x RTX 4090/H100 GPUs',
-            'AMD EPYC 9004 / Intel Xeon Support',
-            'Up to 2TB DDR5 ECC Memory',
-            'Multiple Configuration Options',
+            'AMD EPYC 9004 series processors (up to 64 cores)',
+            'Up to 1TB DDR5 ECC memory',
+            'NVMe Gen4 SSD storage up to 32TB',
+            'Redundant 3200W power supplies',
+            '10GbE and InfiniBand network options',
             'Authorized Distributor Support'
           ]
-        : [
-            'Comino液冷技術',
-            '最高8個RTX 4090/H100 GPU',
-            'AMD EPYC 9004 / Intel Xeon支援',
-            '最高2TB DDR5 ECC記憶體',
-            '多種配置選項',
+            'AMD EPYC 9004系列處理器（最高64核心）',
+            '最高1TB DDR5 ECC記憶體',
+            'NVMe Gen4 SSD儲存最高32TB',
+            '備援3200W電源供應',
+            '10GbE和InfiniBand網路選項',
             '授權經銷商支援'
           ],
       specs: isEnglish ? {
-        'GPU Options': 'RTX 4090, RTX 6000 Ada, H100, L40S',
-        'CPU Platform': 'AMD EPYC 9004 / Intel Xeon W',
-        'Memory': 'Up to 2TB DDR5 ECC',
-        'Storage': 'Up to 64TB NVMe Gen4',
-        'Cooling': 'Comino CoolIT Liquid Cooling'
+        'GPU': 'Up to 8x RTX 4090 or H100',
+        'CPU': 'AMD EPYC 9004 Series (up to 64 cores)',
+        'Memory': 'Up to 1TB DDR5 ECC',
+        'Storage': 'Up to 32TB NVMe Gen4',
+        'Cooling': 'CoolIT Liquid Cooling'
       } : {
-        'GPU選項': 'RTX 4090, RTX 6000 Ada, H100, L40S',
-        'CPU平台': 'AMD EPYC 9004 / Intel Xeon W',
-        '記憶體': '最高2TB DDR5',
-        '儲存': '最高64TB NVMe Gen4',
-        '散熱': 'Comino CoolIT 液冷系統'
+        'GPU': '最高8個RTX 4090或H100',
+        'CPU': 'AMD EPYC 9004系列（最高64核心）',
+        '記憶體': '最高1TB DDR5 ECC',
+        '儲存': '最高32TB NVMe Gen4',
+        '散熱': 'CoolIT液冷系統'
       },
       comingSoon: false,
       images: [
@@ -279,43 +277,95 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
       ],
       detailedDescription: isEnglish ? {
-        title: 'Comino Grando AI Server Series - Authorized Distribution by EudTech',
-        formFactor: 'Multiple form factors available: Desktop, 4U Rack, Custom configurations',
-        introduction: 'EudTech is proud to be an authorized distributor of Comino Grando AI servers, offering cutting-edge liquid-cooled GPU systems designed for demanding AI, deep learning, and high-performance computing tasks. These systems deliver exceptional computing power with flexible configurations, ensuring optimal performance for parallel computing workloads. With integrated CoolIT liquid cooling technology, they provide robust scalability, reliability, energy efficiency, and intelligent maintenance capabilities.',
+        title: 'Comino Grando Multi-GPU Server - Liquid-Cooled AI Computing',
+        formFactor: '6U Rackmount Server with liquid cooling system',
+        introduction: 'The Comino Grando multi-GPU server represents the pinnacle of liquid-cooled AI computing technology. Designed specifically for AI training, inference, and high-performance computing workloads, this system delivers exceptional performance through direct GPU-to-GPU connectivity and advanced thermal management. The liquid cooling system enables sustained peak performance while maintaining whisper-quiet operation.',
         keyFeatures: [
-          'Multiple GPU Options: RTX 4090, RTX 6000 Ada Generation, H100, L40S, and more',
-          'Comino CoolIT liquid cooling system with self-diagnostic capabilities',
-          'Full-coverage waterblocks for optimal thermal management',
-          'Support for AMD EPYC 9004 series and Intel Xeon W processors',
-          'Memory configurations from 64GB to 2TB DDR5 ECC',
-          'Storage options up to 64TB NVMe Gen4 SSD',
-          'Redundant power supply configurations available',
-          'Multiple network connectivity options including 10GbE and InfiniBand',
-          'Desktop, rack-mount, and custom form factor options',
-          'Professional support and warranty through authorized distributor'
+          'Up to 8x NVIDIA RTX 4090 or H100 GPUs with liquid cooling',
+          'Direct GPU-to-GPU connectivity for maximum bandwidth',
+          'AMD EPYC 9004 series processors with up to 64 cores',
+          'Advanced CoolIT liquid cooling with real-time monitoring',
+          'Up to 1TB DDR5 ECC memory with high bandwidth',
+          'NVMe Gen4 storage configuration up to 32TB',
+          'Redundant 3200W power supplies for reliability',
+          'Network options including 10GbE and InfiniBand',
+          'Tool-free maintenance with quick-disconnect fittings',
+          'Comprehensive monitoring and management software'
         ],
         technicalSpecs: {
-          'Product Series': 'Comino Grando AI Server Series',
-          'Form Factor': 'Desktop, 4U Rack-mount, Custom configurations',
-          'GPU Options': 'NVIDIA RTX 4090 (16,384 CUDA cores), RTX 6000 Ada (18,176 CUDA cores), H100 (16,896 CUDA cores), L40S (18,176 CUDA cores)',
+          'Product Series': 'Comino Grando Multi-GPU Server',
+          'Form Factor': '6U Rackmount Server',
+          'GPU Options': 'NVIDIA RTX 4090 (16,384 CUDA cores), H100 (16,896 CUDA cores)',
           'GPU Quantity': 'Up to 8 GPUs per system',
-          'CPU Options': 'AMD EPYC 9004 series (up to 96 cores), Intel Xeon W series',
-          'Memory': '64GB to 2TB DDR5 ECC (supports up to 4800 MT/s)',
-          'Storage': 'NVMe Gen4 SSD up to 64TB total capacity',
-          'Network': '1GbE, 10GbE, 25GbE, InfiniBand options',
+          'CPU Options': 'AMD EPYC 9004 series (up to 64 cores)',
+          'Memory': 'Up to 1TB DDR5 ECC (supports up to 4800 MT/s)',
+          'Storage': 'NVMe Gen4 SSD up to 32TB total capacity',
+          'Network': '10GbE, 25GbE, InfiniBand options',
           'Cooling': 'Comino CoolIT liquid cooling with full-coverage blocks',
-          'Power': 'Redundant PSU configurations from 1600W to 4000W',
-          'Management': 'IPMI, BMC, CMS remote management',
+          'Power': 'Redundant 3200W PSU configuration',
+          'Management': 'IPMI, BMC, Comino Management Suite',
           'Operating Systems': 'Ubuntu, CentOS, RHEL, Windows Server, Custom Linux distributions',
           'Certifications': 'CE, FCC, RoHS compliant',
-          'Warranty': '3-year manufacturer warranty + local support'
+          'Warranty': '3-year manufacturer warranty with EudTech support'
         },
         orderInfo: [
           {
-            type: 'High-Performance Configuration',
-            pn: 'GRANDO-RTX4090x8',
+            type: 'AI Training Configuration',
+            pn: 'GRANDO-4090-8x',
             model: 'Grando DPR 4090-FT/8',
-            description: '8x RTX 4090 GPUs, AMD EPYC 9554 64-core CPU, 512GB DDR5 ECC, 8TB NVMe Gen4 SSD, liquid cooling'
+            description: '8x RTX 4090 24GB GPUs, AMD EPYC 9554 64-core CPU, 512GB DDR5 ECC, 16TB NVMe Gen4 SSD'
+          },
+          {
+            type: 'Enterprise AI Configuration',
+            pn: 'GRANDO-H100-8x',
+            model: 'Grando H100 Enterprise',
+            description: '8x H100 80GB GPUs, AMD EPYC 9654 96-core CPU, 1TB DDR5 ECC, 32TB NVMe storage'
+          },
+          {
+            type: 'Research Configuration',
+            pn: 'GRANDO-4090-4x',
+            model: 'Grando Research System',
+            description: '4x RTX 4090 GPUs, AMD EPYC 9374F 32-core CPU, 256GB DDR5 ECC, 8TB NVMe storage'
+          }
+        ]
+      } : {
+        title: 'Comino Grando 多GPU伺服器 - 液冷AI運算',
+        formFactor: '6U機架式伺服器配備液冷系統',
+        introduction: 'Comino Grando多GPU伺服器代表液冷AI運算技術的巔峰。專為AI訓練、推論和高效能運算工作負載而設計，該系統通過GPU直連和先進熱管理實現卓越效能。液冷系統確保持續峰值效能，同時保持超靜音運作。',
+        keyFeatures: [
+          '最高8個NVIDIA RTX 4090或H100 GPU配備液冷',
+          'GPU直連架構實現最大頻寬',
+          'AMD EPYC 9004系列處理器，最高64核心',
+          '先進CoolIT液冷系統配備即時監控',
+          '最高1TB DDR5 ECC記憶體，高頻寬設計',
+          'NVMe Gen4儲存配置最高32TB',
+          '備援3200W電源供應確保可靠性',
+          '網路選項包括10GbE和InfiniBand',
+          '免工具維護，配備快速接頭',
+          '全面監控和管理軟體'
+        ],
+        technicalSpecs: {
+          '產品系列': 'Comino Grando 多GPU伺服器',
+          '外形尺寸': '6U機架式伺服器',
+          'GPU選項': 'NVIDIA RTX 4090（16,384 CUDA核心）、H100（16,896 CUDA核心）',
+          'GPU數量': '每系統最多8個GPU',
+          'CPU選項': 'AMD EPYC 9004系列（最高64核心）',
+          '記憶體': '最高1TB DDR5 ECC（支援最高4800 MT/s）',
+          '儲存': 'NVMe Gen4 SSD最高32TB總容量',
+          '網路': '10GbE、25GbE、InfiniBand選項',
+          '散熱': 'Comino CoolIT液冷系統配備全覆蓋冷卻塊',
+          '電源': '備援3200W電源供應配置',
+          '管理': 'IPMI、BMC、Comino管理套件',
+          '作業系統': 'Ubuntu、CentOS、RHEL、Windows Server、客製化Linux發行版',
+          '認證': 'CE、FCC、RoHS合規',
+          '保固': '3年製造商保固配備EudTech支援'
+        },
+        orderInfo: [
+          {
+            type: 'AI訓練配置',
+            pn: 'GRANDO-4090-8x',
+            model: 'Grando DPR 4090-FT/8',
+            description: '8個RTX 4090 24GB GPU、AMD EPYC 9554 64核心CPU、512GB DDR5 ECC、16TB NVMe Gen4 SSD'
           },
           {
             type: 'Enterprise AI Configuration',
@@ -359,81 +409,458 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         formFactor: '多種機型可選：桌上型、4U機架式、客製化配置',
         introduction: 'EudTech榮幸成為Comino Grando AI伺服器的授權經銷商，提供尖端液冷GPU系統，專為嚴苛的AI、深度學習和高效能運算任務而設計。這些系統提供卓越的計算能力和靈活配置選項，確保並行計算工作負載的最佳效能。採用整合式CoolIT液冷技術，提供強大的可擴展性、可靠性、能源效率和智能維護功能。',
         keyFeatures: [
-          '多種GPU選項：RTX 4090、RTX 6000 Ada世代、H100、L40S等',
-          'Comino CoolIT液冷系統，具備自我診斷功能',
-          '全覆蓋水冷頭，實現最佳散熱管理',
-          '支援AMD EPYC 9004系列和Intel Xeon W處理器',
-          '記憶體配置從64GB到2TB DDR5 ECC',
-          '儲存選項最高64TB NVMe Gen4 SSD',
-          '可選備援電源供應配置',
-          '多種網路連接選項，包括10GbE和InfiniBand',
-          '桌上型、機架式和客製化機型選項',
+          '單機架配置最多160個FPGA卡',
+          '每機架30kW功耗配備高效散熱',
+          '超緊湊4U機箱規格實現最大密度',
+          '相容BittWare CVP-13和其他FPGA卡',
+          '先進液冷配備熱回收功能',
+          '無風扇設計實現靜音運作',
+          '免工具維護配備快速接頭',
+          '即時熱監控和管理',
+          '可擴展架構支援多機架部署',
+          '定期維護下15年基礎設施壽命'
           '透過授權經銷商提供專業支援和保固'
         ],
-        technicalSpecs: {
-          '產品系列': 'Comino Grando AI伺服器系列',
-          '外形尺寸': '桌上型、4U機架式、客製化配置',
-          'GPU選項': 'NVIDIA RTX 4090（16,384 CUDA核心）、RTX 6000 Ada（18,176 CUDA核心）、H100（16,896 CUDA核心）、L40S（18,176 CUDA核心）',
-          'GPU數量': '每系統最多8個GPU',
-          'CPU選項': 'AMD EPYC 9004系列（最高96核心）、Intel Xeon W系列',
-          '記憶體': '64GB至2TB DDR5 ECC（支援最高4800 MT/s）',
-          '儲存': 'NVMe Gen4 SSD最高64TB總容量',
-          '網路': '1GbE、10GbE、25GbE、InfiniBand選項',
-          '散熱': 'Comino CoolIT液冷系統，配備全覆蓋冷卻塊',
-          '電源': '備援電源供應配置，從1600W到4000W',
-          '管理': 'IPMI、BMC、CMS遠端管理',
-          '作業系統': 'Ubuntu、CentOS、RHEL、Windows Server、客製化Linux發行版',
-          '認證': 'CE、FCC、RoHS合規',
+          '產品系列': 'Comino Grando FPGA',
+          '外形尺寸': '4U機架式伺服器',
+          'FPGA容量': '每機架最多160個FPGA卡',
+          '功耗': '每機架最大30kW',
+          'FPGA相容性': 'BittWare CVP-13、Intel Stratix 10、Xilinx Alveo',
+          '散熱系統': '液冷配備板式熱交換器',
+          '熱設計': '無風扇運作，<30dB噪音等級',
+          '熱回收': '可加熱最多1100 m²空間',
+          '佔地面積': '2 m²（比同等風冷小10倍）',
+          '網路': '10GbE、25GbE、100GbE選項',
+          '管理': 'IPMI、SNMP、Redfish介面',
+          '操作溫度': '環境溫度5°C至35°C',
+          '可靠性': '15年基礎設施壽命'
           '保固': '3年製造商保固 + 本地支援'
         },
         orderInfo: [
+            type: 'FPGA開發系統',
+            pn: 'GRANDO-FPGA-DEV',
+            model: 'Grando FPGA Developer',
+            description: '32個FPGA卡、BittWare CVP-13、7.5kW功率、液冷系統、開發工具'
+          },
           {
-            type: '高效能配置',
-            pn: 'GRANDO-RTX4090x8',
-            model: 'Grando DPR 4090-FT/8',
+            type: '生產FPGA系統',
+            pn: 'GRANDO-FPGA-PROD',
+            model: 'Grando FPGA Production',
+            description: '160個FPGA卡、滿機架配置、30kW功率、熱回收系統'
             description: '8個RTX 4090 GPU、AMD EPYC 9554 64核心CPU、512GB DDR5 ECC、8TB NVMe Gen4 SSD、液冷系統'
           },
+            type: 'FPGA叢集',
+            pn: 'GRANDO-FPGA-CLUSTER',
+            model: 'Grando FPGA Cluster',
+            description: '多機架FPGA叢集，最多480個FPGA卡，90kW總功率'
+            description: '8個H100 80GB GPU、AMD EPYC 9654 96核心CPU、1TB DDR5 ECC、32TB NVMe儲存'
+          },
+            type: '基礎設施套件',
+            pn: 'GRANDO-FPGA-INFRA',
+            model: 'FPGA Infrastructure Kit',
+            description: '散熱基礎設施、電力分配、監控、安裝服務'
+            'AMD Ryzen Threadripper',
+            'Up to 256GB DDR5',
+            'Ready for AI Development'
+          ]
+        : [
+            '最高4個RTX 4090 GPU',
+            '緊湊桌面設計',
+            '超靜音運作',
+            'AMD Ryzen Threadripper',
+            '最高256GB DDR5',
+            'AI開發就緒'
+          ],
+      specs: isEnglish ? {
+        'GPU': 'Up to 4x RTX 4090',
+        'CPU': 'AMD Ryzen Threadripper',
+        'Memory': 'Up to 256GB DDR5',
+        'Storage': 'Up to 8TB NVMe',
+        'Form Factor': 'Desktop Tower'
+      } : {
+        'GPU': '最高4個RTX 4090',
+        'CPU': 'AMD Ryzen Threadripper',
+        '記憶體': '最高256GB DDR5',
+        '儲存': '最高8TB NVMe',
+        '機箱規格': '桌面塔式'
+      },
+      comingSoon: false,
+      images: [
+        "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/163064/play-stone-network-networked-163064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ],
+      detailedDescription: isEnglish ? {
+        title: 'Comino Grando Workstation - AI Development Powerhouse',
+        formFactor: 'Compact desktop tower with advanced liquid cooling',
+        introduction: 'The Comino Grando Workstation brings enterprise-level AI computing power to the desktop. Designed for researchers, data scientists, and AI developers who need maximum performance in a compact form factor. The advanced liquid cooling system ensures sustained performance while maintaining near-silent operation, making it perfect for office environments.',
+        keyFeatures: [
+          'Up to 4x NVIDIA RTX 4090 GPUs with full liquid cooling',
+          'AMD Ryzen Threadripper PRO processors up to 64 cores',
+          'Compact desktop form factor with professional aesthetics',
+          'Advanced liquid cooling with custom water blocks',
+          'Up to 256GB DDR5 ECC memory support',
+          'High-speed NVMe storage up to 8TB capacity',
+          'Whisper-quiet operation under full load',
+          'Tool-free GPU access for easy upgrades',
+          'Multiple display outputs supporting 8K resolution',
+          'Pre-configured with AI development frameworks'
+        ],
+        technicalSpecs: {
+          'Product Series': 'Comino Grando Workstation',
+          'Form Factor': 'Desktop Tower (600mm x 250mm x 550mm)',
+          'GPU Configuration': 'Up to 4x NVIDIA RTX 4090 24GB',
+          'CPU Options': 'AMD Ryzen Threadripper PRO (32-64 cores)',
+          'Memory': 'Up to 256GB DDR5 ECC (8 slots)',
+          'Storage': 'Up to 8TB NVMe Gen4 SSD (4 slots)',
+          'Cooling System': 'Custom liquid cooling with external radiator',
+          'Power Supply': '2000W 80+ Platinum PSU',
+          'Network': 'Dual 10GbE, WiFi 6E, Bluetooth 5.2',
+          'I/O Ports': '12x USB 3.2, 4x Thunderbolt 4, 2x HDMI 2.1, 4x DisplayPort 1.4',
+          'Operating Temperature': '5°C to 35°C ambient',
+          'Noise Level': '<30dB under full load',
+          'Software': 'Ubuntu 22.04 LTS, CUDA 12.x, Docker, Jupyter'
+        },
+        orderInfo: [
           {
-            type: '企業AI配置',
-            pn: 'GRANDO-H100x8',
-            model: 'Grando H100 Enterprise',
-            description: '8個H100 SXM5 80GB GPU、AMD EPYC 9654 96核心CPU、1TB DDR5 ECC、16TB NVMe儲存、進階散熱'
+            type: 'Developer Configuration',
+            pn: 'GRANDO-WS-DEV',
+            model: 'Grando Workstation Developer',
+            description: '2x RTX 4090, Threadripper PRO 5955WX, 128GB DDR5 ECC, 4TB NVMe, liquid cooling'
           },
           {
-            type: '專業工作站',
-            pn: 'GRANDO-RTX6000x4',
-            model: 'Grando RTX 6000 Ada Pro',
-            description: '4個RTX 6000 Ada 48GB GPU、Intel Xeon W-3435X、256GB DDR5 ECC、4TB NVMe儲存'
+            type: 'Research Configuration',
+            pn: 'GRANDO-WS-RESEARCH',
+            model: 'Grando Workstation Research',
+            description: '4x RTX 4090, Threadripper PRO 5975WX, 256GB DDR5 ECC, 8TB NVMe, advanced cooling'
           },
           {
-            type: '入門級AI系統',
-            pn: 'GRANDO-RTX4090x4',
-            model: 'Grando RTX 4090 Starter',
-            description: '4個RTX 4090 GPU、AMD EPYC 9374F、128GB DDR5 ECC、2TB NVMe儲存、桌上型機型'
+            type: 'Professional Configuration',
+            pn: 'GRANDO-WS-PRO',
+            model: 'Grando Workstation Pro',
+            description: '3x RTX 4090, Threadripper PRO 5965WX, 192GB DDR5 ECC, 6TB NVMe, professional support'
+          }
+        ]
+      } : {
+        title: 'Comino Grando 工作站 - AI開發強力機種',
+        formFactor: '緊湊桌面塔式配備先進液冷系統',
+        introduction: 'Comino Grando工作站將企業級AI運算能力帶到桌面環境。專為研究人員、數據科學家和AI開發者設計，在緊湊機箱中提供最大效能。先進液冷系統確保持續效能，同時保持近乎靜音的運作，非常適合辦公室環境。',
+        keyFeatures: [
+          '最高4個NVIDIA RTX 4090 GPU配備完整液冷',
+          'AMD Ryzen Threadripper PRO處理器最高64核心',
+          '緊湊桌面機箱配備專業美學設計',
+          '先進液冷系統配備客製化水冷頭',
+          '最高256GB DDR5 ECC記憶體支援',
+          '高速NVMe儲存最高8TB容量',
+          '滿載運作時超靜音表現',
+          '免工具GPU存取，便於升級',
+          '多顯示輸出支援8K解析度',
+          '預配置AI開發框架'
+        ],
+        technicalSpecs: {
+          '產品系列': 'Comino Grando 工作站',
+          '外形尺寸': '桌面塔式（600mm x 250mm x 550mm）',
+          'GPU配置': '最高4個NVIDIA RTX 4090 24GB',
+          'CPU選項': 'AMD Ryzen Threadripper PRO（32-64核心）',
+          '記憶體': '最高256GB DDR5 ECC（8插槽）',
+          '儲存': '最高8TB NVMe Gen4 SSD（4插槽）',
+          '散熱系統': '客製化液冷配備外部散熱器',
+          '電源供應': '2000W 80+ 白金級電源',
+          '網路': '雙10GbE、WiFi 6E、藍牙5.2',
+          'I/O埠': '12個USB 3.2、4個Thunderbolt 4、2個HDMI 2.1、4個DisplayPort 1.4',
+          '操作溫度': '環境溫度5°C至35°C',
+          '噪音等級': '滿載時<30dB',
+          '軟體': 'Ubuntu 22.04 LTS、CUDA 12.x、Docker、Jupyter'
+        },
+        orderInfo: [
+          {
+            type: '開發者配置',
+            pn: 'GRANDO-WS-DEV',
+            model: 'Grando Workstation Developer',
+            description: '2個RTX 4090、Threadripper PRO 5955WX、128GB DDR5 ECC、4TB NVMe、液冷系統'
           },
           {
-            type: '推論優化型',
-            pn: 'GRANDO-L40Sx6',
-            model: 'Grando L40S Inference',
-            description: '6個L40S 48GB GPU，專為AI推論工作負載優化，384GB DDR5 ECC、6TB NVMe儲存'
+            type: '研究配置',
+            pn: 'GRANDO-WS-RESEARCH',
+            model: 'Grando Workstation Research',
+            description: '4個RTX 4090、Threadripper PRO 5975WX、256GB DDR5 ECC、8TB NVMe、進階散熱'
           },
           {
-            type: '客製化配置',
-            pn: 'GRANDO-CUSTOM',
-            model: '客製化Grando系統',
-            description: '根據特定需求完全客製化配置 - 請聯繫EudTech進行諮詢'
-          },
-          {
-            type: '支援服務包',
-            pn: 'SUPPORT-PREMIUM',
-            model: '頂級支援',
-            description: '24/7支援、現場服務、延長保固、系統優化服務'
+            type: '專業配置',
+            pn: 'GRANDO-WS-PRO',
+            model: 'Grando Workstation Pro',
+            description: '3個RTX 4090、Threadripper PRO 5965WX、192GB DDR5 ECC、6TB NVMe、專業支援'
           }
         ]
       }
     },
-    // ... other products data
-  ];
+    {
+      id: 7,
+      title: isEnglish ? 'Comino Grando Container' : 'Comino Grando 移動數據中心',
+      description: isEnglish
+        ? 'Universal mobile data center for liquid-cooled solutions. 40ft container housing up to 140 Grando U blocks with 2240 GPUs total capacity.'
+        : '液冷解決方案的通用移動數據中心。40英尺貨櫃可容納最多140個Grando U塊，總共2240個GPU容量。',
+      icon: <Shield className="h-8 w-8 text-green-700" />,
+      image: "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      features: isEnglish
+        ? [
+            'Up to 140 Grando U Blocks',
+            '500kW Total Power',
+            'Operating: -30°C to +50°C',
+            '13x 19" 48U Racks',
+            'Heat Recovery System',
+            'Mobile Deployment'
+          ]
+        : [
+            '最多140個Grando U塊',
+            '500kW總功率',
+            '操作溫度：-30°C至+50°C',
+            '13個19英寸48U機架',
+            '熱回收系統',
+            '移動部署'
+          ],
+      specs: isEnglish ? {
+        'Capacity': 'Up to 2240 GPUs',
+        'Power': 'Up to 500kW',
+        'Racks': '13x 19" 48U Racks',
+        'Cooling': 'Liquid-to-Liquid Heat Exchanger',
+        'Container': '40ft HQ Standard'
+      } : {
+        '容量': '最多2240個GPU',
+        '功率': '最高500kW',
+        '機架': '13個19英寸48U機架',
+        '散熱': '液-液熱交換器',
+        '貨櫃': '40英尺HQ標準'
+      },
+      comingSoon: false,
+      images: [
+        "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/1117452/pexels-photo-1117452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ],
+      detailedDescription: isEnglish ? {
+        title: 'Comino Grando Container - Universal Mobile Data Center',
+        formFactor: '40ft High Cube Container (12.192m x 2.438m x 2.896m)',
+        introduction: 'The Comino Grando Container represents the fastest possible deployment of a complete data center. This universal mobile data center is designed for liquid-cooled solutions and is available to customers immediately after contract agreement. The container is delivered as a finished product with all main system components pre-installed, tested, and configured during production.',
+        keyFeatures: [
+          'Houses up to 140 Grando U Blocks (2240 GPUs or FPGAs)',
+          'Operates in extreme environments from -30°C to +50°C',
+          'Total power capacity up to 500kW with redundant systems',
+          '13x 19" 48U racks with liquid cooling manifolds',
+          'Two-circuit liquid cooling system (internal and external)',
+          'Heat recovery system for energy reuse',
+          'Comprehensive automation and monitoring systems',
+          'Security systems including access control and CCTV',
+          'Network infrastructure with 4x 48-port gigabit switches',
+          'Professional installation and commissioning included'
+        ],
+        technicalSpecs: {
+          'Product Series': 'Comino Grando Container',
+          'Container Type': '40ft High Cube Standard Container',
+          'Dimensions': '12.192m (L) x 2.438m (W) x 2.896m (H)',
+          'Maximum Weight': '16 tons gross weight',
+          'Rack Equipment': '13x 19" 48U racks with liquid cooling manifolds',
+          'Power per Rack': 'Up to 36kW electrical and cooling power',
+          'Total Power': 'Up to 500kW with 4x 250A cable inputs',
+          'Cooling System': 'Two-circuit liquid cooling (internal/external)',
+          'Heat Exchanger': '405,000 kcal/h (471kW) thermal load',
+          'Operating Temperature': '-30°C to +50°C ambient',
+          'Ventilation': 'Up to 40,000 m³/h filtered air',
+          'Network': '4x 48-port gigabit switches, 5e cable system',
+          'Security': 'Entry control, fire alarm, CCTV systems',
+          'Management': 'Thermal monitoring, automatic control, emergency algorithms'
+        },
+        orderInfo: [
+          {
+            type: 'Basic Container',
+            pn: 'GRANDO-CONTAINER-BASIC',
+            model: 'Grando Container Basic',
+            description: 'Complete 40ft container with 10 racks, basic cooling system, power distribution, and monitoring'
+          },
+          {
+            type: 'Enterprise Container',
+            pn: 'GRANDO-CONTAINER-ENTERPRISE',
+            model: 'Grando Container Enterprise',
+            description: 'Full capacity container with 13 racks, advanced cooling, heat recovery, comprehensive monitoring'
+          },
+          {
+            type: 'Custom Container',
+            pn: 'GRANDO-CONTAINER-CUSTOM',
+            model: 'Grando Container Custom',
+            description: 'Fully customizable container configuration based on specific requirements'
+          },
+          {
+            type: 'Installation Package',
+            pn: 'GRANDO-INSTALL-PACKAGE',
+            model: 'Professional Installation',
+            description: 'Site preparation, installation, commissioning, and training services'
+          }
+        ]
+      } : {
+        title: 'Comino Grando 移動數據中心 - 通用移動數據中心',
+        formFactor: '40英尺高櫃貨櫃（12.192m x 2.438m x 2.896m）',
+        introduction: 'Comino Grando貨櫃代表完整數據中心最快速的部署方案。這個通用移動數據中心專為液冷解決方案設計，在合約簽署後立即可供客戶使用。貨櫃作為完成品交付，所有主要系統組件在生產過程中預安裝、測試和配置。',
+        keyFeatures: [
+          '可容納最多140個Grando U塊（2240個GPU或FPGA）',
+          '在-30°C至+50°C極端環境中運作',
+          '總功率容量最高500kW配備備援系統',
+          '13個19英寸48U機架配備液冷歧管',
+          '雙迴路液冷系統（內部和外部）',
+          '熱回收系統用於能源再利用',
+          '全面自動化和監控系統',
+          '安全系統包括出入控制和監視系統',
+          '網路基礎設施配備4個48埠千兆交換器',
+          '包含專業安裝和調試服務'
+        ],
+        technicalSpecs: {
+          '產品系列': 'Comino Grando 移動數據中心',
+          '貨櫃類型': '40英尺高櫃標準貨櫃',
+          '尺寸': '12.192m (長) x 2.438m (寬) x 2.896m (高)',
+          '最大重量': '16噸總重量',
+          '機架設備': '13個19英寸48U機架配備液冷歧管',
+          '每機架功率': '最高36kW電力和散熱功率',
+          '總功率': '最高500kW配備4個250A電纜輸入',
+          '散熱系統': '雙迴路液冷（內部/外部）',
+          '熱交換器': '405,000 kcal/h（471kW）熱負載',
+          '操作溫度': '環境溫度-30°C至+50°C',
+          '通風': '最高40,000 m³/h過濾空氣',
+          '網路': '4個48埠千兆交換器，5e纜線系統',
+          '安全': '出入控制、火災報警、監視系統',
+          '管理': '熱監控、自動控制、緊急演算法'
+        },
+        orderInfo: [
+          {
+            type: '基本貨櫃',
+            pn: 'GRANDO-CONTAINER-BASIC',
+            model: 'Grando Container Basic',
+            description: '完整40英尺貨櫃配備10個機架、基本散熱系統、電力分配和監控'
+          },
+          {
+            type: '企業貨櫃',
+            pn: 'GRANDO-CONTAINER-ENTERPRISE',
+            model: 'Grando Container Enterprise',
+            description: '滿載容量貨櫃配備13個機架、先進散熱、熱回收、全面監控'
+          },
+          {
+            type: '客製化貨櫃',
+            pn: 'GRANDO-CONTAINER-CUSTOM',
+            model: 'Grando Container Custom',
+            description: '根據特定需求完全客製化的貨櫃配置'
+          },
+          {
+            type: '安裝服務包',
+            pn: 'GRANDO-INSTALL-PACKAGE',
+            model: 'Professional Installation',
+            description: '場地準備、安裝、調試和培訓服務'
+          }
+        ]
+      }
+    },
+    {
+      id: 8,
+      title: isEnglish ? 'Comino Grando FPGA Solutions' : 'Comino Grando FPGA解決方案',
+      description: isEnglish
+        ? 'Ultra-compact liquid-cooled FPGA computing platform. Supports up to 160 FPGA per rack with 30kW power consumption in 4U form factor.'
+        : '超緊湊液冷FPGA運算平台。支援每機架最多160個FPGA，4U機箱規格下功耗30kW。',
+      icon: <Cpu className="h-8 w-8 text-orange-700" />,
+      image: "https://images.pexels.com/photos/163064/play-stone-network-networked-163064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      features: isEnglish
+        ? [
+            'Up to 160 FPGA per Rack',
+            '30kW Power per Rack',
+            '4U Form Factor',
+            'BittWare CVP-13 Compatible',
+            'Liquid Cooling System',
+            'Heat Recovery Capable'
+          ]
+        : [
+            '每機架最多160個FPGA',
+            '每機架30kW功率',
+            '4U機箱規格',
+            '相容BittWare CVP-13',
+            '液冷系統',
+            '熱回收功能'
+          ],
+      specs: isEnglish ? {
+        'FPGA': 'Up to 160 per rack',
+        'Power': '30kW per rack',
+        'Form Factor': '4U Rackmount',
+        'Cooling': 'Liquid Cooling',
+        'Compatibility': 'BittWare CVP-13'
+      } : {
+        'FPGA': '每機架最多160個',
+        '功率': '每機架30kW',
+        '機箱規格': '4U機架式',
+        '散熱': '液冷系統',
+        '相容性': 'BittWare CVP-13'
+      },
+      comingSoon: false,
+      images: [
+        "https://images.pexels.com/photos/163064/play-stone-network-networked-163064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      ],
+      detailedDescription: isEnglish ? {
+        title: 'Comino Grando FPGA - Ultra-Compact Liquid-Cooled Computing',
+        formFactor: '4U Rackmount with advanced liquid cooling system',
+        introduction: 'Comino Grando FPGA is the world\'s first ultra-compact liquid-cooled enterprise computing platform with built-in ability to reuse heat. Designed specifically for FPGA processing power, this system allows you to take full advantage of programmable hardware acceleration while maintaining optimal thermal performance and energy efficiency.',
+        keyFeatures: [
+          'Up to 160 FPGA cards per single rack configuration',
+          '30kW power consumption per rack with efficient cooling',
+          'Ultra-compact 4U form factor for maximum density',
+          'Compatible with BittWare CVP-13 and other FPGA cards',
+          'Advanced liquid cooling with heat recovery capabilities',
+          'Fanless design for silent operation',
+          'Tool-free maintenance with quick-disconnect fittings',
+          'Real-time thermal monitoring and management',
+          'Scalable architecture for multi-rack deployments',
+          '15-year infrastructure lifespan with regular maintenance'
+        ],
+        technicalSpecs: {
+          'Product Series': 'Comino Grando FPGA',
+          'Form Factor': '4U Rackmount Server',
+          'FPGA Capacity': 'Up to 160 FPGA cards per rack',
+          'Power Consumption': '30kW per rack maximum',
+          'FPGA Compatibility': 'BittWare CVP-13, Intel Stratix 10, Xilinx Alveo',
+          'Cooling System': 'Liquid cooling with plate heat exchangers',
+          'Thermal Design': 'Fanless operation, <30dB noise level',
+          'Heat Recovery': 'Can heat up to 1100 m² space',
+          'Footprint': '2 m² (10x smaller than air cooling equivalent)',
+          'Network': '10GbE, 25GbE, 100GbE options',
+          'Management': 'IPMI, SNMP, Redfish interfaces',
+          'Operating Temperature': '5°C to 35°C ambient',
+          'Reliability': '15-year infrastructure lifespan'
+        },
+        orderInfo: [
+          {
+            type: 'FPGA Development System',
+            pn: 'GRANDO-FPGA-DEV',
+            model: 'Grando FPGA Developer',
+            description: '32 FPGA cards, BittWare CVP-13, 7.5kW power, liquid cooling, development tools'
+          },
+          {
+            type: 'Production FPGA System',
+            pn: 'GRANDO-FPGA-PROD',
+            model: 'Grando FPGA Production',
+            description: '160 FPGA cards, full rack configuration, 30kW power, heat recovery system'
+          },
+          {
+            type: 'FPGA Cluster',
+            pn: 'GRANDO-FPGA-CLUSTER',
+            model: 'Grando FPGA Cluster',
+            description: 'Multi-rack FPGA cluster with up to 480 FPGA cards, 90kW total power'
+          },
+          {
+            type: 'Infrastructure Kit',
+            pn: 'GRANDO-FPGA-INFRA',
+            model: 'FPGA Infrastructure Kit',
+            description: 'Cooling infrastructure, power distribution, monitoring, installation services'
+          }
+        ]
+      }
+        title: 'Comino Grando FPGA - 超緊湊液冷運算',
+        formFactor: '4U機架式配備先進液冷系統',
+        introduction: 'Comino Grando FPGA是世界上首個超緊湊液冷企業運算平台，具備內建熱能再利用能力。專為FPGA處理能力而設計，該系統讓您能充分利用可程式硬體加速，同時保持最佳熱效能和能源效率。',
 
   const product = products.find(p => p.id === Number(id));
 

@@ -170,41 +170,161 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({ isEnglish }) => {
     },
     {
       id: 5,
-      title: isEnglish ? 'Comino Grando AI Server Series' : 'Comino Grando AI伺服器系列',
+      title: isEnglish ? 'Comino Grando Multi-GPU Server' : 'Comino Grando 多GPU伺服器',
       description: isEnglish
-        ? 'Liquid-cooled multi-GPU servers designed for extreme performance in AI, deep learning, and HPC. EudTech is an authorized distributor of Comino products.'
-        : '液冷式多GPU伺服器，專為AI、深度學習和高效能運算提供極致效能。EudTech是Comino產品的授權經銷商。',
+        ? 'Liquid-cooled multi-GPU servers with up to 8x RTX 4090/H100 GPUs. Designed for extreme performance in AI training, inference, and HPC workloads.'
+        : '液冷式多GPU伺服器，最高支援8個RTX 4090/H100 GPU。專為AI訓練、推論和高效能運算工作負載的極致效能而設計。',
       icon: <Server className="h-8 w-8 text-purple-700" />,
       image: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       features: isEnglish
         ? [
-            'Comino Liquid Cooling Technology',
+            'Advanced CoolIT Liquid Cooling',
             'Up to 8x RTX 4090/H100 GPUs',
-            'AMD EPYC 9004 / Intel Xeon Support',
-            'Up to 2TB DDR5 ECC Memory',
-            'Multiple Configuration Options',
-            'Authorized Distributor Support'
+            'Direct GPU-to-GPU Connection',
+            'AMD EPYC 9004 Series CPUs',
+            'Up to 1TB DDR5 ECC Memory',
+            'NVMe Gen4 Storage'
           ]
         : [
-            'Comino液冷技術',
+            '先進CoolIT液冷技術',
             '最高8個RTX 4090/H100 GPU',
-            'AMD EPYC 9004 / Intel Xeon支援',
-            '最高2TB DDR5 ECC記憶體',
-            '多種配置選項',
-            '授權經銷商支援'
+            'GPU直連架構',
+            'AMD EPYC 9004系列CPU',
+            '最高1TB DDR5 ECC記憶體',
+            'NVMe Gen4儲存'
           ],
       specs: isEnglish ? {
-        'GPU Options': 'RTX 4090, RTX 6000 Ada, H100, L40S',
-        'CPU Platform': 'AMD EPYC 9004 / Intel Xeon W',
-        'Memory': 'Up to 2TB DDR5 ECC',
-        'Storage': 'Up to 64TB NVMe Gen4',
+        'GPU': 'Up to 8x RTX 4090/H100',
+        'CPU': 'AMD EPYC 9004 Series',
+        'Memory': 'Up to 1TB DDR5 ECC',
+        'Storage': 'Up to 32TB NVMe Gen4',
         'Cooling': 'Comino CoolIT Liquid Cooling'
       } : {
-        'GPU選項': 'RTX 4090, RTX 6000 Ada, H100, L40S',
-        'CPU平台': 'AMD EPYC 9004 / Intel Xeon W',
-        '記憶體': '最高2TB DDR5',
-        '儲存': '最高64TB NVMe Gen4',
+        'GPU': '最高8個RTX 4090/H100',
+        'CPU': 'AMD EPYC 9004系列',
+        '記憶體': '最高1TB DDR5 ECC',
+        '儲存': '最高32TB NVMe Gen4',
         '散熱': 'Comino CoolIT 液冷系統'
+      },
+      comingSoon: false
+    },
+    {
+      id: 6,
+      title: isEnglish ? 'Comino Grando Workstation' : 'Comino Grando 工作站',
+      description: isEnglish
+        ? 'High-performance AI workstation with liquid cooling for deep learning research and development. Perfect for individual researchers and small teams.'
+        : '高效能AI工作站，配備液冷系統，專為深度學習研究和開發設計。適合個人研究者和小型團隊使用。',
+      icon: <Cpu className="h-8 w-8 text-indigo-700" />,
+      image: "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      features: isEnglish
+        ? [
+            'Up to 4x RTX 4090 GPUs',
+            'Compact Desktop Design',
+            'Whisper-Quiet Operation',
+            'AMD Ryzen Threadripper',
+            'Up to 256GB DDR5',
+            'Ready for AI Development'
+          ]
+        : [
+            '最高4個RTX 4090 GPU',
+            '緊湊桌面設計',
+            '超靜音運作',
+            'AMD Ryzen Threadripper',
+            '最高256GB DDR5',
+            'AI開發就緒'
+          ],
+      specs: isEnglish ? {
+        'GPU': 'Up to 4x RTX 4090',
+        'CPU': 'AMD Ryzen Threadripper',
+        'Memory': 'Up to 256GB DDR5',
+        'Storage': 'Up to 8TB NVMe',
+        'Form Factor': 'Desktop Tower'
+      } : {
+        'GPU': '最高4個RTX 4090',
+        'CPU': 'AMD Ryzen Threadripper',
+        '記憶體': '最高256GB DDR5',
+        '儲存': '最高8TB NVMe',
+        '機箱規格': '桌面塔式'
+      },
+      comingSoon: false
+    },
+    {
+      id: 7,
+      title: isEnglish ? 'Comino Grando Container' : 'Comino Grando 移動數據中心',
+      description: isEnglish
+        ? 'Universal mobile data center for liquid-cooled solutions. 40ft container housing up to 140 Grando U blocks with 2240 GPUs total capacity.'
+        : '液冷解決方案的通用移動數據中心。40英尺貨櫃可容納最多140個Grando U塊，總共2240個GPU容量。',
+      icon: <Shield className="h-8 w-8 text-green-700" />,
+      image: "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      features: isEnglish
+        ? [
+            'Up to 140 Grando U Blocks',
+            '500kW Total Power',
+            'Operating: -30°C to +50°C',
+            '13x 19" 48U Racks',
+            'Heat Recovery System',
+            'Mobile Deployment'
+          ]
+        : [
+            '最多140個Grando U塊',
+            '500kW總功率',
+            '操作溫度：-30°C至+50°C',
+            '13個19英寸48U機架',
+            '熱回收系統',
+            '移動部署'
+          ],
+      specs: isEnglish ? {
+        'Capacity': 'Up to 2240 GPUs',
+        'Power': 'Up to 500kW',
+        'Racks': '13x 19" 48U Racks',
+        'Cooling': 'Liquid-to-Liquid Heat Exchanger',
+        'Container': '40ft HQ Standard'
+      } : {
+        '容量': '最多2240個GPU',
+        '功率': '最高500kW',
+        '機架': '13個19英寸48U機架',
+        '散熱': '液-液熱交換器',
+        '貨櫃': '40英尺HQ標準'
+      },
+      comingSoon: false
+    },
+    {
+      id: 8,
+      title: isEnglish ? 'Comino Grando FPGA Solutions' : 'Comino Grando FPGA解決方案',
+      description: isEnglish
+        ? 'Ultra-compact liquid-cooled FPGA computing platform. Supports up to 160 FPGA per rack with 30kW power consumption in 4U form factor.'
+        : '超緊湊液冷FPGA運算平台。支援每機架最多160個FPGA，4U機箱規格下功耗30kW。',
+      icon: <Cpu className="h-8 w-8 text-orange-700" />,
+      image: "https://images.pexels.com/photos/163064/play-stone-network-networked-163064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      features: isEnglish
+        ? [
+            'Up to 160 FPGA per Rack',
+            '30kW Power per Rack',
+            '4U Form Factor',
+            'BittWare CVP-13 Compatible',
+            'Liquid Cooling System',
+            'Heat Recovery Capable'
+          ]
+        : [
+            '每機架最多160個FPGA',
+            '每機架30kW功率',
+            '4U機箱規格',
+            '相容BittWare CVP-13',
+            '液冷系統',
+            '熱回收功能'
+          ],
+      specs: isEnglish ? {
+        'FPGA': 'Up to 160 per rack',
+        'Power': '30kW per rack',
+        'Form Factor': '4U Rackmount',
+        'Cooling': 'Liquid Cooling',
+        'Compatibility': 'BittWare CVP-13'
+      } : {
+        'FPGA': '每機架最多160個',
+        '功率': '每機架30kW',
+        '機箱規格': '4U機架式',
+        '散熱': '液冷系統',
+        '相容性': 'BittWare CVP-13'
       },
       comingSoon: false
     }
