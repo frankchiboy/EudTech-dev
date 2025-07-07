@@ -1,0 +1,19 @@
+HTTrack3.49-2+htsswf+htsjava launched on Tue, 08 Jul 2025 00:58:02 at https://www.grando.ai/en/choose-a-gpu-machine-for-ai-deep-learning +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://www.grando.ai/en/choose-a-gpu-machine-for-ai-deep-learning -O1 "C:\My Web Sites\COMINO" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+00:58:28	Error: 	"Bad Request" (400) at link https://www.googletagmanager.com/gtm.js?id= (from https://www.grando.ai/en/choose-a-gpu-machine-for-ai-deep-learning)
+00:59:03	Warning: 	Retry after error 502 (Bad Gateway) at link https://www.grando.ai/en/"https://cdn.prod.website-files.com/628295a883124981fd568435%2F672b55e1d468ec537e6fc8e6_RM_3000x1080-poster-00001.jpg" (from https://www.grando.ai/en/multi-gpu-server)
+00:59:03	Warning: 	Retry after error 502 (Bad Gateway) at link https://www.grando.ai/en/"https://cdn.prod.website-files.com/628295a883124981fd568435/628a8c4c3e6eda684dd0da91_contanier-poster-00001.jpg" (from https://www.grando.ai/en/container)
+00:59:03	Error: 	"Not Found" (404) at link https://www.grando.ai/static/i/video-stopframe.jpg (from https://www.grando.ai/en/container)
+00:59:04	Warning: 	Retry after error 502 () at link https://www.grando.ai/en/"https://cdn.prod.website-files.com/628295a883124981fd568435%2F672b55e1d468ec537e6fc8e6_RM_3000x1080-poster-00001.jpg" (from https://www.grando.ai/en/multi-gpu-server)
+00:59:04	Warning: 	Retry after error 502 (Bad Gateway) at link https://www.grando.ai/en/"https://cdn.prod.website-files.com/628295a883124981fd568435/628a8c4c3e6eda684dd0da91_contanier-poster-00001.jpg" (from https://www.grando.ai/en/container)
+00:59:04	Error: 	"" (502) after 2 retries at link https://www.grando.ai/en/"https://cdn.prod.website-files.com/628295a883124981fd568435%2F672b55e1d468ec537e6fc8e6_RM_3000x1080-poster-00001.jpg" (from https://www.grando.ai/en/multi-gpu-server)
+00:59:04	Error: 	"Bad Gateway" (502) after 2 retries at link https://www.grando.ai/en/"https://cdn.prod.website-files.com/628295a883124981fd568435/628a8c4c3e6eda684dd0da91_contanier-poster-00001.jpg" (from https://www.grando.ai/en/container)
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 2 seconds : 200 links scanned, 191 files written (42209252 bytes overall) [40673904 bytes received at 656030 bytes/sec], 2304205 bytes transferred using HTTP compression in 25 files, ratio 25%, 11.0 requests per connection
+(4 errors, 4 warnings, 0 messages)

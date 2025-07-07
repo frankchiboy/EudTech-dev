@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Mail } from 'lucide-react';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 interface ContactSectionProps {
   isEnglish: boolean;
