@@ -175,7 +175,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({ isEnglish }) => {
         ? 'Liquid-cooled multi-GPU servers with up to 8x RTX 4090/H100 GPUs. Designed for extreme performance in AI training, inference, and HPC workloads.'
         : '液冷式多GPU伺服器，最高支援8個RTX 4090/H100 GPU。專為AI訓練、推論和高效能運算工作負載的極致效能而設計。',
       icon: <Server className="h-8 w-8 text-purple-700" />,
-      image: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: "/grando-8gpu-server.jpg",
       features: isEnglish
         ? [
             'Advanced CoolIT Liquid Cooling',
@@ -215,7 +215,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({ isEnglish }) => {
         ? 'High-performance AI workstation with liquid cooling for deep learning research and development. Perfect for individual researchers and small teams.'
         : '高效能AI工作站，配備液冷系統，專為深度學習研究和開發設計。適合個人研究者和小型團隊使用。',
       icon: <Cpu className="h-8 w-8 text-indigo-700" />,
-      image: "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: "/grando-workstation-closed.png",
       features: isEnglish
         ? [
             'Up to 4x RTX 4090 GPUs',
@@ -255,7 +255,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({ isEnglish }) => {
         ? 'Universal mobile data center for liquid-cooled solutions. 40ft container housing up to 140 Grando U blocks with 2240 GPUs total capacity.'
         : '液冷解決方案的通用移動數據中心。40英尺貨櫃可容納最多140個Grando U塊，總共2240個GPU容量。',
       icon: <Shield className="h-8 w-8 text-green-700" />,
-      image: "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: "/grando-container-closed.png",
       features: isEnglish
         ? [
             'Up to 140 Grando U Blocks',
@@ -295,7 +295,7 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({ isEnglish }) => {
         ? 'Ultra-compact liquid-cooled FPGA computing platform. Supports up to 160 FPGA per rack with 30kW power consumption in 4U form factor.'
         : '超緊湊液冷FPGA運算平台。支援每機架最多160個FPGA，4U機箱規格下功耗30kW。',
       icon: <Cpu className="h-8 w-8 text-orange-700" />,
-      image: "https://images.pexels.com/photos/163064/play-stone-network-networked-163064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: "/grando-fpga-cards.png",
       features: isEnglish
         ? [
             'Up to 160 FPGA per Rack',
