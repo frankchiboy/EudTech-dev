@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Server, Cpu, Shield, Cloud } from 'lucide-react';
+import { ArrowLeft, Server, Cpu, Shield, Cloud, CircuitBoard } from 'lucide-react';
 
 interface ProductDetailsProps {
   isEnglish: boolean;
