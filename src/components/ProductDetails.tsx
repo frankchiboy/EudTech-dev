@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Server, Cpu, Shield, Cloud, CircuitBoard } from 'lucide-react';
+import { ArrowLeft, Server, Cpu, Shield, Cloud } from 'lucide-react';
 
 interface ProductDetailsProps {
   isEnglish: boolean;
@@ -743,39 +743,18 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4 space-y-4">
-          {/* Logo */}
-          <div className="flex justify-center">
-            <div className="flex items-center">
-              <div className="relative">
-                <Server className="h-8 w-8 text-teal-600" />
-                <CircuitBoard className="h-5 w-5 absolute -top-1 -right-1 text-blue-800" />
-              </div>
-              <div className="ml-2 flex flex-col leading-none">
-                <span className="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-teal-600">
-                  EudTech
-                </span>
-                <span className="text-xs tracking-wide opacity-80">Eudaemonia Technology</span>
-              </div>
-            </div>
-          </div>
-          
+      {/* Product Header */}
+      <div className="bg-white">
+        <div className="max-w-7xl mx-auto px-4 py-20">
           {/* Back Button */}
           <Link 
             to="/" 
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors justify-center"
+            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors mb-8"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             {isEnglish ? 'Back to Products' : '返回產品列表'}
           </Link>
-        </div>
-      </div>
-
-      {/* Product Header */}
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 py-12">
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <div className="flex items-center mb-6">
