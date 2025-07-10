@@ -6,13 +6,13 @@ const Logo: React.FC = () => {
     <div className="flex items-center">
       <div className="relative">
         <Server className="h-8 w-8 text-teal-600" />
-        <CircuitBoard className="h-5 w-5 absolute -top-1 -right-1 text-blue-800" />
+        <CircuitBoard className="h-5 w-5 absolute -top-1 -right-1 text-blue-800 dark:text-blue-500" />
       </div>
       <div className="ml-2 flex flex-col leading-none">
-        <span className="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-teal-600">
+        <span className="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-teal-600 dark:from-blue-500 dark:to-teal-400">
           EudTech
         </span>
-        <span className="text-xs tracking-wide opacity-80">Eudaemonia Technology</span>
+        <span className="text-xs tracking-wide opacity-80 dark:text-gray-300">Eudaemonia Technology</span>
       </div>
     </div>
   );

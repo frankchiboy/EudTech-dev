@@ -171,16 +171,16 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
   ];
 
   return (
-    <section id="eudtech-products" className="py-20 bg-white">
+    <section id="eudtech-products" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-base font-semibold tracking-wide text-blue-800 uppercase">
+          <h2 className="text-base font-semibold tracking-wide text-blue-800 dark:text-blue-400 uppercase">
             {isEnglish ? 'EudTech Solutions' : 'EudTech 解決方案'}
           </h2>
-          <p className="mt-1 text-4xl font-bold text-gray-900 sm:text-5xl sm:tracking-tight">
+          <p className="mt-1 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl sm:tracking-tight">
             {isEnglish ? 'Our Proprietary Products' : '我們的自有產品'}
           </p>
-          <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
+          <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500 dark:text-gray-300">
             {isEnglish
               ? 'Innovative AI solutions developed in-house to meet specific industry needs.'
               : '為滿足特定行業需求而內部開發的創新AI解決方案。'}
@@ -191,10 +191,10 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
           {eudtechProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="bg-white dark:bg-gray-800 bg-gradient-to-br dark:from-gray-800 dark:via-gray-800/95 dark:to-gray-900 rounded-2xl shadow-3d-light dark:shadow-3d-dark overflow-hidden hover:shadow-glow-blue dark:hover:shadow-glow-blue transition-all duration-500 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50"
             >
               {product.comingSoon && (
-                <div className="bg-blue-800 text-white text-center py-2 text-sm font-medium">
+                <div className="bg-blue-800 dark:bg-blue-700 text-white text-center py-2 text-sm font-medium">
                   {isEnglish ? 'COMING SOON' : '即將推出'}
                 </div>
               )}
@@ -204,36 +204,39 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
                   alt={product.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
                   {product.icon}
                   <h3 className="text-xl font-bold mt-2">{product.title}</h3>
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-neutral-600 mb-4">{product.description}</p>
+                <p className="text-neutral-600 dark:text-neutral-300 mb-4">{product.description}</p>
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   {product.features.slice(0, 4).map((feature, index) => (
                     <div key={index} className="flex items-center text-sm">
-                      <div className="h-1.5 w-1.5 bg-eudtech-600 rounded-full mr-2 flex-shrink-0"></div>
-                      <span className="text-neutral-600">{feature}</span>
+                      <div className="h-1.5 w-1.5 bg-eudtech-600 dark:bg-eudtech-400 rounded-full mr-2 flex-shrink-0"></div>
+                      <span className="text-neutral-600 dark:text-neutral-300">{feature}</span>
                     </div>
                   ))}
                 </div>
-                <div className="border-t pt-4">
+                <div className="border-t dark:border-gray-700 pt-4">
                   <div className="flex justify-between items-center">
                     {!product.comingSoon && (
                       <Link
                         to={`/products/${product.id}`}
-                        className="text-eudtech-700 hover:text-eudtech-800 font-medium flex items-center"
+                        className="text-eudtech-700 dark:text-eudtech-400 hover:text-eudtech-800 dark:hover:text-eudtech-300 font-medium flex items-center relative group"
                       >
-                        {isEnglish ? 'Learn More' : '了解更多'}
-                        <ChevronRight className="ml-1 h-4 w-4" />
+                        <span className="relative z-10 flex items-center">
+                          {isEnglish ? 'Learn More' : '了解更多'}
+                          <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </span>
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-eudtech-600 to-eudtech-400 group-hover:w-full transition-all duration-300"></span>
                       </Link>
                     )}
                     <a
                       href="#contact"
-                      className="text-blue-800 hover:text-blue-900 font-medium ml-auto"
+                      className="text-blue-800 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 font-medium ml-auto"
                     >
                       {isEnglish ? 'Get Quote' : '取得報價'}
                     </a>

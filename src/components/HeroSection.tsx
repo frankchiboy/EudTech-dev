@@ -9,11 +9,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isEnglish }) => {
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 w-full h-full">
-        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <div className="absolute inset-0 bg-black/60 dark:bg-black/70 z-10"></div>
         <img
           src="/grando-8gpu-server.jpg"
           alt="AI Server Background"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover transform scale-105 animate-subtle-zoom"
         />
       </div>
 
@@ -44,13 +44,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isEnglish }) => {
         <div className="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <a
             href="#eudtech-products"
-            className="px-8 py-3 text-base font-medium rounded-md text-white bg-gradient-to-r from-blue-800 to-teal-800 hover:from-blue-700 hover:to-teal-700 shadow-lg transition-all duration-200 transform hover:-translate-y-1"
+            className="px-8 py-3 text-base font-medium rounded-md text-white bg-gradient-to-r from-blue-800 via-indigo-700 to-teal-800 hover:from-blue-700 hover:via-indigo-600 hover:to-teal-700 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_20px_rgba(14,165,233,0.3)] dark:shadow-[0_8px_30px_rgba(14,165,233,0.2)] transition-all duration-300 transform hover:-translate-y-1 border border-transparent hover:border-blue-500/30 backdrop-blur-sm"
           >
             {isEnglish ? 'Our Solutions' : '我們的產品'}
           </a>
           <a
             href="#contact"
-            className="px-8 py-3 text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50 shadow-lg transition-all duration-200 transform hover:-translate-y-1"
+            className="px-8 py-3 text-base font-medium rounded-md text-gray-900 dark:text-white bg-white dark:bg-gray-800/80 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_20px_rgba(255,255,255,0.3)] dark:hover:shadow-[0_8px_20px_rgba(30,41,59,0.4)] transition-all duration-300 transform hover:-translate-y-1 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm"
           >
             {isEnglish ? 'Contact Us' : '聯絡我們'}
           </a>

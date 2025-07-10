@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Moon, Sun } from 'lucide-react';
 import Logo from './Logo';
 
 interface NavBarProps {
   toggleLanguage: () => void;
   isEnglish: boolean;
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish }) => {
+const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, isDarkMode, toggleDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -35,7 +37,9 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish }) => {
   return (
     <nav 
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-neutral-200' : 'bg-transparent'
+        isScrolled 
+          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm border-b border-neutral-200 dark:border-gray-700' 
+          : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,26 +68,53 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish }) => {
             <button
               onClick={toggleLanguage}
               className={`flex items-center ${
-                isScrolled ? 'text-neutral-800 hover:text-eudtech-700' : 'text-white hover:text-eudtech-200'
+                isScrolled 
+                  ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
+                  : 'text-white hover:text-eudtech-200'
               } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
             >
               <Globe size={18} className="mr-1" />
               {isEnglish ? '中文' : 'EN'}
+            </button>
+            
+            <button
+              onClick={toggleDarkMode}
+              className={`flex items-center ml-2 ${
+                isScrolled 
+                  ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
+                  : 'text-white hover:text-eudtech-200'
+              } px-2 py-2 rounded-md transition-colors duration-200`}
+              aria-label={isDarkMode ? '切換至淺色模式' : '切換至深色模式'}
+            >
+              {isDarkMode ? (
+                <Sun size={18} className="hover:text-yellow-400" />
+              ) : (
+                <Moon size={18} className="hover:text-blue-400" />
+              )}
             </button>
           </div>
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleLanguage}
               className={`mr-2 ${
-                isScrolled ? 'text-neutral-800' : 'text-white'
+                isScrolled ? 'text-neutral-800 dark:text-neutral-100' : 'text-white'
               } p-1 rounded-full transition-colors duration-200`}
             >
               <Globe size={20} />
             </button>
             <button
+              onClick={toggleDarkMode}
+              className={`mr-2 ${
+                isScrolled ? 'text-neutral-800 dark:text-neutral-100' : 'text-white'
+              } p-1 rounded-full transition-colors duration-200`}
+              aria-label={isDarkMode ? '切換至淺色模式' : '切換至深色模式'}
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
               onClick={() => setIsOpen(!isOpen)}
               className={`${
-                isScrolled ? 'text-neutral-800' : 'text-white'
+                isScrolled ? 'text-neutral-800 dark:text-neutral-100' : 'text-white'
               } p-1 rounded-full transition-colors duration-200`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -93,14 +124,14 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish }) => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-white/95 backdrop-blur-md shadow-lg border-t border-neutral-200`}>
+      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-lg border-t border-neutral-200 dark:border-gray-700`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-neutral-800 hover:text-eudtech-700 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              className="text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
             >
               {link.name}
             </a>

@@ -870,16 +870,21 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
     }
   ];
 
-  const product = products.find(p => p.id === parseInt(id || '1'));
+  const parsedId = parseInt(id || '1');
+  console.log("Looking for product with ID:", parsedId);
+  console.log("Available product IDs:", products.map(p => p.id));
+  
+  const product = products.find(p => p.id === parsedId);
 
   if (!product) {
+    console.log("Product not found!");
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            {isEnglish ? 'Product Not Found' : '找不到產品'}
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            {isEnglish ? 'Product Not Found' : '找不到產品'} (ID: {parsedId})
           </h1>
-          <Link to="/" className="text-eudtech-600 hover:text-eudtech-700">
+          <Link to="/" className="text-eudtech-600 hover:text-eudtech-700 dark:text-eudtech-400 dark:hover:text-eudtech-300">
             {isEnglish ? 'Back to Home' : '返回首頁'}
           </Link>
         </div>
@@ -890,72 +895,77 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Product Header */}
-      <div className="bg-white">
+      <div className="bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-20">
           {/* Back Button */}
           <Link 
-            to="/" 
-            className="inline-flex items-center text-eudtech-600 hover:text-eudtech-700 transition-colors mb-8"
+            to="/#eudtech-products" 
+            className="inline-flex items-center text-eudtech-600 hover:text-eudtech-700 dark:text-eudtech-400 dark:hover:text-eudtech-300 transition-colors mb-8 group"
           >
-            <ArrowLeft className="h-5 w-5 mr-2" />
+            <ArrowLeft className="h-5 w-5 mr-2 transform group-hover:-translate-x-1 transition-transform duration-300" />
             {isEnglish ? 'Back to Products' : '返回產品列表'}
           </Link>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <div className="flex items-center mb-6">
-                {product.icon}
-                <h1 className="text-4xl font-bold text-gray-900 ml-4">
+              <div className="flex items-center mb-6 group">
+                <div className="text-eudtech-600 dark:text-eudtech-400 transform group-hover:scale-110 transition-transform duration-300">
+                  {product.icon}
+                </div>
+                <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent ml-4">
                   {product.title}
                 </h1>
               </div>
-              <p className="text-xl text-gray-600 mb-8">
+              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
                 {product.description}
               </p>
               
               {/* Key Features */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-neutral-900 mb-4">
+              <div className="mb-8 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-neo-light dark:shadow-neo-dark">
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 flex items-center">
+                  <div className="h-5 w-1 bg-gradient-to-b from-eudtech-500 to-eudtech-700 dark:from-eudtech-400 dark:to-eudtech-600 rounded-full mr-3"></div>
                   {isEnglish ? 'Key Features' : '主要特色'}
                 </h3>
                 <ul className="space-y-3">
                   {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <div className="h-2 w-2 bg-eudtech-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-neutral-700">{feature}</span>
+                    <li key={index} className="flex items-start group hover:translate-x-1 transition-transform duration-300">
+                      <div className="h-2 w-2 bg-eudtech-600 dark:bg-eudtech-400 rounded-full mt-2 mr-3 flex-shrink-0 group-hover:animate-pulse"></div>
+                      <span className="text-neutral-700 dark:text-neutral-300">{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
 
-            <div>
+            <div className="overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group">
               <img 
                 src={product.image} 
                 alt={product.title}
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
+                className="w-full h-96 object-cover rounded-lg transform transition-transform duration-700 group-hover:scale-105"
               />
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/20 to-transparent dark:from-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Specifications */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+      <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-16 relative">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTYgNnY2aDZ2LTZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30 dark:opacity-10"></div>
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-8 text-center">
             {isEnglish ? 'Technical Specifications' : '技術規格'}
           </h2>
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-neo-light dark:shadow-neo-dark overflow-hidden border border-gray-100 dark:border-gray-700">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               {Object.entries(product.specs).map(([key, value], index) => (
                 <div 
                   key={index} 
-                  className={`p-6 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
+                  className={`p-6 ${index % 2 === 0 ? 'bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-800/80' : 'bg-white dark:bg-gray-700/90'} transition-all duration-300 hover:bg-gray-100/80 dark:hover:bg-gray-700/60 group`}
                 >
                   <div className="flex justify-between items-start">
-                    <span className="font-semibold text-gray-900 mr-4">{key}</span>
-                    <span className="text-gray-700 text-right">{value}</span>
+                    <span className="font-semibold text-gray-900 dark:text-gray-100 mr-4 group-hover:text-eudtech-700 dark:group-hover:text-eudtech-400 transition-colors duration-300">{key}</span>
+                    <span className="text-gray-700 dark:text-gray-300 text-right">{value}</span>
                   </div>
                 </div>
               ))}
@@ -966,27 +976,27 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
 
       {/* Detailed Description */}
       {product.detailedDescription && (
-        <div className="bg-white py-16">
+        <div className="bg-white dark:bg-gray-900 py-16">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
               {product.detailedDescription.title}
             </h2>
             
-            <div className="prose prose-lg max-w-none">
-              <p className="text-gray-600 mb-8 text-lg">
+            <div className="prose prose-lg dark:prose-invert max-w-none">
+              <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">
                 {product.detailedDescription.introduction}
               </p>
 
               {/* Key Features Section */}
               <div className="mb-12">
-                <h3 className="text-2xl font-bold text-neutral-900 mb-6">
+                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
                   {isEnglish ? 'Key Features' : '主要特色'}
                 </h3>
                 <ul className="space-y-3">
                   {product.detailedDescription.keyFeatures.map((feature, index) => (
                     <li key={index} className="flex items-start">
-                      <div className="h-2 w-2 bg-eudtech-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-neutral-700">{feature}</span>
+                      <div className="h-2 w-2 bg-eudtech-600 dark:bg-eudtech-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <span className="text-neutral-700 dark:text-neutral-300">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -994,18 +1004,18 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
 
               {/* Technical Specifications Table */}
               <div className="mb-12">
-                <h3 className="text-2xl font-bold text-neutral-900 mb-6">
+                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
                   {isEnglish ? 'Technical Specifications' : '技術規格'}
                 </h3>
                 <div className="overflow-x-auto">
-                  <table className="min-w-full bg-white border border-neutral-200">
-                    <tbody className="divide-y divide-neutral-200">
+                  <table className="min-w-full bg-white dark:bg-gray-800 border border-neutral-200 dark:border-neutral-700">
+                    <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
                       {Object.entries(product.detailedDescription.technicalSpecs).map(([key, value], index) => (
-                        <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50' : 'bg-white'}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 w-1/3">
+                        <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50 dark:bg-neutral-800' : 'bg-white dark:bg-gray-800'}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 dark:text-neutral-100 w-1/3">
                             {key}
                           </td>
-                          <td className="px-6 py-4 text-sm text-neutral-700">
+                          <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
                             {value}
                           </td>
                         </tr>
@@ -1018,22 +1028,22 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
               {/* Order Information */}
               {product.detailedDescription.orderInfo && (
                 <div className="mb-12">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                     {isEnglish ? 'Available Configurations' : '可用配置'}
                   </h3>
                   <div className="space-y-4">
                     {product.detailedDescription.orderInfo.map((item, index) => (
-                    <div key={index} className="bg-gray-50 p-6 rounded-lg">
+                    <div key={index} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
                       <div className="flex justify-between items-start mb-3">
-                        <h4 className="text-lg font-semibold text-gray-900">{item.type}</h4>
-                        <span className="text-sm text-gray-500">{item.model}</span>
+                        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{item.type}</h4>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">{item.model}</span>
                       </div>
                       {item.pn && (
-                        <p className="text-sm text-gray-600 mb-2">
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
                           <span className="font-medium">P/N:</span> {item.pn}
                         </p>
                       )}
-                      <p className="text-gray-700">{item.description}</p>
+                      <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
                     </div>
                   ))}
                 </div>
@@ -1042,23 +1052,26 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
             </div>
           </div>
         </div>
-      )}
-
-      {/* Image Gallery */}
+      )}              {/* Image Gallery */}
       {product.images && product.images.length > 0 && (
-        <div className="bg-gray-50 py-16">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+        <div className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-16 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(79,70,229,0.05),transparent_40%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.1),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(79,70,229,0.1),transparent_40%)] pointer-events-none"></div>
+          <div className="max-w-7xl mx-auto px-4 relative z-10">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-8 text-center">
               {isEnglish ? 'Product Gallery' : '產品圖庫'}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {product.images.map((image, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div 
+                  key={index} 
+                  className="bg-white dark:bg-gray-800/80 rounded-xl shadow-neo-light dark:shadow-neo-dark overflow-hidden group hover:shadow-glow-blue dark:hover:shadow-glow-blue transition-all duration-500 transform hover:-translate-y-1 hover:scale-[1.02] relative"
+                >
                   <img 
                     src={image} 
                     alt={`${product.title} ${index + 1}`}
-                    className="w-full h-64 object-cover"
+                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               ))}
             </div>

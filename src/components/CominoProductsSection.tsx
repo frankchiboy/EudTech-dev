@@ -179,16 +179,17 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
   ];
 
   return (
-    <section id="comino-products" className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="comino-products" className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 relative">
+      <div className="absolute inset-0 bg-gradient-radial from-purple-500/5 via-transparent to-transparent dark:from-purple-600/10 pointer-events-none"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-base font-semibold tracking-wide text-comino-600 uppercase">
+          <h2 className="text-base font-semibold tracking-wide text-comino-600 dark:text-comino-400 uppercase bg-gradient-to-r from-purple-700 to-indigo-500 dark:from-purple-400 dark:to-indigo-300 bg-clip-text text-transparent">
             {isEnglish ? 'Comino Products' : 'Comino 產品'}
           </h2>
-          <p className="mt-1 text-4xl font-bold text-neutral-900 sm:text-5xl sm:tracking-tight">
+          <p className="mt-1 text-4xl font-bold text-neutral-900 dark:text-white sm:text-5xl sm:tracking-tight">
             {isEnglish ? 'Liquid-Cooled AI Computing' : '液冷AI運算'}
           </p>
-          <p className="max-w-xl mt-5 mx-auto text-xl text-neutral-500">
+          <p className="max-w-xl mt-5 mx-auto text-xl text-neutral-500 dark:text-neutral-300">
             {isEnglish
               ? 'Engineered - not just assembled. Grando products are built around liquid cooling technology and tailored for AI inference & training, delivering up to 40% faster performance than air-cooled systems.'
               : '工程設計而非僅僅組裝。Grando產品圍繞液冷技術構建，專為AI推論與訓練量身打造，比氣冷系統提供高達40%的效能提升。'}
@@ -199,7 +200,7 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
           {cominoProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:bg-neutral-50 border border-neutral-200"
+              className="bg-white dark:bg-gray-800 bg-gradient-to-br dark:from-gray-800 dark:via-gray-800/95 dark:to-gray-900 rounded-2xl shadow-3d-light dark:shadow-3d-dark overflow-hidden hover:shadow-glow-teal dark:hover:shadow-glow-teal transition-all duration-500 transform hover:-translate-y-1 hover:scale-[1.01] border border-neutral-200/80 dark:border-gray-700/50"
             >
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative h-64 lg:h-full">
@@ -208,31 +209,33 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
                     alt={product.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <div className="mb-2">{product.icon}</div>
                     <h3 className="text-2xl font-bold">{product.title}</h3>
                   </div>
                 </div>
                 <div className="p-8">
-                  <p className="text-gray-600 mb-6">{product.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">{product.description}</p>
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     {product.features.map((feature, index) => (
                       <div key={index} className="flex items-center">
-                        <div className="h-1.5 w-1.5 bg-comino-600 rounded-full mr-2"></div>
-                        <span className="text-sm text-neutral-600">{feature}</span>
+                        <div className="h-1.5 w-1.5 bg-comino-600 dark:bg-comino-400 rounded-full mr-2"></div>
+                        <span className="text-sm text-neutral-600 dark:text-neutral-300">{feature}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="border-t border-gray-100 pt-6">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                  <div className="border-t border-gray-100 dark:border-gray-700 pt-6 relative">
+                    <div className="absolute left-0 right-0 h-px top-0 bg-gradient-to-r from-transparent via-purple-500/30 dark:via-purple-400/30 to-transparent"></div>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                      <span className="mr-2 h-4 w-1 bg-gradient-to-b from-purple-500 to-indigo-600 dark:from-purple-400 dark:to-indigo-500 rounded-full"></span>
                       {isEnglish ? 'Key Specifications' : '主要規格'}
                     </h4>
                     <div className="space-y-2">
                       {Object.entries(product.specs).map(([key, value]) => (
                         <div key={key} className="flex justify-between text-sm">
-                          <span className="text-neutral-500">{key}</span>
-                          <span className="text-neutral-900 font-medium">{value}</span>
+                          <span className="text-neutral-500 dark:text-neutral-400">{key}</span>
+                          <span className="text-neutral-900 dark:text-neutral-200 font-medium">{value}</span>
                         </div>
                       ))}
                     </div>
@@ -240,14 +243,14 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
                   <div className="mt-8 flex items-center justify-between">
                     <Link
                       to={`/products/${product.id}`}
-                      className="inline-flex items-center text-sm font-medium text-comino-600 hover:text-comino-700"
+                      className="inline-flex items-center text-sm font-medium text-comino-600 dark:text-comino-400 hover:text-comino-700 dark:hover:text-comino-300"
                     >
                       {isEnglish ? 'View Details' : '查看詳情'}
                       <ChevronRight className="ml-1 h-4 w-4" />
                     </Link>
                     <a
                       href="#contact"
-                      className="inline-flex items-center text-sm font-medium text-comino-600 hover:text-comino-700"
+                      className="inline-flex items-center text-sm font-medium text-comino-600 dark:text-comino-400 hover:text-comino-700 dark:hover:text-comino-300"
                     >
                       {isEnglish ? 'Request Quote' : '索取報價'}
                       <ChevronRight className="ml-1 h-4 w-4" />
