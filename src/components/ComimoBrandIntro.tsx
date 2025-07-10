@@ -178,7 +178,9 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
                   src={tech.logo} 
                   alt={tech.name} 
                   className={`h-12 object-contain hover:opacity-100 transition-opacity ${
-                    tech.needBackground ? 'bg-gray-800 p-2 rounded shadow-sm' : 
+                    tech.name === 'NVIDIA' ? 'bg-gray-800 p-2 rounded shadow-sm' : 
+                    tech.name === 'AMD' ? 'dark:bg-gray-800 dark:p-2 dark:rounded dark:shadow-sm' : 
+                    tech.name === 'Comino' ? 'bg-gray-800 p-2 rounded shadow-sm' : 
                     'opacity-70 dark:opacity-90'
                   }`}
                 />

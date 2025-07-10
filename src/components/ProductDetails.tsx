@@ -937,7 +937,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group">
+            <div className="overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group relative">
               <img 
                 src={product.image} 
                 alt={product.title}
