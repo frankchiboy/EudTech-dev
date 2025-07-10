@@ -42,7 +42,7 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
     { name: 'PyTorch', logo: '/pytorch-logo.png' },
     { name: 'Keras', logo: '/keras-logo.png' },
     { name: 'NVIDIA', logo: '/nvidia-logo.png' },
-    { name: 'AMD', logo: '/amd-logo.png', needBackground: true },
+    { name: 'AMD', logo: '/amd-logo.png' },
     { name: 'Comino', logo: '/comino-logo.png', needBackground: true }
   ];
 
