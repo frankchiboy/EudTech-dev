@@ -211,12 +211,12 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-gray-600 mb-4">{product.description}</p>
+                <p className="text-neutral-600 mb-4">{product.description}</p>
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   {product.features.slice(0, 4).map((feature, index) => (
                     <div key={index} className="flex items-center text-sm">
-                      <div className="h-1.5 w-1.5 bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
-                      <span className="text-gray-600">{feature}</span>
+                      <div className="h-1.5 w-1.5 bg-eudtech-600 rounded-full mr-2 flex-shrink-0"></div>
+                      <span className="text-neutral-600">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -225,7 +225,7 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
                     {!product.comingSoon && (
                       <Link
                         to={`/products/${product.id}`}
-                        className="text-blue-800 hover:text-blue-900 font-medium flex items-center"
+                        className="text-eudtech-700 hover:text-eudtech-800 font-medium flex items-center"
                       >
                         {isEnglish ? 'Learn More' : '了解更多'}
                         <ChevronRight className="ml-1 h-4 w-4" />

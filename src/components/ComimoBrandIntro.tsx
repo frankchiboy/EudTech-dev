@@ -42,7 +42,8 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
     { name: 'PyTorch', logo: '/pytorch-logo.png' },
     { name: 'Keras', logo: '/keras-logo.png' },
     { name: 'NVIDIA', logo: '/nvidia-logo.png' },
-    { name: 'AMD', logo: '/amd-logo.png' }
+    { name: 'AMD', logo: '/amd-logo.png', needBackground: true },
+    { name: 'Comino', logo: '/comino-logo.png', needBackground: true }
   ];
 
   const reviews = [
@@ -82,17 +83,17 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
               <img 
                 src="https://cdn.prod.website-files.com/628295a883124981fd568435/63dd331994de0e0afc29f236_Comino_Grando.png" 
                 alt="Comino Grando Logo" 
-                className="h-16 object-contain"
+                className="h-16 object-contain bg-gray-800 p-3 rounded shadow-md"
               />
             </div>
           </div>
-          <h2 className="text-base font-semibold tracking-wide text-blue-800 uppercase mb-4">
+          <h2 className="text-base font-semibold tracking-wide text-eudtech-600 uppercase mb-4">
             {isEnglish ? 'Authorized Distributor' : '授權經銷商'}
           </h2>
-          <h3 className="text-4xl font-bold text-gray-900 sm:text-5xl mb-6">
+          <h3 className="text-4xl font-bold text-neutral-900 sm:text-5xl mb-6">
             {isEnglish ? 'Comino Grando' : 'Comino Grando'}
           </h3>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
             {isEnglish
               ? 'EudTech is the authorized distributor of Comino, the world leader in liquid-cooled AI computing solutions. Comino Grando systems are engineered - not just assembled - delivering unprecedented performance for AI training, inference, and HPC workloads with liquid-cooled multi-GPU devices.'
               : 'EudTech是Comino的授權經銷商，Comino是液冷AI運算解決方案的全球領導者。Comino Grando系統經過工程設計而非僅僅組裝，為AI訓練、推論和HPC工作負載提供前所未有的效能。'}
@@ -178,7 +179,10 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
                 <img 
                   src={tech.logo} 
                   alt={tech.name} 
-                  className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  className={`h-12 object-contain hover:opacity-100 transition-opacity ${
+                    tech.name === 'NVIDIA' || tech.needBackground ? 'bg-gray-800 p-2 rounded shadow-sm' : 
+                    'opacity-70'
+                  }`}
                 />
               </div>
             ))}
@@ -243,7 +247,7 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
           </p>
           <a
             href="#comino-products"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 transition duration-200"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-eudtech-700 hover:bg-eudtech-800 transition duration-200"
           >
             {isEnglish ? 'Explore Comino Products' : '探索Comino產品'}
           </a>

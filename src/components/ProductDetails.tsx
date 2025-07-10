@@ -879,7 +879,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
             {isEnglish ? 'Product Not Found' : '找不到產品'}
           </h1>
-          <Link to="/" className="text-blue-600 hover:text-blue-800">
+          <Link to="/" className="text-eudtech-600 hover:text-eudtech-700">
             {isEnglish ? 'Back to Home' : '返回首頁'}
           </Link>
         </div>
@@ -888,14 +888,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Product Header */}
       <div className="bg-white">
         <div className="max-w-7xl mx-auto px-4 py-20">
           {/* Back Button */}
           <Link 
             to="/" 
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors mb-8"
+            className="inline-flex items-center text-eudtech-600 hover:text-eudtech-700 transition-colors mb-8"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             {isEnglish ? 'Back to Products' : '返回產品列表'}
@@ -915,14 +915,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
               
               {/* Key Features */}
               <div className="mb-8">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-xl font-semibold text-neutral-900 mb-4">
                   {isEnglish ? 'Key Features' : '主要特色'}
                 </h3>
                 <ul className="space-y-3">
                   {product.features.map((feature, index) => (
                     <li key={index} className="flex items-start">
-                      <div className="h-2 w-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-gray-700">{feature}</span>
+                      <div className="h-2 w-2 bg-eudtech-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <span className="text-neutral-700">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -979,14 +979,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
 
               {/* Key Features Section */}
               <div className="mb-12">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                <h3 className="text-2xl font-bold text-neutral-900 mb-6">
                   {isEnglish ? 'Key Features' : '主要特色'}
                 </h3>
                 <ul className="space-y-3">
                   {product.detailedDescription.keyFeatures.map((feature, index) => (
                     <li key={index} className="flex items-start">
-                      <div className="h-2 w-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-gray-700">{feature}</span>
+                      <div className="h-2 w-2 bg-eudtech-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <span className="text-neutral-700">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -994,18 +994,18 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
 
               {/* Technical Specifications Table */}
               <div className="mb-12">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                <h3 className="text-2xl font-bold text-neutral-900 mb-6">
                   {isEnglish ? 'Technical Specifications' : '技術規格'}
                 </h3>
                 <div className="overflow-x-auto">
-                  <table className="min-w-full bg-white border border-gray-200">
-                    <tbody className="divide-y divide-gray-200">
+                  <table className="min-w-full bg-white border border-neutral-200">
+                    <tbody className="divide-y divide-neutral-200">
                       {Object.entries(product.detailedDescription.technicalSpecs).map(([key, value], index) => (
-                        <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 w-1/3">
+                        <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50' : 'bg-white'}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 w-1/3">
                             {key}
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-700">
+                          <td className="px-6 py-4 text-sm text-neutral-700">
                             {value}
                           </td>
                         </tr>
