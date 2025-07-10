@@ -244,43 +244,43 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       image: "/grando-workstation-closed.png",
       features: isEnglish
         ? [
-            'Up to 4x RTX 4090/A100 GPUs',
+            'Up to 6x RTX 5090/A100 GPUs',
             'Whisper-quiet operation under 30dB',
             'Compact desktop design',
             'AMD Threadripper PRO 7000 Series',
-            'Up to 256GB DDR5-4800',
-            'Advanced liquid cooling system',
+            'Up to 2TB DDR5-4800',
+            'Comino liquid cooling system',
             'Professional-grade reliability',
             'Tool-free maintenance access'
           ]
         : [
-            '最高4個RTX 4090/A100 GPU',
+            '最高6個RTX 5090/A100 GPU',
             '超靜音運作低於30dB',
             '緊湊桌面設計',
             'AMD Threadripper PRO 7000系列',
-            '最高256GB DDR5-4800',
-            '先進液冷系統',
+            '最高2TB DDR5-4800',
+            'Comino液冷系統',
             '專業級可靠性',
             '免工具維護存取'
           ],
       specs: isEnglish ? {
-        'GPU': 'Up to 4x RTX 4090/A100/H100',
+        'GPU': 'Up to 6x RTX 5090/A100',
         'CPU': 'AMD Threadripper PRO 7000 Series',
-        'Memory': 'Up to 256GB DDR5-4800',
+        'Memory': 'Up to 2TB DDR5-4800',
         'Storage': 'Up to 8TB NVMe SSD',
         'Form Factor': 'Desktop Tower',
-        'Cooling': 'Advanced Liquid Cooling',
+        'Cooling': 'Comino Liquid Cooling',
         'Noise Level': 'Under 30dB',
         'Power Supply': '1600W 80+ Platinum',
         'Dimensions': '570 x 280 x 560mm',
         'Weight': 'Approximately 45kg'
       } : {
-        'GPU': '最高4個RTX 4090/A100/H100',
+        'GPU': '最高6個RTX 5090/A100',
         'CPU': 'AMD Threadripper PRO 7000系列',
-        '記憶體': '最高256GB DDR5-4800',
+        '記憶體': '最高2TB DDR5-4800',
         '儲存': '最高8TB NVMe SSD',
         '機箱規格': '桌面塔式',
-        '散熱': '先進液冷系統',
+        '散熱': 'Comino液冷系統',
         '噪音等級': '低於30dB',
         '電源供應': '1600W 80+ 白金',
         '尺寸': '570 x 280 x 560mm',
@@ -299,10 +299,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         introduction: 'The Comino Grando Workstation represents the pinnacle of silent computing power, designed specifically for deep learning research and development. This revolutionary desktop workstation combines unprecedented multi-GPU performance with whisper-quiet operation, making it the ideal solution for workgroups and high-end professionals who demand both power and tranquility in their workspace.',
         keyFeatures: [
           'Whisper-quiet operation under 30dB for office environments',
-          'Supports up to 4x RTX 4090/A100/H100 GPUs with full performance',
-          'Advanced liquid cooling system prevents thermal throttling',
+          'Supports up to 6x RTX 5090/A100 GPUs with full performance',
+          'Comino liquid cooling system prevents thermal throttling',
           'AMD Threadripper PRO 7000 Series for exceptional CPU performance',
-          'Up to 256GB DDR5-4800 memory for large dataset processing',
+          'Up to 2TB DDR5-4800 memory for large dataset processing',
           'Compact desktop design fits standard office spaces',
           'Professional-grade reliability with enterprise components',
           'Tool-free maintenance access for easy upgrades'
@@ -310,11 +310,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         technicalSpecs: {
           'Product Series': 'Comino Grando Workstation',
           'Form Factor': 'Desktop Tower Workstation',
-          'GPU': 'Supports up to 4x RTX 4090/A100/H100 GPUs with 600W power per slot',
+          'GPU': 'Supports up to 6x RTX 5090/A100 GPUs with 600W power per slot',
           'CPU': 'AMD Threadripper PRO 7000 Series, up to 96 cores',
-          'Memory': 'Up to 256GB DDR5-4800 ECC memory',
+          'Memory': 'Up to 2TB DDR5-4800 ECC memory',
           'Storage': 'Up to 8TB NVMe SSD storage with RAID support',
-          'Cooling': 'Advanced liquid cooling system with custom loop design',
+          'Cooling': 'Comino liquid cooling system with custom loop design',
           'Noise Level': 'Under 30dB in typical operation',
           'Power Supply': '1600W 80+ Platinum modular PSU',
           'Connectivity': 'Multiple USB 3.2, Thunderbolt 4, 10GbE networking',
@@ -339,10 +339,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         introduction: 'Comino Grando 工作站代表了靜音計算能力的頂峰，專為深度學習研究和開發而設計。這款革命性的桌面工作站結合了前所未有的多GPU效能和超靜音運作，使其成為要求在工作空間中同時擁有強大性能和寧靜環境的工作組和高階專業人士的理想解決方案。',
         keyFeatures: [
           '辦公環境下低於30dB的超靜音運作',
-          '支援最多4個RTX 4090/A100/H100 GPU，發揮完整效能',
-          '先進液冷系統防止熱節流',
+          '支援最多6個RTX 5090/A100 GPU，發揮完整效能',
+          'Comino液冷系統防止熱節流',
           'AMD Threadripper PRO 7000系列提供卓越CPU效能',
-          '最高256GB DDR5-4800記憶體處理大型資料集',
+          '最高2TB DDR5-4800記憶體處理大型資料集',
           '緊湊桌面設計適合標準辦公空間',
           '企業級組件提供專業級可靠性',
           '免工具維護存取便於升級'
@@ -350,11 +350,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         technicalSpecs: {
           '產品系列': 'Comino Grando 工作站',
           '機箱規格': '桌面塔式工作站',
-          'GPU': '支援最多4個RTX 4090/A100/H100 GPU，每槽位600W功率',
+          'GPU': '支援最多6個RTX 5090/A100 GPU，每槽位600W功率',
           'CPU': 'AMD Threadripper PRO 7000系列，最多96核心',
-          '記憶體': '最高256GB DDR5-4800 ECC記憶體',
+          '記憶體': '最高2TB DDR5-4800 ECC記憶體',
           '儲存': '最高8TB NVMe SSD儲存，支援RAID',
-          '散熱': '先進液冷系統採用客製化循環設計',
+          '散熱': 'Comino液冷系統採用客製化循環設計',
           '噪音等級': '典型運作下低於30dB',
           '電源供應': '1600W 80+ 白金模組化電源',
           '連接介面': '多個USB 3.2、Thunderbolt 4、10GbE網路',
@@ -377,7 +377,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
     },
     {
       id: 5,
-      title: isEnglish ? 'Comino Grando Multi-GPU Server' : 'Comino Grando 多GPU伺服器',
+      title: isEnglish ? 'Comino Grando Rackable Workstation' : 'Comino Grando 機架式工作站',
       description: isEnglish
         ? 'Engineered around liquid cooling technology for 24/7 operation up to 40°C. Best Multi-GPU performance for specialists, workgroups and research teams with up to 8x high-end GPUs.'
         : '圍繞液冷技術設計，可在40°C環境下24/7運作。為專家、工作組和研究團隊提供最佳多GPU效能，支援最多8個高階GPU。',
@@ -386,32 +386,34 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       features: isEnglish ? [
             'Engineered for 24/7 operation up to 40°C',
             'Zero thermal throttling',
-            'Up to 8x RTX 4090/H100/H200 GPUs',
-            'Cooling capacity up to 5.5kW @25°C',
+            'Up to 8x GPUs',
+            'Available GPUs: H200, PRO 6000, RTX 5090, etc.',
+            'Cooling capacity up to 6.5kW @20°C',
             'AMD EPYC 9004 & 9005 Series CPUs',
-            'Comino Monitoring System'
+            'Comino Liquid Cooling System'
           ] : [
             '24/7運作設計，可承受40°C高溫',
             '零熱節流',
-            '最高8個RTX 4090/H100/H200 GPU',
-            '25°C下散熱容量可達5.5kW',
+            '最高8個GPU',
+            '可用GPU：H200、PRO 6000、RTX 5090等',
+            '20°C下散熱容量可達6.5kW',
             'AMD EPYC 9004與9005系列CPU',
-            'Comino監控系統'
+            'Comino液冷系統'
           ],
       specs: isEnglish ? {
-        'GPU': 'Up to 8x RTX 4090/H100/H200',
+        'GPU': 'Up to 8x GPUs (H200, PRO 6000, RTX 5090, etc.)',
         'CPU': 'AMD EPYC 9004 & 9005, Intel Xeon',
-        'Memory': 'Up to 1TB DDR5 ECC',
+        'Memory': 'Up to 2TB DDR5 ECC',
         'Storage': 'Up to 4x 3.5" HDDs or 12x 2.5" SSDs',
         'Power': 'Up to 8.0kW with 4x CRPS modules',
-        'Cooling': '5.5kW @25°C Liquid Cooling'
+        'Cooling': '6.5kW @20°C Comino Liquid Cooling'
       } : {
-        'GPU': '最高8個RTX 4090/H100/H200',
+        'GPU': '最高8個GPU（H200、PRO 6000、RTX 5090等）',
         'CPU': 'AMD EPYC 9004與9005，Intel Xeon',
-        '記憶體': '最高1TB DDR5 ECC',
+        '記憶體': '最高2TB DDR5 ECC',
         '儲存': '最多4個3.5"硬碟或12個2.5"固態硬碟',
         '功率': '最高8.0kW，4個CRPS模組',
-        '散熱': '25°C下5.5kW液冷系統'
+        '散熱': '20°C下6.5kW Comino液冷系統'
       },
       comingSoon: false,
       images: [
@@ -420,15 +422,16 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         "/comino-h100-front.jpg"
       ],
       detailedDescription: isEnglish ? {
-        title: 'Comino Grando Multi-GPU Server - Liquid-Cooled AI Computing',
-        formFactor: '6U Rackmount Server with liquid cooling system',
-        introduction: 'The Comino Grando multi-GPU server represents the pinnacle of liquid-cooled AI computing technology. Designed specifically for AI training, inference, and high-performance computing workloads, this system delivers exceptional performance through direct GPU-to-GPU connectivity and advanced thermal management. The liquid cooling system enables sustained peak performance while maintaining whisper-quiet operation.',
+        title: 'Comino Grando Rackable Workstation - Liquid-Cooled AI Computing',
+        formFactor: '6U Rackmount workstation with liquid cooling system',
+        introduction: 'The Comino Grando rackable workstation represents the pinnacle of liquid-cooled AI computing technology. Designed specifically for AI training, inference, and high-performance computing workloads, this system delivers exceptional performance through direct GPU-to-GPU connectivity and advanced thermal management. The Comino liquid cooling system enables sustained peak performance while maintaining reliable operation.',
         keyFeatures: [
-          'Up to 8x NVIDIA RTX 4090 or H100 GPUs with liquid cooling',
+          'Up to 8x GPUs with Comino liquid cooling',
+          'Available GPUs: H200, PRO 6000, RTX 5090, etc.',
           'Direct GPU-to-GPU connectivity for maximum bandwidth',
-          'AMD EPYC 9004 series processors with up to 64 cores',
-          'Advanced CoolIT liquid cooling with real-time monitoring',
-          'Up to 1TB DDR5 ECC memory with high bandwidth',
+          'AMD EPYC 9004 & 9005 series processors with up to 64 cores',
+          'Comino Liquid Cooling System with real-time monitoring',
+          'Up to 2TB DDR5 ECC memory with high bandwidth',
           'NVMe Gen4 storage configuration up to 32TB',
           'Redundant 3200W power supplies for reliability',
           'Network options including 10GbE and InfiniBand',
@@ -436,15 +439,15 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
           'Comprehensive monitoring and management software'
         ],
         technicalSpecs: {
-          'Product Series': 'Comino Grando Multi-GPU Server',
-          'Form Factor': '6U Rackmount Server',
-          'GPU Options': 'NVIDIA RTX 4090 (16,384 CUDA cores), H100 (16,896 CUDA cores)',
+          'Product Series': 'Comino Grando Rackable Workstation',
+          'Form Factor': '6U Rackmount Workstation',
+          'GPU Options': 'Available GPUs: H200, PRO 6000, RTX 5090, etc.',
           'GPU Quantity': 'Up to 8 GPUs per system',
-          'CPU Options': 'AMD EPYC 9004 series (up to 64 cores)',
-          'Memory': 'Up to 1TB DDR5 ECC (supports up to 4800 MT/s)',
+          'CPU Options': 'AMD EPYC 9004 & 9005 series (up to 64 cores)',
+          'Memory': 'Up to 2TB DDR5 ECC (supports up to 4800 MT/s)',
           'Storage': 'NVMe Gen4 SSD up to 32TB total capacity',
           'Network': '10GbE, 25GbE, InfiniBand options',
-          'Cooling': 'Comino CoolIT liquid cooling with full-coverage blocks',
+          'Cooling': 'Comino Liquid Cooling System with full-coverage blocks',
           'Power': 'Redundant 3200W PSU configuration',
           'Management': 'IPMI, BMC, Comino Management Suite',
           'Operating Systems': 'Ubuntu, CentOS, RHEL, Windows Server, Custom Linux distributions',

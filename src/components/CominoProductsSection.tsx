@@ -10,7 +10,7 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
   const cominoProducts = [
     {
       id: 5,
-      title: isEnglish ? 'Comino Grando Multi-GPU Server' : 'Comino Grando 多GPU伺服器',
+      title: isEnglish ? 'Comino Grando Rackable Workstation' : 'Comino Grando 機架式工作站',
       description: isEnglish
         ? 'Engineered around liquid cooling technology for 24/7 operation up to 40°C. Best Multi-GPU performance for specialists, workgroups and research teams with up to 8x high-end GPUs.'
         : '圍繞液冷技術設計，可在40°C環境下24/7運作。為專家、工作組和研究團隊提供最佳多GPU效能，支援最多8個高階GPU。',
@@ -19,32 +19,34 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
       features: isEnglish ? [
             'Engineered for 24/7 operation up to 40°C',
             'Zero thermal throttling',
-            'Up to 8x RTX 4090/H100/H200 GPUs',
-            'Cooling capacity up to 5.5kW @25°C',
+            'Up to 8x GPUs',
+            'Available GPUs: H200, PRO 6000, RTX 5090, etc.',
+            'Cooling capacity up to 6.5kW @20°C',
             'AMD EPYC 9004 & 9005 Series',
-            'Comino Monitoring System'
+            'Comino Liquid Cooling System'
           ] : [
             '24/7運作設計，可承受40°C高溫',
             '零熱節流',
-            '最高8個RTX 4090/H100/H200 GPU',
-            '25°C下散熱容量可達5.5kW',
+            '最高8個GPU',
+            '可用GPU：H200、PRO 6000、RTX 5090等',
+            '20°C下散熱容量可達6.5kW',
             'AMD EPYC 9004與9005系列',
-            'Comino監控系統'
+            'Comino液冷系統'
           ],
       specs: isEnglish ? {
-        'GPU': 'Up to 8x RTX 4090/H100/H200',
+        'GPU': 'Up to 8x GPUs (H200, PRO 6000, RTX 5090, etc.)',
         'CPU': 'AMD EPYC 9004 & 9005, Intel Xeon',
-        'Memory': 'Up to 1TB DDR5 ECC',
+        'Memory': 'Up to 2TB DDR5 ECC',
         'Storage': 'Up to 4x 3.5" HDDs or 12x 2.5" SSDs',
         'Power': 'Up to 8.0kW with 4x CRPS modules',
-        'Cooling': '5.5kW @25°C Liquid Cooling'
+        'Cooling': '6.5kW @20°C Comino Liquid Cooling'
       } : {
-        'GPU': '最高8個RTX 4090/H100/H200',
+        'GPU': '最高8個GPU（H200、PRO 6000、RTX 5090等）',
         'CPU': 'AMD EPYC 9004與9005，Intel Xeon',
-        '記憶體': '最高1TB DDR5 ECC',
+        '記憶體': '最高2TB DDR5 ECC',
         '儲存': '最多4個3.5"硬碟或12個2.5"固態硬碟',
         '功率': '最高8.0kW，4個CRPS模組',
-        '散熱': '25°C下5.5kW液冷系統'
+        '散熱': '20°C下6.5kW Comino液冷系統'
       },
       comingSoon: false
     },
@@ -58,35 +60,35 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
       image: "/grando-workstation-closed.png",
       features: isEnglish
         ? [
-            'Up to 4x RTX 4090/A100 GPUs',
+            'Up to 6x RTX 5090/A100 GPUs',
             'Whisper-quiet operation',
             'Compact desktop design',
             'AMD Threadripper PRO',
-            'Up to 256GB DDR5',
-            'Liquid cooling system'
+            'Up to 2TB DDR5',
+            'Comino liquid cooling system'
           ]
         : [
-            '最高4個RTX 4090/A100 GPU',
+            '最高6個RTX 5090/A100 GPU',
             '超靜音運作',
             '緊湊桌面設計',
             'AMD Threadripper PRO',
-            '最高256GB DDR5',
-            '液冷系統'
+            '最高2TB DDR5',
+            'Comino液冷系統'
           ],
       specs: isEnglish ? {
-        'GPU': 'Up to 4x RTX 4090/A100',
+        'GPU': 'Up to 6x RTX 5090/A100',
         'CPU': 'AMD Threadripper PRO',
-        'Memory': 'Up to 256GB DDR5',
+        'Memory': 'Up to 2TB DDR5',
         'Storage': 'Up to 8TB NVMe',
         'Form Factor': 'Desktop Tower',
-        'Cooling': 'Liquid Cooling System'
+        'Cooling': 'Comino Liquid Cooling System'
       } : {
-        'GPU': '最高4個RTX 4090/A100',
+        'GPU': '最高6個RTX 5090/A100',
         'CPU': 'AMD Threadripper PRO',
-        '記憶體': '最高256GB DDR5',
+        '記憶體': '最高2TB DDR5',
         '儲存': '最高8TB NVMe',
         '機箱規格': '桌面塔式',
-        '散熱': '液冷系統'
+        '散熱': 'Comino液冷系統'
       },
       comingSoon: false
     },
