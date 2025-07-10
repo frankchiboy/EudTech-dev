@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Server, Cpu, Shield, Cloud } from 'lucide-react';
+import { ArrowLeft, Server, Cpu, Shield, Monitor } from 'lucide-react';
 
 interface ProductDetailsProps {
   isEnglish: boolean;
@@ -17,7 +17,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         ? 'Enterprise-grade AI server with optimized performance for large language models and AI workloads.'
         : '企業級AI伺服器，為大型語言模型和AI工作負載優化效能。',
       icon: <Server className="h-8 w-8 text-blue-800" />,
-      image: "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg",
+      image: "/EudTech-Select-server-front.png.png",
       features: isEnglish
         ? [
             '8-GPU direct-connect architecture',
@@ -56,9 +56,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       },
       comingSoon: false,
       images: [
-        "/grando-server-main.png",
-        "/grando-dpr-4090-front.png",
-        "/grando-dpr-4090-side.png"
+        "/EudTech-Select-server-front.png.png",
+        "/EudTech-Select-server-back.png.png",
+        "/EudTech-Select-server-inside.png"
       ],
       detailedDescription: isEnglish ? {
         title: 'ET6204X-D08N-G1 Product Specifications',
@@ -235,40 +235,183 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       }
     },
     {
+      id: 6,
+      title: isEnglish ? 'Comino Grando Workstation' : 'Comino Grando 工作站',
+      description: isEnglish
+        ? 'Silent desktop workstation for deep learning research and development. Ideal solution for workgroups and high-end professionals, providing unprecedented multi-GPU performance on premise.'
+        : '用於深度學習研究和開發的靜音桌面工作站。適合工作組和高階專業人士的理想解決方案，提供前所未有的多GPU效能。',
+      icon: <Monitor className="h-8 w-8 text-indigo-700" />,
+      image: "/grando-workstation-closed.png",
+      features: isEnglish
+        ? [
+            'Up to 4x RTX 4090/A100 GPUs',
+            'Whisper-quiet operation under 30dB',
+            'Compact desktop design',
+            'AMD Threadripper PRO 7000 Series',
+            'Up to 256GB DDR5-4800',
+            'Advanced liquid cooling system',
+            'Professional-grade reliability',
+            'Tool-free maintenance access'
+          ]
+        : [
+            '最高4個RTX 4090/A100 GPU',
+            '超靜音運作低於30dB',
+            '緊湊桌面設計',
+            'AMD Threadripper PRO 7000系列',
+            '最高256GB DDR5-4800',
+            '先進液冷系統',
+            '專業級可靠性',
+            '免工具維護存取'
+          ],
+      specs: isEnglish ? {
+        'GPU': 'Up to 4x RTX 4090/A100/H100',
+        'CPU': 'AMD Threadripper PRO 7000 Series',
+        'Memory': 'Up to 256GB DDR5-4800',
+        'Storage': 'Up to 8TB NVMe SSD',
+        'Form Factor': 'Desktop Tower',
+        'Cooling': 'Advanced Liquid Cooling',
+        'Noise Level': 'Under 30dB',
+        'Power Supply': '1600W 80+ Platinum',
+        'Dimensions': '570 x 280 x 560mm',
+        'Weight': 'Approximately 45kg'
+      } : {
+        'GPU': '最高4個RTX 4090/A100/H100',
+        'CPU': 'AMD Threadripper PRO 7000系列',
+        '記憶體': '最高256GB DDR5-4800',
+        '儲存': '最高8TB NVMe SSD',
+        '機箱規格': '桌面塔式',
+        '散熱': '先進液冷系統',
+        '噪音等級': '低於30dB',
+        '電源供應': '1600W 80+ 白金',
+        '尺寸': '570 x 280 x 560mm',
+        '重量': '約45kg'
+      },
+      comingSoon: false,
+      images: [
+        "/grando-workstation-closed.png",
+        "/grando-workstation-open.png",
+        "/grando-dpr-4090-front.png",
+        "/grando-dpr-4090-side.png"
+      ],
+      detailedDescription: isEnglish ? {
+        title: 'Comino Grando Workstation Specifications',
+        formFactor: 'Desktop workstation',
+        introduction: 'The Comino Grando Workstation represents the pinnacle of silent computing power, designed specifically for deep learning research and development. This revolutionary desktop workstation combines unprecedented multi-GPU performance with whisper-quiet operation, making it the ideal solution for workgroups and high-end professionals who demand both power and tranquility in their workspace.',
+        keyFeatures: [
+          'Whisper-quiet operation under 30dB for office environments',
+          'Supports up to 4x RTX 4090/A100/H100 GPUs with full performance',
+          'Advanced liquid cooling system prevents thermal throttling',
+          'AMD Threadripper PRO 7000 Series for exceptional CPU performance',
+          'Up to 256GB DDR5-4800 memory for large dataset processing',
+          'Compact desktop design fits standard office spaces',
+          'Professional-grade reliability with enterprise components',
+          'Tool-free maintenance access for easy upgrades'
+        ],
+        technicalSpecs: {
+          'Product Series': 'Comino Grando Workstation',
+          'Form Factor': 'Desktop Tower Workstation',
+          'GPU': 'Supports up to 4x RTX 4090/A100/H100 GPUs with 600W power per slot',
+          'CPU': 'AMD Threadripper PRO 7000 Series, up to 96 cores',
+          'Memory': 'Up to 256GB DDR5-4800 ECC memory',
+          'Storage': 'Up to 8TB NVMe SSD storage with RAID support',
+          'Cooling': 'Advanced liquid cooling system with custom loop design',
+          'Noise Level': 'Under 30dB in typical operation',
+          'Power Supply': '1600W 80+ Platinum modular PSU',
+          'Connectivity': 'Multiple USB 3.2, Thunderbolt 4, 10GbE networking',
+          'Dimensions': '570mm (W) x 280mm (D) x 560mm (H)',
+          'Weight': 'Approximately 45kg',
+          'Operating Temperature': '10°C to 35°C',
+          'Warranty': '3-year on-site warranty with 24/7 support'
+        },
+        applications: [
+          'Deep learning model training and inference',
+          'Computer vision and image processing',
+          'Natural language processing research',
+          'Scientific computing and simulation',
+          'CAD and 3D rendering workloads',
+          'AI development and prototyping',
+          'Data science and analytics',
+          'High-performance computing tasks'
+        ]
+      } : {
+        title: 'Comino Grando 工作站規格',
+        formFactor: '桌面工作站',
+        introduction: 'Comino Grando 工作站代表了靜音計算能力的頂峰，專為深度學習研究和開發而設計。這款革命性的桌面工作站結合了前所未有的多GPU效能和超靜音運作，使其成為要求在工作空間中同時擁有強大性能和寧靜環境的工作組和高階專業人士的理想解決方案。',
+        keyFeatures: [
+          '辦公環境下低於30dB的超靜音運作',
+          '支援最多4個RTX 4090/A100/H100 GPU，發揮完整效能',
+          '先進液冷系統防止熱節流',
+          'AMD Threadripper PRO 7000系列提供卓越CPU效能',
+          '最高256GB DDR5-4800記憶體處理大型資料集',
+          '緊湊桌面設計適合標準辦公空間',
+          '企業級組件提供專業級可靠性',
+          '免工具維護存取便於升級'
+        ],
+        technicalSpecs: {
+          '產品系列': 'Comino Grando 工作站',
+          '機箱規格': '桌面塔式工作站',
+          'GPU': '支援最多4個RTX 4090/A100/H100 GPU，每槽位600W功率',
+          'CPU': 'AMD Threadripper PRO 7000系列，最多96核心',
+          '記憶體': '最高256GB DDR5-4800 ECC記憶體',
+          '儲存': '最高8TB NVMe SSD儲存，支援RAID',
+          '散熱': '先進液冷系統採用客製化循環設計',
+          '噪音等級': '典型運作下低於30dB',
+          '電源供應': '1600W 80+ 白金模組化電源',
+          '連接介面': '多個USB 3.2、Thunderbolt 4、10GbE網路',
+          '尺寸': '570mm (寬) x 280mm (深) x 560mm (高)',
+          '重量': '約45kg',
+          '運作溫度': '10°C至35°C',
+          '保固': '3年到府保固，24/7支援'
+        },
+        applications: [
+          '深度學習模型訓練和推理',
+          '電腦視覺和影像處理',
+          '自然語言處理研究',
+          '科學計算和模擬',
+          'CAD和3D渲染工作負載',
+          'AI開發和原型設計',
+          '資料科學和分析',
+          '高效能計算任務'
+        ]
+      }
+    },
+    {
       id: 5,
       title: isEnglish ? 'Comino Grando Multi-GPU Server' : 'Comino Grando 多GPU伺服器',
       description: isEnglish
-        ? 'Liquid-cooled multi-GPU servers with up to 8x RTX 4090/H100 GPUs. Designed for extreme performance in AI training, inference, and HPC workloads.'
-        : '液冷式多GPU伺服器，最高支援8個RTX 4090/H100 GPU。專為AI訓練、推論和高效能運算工作負載的極致效能而設計。',
+        ? 'Engineered around liquid cooling technology for 24/7 operation up to 40°C. Best Multi-GPU performance for specialists, workgroups and research teams with up to 8x high-end GPUs.'
+        : '圍繞液冷技術設計，可在40°C環境下24/7運作。為專家、工作組和研究團隊提供最佳多GPU效能，支援最多8個高階GPU。',
       icon: <Server className="h-8 w-8 text-purple-700" />,
       image: "/grando-8gpu-server.jpg",
       features: isEnglish ? [
-            'AMD EPYC 9004 series processors (up to 64 cores)',
-            'Up to 1TB DDR5 ECC memory',
-            'NVMe Gen4 SSD storage up to 32TB',
-            'Redundant 3200W power supplies',
-            '10GbE and InfiniBand network options',
-            'Authorized Distributor Support'
+            'Engineered for 24/7 operation up to 40°C',
+            'Zero thermal throttling',
+            'Up to 8x RTX 4090/H100/H200 GPUs',
+            'Cooling capacity up to 5.5kW @25°C',
+            'AMD EPYC 9004 & 9005 Series CPUs',
+            'Comino Monitoring System'
           ] : [
-            'AMD EPYC 9004系列處理器（最高64核心）',
-            '最高1TB DDR5 ECC記憶體',
-            'NVMe Gen4 SSD儲存最高32TB',
-            '備援3200W電源供應',
-            '10GbE和InfiniBand網路選項',
-            '授權經銷商支援'
+            '24/7運作設計，可承受40°C高溫',
+            '零熱節流',
+            '最高8個RTX 4090/H100/H200 GPU',
+            '25°C下散熱容量可達5.5kW',
+            'AMD EPYC 9004與9005系列CPU',
+            'Comino監控系統'
           ],
       specs: isEnglish ? {
-        'GPU': 'Up to 8x RTX 4090 or H100',
-        'CPU': 'AMD EPYC 9004 Series (up to 64 cores)',
+        'GPU': 'Up to 8x RTX 4090/H100/H200',
+        'CPU': 'AMD EPYC 9004 & 9005, Intel Xeon',
         'Memory': 'Up to 1TB DDR5 ECC',
-        'Storage': 'Up to 32TB NVMe Gen4',
-        'Cooling': 'CoolIT Liquid Cooling'
+        'Storage': 'Up to 4x 3.5" HDDs or 12x 2.5" SSDs',
+        'Power': 'Up to 8.0kW with 4x CRPS modules',
+        'Cooling': '5.5kW @25°C Liquid Cooling'
       } : {
-        'GPU': '最高8個RTX 4090或H100',
-        'CPU': 'AMD EPYC 9004系列（最高64核心）',
+        'GPU': '最高8個RTX 4090/H100/H200',
+        'CPU': 'AMD EPYC 9004與9005，Intel Xeon',
         '記憶體': '最高1TB DDR5 ECC',
-        '儲存': '最高32TB NVMe Gen4',
-        '散熱': 'CoolIT液冷系統'
+        '儲存': '最多4個3.5"硬碟或12個2.5"固態硬碟',
+        '功率': '最高8.0kW，4個CRPS模組',
+        '散熱': '25°C下5.5kW液冷系統'
       },
       comingSoon: false,
       images: [
@@ -870,12 +1013,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
               </div>
 
               {/* Order Information */}
-              <div className="mb-12">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  {isEnglish ? 'Available Configurations' : '可用配置'}
-                </h3>
-                <div className="space-y-4">
-                  {product.detailedDescription.orderInfo.map((item, index) => (
+              {product.detailedDescription.orderInfo && (
+                <div className="mb-12">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                    {isEnglish ? 'Available Configurations' : '可用配置'}
+                  </h3>
+                  <div className="space-y-4">
+                    {product.detailedDescription.orderInfo.map((item, index) => (
                     <div key={index} className="bg-gray-50 p-6 rounded-lg">
                       <div className="flex justify-between items-start mb-3">
                         <h4 className="text-lg font-semibold text-gray-900">{item.type}</h4>
@@ -891,6 +1035,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
                   ))}
                 </div>
               </div>
+              )}
             </div>
           </div>
         </div>

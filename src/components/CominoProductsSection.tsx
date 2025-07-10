@@ -12,37 +12,39 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
       id: 5,
       title: isEnglish ? 'Comino Grando Multi-GPU Server' : 'Comino Grando 多GPU伺服器',
       description: isEnglish
-        ? 'Liquid-cooled multi-GPU servers with up to 8x RTX 4090/H100 GPUs. Designed for extreme performance in AI training, inference, and HPC workloads.'
-        : '液冷式多GPU伺服器，最高支援8個RTX 4090/H100 GPU。專為AI訓練、推論和高效能運算工作負載的極致效能而設計。',
+        ? 'Engineered around liquid cooling technology for 24/7 operation up to 40°C. Best Multi-GPU performance for specialists, workgroups and research teams with up to 8x high-end GPUs.'
+        : '圍繞液冷技術設計，可在40°C環境下24/7運作。為專家、工作組和研究團隊提供最佳多GPU效能，支援最多8個高階GPU。',
       icon: <Server className="h-8 w-8 text-purple-700" />,
       image: "/grando-8gpu-server.jpg",
       features: isEnglish ? [
-            'Advanced CoolIT Liquid Cooling',
-            'Up to 8x RTX 4090/H100 GPUs',
-            'Direct GPU-to-GPU Connection',
-            'AMD EPYC 9004 Series CPUs',
-            'Up to 1TB DDR5 ECC Memory',
-            'NVMe Gen4 Storage'
+            'Engineered for 24/7 operation up to 40°C',
+            'Zero thermal throttling',
+            'Up to 8x RTX 4090/H100/H200 GPUs',
+            'Cooling capacity up to 5.5kW @25°C',
+            'AMD EPYC 9004 & 9005 Series',
+            'Comino Monitoring System'
           ] : [
-            '先進CoolIT液冷技術',
-            '最高8個RTX 4090/H100 GPU',
-            'GPU直連架構',
-            'AMD EPYC 9004系列CPU',
-            '最高1TB DDR5 ECC記憶體',
-            'NVMe Gen4儲存'
+            '24/7運作設計，可承受40°C高溫',
+            '零熱節流',
+            '最高8個RTX 4090/H100/H200 GPU',
+            '25°C下散熱容量可達5.5kW',
+            'AMD EPYC 9004與9005系列',
+            'Comino監控系統'
           ],
       specs: isEnglish ? {
-        'GPU': 'Up to 8x RTX 4090/H100',
-        'CPU': 'AMD EPYC 9004 Series',
+        'GPU': 'Up to 8x RTX 4090/H100/H200',
+        'CPU': 'AMD EPYC 9004 & 9005, Intel Xeon',
         'Memory': 'Up to 1TB DDR5 ECC',
-        'Storage': 'Up to 32TB NVMe Gen4',
-        'Cooling': 'Comino CoolIT Liquid Cooling'
+        'Storage': 'Up to 4x 3.5" HDDs or 12x 2.5" SSDs',
+        'Power': 'Up to 8.0kW with 4x CRPS modules',
+        'Cooling': '5.5kW @25°C Liquid Cooling'
       } : {
-        'GPU': '最高8個RTX 4090/H100',
-        'CPU': 'AMD EPYC 9004系列',
+        'GPU': '最高8個RTX 4090/H100/H200',
+        'CPU': 'AMD EPYC 9004與9005，Intel Xeon',
         '記憶體': '最高1TB DDR5 ECC',
-        '儲存': '最高32TB NVMe Gen4',
-        '散熱': 'Comino CoolIT 液冷系統'
+        '儲存': '最多4個3.5"硬碟或12個2.5"固態硬碟',
+        '功率': '最高8.0kW，4個CRPS模組',
+        '散熱': '25°C下5.5kW液冷系統'
       },
       comingSoon: false
     },
@@ -50,39 +52,41 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
       id: 6,
       title: isEnglish ? 'Comino Grando Workstation' : 'Comino Grando 工作站',
       description: isEnglish
-        ? 'High-performance AI workstation with liquid cooling for deep learning research and development. Perfect for individual researchers and small teams.'
-        : '高效能AI工作站，配備液冷系統，專為深度學習研究和開發設計。適合個人研究者和小型團隊使用。',
+        ? 'Silent desktop workstation for deep learning research and development. Ideal solution for workgroups and high-end professionals, providing unprecedented multi-GPU performance on premise.'
+        : '用於深度學習研究和開發的靜音桌面工作站。適合工作組和高階專業人士的理想解決方案，提供前所未有的多GPU效能。',
       icon: <Monitor className="h-8 w-8 text-indigo-700" />,
       image: "/grando-workstation-closed.png",
       features: isEnglish
         ? [
-            'Up to 4x RTX 4090 GPUs',
-            'Compact Desktop Design',
-            'Whisper-Quiet Operation',
-            'AMD Ryzen Threadripper',
+            'Up to 4x RTX 4090/A100 GPUs',
+            'Whisper-quiet operation',
+            'Compact desktop design',
+            'AMD Threadripper PRO',
             'Up to 256GB DDR5',
-            'Ready for AI Development'
+            'Liquid cooling system'
           ]
         : [
-            '最高4個RTX 4090 GPU',
-            '緊湊桌面設計',
+            '最高4個RTX 4090/A100 GPU',
             '超靜音運作',
-            'AMD Ryzen Threadripper',
+            '緊湊桌面設計',
+            'AMD Threadripper PRO',
             '最高256GB DDR5',
-            'AI開發就緒'
+            '液冷系統'
           ],
       specs: isEnglish ? {
-        'GPU': 'Up to 4x RTX 4090',
-        'CPU': 'AMD Ryzen Threadripper',
+        'GPU': 'Up to 4x RTX 4090/A100',
+        'CPU': 'AMD Threadripper PRO',
         'Memory': 'Up to 256GB DDR5',
         'Storage': 'Up to 8TB NVMe',
-        'Form Factor': 'Desktop Tower'
+        'Form Factor': 'Desktop Tower',
+        'Cooling': 'Liquid Cooling System'
       } : {
-        'GPU': '最高4個RTX 4090',
-        'CPU': 'AMD Ryzen Threadripper',
+        'GPU': '最高4個RTX 4090/A100',
+        'CPU': 'AMD Threadripper PRO',
         '記憶體': '最高256GB DDR5',
         '儲存': '最高8TB NVMe',
-        '機箱規格': '桌面塔式'
+        '機箱規格': '桌面塔式',
+        '散熱': '液冷系統'
       },
       comingSoon: false
     },
@@ -90,39 +94,41 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
       id: 7,
       title: isEnglish ? 'Comino Grando Container' : 'Comino Grando 移動數據中心',
       description: isEnglish
-        ? 'Universal mobile data center for liquid-cooled solutions. 40ft container housing up to 140 Grando U blocks with 2240 GPUs total capacity.'
-        : '液冷解決方案的通用移動數據中心。40英尺貨櫃可容納最多140個Grando U塊，總共2240個GPU容量。',
+        ? 'Universal mobile data center for liquid-cooled solutions. 40ft container housing up to 140 Grando U blocks with 2,240 GPUs total capacity. Operating temperature range: -30°C to +50°C.'
+        : '液冷解決方案的通用移動數據中心。40英尺貨櫃可容納最多140個Grando U塊，總共2,240個GPU容量。工作溫度範圍：-30°C至+50°C。',
       icon: <Shield className="h-8 w-8 text-green-700" />,
       image: "/grando-container-closed.png",
       features: isEnglish
         ? [
             'Up to 140 Grando U Blocks',
-            '500kW Total Power',
+            '2,240 GPUs total capacity',
             'Operating: -30°C to +50°C',
             '13x 19" 48U Racks',
-            'Heat Recovery System',
-            'Mobile Deployment'
+            'Heat recovery system',
+            'Liquid-to-liquid heat exchanger'
           ]
         : [
             '最多140個Grando U塊',
-            '500kW總功率',
+            '總共2,240個GPU容量',
             '操作溫度：-30°C至+50°C',
             '13個19英寸48U機架',
             '熱回收系統',
-            '移動部署'
+            '液-液熱交換器'
           ],
       specs: isEnglish ? {
-        'Capacity': 'Up to 2240 GPUs',
+        'Capacity': 'Up to 2,240 GPUs',
         'Power': 'Up to 500kW',
         'Racks': '13x 19" 48U Racks',
         'Cooling': 'Liquid-to-Liquid Heat Exchanger',
-        'Container': '40ft HQ Standard'
+        'Container': '40ft HQ Standard',
+        'Operating Range': '-30°C to +50°C'
       } : {
-        '容量': '最多2240個GPU',
+        '容量': '最多2,240個GPU',
         '功率': '最高500kW',
         '機架': '13個19英寸48U機架',
         '散熱': '液-液熱交換器',
-        '貨櫃': '40英尺HQ標準'
+        '貨櫃': '40英尺HQ標準',
+        '操作溫度': '-30°C至+50°C'
       },
       comingSoon: false
     },
@@ -130,18 +136,18 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
       id: 8,
       title: isEnglish ? 'Comino Grando FPGA Solutions' : 'Comino Grando FPGA解決方案',
       description: isEnglish
-        ? 'Ultra-compact liquid-cooled FPGA computing platform. Supports up to 160 FPGA per rack with 30kW power consumption in 4U form factor.'
-        : '超緊湊液冷FPGA運算平台。支援每機架最多160個FPGA，4U機箱規格下功耗30kW。',
+        ? 'Ultra-compact liquid-cooled FPGA computing platform. Supports up to 160 FPGA per rack with 30kW power consumption in 4U form factor. BittWare CVP-13 compatible.'
+        : '超緊湊液冷FPGA運算平台。支援每機架最多160個FPGA，4U機箱規格下功耗30kW。相容BittWare CVP-13。',
       icon: <Cpu className="h-8 w-8 text-orange-700" />,
       image: "/grando-fpga-cards.png",
       features: isEnglish
         ? [
-            'Up to 160 FPGA per Rack',
-            '30kW Power per Rack',
-            '4U Form Factor',
-            'BittWare CVP-13 Compatible',
-            'Liquid Cooling System',
-            'Heat Recovery Capable'
+            'Up to 160 FPGA per rack',
+            '30kW power per rack',
+            '4U form factor',
+            'BittWare CVP-13 compatible',
+            'Liquid cooling system',
+            'Heat recovery capable'
           ]
         : [
             '每機架最多160個FPGA',
@@ -156,13 +162,15 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
         'Power': '30kW per rack',
         'Form Factor': '4U Rackmount',
         'Cooling': 'Liquid Cooling',
-        'Compatibility': 'BittWare CVP-13'
+        'Compatibility': 'BittWare CVP-13',
+        'Heat Recovery': 'Capable'
       } : {
         'FPGA': '每機架最多160個',
         '功率': '每機架30kW',
         '機箱規格': '4U機架式',
         '散熱': '液冷系統',
-        '相容性': 'BittWare CVP-13'
+        '相容性': 'BittWare CVP-13',
+        '熱回收': '支援'
       },
       comingSoon: false
     }
@@ -180,8 +188,8 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
           </p>
           <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
             {isEnglish
-              ? 'Revolutionary liquid-cooled systems delivering unprecedented performance for AI and HPC workloads.'
-              : '革命性液冷系統，為AI和高效能運算工作負載提供前所未有的效能。'}
+              ? 'Engineered - not just assembled. Grando products are built around liquid cooling technology and tailored for AI inference & training, delivering up to 40% faster performance than air-cooled systems.'
+              : '工程設計而非僅僅組裝。Grando產品圍繞液冷技術構建，專為AI推論與訓練量身打造，比氣冷系統提供高達40%的效能提升。'}
           </p>
         </div>
 
