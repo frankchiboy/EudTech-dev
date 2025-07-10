@@ -763,8 +763,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       comingSoon: false,
       images: [
         "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/628a5853a006221ee17a6fe5_container-closed@2x.png",
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/628a5a17521f032590fc9f50_container-opened.png",
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/628a81d5c5137b1fd40b14f6_container-overview-left.png"
+        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/628a5a17521f032590fc9f50_container-opened.png"
       ],
       detailedDescription: isEnglish ? {
         title: 'Comino Grando Container - Mobile Data Center Solution',
