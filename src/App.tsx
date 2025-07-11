@@ -12,30 +12,28 @@ import ProductDetails from './components/ProductDetails';
 
 function App() {
   const [isEnglish, setIsEnglish] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [themeMode, setThemeMode] = useState<'light' | 'dark' | 'system'>('system');
   
   useEffect(() => {
     // 檢查本地存儲中的主題設置
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | 'system' | null;
     
-    if (savedTheme === 'dark') {
-      setIsDarkMode(true);
-      document.documentElement.classList.add('dark');
-    } else if (savedTheme === 'light') {
-      setIsDarkMode(false);
-      document.documentElement.classList.remove('dark');
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      // 如果沒有本地存儲的設置，檢查系統偏好
-      setIsDarkMode(true);
-      document.documentElement.classList.add('dark');
+    if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
+      setThemeMode(savedTheme);
+      applyTheme(savedTheme);
+    } else {
+      // 預設為跟隨系統
+      setThemeMode('system');
+      applyTheme('system');
     }
-    
+  }, []);
+
+  useEffect(() => {
     // 監聽系統主題變化
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e: MediaQueryListEvent) => {
-      // 只有在用戶沒有手動設置主題時才跟隨系統變化
-      if (!localStorage.getItem('theme')) {
-        setIsDarkMode(e.matches);
+      // 只有在設定為跟隨系統時才更新
+      if (themeMode === 'system') {
         if (e.matches) {
           document.documentElement.classList.add('dark');
         } else {
@@ -43,26 +41,47 @@ function App() {
         }
       }
     };
-    
+
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+  }, [themeMode]);
+
+  const applyTheme = (mode: 'light' | 'dark' | 'system') => {
+    if (mode === 'system') {
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (systemDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } else {
+      const isDark = mode === 'dark';
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  };
   
   const toggleLanguage = () => {
     setIsEnglish(!isEnglish);
   };
   
   const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
+    let newMode: 'light' | 'dark' | 'system';
     
-    if (newDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+    if (themeMode === 'system') {
+      newMode = 'light';
+    } else if (themeMode === 'light') {
+      newMode = 'dark';
     } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      newMode = 'system';
     }
+    
+    setThemeMode(newMode);
+    applyTheme(newMode);
+    localStorage.setItem('theme', newMode);
   };
 
   return (
@@ -71,7 +90,7 @@ function App() {
         <NavBar 
           toggleLanguage={toggleLanguage} 
           isEnglish={isEnglish}
-          isDarkMode={isDarkMode}
+          themeMode={themeMode}
           toggleDarkMode={toggleDarkMode}
         />
         <Routes>

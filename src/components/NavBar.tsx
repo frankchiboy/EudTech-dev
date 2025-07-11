@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe, Moon, Sun } from 'lucide-react';
+import { Menu, X, Globe, Moon, Sun, Monitor } from 'lucide-react';
 import Logo from './Logo';
 
 interface NavBarProps {
   toggleLanguage: () => void;
   isEnglish: boolean;
-  isDarkMode: boolean;
+  themeMode: 'light' | 'dark' | 'system';
   toggleDarkMode: () => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, isDarkMode, toggleDarkMode }) => {
+const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, toggleDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -84,9 +84,11 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, isDarkMode, 
                   ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
                   : 'text-white hover:text-eudtech-200'
               } px-2 py-2 rounded-md transition-colors duration-200`}
-              aria-label={isDarkMode ? '切換至淺色模式' : '切換至深色模式'}
+              aria-label={`切換主題模式 (目前: ${themeMode === 'system' ? '跟隨系統' : themeMode === 'dark' ? '深色模式' : '淺色模式'})`}
             >
-              {isDarkMode ? (
+              {themeMode === 'system' ? (
+                <Monitor size={18} className="hover:text-blue-400" />
+              ) : themeMode === 'dark' ? (
                 <Sun size={18} className="hover:text-yellow-400" />
               ) : (
                 <Moon size={18} className="hover:text-blue-400" />
@@ -107,9 +109,15 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, isDarkMode, 
               className={`mr-2 ${
                 isScrolled ? 'text-neutral-800 dark:text-neutral-100' : 'text-white'
               } p-1 rounded-full transition-colors duration-200`}
-              aria-label={isDarkMode ? '切換至淺色模式' : '切換至深色模式'}
+              aria-label={`切換主題模式 (目前: ${themeMode === 'system' ? '跟隨系統' : themeMode === 'dark' ? '深色模式' : '淺色模式'})`}
             >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {themeMode === 'system' ? (
+                <Monitor size={20} />
+              ) : themeMode === 'dark' ? (
+                <Sun size={20} />
+              ) : (
+                <Moon size={20} />
+              )}
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
