@@ -81,7 +81,7 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
           <div className="flex justify-center mb-8">
             <div className="flex items-center space-x-4">
               <img 
-                src="https://cdn.prod.website-files.com/628295a883124981fd568435/63dd331994de0e0afc29f236_Comino_Grando.png" 
+                src="/comino-grando-logo.png" 
                 alt="Comino Grando Logo" 
                 className="h-16 object-contain bg-gray-800 p-3 rounded shadow-md"
               />
