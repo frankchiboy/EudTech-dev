@@ -174,7 +174,7 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
         '相容性': 'BittWare CVP-13',
         '熱回收': '支援'
       },
-      comingSoon: false
+      comingSoon: true
     }
   ];
 
@@ -197,7 +197,7 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
         </div>
 
         <div className="grid grid-cols-1 gap-12">
-          {cominoProducts.map((product) => (
+          {cominoProducts.filter(product => !product.comingSoon).map((product) => (
             <div
               key={product.id}
               id={`product-${product.id}`}
