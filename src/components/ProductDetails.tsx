@@ -383,41 +383,35 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       id: 5,
       title: isEnglish ? 'Comino Grando Rackable Workstation' : 'Comino Grando 機架式工作站',
       description: isEnglish
-        ? 'Engineered around liquid cooling technology for 24/7 operation up to 40°C. Best Multi-GPU performance for specialists, workgroups and research teams with up to 8x high-end GPUs.'
-        : '圍繞液冷技術設計，可在40°C環境下24/7運作。為專家、工作組和研究團隊提供最佳多GPU效能，支援最多8個高階GPU。',
+        ? ''
+        : '',
       icon: <Server className="h-8 w-8 text-purple-700" />,
       image: "/grando-8gpu-server.jpg",
       features: isEnglish ? [
-            'Engineered for 24/7 operation up to 40°C',
-            'Zero thermal throttling',
-            'Up to 8x GPUs',
-            'Available GPUs: H200, PRO 6000, RTX 5090, etc.',
-            'Cooling capacity up to 6.5kW @20°C',
-            'AMD EPYC 9004 & 9005 Series CPUs',
-            'Comino Liquid Cooling System'
+            'Up to 6 GPUs & 2 CPUs',
+            'Designed to be used as a desktop or can be put in a rack',
+            '3x 140mm fans 3000 RPM (low noise level) or 3x 140mm 5000RPM (medium noise level)',
+            'Cooling Capacity up to 2.5kW'
           ] : [
-            '24/7運作設計，可承受40°C高溫',
-            '零熱節流',
-            '最高8個GPU',
-            '可用GPU：H200、PRO 6000、RTX 5090等',
-            '20°C下散熱容量可達6.5kW',
-            'AMD EPYC 9004與9005系列CPU',
-            'Comino液冷系統'
+            '最多6個GPU和2個CPU',
+            '設計為桌面使用或可置於機架中',
+            '3個140mm風扇3000 RPM（低噪音）或3個140mm 5000RPM（中等噪音）',
+            '散熱能力高達2.5kW'
           ],
       specs: isEnglish ? {
-        'GPU': 'Up to 8x GPUs (H200, PRO 6000, RTX 5090, etc.)',
-        'CPU': 'AMD EPYC 9004 & 9005, Intel Xeon',
-        'Memory': 'Up to 2TB DDR5 ECC',
-        'Storage': 'Up to 4x 3.5" HDDs or 12x 2.5" SSDs',
-        'Power': 'Up to 8.0kW with 4x CRPS modules',
-        'Cooling': '6.5kW @20°C Comino Liquid Cooling'
+        'Maximum Cooling Capacity': '2500 W - Maximum cooling capacity is ensured @ 20C intake air T and "performance mode" of the cooling system',
+        'Motherboard': 'Up to EATX & EBB',
+        'GPUs': 'Up to 7; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, A40, L40, L40S, A100, H100; AMD: W7800, W7900',
+        'RAM': 'Up to 2TB *',
+        'Storage': 'Up to 2 3.5" HDD, Up to 6 2.5" SSD',
+        'Power Supply System': 'Up to 3x SFX-L 1000W, Power Capacity up to 3kW'
       } : {
-        'GPU': '最高8個GPU（H200、PRO 6000、RTX 5090等）',
-        'CPU': 'AMD EPYC 9004與9005，Intel Xeon',
-        '記憶體': '最高2TB DDR5 ECC',
-        '儲存': '最多4個3.5"硬碟或12個2.5"固態硬碟',
-        '功率': '最高8.0kW，4個CRPS模組',
-        '散熱': '20°C下6.5kW Comino液冷系統'
+        'Maximum Cooling Capacity': '2500 W - 在20°C進氣溫度和冷卻系統"性能模式"下確保最大冷卻能力',
+        'Motherboard': '支援EATX & EBB',
+        'GPUs': '最多7個; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, A40, L40, L40S, A100, H100; AMD: W7800, W7900',
+        'RAM': '最高2TB *',
+        'Storage': '最多2個3.5"硬碟，最多6個2.5"固態硬碟',
+        'Power Supply System': '最多3個SFX-L 1000W，電源容量最高3kW'
       },
       comingSoon: false,
       images: [
@@ -427,7 +421,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       ],
       detailedDescription: isEnglish ? {
         title: 'Comino Grando Rackable Workstation - Liquid-Cooled AI Computing',
-        formFactor: '6U Rackmount workstation with liquid cooling system',
+        formFactor: 'Desktop or 19" rack-mountable workstation with liquid cooling system',
         introduction: 'The Comino Grando rackable workstation represents the pinnacle of liquid-cooled AI computing technology. Designed specifically for AI training, inference, and high-performance computing workloads, this system delivers exceptional performance through direct GPU-to-GPU connectivity and advanced thermal management. The Comino liquid cooling system enables sustained peak performance while maintaining reliable operation.',
         keyFeatures: [
           'Up to 8x GPUs with Comino liquid cooling',
@@ -443,51 +437,63 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
           'Comprehensive monitoring and management software'
         ],
         technicalSpecs: {
-          'Product Series': 'Comino Grando Rackable Workstation',
-          'Form Factor': '6U Rackmount Workstation',
-          'GPU Options': 'Available GPUs: H200, PRO 6000, RTX 5090, etc.',
-          'GPU Quantity': 'Up to 8 GPUs per system',
-          'CPU Options': 'AMD EPYC 9004 & 9005 series (up to 64 cores)',
-          'Memory': 'Up to 2TB DDR5 ECC (supports up to 4800 MT/s)',
-          'Storage': 'NVMe Gen4 SSD up to 32TB total capacity',
-          'Network': '10GbE, 25GbE, InfiniBand options',
-          'Cooling': 'Comino Liquid Cooling System with full-coverage blocks',
-          'Power': 'Redundant 3200W PSU configuration',
-          'Management': 'IPMI, BMC, Comino Management Suite',
-          'Operating Systems': 'Ubuntu, CentOS, RHEL, Windows Server, Custom Linux distributions',
-          'Certifications': 'CE, FCC, RoHS compliant',
-          'Warranty': '3-year manufacturer warranty with EudTech support'
+          'Motherboards': 'Up to EATX & EBB',
+          'RAM': 'Up to 2TB *',
+          'M2 drives': 'Up to 8x NVMe',
+          'Drives': 'External 3.5" cage up to 2x 3.5" or 2x 2.5" 15mm or 4x 2.5" 7mm, Internal 2.5" slots: up to 6x 2.5" SSD 7mm',
+          'PSU and Operating voltage': 'Up to 3x 1000W SFX-L @ 110/220V',
+          'Cooling Capacity': '2.5kW',
+          'Noise level': '35dB - 50dB',
+          'LAN': 'Up to 2x 10 Gbps on the MoBo and up to 400Gbps in PCIe',
+          'OS': 'Ubuntu / Win10 (Pro/Home) / Windows Server',
+          'Liquid cooling': 'CPU with VRM and GPU with QDC and VRM',
+          'Reservoir': 'Comino custom 450ml with integrated pumps',
+          'Pumps': '2x Laing DDC 2kW',
+          'Radiators': '1x 120x30mm core',
+          'Fans': '3x Low Noise 140mm 3000RPM (low noise level) or 3x High-Flow 140mm 5000RPM (medium noise level)',
+          'Installation': 'Desktop as a Workstation or 19" rack-mountable',
+          'Required rack space': '4U',
+          'Size': '439 x 681 x 177mm (without handles and protruding parts)',
+          'Weight': 'Comino Grando Workstation with 4 GPUs ~ 64kg (net), 72kg (gross)',
+          'Operating & storage temperature range': 'Storage: -5°C / 25°C / 32°C, Operating: 5°C / 35°C / 39°C / 100°F *'
         },
         orderInfo: [
           {
-            type: 'AI Training Configuration',
-            pn: 'GRANDO-4090-8x',
-            model: 'Grando DPR 4090-FT/8',
-            description: '8x RTX 4090 24GB GPUs, AMD EPYC 9554 64-core CPU, 512GB DDR5 ECC, 16TB NVMe Gen4 SSD'
+            type: 'LIQUID COOLED',
+            pn: 'LIQUID-COOLING',
+            model: 'Comino Liquid Cooling System',
+            description: 'Comino liquid cooling system unleashes the full performance potential of modern top-tier GPUs and CPUs. Allows to pinpoint lifespan of the hardware and ensures silent or low noise 24/7 operation even in harsh environment with high ambient temperature.'
           },
           {
-            type: 'Enterprise AI Configuration',
-            pn: 'GRANDO-H100-8x',
-            model: 'Grando H100 Enterprise',
-            description: '8x H100 80GB GPUs, AMD EPYC 9654 96-core CPU, 1TB DDR5 ECC, 32TB NVMe storage'
+            type: 'QUICK-DISCONNECT COUPLINGS',
+            pn: 'QUICK-DISCONNECT',
+            model: 'Comino ThruQ Couplings',
+            description: 'Quick Disconnect Couplings (Comino ThruQ) on each GPU and CPU allows availability.'
           },
           {
-            type: 'Research Configuration',
-            pn: 'GRANDO-4090-4x',
-            model: 'Grando Research System',
-            description: '4x RTX 4090 GPUs, AMD EPYC 9374F 32-core CPU, 256GB DDR5 ECC, 8TB NVMe storage'
+            type: 'REMOTE MANAGEMENT',
+            pn: 'REMOTE-MGMT',
+            model: 'IPMI Remote Management',
+            description: 'BMC chip to provide intelligence for its IPMI architecture for out-of-band.'
+          },
+          {
+            type: 'COMINO\'S MONITORING SYSTEM',
+            pn: 'MONITORING-SYS',
+            model: 'Comino Monitoring System',
+            description: 'Allows to collect cooling system like temperature statistic, WEB based GUI allows to inspect several devices remotely. The monitoring system increases system availability.'
           }
         ]
       } : {
-        title: 'Comino Grando 多GPU伺服器 - 液冷AI運算',
-        formFactor: '6U機架式伺服器配備液冷系統',
-        introduction: 'Comino Grando多GPU伺服器代表液冷AI運算技術的巔峰。專為AI訓練、推論和高效能運算工作負載而設計，該系統通過GPU直連和先進熱管理實現卓越效能。液冷系統確保持續峰值效能，同時保持超靜音運作。',
+        title: 'Comino Grando Rackable Workstation - 液冷AI運算',
+        formFactor: '桌面或19"機架式工作站配備液冷系統',
+        introduction: 'Comino Grando機架式工作站代表液冷AI運算技術的巔峰。專為AI訓練、推論和高效能運算工作負載而設計，該系統通過GPU直連和先進熱管理實現卓越效能。Comino液冷系統確保持續峰值效能，同時保持可靠運作。',
         keyFeatures: [
-          '最高8個NVIDIA RTX 4090或H100 GPU配備液冷',
+          '最高8個GPU配備Comino液冷',
+          '可用GPU：H200、PRO 6000、RTX 5090等',
           'GPU直連架構實現最大頻寬',
-          'AMD EPYC 9004系列處理器，最高64核心',
-          '先進CoolIT液冷系統配備即時監控',
-          '最高1TB DDR5 ECC記憶體，高頻寬設計',
+          'AMD EPYC 9004與9005系列處理器，最高64核心',
+          'Comino液冷系統配備即時監控',
+          '最高2TB DDR5 ECC記憶體，高頻寬設計',
           'NVMe Gen4儲存配置最高32TB',
           '備援3200W電源供應確保可靠性',
           '網路選項包括10GbE和InfiniBand',
@@ -495,63 +501,50 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
           '全面監控和管理軟體'
         ],
         technicalSpecs: {
-          '產品系列': 'Comino Grando 多GPU伺服器',
-          '外形尺寸': '6U機架式伺服器',
-          'GPU選項': 'NVIDIA RTX 4090（16,384 CUDA核心）、H100（16,896 CUDA核心）',
-          'GPU數量': '每系統最多8個GPU',
-          'CPU選項': 'AMD EPYC 9004系列（最高64核心）',
-          '記憶體': '最高1TB DDR5 ECC（支援最高4800 MT/s）',
-          '儲存': 'NVMe Gen4 SSD最高32TB總容量',
-          '網路': '10GbE、25GbE、InfiniBand選項',
-          '散熱': 'Comino CoolIT液冷系統配備全覆蓋冷卻塊',
-          '電源': '備援3200W電源供應配置',
-          '管理': 'IPMI、BMC、Comino管理套件',
-          '作業系統': 'Ubuntu、CentOS、RHEL、Windows Server、客製化Linux發行版',
-          '認證': 'CE、FCC、RoHS合規',
-          '保固': '3年製造商保固配備EudTech支援'
+          'Motherboards': '支援EATX & EBB',
+          'RAM': '最高2TB *',
+          'M2 drives': '最多8個NVMe',
+          'Drives': '外部3.5"機箱最多2個3.5"或2個2.5" 15mm或4個2.5" 7mm，內部2.5"插槽：最多6個2.5" SSD 7mm',
+          'PSU and Operating voltage': '最多3個1000W SFX-L @ 110/220V',
+          'Cooling Capacity': '2.5kW',
+          'Noise level': '35dB - 50dB',
+          'LAN': '主板上最多2個10 Gbps，PCIe中最多400Gbps',
+          'OS': 'Ubuntu / Win10 (Pro/Home) / Windows Server',
+          'Liquid cooling': 'CPU配VRM和GPU配QDC和VRM',
+          'Reservoir': 'Comino客製450ml配整合泵浦',
+          'Pumps': '2個Laing DDC 2kW',
+          'Radiators': '1個120x30mm散熱器',
+          'Fans': '3個低噪音140mm 3000RPM（低噪音）或3個高流量140mm 5000RPM（中等噪音）',
+          'Installation': '桌面工作站或19"機架安裝',
+          'Required rack space': '4U',
+          'Size': '439 x 681 x 177mm（不含把手和突出部分）',
+          'Weight': 'Comino Grando Workstation配4個GPU～64kg（淨重），72kg（毛重）',
+          'Operating & storage temperature range': '儲存：-5°C / 25°C / 32°C，運作：5°C / 35°C / 39°C / 100°F *'
         },
         orderInfo: [
           {
-            type: 'AI訓練配置',
-            pn: 'GRANDO-4090-8x',
-            model: 'Grando DPR 4090-FT/8',
-            description: '8個RTX 4090 24GB GPU、AMD EPYC 9554 64核心CPU、512GB DDR5 ECC、16TB NVMe Gen4 SSD'
+            type: 'LIQUID COOLED',
+            pn: 'LIQUID-COOLING',
+            model: 'Comino Liquid Cooling System',
+            description: 'Comino liquid cooling system unleashes the full performance potential of modern top-tier GPUs and CPUs. Allows to pinpoint lifespan of the hardware and ensures silent or low noise 24/7 operation even in harsh environment with high ambient temperature.'
           },
           {
-            type: 'Enterprise AI Configuration',
-            pn: 'GRANDO-H100x8',
-            model: 'Grando H100 Enterprise',
-            description: '8x H100 SXM5 80GB GPUs, AMD EPYC 9654 96-core CPU, 1TB DDR5 ECC, 16TB NVMe storage, advanced cooling'
+            type: 'QUICK-DISCONNECT COUPLINGS',
+            pn: 'QUICK-DISCONNECT',
+            model: 'Comino ThruQ Couplings',
+            description: 'Quick Disconnect Couplings (Comino ThruQ) on each GPU and CPU allows availability.'
           },
           {
-            type: 'Professional Workstation',
-            pn: 'GRANDO-RTX6000x4',
-            model: 'Grando RTX 6000 Ada Pro',
-            description: '4x RTX 6000 Ada 48GB GPUs, Intel Xeon W-3435X, 256GB DDR5 ECC, 4TB NVMe storage'
+            type: 'REMOTE MANAGEMENT',
+            pn: 'REMOTE-MGMT',
+            model: 'IPMI Remote Management',
+            description: 'BMC chip to provide intelligence for its IPMI architecture for out-of-band.'
           },
           {
-            type: 'Entry-Level AI System',
-            pn: 'GRANDO-RTX4090x4',
-            model: 'Grando RTX 4090 Starter',
-            description: '4x RTX 4090 GPUs, AMD EPYC 9374F, 128GB DDR5 ECC, 2TB NVMe storage, desktop form factor'
-          },
-          {
-            type: 'Inference Optimized',
-            pn: 'GRANDO-L40Sx6',
-            model: 'Grando L40S Inference',
-            description: '6x L40S 48GB GPUs, optimized for AI inference workloads, 384GB DDR5 ECC, 6TB NVMe storage'
-          },
-          {
-            type: 'Custom Configuration',
-            pn: 'GRANDO-CUSTOM',
-            model: 'Custom Grando System',
-            description: 'Fully customizable configuration based on specific requirements - contact EudTech for consultation'
-          },
-          {
-            type: 'Support Package',
-            pn: 'SUPPORT-PREMIUM',
-            model: 'Premium Support',
-            description: '24/7 support, on-site service, extended warranty, system optimization services'
+            type: 'COMINO\'S MONITORING SYSTEM',
+            pn: 'MONITORING-SYS',
+            model: 'Comino Monitoring System',
+            description: 'Allows to collect cooling system like temperature statistic. WEB based GUI allows to inspect several devices remotely. The monitoring system increases system availability.'
           }
         ]
       }
@@ -900,7 +893,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
     <div className="min-h-screen bg-neutral-50 overflow-x-hidden">
       {/* Product Header */}
       <div className="bg-white dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 py-20">{/* Back Button */}
+        <div className="max-w-7xl mx-auto px-4 py-20">
+          {/* Back Button */}
           <Link 
             to="/"
             state={{ fromSection: fromSection }}
@@ -958,54 +952,35 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTYgNnY2aDZ2LTZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30 dark:opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-8 text-center">
-            {isEnglish ? 'Technical Specifications' : '技術規格'}
+            {isEnglish ? 'System Overview' : '系統總覽'}
           </h2>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-neo-light dark:shadow-neo-dark overflow-hidden border border-gray-100 dark:border-gray-700">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              {Object.entries(product.specs).map(([key, value], index) => (
-                <div 
-                  key={index} 
-                  className={`p-6 ${index % 2 === 0 ? 'bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-800/80' : 'bg-white dark:bg-gray-700/90'} transition-all duration-300 hover:bg-gray-100/80 dark:hover:bg-gray-700/60 group`}
-                >
-                  <div className="flex justify-between items-start">
-                    <span className="font-semibold text-gray-900 dark:text-gray-100 mr-4 group-hover:text-eudtech-700 dark:group-hover:text-eudtech-400 transition-colors duration-300">{key}</span>
-                    <span className="text-gray-700 dark:text-gray-300 text-right">{value}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white dark:bg-gray-800 border border-neutral-200 dark:border-neutral-700">
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
+                {Object.entries(product.specs).map(([key, value], index) => (
+                  <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50 dark:bg-neutral-800' : 'bg-white dark:bg-gray-800'}>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 dark:text-neutral-100 w-1/3">
+                      {key}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
+                      {value}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4">
+            * - depends on the configuration, contact Comino team for clarification
+          </p>
         </div>
       </div>
 
-      {/* Detailed Description */}
+      {/* Technical Specifications from Detailed Description */}
       {product.detailedDescription && (
         <div className="bg-white dark:bg-gray-900 py-16">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
-              {product.detailedDescription.title}
-            </h2>
-            
             <div className="prose prose-lg dark:prose-invert max-w-none">
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">
-                {product.detailedDescription.introduction}
-              </p>
-
-              {/* Key Features Section */}
-              <div className="mb-12">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
-                  {isEnglish ? 'Key Features' : '主要特色'}
-                </h3>
-                <ul className="space-y-3">
-                  {product.detailedDescription.keyFeatures.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <div className="h-2 w-2 bg-eudtech-600 dark:bg-eudtech-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-neutral-700 dark:text-neutral-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
               {/* Technical Specifications Table */}
               <div className="mb-12">
                 <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
@@ -1027,9 +1002,12 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
                     </tbody>
                   </table>
                 </div>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4">
+                  * - depends on the configuration, contact Comino team for clarification
+                </p>
               </div>
 
-              {/* Order Information */}
+              {/* Available Configurations */}
               {product.detailedDescription.orderInfo && (
                 <div className="mb-12">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
@@ -1037,26 +1015,42 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
                   </h3>
                   <div className="space-y-4">
                     {product.detailedDescription.orderInfo.map((item, index) => (
-                    <div key={index} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-                      <div className="flex justify-between items-start mb-3">
-                        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{item.type}</h4>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{item.model}</span>
+                      <div key={index} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                        <div className="flex justify-between items-start mb-3">
+                          <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{item.type}</h4>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">{item.model}</span>
+                        </div>
+                        {item.pn && (
+                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                            <span className="font-medium">P/N:</span> {item.pn}
+                          </p>
+                        )}
+                        <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
                       </div>
-                      {item.pn && (
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                          <span className="font-medium">P/N:</span> {item.pn}
-                        </p>
-                      )}
-                      <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Additional Features */}
+              {product.detailedDescription.additionalFeatures && (
+                <div className="mb-12">
+                  <div className="space-y-6">
+                    {Object.entries(product.detailedDescription.additionalFeatures).map(([title, description], index) => (
+                      <div key={index} className="border-l-4 border-eudtech-600 pl-6">
+                        <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{title}</h4>
+                        <p className="text-gray-700 dark:text-gray-300">{description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
           </div>
         </div>
-      )}              {/* Image Gallery */}
+      )}
+
+      {/* Image Gallery */}
       {product.images && product.images.length > 0 && (
         <div className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-16 relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(79,70,229,0.05),transparent_40%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.1),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(79,70,229,0.1),transparent_40%)] pointer-events-none"></div>

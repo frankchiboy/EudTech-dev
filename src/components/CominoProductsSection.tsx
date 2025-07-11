@@ -12,42 +12,19 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
       id: 5,
       title: isEnglish ? 'Comino Grando Rackable Workstation' : 'Comino Grando 機架式工作站',
       description: isEnglish
-        ? 'Engineered around liquid cooling technology for 24/7 operation up to 40°C. Best Multi-GPU performance for specialists, workgroups and research teams with up to 8x high-end GPUs.'
-        : '圍繞液冷技術設計，可在40°C環境下24/7運作。為專家、工作組和研究團隊提供最佳多GPU效能，支援最多8個高階GPU。',
+        ? 'Hyper Performance Multi-GPU solution for the most advanced and resource intensive computational tasks.'
+        : '針對最先進和資源密集型計算任務的超高效能多GPU解決方案。',
       icon: <Server className="h-8 w-8 text-purple-700" />,
       image: "/grando-8gpu-server.jpg",
       features: isEnglish ? [
-            'Engineered for 24/7 operation up to 40°C',
-            'Zero thermal throttling',
-            'Up to 8x GPUs',
-            'Available GPUs: H200, PRO 6000, RTX 5090, etc.',
-            'Cooling capacity up to 6.5kW @20°C',
-            'AMD EPYC 9004 & 9005 Series',
-            'Comino Liquid Cooling System'
+            'Best Multi-GPU performance for specialists, workgroups and research teams',
+            'Easy configurable, maintainable & scalable bleeding edge hardware',
+            'Engineered for Silent & Reliable 24/7 operation in harsh environments up to 38°C / 100°F'
           ] : [
-            '24/7運作設計，可承受40°C高溫',
-            '零熱節流',
-            '最高8個GPU',
-            '可用GPU：H200、PRO 6000、RTX 5090等',
-            '20°C下散熱容量可達6.5kW',
-            'AMD EPYC 9004與9005系列',
-            'Comino液冷系統'
+            '為專家、工作組和研究團隊提供最佳多GPU效能',
+            '易於配置、維護和擴展的尖端硬體',
+            '專為惡劣環境設計的靜音可靠24/7運作，溫度高達38°C / 100°F'
           ],
-      specs: isEnglish ? {
-        'GPU': 'Up to 8x GPUs (H200, PRO 6000, RTX 5090, etc.)',
-        'CPU': 'AMD EPYC 9004 & 9005, Intel Xeon',
-        'Memory': 'Up to 2TB DDR5 ECC',
-        'Storage': 'Up to 4x 3.5" HDDs or 12x 2.5" SSDs',
-        'Power': 'Up to 8.0kW with 4x CRPS modules',
-        'Cooling': '6.5kW @20°C Comino Liquid Cooling'
-      } : {
-        'GPU': '最高8個GPU（H200、PRO 6000、RTX 5090等）',
-        'CPU': 'AMD EPYC 9004與9005，Intel Xeon',
-        '記憶體': '最高2TB DDR5 ECC',
-        '儲存': '最多4個3.5"硬碟或12個2.5"固態硬碟',
-        '功率': '最高8.0kW，4個CRPS模組',
-        '散熱': '20°C下6.5kW Comino液冷系統'
-      },
       comingSoon: false
     },
     {
@@ -228,18 +205,22 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
                   </div>
                   <div className="border-t border-gray-100 dark:border-gray-700 pt-6 relative">
                     <div className="absolute left-0 right-0 h-px top-0 bg-gradient-to-r from-transparent via-purple-500/30 dark:via-purple-400/30 to-transparent"></div>
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
-                      <span className="mr-2 h-4 w-1 bg-gradient-to-b from-purple-500 to-indigo-600 dark:from-purple-400 dark:to-indigo-500 rounded-full"></span>
-                      {isEnglish ? 'Key Specifications' : '主要規格'}
-                    </h4>
-                    <div className="space-y-2">
-                      {Object.entries(product.specs).map(([key, value]) => (
-                        <div key={key} className="flex justify-between text-sm">
-                          <span className="text-neutral-500 dark:text-neutral-400">{key}</span>
-                          <span className="text-neutral-900 dark:text-neutral-200 font-medium">{value}</span>
+                    {product.specs && (
+                      <>
+                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                          <span className="mr-2 h-4 w-1 bg-gradient-to-b from-purple-500 to-indigo-600 dark:from-purple-400 dark:to-indigo-500 rounded-full"></span>
+                          {isEnglish ? 'Key Specifications' : '主要規格'}
+                        </h4>
+                        <div className="space-y-2">
+                          {Object.entries(product.specs).map(([key, value]) => (
+                            <div key={key} className="flex justify-between text-sm">
+                              <span className="text-neutral-500 dark:text-neutral-400">{key}</span>
+                              <span className="text-neutral-900 dark:text-neutral-200 font-medium">{value}</span>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
+                      </>
+                    )}
                   </div>
                   <div className="mt-8 flex items-center justify-between">
                     <Link
