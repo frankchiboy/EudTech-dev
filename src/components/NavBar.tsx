@@ -6,10 +6,11 @@ interface NavBarProps {
   toggleLanguage: () => void;
   isEnglish: boolean;
   themeMode: 'light' | 'dark' | 'system';
+  isDarkMode: boolean; // 實際生效的主題狀態
   toggleDarkMode: () => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, toggleDarkMode }) => {
+const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, isDarkMode, toggleDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -83,11 +84,27 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, t
                 isScrolled 
                   ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
                   : 'text-white hover:text-eudtech-200'
-              } px-2 py-2 rounded-md transition-colors duration-200`}
-              aria-label={`切換主題模式 (目前: ${themeMode === 'system' ? '跟隨系統' : themeMode === 'dark' ? '深色模式' : '淺色模式'})`}
+              } px-2 py-2 rounded-md transition-colors duration-200 relative group`}
+              aria-label={`切換主題模式 (目前: ${
+                themeMode === 'system' 
+                  ? `跟隨系統 (${isDarkMode ? '深色' : '淺色'})`
+                  : themeMode === 'dark' ? '深色模式' : '淺色模式'
+              })`}
             >
               {themeMode === 'system' ? (
-                <Monitor size={18} className="hover:text-blue-400" />
+                <div className="relative">
+                  {/* 顯示實際生效的主題圖示 */}
+                  {isDarkMode ? (
+                    <Moon size={18} className="hover:text-blue-400" />
+                  ) : (
+                    <Sun size={18} className="hover:text-yellow-400" />
+                  )}
+                  {/* 小型系統指示 */}
+                  <Monitor 
+                    size={8} 
+                    className="absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full p-0.5 border border-current opacity-70" 
+                  />
+                </div>
               ) : themeMode === 'dark' ? (
                 <Sun size={18} className="hover:text-yellow-400" />
               ) : (
@@ -108,11 +125,23 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, t
               onClick={toggleDarkMode}
               className={`mr-2 ${
                 isScrolled ? 'text-neutral-800 dark:text-neutral-100' : 'text-white'
-              } p-1 rounded-full transition-colors duration-200`}
-              aria-label={`切換主題模式 (目前: ${themeMode === 'system' ? '跟隨系統' : themeMode === 'dark' ? '深色模式' : '淺色模式'})`}
+              } p-1 rounded-full transition-colors duration-200 relative`}
+              aria-label={`切換主題模式 (目前: ${
+                themeMode === 'system' 
+                  ? `跟隨系統 (${isDarkMode ? '深色' : '淺色'})`
+                  : themeMode === 'dark' ? '深色模式' : '淺色模式'
+              })`}
             >
               {themeMode === 'system' ? (
-                <Monitor size={20} />
+                <div className="relative">
+                  {/* 顯示實際生效的主題圖示 */}
+                  {isDarkMode ? <Moon size={20} /> : <Sun size={20} />}
+                  {/* 小型系統指示 */}
+                  <Monitor 
+                    size={10} 
+                    className="absolute -bottom-0.5 -right-0.5 bg-white dark:bg-gray-800 rounded-full p-0.5 border border-current opacity-80" 
+                  />
+                </div>
               ) : themeMode === 'dark' ? (
                 <Sun size={20} />
               ) : (

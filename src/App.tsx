@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import HeroSection from './components/HeroSection';
@@ -13,6 +13,7 @@ import ProductDetails from './components/ProductDetails';
 function App() {
   const [isEnglish, setIsEnglish] = useState(false);
   const [themeMode, setThemeMode] = useState<'light' | 'dark' | 'system'>('system');
+  const [isDarkModeActive, setIsDarkModeActive] = useState(false);
   
   useEffect(() => {
     // 檢查本地存儲中的主題設置
@@ -34,13 +35,23 @@ function App() {
     const handleChange = (e: MediaQueryListEvent) => {
       // 只有在設定為跟隨系統時才更新
       if (themeMode === 'system') {
-        if (e.matches) {
+        const isDark = e.matches;
+        setIsDarkModeActive(isDark);
+        if (isDark) {
           document.documentElement.classList.add('dark');
         } else {
           document.documentElement.classList.remove('dark');
         }
       }
     };
+
+    // 設定初始狀態
+    if (themeMode === 'system') {
+      const isDark = mediaQuery.matches;
+      setIsDarkModeActive(isDark);
+    } else {
+      setIsDarkModeActive(themeMode === 'dark');
+    }
 
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
@@ -49,6 +60,7 @@ function App() {
   const applyTheme = (mode: 'light' | 'dark' | 'system') => {
     if (mode === 'system') {
       const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setIsDarkModeActive(systemDark);
       if (systemDark) {
         document.documentElement.classList.add('dark');
       } else {
@@ -56,6 +68,7 @@ function App() {
       }
     } else {
       const isDark = mode === 'dark';
+      setIsDarkModeActive(isDark);
       if (isDark) {
         document.documentElement.classList.add('dark');
       } else {
@@ -91,6 +104,7 @@ function App() {
           toggleLanguage={toggleLanguage} 
           isEnglish={isEnglish}
           themeMode={themeMode}
+          isDarkMode={isDarkModeActive}
           toggleDarkMode={toggleDarkMode}
         />
         <Routes>
