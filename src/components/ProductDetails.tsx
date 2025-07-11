@@ -17,7 +17,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         ? 'Enterprise-grade AI server with optimized performance for large language models and AI workloads.'
         : '企業級AI伺服器，為大型語言模型和AI工作負載優化效能。',
       icon: <Server className="h-8 w-8 text-blue-800" />,
-      image: "/EudTech-Select-server-front.png",
+      image: "/EudTech-Select-server-front.png.png",
       features: isEnglish
         ? [
             '8-GPU direct-connect architecture',
@@ -56,8 +56,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       },
       comingSoon: false,
       images: [
-        "/EudTech-Select-server-front.png",
-        "/EudTech-Select-server-back.png",
+        "/EudTech-Select-server-front.png.png",
+        "/EudTech-Select-server-back.png.png",
         "/EudTech-Select-server-inside.png"
       ],
       detailedDescription: isEnglish ? {
@@ -241,7 +241,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         ? 'Silent desktop workstation for deep learning research and development. Ideal solution for workgroups and high-end professionals, providing unprecedented multi-GPU performance on premise.'
         : '用於深度學習研究和開發的靜音桌面工作站。適合工作組和高階專業人士的理想解決方案，提供前所未有的多GPU效能。',
       icon: <Monitor className="h-8 w-8 text-indigo-700" />,
-      image: "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/65e74bb537cba97a9a21b8af_GRANDO-WS_4xA100_front.png",
+      image: "/grando-workstation-closed.png",
       features: isEnglish
         ? [
             'Up to 6x RTX 5090/A100 GPUs',
@@ -288,10 +288,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       },
       comingSoon: false,
       images: [
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/65e74bb537cba97a9a21b8af_GRANDO-WS_4xA100_front.png",
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/65e74b9016f21e75b7ee6402_GRANDO-WS_4xA100_side.png",
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/65e74d60fa05434fd547cda1_GRANDO-WS_4xA100_upside_closed%20(2).png",
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/65f028cafb42c0a71244a111_GRANDO%20WS%20TRP_4xA100_14-2%20(1).jpg"
+        "/grando-workstation-closed.png",
+        "/grando-workstation-open.png",
+        "/grando-dpr-4090-front.png",
+        "/grando-dpr-4090-side.png"
       ],
       detailedDescription: isEnglish ? {
         title: 'Comino Grando Workstation Specifications',
@@ -559,7 +559,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         ? 'Ultra-compact liquid-cooled FPGA computing platform. Supports up to 160 FPGA per rack with 30kW power consumption in 4U form factor.'
         : '超緊湊液冷FPGA運算平台。支援每機架最多160個FPGA，4U機箱規格下功耗30kW。',
       icon: <Cpu className="h-8 w-8 text-orange-700" />,
-      image: "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/628fd90515d1e2d73cad753a_FPGA-cardsBittWare_CVP-13%20(1).png",
+      image: "/grando-fpga-cards.png",
       features: isEnglish
         ? [
             'Up to 160 FPGA per Rack',
@@ -592,9 +592,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       },
       comingSoon: false,
       images: [
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/628fd90515d1e2d73cad753a_FPGA-cardsBittWare_CVP-13%20(1).png",
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/628fda0ca5acb585d33ac3d0_three_42U_racks_with_grando.png",
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/63bd8318fa1450f54b54f591_cominomonitoring.png"
+        "/grando-fpga-cards.png",
+        "/grando-fpga-image-132.png",
+        "/grando-fpga-image-133.png"
       ],
       detailedDescription: isEnglish ? {
         title: 'Comino Grando FPGA Solutions - Ultra-Compact FPGA Computing',
@@ -729,7 +729,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         ? 'Universal mobile data center for liquid-cooled solutions. 40ft container housing up to 140 Grando U blocks with 2240 GPUs total capacity.'
         : '液冷解決方案的通用移動數據中心。40英尺貨櫃可容納最多140個Grando U塊，總共2240個GPU容量。',
       icon: <Shield className="h-8 w-8 text-green-700" />,
-      image: "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/628a5853a006221ee17a6fe5_container-closed@2x.png",
+      image: "/grando-container-closed.png",
       features: isEnglish
         ? [
             'Up to 140 Grando U Blocks',
@@ -762,8 +762,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       },
       comingSoon: false,
       images: [
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/628a5853a006221ee17a6fe5_container-closed@2x.png",
-        "/comino_all/cdn.prod.website-files.com/628295a883124981fd568435/628a5a17521f032590fc9f50_container-opened.png"
+        "/grando-container-closed.png",
+        "/grando-container-opened.png",
+        "/comino-heat-recovery.png"
       ],
       detailedDescription: isEnglish ? {
         title: 'Comino Grando Container - Mobile Data Center Solution',
@@ -892,11 +893,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-neutral-50 overflow-x-hidden">
       {/* Product Header */}
       <div className="bg-white dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 py-20">
-          {/* Back Button */}
+        <div className="max-w-7xl mx-auto px-4 py-20">{/* Back Button */}
           <Link 
             to="/#eudtech-products" 
             className="inline-flex items-center text-eudtech-600 hover:text-eudtech-700 dark:text-eudtech-400 dark:hover:text-eudtech-300 transition-colors mb-8 group"
@@ -936,13 +936,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group relative bg-white/5 dark:bg-black/5 flex items-center justify-center">
+            <div className="flex justify-center items-center overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group relative">
               <img 
                 src={product.image} 
                 alt={product.title}
-                className="w-full h-96 object-contain rounded-lg transform transition-transform duration-700 group-hover:scale-105 p-2"
+                className="w-full h-96 object-contain bg-gray-50 dark:bg-gray-700 rounded-lg transform transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/10 to-transparent dark:from-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/20 to-transparent dark:from-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
             </div>
           </div>
         </div>
@@ -1063,14 +1063,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
               {product.images.map((image, index) => (
                 <div 
                   key={index} 
-                  className="bg-white dark:bg-gray-800/80 rounded-xl shadow-neo-light dark:shadow-neo-dark overflow-hidden group hover:shadow-glow-blue dark:hover:shadow-glow-blue transition-all duration-500 transform hover:-translate-y-1 hover:scale-[1.02] relative flex items-center justify-center"
+                  className="bg-white dark:bg-gray-800/80 rounded-xl shadow-neo-light dark:shadow-neo-dark overflow-hidden group hover:shadow-glow-blue dark:hover:shadow-glow-blue transition-all duration-500 transform hover:-translate-y-1 hover:scale-[1.02] relative"
                 >
                   <img 
                     src={image} 
                     alt={`${product.title} ${index + 1}`}
-                    className="w-full h-64 object-contain p-3 transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-64 object-contain bg-gray-50 dark:bg-gray-700 transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               ))}
             </div>
