@@ -9,6 +9,7 @@ import AboutSection from './components/AboutSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [isEnglish, setIsEnglish] = useState(false);
@@ -100,6 +101,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen transition-colors duration-300 dark:bg-gray-900">
+        <ScrollToTop />
         <NavBar 
           toggleLanguage={toggleLanguage} 
           isEnglish={isEnglish}

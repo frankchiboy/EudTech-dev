@@ -200,6 +200,7 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
           {cominoProducts.map((product) => (
             <div
               key={product.id}
+              id={`product-${product.id}`}
               className="bg-white dark:bg-gray-800 bg-gradient-to-br dark:from-gray-800 dark:via-gray-800/95 dark:to-gray-900 rounded-2xl shadow-3d-light dark:shadow-3d-dark overflow-hidden hover:shadow-glow-teal dark:hover:shadow-glow-teal transition-all duration-500 transform hover:-translate-y-1 hover:scale-[1.01] border border-neutral-200/80 dark:border-gray-700/50"
             >
               <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -243,6 +244,7 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
                   <div className="mt-8 flex items-center justify-between">
                     <Link
                       to={`/products/${product.id}`}
+                      state={{ fromSection: `product-${product.id}` }}
                       className="inline-flex items-center text-sm font-medium text-comino-600 dark:text-comino-400 hover:text-comino-700 dark:hover:text-comino-300"
                     >
                       {isEnglish ? 'View Details' : '查看詳情'}

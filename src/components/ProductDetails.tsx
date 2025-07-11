@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, Server, Cpu, Shield, Monitor } from 'lucide-react';
 
 interface ProductDetailsProps {
@@ -8,6 +8,10 @@ interface ProductDetailsProps {
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
   const { id } = useParams();
+  const location = useLocation();
+  
+  // 取得來源區塊資訊，預設為 eudtech-products
+  const fromSection = location.state?.fromSection || 'eudtech-products';
   
   const products = [
     {
@@ -898,7 +902,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       <div className="bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-20">{/* Back Button */}
           <Link 
-            to="/#eudtech-products" 
+            to="/"
+            state={{ fromSection: fromSection }}
             className="inline-flex items-center text-eudtech-600 hover:text-eudtech-700 dark:text-eudtech-400 dark:hover:text-eudtech-300 transition-colors mb-8 group"
           >
             <ArrowLeft className="h-5 w-5 mr-2 transform group-hover:-translate-x-1 transition-transform duration-300" />

@@ -191,6 +191,7 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
           {eudtechProducts.map((product) => (
             <div
               key={product.id}
+              id={`product-${product.id}`}
               className="bg-white dark:bg-gray-800 bg-gradient-to-br dark:from-gray-800 dark:via-gray-800/95 dark:to-gray-900 rounded-2xl shadow-3d-light dark:shadow-3d-dark overflow-hidden hover:shadow-glow-blue dark:hover:shadow-glow-blue transition-all duration-500 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50"
             >
               {product.comingSoon && (
@@ -225,6 +226,7 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
                     {!product.comingSoon && (
                       <Link
                         to={`/products/${product.id}`}
+                        state={{ fromSection: `product-${product.id}` }}
                         className="text-eudtech-700 dark:text-eudtech-400 hover:text-eudtech-800 dark:hover:text-eudtech-300 font-medium flex items-center relative group"
                       >
                         <span className="relative z-10 flex items-center">
