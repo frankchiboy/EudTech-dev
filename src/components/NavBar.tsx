@@ -56,7 +56,9 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, i
                     key={link.name}
                     href={link.href}
                     className={`${
-                      isScrolled ? 'text-neutral-800 hover:text-eudtech-700' : 'text-white hover:text-eudtech-200'
+                      isScrolled 
+                        ? 'text-neutral-800 dark:text-neutral-200 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
+                        : 'text-white hover:text-eudtech-200'
                     } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
                   >
                     {link.name}
@@ -70,7 +72,7 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, i
               onClick={toggleLanguage}
               className={`flex items-center ${
                 isScrolled 
-                  ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
+                  ? 'text-neutral-800 dark:text-neutral-200 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
                   : 'text-white hover:text-eudtech-200'
               } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
             >
@@ -82,7 +84,7 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, i
               onClick={toggleDarkMode}
               className={`flex items-center ml-2 ${
                 isScrolled 
-                  ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
+                  ? 'text-neutral-800 dark:text-neutral-200 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
                   : 'text-white hover:text-eudtech-200'
               } px-2 py-2 rounded-md transition-colors duration-200 relative group`}
               aria-label={`切換主題模式 (目前: ${
@@ -116,7 +118,7 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, i
             <button
               onClick={toggleLanguage}
               className={`mr-2 ${
-                isScrolled ? 'text-neutral-800 dark:text-neutral-100' : 'text-white'
+                isScrolled ? 'text-neutral-800 dark:text-neutral-200' : 'text-white'
               } p-1 rounded-full transition-colors duration-200`}
             >
               <Globe size={20} />
@@ -124,7 +126,7 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, i
             <button
               onClick={toggleDarkMode}
               className={`mr-2 ${
-                isScrolled ? 'text-neutral-800 dark:text-neutral-100' : 'text-white'
+                isScrolled ? 'text-neutral-800 dark:text-neutral-200' : 'text-white'
               } p-1 rounded-full transition-colors duration-200 relative`}
               aria-label={`切換主題模式 (目前: ${
                 themeMode === 'system' 
@@ -151,7 +153,7 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, i
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`${
-                isScrolled ? 'text-neutral-800 dark:text-neutral-100' : 'text-white'
+                isScrolled ? 'text-neutral-800 dark:text-neutral-200' : 'text-white'
               } p-1 rounded-full transition-colors duration-200`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -168,7 +170,7 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, i
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              className="text-neutral-800 dark:text-neutral-200 hover:text-eudtech-700 dark:hover:text-eudtech-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
             >
               {link.name}
             </a>

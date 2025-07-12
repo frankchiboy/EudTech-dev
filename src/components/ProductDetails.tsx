@@ -459,7 +459,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         },
         orderInfo: [
           {
-            type: 'LIQUID COOLED',
+            type: 'LIQUID COOLED',  // 保持原始鍵值以匹配翻譯字典
             pn: 'LIQUID-COOLING',
             model: 'Comino Liquid Cooling System',
             description: 'Comino liquid cooling system unleashes the full performance potential of modern top-tier GPUs and CPUs. Allows to pinpoint lifespan of the hardware and ensures silent or low noise 24/7 operation even in harsh environment with high ambient temperature.'
@@ -480,7 +480,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
             type: 'COMINO\'S MONITORING SYSTEM',
             pn: 'MONITORING-SYS',
             model: 'Comino Monitoring System',
-            description: 'Allows to collect cooling system like temperature statistic, WEB based GUI allows to inspect several devices remotely. The monitoring system increases system availability.'
+            description: 'Allows to collect cooling system like temperature statistics. Web-based GUI allows to inspect several devices remotely. The monitoring system increases system availability.'
           }
         ]
       } : {
@@ -525,26 +525,26 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
           {
             type: 'LIQUID COOLED',
             pn: 'LIQUID-COOLING',
-            model: 'Comino Liquid Cooling System',
-            description: 'Comino liquid cooling system unleashes the full performance potential of modern top-tier GPUs and CPUs. Allows to pinpoint lifespan of the hardware and ensures silent or low noise 24/7 operation even in harsh environment with high ambient temperature.'
+            model: 'Comino 液冷系統',
+            description: 'Comino液冷系統釋放現代高階GPU和CPU的完整效能潛力。能夠精確延長硬體使用壽命，並確保在高環境溫度下也能實現靜音或低噪音的24/7全天候運作。'
           },
           {
             type: 'QUICK-DISCONNECT COUPLINGS',
             pn: 'QUICK-DISCONNECT',
-            model: 'Comino ThruQ Couplings',
-            description: 'Quick Disconnect Couplings (Comino ThruQ) on each GPU and CPU allows availability.'
+            model: 'Comino ThruQ 快速接頭',
+            description: '每個GPU和CPU上的快速斷開接頭(Comino ThruQ)提高系統可用性與維護便利性。'
           },
           {
             type: 'REMOTE MANAGEMENT',
             pn: 'REMOTE-MGMT',
-            model: 'IPMI Remote Management',
-            description: 'BMC chip to provide intelligence for its IPMI architecture for out-of-band.'
+            model: 'IPMI 遠端管理',
+            description: 'BMC晶片為其IPMI架構提供智能化帶外管理功能。'
           },
           {
             type: 'COMINO\'S MONITORING SYSTEM',
             pn: 'MONITORING-SYS',
-            model: 'Comino Monitoring System',
-            description: 'Allows to collect cooling system like temperature statistic. WEB based GUI allows to inspect several devices remotely. The monitoring system increases system availability.'
+            model: 'Comino 監控系統',
+            description: '可收集冷卻系統溫度等統計數據。基於網頁的GUI界面允許遠程檢查多台設備。監控系統提高整體系統可用性。'
           }
         ]
       }
@@ -867,6 +867,79 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
     }
   ];
 
+  // 技術規格字段名稱的中文對照表
+  const technicalSpecsTranslations: Record<string, string> = {
+    'Motherboards': '主機板',
+    'Motherboard': '主機板',
+    'RAM': '記憶體',
+    'Memory': '記憶體',
+    'M2 drives': 'M.2硬碟',
+    'Drives': '硬碟',
+    'Storage': '儲存設備',
+    'PSU and Operating voltage': '電源供應與操作電壓',
+    'Power Supply System': '電源供應系統',
+    'Power': '電源',
+    'Cooling Capacity': '散熱能力',
+    'Cooling': '散熱',
+    'Noise level': '噪音等級',
+    'LAN': '網路介面',
+    'Network': '網路',
+    'OS': '作業系統',
+    'Liquid cooling': '液冷系統',
+    'Reservoir': '水箱',
+    'Pumps': '水泵',
+    'Radiators': '散熱器',
+    'Fans': '風扇',
+    'Installation': '安裝方式',
+    'Required rack space': '機架空間需求',
+    'Size': '尺寸',
+    'Weight': '重量',
+    'Operating & storage temperature range': '操作與存儲溫度範圍',
+    'Form Factor': '機箱規格',
+    'GPUs': 'GPU',
+    'GPU': 'GPU',
+    'Product Series': '產品系列',
+    'Processor': '處理器',
+    'CPU': '處理器',
+    'Maximum Cooling Capacity': '最大散熱能力',
+    'Liquid Cooling': '液冷系統',
+    'Internal Storage Interface': '內部儲存介面',
+    'Expansion Slots': '擴充插槽',
+    'Connectivity': '連接選項',
+    'Management': '管理功能',
+    'Security': '安全功能',
+    'Dimensions': '尺寸',
+    'Warranty': '保固'
+  };
+
+  // 可用配置類型的中文對照表
+  const orderInfoTypeTranslations: Record<string, string> = {
+    'LIQUID COOLED': '液冷系統',
+    'QUICK-DISCONNECT COUPLINGS': '快速接頭設計',
+    'REMOTE MANAGEMENT': '遠端管理',
+    'COMINO\'S MONITORING SYSTEM': 'Comino監控系統',
+    'BASE SYSTEM': '基本系統',
+    'EXPANSION KIT': '擴充套件',
+    'RACK ASSEMBLY': '機架安裝',
+    'SUPPORT PACKAGE': '技術支援套件',
+    'NETWORKING': '網路配置',
+    'CUSTOM CONFIGURATION': '客製化配置'
+  };
+
+  // 英文配置類型格式化，使用標準的首字母大寫
+  const formatConfigType: Record<string, string> = {
+    'LIQUID COOLED': 'Liquid Cooling System',
+    'QUICK-DISCONNECT COUPLINGS': 'Quick-Disconnect Couplings',
+    'REMOTE MANAGEMENT': 'Remote Management',
+    'COMINO\'S MONITORING SYSTEM': 'Comino Monitoring System',
+    'BASE SYSTEM': 'Base System',
+    'EXPANSION KIT': 'Expansion Kit',
+    'RACK ASSEMBLY': 'Rack Assembly',
+    'SUPPORT PACKAGE': 'Support Package',
+    'NETWORKING': 'Networking',
+    'CUSTOM CONFIGURATION': 'Custom Configuration'
+  };
+
   const parsedId = parseInt(id || '1');
   console.log("Looking for product with ID:", parsedId);
   console.log("Available product IDs:", products.map(p => p.id));
@@ -920,8 +993,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
               
               {/* Key Features */}
               <div className="mb-8 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-neo-light dark:shadow-neo-dark">
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 flex items-center">
-                  <div className="h-5 w-1 bg-gradient-to-b from-eudtech-500 to-eudtech-700 dark:from-eudtech-400 dark:to-eudtech-600 rounded-full mr-3"></div>
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 text-center">
                   {isEnglish ? 'Key Features' : '主要特色'}
                 </h3>
                 <ul className="space-y-3">
@@ -960,7 +1032,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
                 {Object.entries(product.specs).map(([key, value], index) => (
                   <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50 dark:bg-neutral-800' : 'bg-white dark:bg-gray-800'}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 dark:text-neutral-100 w-1/3">
-                      {key}
+                      {isEnglish ? key : technicalSpecsTranslations[key] || key}
                     </td>
                     <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
                       {value}
@@ -970,8 +1042,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
               </tbody>
             </table>
           </div>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4">
-            * - depends on the configuration, contact Comino team for clarification
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 text-center">
+            {isEnglish 
+              ? '* - depends on the configuration, contact Comino team for clarification' 
+              : '* - 取決於配置，請聯繫Comino團隊獲取詳細資訊'}
           </p>
         </div>
       </div>
@@ -983,7 +1057,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
             <div className="prose prose-lg dark:prose-invert max-w-none">
               {/* Technical Specifications Table */}
               <div className="mb-12">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
+                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6 text-center">
                   {isEnglish ? 'Technical Specifications' : '技術規格'}
                 </h3>
                 <div className="overflow-x-auto">
@@ -992,7 +1066,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
                       {Object.entries(product.detailedDescription.technicalSpecs).map(([key, value], index) => (
                         <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50 dark:bg-neutral-800' : 'bg-white dark:bg-gray-800'}>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 dark:text-neutral-100 w-1/3">
-                            {key}
+                            {isEnglish ? key : technicalSpecsTranslations[key] || key}
                           </td>
                           <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
                             {value}
@@ -1002,29 +1076,29 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4">
-                  * - depends on the configuration, contact Comino team for clarification
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 text-center">
+                  {isEnglish 
+                    ? '* - depends on the configuration, contact Comino team for clarification' 
+                    : '* - 取決於配置，請聯繫Comino團隊獲取詳細資訊'}
                 </p>
               </div>
 
               {/* Available Configurations */}
-              {product.detailedDescription.orderInfo && (
+              {product.detailedDescription && 'orderInfo' in product.detailedDescription && product.detailedDescription.orderInfo && (
                 <div className="mb-12">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">
                     {isEnglish ? 'Available Configurations' : '可用配置'}
                   </h3>
                   <div className="space-y-4">
-                    {product.detailedDescription.orderInfo.map((item, index) => (
+                    {(product.detailedDescription.orderInfo as Array<{type: string, pn: string, model: string, description: string}>).map((item, index) => (
                       <div key={index} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
                         <div className="flex justify-between items-start mb-3">
-                          <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{item.type}</h4>
+                          <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                            {isEnglish ? (formatConfigType[item.type] || item.type) : orderInfoTypeTranslations[item.type] || item.type}
+                          </h4>
                           <span className="text-sm text-gray-500 dark:text-gray-400">{item.model}</span>
                         </div>
-                        {item.pn && (
-                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                            <span className="font-medium">P/N:</span> {item.pn}
-                          </p>
-                        )}
+                        {/* 移除產品代碼顯示 */}
                         <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
                       </div>
                     ))}
@@ -1033,13 +1107,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
               )}
 
               {/* Additional Features */}
-              {product.detailedDescription.additionalFeatures && (
+              {product.detailedDescription && 'additionalFeatures' in product.detailedDescription && product.detailedDescription.additionalFeatures && (
                 <div className="mb-12">
                   <div className="space-y-6">
-                    {Object.entries(product.detailedDescription.additionalFeatures).map(([title, description], index) => (
+                    {Object.entries(product.detailedDescription.additionalFeatures as Record<string, string>).map(([title, description], index) => (
                       <div key={index} className="border-l-4 border-eudtech-600 pl-6">
                         <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{title}</h4>
-                        <p className="text-gray-700 dark:text-gray-300">{description}</p>
+                        <p className="text-gray-700 dark:text-gray-300">{description as string}</p>
                       </div>
                     ))}
                   </div>

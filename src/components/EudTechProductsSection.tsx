@@ -188,7 +188,7 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {eudtechProducts.map((product) => (
+          {eudtechProducts.filter(product => product.id !== 1).map((product) => (
             <div
               key={product.id}
               id={`product-${product.id}`}
