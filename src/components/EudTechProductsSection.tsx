@@ -90,43 +90,39 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
     },
     {
       id: 3,
-      title: isEnglish ? 'EudTech Financial AI System' : 'EudTech 金融AI系統',
+      title: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統',
       description: isEnglish
-        ? 'Specialized AI solutions for financial analysis, forecasting, and risk management.'
-        : '專門的AI解決方案，用於金融分析、預測和風險管理。',
-      icon: <Shield className="h-8 w-8 text-blue-800" />,
+        ? 'FinSight: Financial language understanding and data API framework. Combine raw data with LLMs for real-time, flexible insights and decision support.'
+        : 'FinSight：金融語言理解與資料API架構，結合原始數據與LLM，提供即時彈性洞察與決策輔助。',
+      icon: <Shield className="h-8 w-8 text-blue-800" />, 
       image: "https://images.pexels.com/photos/7567529/pexels-photo-7567529.jpeg",
       features: isEnglish
         ? [
-            'Real-time Market Analysis',
-            'Fraud Detection',
-            'Portfolio Optimization',
-            'Risk Assessment',
-            'Automated Trading',
-            'Compliance Monitoring'
+            'FinSight-API: Unified financial data API (technical indicators, price, extensible to news, macro, financials)',
+            'RESTful API, SaaS or on-premises, easy LLM/enterprise integration',
+            'FinSight GTP: LLM demo (ChatGPT Plugin, Hugging Face, local LLMs)',
+            'LLM tasks: explain indicators, trend prediction, auto reports, charting, custom GPT',
+            'Highly extensible, enterprise consulting & custom GPT assistant'
           ]
         : [
-            '即時市場分析',
-            '詐欺偵測',
-            '投資組合優化',
-            '風險評估',
-            '自動交易',
-            '合規監控'
+            'FinSight-API：金融資料整合API（技術指標、價格、可擴充新聞/總經/財報）',
+            'RESTful API，SaaS雲端或本地端，LLM/企業系統可直接串接',
+            'FinSight GTP：語言模型互動展示（支援ChatGPT Plugin、Hugging Face、本地LLM）',
+            'LLM可執行：指標解釋、趨勢預測、自動報告、圖表、專屬GPT',
+            '高度彈性延伸，企業顧問與專屬GPT助理'
           ],
       specs: isEnglish ? {
-        'Processing': 'AMD EPYC 7763',
-        'Memory': '512GB DDR4 ECC',
-        'Storage': '2TB NVMe RAID',
-        'Network': '25GbE SFP28',
-        'Security': 'Hardware TPM 2.0'
+        'Model': 'LLM + API Wrapper',
+        'Data Sources': 'News, statements, market APIs',
+        'Integration': 'Webhook + JSON/RESTful API',
+        'Deployment': 'SaaS / On-Premises'
       } : {
-        '處理器': 'AMD EPYC 7763',
-        '記憶體': '512GB DDR4 ECC',
-        '儲存': '2TB NVMe RAID',
-        '網路': '25GbE SFP28',
-        '安全': '硬體TPM 2.0'
+        '模型架構': 'LLM + API 包裝器',
+        '資料來源': '新聞、財報、行情API',
+        '整合模式': 'Webhook 與 JSON/RESTful API',
+        '部署方式': 'SaaS 或 私有部署'
       },
-      comingSoon: true
+      comingSoon: false
     },
     {
       id: 4, 

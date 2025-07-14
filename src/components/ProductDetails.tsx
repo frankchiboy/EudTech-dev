@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
-import { ArrowLeft, Server, Cpu, Shield, Monitor } from 'lucide-react';
+import { ArrowLeft, Server, Cpu, Shield } from 'lucide-react';
 
 interface ProductDetailsProps {
   isEnglish: boolean;
@@ -20,7 +20,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       description: isEnglish
         ? 'Enterprise-grade AI server with optimized performance for large language models and AI workloads.'
         : '企業級AI伺服器，為大型語言模型和AI工作負載優化效能。',
-      icon: <Server className="h-8 w-8 text-blue-800" />,
+      icon: <Server className="h-8 w-8 text-blue-800" />, 
       image: "/EudTech-Select-server-front.png.png",
       features: isEnglish
         ? [
@@ -64,318 +64,99 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         "/EudTech-Select-server-back.png.png",
         "/EudTech-Select-server-inside.png"
       ],
-      detailedDescription: isEnglish ? {
-        title: 'ET6204X-D08N-G1 Product Specifications',
-        formFactor: '6U rackmount server',
-        introduction: 'ET6204X-D08N-G1 is an AI computing server built on Intel\'s latest Eagle Stream platform, offering exceptional computing power and flexible expansion capabilities. With direct CPU-GPU connectivity, it delivers high performance for parallel computing, robust scalability, reliability, energy efficiency, intelligent maintenance, modular design, and an open ecosystem. This server is optimized for diverse AI-driven workloads, including cloud gaming, AI processing, cloud computing, virtualization, big data analytics, and digital twin applications.',
-        keyFeatures: [
-          'Supports 1 or 2 4th/5th Gen Intel® Xeon® Scalable Processors, with TDP up to 350W',
-          'Up to 32 DDR5 memory slots, with memory frequencies of 4400/4800/5600MHz, increasing memory bandwidth by 75%',
-          '2 Onboard M.2 SATA/NVMe interfaces',
-          'Supports direct CPU-GPU connections, accommodating 600W dual-width, triple-width, and 3.5-width GPUs',
-          'Supports 12 SATA/SAS/NVMe tri-mode hard drives, meeting high-speed data transfer and storage requirements'
-        ],
-        technicalSpecs: {
-          'Product Series': 'ET6204X-D08N-G1',
-          'Form Factor': 'Pass-though 8-GPU 12-Bay AI Server',
-          'GPU': 'Supports up to 8 GPUs with 600W power, accommodating dual-width, triple-width, and 3.5-width GPUs, maximum GPU width of 70.1mm',
-          'Processor': 'Supports one or two 4th/5th Gen Intel® Xeon® Scalable Processors, with a maximum TDP of 350W',
-          'Memory': '32 DDR5 memory slots, supporting DDR5 4400/4800/5600MHz',
-          'Internal Storage Interface': '2 Slimline 4x ports (SATA), 2 M.2 slots (SATA/PCIe3.0x1) for 2280/22110 sizes',
-          'External Hard Drive': '12 hot-swappable 3.5"/2.5" SAS/SATA/NVMe drives',
-          'External Ports': 'Front: 2x USB 3.0, 1x VGA\nRear: 1x serial port, 2x USB 3.0, 1x VGA, 1x RJ45 management port (optional upgrade for 2x 10G RJ45 network ports)',
-          'PCIE Expansion': 'Up to 13 PCIe expansion slots',
-          'OS': 'Microsoft Windows Server, RedHat Enterprise Linux, SUSE Linux Enterprise Server, CentOS, Ubuntu, VMware ESXi etc.',
-          'Security': 'Supports TPM 2.0 module, chassis intrusion alarm, BMC/BIOS redundancy',
-          'PowerSupply': 'Supports CRPS 2000W/2200W/2600W/3200W power modules, with hot-swap capability and 3+1 redundancy',
-          'Fan': 'Standard configuration includes 12 hot-swappable 6056 fans and 4 hot-swappable 8038 fans',
-          'IPMI': 'Supports Redfish, SNMP, IPMI 2.0 standard interfaces',
-          'Management Port': '1 dedicated RJ45 management port',
-          'Dimension': '265mm (H) x 447mm (W) x 910mm (D)',
-          'Operating Temperature': '5℃～35℃'
-        },
-        orderInfo: [
-          {
-            type: 'Barebone',
-            pn: '0.21.006.0004',
-            model: 'ET6204X-D08N-G1',
-            description: 'Eagle Stream platform 6U 8-GPU direct-connect GPU server, supporting 12*3.5"/2.5" SATA/SAS/NVMe hard drives, with a maximum of 13 PCIe slots; Standard configuration: supports 4 NVMe drive bays and 8 SATA drive bays; includes 8 PCIe 5.0 x16 GPU slots, 1 PCIe 4.0 x8 slot, and 2 PCIe 5.0 x8 slots; equipped with 12 hot-swappable 6056 fans and 4 hot-swappable 8038 fans; includes 4*2000W power supplies.'
-          },
-          {
-            type: 'Power Module',
-            pn: '3.03.153.0054',
-            model: 'GC2200PMT',
-            description: '2200W CRPS power module'
-          },
-          {
-            type: 'Power Module',
-            pn: '3.03.153.0075',
-            model: 'GC2600PMT',
-            description: '2600W CRPS power module'
-          },
-          {
-            type: 'Power Module',
-            pn: '',
-            model: 'GC3200PMT',
-            description: '3200W CRPS power module'
-          },
-          {
-            type: 'Network Card',
-            pn: '4.00.104.0013',
-            model: 'G82599-PK',
-            description: 'Utilizes Intel 82599 chip for a dual 10Gb optical PCIe network card'
-          },
-          {
-            type: 'Network Card',
-            pn: '4.00.104.0008',
-            model: 'G710-PK',
-            description: 'Utilizes Intel XL710 chip for an onboard quad 10Gb optical PCIe network card'
-          },
-          {
-            type: 'Network Card',
-            pn: '1.23.222.0348',
-            model: 'G82599L',
-            description: 'Utilizes Intel 82599 chip for a dual 10Gb optical OCP 3.0 network card'
-          },
-          {
-            type: 'Network Card',
-            pn: '1.23.222.0417',
-            model: 'G710L',
-            description: 'Utilizes Intel XL710 chip for an onboard quad 10Gb optical OCP 3.0 network card'
-          },
-          {
-            type: 'Slide Rail',
-            pn: '3.11.001.0016',
-            model: 'C7007-108-3',
-            description: 'Full extension length of 920mm, supporting 1m-1.2m cabinets'
-          }
-        ]
-      } : {
-        title: 'ET6204X-D08N-G1 產品規格',
-        formFactor: '6U 機架式伺服器',
-        introduction: 'ET6204X-D08N-G1 是基於英特爾最新 Eagle Stream 平台構建的 AI 計算伺服器，提供卓越的計算能力和靈活的擴展能力。通過直接 CPU-GPU 連接，它為並行計算提供高性能，具有強大的可擴展性、可靠性、能源效率、智能維護、模組化設計和開放生態系統。該伺服器針對各種 AI 驅動的工作負載進行了優化，包括雲遊戲、AI 處理、雲計算、虛擬化、大數據分析和數字孿生應用。',
-        keyFeatures: [
-          '支援 1 或 2 個第 4/5 代英特爾® 至強® 可擴展處理器，TDP 高達 350W',
-          '最多 32 個 DDR5 記憶體插槽，記憶體頻率為 4400/4800/5600MHz，記憶體頻寬提高 75%',
-          '2 個板載 M.2 SATA/NVMe 介面',
-          '支援直接 CPU-GPU 連接，可容納 600W 雙寬、三寬和 3.5 寬 GPU',
-          '支援 12 個 SATA/SAS/NVMe 三模式硬碟，滿足高速數據傳輸和存儲需求'
-        ],
-        technicalSpecs: {
-          '產品系列': 'ET6204X-D08N-G1',
-          '外形尺寸': '直通式 8-GPU 12 槽位 AI 伺服器',
-          'GPU': '支援最多 8 個 600W 功率的 GPU，可容納雙寬、三寬和 3.5 寬 GPU，最大 GPU 寬度為 70.1mm',
-          '處理器': '支援一個或兩個第 4/5 代英特爾® 至強® 可擴展處理器，最大 TDP 為 350W',
-          '記憶體': '32 個 DDR5 記憶體插槽，支援 DDR5 4400/4800/5600MHz',
-          '內部存儲介面': '2 個 Slimline 4x 埠 (SATA)，2 個 M.2 插槽 (SATA/PCIe3.0x1) 用於 2280/22110 尺寸',
-          '外部硬碟': '12 個熱插拔 3.5"/2.5" SAS/SATA/NVMe 硬碟',
-          '外部埠': '前面板：2x USB 3.0，1x VGA\n後面板：1x 串行埠，2x USB 3.0，1x VGA，1x RJ45 管理埠（可選升級為 2x 10G RJ45 網絡埠）',
-          'PCIE 擴展': '最多 13 個 PCIe 擴展插槽',
-          '作業系統': 'Microsoft Windows Server、RedHat Enterprise Linux、SUSE Linux Enterprise Server、CentOS、Ubuntu、VMware ESXi 等',
-          '安全性': '支援 TPM 2.0 模組、機箱入侵報警、BMC/BIOS 冗餘',
-          '電源供應': '支援 CRPS 2000W/2200W/2600W/3200W 電源模組，具有熱插拔能力和 3+1 冗餘',
-          '風扇': '標準配置包括 12 個熱插拔 6056 風扇和 4 個熱插拔 8038 風扇',
-          'IPMI': '支援 Redfish、SNMP、IPMI 2.0 標準介面',
-          '管理埠': '1 個專用 RJ45 管理埠',
-          '尺寸': '265mm (高) x 447mm (寬) x 910mm (深)',
-          '操作溫度': '5℃～35℃'
-        },
-        orderInfo: [
-          {
-            type: '裸機',
-            pn: '0.21.006.0004',
-            model: 'ET6204X-D08N-G1',
-            description: 'Eagle Stream 平台 6U 8-GPU 直連 GPU 伺服器，支援 12*3.5"/2.5" SATA/SAS/NVMe 硬碟，最多 13 個 PCIe 插槽；標準配置：支援 4 個 NVMe 驅動器槽位和 8 個 SATA 驅動器槽位；包括 8 個 PCIe 5.0 x16 GPU 插槽，1 個 PCIe 4.0 x8 插槽和 2 個 PCIe 5.0 x8 插槽；配備 12 個熱插拔 6056 風扇和 4 個熱插拔 8038 風扇；包括 4*2000W 電源供應。'
-          },
-          {
-            type: '電源模組',
-            pn: '3.03.153.0054',
-            model: 'GC2200PMT',
-            description: '2200W CRPS 電源模組'
-          },
-          {
-            type: '電源模組',
-            pn: '3.03.153.0075',
-            model: 'GC2600PMT',
-            description: '2600W CRPS 電源模組'
-          },
-          {
-            type: '電源模組',
-            pn: '',
-            model: 'GC3200PMT',
-            description: '3200W CRPS 電源模組'
-          },
-          {
-            type: '網路卡',
-            pn: '4.00.104.0013',
-            model: 'G82599-PK',
-            description: '使用 Intel 82599 晶片的雙 10Gb 光纖 PCIe 網路卡'
-          },
-          {
-            type: '網路卡',
-            pn: '4.00.104.0008',
-            model: 'G710-PK',
-            description: '使用 Intel XL710 晶片的板載四埠 10Gb 光纖 PCIe 網路卡'
-          },
-          {
-            type: '網路卡',
-            pn: '1.23.222.0348',
-            model: 'G82599L',
-            description: '使用 Intel 82599 晶片的雙 10Gb 光纖 OCP 3.0 網路卡'
-          },
-          {
-            type: '網路卡',
-            pn: '1.23.222.0417',
-            model: 'G710L',
-            description: '使用 Intel XL710 晶片的板載四埠 10Gb 光纖 OCP 3.0 網路卡'
-          },
-          {
-            type: '滑軌',
-            pn: '3.11.001.0016',
-            model: 'C7007-108-3',
-            description: '全伸展長度 920mm，支援 1m-1.2m 機櫃'
-          }
-        ]
-      }
+      detailedDescription: null
     },
     {
-      id: 6,
-      title: isEnglish ? 'Comino Grando Workstation' : 'Comino Grando 工作站',
+      id: 3,
+      title: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統',
       description: isEnglish
-        ? 'Silent desktop workstation for deep learning research and development. Ideal solution for workgroups and high-end professionals, providing unprecedented multi-GPU performance on premise.'
-        : '用於深度學習研究和開發的靜音桌面工作站。適合工作組和高階專業人士的理想解決方案，提供前所未有的多GPU效能。',
-      icon: <Monitor className="h-8 w-8 text-indigo-700" />,
-      image: "/grando-workstation-closed.png",
+        ? 'FinSight is a financial language understanding and data processing framework. By combining raw financial data with LLMs, it provides natural, real-time, and flexible explanations and decision support.'
+        : 'FinSight 是一套金融語言理解與資料處理的概念架構，將金融原始數據結合語言模型（LLM），提供更自然、即時、彈性的解釋與輔助決策能力。',
+      icon: <Shield className="h-8 w-8 text-blue-800" />, 
+      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
       features: isEnglish
         ? [
-            'Up to 6x RTX 5090/A100 GPUs',
-            'Whisper-quiet operation under 30dB',
-            'Compact desktop design',
-            'AMD Threadripper PRO 7000 Series',
-            'Up to 2TB DDR5-4800',
-            'Comino liquid cooling system',
-            'Professional-grade reliability',
-            'Tool-free maintenance access'
+            'FinSight-API: Unified financial data API (technical indicators, price history, smart fallback, extensible to news, macro, financials)',
+            'RESTful API, SaaS or on-premises deployment, easy integration for LLMs or enterprise systems',
+            'FinSight GTP: MVP demo system for LLM interaction (ChatGPT Plugin, Hugging Face, local LLMs)',
+            'LLM tasks: explain indicators, predict trends, auto-generate reports, charting, simulate strategies, build custom GPT assistants',
+            'Highly extensible: add data sources, connect internal APIs, support private LLMs, multi-role/multi-language architecture',
+            'Enterprise services: deployment consulting, custom data, local LLM optimization, prompt engineering, dedicated GPT assistant'
           ]
         : [
-            '最高6個RTX 5090/A100 GPU',
-            '超靜音運作低於30dB',
-            '緊湊桌面設計',
-            'AMD Threadripper PRO 7000系列',
-            '最高2TB DDR5-4800',
-            'Comino液冷系統',
-            '專業級可靠性',
-            '免工具維護存取'
+            'FinSight-API：金融資料整合 API（技術指標、價格歷史、smart fallback、可擴充新聞/總經/財報）',
+            'RESTful API 設計，SaaS 雲端或本地端部署，LLM/企業系統可直接串接',
+            'FinSight GTP：語言模型互動展示 MVP（支援 ChatGPT Plugin、Hugging Face、本地 LLM）',
+            'LLM 可執行：指標解釋、趨勢預測、自動報告、圖表繪製、策略模擬、打造專屬 GPT 助理',
+            '高度彈性延伸：擴充資料源、串接內部 API、支援私有 LLM、多角色/多語系架構',
+            '企業服務：部署評估、客製資料、在地 LLM 最佳化、Prompt Engineering、專屬金融 GPT 助理'
           ],
       specs: isEnglish ? {
-        'GPU': 'Up to 6x RTX 5090/A100',
-        'CPU': 'AMD Threadripper PRO 7000 Series',
-        'Memory': 'Up to 2TB DDR5-4800',
-        'Storage': 'Up to 8TB NVMe SSD',
-        'Form Factor': 'Desktop Tower',
-        'Cooling': 'Comino Liquid Cooling',
-        'Noise Level': 'Under 30dB',
-        'Power Supply': '1600W 80+ Platinum',
-        'Dimensions': '570 x 280 x 560mm',
-        'Weight': 'Approximately 45kg'
+        'Model': 'LLM + API Wrapper',
+        'Data Sources': 'News, statements, market APIs',
+        'Integration': 'Webhook + JSON/RESTful API',
+        'Deployment': 'SaaS / On-Premises'
       } : {
-        'GPU': '最高6個RTX 5090/A100',
-        'CPU': 'AMD Threadripper PRO 7000系列',
-        '記憶體': '最高2TB DDR5-4800',
-        '儲存': '最高8TB NVMe SSD',
-        '機箱規格': '桌面塔式',
-        '散熱': 'Comino液冷系統',
-        '噪音等級': '低於30dB',
-        '電源供應': '1600W 80+ 白金',
-        '尺寸': '570 x 280 x 560mm',
-        '重量': '約45kg'
+        '模型架構': 'LLM + API 包裝器',
+        '資料來源': '新聞、財報、行情API',
+        '整合模式': 'Webhook 與 JSON/RESTful API',
+        '部署方式': 'SaaS 或 私有部署'
       },
       comingSoon: false,
       images: [
-        "/grando-workstation-closed.png",
-        "/grando-workstation-open.png",
-        "/grando-dpr-4090-front.png",
-        "/grando-dpr-4090-side.png"
+        'https://images.pexels.com/photos/7567529/pexels-photo-7567529.jpeg'
       ],
       detailedDescription: isEnglish ? {
-        title: 'Comino Grando Workstation Specifications',
-        formFactor: 'Desktop workstation',
-        introduction: 'The Comino Grando Workstation represents the pinnacle of silent computing power, designed specifically for deep learning research and development. This revolutionary desktop workstation combines unprecedented multi-GPU performance with whisper-quiet operation, making it the ideal solution for workgroups and high-end professionals who demand both power and tranquility in their workspace.',
+        title: 'FinSight Financial AI Series',
+        formFactor: 'Conceptual Framework + API + LLM Integration',
+        introduction: 'FinSight is a conceptual framework for financial language understanding and data processing. It combines raw financial data with LLMs to provide natural, real-time, and flexible explanations and decision support.\n\nWe offer two main modules: FinSight-API (unified financial data API) and FinSight GTP (MVP demo for LLM interaction).',
         keyFeatures: [
-          'Whisper-quiet operation under 30dB for office environments',
-          'Supports up to 6x RTX 5090/A100 GPUs with full performance',
-          'Comino liquid cooling system prevents thermal throttling',
-          'AMD Threadripper PRO 7000 Series for exceptional CPU performance',
-          'Up to 2TB DDR5-4800 memory for large dataset processing',
-          'Compact desktop design fits standard office spaces',
-          'Professional-grade reliability with enterprise components',
-          'Tool-free maintenance access for easy upgrades'
+          'FinSight-API: Unified API for technical indicators, price history, smart fallback, extensible to news, macro, financials',
+          'RESTful API, SaaS or on-premises deployment, easy integration for LLMs or enterprise systems',
+          'FinSight GTP: MVP demo for LLM interaction (ChatGPT Plugin, Hugging Face, local LLMs)',
+          'LLM tasks: explain indicators, predict trends, auto-generate reports, charting, simulate strategies, build custom GPT assistants',
+          'Highly extensible: add data sources, connect internal APIs, support private LLMs, multi-role/multi-language architecture',
+          'Enterprise services: deployment consulting, custom data, local LLM optimization, prompt engineering, dedicated GPT assistant'
         ],
         technicalSpecs: {
-          'Product Series': 'Comino Grando Workstation',
-          'Form Factor': 'Desktop Tower Workstation',
-          'GPU': 'Supports up to 6x RTX 5090/A100 GPUs with 600W power per slot',
-          'CPU': 'AMD Threadripper PRO 7000 Series, up to 96 cores',
-          'Memory': 'Up to 2TB DDR5-4800 ECC memory',
-          'Storage': 'Up to 8TB NVMe SSD storage with RAID support',
-          'Cooling': 'Comino liquid cooling system with custom loop design',
-          'Noise Level': 'Under 30dB in typical operation',
-          'Power Supply': '1600W 80+ Platinum modular PSU',
-          'Connectivity': 'Multiple USB 3.2, Thunderbolt 4, 10GbE networking',
-          'Dimensions': '570mm (W) x 280mm (D) x 560mm (H)',
-          'Weight': 'Approximately 45kg',
-          'Operating Temperature': '10°C to 35°C',
-          'Warranty': '3-year on-site warranty with 24/7 support'
+          'API Module': 'FinSight-API (RESTful, SaaS/on-premises, technical indicators, price, news, macro, financials)',
+          'Demo Module': 'FinSight GTP (MVP, LLM integration, ChatGPT Plugin, Hugging Face, local LLMs)',
+          'LLM Tasks': 'Indicator explanation, trend prediction, report generation, charting, strategy simulation, custom GPT',
+          'Deployment': 'Cloud (GPT-4/4o), private LLMs (LLaMA, Mistral), enterprise network',
+          'Extensibility': 'Custom data, internal API, private LLM, multi-role/language, prompt engineering'
         },
         applications: [
-          'Deep learning model training and inference',
-          'Computer vision and image processing',
-          'Natural language processing research',
-          'Scientific computing and simulation',
-          'CAD and 3D rendering workloads',
-          'AI development and prototyping',
-          'Data science and analytics',
-          'High-performance computing tasks'
+          'API-driven financial data access for LLMs and enterprise systems',
+          'Interactive LLM demos for financial analysis and reporting',
+          'Custom GPT assistants for finance',
+          'Enterprise deployment and consulting',
+          'Showcase: https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight (MVP demo)'
         ]
       } : {
-        title: 'Comino Grando 工作站規格',
-        formFactor: '桌面工作站',
-        introduction: 'Comino Grando 工作站代表了靜音計算能力的頂峰，專為深度學習研究和開發而設計。這款革命性的桌面工作站結合了前所未有的多GPU效能和超靜音運作，使其成為要求在工作空間中同時擁有強大性能和寧靜環境的工作組和高階專業人士的理想解決方案。',
+        title: 'FinSight 金融AI系列',
+        formFactor: '概念架構 + API + LLM 整合',
+        introduction: 'FinSight 是一套金融語言理解與資料處理的概念架構，將金融原始數據結合語言模型（LLM），提供更自然、即時、彈性的解釋與輔助決策能力。\n\n我們提供兩大模組：FinSight-API（金融資料整合 API）與 FinSight GTP（語言模型互動 MVP 展示）。',
         keyFeatures: [
-          '辦公環境下低於30dB的超靜音運作',
-          '支援最多6個RTX 5090/A100 GPU，發揮完整效能',
-          'Comino液冷系統防止熱節流',
-          'AMD Threadripper PRO 7000系列提供卓越CPU效能',
-          '最高2TB DDR5-4800記憶體處理大型資料集',
-          '緊湊桌面設計適合標準辦公空間',
-          '企業級組件提供專業級可靠性',
-          '免工具維護存取便於升級'
+          'FinSight-API：金融資料整合 API（技術指標、價格歷史、smart fallback、可擴充新聞/總經/財報）',
+          'RESTful API 設計，SaaS 雲端或本地端部署，LLM/企業系統可直接串接',
+          'FinSight GTP：語言模型互動 MVP 展示（支援 ChatGPT Plugin、Hugging Face、本地 LLM）',
+          'LLM 可執行：指標解釋、趨勢預測、自動報告、圖表繪製、策略模擬、打造專屬 GPT 助理',
+          '高度彈性延伸：擴充資料源、串接內部 API、支援私有 LLM、多角色/多語系架構',
+          '企業服務：部署評估、客製資料、在地 LLM 最佳化、Prompt Engineering、專屬金融 GPT 助理'
         ],
         technicalSpecs: {
-          '產品系列': 'Comino Grando 工作站',
-          '機箱規格': '桌面塔式工作站',
-          'GPU': '支援最多6個RTX 5090/A100 GPU，每槽位600W功率',
-          'CPU': 'AMD Threadripper PRO 7000系列，最多96核心',
-          '記憶體': '最高2TB DDR5-4800 ECC記憶體',
-          '儲存': '最高8TB NVMe SSD儲存，支援RAID',
-          '散熱': 'Comino液冷系統採用客製化循環設計',
-          '噪音等級': '典型運作下低於30dB',
-          '電源供應': '1600W 80+ 白金模組化電源',
-          '連接介面': '多個USB 3.2、Thunderbolt 4、10GbE網路',
-          '尺寸': '570mm (寬) x 280mm (深) x 560mm (高)',
-          '重量': '約45kg',
-          '運作溫度': '10°C至35°C',
-          '保固': '3年到府保固，24/7支援'
+          'API 模組': 'FinSight-API（RESTful，SaaS/本地端，技術指標、價格、新聞、總經、財報）',
+          '展示模組': 'FinSight GTP（MVP，LLM 整合，ChatGPT Plugin、Hugging Face、本地 LLM）',
+          'LLM 任務': '指標解釋、趨勢預測、報告產生、圖表繪製、策略模擬、專屬 GPT',
+          '部署方式': '雲端（GPT-4/4o）、私有 LLM（LLaMA, Mistral）、企業內網',
+          '彈性擴充': '客製資料、內部 API、私有 LLM、多角色/多語系、Prompt Engineering'
         },
         applications: [
-          '深度學習模型訓練和推理',
-          '電腦視覺和影像處理',
-          '自然語言處理研究',
-          '科學計算和模擬',
-          'CAD和3D渲染工作負載',
-          'AI開發和原型設計',
-          '資料科學和分析',
-          '高效能計算任務'
+          'API 驅動金融資料存取，供 LLM 與企業系統串接',
+          '互動式 LLM 金融分析與報告展示',
+          '打造專屬金融 GPT 助理',
+          '企業部署與顧問服務',
+          '展示網址：https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight（MVP 展示）'
         ]
       }
     },
@@ -419,135 +200,122 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
         "/comino-h100-server.jpg",
         "/comino-h100-front.jpg"
       ],
-      detailedDescription: isEnglish ? {
-        title: 'Comino Grando Rackable Workstation - Liquid-Cooled AI Computing',
-        formFactor: 'Desktop or 19" rack-mountable workstation with liquid cooling system',
-        introduction: 'The Comino Grando rackable workstation represents the pinnacle of liquid-cooled AI computing technology. Designed specifically for AI training, inference, and high-performance computing workloads, this system delivers exceptional performance through direct GPU-to-GPU connectivity and advanced thermal management. The Comino liquid cooling system enables sustained peak performance while maintaining reliable operation.',
-        keyFeatures: [
-          'Up to 8x GPUs with Comino liquid cooling',
-          'Available GPUs: H200, PRO 6000, RTX 5090, etc.',
-          'Direct GPU-to-GPU connectivity for maximum bandwidth',
-          'AMD EPYC 9004 & 9005 series processors with up to 64 cores',
-          'Comino Liquid Cooling System with real-time monitoring',
-          'Up to 2TB DDR5 ECC memory with high bandwidth',
-          'NVMe Gen4 storage configuration up to 32TB',
-          'Redundant 3200W power supplies for reliability',
-          'Network options including 10GbE and InfiniBand',
-          'Tool-free maintenance with quick-disconnect fittings',
-          'Comprehensive monitoring and management software'
-        ],
-        technicalSpecs: {
-          'Motherboards': 'Up to EATX & EBB',
-          'RAM': 'Up to 2TB *',
-          'M2 drives': 'Up to 8x NVMe',
-          'Drives': 'External 3.5" cage up to 2x 3.5" or 2x 2.5" 15mm or 4x 2.5" 7mm, Internal 2.5" slots: up to 6x 2.5" SSD 7mm',
-          'PSU and Operating voltage': 'Up to 3x 1000W SFX-L @ 110/220V',
-          'Cooling Capacity': '2.5kW',
-          'Noise level': '35dB - 50dB',
-          'LAN': 'Up to 2x 10 Gbps on the MoBo and up to 400Gbps in PCIe',
-          'OS': 'Ubuntu / Win10 (Pro/Home) / Windows Server',
-          'Liquid cooling': 'CPU with VRM and GPU with QDC and VRM',
-          'Reservoir': 'Comino custom 450ml with integrated pumps',
-          'Pumps': '2x Laing DDC 2kW',
-          'Radiators': '1x 120x30mm core',
-          'Fans': '3x Low Noise 140mm 3000RPM (low noise level) or 3x High-Flow 140mm 5000RPM (medium noise level)',
-          'Installation': 'Desktop as a Workstation or 19" rack-mountable',
-          'Required rack space': '4U',
-          'Size': '439 x 681 x 177mm (without handles and protruding parts)',
-          'Weight': 'Comino Grando Workstation with 4 GPUs ~ 64kg (net), 72kg (gross)',
-          'Operating & storage temperature range': 'Storage: -5°C / 25°C / 32°C, Operating: 5°C / 35°C / 39°C / 100°F *'
-        },
-        orderInfo: [
-          {
-            type: 'LIQUID COOLED',  // 保持原始鍵值以匹配翻譯字典
-            pn: 'LIQUID-COOLING',
-            model: 'Comino Liquid Cooling System',
-            description: 'Comino liquid cooling system unleashes the full performance potential of modern top-tier GPUs and CPUs. Allows to pinpoint lifespan of the hardware and ensures silent or low noise 24/7 operation even in harsh environment with high ambient temperature.'
-          },
-          {
-            type: 'QUICK-DISCONNECT COUPLINGS',
-            pn: 'QUICK-DISCONNECT',
-            model: 'Comino ThruQ Couplings',
-            description: 'Quick Disconnect Couplings (Comino ThruQ) on each GPU and CPU allows availability.'
-          },
-          {
-            type: 'REMOTE MANAGEMENT',
-            pn: 'REMOTE-MGMT',
-            model: 'IPMI Remote Management',
-            description: 'BMC chip to provide intelligence for its IPMI architecture for out-of-band.'
-          },
-          {
-            type: 'COMINO\'S MONITORING SYSTEM',
-            pn: 'MONITORING-SYS',
-            model: 'Comino Monitoring System',
-            description: 'Allows to collect cooling system like temperature statistics. Web-based GUI allows to inspect several devices remotely. The monitoring system increases system availability.'
-          }
-        ]
+      detailedDescription: null
+    },
+    {
+      id: 6,
+      title: isEnglish ? 'Comino Grando Workstation' : 'Comino Grando 工作站',
+      description: isEnglish
+        ? 'A desktop/tower workstation for deep learning research and creative professionals, offering multi-GPU power and ultra-quiet operation.'
+        : '用於深度學習研究和專業創作的桌面型工作站，適合工作組和高階專業人士，提供所有你需要的多GPU效能。',
+      icon: <Server className="h-8 w-8 text-purple-700" />, 
+      image: "/grando-workstation-closed.png",
+      features: isEnglish ? [
+            'Up to 6x RTX 5090/A100 GPU',
+            'Ultra-quiet operation <30dB',
+            'AMD Threadripper PRO 7000 series',
+            'Up to 2TB DDR5-4800 ECC memory',
+            'Up to 8TB NVMe SSD',
+            'Comino liquid cooling system',
+            'Tool-free maintenance'
+          ] : [
+            '最高6張RTX 5090/A100 GPU',
+            '超靜音運作低於30dB',
+            'AMD Threadripper PRO 7000系列',
+            '最高2TB DDR5-4800 ECC記憶體',
+            '最高8TB NVMe SSD',
+            'Comino液冷系統',
+            '免工具維護'
+          ],
+      specs: isEnglish ? {
+        'GPU': 'Up to 6x RTX 5090/A100',
+        'Processor': 'AMD Threadripper PRO 7000 series',
+        'Memory': 'Up to 2TB DDR5-4800',
+        'Storage': 'Up to 8TB NVMe SSD',
+        'Cooling': 'Comino liquid cooling system',
+        'Noise Level': '<30dB',
+        'Power Supply': '1600W 80+ Platinum',
+        'Form Factor': 'Tower',
+        'Dimensions': '570 x 280 x 580mm',
+        'Weight': 'Approx. 45kg'
       } : {
-        title: 'Comino Grando Rackable Workstation - 液冷AI運算',
-        formFactor: '桌面或19"機架式工作站配備液冷系統',
-        introduction: 'Comino Grando機架式工作站代表液冷AI運算技術的巔峰。專為AI訓練、推論和高效能運算工作負載而設計，該系統通過GPU直連和先進熱管理實現卓越效能。Comino液冷系統確保持續峰值效能，同時保持可靠運作。',
+        'GPU': '最高6張RTX 5090/A100',
+        '處理器': 'AMD Threadripper PRO 7000系列',
+        '記憶體': '最高2TB DDR5-4800',
+        '儲存': '最高8TB NVMe SSD',
+        '散熱': 'Comino液冷系統',
+        '噪音等級': '低於30dB',
+        '電源供應': '1600W 80+ 白金',
+        '機箱規格': '桌面型',
+        '尺寸': '570 x 280 x 580mm',
+        '重量': '約45kg'
+      },
+      comingSoon: false,
+      images: [
+        "/grando-workstation-closed.png",
+        "/grando-workstation-open.png",
+        "/comino-workstation-front.png",
+        "/comino-workstation-side.png"
+      ],
+      detailedDescription: isEnglish ? {
+        title: 'Comino Grando Workstation - Deep Learning Desktop',
+        formFactor: 'Desktop/Tower',
+        introduction: 'A high-end desktop workstation for deep learning, research, and creative professionals. Ultra-quiet, multi-GPU, and advanced liquid cooling.',
         keyFeatures: [
-          '最高8個GPU配備Comino液冷',
-          '可用GPU：H200、PRO 6000、RTX 5090等',
-          'GPU直連架構實現最大頻寬',
-          'AMD EPYC 9004與9005系列處理器，最高64核心',
-          'Comino液冷系統配備即時監控',
-          '最高2TB DDR5 ECC記憶體，高頻寬設計',
-          'NVMe Gen4儲存配置最高32TB',
-          '備援3200W電源供應確保可靠性',
-          '網路選項包括10GbE和InfiniBand',
-          '免工具維護，配備快速接頭',
-          '全面監控和管理軟體'
+          'Up to 6x RTX 5090/A100 GPU',
+          'Ultra-quiet operation <30dB',
+          'AMD Threadripper PRO 7000 series',
+          'Up to 2TB DDR5-4800 ECC memory',
+          'Up to 8TB NVMe SSD',
+          'Comino liquid cooling system',
+          'Tool-free maintenance'
         ],
         technicalSpecs: {
-          'Motherboards': '支援EATX & EBB',
-          'RAM': '最高2TB *',
-          'M2 drives': '最多8個NVMe',
-          'Drives': '外部3.5"機箱最多2個3.5"或2個2.5" 15mm或4個2.5" 7mm，內部2.5"插槽：最多6個2.5" SSD 7mm',
-          'PSU and Operating voltage': '最多3個1000W SFX-L @ 110/220V',
-          'Cooling Capacity': '2.5kW',
-          'Noise level': '35dB - 50dB',
-          'LAN': '主板上最多2個10 Gbps，PCIe中最多400Gbps',
-          'OS': 'Ubuntu / Win10 (Pro/Home) / Windows Server',
-          'Liquid cooling': 'CPU配VRM和GPU配QDC和VRM',
-          'Reservoir': 'Comino客製450ml配整合泵浦',
-          'Pumps': '2個Laing DDC 2kW',
-          'Radiators': '1個120x30mm散熱器',
-          'Fans': '3個低噪音140mm 3000RPM（低噪音）或3個高流量140mm 5000RPM（中等噪音）',
-          'Installation': '桌面工作站或19"機架安裝',
-          'Required rack space': '4U',
-          'Size': '439 x 681 x 177mm（不含把手和突出部分）',
-          'Weight': 'Comino Grando Workstation配4個GPU～64kg（淨重），72kg（毛重）',
-          'Operating & storage temperature range': '儲存：-5°C / 25°C / 32°C，運作：5°C / 35°C / 39°C / 100°F *'
-        },
-        orderInfo: [
-          {
-            type: 'LIQUID COOLED',
-            pn: 'LIQUID-COOLING',
-            model: 'Comino 液冷系統',
-            description: 'Comino液冷系統釋放現代高階GPU和CPU的完整效能潛力。能夠精確延長硬體使用壽命，並確保在高環境溫度下也能實現靜音或低噪音的24/7全天候運作。'
-          },
-          {
-            type: 'QUICK-DISCONNECT COUPLINGS',
-            pn: 'QUICK-DISCONNECT',
-            model: 'Comino ThruQ 快速接頭',
-            description: '每個GPU和CPU上的快速斷開接頭(Comino ThruQ)提高系統可用性與維護便利性。'
-          },
-          {
-            type: 'REMOTE MANAGEMENT',
-            pn: 'REMOTE-MGMT',
-            model: 'IPMI 遠端管理',
-            description: 'BMC晶片為其IPMI架構提供智能化帶外管理功能。'
-          },
-          {
-            type: 'COMINO\'S MONITORING SYSTEM',
-            pn: 'MONITORING-SYS',
-            model: 'Comino 監控系統',
-            description: '可收集冷卻系統溫度等統計數據。基於網頁的GUI界面允許遠程檢查多台設備。監控系統提高整體系統可用性。'
-          }
-        ]
-      }
+          'Product Series': 'Comino Grando Workstation',
+          'Form Factor': 'Desktop/Tower',
+          'GPU': 'Up to 6x RTX 5090/A100 GPU (each up to 600W)',
+          'Processor': 'AMD Threadripper PRO 7000 series, up to 96 cores',
+          'Memory': 'Up to 2TB DDR5-4800 ECC',
+          'Storage': 'Up to 8TB NVMe SSD, supports RAID',
+          'Cooling': 'Comino liquid cooling system with custom design',
+          'Noise Level': '<30dB under typical load',
+          'Power Supply': '1600W 80+ Platinum',
+          'Connectivity': 'Multiple USB 3.2, Thunderbolt 4, 10GbE LAN',
+          'Dimensions': '570mm (W) x 280mm (D) x 580mm (H)',
+          'Weight': 'Approx. 45kg',
+          'Operating Temp': '10°C to 35°C',
+          'Warranty': '3 years limited / 24/7 support'
+        }
+      } : {
+        title: 'Comino Grando 工作站',
+        formFactor: '桌面型工作站',
+        introduction: '用於深度學習研究和專業創作的桌面型工作站，適合工作組和高階專業人士，提供所有你需要的多GPU效能。',
+        keyFeatures: [
+          '最高6張RTX 5090/A100 GPU',
+          '超靜音運作低於30dB',
+          'AMD Threadripper PRO 7000系列',
+          '最高2TB DDR5-4800 ECC記憶體',
+          '最高8TB NVMe SSD儲存，支援RAID',
+          'Comino液冷系統',
+          '免工具維護'
+        ],
+        technicalSpecs: {
+          '產品系列': 'Comino Grando 工作站',
+          '機箱規格': '桌面型工作站',
+          'GPU': '支援最高6張RTX 5090/A100 GPU（單卡最高600W功率）',
+          '處理器': 'AMD Threadripper PRO 7000系列，最多96核心',
+          '記憶體': '最高2TB DDR5-4800 ECC記憶體',
+          '儲存': '最高8TB NVMe SSD儲存，支援RAID',
+          '散熱': 'Comino液冷系統結構配專屬設計',
+          '噪音等級': '典型運作下低於30dB',
+          '電源供應': '1600W 80+ 白金效能電源',
+          '連接介面': '多組USB 3.2、Thunderbolt 4、10GbE網路',
+          '尺寸': '570mm (寬) x 280mm (深) x 580mm (高)',
+          '重量': '約45kg',
+          '操作溫度': '10°C至35°C',
+          '保固': '3年有限保固 / 24/7支援'
+        }
+      },
     },
     {
       id: 8,
@@ -963,7 +731,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 overflow-x-hidden">
+    <div className="min-h-0 bg-neutral-50 overflow-x-hidden">
       {/* Product Header */}
       <div className="bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-20">
@@ -987,34 +755,152 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
                   {product.title}
                 </h1>
               </div>
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                {product.description}
-              </p>
-              
-              {/* Key Features */}
-              <div className="mb-8 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-neo-light dark:shadow-neo-dark">
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 text-center">
-                  {isEnglish ? 'Key Features' : '主要特色'}
-                </h3>
-                <ul className="space-y-3">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-start group hover:translate-x-1 transition-transform duration-300">
-                      <div className="h-2 w-2 bg-eudtech-600 dark:bg-eudtech-400 rounded-full mt-2 mr-3 flex-shrink-0 group-hover:animate-pulse"></div>
-                      <span className="text-neutral-700 dark:text-neutral-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+              {product.id === 3 ? (
+                <div className="mb-8">
+                  <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                    <span className="font-bold text-eudtech-700 dark:text-eudtech-400 block mb-2">
+                      {isEnglish ? 'What is FinSight?' : '什麼是 FinSight?'}
+                    </span>
+                    {product.description}
+                  </p>
+                  <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-neo-light dark:shadow-neo-dark">
+                    <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 text-center">
+                      {isEnglish ? 'Solution Highlights' : '解決方案亮點'}
+                    </h3>
+                    <ul className="space-y-3">
+                      {/* API 模組 */}
+                      <li className="mb-2">
+                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
+                          {isEnglish ? 'FinSight-API:' : 'FinSight-API：'}
+                        </span>
+                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
+                          {isEnglish
+                            ? 'Unified financial data API (technical indicators, price, extensible to news, macro, financials). RESTful, SaaS/on-premises, easy LLM/enterprise integration.'
+                            : '金融資料整合API（技術指標、價格、可擴充新聞/總經/財報），RESTful設計，SaaS雲端或本地端，LLM/企業系統可直接串接。'}
+                        </span>
+                      </li>
+                      {/* GTP MVP 模組 */}
+                      <li className="mb-2">
+                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
+                          {isEnglish ? 'FinSight GTP:' : 'FinSight GTP：'}
+                        </span>
+                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
+                          {isEnglish
+                            ? 'MVP demo for LLM interaction (ChatGPT Plugin, Hugging Face, local LLMs).'
+                            : '語言模型互動 MVP 展示（支援 ChatGPT Plugin、Hugging Face、本地 LLM）。'}
+                        </span>
+                      </li>
+                      {/* LLM 應用任務 */}
+                      <li className="mb-2">
+                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
+                          {isEnglish ? 'LLM Tasks:' : 'LLM 可執行：'}
+                        </span>
+                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
+                          {isEnglish
+                            ? 'Explain indicators, trend prediction, auto reports, charting, simulate strategies, custom GPT.'
+                            : '指標解釋、趨勢預測、自動報告、圖表、策略模擬、專屬GPT。'}
+                        </span>
+                      </li>
+                      {/* 彈性與企業服務 */}
+                      <li>
+                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
+                          {isEnglish ? 'Extensibility & Services:' : '彈性延伸與企業服務：'}
+                        </span>
+                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
+                          {isEnglish
+                            ? 'Add data sources, connect internal APIs, support private LLMs, multi-role/language, deployment consulting, custom GPT assistant.'
+                            : '擴充資料源、串接內部API、支援私有LLM、多角色/多語系、部署顧問、專屬GPT助理。'}
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <div className="mb-8">
+                  <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                    {product.description}
+                  </p>
+                  {/* Key Features */}
+                  <div className="mb-8 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-neo-light dark:shadow-neo-dark">
+                    <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 text-center">
+                      {isEnglish ? 'Key Features' : '主要特色'}
+                    </h3>
+                    <ul className="space-y-3">
+                      {product.features.map((feature, index) => (
+                        <li key={index} className="flex items-start group hover:translate-x-1 transition-transform duration-300">
+                          <div className="h-2 w-2 bg-eudtech-600 dark:bg-eudtech-400 rounded-full mt-2 mr-3 flex-shrink-0 group-hover:animate-pulse"></div>
+                          <span className="text-neutral-700 dark:text-neutral-300">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* CTA 行動按鈕 */}
+            {product.id === 3 && (
+              <div className="flex flex-col items-center mt-8">
+                {/* 產品圖片 */}
+                <div className="flex justify-center items-center overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group relative mb-6">
+                  <img 
+                    src={product.image} 
+                    alt={product.title}
+                    className="w-full h-96 object-contain bg-gray-50 dark:bg-gray-700 rounded-lg transform transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/20 to-transparent dark:from-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                </div>
+                <div className="mb-2 text-base text-gray-700 dark:text-gray-300 text-center">
+                  {isEnglish
+                    ? 'Experience the FinSightGTP demo (MVP) to see how LLMs interact with real financial data.'
+                    : '立即體驗 FinSightGTP（MVP），感受語言模型與金融資料的互動應用。'}
+                </div>
+                <a
+                  href="https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight"
+                  className="inline-block px-8 py-3 mb-3 rounded-lg bg-eudtech-600 text-white font-semibold shadow-lg hover:bg-eudtech-700 transition-colors text-lg"
+                  target="_blank" rel="noopener noreferrer"
+                >
+                  {isEnglish ? 'FinSightGTP Demo' : 'FinSightGTP體驗'}
+                </a>
+                <button
+                  type="button"
+                  className="inline-block px-8 py-3 rounded-lg border border-eudtech-600 text-eudtech-600 font-semibold hover:bg-eudtech-50 dark:hover:bg-gray-800 transition-colors text-lg cursor-pointer bg-transparent"
+                  onClick={() => {
+                    if (window.location.pathname === '/') {
+                      // 首頁直接平滑滾動
+                      const el = document.getElementById('contact');
+                      if (el) {
+                        const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                      }
+                    } else {
+                      // 非首頁用 react-router 跳首頁並帶 state
+                      window.history.pushState({}, '', '/');
+                      window.dispatchEvent(new PopStateEvent('popstate'));
+                      setTimeout(() => {
+                        const el = document.getElementById('contact');
+                        if (el) {
+                          const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
+                          window.scrollTo({ top: y, behavior: 'smooth' });
+                        }
+                      }, 300);
+                    }
+                  }}
+                >
+                  {isEnglish ? 'Contact Us' : '聯絡我們'}
+                </button>
               </div>
-            </div>
+            )}
 
-            <div className="flex justify-center items-center overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group relative">
-              <img 
-                src={product.image} 
-                alt={product.title}
-                className="w-full h-96 object-contain bg-gray-50 dark:bg-gray-700 rounded-lg transform transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/20 to-transparent dark:from-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-            </div>
+            {product.id !== 3 && (
+              <div className="flex justify-center items-center overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group relative">
+                <img 
+                  src={product.image} 
+                  alt={product.title}
+                  className="w-full h-96 object-contain bg-gray-50 dark:bg-gray-700 rounded-lg transform transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/20 to-transparent dark:from-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -1042,11 +928,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
               </tbody>
             </table>
           </div>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 text-center">
-            {isEnglish 
-              ? '* - depends on the configuration, contact Comino team for clarification' 
-              : '* - 取決於配置，請聯繫Comino團隊獲取詳細資訊'}
-          </p>
+          {product.id !== 3 && (
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 text-center">
+              {isEnglish 
+                ? '* - depends on the configuration, contact Comino team for clarification' 
+                : '* - 取決於配置，請聯繫Comino團隊獲取詳細資訊'}
+            </p>
+          )}
         </div>
       </div>
 
@@ -1076,21 +964,24 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 text-center">
-                  {isEnglish 
-                    ? '* - depends on the configuration, contact Comino team for clarification' 
-                    : '* - 取決於配置，請聯繫Comino團隊獲取詳細資訊'}
-                </p>
+                {product.id !== 3 && (
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 text-center">
+                    {isEnglish 
+                      ? '* - depends on the configuration, contact Comino team for clarification' 
+                      : '* - 取決於配置，請聯繫Comino團隊獲取詳細資訊'}
+                  </p>
+                )}
               </div>
 
               {/* Available Configurations */}
-              {product.detailedDescription && 'orderInfo' in product.detailedDescription && product.detailedDescription.orderInfo && (
+              {product.detailedDescription && Array.isArray((product.detailedDescription as { orderInfo?: unknown }).orderInfo) &&
+                ((product.detailedDescription as { orderInfo?: unknown }).orderInfo as Array<any>).length > 0 && (
                 <div className="mb-12">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">
                     {isEnglish ? 'Available Configurations' : '可用配置'}
                   </h3>
                   <div className="space-y-4">
-                    {(product.detailedDescription.orderInfo as Array<{type: string, pn: string, model: string, description: string}>).map((item, index) => (
+                    {(product.detailedDescription as { orderInfo: Array<{type: string, pn: string, model: string, description: string}> }).orderInfo.map((item, index) => (
                       <div key={index} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
                         <div className="flex justify-between items-start mb-3">
                           <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
@@ -1098,7 +989,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
                           </h4>
                           <span className="text-sm text-gray-500 dark:text-gray-400">{item.model}</span>
                         </div>
-                        {/* 移除產品代碼顯示 */}
                         <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
                       </div>
                     ))}
@@ -1125,7 +1015,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
       )}
 
       {/* Image Gallery */}
-      {product.images && product.images.length > 0 && (
+      {product.images && product.images.length > 0 && product.id !== 3 && (
         <div className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-16 relative">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.05),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(79,70,229,0.05),transparent_40%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.1),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(79,70,229,0.1),transparent_40%)] pointer-events-none"></div>
           <div className="max-w-7xl mx-auto px-4 relative z-10">

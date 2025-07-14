@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Globe, Moon, Sun, Monitor } from 'lucide-react';
 import Logo from './Logo';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 interface NavBarProps {
   toggleLanguage: () => void;
@@ -27,12 +28,15 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, i
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === '/' || location.pathname === '';
   const navLinks = [
-    { name: isEnglish ? 'Home' : '首頁', href: '#home' },
-    { name: isEnglish ? 'Products' : '產品', href: '#eudtech-products' },
-    { name: isEnglish ? 'Comino' : 'Comino', href: '#comino-brand' },
-    { name: isEnglish ? 'About' : '關於我們', href: '#about' },
-    { name: isEnglish ? 'Contact' : '聯絡我們', href: '#contact' },
+    { name: isEnglish ? 'Home' : '首頁', hash: 'home' },
+    { name: isEnglish ? 'Products' : '產品', hash: 'eudtech-products' },
+    { name: isEnglish ? 'Comino' : 'Comino', hash: 'comino-brand' },
+    { name: isEnglish ? 'About' : '關於我們', hash: 'about' },
+    { name: isEnglish ? 'Contact' : '聯絡我們', hash: 'contact' },
   ];
 
   return (
@@ -52,17 +56,36 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, i
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className={`${
-                      isScrolled 
-                        ? 'text-neutral-800 dark:text-neutral-200 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
-                        : 'text-white hover:text-eudtech-200'
-                    } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
-                  >
-                    {link.name}
-                  </a>
+                  isHome ? (
+                    <a
+                      key={link.name}
+                      href={`#${link.hash}`}
+                      className={`$
+                        isScrolled 
+                          ? 'text-neutral-800 dark:text-neutral-200 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
+                          : 'text-white hover:text-eudtech-200'
+                      } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <button
+                      key={link.name}
+                      className={`$
+                        isScrolled 
+                          ? 'text-neutral-800 dark:text-neutral-200 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
+                          : 'text-white hover:text-eudtech-200'
+                      } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 bg-transparent border-0 cursor-pointer`}
+                      style={{ background: 'none' }}
+                      onClick={() => {
+                        setIsOpen(false);
+                        navigate('/', { state: { scrollTo: link.hash } });
+                      }}
+                    >
+                      {link.name}
+                    </button>
+                  )
                 ))}
               </div>
             </div>
@@ -166,14 +189,28 @@ const NavBar: React.FC<NavBarProps> = ({ toggleLanguage, isEnglish, themeMode, i
       <div className={`${isOpen ? 'block' : 'hidden'} md:hidden bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-lg border-t border-neutral-200 dark:border-gray-700`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="text-neutral-800 dark:text-neutral-200 hover:text-eudtech-700 dark:hover:text-eudtech-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-            >
-              {link.name}
-            </a>
+            isHome ? (
+              <a
+                key={link.name}
+                href={`#${link.hash}`}
+                onClick={() => setIsOpen(false)}
+                className="text-neutral-800 dark:text-neutral-200 hover:text-eudtech-700 dark:hover:text-eudtech-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <button
+                key={link.name}
+                onClick={() => {
+                  setIsOpen(false);
+                  navigate('/', { state: { scrollTo: link.hash } });
+                }}
+                className="text-neutral-800 dark:text-neutral-200 hover:text-eudtech-700 dark:hover:text-eudtech-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 bg-transparent border-0 cursor-pointer"
+                style={{ background: 'none' }}
+              >
+                {link.name}
+              </button>
+            )
           ))}
         </div>
       </div>
