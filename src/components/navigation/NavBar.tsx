@@ -34,23 +34,27 @@ const NavBar: React.FC<NavBarProps> = ({
   // 根據滾動狀態和主題模式決定背景色
   const getBackgroundColor = () => {
     if (!isScrolled) return 'transparent';
-    return isDarkMode ? 'rgba(31, 41, 55, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+    return isDarkMode ? 'rgba(17, 24, 39, 0.95)' : 'rgba(255, 255, 255, 0.95)';
   };
 
   // 根據滾動狀態和主題模式決定邊框色
   const getBorderColor = () => {
     if (!isScrolled) return 'transparent';
-    return isDarkMode ? 'rgba(75, 85, 99, 0.3)' : 'rgba(229, 231, 235, 0.3)';
+    return isDarkMode ? 'rgba(55, 65, 81, 0.5)' : 'rgba(229, 231, 235, 0.3)';
   };
 
   // 根據頁面類型和滾動狀態決定文字顏色
   const getTextColorClass = () => {
-    if (!isScrolled) {
-      // 頂端時：產品詳細頁面總是白色文字，首頁也是白色文字
-      return 'text-white hover:text-eudtech-200 dark:text-gray-100 dark:hover:text-eudtech-300';
+    if (!isScrolled || (isProductDetailPage && !isScrolled)) {
+      // 頂端時：始終使用白色文字（適合深色背景）
+      return 'text-white hover:text-blue-200';
     } else {
-      // 滾動時：根據主題模式決定
-      return 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-400';
+      // 滾動時：根據主題模式決定顏色
+      if (isDarkMode) {
+        return 'text-gray-100 hover:text-blue-300';
+      } else {
+        return 'text-gray-800 hover:text-blue-600';
+      }
     }
   };
 
