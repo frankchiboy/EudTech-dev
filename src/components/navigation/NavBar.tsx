@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import { useScrollDetection } from '../../hooks/ui/useScrollDetection';
 import { getNavLinks } from '../../data/navigation';
 import Logo from '../common/Logo';
@@ -25,6 +26,8 @@ const NavBar: React.FC<NavBarProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isScrolled = useScrollDetection(20);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
   const navLinks = getNavLinks(isEnglish);
 
   return (
@@ -32,7 +35,9 @@ const NavBar: React.FC<NavBarProps> = ({
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-neutral-200 dark:border-gray-700' 
-          : 'bg-transparent'
+          : isHomePage 
+            ? 'bg-transparent' 
+            : 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-neutral-200 dark:border-gray-700'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,7 +52,7 @@ const NavBar: React.FC<NavBarProps> = ({
                   <NavLink 
                     key={link.name} 
                     link={link} 
-                    isScrolled={isScrolled}
+                    isScrolled={isScrolled || !isHomePage}
                   />
                 ))}
               </div>
@@ -58,13 +63,13 @@ const NavBar: React.FC<NavBarProps> = ({
             <LanguageToggle 
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
-              isScrolled={isScrolled}
+              isScrolled={isScrolled || !isHomePage}
             />
             <ThemeToggle 
               themeMode={themeMode}
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
-              isScrolled={isScrolled}
+              isScrolled={isScrolled || !isHomePage}
             />
           </div>
           
@@ -72,20 +77,20 @@ const NavBar: React.FC<NavBarProps> = ({
             <LanguageToggle 
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
-              isScrolled={isScrolled}
+              isScrolled={isScrolled || !isHomePage}
               mobile
             />
             <ThemeToggle 
               themeMode={themeMode}
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
-              isScrolled={isScrolled}
+              isScrolled={isScrolled || !isHomePage}
               mobile
             />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`${
-                isScrolled ? 'text-neutral-800 dark:text-neutral-100' : 'text-white'
+                isScrolled || !isHomePage ? 'text-neutral-800 dark:text-neutral-100' : 'text-white'
               } p-1 rounded-full transition-colors duration-200`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
