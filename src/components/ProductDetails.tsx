@@ -768,119 +768,63 @@ const ProductDetails: React.FC = () => {
                 </h1>
               </div>
               {product.id === 3 ? (
-                {/* Hero Section */}
                 <div className="mb-8">
-                  <div className="bg-gradient-to-r from-blue-50 to-teal-50 dark:from-blue-900/20 dark:to-teal-900/20 p-8 rounded-2xl border border-blue-200 dark:border-blue-800 mb-6">
-                    <h2 className="text-2xl font-bold text-eudtech-700 dark:text-eudtech-400 mb-4 flex items-center">
-                      <span className="mr-3">🚀</span>
+                  <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                    <span className="font-bold text-eudtech-700 dark:text-eudtech-400 block mb-2">
                       {isEnglish ? 'What is FinSight?' : '什麼是 FinSight?'}
-                    </h2>
-                    <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
-                      {product.description}
-                    </p>
-                  </div>
-                  
-                  {/* Two-Column Layout */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Core Modules */}
-                    <div className="space-y-6">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-                        <span className="mr-2">🔧</span>
-                        {isEnglish ? 'Core Modules' : '核心模組'}
-                      </h3>
-                      
-                      {/* FinSight-API */}
-                      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow">
-                        <div className="flex items-center mb-3">
-                          <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-3">
-                            <span className="text-blue-600 dark:text-blue-400 font-bold">API</span>
-                          </div>
-                          <h4 className="text-lg font-semibold text-gray-900 dark:text-white">FinSight-API</h4>
-                        </div>
-                        <p className="text-gray-600 dark:text-gray-300 mb-3">
+                    </span>
+                    {product.description}
+                  </p>
+                  <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-neo-light dark:shadow-neo-dark">
+                    <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 text-center">
+                      {isEnglish ? 'Solution Highlights' : '解決方案亮點'}
+                    </h3>
+                    <ul className="space-y-3">
+                      {/* API 模組 */}
+                      <li className="mb-2">
+                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
+                          {isEnglish ? 'FinSight-API:' : 'FinSight-API：'}
+                        </span>
+                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
                           {isEnglish
-                            ? 'Unified financial data API with technical indicators, price history, and extensible data sources.'
-                            : '統一金融資料API，提供技術指標、價格歷史和可擴展資料源。'}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm">RESTful</span>
-                          <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-sm">SaaS</span>
-                          <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded-full text-sm">
-                            {isEnglish ? 'On-premises' : '本地部署'}
-                          </span>
-                        </div>
-                      </div>
-                      
-                      {/* FinSight GTP */}
-                      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow">
-                        <div className="flex items-center mb-3">
-                          <div className="w-10 h-10 bg-teal-100 dark:bg-teal-900 rounded-full flex items-center justify-center mr-3">
-                            <span className="text-teal-600 dark:text-teal-400 font-bold">GTP</span>
-                          </div>
-                          <h4 className="text-lg font-semibold text-gray-900 dark:text-white">FinSight GTP</h4>
-                        </div>
-                        <p className="text-gray-600 dark:text-gray-300 mb-3">
+                            ? 'Unified financial data API (technical indicators, price, extensible to news, macro, financials). RESTful, SaaS/on-premises, easy LLM/enterprise integration.'
+                            : '金融資料整合API（技術指標、價格、可擴充新聞/總經/財報），RESTful設計，SaaS雲端或本地端，LLM/企業系統可直接串接。'}
+                        </span>
+                      </li>
+                      {/* GTP MVP 模組 */}
+                      <li className="mb-2">
+                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
+                          {isEnglish ? 'FinSight GTP:' : 'FinSight GTP：'}
+                        </span>
+                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
                           {isEnglish
-                            ? 'MVP demo system for LLM interaction with financial data and analysis.'
-                            : 'MVP展示系統，支援LLM與金融資料的互動分析。'}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 rounded-full text-sm">ChatGPT</span>
-                          <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 rounded-full text-sm">Hugging Face</span>
-                          <span className="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full text-sm">
-                            {isEnglish ? 'Local LLMs' : '本地LLM'}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* LLM Capabilities */}
-                    <div className="space-y-6">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-                        <span className="mr-2">🤖</span>
-                        {isEnglish ? 'LLM Capabilities' : 'LLM 功能'}
-                      </h3>
-                      
-                      <div className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                        <div className="grid grid-cols-2 gap-4">
-                          {[
-                            { icon: '📊', text: isEnglish ? 'Explain Indicators' : '指標解釋' },
-                            { icon: '📈', text: isEnglish ? 'Trend Prediction' : '趨勢預測' },
-                            { icon: '📋', text: isEnglish ? 'Auto Reports' : '自動報告' },
-                            { icon: '📉', text: isEnglish ? 'Charting' : '圖表繪製' },
-                            { icon: '🎯', text: isEnglish ? 'Strategy Simulation' : '策略模擬' },
-                            { icon: '🤝', text: isEnglish ? 'Custom GPT' : '專屬GPT' },
-                          ].map((item, index) => (
-                            <div key={index} className="flex items-center p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                              <span className="text-2xl mr-3">{item.icon}</span>
-                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{item.text}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Enterprise Services */}
-                      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
-                          <span className="mr-2">🏢</span>
-                          {isEnglish ? 'Enterprise Services' : '企業服務'}
-                        </h4>
-                        <div className="space-y-3">
-                          {[
-                            isEnglish ? 'Deployment Consulting' : '部署顧問',
-                            isEnglish ? 'Custom Data Integration' : '客製資料整合',
-                            isEnglish ? 'Private LLM Optimization' : '私有LLM最佳化',
-                            isEnglish ? 'Multi-language Support' : '多語系支援',
-                            isEnglish ? 'Dedicated GPT Assistant' : '專屬GPT助理'
-                          ].map((service, index) => (
-                            <div key={index} className="flex items-center">
-                              <div className="w-2 h-2 bg-eudtech-600 rounded-full mr-3"></div>
-                              <span className="text-gray-700 dark:text-gray-300">{service}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+                            ? 'MVP demo for LLM interaction (ChatGPT Plugin, Hugging Face, local LLMs).'
+                            : '語言模型互動 MVP 展示（支援 ChatGPT Plugin、Hugging Face、本地 LLM）。'}
+                        </span>
+                      </li>
+                      {/* LLM 應用任務 */}
+                      <li className="mb-2">
+                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
+                          {isEnglish ? 'LLM Tasks:' : 'LLM 可執行：'}
+                        </span>
+                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
+                          {isEnglish
+                            ? 'Explain indicators, trend prediction, auto reports, charting, simulate strategies, custom GPT.'
+                            : '指標解釋、趨勢預測、自動報告、圖表、策略模擬、專屬GPT。'}
+                        </span>
+                      </li>
+                      {/* 彈性與企業服務 */}
+                      <li>
+                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
+                          {isEnglish ? 'Extensibility & Services:' : '彈性延伸與企業服務：'}
+                        </span>
+                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
+                          {isEnglish
+                            ? 'Add data sources, connect internal APIs, support private LLMs, multi-role/language, deployment consulting, custom GPT assistant.'
+                            : '擴充資料源、串接內部API、支援私有LLM、多角色/多語系、部署顧問、專屬GPT助理。'}
+                        </span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               ) : (
@@ -907,72 +851,37 @@ const ProductDetails: React.FC = () => {
             </div>
             {/* CTA 行動按鈕 */}
             {product.id === 3 && (
-              <div className="space-y-8">
-                {/* Interactive Demo Section */}
-                <div className="bg-gradient-to-r from-eudtech-600 to-teal-600 rounded-2xl p-8 text-white relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
-                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
-                  <div className="relative z-10">
-                    <div className="flex items-center mb-6">
-                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                        <span className="text-2xl">🎯</span>
-                      </div>
-                      <h3 className="text-2xl font-bold">
-                        {isEnglish ? 'Try FinSightGTP Live Demo' : '立即體驗 FinSightGTP'}
-                      </h3>
-                    </div>
-                    <p className="text-lg mb-6 text-white/90">
-                      {isEnglish
-                        ? 'Experience how LLMs interact with real financial data through our interactive ChatGPT plugin.'
-                        : '透過我們的互動式ChatGPT插件，親身體驗語言模型與真實金融資料的互動。'}
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <a
-                        href="https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight"
-                        className="inline-flex items-center justify-center px-8 py-3 bg-white text-eudtech-600 rounded-lg font-semibold shadow-lg hover:bg-gray-100 transition-colors text-lg group"
-                        target="_blank" rel="noopener noreferrer"
-                      >
-                        <span className="mr-2">🚀</span>
-                        {isEnglish ? 'Launch Demo' : '啟動展示'}
-                        <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </a>
-                      <button
-                        type="button"
-                        className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-eudtech-600 transition-colors text-lg"
-                        onClick={() => {
-                          handleNavClick('#contact');
-                        }}
-                      >
-                        <span className="mr-2">💬</span>
-                        {isEnglish ? 'Contact Us' : '聯絡我們'}
-                      </button>
-                    </div>
-                  </div>
+              <div className="flex flex-col items-center mt-8">
+                {/* 產品圖片 */}
+                <div className="flex justify-center items-center overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group relative mb-6">
+                  <img 
+                    src={product.image} 
+                    alt={product.title}
+                    className="w-full h-96 object-contain bg-gray-50 dark:bg-gray-700 rounded-lg transform transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/20 to-transparent dark:from-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
                 </div>
-                
-                {/* Product Image with Enhanced Styling */}
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-200 to-teal-200 dark:from-blue-800 dark:to-teal-800 rounded-2xl blur-3xl opacity-30"></div>
-                  <div className="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
-                    <img 
-                      src={product.image} 
-                      alt={product.title}
-                      className="w-full h-80 object-cover rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="mt-6 text-center">
-                      <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                        {isEnglish ? 'Financial AI in Action' : '金融AI實戰應用'}
-                      </h4>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        {isEnglish
-                          ? 'Transforming raw financial data into actionable insights with AI'
-                          : '將原始金融資料轉化為可行的AI洞察'}
-                      </p>
-                    </div>
-                  </div>
+                <div className="mb-2 text-base text-gray-700 dark:text-gray-300 text-center">
+                  {isEnglish
+                    ? 'Experience the FinSightGTP demo (MVP) to see how LLMs interact with real financial data.'
+                    : '立即體驗 FinSightGTP（MVP），感受語言模型與金融資料的互動應用。'}
                 </div>
+                <a
+                  href="https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight"
+                  className="inline-block px-8 py-3 mb-3 rounded-lg bg-eudtech-600 text-white font-semibold shadow-lg hover:bg-eudtech-700 transition-colors text-lg"
+                  target="_blank" rel="noopener noreferrer"
+                >
+                  {isEnglish ? 'FinSightGTP Demo' : 'FinSightGTP體驗'}
+                </a>
+                <button
+                  type="button"
+                  className="inline-block px-8 py-3 rounded-lg border border-eudtech-600 text-eudtech-600 font-semibold hover:bg-eudtech-50 dark:hover:bg-gray-800 transition-colors text-lg cursor-pointer bg-transparent"
+                  onClick={() => {
+                    handleNavClick('#contact');
+                  }}
+                >
+                  {isEnglish ? 'Contact Us' : '聯絡我們'}
+                </button>
               </div>
             )}
 
@@ -994,12 +903,8 @@ const ProductDetails: React.FC = () => {
       <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-16 relative">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTYgNnY2aDZ2LTZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30 dark:opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-8 text-center flex items-center justify-center">
-            <span className="mr-3">⚙️</span>
-            {product.id === 3 
-              ? (isEnglish ? 'Technical Architecture' : '技術架構')
-              : (isEnglish ? 'System Overview' : '系統總覽')
-            }
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-8 text-center">
+            {isEnglish ? 'System Overview' : '系統總覽'}
           </h2>
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white dark:bg-gray-800 border border-neutral-200 dark:border-neutral-700">
@@ -1029,25 +934,20 @@ const ProductDetails: React.FC = () => {
 
       {/* Technical Specifications from Detailed Description */}
       {product.detailedDescription && (
-        <div className="bg-white dark:bg-gray-900 py-16 relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-teal-50/50 dark:from-blue-900/10 dark:to-teal-900/10"></div>
+        <div className="bg-white dark:bg-gray-900 py-16">
           <div className="max-w-7xl mx-auto px-4">
             <div className="prose prose-lg dark:prose-invert max-w-none">
               {/* Technical Specifications Table */}
               <div className="mb-12">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6 text-center flex items-center justify-center">
-                  <span className="mr-3">🔧</span>
-                  {product.id === 3 
-                    ? (isEnglish ? 'Detailed Specifications' : '詳細規格')
-                    : (isEnglish ? 'Technical Specifications' : '技術規格')
-                  }
+                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6 text-center">
+                  {isEnglish ? 'Technical Specifications' : '技術規格'}
                 </h3>
-                <div className="overflow-x-auto relative z-10">
-                  <table className="min-w-full bg-white dark:bg-gray-800 border border-neutral-200 dark:border-neutral-700 shadow-lg rounded-lg">
+                <div className="overflow-x-auto">
+                  <table className="min-w-full bg-white dark:bg-gray-800 border border-neutral-200 dark:border-neutral-700">
                     <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
                       {Object.entries(product.detailedDescription.technicalSpecs).map(([key, value], index) => (
                         <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50 dark:bg-neutral-800' : 'bg-white dark:bg-gray-800'}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-neutral-900 dark:text-neutral-100 w-1/3 bg-gradient-to-r from-blue-50 to-transparent dark:from-blue-900/20">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 dark:text-neutral-100 w-1/3">
                             {isEnglish ? key : technicalSpecsTranslations[key] || key}
                           </td>
                           <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
@@ -1067,112 +967,37 @@ const ProductDetails: React.FC = () => {
                 )}
               </div>
 
-              {/* FinSight Specific: Use Cases */}
-              {product.id === 3 && product.detailedDescription && 'applications' in product.detailedDescription && (
-                <div className="mb-12 relative z-10">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center flex items-center justify-center">
-                    <span className="mr-3">🎯</span>
-                    {isEnglish ? 'Use Cases & Applications' : '使用案例與應用'}
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {(product.detailedDescription.applications as string[]).map((app, index) => (
-                      <div key={index} className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-                        <div className="flex items-start">
-                          <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                            <span className="text-white font-bold text-sm">{index + 1}</span>
-                          </div>
-                          <div className="flex-1">
-                            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{app}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              
-              {/* Call to Action for FinSight */}
-              {product.id === 3 && (
-                <div className="mb-12 relative z-10">
-                  <div className="bg-gradient-to-r from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-900 text-white p-8 rounded-2xl shadow-2xl border border-gray-700">
-                    <div className="text-center">
-                      <h3 className="text-2xl font-bold mb-4 flex items-center justify-center">
-                        <span className="mr-3">🚀</span>
-                        {isEnglish ? 'Ready to Transform Your Financial Analysis?' : '準備好轉變您的金融分析了嗎？'}
-                      </h3>
-                      <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-                        {isEnglish
-                          ? 'Join the future of financial AI with FinSight. Contact our team to discuss custom implementations and enterprise solutions.'
-                          : '與 FinSight 一起踏入金融AI的未來。聯繫我們的團隊討論客製化實作和企業解決方案。'}
-                      </p>
-                      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button
-                          type="button"
-                          className="inline-flex items-center justify-center px-8 py-3 bg-eudtech-600 text-white rounded-lg font-semibold shadow-lg hover:bg-eudtech-700 transition-colors text-lg"
-                          onClick={() => {
-                            handleNavClick('#contact');
-                          }}
-                        >
-                          <span className="mr-2">💬</span>
-                          {isEnglish ? 'Schedule Consultation' : '預約諮詢'}
-                        </button>
-                        <a
-                          href="https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight"
-                          className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors text-lg"
-                          target="_blank" rel="noopener noreferrer"
-                        >
-                          <span className="mr-2">🎯</span>
-                          {isEnglish ? 'Try Demo Again' : '再次體驗展示'}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-              
               {/* Available Configurations */}
               {product.detailedDescription && Array.isArray((product.detailedDescription as { orderInfo?: unknown }).orderInfo) &&
                 ((product.detailedDescription as { orderInfo?: unknown }).orderInfo as Array<any>).length > 0 && (
-                <div className="mb-12 relative z-10">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center flex items-center justify-center">
-                    <span className="mr-3">📦</span>
-                    {product.id === 3 
-                      ? (isEnglish ? 'Implementation Options' : '實作選項')
-                      : (isEnglish ? 'Available Configurations' : '可用配置')
-                    }
+                <div className="mb-12">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">
+                    {isEnglish ? 'Available Configurations' : '可用配置'}
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
                     {(product.detailedDescription as { orderInfo: Array<{type: string, pn: string, model: string, description: string}> }).orderInfo.map((item, index) => (
-                      <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow">
-                        <div className="flex items-start mb-4">
-                          <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                            <span className="text-white font-bold text-lg">{index + 1}</span>
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">
-                              {isEnglish ? (formatConfigType[item.type] || item.type) : orderInfoTypeTranslations[item.type] || item.type}
-                            </h4>
-                            <span className="text-sm text-gray-500 dark:text-gray-400 font-mono">{item.model}</span>
-                          </div>
+                      <div key={index} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                        <div className="flex justify-between items-start mb-3">
+                          <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                            {isEnglish ? (formatConfigType[item.type] || item.type) : orderInfoTypeTranslations[item.type] || item.type}
+                          </h4>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">{item.model}</span>
                         </div>
-                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{item.description}</p>
+                        <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
-              
-              {/* Additional Features for other products */}
-              {product.id !== 3 && product.detailedDescription && 'additionalFeatures' in product.detailedDescription && product.detailedDescription.additionalFeatures && (
-                <div className="mb-12 relative z-10">
+
+              {/* Additional Features */}
+              {product.detailedDescription && 'additionalFeatures' in product.detailedDescription && product.detailedDescription.additionalFeatures && (
+                <div className="mb-12">
                   <div className="space-y-6">
                     {Object.entries(product.detailedDescription.additionalFeatures as Record<string, string>).map(([title, description], index) => (
-                      <div key={index} className="border-l-4 border-eudtech-600 pl-6 bg-white dark:bg-gray-800 p-6 rounded-r-lg shadow-lg">
-                        <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2 flex items-center">
-                          <span className="mr-2">✨</span>
-                          {title}
-                        </h4>
-                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{description as string}</p>
+                      <div key={index} className="border-l-4 border-eudtech-600 pl-6">
+                        <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{title}</h4>
+                        <p className="text-gray-700 dark:text-gray-300">{description as string}</p>
                       </div>
                     ))}
                   </div>
