@@ -7,7 +7,6 @@ interface ThemeToggleProps {
   isDarkMode: boolean;
   toggleDarkMode: () => void;
   isScrolled: boolean;
-  isHomePage: boolean;
   mobile?: boolean;
 }
 
@@ -16,7 +15,6 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
   isDarkMode, 
   toggleDarkMode, 
   isScrolled, 
-  isHomePage,
   mobile = false 
 }) => {
   const getIcon = () => {
@@ -57,9 +55,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
       className={`flex items-center ${mobile ? 'mr-2' : 'ml-2'} ${
         isScrolled 
           ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-400'
-          : isHomePage
-            ? 'text-white hover:text-eudtech-200 dark:text-gray-100 dark:hover:text-eudtech-300'
-            : 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-400'
+          : 'text-white hover:text-eudtech-200 dark:text-gray-100 dark:hover:text-eudtech-300'
       } ${mobile ? 'p-1' : 'px-2 py-2'} rounded-md transition-colors duration-200 relative group`}
       aria-label={getAriaLabel()}
     >

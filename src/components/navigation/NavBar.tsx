@@ -51,7 +51,6 @@ const NavBar: React.FC<NavBarProps> = ({
                     key={link.name} 
                     link={link} 
                     isScrolled={isScrolled}
-                    isHomePage={isHomePage}
                   />
                 ))}
               </div>
@@ -63,14 +62,12 @@ const NavBar: React.FC<NavBarProps> = ({
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
               isScrolled={isScrolled}
-              isHomePage={isHomePage}
             />
             <ThemeToggle 
               themeMode={themeMode}
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
               isScrolled={isScrolled}
-              isHomePage={isHomePage}
             />
           </div>
           
@@ -79,7 +76,6 @@ const NavBar: React.FC<NavBarProps> = ({
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
               isScrolled={isScrolled}
-              isHomePage={isHomePage}
               mobile
             />
             <ThemeToggle 
@@ -87,7 +83,6 @@ const NavBar: React.FC<NavBarProps> = ({
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
               isScrolled={isScrolled}
-              isHomePage={isHomePage}
               mobile
             />
             <button
@@ -95,9 +90,7 @@ const NavBar: React.FC<NavBarProps> = ({
               className={`${
                 isScrolled 
                   ? 'text-neutral-800 dark:text-neutral-100' 
-                  : isHomePage 
-                    ? 'text-white' 
-                    : 'text-neutral-800 dark:text-neutral-100'
+                  : 'text-white'
               } p-1 rounded-full transition-colors duration-200`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
