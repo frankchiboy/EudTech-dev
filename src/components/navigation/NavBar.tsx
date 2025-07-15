@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { useScrollDetection } from '../../hooks/ui/useScrollDetection';
 import { getNavLinks } from '../../data/navigation';
+import { handleNavClick } from '../../utils/helpers/navigation';
 import Logo from '../common/Logo';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
