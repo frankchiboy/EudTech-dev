@@ -30,13 +30,26 @@ const NavBar: React.FC<NavBarProps> = ({
   const isHomePage = location.pathname === '/';
   const navLinks = getNavLinks(isEnglish);
 
+  // 強制檢查滾動狀態
+  useEffect(() => {
+    const handleScroll = () => {
+      // 確保在頂端時 navbar 是透明的
+      console.log('Scroll Y:', window.scrollY, 'isScrolled:', isScrolled);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isScrolled]);
+
   return (
     <nav 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-neutral-200 dark:border-gray-700' 
-          : 'bg-transparent'
-      }`}
+      className="fixed w-full z-50 transition-all duration-300"
+      style={{
+        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
+        borderBottom: isScrolled ? '1px solid rgba(229, 231, 235, 0.3)' : 'none',
+        boxShadow: isScrolled ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)' : 'none'
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
