@@ -743,7 +743,7 @@ const ProductDetails: React.FC = () => {
         isDarkMode={isDarkModeActive}
         toggleDarkMode={toggleDarkMode}
       />
-      <div className="min-h-screen bg-neutral-50 overflow-x-hidden pt-16">
+      <div className="min-h-screen bg-neutral-50 dark:bg-gray-900 overflow-x-hidden pt-16">
       {/* Product Header */}
       <div className="bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-20">

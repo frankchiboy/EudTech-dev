@@ -48,28 +48,29 @@ const NavBar: React.FC<NavBarProps> = ({
   // 根據滾動狀態和主題模式決定背景色
   const getBackgroundColor = () => {
     if (isProductDetailPage) {
-      // 產品詳細頁面頂端完全透明
-      if (scrollProgress === 0) {
+      // 產品詳細頁面：頂端透明，滾動時顯示毛玻璃
+      if (scrollProgress < 0.1) {
         return 'transparent';
       }
-      const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
-      const opacity = Math.min(scrollProgress * 1.2, 0.95); // 0 -> 0.95
+      // 使用更適合毛玻璃效果的背景色
+      const bgColor = isDarkMode ? '31, 41, 55' : '255, 255, 255';
+      const opacity = Math.min(scrollProgress * 0.8, 0.7); // 降低透明度
       return `rgba(${bgColor}, ${opacity})`;
     } else {
       // 首頁漸變效果
       const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
-      const opacity = scrollProgress * 0.95; // 0 -> 0.95
+      const opacity = Math.min(scrollProgress * 0.8, 0.8); // 0 -> 0.8
       return `rgba(${bgColor}, ${opacity})`;
     }
   };
 
   // 根據滾動狀態和主題模式決定邊框色
   const getBorderColor = () => {
-    if (isProductDetailPage && scrollProgress === 0) {
+    if (isProductDetailPage && scrollProgress < 0.1) {
       return 'transparent';
     }
     const borderColor = isDarkMode ? '55, 65, 81' : '229, 231, 235';
-    const opacity = scrollProgress * 0.3; // 0 -> 0.3
+    const opacity = Math.min(scrollProgress * 0.2, 0.2); // 0 -> 0.2
     return `rgba(${borderColor}, ${opacity})`;
   };
 
@@ -96,20 +97,20 @@ const NavBar: React.FC<NavBarProps> = ({
   // 計算模糊效果
   const getBlurEffect = () => {
     if (isProductDetailPage) {
-      if (scrollProgress === 0) {
+      if (scrollProgress < 0.1) {
         return 'none';
       }
-      return scrollProgress > 0.1 ? 'blur(8px)' : 'blur(4px)';
+      return scrollProgress > 0.3 ? 'blur(10px)' : 'blur(6px)';
     }
-    return scrollProgress > 0.3 ? 'blur(12px)' : 'none';
+    return scrollProgress > 0.2 ? 'blur(8px)' : 'none';
   };
 
   // 計算陰影效果
   const getShadowEffect = () => {
-    if (isProductDetailPage && scrollProgress === 0) {
+    if (isProductDetailPage && scrollProgress < 0.1) {
       return 'none';
     }
-    const shadowOpacity = scrollProgress * 0.1;
+    const shadowOpacity = Math.min(scrollProgress * 0.08, 0.05);
     return `0 1px 3px 0 rgba(0, 0, 0, ${shadowOpacity})`;
   };
   return (
