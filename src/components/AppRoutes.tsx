@@ -34,6 +34,7 @@ const AppRoutes: React.FC = () => {
             <ComimoBrandIntro isEnglish={isEnglish} />
             <AboutSection isEnglish={isEnglish} />
             <ContactSection isEnglish={isEnglish} />
+            <Footer isEnglish={isEnglish} />
           </>
         } />
         <Route path="/products/:id" element={<ProductDetails />} />

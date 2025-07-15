@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink as NavLinkType } from '../../types';
+import { handleNavClick } from '../../utils/helpers/navigation';
 
 interface NavLinkProps {
   link: NavLinkType;
@@ -10,6 +11,7 @@ const NavLink: React.FC<NavLinkProps> = ({ link, isScrolled }) => {
   return (
     <a
       href={link.href}
+      onClick={(e) => handleNavClick(link.href, e)}
       className={`${
         isScrolled 
           ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-400' 

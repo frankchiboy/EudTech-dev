@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from '../../types';
+import { handleNavClick } from '../../utils/helpers/navigation';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -17,7 +18,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, navLinks, onClose }) =>
           <a
             key={link.name}
             href={link.href}
-            onClick={onClose}
+            onClick={(e) => {
+              handleNavClick(link.href, e);
+              onClose();
+            }}
             className="text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
           >
             {link.name}

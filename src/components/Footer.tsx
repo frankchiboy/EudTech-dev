@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from './common/Logo';
+import { handleNavClick } from '../utils/helpers/navigation';
 
 interface FooterLink {
   name: string;
@@ -87,6 +88,7 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
                         <a
                           href={link.href}
                           target={link.target}
+                          onClick={!link.target ? (e) => handleNavClick(link.href, e) : undefined}
                           className="text-base text-gray-400 hover:text-gray-300 dark:text-gray-300 dark:hover:text-white transition-all duration-300 group relative inline-block"
                         >
                           {link.name}
@@ -112,6 +114,7 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
                       {link.active ? (
                         <a
                           href={link.href}
+                          onClick={(e) => handleNavClick(link.href, e)}
                           className="text-base text-gray-400 hover:text-gray-300 dark:text-gray-300 dark:hover:text-white transition duration-150"
                         >
                           {link.name}
@@ -138,6 +141,7 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
                       {link.active ? (
                         <a
                           href={link.href}
+                          onClick={(e) => handleNavClick(link.href, e)}
                           className="text-base text-gray-400 hover:text-gray-300 dark:text-gray-300 dark:hover:text-white transition duration-150"
                         >
                           {link.name}

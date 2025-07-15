@@ -876,25 +876,7 @@ const ProductDetails: React.FC = () => {
                   type="button"
                   className="inline-block px-8 py-3 rounded-lg border border-eudtech-600 text-eudtech-600 font-semibold hover:bg-eudtech-50 dark:hover:bg-gray-800 transition-colors text-lg cursor-pointer bg-transparent"
                   onClick={() => {
-                    if (window.location.pathname === '/') {
-                      // 首頁直接平滑滾動
-                      const el = document.getElementById('contact');
-                      if (el) {
-                        const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
-                        window.scrollTo({ top: y, behavior: 'smooth' });
-                      }
-                    } else {
-                      // 非首頁用 react-router 跳首頁並帶 state
-                      window.history.pushState({}, '', '/');
-                      window.dispatchEvent(new PopStateEvent('popstate'));
-                      setTimeout(() => {
-                        const el = document.getElementById('contact');
-                        if (el) {
-                          const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
-                          window.scrollTo({ top: y, behavior: 'smooth' });
-                        }
-                      }, 300);
-                    }
+                    window.location.href = '/#contact';
                   }}
                 >
                   {isEnglish ? 'Contact Us' : '聯絡我們'}
