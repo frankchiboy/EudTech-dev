@@ -7,7 +7,7 @@ export const getNavLinks = (isEnglish: boolean): NavLink[] => {
       href: '#home'
     },
     {
-      name: isEnglish ? 'EudTech Products' : 'EudTech 產品',
+      name: isEnglish ? 'Products' : '產品',
       href: '#eudtech-products'
     },
     {

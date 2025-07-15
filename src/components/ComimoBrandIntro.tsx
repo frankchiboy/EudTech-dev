@@ -124,12 +124,17 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
             ? 'Discover the full range of Comino Grando products available through EudTech'
             : '探索EudTech提供的完整Comino Grando產品線'}
         </p>
-        <button
-          disabled
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-gray-400 bg-gray-300 dark:bg-gray-700 cursor-not-allowed"
-        >
-          {isEnglish ? 'Explore Comino Products (Coming Soon)' : '探索Comino產品（即將推出）'}
-        </button>
+        <div className="flex flex-col items-center">
+          <button
+            disabled
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-gray-500 bg-gray-300 dark:bg-gray-700 cursor-not-allowed mb-2"
+          >
+            {isEnglish ? 'Explore Comino Products' : '探索Comino產品'}
+          </button>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            {isEnglish ? 'Coming Soon' : '即將推出'}
+          </p>
+        </div>
       </div>
     </Section>
   );
