@@ -769,8 +769,142 @@ const ProductDetails: React.FC = () => {
               </div>
               {product.id === 3 ? (
                 <div className="mb-8">
-                  <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                    <span className="font-bold text-eudtech-700 dark:text-eudtech-400 block mb-2">
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900/20 p-8 mb-8 shadow-2xl border border-blue-100 dark:border-blue-800/30">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.1),transparent_50%)] pointer-events-none"></div>
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500"></div>
+                    <div className="relative z-10">
+                      <div className="flex items-center mb-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg mr-4">
+                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                        </div>
+                        <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+                          {isEnglish ? 'What is FinSight?' : '什麼是 FinSight?'}
+                        </h3>
+                      </div>
+                      <p className="text-xl text-gray-700 dark:text-gray-200 leading-relaxed font-medium tracking-wide">
+                        {product.description}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10 rounded-2xl blur-xl"></div>
+                    <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-3d-light dark:shadow-3d-dark overflow-hidden border border-gray-200 dark:border-gray-700">
+                      {/* 頂部裝飾條 */}
+                      <div className="h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500"></div>
+                      
+                      {/* 主要內容區域 */}
+                      <div className="p-8">
+                        <div className="text-center mb-8">
+                          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl mb-4 animate-floating">
+                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                          </div>
+                          <h3 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent mb-2">
+                            {isEnglish ? 'Solution Architecture' : '解決方案架構'}
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-300 text-lg font-medium">
+                            {isEnglish ? 'Comprehensive Financial AI Framework' : '全面的金融AI架構'}
+                          </p>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {/* API 模組 */}
+                          <div className="group">
+                            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-700/30 hover:shadow-glow-blue transition-all duration-500 hover:-translate-y-1 hover:scale-105">
+                              <div className="flex items-center mb-4">
+                                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg mr-3">
+                                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                  </svg>
+                                </div>
+                                <h4 className="text-xl font-bold text-blue-700 dark:text-blue-300 group-hover:text-blue-600 dark:group-hover:text-blue-200 transition-colors">
+                                  FinSight-API
+                                </h4>
+                              </div>
+                              <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
+                                {isEnglish
+                                  ? 'Unified financial data API (technical indicators, price, extensible to news, macro, financials). RESTful, SaaS/on-premises, easy LLM/enterprise integration.'
+                                  : '金融資料整合API（技術指標、價格、可擴充新聞/總經/財報），RESTful設計，SaaS雲端或本地端，LLM/企業系統可直接串接。'}
+                              </p>
+                            </div>
+                          </div>
+                          
+                          {/* GTP 模組 */}
+                          <div className="group">
+                            <div className="bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-700/30 hover:shadow-glow-teal transition-all duration-500 hover:-translate-y-1 hover:scale-105">
+                              <div className="flex items-center mb-4">
+                                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center shadow-lg mr-3">
+                                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                  </svg>
+                                </div>
+                                <h4 className="text-xl font-bold text-purple-700 dark:text-purple-300 group-hover:text-purple-600 dark:group-hover:text-purple-200 transition-colors">
+                                  FinSight GTP
+                                </h4>
+                              </div>
+                              <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
+                                {isEnglish
+                                  ? 'MVP demo for LLM interaction (ChatGPT Plugin, Hugging Face, local LLMs).'
+                                  : '語言模型互動 MVP 展示（支援 ChatGPT Plugin、Hugging Face、本地 LLM）。'}
+                              </p>
+                            </div>
+                          </div>
+                          
+                          {/* LLM 應用任務 */}
+                          <div className="group">
+                            <div className="bg-gradient-to-br from-teal-50 to-green-100 dark:from-teal-900/20 dark:to-green-900/20 rounded-xl p-6 border border-teal-200 dark:border-teal-700/30 hover:shadow-glow-blue transition-all duration-500 hover:-translate-y-1 hover:scale-105">
+                              <div className="flex items-center mb-4">
+                                <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-green-600 rounded-lg flex items-center justify-center shadow-lg mr-3">
+                                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                  </svg>
+                                </div>
+                                <h4 className="text-xl font-bold text-teal-700 dark:text-teal-300 group-hover:text-teal-600 dark:group-hover:text-teal-200 transition-colors">
+                                  {isEnglish ? 'LLM Tasks' : 'LLM 可執行'}
+                                </h4>
+                              </div>
+                              <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
+                                {isEnglish
+                                  ? 'Explain indicators, trend prediction, auto reports, charting, simulate strategies, custom GPT.'
+                                  : '指標解釋、趨勢預測、自動報告、圖表、策略模擬、專屬GPT。'}
+                              </p>
+                            </div>
+                          </div>
+                          
+                          {/* 彈性與企業服務 */}
+                          <div className="group">
+                            <div className="bg-gradient-to-br from-orange-50 to-red-100 dark:from-orange-900/20 dark:to-red-900/20 rounded-xl p-6 border border-orange-200 dark:border-orange-700/30 hover:shadow-glow-teal transition-all duration-500 hover:-translate-y-1 hover:scale-105">
+                              <div className="flex items-center mb-4">
+                                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center shadow-lg mr-3">
+                                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                  </svg>
+                                </div>
+                                <h4 className="text-xl font-bold text-orange-700 dark:text-orange-300 group-hover:text-orange-600 dark:group-hover:text-orange-200 transition-colors">
+                                  {isEnglish ? 'Extensibility & Services' : '彈性延伸與企業服務'}
+                                </h4>
+                              </div>
+                              <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
+                                {isEnglish
+                                  ? 'Add data sources, connect internal APIs, support private LLMs, multi-role/language, deployment consulting, custom GPT assistant.'
+                                  : '擴充資料源、串接內部API、支援私有LLM、多角色/多語系、部署顧問、專屬GPT助理。'}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* 底部裝飾 */}
+                      <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 opacity-50"></div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="mb-8">
                       {isEnglish ? 'What is FinSight?' : '什麼是 FinSight?'}
                     </span>
                     {product.description}
@@ -852,36 +986,79 @@ const ProductDetails: React.FC = () => {
             {/* CTA 行動按鈕 */}
             {product.id === 3 && (
               <div className="flex flex-col items-center mt-8">
-                {/* 產品圖片 */}
-                <div className="flex justify-center items-center overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group relative mb-6">
-                  <img 
-                    src={product.image} 
-                    alt={product.title}
-                    className="w-full h-96 object-contain bg-gray-50 dark:bg-gray-700 rounded-lg transform transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/20 to-transparent dark:from-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                {/* 產品圖片 - 增強版 */}
+                <div className="relative mb-8 group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 rounded-2xl blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
+                  <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-3d-light dark:shadow-3d-dark overflow-hidden border-2 border-gray-200 dark:border-gray-700 group-hover:border-blue-500 dark:group-hover:border-blue-400 transition-all duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-purple-500/10 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="p-4">
+                      <img 
+                        src={product.image} 
+                        alt={product.title}
+                        className="w-full h-80 object-cover rounded-lg transform transition-all duration-700 group-hover:scale-105 group-hover:rotate-1"
+                      />
+                    </div>
+                    {/* 圖片底部資訊條 */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <p className="text-white text-sm font-medium">
+                        {isEnglish ? 'Financial AI Data Analysis Platform' : '金融AI數據分析平台'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="mb-2 text-base text-gray-700 dark:text-gray-300 text-center">
-                  {isEnglish
-                    ? 'Experience the FinSightGTP demo (MVP) to see how LLMs interact with real financial data.'
-                    : '立即體驗 FinSightGTP（MVP），感受語言模型與金融資料的互動應用。'}
+                
+                {/* 體驗說明 */}
+                <div className="text-center mb-6">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full shadow-lg mb-3 animate-pulse">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <p className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                    {isEnglish ? 'Ready to Experience?' : '準備好體驗了嗎？'}
+                  </p>
+                  <p className="text-base text-gray-600 dark:text-gray-300 max-w-md mx-auto leading-relaxed">
+                    {isEnglish
+                      ? 'Experience the FinSightGTP demo (MVP) to see how LLMs interact with real financial data.'
+                      : '立即體驗 FinSightGTP（MVP），感受語言模型與金融資料的互動應用。'}
+                  </p>
                 </div>
-                <a
-                  href="https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight"
-                  className="inline-block px-8 py-3 mb-3 rounded-lg bg-eudtech-600 text-white font-semibold shadow-lg hover:bg-eudtech-700 transition-colors text-lg"
-                  target="_blank" rel="noopener noreferrer"
-                >
-                  {isEnglish ? 'FinSightGTP Demo' : 'FinSightGTP體驗'}
-                </a>
-                <button
-                  type="button"
-                  className="inline-block px-8 py-3 rounded-lg border border-eudtech-600 text-eudtech-600 font-semibold hover:bg-eudtech-50 dark:hover:bg-gray-800 transition-colors text-lg cursor-pointer bg-transparent"
-                  onClick={() => {
-                    handleNavClick('#contact');
-                  }}
-                >
-                  {isEnglish ? 'Contact Us' : '聯絡我們'}
-                </button>
+                
+                {/* 按鈕組 */}
+                <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm">
+                  <a
+                    href="https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight"
+                    className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-glow-blue transition-all duration-500 hover:-translate-y-1 hover:scale-105 overflow-hidden"
+                    target="_blank" rel="noopener noreferrer"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-700 via-purple-700 to-teal-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative flex items-center">
+                      <svg className="w-5 h-5 mr-2 transform group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <span className="text-lg">
+                        {isEnglish ? 'FinSightGTP Demo' : 'FinSightGTP體驗'}
+                      </span>
+                    </div>
+                  </a>
+                  
+                  <button
+                    type="button"
+                    className="group relative inline-flex items-center justify-center px-8 py-4 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 font-bold rounded-xl border-2 border-blue-600 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 transition-all duration-500 hover:-translate-y-1 hover:scale-105 shadow-lg hover:shadow-xl"
+                    onClick={() => {
+                      handleNavClick('#contact');
+                    }}
+                  >
+                    <div className="flex items-center">
+                      <svg className="w-5 h-5 mr-2 transform group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                      </svg>
+                      <span className="text-lg">
+                        {isEnglish ? 'Contact Us' : '聯絡我們'}
+                      </span>
+                    </div>
+                  </button>
+                </div>
               </div>
             )}
 
@@ -903,25 +1080,49 @@ const ProductDetails: React.FC = () => {
       <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-16 relative">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTYgNnY2aDZ2LTZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30 dark:opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-8 text-center">
-            {isEnglish ? 'System Overview' : '系統總覽'}
-          </h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white dark:bg-gray-800 border border-neutral-200 dark:border-neutral-700">
-              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
-                {Object.entries(product.specs).map(([key, value], index) => (
-                  <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50 dark:bg-neutral-800' : 'bg-white dark:bg-gray-800'}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 dark:text-neutral-100 w-1/3">
-                      {isEnglish ? key : technicalSpecsTranslations[key] || key}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                      {value}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full shadow-2xl mb-6 animate-floating">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-4">
+              {isEnglish ? 'System Overview' : '系統總覽'}
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
           </div>
+          
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-teal-500/5 rounded-2xl blur-xl"></div>
+            <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-3d-light dark:shadow-3d-dark overflow-hidden border-2 border-gray-200 dark:border-gray-700">
+              {/* 頂部裝飾 */}
+              <div className="h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500"></div>
+              
+              <div className="overflow-x-auto">
+                <table className="min-w-full">
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                    {Object.entries(product.specs).map(([key, value], index) => (
+                      <tr key={index} className={`group hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 transition-all duration-300 ${index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-800'}`}>
+                        <td className="px-8 py-6 whitespace-nowrap text-base font-bold text-gray-900 dark:text-gray-100 w-1/3 border-r border-gray-200 dark:border-gray-700">
+                          <div className="flex items-center">
+                            <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mr-3 group-hover:animate-pulse"></div>
+                            {isEnglish ? key : technicalSpecsTranslations[key] || key}
+                          </div>
+                        </td>
+                        <td className="px-8 py-6 text-base text-gray-700 dark:text-gray-300 font-medium">
+                          {value}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              
+              {/* 底部裝飾 */}
+              <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 opacity-50"></div>
+            </div>
+          </div>
+          
           {product.id !== 3 && (
             <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 text-center">
               {isEnglish 
@@ -934,29 +1135,52 @@ const ProductDetails: React.FC = () => {
 
       {/* Technical Specifications from Detailed Description */}
       {product.detailedDescription && (
-        <div className="bg-white dark:bg-gray-900 py-16">
+        <div className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-16 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.1),transparent_50%)] pointer-events-none"></div>
           <div className="max-w-7xl mx-auto px-4">
             <div className="prose prose-lg dark:prose-invert max-w-none">
               {/* Technical Specifications Table */}
               <div className="mb-12">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6 text-center">
-                  {isEnglish ? 'Technical Specifications' : '技術規格'}
-                </h3>
-                <div className="overflow-x-auto">
-                  <table className="min-w-full bg-white dark:bg-gray-800 border border-neutral-200 dark:border-neutral-700">
-                    <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
-                      {Object.entries(product.detailedDescription.technicalSpecs).map(([key, value], index) => (
-                        <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50 dark:bg-neutral-800' : 'bg-white dark:bg-gray-800'}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 dark:text-neutral-100 w-1/3">
-                            {isEnglish ? key : technicalSpecsTranslations[key] || key}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                            {value}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-teal-500 to-blue-600 rounded-2xl shadow-2xl mb-6 animate-floating">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 dark:from-teal-400 dark:to-blue-400 bg-clip-text text-transparent mb-4">
+                    {isEnglish ? 'Technical Specifications' : '技術規格'}
+                  </h3>
+                  <div className="w-20 h-1 bg-gradient-to-r from-teal-500 to-blue-600 mx-auto rounded-full"></div>
+                </div>
+                
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500/5 via-blue-500/5 to-purple-500/5 rounded-2xl blur-xl"></div>
+                  <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-3d-light dark:shadow-3d-dark overflow-hidden border-2 border-gray-200 dark:border-gray-700">
+                    <div className="h-2 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-600"></div>
+                    
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full">
+                        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                          {Object.entries(product.detailedDescription.technicalSpecs).map(([key, value], index) => (
+                            <tr key={index} className={`group hover:bg-gradient-to-r hover:from-teal-50 hover:to-blue-50 dark:hover:from-teal-900/20 dark:hover:to-blue-900/20 transition-all duration-300 ${index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-800'}`}>
+                              <td className="px-8 py-6 whitespace-nowrap text-base font-bold text-gray-900 dark:text-gray-100 w-1/3 border-r border-gray-200 dark:border-gray-700">
+                                <div className="flex items-center">
+                                  <div className="w-3 h-3 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full mr-3 group-hover:animate-pulse"></div>
+                                  {isEnglish ? key : technicalSpecsTranslations[key] || key}
+                                </div>
+                              </td>
+                              <td className="px-8 py-6 text-base text-gray-700 dark:text-gray-300 font-medium">
+                                {value}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    <div className="h-1 bg-gradient-to-r from-teal-500 via-blue-500 to-purple-600 opacity-50"></div>
+                  </div>
                 </div>
                 {product.id !== 3 && (
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 text-center">
@@ -971,19 +1195,42 @@ const ProductDetails: React.FC = () => {
               {product.detailedDescription && Array.isArray((product.detailedDescription as { orderInfo?: unknown }).orderInfo) &&
                 ((product.detailedDescription as { orderInfo?: unknown }).orderInfo as Array<any>).length > 0 && (
                 <div className="mb-12">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">
-                    {isEnglish ? 'Available Configurations' : '可用配置'}
-                  </h3>
-                  <div className="space-y-4">
+                  <div className="text-center mb-12">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl shadow-2xl mb-6 animate-floating">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                      </svg>
+                    </div>
+                    <h3 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-teal-600 dark:from-green-400 dark:to-teal-400 bg-clip-text text-transparent mb-4">
+                      {isEnglish ? 'Available Configurations' : '可用配置'}
+                    </h3>
+                    <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-teal-600 mx-auto rounded-full"></div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {(product.detailedDescription as { orderInfo: Array<{type: string, pn: string, model: string, description: string}> }).orderInfo.map((item, index) => (
-                      <div key={index} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-                        <div className="flex justify-between items-start mb-3">
-                          <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                            {isEnglish ? (formatConfigType[item.type] || item.type) : orderInfoTypeTranslations[item.type] || item.type}
-                          </h4>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">{item.model}</span>
+                      <div key={index} className="group">
+                        <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-700 hover:border-green-500 dark:hover:border-teal-400 transition-all duration-500 hover:shadow-glow-teal hover:-translate-y-1 hover:scale-105">
+                          <div className="flex items-center justify-between mb-4">
+                            <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 group-hover:text-green-600 dark:group-hover:text-teal-400 transition-colors">
+                              {isEnglish ? (formatConfigType[item.type] || item.type) : orderInfoTypeTranslations[item.type] || item.type}
+                            </h4>
+                            <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full font-medium">
+                              {item.model}
+                            </span>
+                          </div>
+                          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                            {item.description}
+                          </p>
+                          <div className="mt-4 flex items-center text-green-600 dark:text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                            <span className="text-sm font-medium">
+                              {isEnglish ? 'Learn More' : '了解更多'}
+                            </span>
+                          </div>
                         </div>
-                        <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
                       </div>
                     ))}
                   </div>
@@ -993,11 +1240,29 @@ const ProductDetails: React.FC = () => {
               {/* Additional Features */}
               {product.detailedDescription && 'additionalFeatures' in product.detailedDescription && product.detailedDescription.additionalFeatures && (
                 <div className="mb-12">
-                  <div className="space-y-6">
+                  <div className="text-center mb-12">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl shadow-2xl mb-6 animate-floating">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+                      </svg>
+                    </div>
+                    <h3 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-4">
+                      {isEnglish ? 'Additional Features' : '其他特色'}
+                    </h3>
+                    <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-600 mx-auto rounded-full"></div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {Object.entries(product.detailedDescription.additionalFeatures as Record<string, string>).map(([title, description], index) => (
-                      <div key={index} className="border-l-4 border-eudtech-600 pl-6">
-                        <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{title}</h4>
-                        <p className="text-gray-700 dark:text-gray-300">{description as string}</p>
+                      <div key={index} className="group">
+                        <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 border-l-4 border-purple-500 hover:border-pink-500 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 hover:scale-105">
+                          <h4 className="text-lg font-bold text-purple-700 dark:text-purple-300 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors mb-3">
+                            {title}
+                          </h4>
+                          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                            {description as string}
+                          </p>
+                        </div>
                       </div>
                     ))}
                   </div>
