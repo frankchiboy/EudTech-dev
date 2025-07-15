@@ -26,52 +26,88 @@ const NavBar: React.FC<NavBarProps> = ({
   toggleDarkMode 
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const isScrolled = useScrollDetection(20);
+  const [scrollY, setScrollY] = useState(0);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isProductDetailPage = location.pathname.startsWith('/products/');
   const navLinks = getNavLinks(isEnglish);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // 計算滾動進度（0-1）
+  const scrollProgress = Math.min(scrollY / 100, 1);
+  const isScrolled = scrollY > 20;
+
   // 根據滾動狀態和主題模式決定背景色
   const getBackgroundColor = () => {
-    if (!isScrolled) {
-      if (isProductDetailPage) {
-        return isDarkMode ? 'rgba(17, 24, 39, 0.95)' : 'rgba(255, 255, 255, 0.95)';
-      }
-      return 'transparent';
+    if (isProductDetailPage) {
+      // 產品詳細頁面始終有背景
+      const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
+      const opacity = 0.85 + (scrollProgress * 0.15); // 0.85 -> 1.0
+      return `rgba(${bgColor}, ${opacity})`;
+    } else {
+      // 首頁漸變效果
+      const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
+      const opacity = scrollProgress * 0.95; // 0 -> 0.95
+      return `rgba(${bgColor}, ${opacity})`;
     }
-    return isDarkMode ? 'rgba(17, 24, 39, 0.95)' : 'rgba(255, 255, 255, 0.95)';
   };
 
   // 根據滾動狀態和主題模式決定邊框色
   const getBorderColor = () => {
-    if (!isScrolled) return 'transparent';
-    return isDarkMode ? 'rgba(55, 65, 81, 0.5)' : 'rgba(229, 231, 235, 0.3)';
+    const borderColor = isDarkMode ? '55, 65, 81' : '229, 231, 235';
+    const opacity = scrollProgress * 0.3; // 0 -> 0.3
+    return `rgba(${borderColor}, ${opacity})`;
   };
 
   // 根據頁面類型和滾動狀態決定文字顏色
   const getTextColorClass = () => {
-    if (!isScrolled || (isProductDetailPage && !isScrolled)) {
-      // 頂端時：始終使用白色文字（適合深色背景）
-      return 'text-white hover:text-blue-200';
+    if (isProductDetailPage) {
+      // 產品詳細頁面根據主題模式決定
+      return isDarkMode 
+        ? 'text-gray-100 hover:text-blue-300' 
+        : 'text-gray-800 hover:text-blue-600';
     } else {
-      // 滾動時：根據主題模式決定顏色
-      if (isDarkMode) {
-        return 'text-gray-100 hover:text-blue-300';
+      // 首頁根據滾動進度漸變
+      const textOpacity = Math.max(0.8, 1 - scrollProgress);
+      if (scrollProgress < 0.3) {
+        return 'text-white hover:text-blue-200';
       } else {
-        return 'text-gray-800 hover:text-blue-600';
+        return isDarkMode 
+          ? 'text-gray-100 hover:text-blue-300' 
+          : 'text-gray-800 hover:text-blue-600';
       }
     }
   };
 
+  // 計算模糊效果
+  const getBlurEffect = () => {
+    if (isProductDetailPage) {
+      return scrollProgress > 0.1 ? 'blur(8px)' : 'blur(4px)';
+    }
+    return scrollProgress > 0.3 ? 'blur(12px)' : 'none';
+  };
+
+  // 計算陰影效果
+  const getShadowEffect = () => {
+    const shadowOpacity = scrollProgress * 0.1;
+    return `0 1px 3px 0 rgba(0, 0, 0, ${shadowOpacity})`;
+  };
   return (
     <nav 
-      className="fixed w-full z-50 transition-all duration-300"
+      className="fixed w-full z-50 transition-all duration-500 ease-out"
       style={{
         backgroundColor: getBackgroundColor(),
-        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
-        borderBottom: isScrolled ? `1px solid ${getBorderColor()}` : 'none',
-        boxShadow: isScrolled ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)' : 'none'
+        backdropFilter: getBlurEffect(),
+        borderBottom: `1px solid ${getBorderColor()}`,
+        boxShadow: getShadowEffect()
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,7 +123,7 @@ const NavBar: React.FC<NavBarProps> = ({
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(link.href, e)}
-                    className={`${getTextColorClass()} px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+                    className={`${getTextColorClass()} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-out`}
                   >
                     {link.name}
                   </a>
@@ -130,7 +166,7 @@ const NavBar: React.FC<NavBarProps> = ({
             />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`${getTextColorClass()} p-1 rounded-full transition-colors duration-200`}
+              className={`${getTextColorClass()} p-1 rounded-full transition-all duration-300 ease-out`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
