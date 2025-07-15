@@ -48,13 +48,13 @@ const NavBar: React.FC<NavBarProps> = ({
   // 根據滾動狀態和主題模式決定背景色
   const getBackgroundColor = () => {
     if (isProductDetailPage) {
-      // 產品詳細頁面：頂端透明，滾動時顯示毛玻璃
-      if (scrollProgress < 0.1) {
+      // 產品詳細頁面：完全透明到毛玻璃效果
+      if (scrollProgress === 0) {
         return 'transparent';
       }
-      // 使用更適合毛玻璃效果的背景色
-      const bgColor = isDarkMode ? '31, 41, 55' : '255, 255, 255';
-      const opacity = Math.min(scrollProgress * 0.8, 0.7); // 降低透明度
+      // 滾動時顯示毛玻璃效果
+      const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255'; // 使用gray-900和白色
+      const opacity = Math.min(scrollProgress * 0.8, 0.85);
       return `rgba(${bgColor}, ${opacity})`;
     } else {
       // 首頁漸變效果
@@ -66,7 +66,7 @@ const NavBar: React.FC<NavBarProps> = ({
 
   // 根據滾動狀態和主題模式決定邊框色
   const getBorderColor = () => {
-    if (isProductDetailPage && scrollProgress < 0.1) {
+    if (isProductDetailPage && scrollProgress === 0) {
       return 'transparent';
     }
     const borderColor = isDarkMode ? '55, 65, 81' : '229, 231, 235';
@@ -97,7 +97,7 @@ const NavBar: React.FC<NavBarProps> = ({
   // 計算模糊效果
   const getBlurEffect = () => {
     if (isProductDetailPage) {
-      if (scrollProgress < 0.1) {
+      if (scrollProgress === 0) {
         return 'none';
       }
       return scrollProgress > 0.3 ? 'blur(10px)' : 'blur(6px)';
@@ -107,7 +107,7 @@ const NavBar: React.FC<NavBarProps> = ({
 
   // 計算陰影效果
   const getShadowEffect = () => {
-    if (isProductDetailPage && scrollProgress < 0.1) {
+    if (isProductDetailPage && scrollProgress === 0) {
       return 'none';
     }
     const shadowOpacity = Math.min(scrollProgress * 0.08, 0.05);
