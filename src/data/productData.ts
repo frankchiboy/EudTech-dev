@@ -121,46 +121,6 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
     },
     comingSoon: false
   },
-  {
-    id: 4, 
-    title: isEnglish ? 'EudTech Edge AI Appliance' : 'EudTech 邊緣AI設備',
-    description: isEnglish
-      ? 'Compact AI processing solution for edge computing and real-time inference.'
-      : '緊湊型AI處理解決方案，適用於邊緣運算和即時推論。',
-    icon: React.createElement(Cpu, { className: "h-8 w-8 text-teal-700" }),
-    image: "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg",
-    features: isEnglish
-      ? [
-          'Low-latency Inference',
-          'Compact Form Factor',
-          'Energy Efficient',
-          'Local Processing',
-          'Offline Capability',
-          'Easy Integration'
-        ]
-      : [
-          '低延遲推論',
-          '緊湊型設計',
-          '節能高效',
-          '本地處理',
-          '離線功能',
-          '易於整合'
-        ],
-    specs: isEnglish ? {
-      'Processor': 'Intel Core i7-1265U',
-      'Memory': '32GB LPDDR5',
-      'Storage': '1TB NVMe SSD',
-      'GPU': 'NVIDIA Jetson AGX',
-      'Power': '65W TDP'
-    } : {
-      '處理器': 'Intel Core i7-1265U',
-      '記憶體': '32GB LPDDR5',
-      '儲存': '1TB NVMe SSD',
-      'GPU': 'NVIDIA Jetson AGX',
-      '功耗': '65W TDP'
-    },
-    comingSoon: true
-  }
 ];
 
 export const getCominoProducts = (isEnglish: boolean): Product[] => [

@@ -11,8 +11,8 @@ export const getNavLinks = (isEnglish: boolean): NavLink[] => {
       href: '#eudtech-products'
     },
     {
-      name: isEnglish ? 'Comino Products' : 'Comino 產品',
-      href: '#comino-products'
+      name: isEnglish ? 'Comino' : 'Comino',
+      href: '#comino-brand'
     },
     {
       name: isEnglish ? 'About' : '關於我們',

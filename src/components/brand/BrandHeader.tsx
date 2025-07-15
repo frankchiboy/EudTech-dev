@@ -9,7 +9,35 @@ const BrandHeader: React.FC<BrandHeaderProps> = ({ isEnglish }) => {
     <div className="text-center mb-16">
       <div className="flex justify-center mb-8">
         <div className="flex items-center space-x-4">
-          <img 
+          <a 
+            href="https://www.grando.ai/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover:opacity-80 transition-opacity"
+          >
+            <img 
+              src="/comino-grando-logo.png" 
+              alt="Comino Grando Logo" 
+              className="h-16 object-contain bg-gray-800 p-3 rounded shadow-md"
+            />
+          </a>
+        </div>
+      </div>
+      
+      <h2 className="text-base font-semibold tracking-wide text-blue-600 dark:text-blue-400 uppercase mb-4">
+        {isEnglish ? 'Authorized Distributor' : '授權經銷商'}
+      </h2>
+      
+      <h3 className="text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl mb-6">
+        <a 
+          href="https://www.grando.ai/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          {isEnglish ? 'Comino Grando' : 'Comino Grando'}
+        </a>
+      </h3>
             src="/comino-grando-logo.png" 
             alt="Comino Grando Logo" 
             className="h-16 object-contain bg-gray-800 p-3 rounded shadow-md"

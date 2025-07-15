@@ -118,43 +118,18 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
       <TechnologyPartners partners={technologies} isEnglish={isEnglish} />
       <CustomerReviews reviews={reviews} isEnglish={isEnglish} />
       
-      {/* Company Facility Images */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <div className="rounded-lg overflow-hidden shadow-lg">
-          <img 
-            src="/comino-facility-1.jpg" 
-            alt="Comino Manufacturing Facility" 
-            className="w-full h-48 object-cover"
-          />
-        </div>
-        <div className="rounded-lg overflow-hidden shadow-lg">
-          <img 
-            src="/comino-facility-2.jpg" 
-            alt="Comino Research Lab" 
-            className="w-full h-48 object-cover"
-          />
-        </div>
-        <div className="rounded-lg overflow-hidden shadow-lg">
-          <img 
-            src="/comino-facility-3.jpg" 
-            alt="Comino Quality Control" 
-            className="w-full h-48 object-cover"
-          />
-        </div>
-      </div>
-      
       <div className="text-center">
         <p className="text-gray-600 dark:text-gray-300 mb-6">
           {isEnglish
             ? 'Discover the full range of Comino Grando products available through EudTech'
             : '探索EudTech提供的完整Comino Grando產品線'}
         </p>
-        <a
-          href="#comino-products"
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-700 hover:bg-blue-800 transition duration-200"
+        <button
+          disabled
+          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-gray-400 bg-gray-300 dark:bg-gray-700 cursor-not-allowed"
         >
-          {isEnglish ? 'Explore Comino Products' : '探索Comino產品'}
-        </a>
+          {isEnglish ? 'Explore Comino Products (Coming Soon)' : '探索Comino產品（即將推出）'}
+        </button>
       </div>
     </Section>
   );
