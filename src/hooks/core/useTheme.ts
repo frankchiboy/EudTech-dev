@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ThemeMode } from '../../types';
-import { THEME_STORAGE_KEY } from '../../constants';
+import { THEME_STORAGE_KEY } from '../../constants/index';
 
 export const useTheme = () => {
   const [themeMode, setThemeMode] = useState<ThemeMode>('system');

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { LANGUAGE_STORAGE_KEY } from '../../constants';
+import { LANGUAGE_STORAGE_KEY } from '../../constants/index';
 
 export const useLanguage = () => {
   const [isEnglish, setIsEnglish] = useState(false);

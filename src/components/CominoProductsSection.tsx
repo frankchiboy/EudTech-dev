@@ -1,6 +1,7 @@
 import React from 'react';
 import { Server, Cpu, Shield, ChevronRight, Monitor } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguageContext } from '../contexts/LanguageContext';
 
 interface CominoProductsSectionProps {
   isEnglish: boolean;
