@@ -1,7 +1,22 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import HeroSection from './components/HeroSection';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { LanguageProvider } from './contexts/LanguageContext';
+import AppRoutes from './components/AppRoutes';
+
+function App() {
+  return (
+    <ThemeProvider>
+      <LanguageProvider>
+        <Router>
+          <div className="min-h-screen transition-colors duration-300 dark:bg-gray-900">
+            <AppRoutes />
+          </div>
+        </Router>
+      </LanguageProvider>
+    </ThemeProvider>
+  );
+}
+
+export default App;
 import EudTechProductsSection from './components/EudTechProductsSection';
 import ComimoBrandIntro from './components/ComimoBrandIntro';
 import CominoProductsSection from './components/CominoProductsSection';
