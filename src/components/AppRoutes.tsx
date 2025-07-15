@@ -36,9 +36,8 @@ const AppRoutes: React.FC = () => {
             <ContactSection isEnglish={isEnglish} />
           </>
         } />
-        <Route path="/products/:id" element={<ProductDetails isEnglish={isEnglish} />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
       </Routes>
-      <Footer isEnglish={isEnglish} />
     </>
   );
 };

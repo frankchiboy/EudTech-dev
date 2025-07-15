@@ -1,12 +1,15 @@
 import React from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, Server, Cpu, Shield } from 'lucide-react';
+import { useThemeContext } from '../contexts/ThemeContext';
+import { useLanguageContext } from '../contexts/LanguageContext';
+import NavBar from './navigation/NavBar';
+import Footer from './Footer';
 
-interface ProductDetailsProps {
-  isEnglish: boolean;
-}
+const ProductDetails: React.FC = () => {
+  const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
+  const { isEnglish, toggleLanguage } = useLanguageContext();
 
-const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
   const { id } = useParams();
   const location = useLocation();
   
@@ -731,7 +734,15 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
   }
 
   return (
-    <div className="min-h-0 bg-neutral-50 overflow-x-hidden">
+    <>
+      <NavBar 
+        isEnglish={isEnglish}
+        toggleLanguage={toggleLanguage}
+        themeMode={themeMode}
+        isDarkMode={isDarkModeActive}
+        toggleDarkMode={toggleDarkMode}
+      />
+      <div className="min-h-screen bg-neutral-50 overflow-x-hidden pt-16">
       {/* Product Header */}
       <div className="bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-20">
@@ -1040,7 +1051,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ isEnglish }) => {
           </div>
         </div>
       )}
-    </div>
+      </div>
+      <Footer isEnglish={isEnglish} />
+    </>
   );
 };
 

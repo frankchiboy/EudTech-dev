@@ -62,12 +62,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 </span>
               </Link>
             )}
-            <a
-              href="#contact"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium ml-auto"
-            >
-              {isEnglish ? 'Get Quote' : '取得報價'}
-            </a>
+            {/* Only show Get Quote for products other than EudTech 雲端AI桌面 (ID: 2) */}
+            {product.id !== 2 && (
+              <a
+                href="#contact"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium ml-auto"
+              >
+                {isEnglish ? 'Get Quote' : '取得報價'}
+              </a>
+            )}
           </div>
         </div>
       </div>
