@@ -768,9 +768,8 @@ const ProductDetails: React.FC = () => {
                 </h1>
               </div>
               {product.id === 3 ? (
-                <>
-                  {/* Hero Section */}
-                  <div className="mb-8">
+                {/* Hero Section */}
+                <div className="mb-8">
                   <div className="bg-gradient-to-r from-blue-50 to-teal-50 dark:from-blue-900/20 dark:to-teal-900/20 p-8 rounded-2xl border border-blue-200 dark:border-blue-800 mb-6">
                     <h2 className="text-2xl font-bold text-eudtech-700 dark:text-eudtech-400 mb-4 flex items-center">
                       <span className="mr-3">🚀</span>
@@ -883,8 +882,7 @@ const ProductDetails: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  </div>
-                </>
+                </div>
               ) : (
                 <div className="mb-8">
                   <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
