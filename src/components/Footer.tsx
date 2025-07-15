@@ -43,9 +43,9 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
     products: {
       title: isEnglish ? 'Products' : '產品',
       links: [
-        { name: isEnglish ? 'AI Server' : 'AI伺服器', href: '#eudtech-products', active: true },
-        { name: isEnglish ? 'Cloud AI Services' : '雲端AI服務', href: '#eudtech-products', active: true },
-        { name: isEnglish ? 'Comino Grando' : 'Comino Grando', href: '#comino-products', active: true },
+        { name: isEnglish ? 'EudTech Cloud AI Desktop' : 'EudTech 雲端AI桌面', href: '#eudtech-products', active: true },
+        { name: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統', href: '#eudtech-products', active: true },
+        { name: isEnglish ? 'Comino Grando' : 'Comino Grando', href: '#comino-brand', active: true },
       ],
     },
     legal: {
