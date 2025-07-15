@@ -28,6 +28,7 @@ const NavBar: React.FC<NavBarProps> = ({
   const isScrolled = useScrollDetection(20);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const isProductDetailPage = location.pathname.startsWith('/products/');
   const navLinks = getNavLinks(isEnglish);
 
   // 根據滾動狀態和主題模式決定背景色
@@ -40,6 +41,17 @@ const NavBar: React.FC<NavBarProps> = ({
   const getBorderColor = () => {
     if (!isScrolled) return 'transparent';
     return isDarkMode ? 'rgba(75, 85, 99, 0.3)' : 'rgba(229, 231, 235, 0.3)';
+  };
+
+  // 根據頁面類型和滾動狀態決定文字顏色
+  const getTextColorClass = () => {
+    if (!isScrolled) {
+      // 頂端時：產品詳細頁面總是白色文字，首頁也是白色文字
+      return 'text-white hover:text-eudtech-200 dark:text-gray-100 dark:hover:text-eudtech-300';
+    } else {
+      // 滾動時：根據主題模式決定
+      return 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-400';
+    }
   };
 
   return (
@@ -61,11 +73,14 @@ const NavBar: React.FC<NavBarProps> = ({
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 {navLinks.map((link) => (
-                  <NavLink 
-                    key={link.name} 
-                    link={link} 
-                    isScrolled={isScrolled}
-                  />
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(link.href, e)}
+                    className={`${getTextColorClass()} px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+                  >
+                    {link.name}
+                  </a>
                 ))}
               </div>
             </div>
@@ -76,12 +91,14 @@ const NavBar: React.FC<NavBarProps> = ({
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
               isScrolled={isScrolled}
+              textColorClass={getTextColorClass()}
             />
             <ThemeToggle 
               themeMode={themeMode}
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
               isScrolled={isScrolled}
+              textColorClass={getTextColorClass()}
             />
           </div>
           
@@ -90,6 +107,7 @@ const NavBar: React.FC<NavBarProps> = ({
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
               isScrolled={isScrolled}
+              textColorClass={getTextColorClass()}
               mobile
             />
             <ThemeToggle 
@@ -97,15 +115,12 @@ const NavBar: React.FC<NavBarProps> = ({
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
               isScrolled={isScrolled}
+              textColorClass={getTextColorClass()}
               mobile
             />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`${
-                isScrolled 
-                  ? 'text-neutral-800 dark:text-neutral-100' 
-                  : 'text-white'
-              } p-1 rounded-full transition-colors duration-200`}
+              className={`${getTextColorClass()} p-1 rounded-full transition-colors duration-200`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
