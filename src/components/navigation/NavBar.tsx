@@ -34,7 +34,12 @@ const NavBar: React.FC<NavBarProps> = ({
 
   // 根據滾動狀態和主題模式決定背景色
   const getBackgroundColor = () => {
-    if (!isScrolled) return 'transparent';
+    if (!isScrolled) {
+      if (isProductDetailPage) {
+        return isDarkMode ? 'rgba(17, 24, 39, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+      }
+      return 'transparent';
+    }
     return isDarkMode ? 'rgba(17, 24, 39, 0.95)' : 'rgba(255, 255, 255, 0.95)';
   };
 
