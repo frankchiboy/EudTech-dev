@@ -30,24 +30,25 @@ const NavBar: React.FC<NavBarProps> = ({
   const isHomePage = location.pathname === '/';
   const navLinks = getNavLinks(isEnglish);
 
-  // 強制檢查滾動狀態
-  useEffect(() => {
-    const handleScroll = () => {
-      // 確保在頂端時 navbar 是透明的
-      console.log('Scroll Y:', window.scrollY, 'isScrolled:', isScrolled);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isScrolled]);
+  // 根據滾動狀態和主題模式決定背景色
+  const getBackgroundColor = () => {
+    if (!isScrolled) return 'transparent';
+    return isDarkMode ? 'rgba(31, 41, 55, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+  };
+
+  // 根據滾動狀態和主題模式決定邊框色
+  const getBorderColor = () => {
+    if (!isScrolled) return 'transparent';
+    return isDarkMode ? 'rgba(75, 85, 99, 0.3)' : 'rgba(229, 231, 235, 0.3)';
+  };
 
   return (
     <nav 
       className="fixed w-full z-50 transition-all duration-300"
       style={{
-        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+        backgroundColor: getBackgroundColor(),
         backdropFilter: isScrolled ? 'blur(12px)' : 'none',
-        borderBottom: isScrolled ? '1px solid rgba(229, 231, 235, 0.3)' : 'none',
+        borderBottom: isScrolled ? `1px solid ${getBorderColor()}` : 'none',
         boxShadow: isScrolled ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)' : 'none'
       }}
     >
