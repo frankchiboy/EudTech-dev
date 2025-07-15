@@ -11,7 +11,9 @@ const NavLink: React.FC<NavLinkProps> = ({ link, isScrolled }) => {
     <a
       href={link.href}
       className={`${
-        isScrolled ? 'text-neutral-800 hover:text-eudtech-700' : 'text-white hover:text-eudtech-200'
+        isScrolled 
+          ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-400' 
+          : 'text-white hover:text-eudtech-200 dark:text-gray-100 dark:hover:text-eudtech-300'
       } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
     >
       {link.name}

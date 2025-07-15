@@ -31,8 +31,8 @@ const NavBar: React.FC<NavBarProps> = ({
     <nav 
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm border-b border-neutral-200 dark:border-gray-700' 
-          : 'bg-transparent'
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-neutral-200 dark:border-gray-700' 
+          : 'bg-transparent dark:bg-gray-900/30'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

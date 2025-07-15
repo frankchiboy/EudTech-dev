@@ -54,8 +54,8 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
       onClick={toggleDarkMode}
       className={`flex items-center ${mobile ? 'mr-2' : 'ml-2'} ${
         isScrolled 
-          ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300' 
-          : 'text-white hover:text-eudtech-200'
+          ? 'text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-400' 
+          : 'text-white hover:text-eudtech-200 dark:text-gray-100 dark:hover:text-eudtech-300'
       } ${mobile ? 'p-1' : 'px-2 py-2'} rounded-md transition-colors duration-200 relative group`}
       aria-label={getAriaLabel()}
     >
