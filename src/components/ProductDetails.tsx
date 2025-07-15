@@ -113,7 +113,7 @@ const ProductDetails: React.FC = () => {
       detailedDescription: isEnglish ? {
         title: 'FinSight Financial AI Series',
         formFactor: 'Conceptual Framework + API + LLM Integration',
-        introduction: 'FinSight is a conceptual framework for financial language understanding and data processing. It combines raw financial data with LLMs to provide natural, real-time, and flexible explanations and decision support.\n\nWe offer two main modules: FinSight-API (unified financial data API) and FinSight GTP (MVP demo for LLM interaction).',
+        introduction: 'FinSight is a conceptual framework for financial language understanding and data processing. It combines raw financial data with LLMs to provide natural, real-time, and flexible explanations and decision support.',
         keyFeatures: [
           'FinSight-API: Unified API for technical indicators, price history, smart fallback, extensible to news, macro, financials',
           'RESTful API, SaaS or on-premises deployment, easy integration for LLMs or enterprise systems',
@@ -168,7 +168,7 @@ const ProductDetails: React.FC = () => {
       id: 5,
       title: isEnglish ? 'Comino Grando Rackable Workstation' : 'Comino Grando 機架式工作站',
       description: isEnglish
-        ? ''
+        ? 'Designed for high-performance computing with advanced cooling and modular design.'
         : '',
       icon: <Server className="h-8 w-8 text-purple-700" />,
       image: "/grando-8gpu-server.jpg",
@@ -783,7 +783,7 @@ const ProductDetails: React.FC = () => {
                       {/* API 模組 */}
                       <li className="mb-2">
                         <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
-                          {isEnglish ? 'FinSight-API:' : 'FinSight-API：'}
+                          {isEnglish ? 'FinSight-API' : 'FinSight-API'}
                         </span>
                         <span className="text-neutral-700 dark:text-neutral-300 ml-2">
                           {isEnglish
@@ -794,7 +794,7 @@ const ProductDetails: React.FC = () => {
                       {/* GTP MVP 模組 */}
                       <li className="mb-2">
                         <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
-                          {isEnglish ? 'FinSight GTP:' : 'FinSight GTP：'}
+                          {isEnglish ? 'FinSight GTP' : 'FinSight GTP'}
                         </span>
                         <span className="text-neutral-700 dark:text-neutral-300 ml-2">
                           {isEnglish
@@ -805,7 +805,7 @@ const ProductDetails: React.FC = () => {
                       {/* LLM 應用任務 */}
                       <li className="mb-2">
                         <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
-                          {isEnglish ? 'LLM Tasks:' : 'LLM 可執行：'}
+                          {isEnglish ? 'LLM Tasks' : 'LLM 可執行'}
                         </span>
                         <span className="text-neutral-700 dark:text-neutral-300 ml-2">
                           {isEnglish
@@ -816,7 +816,7 @@ const ProductDetails: React.FC = () => {
                       {/* 彈性與企業服務 */}
                       <li>
                         <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
-                          {isEnglish ? 'Extensibility & Services:' : '彈性延伸與企業服務：'}
+                          {isEnglish ? 'Extensibility & Services' : '彈性延伸與企業服務'}
                         </span>
                         <span className="text-neutral-700 dark:text-neutral-300 ml-2">
                           {isEnglish
