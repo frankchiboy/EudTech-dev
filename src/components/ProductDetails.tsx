@@ -3,6 +3,7 @@ import { useParams, Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, Server, Cpu, Shield } from 'lucide-react';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useLanguageContext } from '../contexts/LanguageContext';
+import { handleNavClick } from '../utils/helpers/navigation';
 import NavBar from './navigation/NavBar';
 import Footer from './Footer';
 
@@ -876,7 +877,7 @@ const ProductDetails: React.FC = () => {
                   type="button"
                   className="inline-block px-8 py-3 rounded-lg border border-eudtech-600 text-eudtech-600 font-semibold hover:bg-eudtech-50 dark:hover:bg-gray-800 transition-colors text-lg cursor-pointer bg-transparent"
                   onClick={() => {
-                    window.location.href = '/#contact';
+                    handleNavClick('#contact');
                   }}
                 >
                   {isEnglish ? 'Contact Us' : '聯絡我們'}

@@ -14,8 +14,10 @@ export const scrollToSection = (sectionId: string, offset: number = 100) => {
       });
     }
   } else {
-    // 不在首頁，先跳轉到首頁然後滾動到目標區塊
-    window.location.href = `/#${sectionId}`;
+    // 不在首頁，跳轉到首頁並滾動到目標區塊
+    // 使用 sessionStorage 來傳遞滾動目標
+    sessionStorage.setItem('scrollToSection', sectionId);
+    window.location.href = '/';
   }
 };
 
