@@ -88,12 +88,12 @@ const ProductDetails: React.FC = () => {
             'Enterprise services: deployment consulting, custom data, local LLM optimization, prompt engineering, dedicated GPT assistant'
           ]
         : [
-            'FinSight-API：金融資料整合 API（技術指標、價格歷史、smart fallback、可擴充新聞/總經/財報）',
+            'FinSight-API 金融資料整合 API（技術指標、價格歷史、smart fallback、可擴充新聞/總經/財報）',
             'RESTful API 設計，SaaS 雲端或本地端部署，LLM/企業系統可直接串接',
-            'FinSight GTP：語言模型互動展示 MVP（支援 ChatGPT Plugin、Hugging Face、本地 LLM）',
-            'LLM 可執行：指標解釋、趨勢預測、自動報告、圖表繪製、策略模擬、打造專屬 GPT 助理',
-            '高度彈性延伸：擴充資料源、串接內部 API、支援私有 LLM、多角色/多語系架構',
-            '企業服務：部署評估、客製資料、在地 LLM 最佳化、Prompt Engineering、專屬金融 GPT 助理'
+            'FinSight GTP 語言模型互動展示 MVP（支援 ChatGPT Plugin、Hugging Face、本地 LLM）',
+            'LLM 可執行 指標解釋、趨勢預測、自動報告、圖表繪製、策略模擬、打造專屬 GPT 助理',
+            '高度彈性延伸 擴充資料源、串接內部 API、支援私有 LLM、多角色多語系架構',
+            '企業服務 部署評估、客製資料、在地 LLM 最佳化、Prompt Engineering、專屬金融 GPT 助理'
           ],
       specs: isEnglish ? {
         'Model': 'LLM + API Wrapper',
@@ -139,14 +139,14 @@ const ProductDetails: React.FC = () => {
       } : {
         title: 'FinSight 金融AI系列',
         formFactor: '概念架構 + API + LLM 整合',
-        introduction: 'FinSight 是一套金融語言理解與資料處理的概念架構，將金融原始數據結合語言模型（LLM），提供更自然、即時、彈性的解釋與輔助決策能力。\n\n我們提供兩大模組：FinSight-API（金融資料整合 API）與 FinSight GTP（語言模型互動 MVP 展示）。',
+        introduction: 'FinSight 是一套金融語言理解與資料處理的概念架構，將金融原始數據結合語言模型（LLM），提供更自然、即時、彈性的解釋與輔助決策能力。\n\n我們提供兩大模組 FinSight-API（金融資料整合 API）與 FinSight GTP（語言模型互動 MVP 展示）',
         keyFeatures: [
-          'FinSight-API：金融資料整合 API（技術指標、價格歷史、smart fallback、可擴充新聞/總經/財報）',
+          'FinSight-API 金融資料整合 API（技術指標、價格歷史、smart fallback、可擴充新聞/總經/財報）',
           'RESTful API 設計，SaaS 雲端或本地端部署，LLM/企業系統可直接串接',
-          'FinSight GTP：語言模型互動 MVP 展示（支援 ChatGPT Plugin、Hugging Face、本地 LLM）',
-          'LLM 可執行：指標解釋、趨勢預測、自動報告、圖表繪製、策略模擬、打造專屬 GPT 助理',
-          '高度彈性延伸：擴充資料源、串接內部 API、支援私有 LLM、多角色/多語系架構',
-          '企業服務：部署評估、客製資料、在地 LLM 最佳化、Prompt Engineering、專屬金融 GPT 助理'
+          'FinSight GTP 語言模型互動 MVP 展示（支援 ChatGPT Plugin、Hugging Face、本地 LLM）',
+          'LLM 可執行 指標解釋、趨勢預測、自動報告、圖表繪製、策略模擬、打造專屬 GPT 助理',
+          '高度彈性延伸 擴充資料源、串接內部 API、支援私有 LLM、多角色多語系架構',
+          '企業服務 部署評估、客製資料、在地 LLM 最佳化、Prompt Engineering、專屬金融 GPT 助理'
         ],
         technicalSpecs: {
           'API 模組': 'FinSight-API（RESTful，SaaS/本地端，技術指標、價格、新聞、總經、財報）',
@@ -159,8 +159,7 @@ const ProductDetails: React.FC = () => {
           'API 驅動金融資料存取，供 LLM 與企業系統串接',
           '互動式 LLM 金融分析與報告展示',
           '打造專屬金融 GPT 助理',
-          '企業部署與顧問服務',
-          '展示網址：https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight（MVP 展示）'
+          '企業部署與顧問服務'
         ]
       }
     },

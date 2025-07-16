@@ -48,7 +48,7 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
     title: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統',
     description: isEnglish
       ? 'FinSight: Financial language understanding and data API framework. Combine raw data with LLMs for real-time, flexible insights and decision support.'
-      : 'FinSight：金融語言理解與資料API架構，結合原始數據與LLM，提供即時彈性洞察與決策輔助。',
+      : 'FinSight 金融語言理解與資料API架構，結合原始數據與LLM，提供即時彈性洞察與決策輔助。',
     icon: React.createElement(Shield, { className: "h-8 w-8 text-blue-800" }),
     image: "https://images.pexels.com/photos/7567529/pexels-photo-7567529.jpeg",
     features: isEnglish
@@ -61,10 +61,10 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
           'Enterprise consulting & custom GPT'
         ]
       : [
-          'FinSight-API：金融資料整合API',
+          'FinSight-API 金融資料整合API',
           'RESTful API，SaaS雲端或本地端',
-          'FinSight GTP：語言模型互動展示',
-          'LLM可執行：指標解釋、趨勢預測',
+          'FinSight GTP 語言模型互動展示',
+          'LLM可執行 指標解釋、趨勢預測',
           '高度彈性延伸架構',
           '企業顧問與專屬GPT助理'
         ],
