@@ -45,7 +45,7 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
   },
   {
     id: 2,
-    title: isEnglish ? 'EudTech Cloud AI' : 'EudTech 雲端AI',
+    title: isEnglish ? 'EudTech Cloud AI Desktop' : 'EudTech 雲端AI桌面',
     description: isEnglish
       ? 'On-demand cloud computing resources for AI workloads and applications.'
       : '按需雲端運算資源，專為AI工作負載和應用程式設計。',
