@@ -22,7 +22,7 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
         <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500 dark:text-gray-300">
           {isEnglish
             ? 'Innovative AI solutions developed in-house to meet specific industry needs.'
-            : '為滿足特定行業需求而內部開發的創新AI解決方案。'}
+            : '為滿足特定行業需求而內部開發的創新AI解決方案'}
         </p>
       </div>
       

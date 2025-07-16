@@ -49,7 +49,7 @@ const BrandHeader: React.FC<BrandHeaderProps> = ({ isEnglish }) => {
         <p className="text-blue-800 dark:text-blue-300 font-medium">
           {isEnglish
             ? 'EudTech is listed as an official Comino distributor. You can verify our authorization on '
-            : 'EudTech已列為Comino官方經銷商。您可以在Comino官網經銷商頁面查證我們的授權：'}
+            : 'EudTech已列為Comino官方經銷商。您可以在Comino官網經銷商頁面查證我們的授權 '}
           <a 
             href="https://www.comino.com/en/company" 
             target="_blank" 

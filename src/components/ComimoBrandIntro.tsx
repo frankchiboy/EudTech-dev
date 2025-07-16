@@ -20,28 +20,28 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
       title: isEnglish ? 'Engineered Around Liquid Cooling' : '以液冷技術為核心設計',
       description: isEnglish 
         ? 'Grando is designed from scratch by the Comino team. Maximizes the benefits of liquid-cooling & minimizes its drawbacks with manufactured & tailored components.'
-        : 'Grando由Comino團隊從零開始設計，最大化液冷技術優勢並最小化其缺點，採用專門製造和客製化元件。'
+        : 'Grando由Comino團隊從零開始設計，最大化液冷技術優勢並最小化其缺點，採用專門製造和客製化元件'
     },
     {
       icon: React.createElement(Award, { className: "h-8 w-8 text-yellow-600" }),
       title: isEnglish ? 'Engineered for 24/7 Operation' : '24/7全天候運作設計',
       description: isEnglish
         ? 'Designed for continuous operation up to 40°C with zero thermal throttling. The quality assurance cycle from idea to support in single hands.'
-        : '設計可在40°C高溫環境下24小時連續運作，無熱節流。從概念到支援的品質保證循環全由單一團隊掌控。'
+        : '設計可在40°C高溫環境下24小時連續運作，無熱節流。從概念到支援的品質保證循環全由單一團隊掌控'
     },
     {
       icon: React.createElement(Globe, { className: "h-8 w-8 text-green-600" }),
       title: isEnglish ? 'Storage Review Best of 2024' : '2024年StorageReview最佳獎',
       description: isEnglish
         ? 'Comino Grando has received the "Storage Review Best of 2024" award for accommodating up to six 450W GPUs in a 4U chassis while ensuring optimal performance.'
-        : 'Comino Grando榮獲「2024年StorageReview最佳獎」，在4U機箱中容納最多6個450W GPU，同時確保最佳效能。'
+        : 'Comino Grando榮獲「2024年StorageReview最佳獎」，在4U機箱中容納最多6個450W GPU，同時確保最佳效能'
     },
     {
       icon: React.createElement(TrendingUp, { className: "h-8 w-8 text-purple-600" }),
       title: isEnglish ? 'Extreme Performance' : '極致效能',
       description: isEnglish
         ? '8 GPUs, 2 CPUs - 40% faster than air-cooled systems. Cooling capacity up to 5.5kW @25°C, enough to run up to 8x 600W GPUs with 90% utilization rate.'
-        : '8個GPU，2個CPU - 比氣冷系統快40%。散熱容量在25°C下可達5.5kW，足以支援8個600W GPU在90%使用率下運作。'
+        : '8個GPU，2個CPU - 比氣冷系統快40%。散熱容量在25°C下可達5.5kW，足以支援8個600W GPU在90%使用率下運作'
     }
   ];
 
@@ -72,7 +72,7 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
       company: '',
       content: isEnglish
         ? 'Our Password Recovery Machine helps to improve passwords in a Crackinator Project by Linus Tech Tips.'
-        : '我們的密碼破解機器協助Linus Tech Tips在Crackinator專案中提升密碼強度。',
+        : '我們的密碼破解機器協助Linus Tech Tips在Crackinator專案中提升密碼強度',
       avatar: '/linus-review.jpg'
     },
     {
@@ -82,7 +82,7 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
       company: '',
       content: isEnglish
         ? 'StorageReview.com published an outstanding review of Comino Grando units. We\'re thrilled that Grando received the "Storage Review Best of 2024" award.'
-        : 'StorageReview.com發表了對Comino Grando的傑出評測。我們很高興Grando榮獲「2024年StorageReview最佳獎」。',
+        : 'StorageReview.com發表了對Comino Grando的傑出評測。我們很高興Grando榮獲「2024年StorageReview最佳獎」',
       avatar: '/sentdex-review.jpg'
     }
   ];

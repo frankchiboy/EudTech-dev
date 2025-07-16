@@ -20,7 +20,7 @@ const AboutImage: React.FC<AboutImageProps> = ({ isEnglish }) => {
           <p className="text-gray-600 dark:text-gray-300">
             {isEnglish
               ? 'We envision a future where AI technology enhances human capabilities, promotes sustainable development, and creates positive social impact across all sectors of society.'
-              : '我們展望一個人工智能技術增強人類能力、促進可持續發展，並在社會各個領域創造積極影響的未來。'}
+              : '我們展望一個人工智能技術增強人類能力、促進可持續發展，並在社會各個領域創造積極影響的未來'}
           </p>
         </div>
       </div>

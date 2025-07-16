@@ -16,7 +16,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ isEnglish }) => {
         <p className="mb-8 max-w-sm">
           {isEnglish
             ? 'Fill out the form and our team will get back to you within 24 hours.'
-            : '填寫表格，我們的團隊將在24小時內回覆您。'}
+            : '填寫表格，我們的團隊將在24小時內回覆您'}
         </p>
       </div>
 

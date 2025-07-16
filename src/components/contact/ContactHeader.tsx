@@ -16,7 +16,7 @@ const ContactHeader: React.FC<ContactHeaderProps> = ({ isEnglish }) => {
       <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500 dark:text-gray-400">
         {isEnglish
           ? 'Have questions about our AI server solutions? Our team is here to help.'
-          : '對我們的AI伺服器解決方案有疑問？我們的團隊隨時為您提供幫助。'}
+          : '對我們的AI伺服器解決方案有疑問？我們的團隊隨時為您提供幫助'}
       </p>
     </div>
   );
