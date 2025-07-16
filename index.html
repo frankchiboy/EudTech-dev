@@ -2,10 +2,26 @@
 <html lang="en" data-netlify="true">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1e3a8a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="EudTech - Next Generation AI Solutions">
+    <meta name="keywords" content="AI servers, artificial intelligence, machine learning, GPU computing, liquid cooling, financial AI, EudTech">
+    <meta name="author" content="EudTech">
+    <meta name="robots" content="index, follow">
     <title>EudTech | AI Solutions</title>
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.pexels.com">
+    
+    <!-- DNS prefetch for performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//images.pexels.com">
+    
     <!-- 避免深色模式閃爍的腳本 -->
     <script>
       // 檢查本地存儲中的主題設置或系統偏好
@@ -15,17 +31,49 @@
         document.documentElement.classList.remove('dark');
       }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Critical CSS for fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/grando-8gpu-server.jpg" as="image" type="image/jpeg">
+    
     <style>
       body {
         font-family: 'Inter', sans-serif;
+        font-display: swap;
+      }
+      
+      /* Critical CSS for above-the-fold content */
+      .hero-section {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+      }
+      
+      /* Loading spinner styles */
+      .loading-spinner {
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
       }
     </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => console.log('SW registered'))
+            .catch(error => console.log('SW registration failed'));
+        });
+      }
+    </script>
   </body>
 </html>

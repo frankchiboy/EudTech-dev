@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { Product } from '../../data/models/Product';
-import Card from '../ui/Card';
+import OptimizedCard from '../ui/OptimizedCard';
 import Badge from '../ui/Badge';
 import ProductFeatures from './ProductFeatures';
+import LazyImage from '../common/LazyImage';
 
 interface ProductCardProps {
   product: Product;
@@ -18,10 +19,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   showDetails = true
 }) => {
   return (
-    <Card
+    <OptimizedCard
       variant="elevated"
       padding="none"
       hover
+      lazy
       className="overflow-hidden border border-gray-100 dark:border-gray-700/50"
     >
       {product.comingSoon && (
@@ -31,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       )}
       
       <div className="relative h-48">
-        <img
+        <LazyImage
           src={product.image}
           alt={product.title}
           className="w-full h-full object-cover"
@@ -71,7 +73,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
       </div>
-    </Card>
+    </OptimizedCard>
   );
 };
 

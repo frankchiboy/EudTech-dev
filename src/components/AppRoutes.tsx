@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useLanguageContext } from '../contexts/LanguageContext';
@@ -6,11 +6,11 @@ import NavBar from './navigation/NavBar';
 import HeroSection from './hero/HeroSection';
 import EudTechProductsSection from './EudTechProductsSection';
 import ComimoBrandIntro from './ComimoBrandIntro';
-import AboutSection from './AboutSection';
-import ContactSection from './contact/ContactSection';
 import Footer from './Footer';
-import ProductDetails from './ProductDetails';
 import ScrollToTop from './common/ScrollToTop';
+import SkipToContent from './common/SkipToContent';
+import LoadingSpinner from './ui/LoadingSpinner';
+import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
 
 const AppRoutes: React.FC = () => {
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
@@ -18,6 +18,7 @@ const AppRoutes: React.FC = () => {
 
   return (
     <>
+      <SkipToContent />
       <ScrollToTop />
       <NavBar 
         isEnglish={isEnglish}
@@ -26,19 +27,39 @@ const AppRoutes: React.FC = () => {
         isDarkMode={isDarkModeActive}
         toggleDarkMode={toggleDarkMode}
       />
-      <Routes>
-        <Route path="/" element={
-          <>
-            <HeroSection isEnglish={isEnglish} />
-            <EudTechProductsSection isEnglish={isEnglish} />
-            <ComimoBrandIntro isEnglish={isEnglish} />
-            <AboutSection isEnglish={isEnglish} />
-            <ContactSection isEnglish={isEnglish} />
-            <Footer isEnglish={isEnglish} />
-          </>
-        } />
-        <Route path="/products/:id" element={<ProductDetails />} />
-      </Routes>
+      <main id="main-content" role="main">
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-screen">
+            <LoadingSpinner size="lg" />
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={
+              <>
+                <HeroSection isEnglish={isEnglish} />
+                <EudTechProductsSection isEnglish={isEnglish} />
+                <ComimoBrandIntro isEnglish={isEnglish} />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <LazyAboutSection isEnglish={isEnglish} />
+                </Suspense>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <LazyContactSection isEnglish={isEnglish} />
+                </Suspense>
+                <Footer isEnglish={isEnglish} />
+              </>
+            } />
+            <Route path="/products/:id" element={
+              <Suspense fallback={
+                <div className="flex items-center justify-center min-h-screen">
+                  <LoadingSpinner size="lg" />
+                </div>
+              }>
+                <LazyProductDetails />
+              </Suspense>
+            } />
+          </Routes>
+        </Suspense>
+      </main>
     </>
   );
 };
