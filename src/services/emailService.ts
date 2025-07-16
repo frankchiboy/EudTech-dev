@@ -57,7 +57,7 @@ class EmailService {
           from_email: data.email,
           company: data.company || '',
           message: data.message,
-          to_name: 'EudTech Team'
+          to_name: 'EudTech Team',
         },
         this.publicKey
       );

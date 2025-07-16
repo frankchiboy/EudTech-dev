@@ -14,11 +14,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ isEnglish, formStatus, onSubm
   const getSubmitButtonText = () => {
     switch (formStatus) {
       case 'submitting':
-        return isEnglish ? 'Submitting' : '提交中';
+        return isEnglish ? 'Submitting...' : '提交中...';
       case 'success':
-        return isEnglish ? 'Message Sent' : '訊息已發送';
+        return isEnglish ? 'Message Sent!' : '訊息已發送！';
       case 'error':
-        return isEnglish ? 'Error Please try again' : '錯誤請重試';
+        return isEnglish ? 'Error! Please try again.' : '錯誤！請重試';
       default:
         return isEnglish ? 'Send Message' : '發送訊息';
     }
@@ -80,7 +80,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isEnglish, formStatus, onSubm
             className="ml-2 block text-sm text-gray-500 dark:text-gray-400"
           >
             {isEnglish
-              ? 'I agree to the privacy policy and terms of service'
+              ? 'I agree to the privacy policy and terms of service.'
               : '我同意隱私政策和服務條款'}
           </label>
         </div>

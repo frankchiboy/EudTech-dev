@@ -41,14 +41,14 @@ const BrandHeader: React.FC<BrandHeaderProps> = ({ isEnglish }) => {
       
       <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
         {isEnglish
-          ? 'EudTech is listed as an official Comino distributor You can verify our authorization on '
+          ? 'EudTech is the authorized distributor of Comino, the world leader in liquid-cooled AI computing solutions. Comino Grando systems are engineered - not just assembled - delivering unprecedented performance for AI training, inference, and HPC workloads with liquid-cooled multi-GPU devices.'
           : 'EudTech是Comino的授權經銷商，Comino是液冷AI運算解決方案的全球領導者。Comino Grando系統經過工程設計而非僅僅組裝，為AI訓練、推論和HPC工作負載提供前所未有的效能。'}
       </p>
       
       <div className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
         <p className="text-blue-800 dark:text-blue-300 font-medium">
           {isEnglish
-            ? 'EudTech is listed as an official Comino distributor You can verify our authorization on '
+            ? 'EudTech is listed as an official Comino distributor. You can verify our authorization on '
             : 'EudTech已列為Comino官方經銷商。您可以在Comino官網經銷商頁面查證我們的授權 '}
           <a 
             href="https://www.comino.com/en/company" 
@@ -56,7 +56,7 @@ const BrandHeader: React.FC<BrandHeaderProps> = ({ isEnglish }) => {
             rel="noopener noreferrer"
             className="underline hover:text-blue-900 dark:hover:text-blue-200"
           >
-            {isEnglish ? 'Comino distributor page' : 'Comino經銷商頁面'}
+            {isEnglish ? 'Comino\'s distributor page' : 'Comino經銷商頁面'}
           </a>
         </p>
       </div>
