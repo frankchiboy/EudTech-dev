@@ -22,7 +22,7 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
         <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500 dark:text-gray-300">
           {isEnglish
             ? 'Engineered - not just assembled. Grando products are built around liquid cooling technology and tailored for AI inference & training, delivering up to 40% faster performance than air-cooled systems.'
-            : '工程設計而非僅僅組裝。Grando產品圍繞液冷技術構建，專為AI推論與訓練量身打造，比氣冷系統提供高達40%的效能提升'}
+            : '工程設計而非僅僅組裝。Grando產品圍繞液冷技術構建，專為AI推論與訓練量身打造，比氣冷系統提供高達40%的效能提升。'}
         </p>
       </div>
       

@@ -18,7 +18,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isEnglish, formStatus, onSubm
       case 'success':
         return isEnglish ? 'Message Sent!' : '訊息已發送！';
       case 'error':
-        return isEnglish ? 'Error! Please try again.' : '錯誤！請重試';
+        return isEnglish ? 'Error! Please try again.' : '錯誤！請重試。';
       default:
         return isEnglish ? 'Send Message' : '發送訊息';
     }
@@ -81,7 +81,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isEnglish, formStatus, onSubm
           >
             {isEnglish
               ? 'I agree to the privacy policy and terms of service.'
-              : '我同意隱私政策和服務條款'}
+              : '我同意隱私政策和服務條款。'}
           </label>
         </div>
 

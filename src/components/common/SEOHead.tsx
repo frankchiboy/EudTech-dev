@@ -26,7 +26,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   
   const defaultDescription = isEnglish
     ? 'EudTech provides cutting-edge AI infrastructure solutions including AI servers, financial AI systems, and liquid-cooled computing systems.'
-    : 'EudTech提供尖端的AI基礎設施解決方案，包括AI伺服器、金融AI系統和液冷運算系統';
+    : 'EudTech提供尖端的AI基礎設施解決方案，包括AI伺服器、金融AI系統和液冷運算系統。';
 
   const defaultKeywords = isEnglish
     ? 'AI servers, artificial intelligence, machine learning, GPU computing, liquid cooling, financial AI, EudTech'

@@ -160,7 +160,7 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
         <div className="mt-12 pt-8 relative">
           <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-700 dark:via-gray-600 to-transparent"></div>
           <p className="text-base text-gray-400 dark:text-gray-300 text-center">
-            &copy; {currentYear} <span className="bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent font-semibold">{isEnglish ? 'Eudaemonia Technology Ltd.' : '優達盟資訊科技有限公司'}</span> {isEnglish ? 'All rights reserved.' : '保留所有權利'}
+            &copy; {currentYear} <span className="bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent font-semibold">{isEnglish ? 'Eudaemonia Technology Ltd.' : '優達盟資訊科技有限公司'}</span> {isEnglish ? 'All rights reserved.' : '保留所有權利。'}
           </p>
         </div>
       </div>

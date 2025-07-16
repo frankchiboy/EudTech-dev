@@ -44,7 +44,7 @@ export const UI_CONSTANTS = {
 export const FORM_VALIDATION = {
   EMAIL_REGEX: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   PHONE_REGEX: /^[\+]?[1-9][\d]{0,15}$/,
-  URL_REGEX: /^https?\/\/.+/,
+  URL_REGEX: /^https?:\/\/.+/,
   
   MIN_PASSWORD_LENGTH: 8,
   MAX_TEXT_LENGTH: 500,

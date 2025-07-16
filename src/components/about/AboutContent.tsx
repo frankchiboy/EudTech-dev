@@ -20,19 +20,19 @@ const AboutContent: React.FC<AboutContentProps> = ({ isEnglish }) => {
         <p>
           {isEnglish
             ? 'Founded in 2024, EudTech is driven by our fascination with AI and its potential to create a better society. Our name reflects our mission - developing AI technologies that contribute to human flourishing and well-being.'
-            : '成立於2024年，EudTech源於我們對人工智能的著迷，以及其創造更美好社會的潛力。我們的名字反映了我們的使命 - 開發有助於人類繁榮和福祉的人工智能技術'}
+            : '成立於2024年，EudTech源於我們對人工智能的著迷，以及其創造更美好社會的潛力。我們的名字反映了我們的使命 - 開發有助於人類繁榮和福祉的人工智能技術。'}
         </p>
         
         <p>
           {isEnglish
             ? 'From advanced AI servers to innovative software solutions, we are committed to pushing the boundaries of what AI can achieve. As an authorized distributor of leading brands like Comino, we provide cutting-edge liquid-cooled GPU systems alongside our own EudTech solutions.'
-            : '從先進的AI伺服器到創新的軟件解決方案，我們致力於推動人工智能的極限。作為Comino等領先品牌的授權經銷商，我們提供尖端液冷GPU系統以及我們自有的EudTech解決方案'}
+            : '從先進的AI伺服器到創新的軟件解決方案，我們致力於推動人工智能的極限。作為Comino等領先品牌的授權經銷商，我們提供尖端液冷GPU系統以及我們自有的EudTech解決方案。'}
         </p>
         
         <p>
           {isEnglish
             ? 'Our team of experts combines cutting-edge research with practical applications, creating AI solutions that address real-world challenges while promoting sustainable technological advancement.'
-            : '我們的專家團隊將尖端研究與實際應用相結合，創造能解決現實世界挑戰的人工智能解決方案，同時促進可持續的技術進步'}
+            : '我們的專家團隊將尖端研究與實際應用相結合，創造能解決現實世界挑戰的人工智能解決方案，同時促進可持續的技術進步。'}
         </p>
       </div>
       

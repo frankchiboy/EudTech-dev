@@ -20,7 +20,7 @@ export const useContactForm = () => {
       setFormStatus('success');
       form.reset();
     } catch (error) {
-      console.error('發送郵件錯誤', error);
+      console.error('發送郵件錯誤：', error);
       setFormStatus('error');
     }
   };

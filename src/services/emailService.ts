@@ -7,19 +7,19 @@ class EmailService {
   private readonly serviceId = 'service_9bxmxjj';
   private readonly templateId = 'template_bhwkpw9';
 
-  async init() {
+  async init(): Promise<void> {
     if (this.isInitialized) return;
     
     try {
       emailjs.init(this.publicKey);
       this.isInitialized = true;
     } catch (error) {
-      console.error('Email service initialization failed', error);
+      console.error('Email service initialization failed:', error);
       throw error;
     }
   }
 
-  async sendForm(form: HTMLFormElement) {
+  async sendForm(form: HTMLFormElement): Promise<void> {
     if (!this.isInitialized) {
       await this.init();
     }
@@ -33,17 +33,17 @@ class EmailService {
       );
 
       if (result.status !== 200) {
-        throw new Error(`Email send failed with status ${result.status}`);
+        throw new Error(`Email send failed with status: ${result.status}`);
       }
 
-      console.log('Email sent successfully', result);
+      console.log('Email sent successfully:', result);
     } catch (error) {
-      console.error('Email send error', error);
+      console.error('Email send error:', error);
       throw error;
     }
   }
 
-  async sendEmail(data: EmailFormData) {
+  async sendEmail(data: EmailFormData): Promise<void> {
     if (!this.isInitialized) {
       await this.init();
     }
@@ -63,12 +63,12 @@ class EmailService {
       );
 
       if (result.status !== 200) {
-        throw new Error(`Email send failed with status ${result.status}`);
+        throw new Error(`Email send failed with status: ${result.status}`);
       }
 
-      console.log('Email sent successfully', result);
+      console.log('Email sent successfully:', result);
     } catch (error) {
-      console.error('Email send error', error);
+      console.error('Email send error:', error);
       throw error;
     }
   }
