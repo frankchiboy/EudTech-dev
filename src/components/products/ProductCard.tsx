@@ -62,7 +62,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 </span>
               </Link>
             )}
-            {/* Only show Get Quote for products other than EudTech 雲端AI桌面 (ID: 2) */}
+            {/* Only show Get Quote for products other than EudTech 雲端AI (ID: 2) */}
             {product.id !== 2 && (
               <a
                 href="#contact"
