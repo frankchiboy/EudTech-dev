@@ -11,5 +11,5 @@ export const reportWebVitals = (onPerfEntry?: (metric: any) => void) => {
 };
 
 export const logWebVitals = () => {
-  reportWebVitals(console.log);
+  reportWebVitals((metric) => console.log('Web Vitals', metric));
 };

@@ -44,7 +44,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
   };
 
   const getAriaLabel = () => {
-    return `切換主題模式 (目前: ${
+    return `切換主題模式 (目前 ${
       themeMode === 'system' 
         ? `跟隨系統 (${isDarkMode ? '深色' : '淺色'})`
         : themeMode === 'dark' ? '深色模式' : '淺色模式'

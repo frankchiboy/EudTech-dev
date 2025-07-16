@@ -22,7 +22,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    console.error('ErrorBoundary caught an error', error, errorInfo);
   }
 
   render() {
@@ -41,7 +41,7 @@ class ErrorBoundary extends Component<Props, State> {
               </h2>
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              很抱歉，應用程式遇到了未預期的錯誤。
+              很抱歉，應用程式遇到了未預期的錯誤
             </p>
             <button
               onClick={() => window.location.reload()}
