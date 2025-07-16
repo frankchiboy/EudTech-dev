@@ -2,7 +2,8 @@ import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import AppProviders from './components/providers/AppProviders';
 import AppRoutes from './components/AppRoutes';
-import { optimizeImageLoading, preloadCriticalComponents } from './utils/performance/imageOptimization';
+import { optimizeImageLoading } from './utils/performance/imageOptimization';
+import { preloadCriticalComponents } from './utils/performance/codesplitting';
 
 // 初始化效能優化
 optimizeImageLoading();
