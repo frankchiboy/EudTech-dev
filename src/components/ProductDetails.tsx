@@ -771,7 +771,7 @@ const ProductDetails: React.FC = () => {
                 <div className="mb-8">
                   <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                     <span className="font-bold text-eudtech-700 dark:text-eudtech-400 block mb-2">
-                      {isEnglish ? 'What is FinSight?' : '什麼是 FinSight?'}
+                      {isEnglish ? 'What is FinSight' : '什麼是 FinSight'}
                     </span>
                     {product.description}
                   </p>
@@ -779,52 +779,55 @@ const ProductDetails: React.FC = () => {
                     <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 text-center">
                       {isEnglish ? 'Solution Highlights' : '解決方案亮點'}
                     </h3>
-                    <ul className="space-y-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* API 模組 */}
-                      <li className="mb-2">
-                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
+                      <div className="bg-white dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <h4 className="font-semibold text-eudtech-700 dark:text-eudtech-400 mb-2 text-lg">
                           {isEnglish ? 'FinSight-API' : 'FinSight-API'}
-                        </span>
-                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
+                        </h4>
+                        <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                           {isEnglish
-                            ? 'Unified financial data API (technical indicators, price, extensible to news, macro, financials). RESTful, SaaS/on-premises, easy LLM/enterprise integration.'
-                            : '金融資料整合API（技術指標、價格、可擴充新聞/總經/財報），RESTful設計，SaaS雲端或本地端，LLM/企業系統可直接串接。'}
-                        </span>
-                      </li>
+                            ? 'Unified financial data API with technical indicators, price history, and extensible support for news, macro, and financial data. RESTful design enables easy integration for LLMs and enterprise systems.'
+                            : '金融資料整合API，包含技術指標、價格歷史，可擴充新聞、總經、財報資料。RESTful設計讓LLM與企業系統輕鬆整合。'}
+                        </p>
+                      </div>
+                      
                       {/* GTP MVP 模組 */}
-                      <li className="mb-2">
-                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
+                      <div className="bg-white dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <h4 className="font-semibold text-eudtech-700 dark:text-eudtech-400 mb-2 text-lg">
                           {isEnglish ? 'FinSight GTP' : 'FinSight GTP'}
-                        </span>
-                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
+                        </h4>
+                        <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                           {isEnglish
-                            ? 'MVP demo for LLM interaction (ChatGPT Plugin, Hugging Face, local LLMs).'
-                            : '語言模型互動 MVP 展示（支援 ChatGPT Plugin、Hugging Face、本地 LLM）。'}
-                        </span>
-                      </li>
+                            ? 'MVP demonstration system for LLM interaction, supporting ChatGPT Plugin, Hugging Face, and local LLM deployments.'
+                            : '語言模型互動展示系統，支援ChatGPT Plugin、Hugging Face及本地LLM部署。'}
+                        </p>
+                      </div>
+                      
                       {/* LLM 應用任務 */}
-                      <li className="mb-2">
-                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
-                          {isEnglish ? 'LLM Tasks' : 'LLM 可執行'}
-                        </span>
-                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
+                      <div className="bg-white dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <h4 className="font-semibold text-eudtech-700 dark:text-eudtech-400 mb-2 text-lg">
+                          {isEnglish ? 'LLM Applications' : 'LLM 應用功能'}
+                        </h4>
+                        <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                           {isEnglish
-                            ? 'Explain indicators, trend prediction, auto reports, charting, simulate strategies, custom GPT.'
-                            : '指標解釋、趨勢預測、自動報告、圖表、策略模擬、專屬GPT。'}
-                        </span>
-                      </li>
+                            ? 'Comprehensive LLM capabilities including indicator explanation, trend prediction, automated reporting, charting, strategy simulation, and custom GPT development.'
+                            : '完整LLM功能包含指標解釋、趨勢預測、自動報告、圖表生成、策略模擬及專屬GPT開發。'}
+                        </p>
+                      </div>
+                      
                       {/* 彈性與企業服務 */}
-                      <li>
-                        <span className="font-semibold text-eudtech-700 dark:text-eudtech-400">
-                          {isEnglish ? 'Extensibility & Services' : '彈性延伸與企業服務'}
-                        </span>
-                        <span className="text-neutral-700 dark:text-neutral-300 ml-2">
+                      <div className="bg-white dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <h4 className="font-semibold text-eudtech-700 dark:text-eudtech-400 mb-2 text-lg">
+                          {isEnglish ? 'Enterprise Services' : '企業服務'}
+                        </h4>
+                        <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                           {isEnglish
-                            ? 'Add data sources, connect internal APIs, support private LLMs, multi-role/language, deployment consulting, custom GPT assistant.'
-                            : '擴充資料源、串接內部API、支援私有LLM、多角色/多語系、部署顧問、專屬GPT助理。'}
-                        </span>
-                      </li>
-                    </ul>
+                            ? 'Highly extensible architecture supporting custom data sources, internal API integration, private LLM deployment, multi-role/language support, and dedicated GPT assistant development.'
+                            : '高度彈性架構支援客製資料源、內部API整合、私有LLM部署、多角色多語系及專屬GPT助理開發。'}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -936,74 +939,162 @@ const ProductDetails: React.FC = () => {
       {product.detailedDescription && (
         <div className="bg-white dark:bg-gray-900 py-16">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="prose prose-lg dark:prose-invert max-w-none">
-              {/* Technical Specifications Table */}
-              <div className="mb-12">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6 text-center">
-                  {isEnglish ? 'Technical Specifications' : '技術規格'}
-                </h3>
-                <div className="overflow-x-auto">
-                  <table className="min-w-full bg-white dark:bg-gray-800 border border-neutral-200 dark:border-neutral-700">
-                    <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
-                      {Object.entries(product.detailedDescription.technicalSpecs).map(([key, value], index) => (
-                        <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50 dark:bg-neutral-800' : 'bg-white dark:bg-gray-800'}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 dark:text-neutral-100 w-1/3">
-                            {isEnglish ? key : technicalSpecsTranslations[key] || key}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
-                            {value}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+            {/* 針對 FinSight 的特殊佈局 */}
+            {product.id === 3 ? (
+              <div className="space-y-12">
+                {/* 系統架構說明 */}
+                <div className="bg-gradient-to-br from-blue-50 to-teal-50 dark:from-blue-900/20 dark:to-teal-900/20 p-8 rounded-2xl">
+                  <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6 text-center">
+                    {isEnglish ? 'System Architecture' : '系統架構'}
+                  </h3>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                      <h4 className="text-lg font-semibold text-eudtech-700 dark:text-eudtech-400 mb-4">
+                        {isEnglish ? 'Core Components' : '核心組件'}
+                      </h4>
+                      <div className="space-y-3">
+                        <div className="flex items-start">
+                          <div className="h-2 w-2 bg-eudtech-600 dark:bg-eudtech-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          <div>
+                            <span className="font-medium text-neutral-900 dark:text-neutral-100">FinSight-API</span>
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
+                              {isEnglish ? 'RESTful API for unified financial data access' : 'RESTful API 統一金融資料存取'}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="h-2 w-2 bg-eudtech-600 dark:bg-eudtech-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          <div>
+                            <span className="font-medium text-neutral-900 dark:text-neutral-100">FinSight GTP</span>
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
+                              {isEnglish ? 'LLM interaction demonstration platform' : 'LLM 互動展示平台'}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-eudtech-700 dark:text-eudtech-400 mb-4">
+                        {isEnglish ? 'Key Features' : '主要功能'}
+                      </h4>
+                      <div className="space-y-3">
+                        {product.detailedDescription.keyFeatures.slice(0, 4).map((feature, index) => (
+                          <div key={index} className="flex items-start">
+                            <div className="h-2 w-2 bg-teal-600 dark:bg-teal-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span className="text-sm text-neutral-700 dark:text-neutral-300">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                {product.id !== 3 && (
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 text-center">
-                    {isEnglish 
-                      ? '* - depends on the configuration, contact Comino team for clarification' 
-                      : '* - 取決於配置，請聯繫Comino團隊獲取詳細資訊'}
-                  </p>
+
+                {/* 技術規格 - 卡片式佈局 */}
+                <div>
+                  <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8 text-center">
+                    {isEnglish ? 'Technical Specifications' : '技術規格'}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {Object.entries(product.detailedDescription.technicalSpecs).map(([key, value], index) => (
+                      <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
+                        <h4 className="font-semibold text-eudtech-700 dark:text-eudtech-400 mb-3 text-lg">
+                          {isEnglish ? key : technicalSpecsTranslations[key] || key}
+                        </h4>
+                        <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                          {value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 應用場景 */}
+                {product.detailedDescription.applications && (
+                  <div className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl">
+                    <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6 text-center">
+                      {isEnglish ? 'Applications' : '應用場景'}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {product.detailedDescription.applications.map((application, index) => (
+                        <div key={index} className="flex items-start p-4 bg-white dark:bg-gray-700/50 rounded-lg">
+                          <div className="h-2 w-2 bg-green-600 dark:bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          <span className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">{application}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 )}
               </div>
-
-              {/* Available Configurations */}
-              {product.detailedDescription && Array.isArray((product.detailedDescription as { orderInfo?: unknown }).orderInfo) &&
-                ((product.detailedDescription as { orderInfo?: unknown }).orderInfo as Array<any>).length > 0 && (
+            ) : (
+              /* 其他產品的原有佈局 */
+              <div className="prose prose-lg dark:prose-invert max-w-none">
                 <div className="mb-12">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">
-                    {isEnglish ? 'Available Configurations' : '可用配置'}
+                  <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6 text-center">
+                    {isEnglish ? 'Technical Specifications' : '技術規格'}
                   </h3>
-                  <div className="space-y-4">
-                    {(product.detailedDescription as { orderInfo: Array<{type: string, pn: string, model: string, description: string}> }).orderInfo.map((item, index) => (
-                      <div key={index} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-                        <div className="flex justify-between items-start mb-3">
-                          <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                            {isEnglish ? (formatConfigType[item.type] || item.type) : orderInfoTypeTranslations[item.type] || item.type}
-                          </h4>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">{item.model}</span>
-                        </div>
-                        <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
-                      </div>
-                    ))}
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white dark:bg-gray-800 border border-neutral-200 dark:border-neutral-700">
+                      <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
+                        {Object.entries(product.detailedDescription.technicalSpecs).map(([key, value], index) => (
+                          <tr key={index} className={index % 2 === 0 ? 'bg-neutral-50 dark:bg-neutral-800' : 'bg-white dark:bg-gray-800'}>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900 dark:text-neutral-100 w-1/3">
+                              {isEnglish ? key : technicalSpecsTranslations[key] || key}
+                            </td>
+                            <td className="px-6 py-4 text-sm text-neutral-700 dark:text-neutral-300">
+                              {value}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
+                  {product.id !== 3 && (
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 text-center">
+                      {isEnglish 
+                        ? '* - depends on the configuration, contact Comino team for clarification' 
+                        : '* - 取決於配置，請聯繫Comino團隊獲取詳細資訊'}
+                    </p>
+                  )}
                 </div>
-              )}
+              </div>
+            )}
 
-              {/* Additional Features */}
-              {product.detailedDescription && 'additionalFeatures' in product.detailedDescription && product.detailedDescription.additionalFeatures && (
-                <div className="mb-12">
-                  <div className="space-y-6">
-                    {Object.entries(product.detailedDescription.additionalFeatures as Record<string, string>).map(([title, description], index) => (
-                      <div key={index} className="border-l-4 border-eudtech-600 pl-6">
-                        <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{title}</h4>
-                        <p className="text-gray-700 dark:text-gray-300">{description as string}</p>
+            {/* Available Configurations - 只對非 FinSight 產品顯示 */}
+            {product.id !== 3 && product.detailedDescription && Array.isArray((product.detailedDescription as { orderInfo?: unknown }).orderInfo) &&
+              ((product.detailedDescription as { orderInfo?: unknown }).orderInfo as Array<any>).length > 0 && (
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">
+                  {isEnglish ? 'Available Configurations' : '可用配置'}
+                </h3>
+                <div className="space-y-4">
+                  {(product.detailedDescription as { orderInfo: Array<{type: string, pn: string, model: string, description: string}> }).orderInfo.map((item, index) => (
+                    <div key={index} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                      <div className="flex justify-between items-start mb-3">
+                        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                          {isEnglish ? (formatConfigType[item.type] || item.type) : orderInfoTypeTranslations[item.type] || item.type}
+                        </h4>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">{item.model}</span>
                       </div>
-                    ))}
-                  </div>
+                      <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+
+            {/* Additional Features */}
+            {product.detailedDescription && 'additionalFeatures' in product.detailedDescription && product.detailedDescription.additionalFeatures && (
+              <div className="mb-12">
+                <div className="space-y-6">
+                  {Object.entries(product.detailedDescription.additionalFeatures as Record<string, string>).map(([title, description], index) => (
+                    <div key={index} className="border-l-4 border-eudtech-600 pl-6">
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{title}</h4>
+                      <p className="text-gray-700 dark:text-gray-300">{description as string}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
