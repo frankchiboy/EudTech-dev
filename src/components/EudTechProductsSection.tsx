@@ -27,7 +27,7 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
       </div>
       
       <ProductGrid
-        products={products.filter(product => product.id !== 1)}
+        products={products}
         isEnglish={isEnglish}
         columns={2}
       />

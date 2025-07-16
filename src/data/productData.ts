@@ -44,46 +44,6 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
     comingSoon: false
   },
   {
-    id: 2,
-    title: isEnglish ? 'EudTech Cloud AI Desktop' : 'EudTech 雲端AI桌面',
-    description: isEnglish
-      ? 'On-demand cloud computing resources for AI workloads and applications.'
-      : '按需雲端運算資源，專為AI工作負載和應用程式設計。',
-    icon: React.createElement(Cloud, { className: "h-8 w-8 text-teal-700" }),
-    image: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg",
-    features: isEnglish
-      ? [
-          'Scalable GPU Resources',
-          'Pay-as-you-go Pricing',
-          'Secure Virtual Environments',
-          'Instant Deployment',
-          '24/7 Support',
-          'Global Availability'
-        ]
-      : [
-          '可擴展GPU資源',
-          '按使用量計費',
-          '安全虛擬環境',
-          '即時部署',
-          '24/7支援服務',
-          '全球可用性'
-        ],
-    specs: isEnglish ? {
-      'Virtual CPU': 'Up to 96 vCPU cores',
-      'Memory': 'Up to 384GB RAM',
-      'Storage': 'Up to 4TB NVMe',
-      'GPU': 'NVIDIA A100/A10G',
-      'Network': '25Gbps Network'
-    } : {
-      '虛擬CPU': '最高96 vCPU核心',
-      '記憶體': '最高384GB RAM',
-      '儲存': '最高4TB NVMe',
-      'GPU': 'NVIDIA A100/A10G',
-      '網路': '25Gbps網路'
-    },
-    comingSoon: true
-  },
-  {
     id: 3,
     title: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統',
     description: isEnglish
