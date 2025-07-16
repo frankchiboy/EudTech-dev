@@ -41,7 +41,7 @@ const BrandHeader: React.FC<BrandHeaderProps> = ({ isEnglish }) => {
       
       <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
         {isEnglish
-          ? 'EudTech is the authorized distributor of Comino, the world leader in liquid-cooled AI computing solutions. Comino Grando systems are engineered - not just assembled - delivering unprecedented performance for AI training, inference, and HPC workloads with liquid-cooled multi-GPU devices.'
+          ? 'EudTech is listed as an official Comino distributor You can verify our authorization on '
           : 'EudTech是Comino的授權經銷商，Comino是液冷AI運算解決方案的全球領導者。Comino Grando系統經過工程設計而非僅僅組裝，為AI訓練、推論和HPC工作負載提供前所未有的效能。'}
       </p>
       
