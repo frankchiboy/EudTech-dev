@@ -10,7 +10,7 @@ import Footer from './Footer';
 const ProductDetails: React.FC = () => {
   const { isEnglish, setLanguage } = useLanguageContext();
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
-  const { isEnglish, toggleLanguage } = useLanguageContext();
+  const { toggleLanguage } = useLanguageContext();
 
   const { id } = useParams();
   const location = useLocation();
