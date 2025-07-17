@@ -3,6 +3,7 @@ import { useParams, Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, Server, Cpu, Shield } from 'lucide-react';
 import { useLanguageContext } from '../contexts/LanguageContext';
 import { useThemeContext } from '../contexts/ThemeContext';
+import { useProductData } from '../hooks/business/useProductData';
 import { handleNavClick } from '../utils/helpers/navigation';
 import NavBar from './navigation/NavBar';
 import Footer from './Footer';
