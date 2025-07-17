@@ -851,24 +851,6 @@ const ProductDetails: React.FC = () => {
                 </div>
               )}
             </div>
-            {product.detailedDescription.applications && (
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                  {isEnglish ? 'Applications' : '應用場景'}
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <span>{isEnglish ? 'More financial product data support' : '更多金融商品數據支援'}</span>
-                    <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span className="text-gray-800 dark:text-gray-200 font-medium">{application}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* CTA 行動按鈕 */}
             {product.id === 3 && (
               <div className="flex flex-col items-center mt-8">
@@ -941,25 +923,25 @@ const ProductDetails: React.FC = () => {
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {isEnglish ? 'Expand AI model training datasets' : '擴充AI模型訓練資料集'}
+                    {isEnglish ? 'More financial product data support' : '更多金融商品數據支援'}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {isEnglish ? 'Develop advanced analysis features' : '開發進階分析功能'}
+                    {isEnglish ? 'Enhanced soft data integration' : '更多軟數據整合'}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {isEnglish ? 'Enhance real-time processing' : '提升即時處理能力'}
+                    {isEnglish ? 'Comprehensive hard data coverage' : '更完整硬數據覆蓋'}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {isEnglish ? 'Accelerate platform deployment' : '加速平台部署進程'}
+                    {isEnglish ? 'Multi-country data expansion' : '更多國家數據擴展'}
                   </span>
                 </div>
               </div>
@@ -1062,7 +1044,7 @@ const ProductDetails: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-eudtech-700 dark:text-eudtech-400 mb-4">
-                        <span>{isEnglish ? 'Enhanced raw data integration' : '更多原始數據整合'}</span>
+                        {isEnglish ? 'Key Features' : '主要功能'}
                       </h4>
                       <div className="space-y-3">
                         {product.detailedDescription.keyFeatures.slice(0, 4).map((feature, index) => (
