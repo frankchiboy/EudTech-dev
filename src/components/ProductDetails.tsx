@@ -920,30 +920,17 @@ const ProductDetails: React.FC = () => {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {isEnglish ? 'More financial product data support' : '更多金融商品數據支援'}
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {isEnglish ? 'Enhanced soft data integration' : '更多軟數據整合'}
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {isEnglish ? 'Comprehensive hard data coverage' : '更完整硬數據覆蓋'}
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {isEnglish ? 'Multi-country data expansion' : '更多國家數據擴展'}
-                  </span>
-                </div>
+                {[
+                  { key: 'moreProducts', text: isEnglish ? 'More financial product data support' : '更多金融商品數據支援', color: 'bg-green-500' },
+                  { key: 'rawData', text: isEnglish ? 'Enhanced raw data integration' : '更完整原始數據整合', color: 'bg-purple-500' },
+                  { key: 'quantData', text: isEnglish ? 'Comprehensive quantitative data coverage' : '更完整量化數據覆蓋', color: 'bg-orange-500' },
+                  { key: 'multiCountry', text: isEnglish ? 'Multi-country data expansion' : '更多國家數據擴展', color: 'bg-blue-500' }
+                ].map((item, index) => (
+                  <div key={item.key} className="flex items-center">
+                    <div className={`h-2 w-2 ${item.color} rounded-full mt-2 mr-3 flex-shrink-0`}></div>
+                    <span className="text-sm text-neutral-700 dark:text-neutral-300">{item.text}</span>
+                  </div>
+                ))}
               </div>
             </div>
             
