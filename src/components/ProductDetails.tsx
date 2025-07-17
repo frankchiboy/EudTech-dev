@@ -15,6 +15,7 @@ const ProductDetails: React.FC = () => {
 
   const { id } = useParams();
   const location = useLocation();
+  const productId = parseInt(id || '0');
   
   // 取得來源區塊資訊，預設為 eudtech-products
   const fromSection = location.state?.fromSection || 'eudtech-products';
