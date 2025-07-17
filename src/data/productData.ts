@@ -4,6 +4,104 @@ import { Product } from './models/Product';
 
 export const getEudTechProducts = (isEnglish: boolean): Product[] => [
   {
+    id: 3,
+    title: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統',
+    description: isEnglish
+      ? 'FinSight: Financial language understanding and data API framework. Combine raw data with LLMs for real-time, flexible insights and decision support.'
+      : 'FinSight 金融語言理解與資料API架構，結合原始數據與LLM，提供即時彈性洞察與決策輔助。',
+    icon: React.createElement(Shield, { className: "h-8 w-8 text-blue-800" }),
+    image: "https://images.pexels.com/photos/7567529/pexels-photo-7567529.jpeg",
+    features: isEnglish
+      ? [
+          'FinSight-API: Unified financial data API',
+          'RESTful API, SaaS or on-premises',
+          'FinSight GTP: LLM demo system',
+          'LLM tasks: explain indicators, predict trends',
+          'Highly extensible architecture',
+          'Enterprise consulting & custom GPT'
+        ]
+      : [
+          'FinSight-API 金融資料整合API',
+          'RESTful API，SaaS雲端或本地端',
+          'FinSight GTP 語言模型互動展示',
+          'LLM可執行 指標解釋、趨勢預測',
+          '高度彈性延伸架構',
+          '企業顧問與專屬GPT助理'
+        ],
+    specs: isEnglish ? {
+      'Model': 'LLM + API Wrapper',
+      'Data Sources': 'Raw financial data APIs',
+      'Integration': 'Webhook + JSON/RESTful API',
+      'Deployment': 'SaaS / On-Premises'
+    } : {
+      '模型架構': 'LLM + API 包裝器',
+      '資料來源': '原始金融數據API',
+      '整合模式': 'Webhook 與 JSON/RESTful API',
+      '部署方式': 'SaaS 或 私有部署'
+    },
+    comingSoon: false,
+    detailedDescription: {
+      title: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統',
+      formFactor: isEnglish ? 'Software Platform' : '軟體平台',
+      introduction: isEnglish
+        ? 'FinSight is a comprehensive financial AI platform that specializes in processing raw numerical financial data. Our system focuses exclusively on hard data - market prices, trading volumes, financial ratios, and quantitative metrics - providing clean, structured access to real-time financial information without secondary interpretations or news content.'
+        : 'FinSight 是一個專門處理原始數字金融數據的綜合性金融AI平台。我們的系統專注於硬數據 - 市場價格、交易量、財務比率和量化指標 - 提供乾淨、結構化的即時金融資訊存取，不包含二手解讀或新聞內容。',
+      keyFeatures: isEnglish ? [
+        'Raw financial data API integration',
+        'Real-time market data processing',
+        'Quantitative metrics calculation',
+        'Multi-market data normalization',
+        'LLM-powered data interpretation',
+        'Custom financial indicators',
+        'Enterprise-grade API infrastructure',
+        'Flexible deployment options'
+      ] : [
+        '原始金融數據API整合',
+        '即時市場數據處理',
+        '量化指標計算',
+        '多市場數據標準化',
+        'LLM驅動的數據解讀',
+        '客製化金融指標',
+        '企業級API基礎架構',
+        '彈性部署選項'
+      ],
+      technicalSpecs: isEnglish ? {
+        'Data Sources': 'Raw market data APIs, financial databases',
+        'Processing': 'Real-time data normalization and calculation',
+        'API Format': 'RESTful JSON, WebSocket streaming',
+        'LLM Integration': 'GPT-4 for data interpretation and insights',
+        'Deployment': 'Cloud SaaS or on-premises installation',
+        'Security': 'Enterprise-grade encryption and access control',
+        'Scalability': 'Horizontal scaling for high-frequency data',
+        'Latency': 'Sub-second response time for real-time queries'
+      } : {
+        '資料來源': '原始市場數據API、金融資料庫',
+        '處理方式': '即時數據標準化與計算',
+        'API格式': 'RESTful JSON、WebSocket串流',
+        'LLM整合': 'GPT-4用於數據解讀與洞察',
+        '部署方式': '雲端SaaS或本地端安裝',
+        '安全性': '企業級加密與存取控制',
+        '擴展性': '高頻數據的水平擴展',
+        '延遲性': '即時查詢的亞秒級回應時間'
+      },
+      applications: isEnglish ? [
+        'Algorithmic trading systems',
+        'Risk management platforms',
+        'Portfolio optimization tools',
+        'Financial research and analysis',
+        'Regulatory reporting automation',
+        'Investment decision support'
+      ] : [
+        '演算法交易系統',
+        '風險管理平台',
+        '投資組合優化工具',
+        '金融研究與分析',
+        '法規報告自動化',
+        '投資決策支援'
+      ]
+    }
+  },
+  {
     id: 1, 
     title: isEnglish ? 'EudTech Select AI Server' : 'EudTech Select AI伺服器',
     description: isEnglish
@@ -40,44 +138,6 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
       '儲存': '4x 8TB NVMe SSD',
       'GPU': '8x NVIDIA A100 80GB',
       '網路': '雙100GbE QSFP28'
-    },
-    comingSoon: false
-  },
-  {
-    id: 3,
-    title: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統',
-    description: isEnglish
-      ? 'FinSight: Financial language understanding and data API framework. Combine raw data with LLMs for real-time, flexible insights and decision support.'
-      : 'FinSight 金融語言理解與資料API架構，結合原始數據與LLM，提供即時彈性洞察與決策輔助。',
-    icon: React.createElement(Shield, { className: "h-8 w-8 text-blue-800" }),
-    image: "https://images.pexels.com/photos/7567529/pexels-photo-7567529.jpeg",
-    features: isEnglish
-      ? [
-          'FinSight-API: Unified financial data API',
-          'RESTful API, SaaS or on-premises',
-          'FinSight GTP: LLM demo system',
-          'LLM tasks: explain indicators, predict trends',
-          'Highly extensible architecture',
-          'Enterprise consulting & custom GPT'
-        ]
-      : [
-          'FinSight-API 金融資料整合API',
-          'RESTful API，SaaS雲端或本地端',
-          'FinSight GTP 語言模型互動展示',
-          'LLM可執行 指標解釋、趨勢預測',
-          '高度彈性延伸架構',
-          '企業顧問與專屬GPT助理'
-        ],
-    specs: isEnglish ? {
-      'Model': 'LLM + API Wrapper',
-      'Data Sources': 'News, statements, market APIs',
-      'Integration': 'Webhook + JSON/RESTful API',
-      'Deployment': 'SaaS / On-Premises'
-    } : {
-      '模型架構': 'LLM + API 包裝器',
-      '資料來源': '新聞、財報、行情API',
-      '整合模式': 'Webhook 與 JSON/RESTful API',
-      '部署方式': 'SaaS 或 私有部署'
     },
     comingSoon: false
   },
