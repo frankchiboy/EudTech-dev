@@ -1066,7 +1066,7 @@ const ProductDetails: React.FC = () => {
                       </h4>
                       <div className="space-y-3">
                         {product.detailedDescription.keyFeatures.slice(0, 4).map((feature, index) => (
-                        <span>{isEnglish ? 'Comprehensive quantitative data coverage' : '更完整量化數據覆蓋'}</span>
+                          <div key={index} className="flex items-start">
                             <div className="h-2 w-2 bg-teal-600 dark:bg-teal-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span className="text-sm text-neutral-700 dark:text-neutral-300">{feature}</span>
                           </div>
