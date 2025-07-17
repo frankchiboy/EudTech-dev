@@ -4,6 +4,7 @@ import { useLanguage } from '../hooks/core/useLanguage';
 interface LanguageContextType {
   isEnglish: boolean;
   toggleLanguage: () => void;
+  setLanguage: (language: 'en' | 'zh') => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);

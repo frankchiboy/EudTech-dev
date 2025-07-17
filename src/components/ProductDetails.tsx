@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, Server, Cpu, Shield } from 'lucide-react';
+import { useLanguageContext } from '../contexts/LanguageContext';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useLanguageContext } from '../contexts/LanguageContext';
 import { handleNavClick } from '../utils/helpers/navigation';
@@ -8,6 +9,7 @@ import NavBar from './navigation/NavBar';
 import Footer from './Footer';
 
 const ProductDetails: React.FC = () => {
+  const { isEnglish, setLanguage } = useLanguageContext();
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
   const { isEnglish, toggleLanguage } = useLanguageContext();
 
@@ -712,10 +714,27 @@ const ProductDetails: React.FC = () => {
   };
 
   const parsedId = parseInt(id || '1');
-  console.log("Looking for product with ID:", parsedId);
+  const { getProductById } = useProductData(isEnglish);
+  const hasSetLanguage = useRef(false);
   console.log("Available product IDs:", products.map(p => p.id));
   
   const product = products.find(p => p.id === parsedId);
+  
+  // FinSight 產品語言控制邏輯
+  useEffect(() => {
+    // 只在組件首次掛載且尚未設定語言時執行
+    if (!hasSetLanguage.current && productId === 3) {
+      const fromHome = location.state?.fromHome;
+      
+      // 如果不是從首頁進入（直接進入或外部連結），設定為英文
+      if (!fromHome) {
+        setLanguage('en');
+      }
+      // 如果是從首頁進入，保持當前語言設定
+      
+      hasSetLanguage.current = true;
+    }
+  }, [productId, location.state, setLanguage]);
 
   if (!product) {
     console.log("Product not found!");

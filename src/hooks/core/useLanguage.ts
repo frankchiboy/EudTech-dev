@@ -11,14 +11,20 @@ export const useLanguage = () => {
     }
   }, []);
 
+  const setLanguage = (language: 'en' | 'zh') => {
+    const newIsEnglish = language === 'en';
+    setIsEnglish(newIsEnglish);
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+  };
+
   const toggleLanguage = () => {
-    const newLanguage = !isEnglish;
-    setIsEnglish(newLanguage);
-    localStorage.setItem(LANGUAGE_STORAGE_KEY, newLanguage ? 'en' : 'zh');
+    const newLanguage = isEnglish ? 'zh' : 'en';
+    setLanguage(newLanguage);
   };
 
   return {
     isEnglish,
-    toggleLanguage
+    toggleLanguage,
+    setLanguage
   };
 };

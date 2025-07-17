@@ -55,7 +55,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {showDetails && !product.comingSoon && (
               <Link
                 to={`/products/${product.id}`}
-                state={{ fromSection: `product-${product.id}` }}
+                state={{ 
+                  fromSection: `product-${product.id}`,
+                  fromHome: true
+                }}
                 className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium flex items-center relative group"
               >
                 <span className="relative z-10 flex items-center">
