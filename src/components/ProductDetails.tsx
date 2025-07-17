@@ -901,6 +901,76 @@ const ProductDetails: React.FC = () => {
         </div>
       </div>
 
+      {/* PayPal Support Section - Only for FinSight */}
+      {product.id === 3 && (
+        <div className="mt-12 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8 border border-blue-100 dark:border-blue-800/30">
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <div className="flex-1">
+              <div className="flex items-center mb-4">
+                <div className="w-3 h-3 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {isEnglish ? 'Support FinSight GTP Development' : '支持 FinSight GTP 計畫發展'}
+                </h3>
+              </div>
+              
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                {isEnglish
+                  ? 'Help us accelerate the development of FinSight GTP - the next generation financial AI platform. Your support enables us to expand features, enhance AI capabilities, and deliver more powerful financial insights for the community.'
+                  : '協助我們加速 FinSight GTP 的開發進程 - 下一代金融AI平台。您的支持讓我們能夠擴充功能、增強AI能力，並為社群提供更強大的金融洞察服務。'}
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {isEnglish ? 'Expand AI model training datasets' : '擴充AI模型訓練資料集'}
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {isEnglish ? 'Develop advanced analysis features' : '開發進階分析功能'}
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {isEnglish ? 'Enhance real-time processing' : '提升即時處理能力'}
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-3"></div>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {isEnglish ? 'Accelerate platform deployment' : '加速平台部署進程'}
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <a
+                href="http://paypal.me/EudTech/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 group"
+              >
+                <svg className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.26-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.9.9 0 0 0-.89.756l-1.274 8.07a.38.38 0 0 0 .375.438h3.077c.463 0 .852-.33.93-.778l.038-.207.73-4.625.047-.257c.077-.447.467-.778.93-.778h.584c3.57 0 6.367-1.45 7.181-5.64.34-1.75.165-3.213-.675-4.32a3.669 3.669 0 0 0-1.077-.579z"/>
+                </svg>
+                {isEnglish ? 'Support via PayPal' : '透過 PayPal 支持'}
+              </a>
+              
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-3 text-center flex items-center">
+                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                </svg>
+                {isEnglish ? 'Secure payment • Any amount helps' : '安全付款 • 任何金額都是幫助'}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Specifications */}
       <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-16 relative">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTYgNnY2aDZ2LTZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30 dark:opacity-10"></div>
