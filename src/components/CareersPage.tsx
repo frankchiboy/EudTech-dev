@@ -101,6 +101,53 @@ const CareersPage: React.FC = () => {
         zh: '日班／一般工時',
         en: 'Day Shift / Regular Hours'
       }
+    },
+    {
+      id: 3,
+      title: {
+        zh: '組織溝通經理',
+        en: 'Organizational Communication Manager'
+      },
+      responsibilities: {
+        zh: [
+          '作為創辦人與全體員工之間的主要溝通橋梁',
+          '傳達公司決策、價值觀與目標，確保上下訊息一致',
+          '彙整並回報員工意見、部門需求與潛在問題',
+          '協助解決跨部門誤解、推進團隊共識與協作效率',
+          '撰寫內部公告、會議摘要、組織溝通材料',
+          '支援公司制度變動、文化活動與政策說明'
+        ],
+        en: [
+          'Serve as the primary communication channel between the founder and all staff',
+          'Convey company decisions, values, and goals to ensure consistent understanding',
+          'Gather and relay employee feedback, team needs, and organizational concerns',
+          'Mediate internal miscommunications and drive alignment across teams',
+          'Draft internal announcements, meeting summaries, and communication materials',
+          'Support internal change communications, cultural initiatives, and policy rollouts'
+        ]
+      },
+      requirements: {
+        zh: [
+          '擅長跨部門溝通與協調，能快速理解並整合多方觀點',
+          '具備清晰邏輯與文字表達能力，可獨立撰寫簡報與溝通稿件',
+          '熟悉常用內部溝通工具（如Slack、Notion、Google Workspace）',
+          '有高層幕僚、營運協調或溝通相關經驗尤佳'
+        ],
+        en: [
+          'Strong cross-functional communication and coordination skills',
+          'Excellent verbal and written clarity; able to draft presentations and communication content',
+          'Familiar with internal tools such as Slack, Notion, and Google Workspace',
+          'Experience in executive support, operations, or organizational communication is a plus'
+        ]
+      },
+      location: {
+        zh: '台灣（全遠端工作）',
+        en: 'Taiwan (Fully Remote)'
+      },
+      workTime: {
+        zh: '日班／一般工時（Regular time）',
+        en: 'Day Shift / Regular Hours'
+      }
     }
   ];
 
