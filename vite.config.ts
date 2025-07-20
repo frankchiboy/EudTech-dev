@@ -27,22 +27,6 @@ function copyRedirects() {
 
 export default defineConfig({
   plugins: [react(), copyRedirects()],
-  build: {
-    rollupOptions: {
-      output: {
-        // 為每次建置生成唯一的檔案名稱
-        entryFileNames: 'assets/[name]-[hash].js',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
-      }
-    }
-  },
-  server: {
-    // 開發伺服器不快取
-    headers: {
-      'Cache-Control': 'no-store'
-    }
-  },
   optimizeDeps: {
     exclude: ['lucide-react'],
   },

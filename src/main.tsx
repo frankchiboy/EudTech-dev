@@ -31,35 +31,6 @@ if (!rootElement) {
 
 console.log('Starting React app...');
 
-// 添加版本檢查，防止快取問題
-const APP_VERSION = '1.0.0';
-const STORAGE_KEY = 'eudtech_app_version';
-
-(function() {
-  try {
-    const storedVersion = localStorage.getItem(STORAGE_KEY);
-    if (storedVersion !== APP_VERSION) {
-      console.log('App version changed, clearing cache...');
-      // 清除可能的快取
-      if ('caches' in window) {
-        caches.keys().then(names => {
-          names.forEach(name => {
-            caches.delete(name);
-          });
-        });
-      }
-      localStorage.setItem(STORAGE_KEY, APP_VERSION);
-      // 強制重新載入一次
-      if (storedVersion) {
-        window.location.reload();
-        return;
-      }
-    }
-  } catch (error) {
-    console.warn('Version check failed:', error);
-  }
-})();
-
 try {
   const root = createRoot(rootElement);
   root.render(
