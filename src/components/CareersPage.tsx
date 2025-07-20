@@ -229,7 +229,7 @@ const CareersPage: React.FC = () => {
           <section className="relative h-96 flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
               <img
-                src="/team-meeting.jpg"
+                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
                 alt="Team collaboration"
                 className="w-full h-full object-cover transform scale-105"
               />

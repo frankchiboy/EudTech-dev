@@ -10,7 +10,7 @@ const AboutImage: React.FC<AboutImageProps> = ({ isEnglish }) => {
       <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden">
         <img
           className="w-full h-auto object-cover"
-          src="/team-collaboration.jpg"
+          src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           alt="EudTech AI research team"
         />
         <div className="p-8">
