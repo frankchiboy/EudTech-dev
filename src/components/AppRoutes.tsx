@@ -46,7 +46,15 @@ const AppRoutes: React.FC = () => {
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
   const { isEnglish, toggleLanguage } = useLanguageContext();
 
-  console.log('AppRoutes rendering');
+  console.log('AppRoutes rendering at:', new Date().toISOString());
+  
+  // 添加渲染檢查
+  React.useEffect(() => {
+    console.log('AppRoutes mounted successfully');
+    return () => {
+      console.log('AppRoutes unmounting');
+    };
+  }, []);
 
   return (
     <>
