@@ -2,14 +2,27 @@ import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import AppProviders from './components/providers/AppProviders';
 import AppRoutes from './components/AppRoutes';
-import { optimizeImageLoading } from './utils/performance/imageOptimization';
-import { preloadCriticalComponents } from './utils/performance/codesplitting';
-
-// 初始化效能優化
-optimizeImageLoading();
-preloadCriticalComponents();
 
 function App() {
+  // 添加錯誤邊界和基本的渲染檢查
+  React.useEffect(() => {
+    console.log('App component mounted');
+    
+    // 初始化效能優化（延遲執行避免阻塞渲染）
+    setTimeout(() => {
+      try {
+        import('./utils/performance/imageOptimization').then(module => {
+          module.optimizeImageLoading();
+        });
+        import('./utils/performance/codesplitting').then(module => {
+          module.preloadCriticalComponents();
+        });
+      } catch (error) {
+        console.warn('Performance optimization failed:', error);
+      }
+    }, 1000);
+  }, []);
+
   return (
     <HelmetProvider>
       <AppProviders>
