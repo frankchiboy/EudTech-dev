@@ -164,7 +164,7 @@ const CareersPage: React.FC = () => {
                     <div className="flex items-center mb-4">
                       <Briefcase className="h-8 w-8 text-blue-600 dark:text-blue-400 mr-3" />
                       <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-                        {isEnglish ? '職稱' : '職稱'}
+                        {isEnglish ? 'Position Title' : '職缺名稱'}
                       </h2>
                     </div>
                     <h3 className="text-2xl font-semibold text-blue-800 dark:text-blue-300">
