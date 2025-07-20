@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import LoadingSpinner from '../ui/LoadingSpinner';
 import { classNames } from '../../utils/helpers';
 
 interface LazyImageProps {
@@ -53,24 +52,18 @@ const LazyImage: React.FC<LazyImageProps> = ({
   return (
     <div ref={imgRef} className={classNames('relative overflow-hidden', className)}>
       {!isInView ? (
-        <div className="w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
-          <LoadingSpinner size="md" color="secondary" />
-        </div>
+        <div className="w-full h-full bg-gray-200 dark:bg-gray-700"></div>
       ) : (
         <>
-          {!isLoaded && !hasError && (
-            <div className="absolute inset-0 w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
-              <LoadingSpinner size="md" color="secondary" />
-            </div>
-          )}
           <img
             src={src}
             alt={alt}
             onLoad={handleLoad}
             onError={handleError}
             className={classNames(
-              'w-full h-full object-cover transition-opacity duration-500',
-              isLoaded ? 'opacity-100' : 'opacity-0'
+              'w-full h-full object-cover transition-opacity duration-200',
+              isLoaded ? 'opacity-100' : 'opacity-0',
+              !isLoaded && !hasError && 'bg-gray-200 dark:bg-gray-700'
             )}
           />
           {hasError && (
