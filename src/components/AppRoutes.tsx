@@ -10,6 +10,7 @@ import Footer from './Footer';
 import ScrollToTop from './common/ScrollToTop';
 import SkipToContent from './common/SkipToContent';
 import LoadingSpinner from './ui/LoadingSpinner';
+import CareersPage from './CareersPage';
 import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
 
 const AppRoutes: React.FC = () => {
@@ -48,6 +49,7 @@ const AppRoutes: React.FC = () => {
                 <Footer isEnglish={isEnglish} />
               </>
             } />
+            <Route path="/careers" element={<CareersPage />} />
             <Route path="/products/:id" element={
               <Suspense fallback={
                 <div className="flex items-center justify-center min-h-screen">

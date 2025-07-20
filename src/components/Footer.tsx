@@ -36,7 +36,7 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
       title: isEnglish ? 'Company' : '公司',
       links: [
         { name: isEnglish ? 'About' : '關於我們', href: '#about', active: true },
-        { name: isEnglish ? 'Careers' : '職業機會', href: 'https://www.104.com.tw/company/1a2x6bmxg5', target: '_blank', active: true },
+        { name: isEnglish ? 'Careers' : '職業機會', href: '/careers', active: true },
         { name: isEnglish ? 'News' : '新聞', href: '#', active: false },
         { name: isEnglish ? 'Blog' : '部落格', href: '#', active: false },
       ],
