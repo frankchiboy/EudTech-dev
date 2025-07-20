@@ -51,6 +51,7 @@ try {
     // 強制重新載入一次
     if (storedVersion) {
       window.location.reload();
+      return;
     }
   }
 } catch (error) {
