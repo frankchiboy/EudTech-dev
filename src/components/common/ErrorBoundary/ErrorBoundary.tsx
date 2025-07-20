@@ -9,7 +9,6 @@ interface Props {
 interface State {
   hasError: boolean;
   error?: Error;
-  errorInfo?: ErrorInfo;
 }
 
 class ErrorBoundary extends Component<Props, State> {
@@ -18,18 +17,12 @@ class ErrorBoundary extends Component<Props, State> {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error): Partial<State> {
-    console.error('ErrorBoundary: Error caught in getDerivedStateFromError:', error);
+  static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
-    
-    this.setState({
-      error,
-      errorInfo
-    });
     
     // 在開發環境中顯示更詳細的錯誤信息
     if (process.env.NODE_ENV === 'development') {
@@ -40,16 +33,6 @@ class ErrorBoundary extends Component<Props, State> {
       });
     }
   }
-
-  handleReload = () => {
-    this.setState({ hasError: false, error: undefined, errorInfo: undefined });
-    window.location.reload();
-  };
-
-  handleGoHome = () => {
-    this.setState({ hasError: false, error: undefined, errorInfo: undefined });
-    window.location.href = '/';
-  };
 
   render() {
     if (this.state.hasError) {
@@ -69,29 +52,12 @@ class ErrorBoundary extends Component<Props, State> {
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               很抱歉，應用程式遇到了未預期的錯誤。
             </p>
-            {process.env.NODE_ENV === 'development' && this.state.error && (
-              <details className="mb-4 p-3 bg-gray-100 dark:bg-gray-700 rounded text-sm">
-                <summary className="cursor-pointer font-medium">錯誤詳情</summary>
-                <pre className="mt-2 text-xs overflow-auto">
-                  {this.state.error.message}
-                  {this.state.error.stack}
-                </pre>
-              </details>
-            )}
-            <div className="space-y-2">
-              <button
-                onClick={this.handleReload}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
-              >
-                重新載入頁面
-              </button>
-              <button
-                onClick={this.handleGoHome}
-                className="w-full bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
-              >
-                返回首頁
-              </button>
-            </div>
+            <button
+              onClick={() => window.location.reload()}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
+            >
+              重新載入頁面
+            </button>
           </div>
         </div>
       );
