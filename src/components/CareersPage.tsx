@@ -176,7 +176,7 @@ const CareersPage: React.FC = () => {
                   <div className="mb-8 bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4">
                     <p className="text-blue-800 dark:text-blue-300 font-medium text-center">
                       {isEnglish 
-                        ? 'Internal applications welcome. This position can also be taken on a part-time basis with additional compensation.'
+                        ? 'Internal applications welcome. This position can also be taken as a concurrent role with additional compensation.'
                         : '本職缺歡迎內部同仁申請，亦可採加給方式兼任。'
                       }
                     </p>
@@ -186,7 +186,7 @@ const CareersPage: React.FC = () => {
                   <div className="mb-8">
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                       <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400 mr-2" />
-                      {isEnglish ? '工作內容' : '工作內容'}
+                      {isEnglish ? 'Job Responsibilities' : '工作內容'}
                     </h3>
                     <ul className="space-y-3">
                       {(isEnglish ? job.responsibilities.en : job.responsibilities.zh).map((item, index) => (
@@ -202,7 +202,7 @@ const CareersPage: React.FC = () => {
                   <div className="mb-8">
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                       <CheckCircle className="h-6 w-6 text-orange-600 dark:text-orange-400 mr-2" />
-                      {isEnglish ? '條件需求' : '條件需求'}
+                      {isEnglish ? 'Requirements' : '條件需求'}
                     </h3>
                     <ul className="space-y-3">
                       {(isEnglish ? job.requirements.en : job.requirements.zh).map((item, index) => (
@@ -219,7 +219,7 @@ const CareersPage: React.FC = () => {
                     <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 flex items-center">
                         <MapPin className="h-5 w-5 text-purple-600 dark:text-purple-400 mr-2" />
-                        {isEnglish ? '工作地點' : '工作地點'}
+                        {isEnglish ? 'Location' : '工作地點'}
                       </h4>
                       <p className="text-gray-700 dark:text-gray-300">
                         {isEnglish ? job.location.en : job.location.zh}
@@ -229,7 +229,7 @@ const CareersPage: React.FC = () => {
                     <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 flex items-center">
                         <Clock className="h-5 w-5 text-teal-600 dark:text-teal-400 mr-2" />
-                        {isEnglish ? '工作時間' : '工作時間'}
+                        {isEnglish ? 'Working Hours' : '工作時間'}
                       </h4>
                       <p className="text-gray-700 dark:text-gray-300">
                         {isEnglish ? job.workTime.en : job.workTime.zh}
