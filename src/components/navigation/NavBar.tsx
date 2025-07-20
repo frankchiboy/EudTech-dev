@@ -56,6 +56,11 @@ const NavBar: React.FC<NavBarProps> = ({
       const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
       const opacity = Math.min(scrollProgress * 0.9, 0.9);
       return `rgba(${bgColor}, ${opacity})`;
+    } else if (location.pathname === '/careers') {
+      // Careers 頁面始終顯示半透明背景
+      const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
+      const opacity = 0.95;
+      return `rgba(${bgColor}, ${opacity})`;
     } else {
       // 首頁漸變效果
       const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
@@ -68,6 +73,10 @@ const NavBar: React.FC<NavBarProps> = ({
   const getBorderColor = () => {
     if (isProductDetailPage && scrollProgress < 0.1) {
       return 'transparent';
+    } else if (location.pathname === '/careers') {
+      // Careers 頁面顯示邊框
+      const borderColor = isDarkMode ? '55, 65, 81' : '229, 231, 235';
+      return `rgba(${borderColor}, 0.3)`;
     }
     const borderColor = isDarkMode ? '55, 65, 81' : '229, 231, 235';
     const opacity = Math.min(scrollProgress * 0.2, 0.2);
@@ -78,6 +87,11 @@ const NavBar: React.FC<NavBarProps> = ({
   const getTextColorClass = () => {
     if (isProductDetailPage) {
       // 產品詳細頁面根據主題模式決定
+      return isDarkMode 
+        ? 'text-gray-100 hover:text-blue-300' 
+        : 'text-gray-800 hover:text-blue-600';
+    } else if (location.pathname === '/careers') {
+      // Careers 頁面使用固定的深色文字（在淺色背景上）
       return isDarkMode 
         ? 'text-gray-100 hover:text-blue-300' 
         : 'text-gray-800 hover:text-blue-600';
@@ -101,6 +115,9 @@ const NavBar: React.FC<NavBarProps> = ({
         return 'none';
       }
       return scrollProgress > 0.3 ? 'blur(10px)' : 'blur(6px)';
+    } else if (location.pathname === '/careers') {
+      // Careers 頁面使用模糊效果
+      return 'blur(8px)';
     }
     return scrollProgress > 0.2 ? 'blur(8px)' : 'none';
   };
@@ -109,6 +126,9 @@ const NavBar: React.FC<NavBarProps> = ({
   const getShadowEffect = () => {
     if (isProductDetailPage && scrollProgress < 0.1) {
       return 'none';
+    } else if (location.pathname === '/careers') {
+      // Careers 頁面顯示陰影
+      return '0 1px 3px 0 rgba(0, 0, 0, 0.1)';
     }
     const shadowOpacity = Math.min(scrollProgress * 0.08, 0.05);
     return `0 1px 3px 0 rgba(0, 0, 0, ${shadowOpacity})`;
