@@ -148,6 +148,53 @@ const CareersPage: React.FC = () => {
         zh: '日班／一般工時（Regular time）',
         en: 'Day Shift / Regular Hours'
       }
+    },
+    {
+      id: 4,
+      title: {
+        zh: "Comino 產品經理",
+        en: "Product Manager – Comino Solutions",
+      },
+      responsibilities: {
+        zh: [
+          "作為公司與 Comino 原廠之間的技術與產品窗口",
+          "熟悉 Comino 液冷工作站 / 伺服器產品線，管理本地化資料與技術文檔",
+          "協助企業端客戶進行需求評估、配置規劃與選型建議",
+          "整合業務、技術與供應鏈資訊，定義導入流程與售後支援策略",
+          "規劃產品推廣內容（如配置工具教學、教育訓練、技術簡報）",
+          "支援報價、安規認證、物流進口、退換貨與保固流程",
+        ],
+        en: [
+          "Act as the primary product and technical liaison between our company and Comino",
+          "Manage localized technical materials and stay updated with the latest Comino product lines",
+          "Assist enterprise clients with solution evaluation, configuration planning, and deployment",
+          "Coordinate with sales and operations to define product integration and support flow",
+          "Plan product marketing and enablement content (configurator usage, workshops, technical docs)",
+          "Support quoting, BSM certification tracking, logistics, RMA, and warranty-related workflows",
+        ],
+      },
+      requirements: {
+        zh: [
+          "熟悉伺服器架構、GPU 應用與液冷散熱者尤佳",
+          "具備硬體產品規格彙整、客戶需求訪談與技術簡報能力",
+          "能跨部門協作推進銷售、交付與安裝流程",
+          "英文讀寫佳，可溝通 Comino 原廠技術與商務團隊",
+        ],
+        en: [
+          "Background in servers, GPU computing, or liquid cooling preferred",
+          "Skilled in technical documentation, customer-facing planning, and presentations",
+          "Able to collaborate across teams to ensure successful sales and deployment",
+          "Proficient in English for communication with Comino HQ and support teams",
+        ],
+      },
+      location: {
+        zh: "台灣（全遠端工作）",
+        en: "Taiwan (Fully Remote)",
+      },
+      workTime: {
+        zh: "日班／一般工時",
+        en: "Day Shift / Regular Hours",
+      },
     }
   ];
 
