@@ -136,8 +136,7 @@ const ProductDetails: React.FC = () => {
           'API-driven financial data access for LLMs and enterprise systems',
           'Interactive LLM demos for financial analysis and reporting',
           'Custom GPT assistants for finance',
-          'Enterprise deployment and consulting',
-          'Showcase: https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight (MVP demo)'
+          'Enterprise deployment and consulting'
         ]
       } : {
         title: 'FinSight 金融AI系列',
