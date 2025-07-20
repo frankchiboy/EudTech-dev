@@ -15,8 +15,8 @@ const CareersPage: React.FC = () => {
 
   const jobData = {
     title: {
-      zh: '政府標案商務經理（含履約融資協調）',
-      en: 'Public Sector Business Manager (with Tender Financing Coordination)'
+      zh: '政府標案商務經理',
+      en: 'Public Sector Business Manager'
     },
     responsibilities: {
       zh: [
@@ -110,12 +110,9 @@ const CareersPage: React.FC = () => {
                       {isEnglish ? '📌 Job Title' : '📌 職稱'}
                     </h2>
                   </div>
-                  <h3 className="text-2xl font-semibold text-blue-800 dark:text-blue-300 mb-2">
-                    {jobData.title.zh}
+                  <h3 className="text-2xl font-semibold text-blue-800 dark:text-blue-300">
+                    {isEnglish ? jobData.title.en : jobData.title.zh}
                   </h3>
-                  <p className="text-lg text-gray-600 dark:text-gray-400 italic">
-                    {jobData.title.en}
-                  </p>
                 </div>
 
                 {/* Job Responsibilities */}
@@ -182,15 +179,12 @@ const CareersPage: React.FC = () => {
                     className="inline-flex items-center"
                   >
                     <Mail className="h-5 w-5 mr-2" />
-                    {isEnglish 
-                      ? 'Apply Now - Send Resume & Expected Salary'
-                      : '立即應徵 - 提供履歷與期待薪資'
-                    }
+                    {isEnglish ? 'Apply Now' : '立即應徵'}
                   </Button>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
                     {isEnglish 
-                      ? 'Email: frank.hsu@eudaemonia.tech'
-                      : '應徵方式透過 email: frank.hsu@eudaemonia.tech'
+                      ? 'Send Resume & Expected Salary'
+                      : '提供履歷與期待薪資'
                     }
                   </p>
                 </div>

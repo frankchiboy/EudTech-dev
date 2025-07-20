@@ -19,6 +19,10 @@ export const getNavLinks = (isEnglish: boolean): NavLink[] => {
       href: '#about'
     },
     {
+      name: isEnglish ? 'Careers' : '職業機會',
+      href: '/careers'
+    },
+    {
       name: isEnglish ? 'Contact' : '聯絡我們',
       href: '#contact'
     }
