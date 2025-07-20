@@ -23,15 +23,6 @@ class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
-    
-    // 在開發環境中顯示更詳細的錯誤信息
-    if (process.env.NODE_ENV === 'development') {
-      console.error('Error details:', {
-        error: error.message,
-        stack: error.stack,
-        componentStack: errorInfo.componentStack
-      });
-    }
   }
 
   render() {
