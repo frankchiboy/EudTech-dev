@@ -10,7 +10,7 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
       ? 'FinSight: Financial language understanding and data API framework. Combine raw data with LLMs for real-time, flexible insights and decision support.'
       : 'FinSight 金融語言理解與資料API架構，結合原始數據與LLM，提供即時彈性洞察與決策輔助。',
     icon: React.createElement(Shield, { className: "h-8 w-8 text-blue-800" }),
-    image: "https://images.pexels.com/photos/7567529/pexels-photo-7567529.jpeg",
+    image: "/financial-ai-system.jpg",
     features: isEnglish
       ? [
           'FinSight-API: Unified financial data API',
