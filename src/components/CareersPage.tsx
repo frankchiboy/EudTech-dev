@@ -84,19 +84,27 @@ const CareersPage: React.FC = () => {
         
         <main className="pt-16">
           {/* Hero Section */}
-          <Section background="gradient" padding="xl">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <section className="relative h-96 flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0">
+              <img
+                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
+                alt="Team collaboration"
+                className="w-full h-full object-cover transform scale-105"
+              />
+              <div className="absolute inset-0 bg-black/60 dark:bg-black/70"></div>
+            </div>
+            <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 {isEnglish ? 'Join Our Team' : '加入我們的團隊'}
               </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
                 {isEnglish 
                   ? 'Be part of the future of AI technology. We\'re looking for passionate individuals to help us build innovative solutions.'
                   : '成為AI技術未來的一部分。我們正在尋找充滿熱忱的人才，協助我們打造創新解決方案。'
                 }
               </p>
             </div>
-          </Section>
+          </section>
 
           {/* Job Opening */}
           <Section background="white" padding="xl">
