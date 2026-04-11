@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "postbuild": "node scripts/inject-version.cjs",
-    "test-env": "vite preview --open public/test-environment.html"
+    "test-env": "vite preview --open public/test-environment.html",
+    "build:netlify": "vite build"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
