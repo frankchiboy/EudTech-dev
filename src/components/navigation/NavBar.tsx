@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
-import { useScrollDetection } from '../../hooks/ui/useScrollDetection';
 import { getNavLinks } from '../../data/navigation';
 import { handleNavClick } from '../../utils/helpers/navigation';
 import Logo from '../common/Logo';
@@ -18,12 +17,12 @@ interface NavBarProps {
   toggleDarkMode: () => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ 
-  isEnglish, 
-  toggleLanguage, 
-  themeMode, 
-  isDarkMode, 
-  toggleDarkMode 
+const NavBar: React.FC<NavBarProps> = ({
+  isEnglish,
+  toggleLanguage,
+  themeMode,
+  isDarkMode,
+  toggleDarkMode
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -41,100 +40,103 @@ const NavBar: React.FC<NavBarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 計算滾動進度（0-1）
   const scrollProgress = Math.min(scrollY / 100, 1);
   const isScrolled = scrollY > 20;
 
-  // 根據滾動狀態和主題模式決定背景色
   const getBackgroundColor = () => {
     if (isProductDetailPage) {
-      // 產品詳細頁面：頂端完全透明
       if (scrollProgress < 0.1) {
         return 'transparent';
       }
-      // 滾動時顯示與頁面背景相同的顏色
       const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
       const opacity = Math.min(scrollProgress * 0.9, 0.9);
       return `rgba(${bgColor}, ${opacity})`;
-    } else if (location.pathname === '/careers') {
-      // Careers 頁面始終顯示半透明背景
-      const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
-      const opacity = 0.95;
-      return `rgba(${bgColor}, ${opacity})`;
-    } else {
-      // 首頁漸變效果
-      const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
-      const opacity = Math.min(scrollProgress * 0.8, 0.8); // 0 -> 0.8
-      return `rgba(${bgColor}, ${opacity})`;
     }
+
+    if (location.pathname === '/careers') {
+      const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
+      return `rgba(${bgColor}, 0.95)`;
+    }
+
+    const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
+    const opacity = Math.max(0.2, Math.min(scrollProgress * 0.8, 0.8));
+    return `rgba(${bgColor}, ${opacity})`;
   };
 
-  // 根據滾動狀態和主題模式決定邊框色
   const getBorderColor = () => {
     if (isProductDetailPage && scrollProgress < 0.1) {
       return 'transparent';
-    } else if (location.pathname === '/careers') {
-      // Careers 頁面顯示邊框
+    }
+
+    if (location.pathname === '/careers') {
       const borderColor = isDarkMode ? '55, 65, 81' : '229, 231, 235';
       return `rgba(${borderColor}, 0.3)`;
     }
+
     const borderColor = isDarkMode ? '55, 65, 81' : '229, 231, 235';
-    const opacity = Math.min(scrollProgress * 0.2, 0.2);
+    const opacity = Math.max(0.05, Math.min(scrollProgress * 0.2, 0.2));
     return `rgba(${borderColor}, ${opacity})`;
   };
 
-  // 根據頁面類型和滾動狀態決定文字顏色
   const getTextColorClass = () => {
     if (isProductDetailPage) {
-      // 產品詳細頁面根據主題模式決定
-      return isDarkMode 
-        ? 'text-gray-100 hover:text-blue-300' 
+      return isDarkMode
+        ? 'text-gray-100 hover:text-blue-300'
         : 'text-gray-800 hover:text-blue-600';
-    } else if (location.pathname === '/careers') {
-      // Careers 頁面使用固定的深色文字（在淺色背景上）
-      return isDarkMode 
-        ? 'text-gray-100 hover:text-blue-300' 
-        : 'text-gray-800 hover:text-blue-600';
-    } else {
-      // 首頁根據滾動進度漸變
-      const textOpacity = Math.max(0.8, 1 - scrollProgress);
-      if (scrollProgress < 0.3) {
-        return 'text-white hover:text-blue-200';
-      } else {
-        return isDarkMode 
-          ? 'text-gray-100 hover:text-blue-300' 
-          : 'text-gray-800 hover:text-blue-600';
-      }
     }
+
+    if (location.pathname === '/careers') {
+      return isDarkMode
+        ? 'text-gray-100 hover:text-blue-300'
+        : 'text-gray-800 hover:text-blue-600';
+    }
+
+    if (scrollProgress < 0.3) {
+      return 'text-white hover:text-blue-200 font-medium text-shadow-sm tracking-wide';
+    }
+
+    return isDarkMode
+      ? 'text-gray-100 hover:text-blue-300'
+      : 'text-gray-800 hover:text-blue-600';
   };
 
-  // 計算模糊效果
   const getBlurEffect = () => {
     if (isProductDetailPage) {
       if (scrollProgress < 0.1) {
         return 'none';
       }
       return scrollProgress > 0.3 ? 'blur(10px)' : 'blur(6px)';
-    } else if (location.pathname === '/careers') {
-      // Careers 頁面使用模糊效果
+    }
+
+    if (location.pathname === '/careers') {
       return 'blur(8px)';
     }
-    return scrollProgress > 0.2 ? 'blur(8px)' : 'none';
+
+    if (scrollProgress > 0.2) {
+      const blurIntensity = Math.max(4, Math.min(scrollProgress * 10, 8));
+      return `blur(${blurIntensity}px)`;
+    }
+
+    return 'none';
   };
 
-  // 計算陰影效果
   const getShadowEffect = () => {
     if (isProductDetailPage && scrollProgress < 0.1) {
       return 'none';
-    } else if (location.pathname === '/careers') {
-      // Careers 頁面顯示陰影
+    }
+
+    if (location.pathname === '/careers') {
       return '0 1px 3px 0 rgba(0, 0, 0, 0.1)';
     }
-    const shadowOpacity = Math.min(scrollProgress * 0.08, 0.05);
+
+    const shadowOpacity = Math.max(0.03, Math.min(scrollProgress * 0.08, 0.05));
     return `0 1px 3px 0 rgba(0, 0, 0, ${shadowOpacity})`;
   };
+
+  const textColorClass = getTextColorClass();
+
   return (
-    <nav 
+    <nav
       className="fixed w-full z-50 transition-all duration-500 ease-out"
       style={{
         backgroundColor: getBackgroundColor(),
@@ -149,57 +151,64 @@ const NavBar: React.FC<NavBarProps> = ({
             <div className="flex-shrink-0">
               <Logo />
             </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                {navLinks.map((link) => (
+          </div>
+
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              {navLinks.map((link) =>
+                link.isDropdown ? (
+                  <NavLink key={link.name} link={link} textColorClass={textColorClass} />
+                ) : (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(link.href, e)}
-                    className={`${getTextColorClass()} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-out`}
+                    className={`${textColorClass} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-out ${
+                      isHomePage && scrollY < 30 ? 'text-shadow-sm' : ''
+                    }`}
                   >
                     {link.name}
                   </a>
-                ))}
-              </div>
+                )
+              )}
             </div>
           </div>
-          
+
           <div className="hidden md:flex items-center">
-            <LanguageToggle 
+            <LanguageToggle
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
               isScrolled={isScrolled}
-              textColorClass={getTextColorClass()}
+              textColorClass={textColorClass}
             />
-            <ThemeToggle 
+            <ThemeToggle
               themeMode={themeMode}
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
               isScrolled={isScrolled}
-              textColorClass={getTextColorClass()}
+              textColorClass={textColorClass}
             />
           </div>
-          
+
           <div className="md:hidden flex items-center">
-            <LanguageToggle 
+            <LanguageToggle
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
               isScrolled={isScrolled}
-              textColorClass={getTextColorClass()}
+              textColorClass={textColorClass}
               mobile
             />
-            <ThemeToggle 
+            <ThemeToggle
               themeMode={themeMode}
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
               isScrolled={isScrolled}
-              textColorClass={getTextColorClass()}
+              textColorClass={textColorClass}
               mobile
             />
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`${getTextColorClass()} p-1 rounded-full transition-all duration-300 ease-out`}
+              onClick={() => setIsOpen((prev) => !prev)}
+              className={`${textColorClass} p-1 rounded-full transition-all duration-300 ease-out ml-2`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -207,10 +216,17 @@ const NavBar: React.FC<NavBarProps> = ({
         </div>
       </div>
 
-      <MobileMenu 
+      <MobileMenu
         isOpen={isOpen}
         navLinks={navLinks}
         onClose={() => setIsOpen(false)}
+        isEnglish={isEnglish}
+        toggleLanguage={toggleLanguage}
+        themeMode={themeMode}
+        isDarkMode={isDarkMode}
+        toggleDarkMode={toggleDarkMode}
+        isScrolled={isScrolled}
+        textColorClass={textColorClass}
       />
     </nav>
   );

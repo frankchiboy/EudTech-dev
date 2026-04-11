@@ -2,9 +2,18 @@ export type ThemeMode = 'light' | 'dark' | 'system';
 
 export type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
+export interface NavLinkChild {
+  name: string;
+  href: string;
+}
+
 export interface NavLink {
   name: string;
   href: string;
+  isDropdown?: boolean;
+  disabled?: boolean;
+  disabledText?: string;
+  children?: NavLinkChild[];
 }
 
 export interface HeroContent {

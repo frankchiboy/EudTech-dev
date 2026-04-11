@@ -8,7 +8,7 @@ const AboutContent: React.FC<AboutContentProps> = ({ isEnglish }) => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-base font-semibold tracking-wide text-blue-800 dark:text-blue-400 uppercase">
+        <h2 className="text-base font-semibold tracking-wide text-[#003daa] dark:text-blue-400 uppercase">
           {isEnglish ? 'About Us' : '關於我們'}
         </h2>
         <p className="mt-1 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl">
@@ -39,7 +39,7 @@ const AboutContent: React.FC<AboutContentProps> = ({ isEnglish }) => {
       <div className="mt-10">
         <a
           href="#eudtech-products"
-          className="text-blue-800 dark:text-blue-400 font-medium hover:text-blue-900 dark:hover:text-blue-300 transition-colors duration-200 flex items-center group"
+          className="text-[#003daa] dark:text-blue-400 font-medium hover:text-[#002a75] dark:hover:text-blue-300 transition-colors duration-200 flex items-center group"
         >
           {isEnglish ? 'Explore our products' : '探索我們的產品'}
           <svg

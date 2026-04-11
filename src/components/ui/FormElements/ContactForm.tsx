@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EmailFormData } from '../../../types';
 import Input from '../Input';
 import Textarea from '../Textarea';
@@ -6,18 +6,25 @@ import Checkbox from './Checkbox';
 import Button from '../Button';
 import FormGroup from './FormGroup';
 import { isValidEmail } from '../../../utils/validators';
+import { useI18n } from '../../../i18n/I18nProvider';
 
 interface ContactFormProps {
   onSubmit: (data: EmailFormData) => Promise<void>;
-  isEnglish: boolean;
   isLoading?: boolean;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({
-  onSubmit,
-  isEnglish,
-  isLoading = false
-}) => {
+// 用於儲存表單錯誤的介面，修正錯誤類型
+interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  company?: string;
+  message?: string;
+  privacy?: string;
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isLoading = false }) => {
+  const { t } = useI18n();
   const [formData, setFormData] = useState<EmailFormData>({
     firstName: '',
     lastName: '',
@@ -27,39 +34,67 @@ const ContactForm: React.FC<ContactFormProps> = ({
     privacy: false
   });
 
-  const [errors, setErrors] = useState<Partial<EmailFormData>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formTouched, setFormTouched] = useState<Record<keyof EmailFormData, boolean>>({
+    firstName: false,
+    lastName: false,
+    email: false,
+    company: false,
+    message: false,
+    privacy: false
+  });
 
-  const validateForm = (): boolean => {
-    const newErrors: Partial<EmailFormData> = {};
+  // 當任何欄位被更新時，如果表單已提交過，重新驗證所有欄位
+  useEffect(() => {
+    if (formSubmitted) {
+      validateForm(false);
+    }
+  }, [formData, formSubmitted]);
+
+  const validateForm = (updateErrors = true): boolean => {
+    const newErrors: FormErrors = {};
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = isEnglish ? 'First name is required' : '名字為必填';
+      newErrors.firstName = t('contact.form.errors.firstNameRequired');
     }
 
     if (!formData.lastName.trim()) {
-      newErrors.lastName = isEnglish ? 'Last name is required' : '姓氏為必填';
+      newErrors.lastName = t('contact.form.errors.lastNameRequired');
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = isEnglish ? 'Email is required' : '電子郵件為必填';
+      newErrors.email = t('contact.form.errors.emailRequired');
     } else if (!isValidEmail(formData.email)) {
-      newErrors.email = isEnglish ? 'Invalid email format' : '電子郵件格式不正確';
+      newErrors.email = t('contact.form.errors.emailInvalid');
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = isEnglish ? 'Message is required' : '訊息為必填';
+      newErrors.message = t('contact.form.errors.messageRequired');
     }
 
     if (!formData.privacy) {
-      newErrors.privacy = isEnglish ? 'You must agree to the privacy policy' : '您必須同意隱私政策';
+      newErrors.privacy = t('contact.form.errors.privacyRequired');
     }
 
-    setErrors(newErrors);
+    if (updateErrors) {
+      setErrors(newErrors);
+    }
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    setFormSubmitted(true);
+    
+    // 標記所有欄位為已觸碰
+    const allTouched = Object.keys(formTouched).reduce((acc, key) => {
+      acc[key as keyof EmailFormData] = true;
+      return acc;
+    }, {} as Record<keyof EmailFormData, boolean>);
+    
+    setFormTouched(allTouched);
     
     if (!validateForm()) return;
 
@@ -75,8 +110,17 @@ const ContactForm: React.FC<ContactFormProps> = ({
         privacy: false
       });
       setErrors({});
+      setFormSubmitted(false);
+      setFormTouched({
+        firstName: false,
+        lastName: false,
+        email: false,
+        company: false,
+        message: false,
+        privacy: false
+      });
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('表單提交錯誤:', error);
     }
   };
 
@@ -89,69 +133,121 @@ const ContactForm: React.FC<ContactFormProps> = ({
     
     setFormData(prev => ({ ...prev, [field]: value }));
     
-    // 清除該欄位的錯誤
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
+    // 標記此欄位為已觸碰
+    setFormTouched(prev => ({ ...prev, [field]: true }));
+    
+    // 只有當欄位已觸碰或表單已提交時顯示錯誤
+    if (formTouched[field] || formSubmitted) {
+      // 實時驗證此欄位
+      const newErrors = { ...errors };
+      
+      if (field === 'firstName' && !value.toString().trim()) {
+        newErrors.firstName = t('contact.form.errors.firstNameRequired');
+      } else if (field === 'firstName') {
+        delete newErrors.firstName;
+      }
+      
+      if (field === 'lastName' && !value.toString().trim()) {
+        newErrors.lastName = t('contact.form.errors.lastNameRequired');
+      } else if (field === 'lastName') {
+        delete newErrors.lastName;
+      }
+      
+      if (field === 'email') {
+        if (!value.toString().trim()) {
+          newErrors.email = t('contact.form.errors.emailRequired');
+        } else if (!isValidEmail(value.toString())) {
+          newErrors.email = t('contact.form.errors.emailInvalid');
+        } else {
+          delete newErrors.email;
+        }
+      }
+      
+      if (field === 'message' && !value.toString().trim()) {
+        newErrors.message = t('contact.form.errors.messageRequired');
+      } else if (field === 'message') {
+        delete newErrors.message;
+      }
+      
+      if (field === 'privacy' && !value) {
+        newErrors.privacy = t('contact.form.errors.privacyRequired');
+      } else if (field === 'privacy') {
+        delete newErrors.privacy;
+      }
+      
+      setErrors(newErrors);
     }
+  };
+
+  const shouldShowError = (field: keyof EmailFormData) => {
+    return (formTouched[field] || formSubmitted) && Boolean(errors[field]);
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <FormGroup direction="row" spacing="md">
         <Input
-          label={isEnglish ? 'First Name' : '名字'}
+          label={t('contact.form.labels.firstName')}
           value={formData.firstName}
           onChange={handleChange('firstName')}
-          error={errors.firstName}
+          onBlur={() => setFormTouched(prev => ({ ...prev, firstName: true }))}
+          error={shouldShowError('firstName') ? errors.firstName : undefined}
           required
           fullWidth
+          disabled={isLoading}
         />
         <Input
-          label={isEnglish ? 'Last Name' : '姓氏'}
+          label={t('contact.form.labels.lastName')}
           value={formData.lastName}
           onChange={handleChange('lastName')}
-          error={errors.lastName}
+          onBlur={() => setFormTouched(prev => ({ ...prev, lastName: true }))}
+          error={shouldShowError('lastName') ? errors.lastName : undefined}
           required
           fullWidth
+          disabled={isLoading}
         />
       </FormGroup>
 
       <Input
         type="email"
-        label={isEnglish ? 'Email' : '電子郵件'}
+        label={t('contact.form.labels.email')}
         value={formData.email}
         onChange={handleChange('email')}
-        error={errors.email}
+        onBlur={() => setFormTouched(prev => ({ ...prev, email: true }))}
+        error={shouldShowError('email') ? errors.email : undefined}
         required
         fullWidth
+        disabled={isLoading}
       />
 
       <Input
-        label={isEnglish ? 'Company' : '公司'}
+        label={t('contact.form.labels.company')}
         value={formData.company}
         onChange={handleChange('company')}
+        onBlur={() => setFormTouched(prev => ({ ...prev, company: true }))}
         fullWidth
+        disabled={isLoading}
       />
 
       <Textarea
-        label={isEnglish ? 'Message' : '訊息'}
+        label={t('contact.form.labels.message')}
         value={formData.message}
         onChange={handleChange('message')}
-        error={errors.message}
+        onBlur={() => setFormTouched(prev => ({ ...prev, message: true }))}
+        error={shouldShowError('message') ? errors.message : undefined}
         rows={4}
         required
         fullWidth
+        disabled={isLoading}
       />
 
       <Checkbox
-        label={isEnglish 
-          ? 'I agree to the privacy policy and terms of service.'
-          : '我同意隱私政策和服務條款。'
-        }
+        label={t('contact.form.labels.privacy')}
         checked={formData.privacy}
         onChange={handleChange('privacy')}
-        error={errors.privacy}
+        error={shouldShowError('privacy') ? errors.privacy : undefined}
         required
+        disabled={isLoading}
       />
 
       <Button
@@ -162,10 +258,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
         isLoading={isLoading}
         disabled={isLoading}
       >
-        {isLoading 
-          ? (isEnglish ? 'Submitting...' : '提交中...') 
-          : (isEnglish ? 'Send Message' : '發送訊息')
-        }
+        {isLoading ? t('contact.form.submitting') : t('contact.form.submit')}
       </Button>
     </form>
   );

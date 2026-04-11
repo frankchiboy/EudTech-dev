@@ -11,7 +11,7 @@ const EudTechProductsSection: React.FC<EudTechProductsSectionProps> = ({ isEngli
   const products = getEudTechProducts(isEnglish);
 
   return (
-    <Section id="eudtech-products" background="white">
+    <Section id="eudtech-products" background="white" padding="xl">
       <div className="text-center mb-16">
         <h2 className="text-base font-semibold tracking-wide text-blue-800 dark:text-blue-400 uppercase">
           {isEnglish ? 'EudTech Solutions' : 'EudTech 解決方案'}

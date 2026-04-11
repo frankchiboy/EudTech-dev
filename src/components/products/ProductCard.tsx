@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { Product } from '../../data/models/Product';
 import OptimizedCard from '../ui/OptimizedCard';
-import Badge from '../ui/Badge';
 import ProductFeatures from './ProductFeatures';
 import LazyImage from '../common/LazyImage';
 
@@ -19,34 +18,35 @@ const ProductCard: React.FC<ProductCardProps> = ({
   showDetails = true
 }) => {
   return (
-    <OptimizedCard
-      variant="elevated"
-      padding="none"
-      hover
-      lazy
-      className="overflow-hidden border border-gray-100 dark:border-gray-700/50"
-    >
+    <div id={`product-card-${product.id}`}>
+      <OptimizedCard
+        variant="elevated"
+        padding="none"
+        hover
+        lazy
+        className="overflow-hidden border border-gray-100 dark:border-gray-700/50"
+      >
       {product.comingSoon && (
         <div className="bg-blue-800 dark:bg-blue-700 text-white text-center py-2 text-sm font-medium">
           {isEnglish ? 'COMING SOON' : '即將推出'}
         </div>
       )}
       
-      <div className="relative h-48">
+      <div className="relative h-52">
         <LazyImage
           src={product.image}
           alt={product.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
-        <div className="absolute bottom-4 left-4 text-white">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+        <div className="absolute bottom-5 left-5 text-white">
           <div className="mb-2">{product.icon}</div>
-          <h3 className="text-xl font-bold">{product.title}</h3>
+          <h3 className="text-2xl font-extrabold tracking-tight">{product.title}</h3>
         </div>
       </div>
       
       <div className="p-6">
-        <p className="text-gray-600 dark:text-gray-300 mb-4">{product.description}</p>
+        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{product.description}</p>
         
         <ProductFeatures features={product.features.slice(0, 4)} />
         
@@ -56,10 +56,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
               <Link
                 to={`/products/${product.id}`}
                 state={{ 
-                  fromSection: `product-${product.id}`,
-                  fromHome: true
+                  fromSection: product.id >= 5 ? 'comino-products' : 'eudtech-products',
+                  fromHome: true,
+                  productId: product.id
                 }}
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium flex items-center relative group"
+                className="inline-flex items-center text-[#003daa] hover:text-[#002a75] font-semibold transition-colors duration-200 group cursor-pointer"
               >
                 <span className="relative z-10 flex items-center">
                   {isEnglish ? 'Learn More' : '了解更多'}
@@ -69,7 +70,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             )}
             <a
               href="#contact"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium ml-auto"
+              className="text-[#003daa] hover:text-[#002a75] font-semibold ml-auto"
             >
               {isEnglish ? 'Get Quote' : '取得報價'}
             </a>
@@ -77,6 +78,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
     </OptimizedCard>
+    </div>
   );
 };
 

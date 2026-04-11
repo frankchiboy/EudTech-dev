@@ -201,7 +201,36 @@ const CareersPage: React.FC = () => {
   const handleApply = (jobTitle: string) => {
     const subject = encodeURIComponent(`應徵${jobTitle}職位`);
     const body = encodeURIComponent('請在此附上您的履歷與期待薪資');
-    window.location.href = `mailto:frank.hsu@eudaemonia.tech?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:frank.hsu@eudaemonia.tech?subject=${subject}&body=${body}`;
+    
+    // 嘗試打開郵件應用程式
+    const link = document.createElement('a');
+    link.href = mailtoLink;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // 如果郵件應用程式無法打開，則顯示提示信息
+    setTimeout(() => {
+      if (!document.hasFocus()) {
+        return; // 郵件應用程式可能已經打開
+      }
+      
+      // 創建一個備用提示
+      const fallbackMessage = `請發送履歷至：frank.hsu@eudaemonia.tech\n主旨：應徵${jobTitle}職位`;
+      
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText('frank.hsu@eudaemonia.tech').then(() => {
+          alert(`${fallbackMessage}\n\n電子郵件地址已複製到剪貼簿！`);
+        }).catch(() => {
+          alert(fallbackMessage);
+        });
+      } else {
+        alert(fallbackMessage);
+      }
+    }, 1000);
   };
 
   return (

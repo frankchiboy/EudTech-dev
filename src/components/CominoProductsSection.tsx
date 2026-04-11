@@ -11,7 +11,7 @@ const CominoProductsSection: React.FC<CominoProductsSectionProps> = ({ isEnglish
   const products = getCominoProducts(isEnglish);
 
   return (
-    <Section id="comino-products" background="gradient">
+    <Section id="comino-products" background="gradient" padding="xl">
       <div className="text-center mb-16">
         <h2 className="text-base font-semibold tracking-wide text-purple-600 dark:text-purple-400 uppercase bg-gradient-to-r from-purple-700 to-indigo-500 dark:from-purple-400 dark:to-indigo-300 bg-clip-text text-transparent">
           {isEnglish ? 'Comino Products' : 'Comino 產品'}

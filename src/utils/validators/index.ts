@@ -1,3 +1,10 @@
+// 新的模組化驗證器
+export * from './email';
+export * from './phone';
+export * from './url';
+export * from './form';
+
+// 向後兼容的舊驗證器（建議逐步遷移到新的模組化驗證器）
 export const isValidEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);

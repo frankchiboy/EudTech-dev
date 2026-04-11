@@ -10,8 +10,8 @@ export const useIntersectionObserver = (
   options: UseIntersectionObserverOptions = {}
 ) => {
   const {
-    threshold = 0.1,
-    rootMargin = '0px',
+    threshold = 0.01, // 降低閾值使其更容易觸發
+    rootMargin = '1000px 0px', // 預設提前 1000px 開始觸發
     triggerOnce = true
   } = options;
 

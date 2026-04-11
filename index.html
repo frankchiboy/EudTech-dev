@@ -60,6 +60,7 @@
         to { transform: rotate(360deg); }
       }
     </style>
+    <meta name="version" content="17584570953N" />
   </head>
   <body>
     <div id="root"></div>
@@ -73,6 +74,13 @@
             .then(registration => console.log('SW registered'))
             .catch(error => console.log('SW registration failed'));
         });
+      }
+    </script>
+    
+    <!-- 自動移除舊 Service Worker，避免快取錯誤 -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
       }
     </script>
   </body>

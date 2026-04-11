@@ -11,12 +11,19 @@ export interface Product {
   detailedDescription?: ProductDetailedDescription;
 }
 
+export interface ConfigurationSection {
+  title: string;
+  description?: string;
+  configurations?: string[];
+}
+
 export interface ProductDetailedDescription {
   title: string;
   formFactor: string;
   introduction: string;
   keyFeatures: string[];
   technicalSpecs: Record<string, string>;
+  relevantConfigurations?: string[] | ConfigurationSection[];
   applications?: string[];
   orderInfo?: OrderInfo[];
   additionalFeatures?: Record<string, string>;

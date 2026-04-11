@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>環境測試頁面</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2558e9;
+            border-bottom: 2px solid #2558e9;
+            padding-bottom: 10px;
+        }
+        .info-box {
+            background-color: #f0f5ff;
+            border-left: 4px solid #2558e9;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .test-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .test-item h3 {
+            margin-top: 0;
+        }
+        .pass {
+            color: green;
+        }
+        .fail {
+            color: red;
+        }
+        .test-result {
+            font-weight: bold;
+        }
+        
+        /* 媒體查詢測試 */
+        @media (min-width: 640px) {
+            .sm-test { background-color: lightblue; }
+        }
+        @media (min-width: 768px) {
+            .md-test { background-color: lightgreen; }
+        }
+        @media (min-width: 1024px) {
+            .lg-test { background-color: lightyellow; }
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (min-width: 1280px) {
+            .xl-test { background-color: lightpink; }
+        }
+
+        .breakpoint-box {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        
+        /* 確保所有盒子都可見，無論媒體查詢如何 */
+        .sm-test, .md-test, .lg-test, .xl-test {
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EudTech 環境測試頁面</h1>
+        
+        <div class="info-box">
+            <p><strong>用途：</strong> 此頁面用於測試不同部署環境之間的差異，特別是 CSS 和響應式設計的一致性。</p>
+        </div>
+
+        <div id="env-info">
+            <h2>環境信息</h2>
+            <p><strong>部署位置：</strong> <span id="deployment-location">檢測中...</span></p>
+            <p><strong>構建時間：</strong> <span id="build-time">檢測中...</span></p>
+            <p><strong>視窗尺寸：</strong> <span id="window-size">檢測中...</span></p>
+            <p><strong>用戶代理：</strong> <span id="user-agent">檢測中...</span></p>
+        </div>
+
+        <div id="responsive-test">
+            <h2>響應式斷點測試</h2>
+            <p>以下區塊會根據視窗寬度變更顏色，可用於檢驗 Tailwind 斷點是否正確運作：</p>
+            
+            <div class="breakpoint-box sm-test">小螢幕斷點 (sm: 640px+)</div>
+            <div class="breakpoint-box md-test">中螢幕斷點 (md: 768px+)</div>
+            <div class="breakpoint-box lg-test">大螢幕斷點 (lg: 1024px+)</div>
+            <div class="breakpoint-box xl-test">特大螢幕斷點 (xl: 1280px+)</div>
+        </div>
+        
+        <div class="grid">
+            <div class="test-item" id="css-test">
+                <h3>CSS 測試</h3>
+                <p>檢查是否正確載入 CSS 樣式，並且根據螢幕大小變化。</p>
+                <p class="test-result" id="css-result">檢測中...</p>
+            </div>
+            
+            <div class="test-item" id="layout-test">
+                <h3>排版測試</h3>
+                <p>此區塊會在大螢幕上顯示為兩欄式排版。</p>
+                <p class="test-result" id="layout-result">檢測中...</p>
+            </div>
+            
+            <div class="test-item" id="font-test">
+                <h3>字型測試</h3>
+                <p>確認字型是否正確載入並呈現。</p>
+                <p class="test-result" id="font-result">檢測中...</p>
+            </div>
+            
+            <div class="test-item" id="cache-test">
+                <h3>快取測試</h3>
+                <p>檢查資源快取設定是否生效。</p>
+                <p class="test-result" id="cache-result">檢測中...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 偵測部署環境
+        function detectEnvironment() {
+            const hostname = window.location.hostname;
+            let deploymentLocation = '未知位置';
+            
+            if (hostname.includes('localhost') || hostname.includes('127.0.0.1')) {
+                deploymentLocation = '本機開發環境';
+            } else if (hostname.includes('netlify')) {
+                deploymentLocation = 'Netlify';
+            } else if (hostname.includes('vercel')) {
+                deploymentLocation = 'Vercel';
+            }
+            
+            document.getElementById('deployment-location').textContent = deploymentLocation + ' (' + hostname + ')';
+            document.getElementById('build-time').textContent = new Date().toISOString();
+            
+            updateWindowSize();
+            document.getElementById('user-agent').textContent = navigator.userAgent;
+            
+            // 進行測試
+            runTests();
+            
+            // 監聽視窗調整事件
+            window.addEventListener('resize', updateWindowSize);
+        }
+        
+        function updateWindowSize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            document.getElementById('window-size').textContent = `${width}px × ${height}px`;
+            
+            // 更新排版測試結果
+            const isWideScreen = width >= 1024;
+            const layoutResult = document.getElementById('layout-result');
+            if (isWideScreen) {
+                layoutResult.textContent = '通過 ✓ (大螢幕兩欄式排版)';
+                layoutResult.className = 'test-result pass';
+            } else {
+                layoutResult.textContent = '通過 ✓ (小螢幕單欄式排版)';
+                layoutResult.className = 'test-result pass';
+            }
+        }
+        
+        function runTests() {
+            // CSS 測試
+            const computedStyle = window.getComputedStyle(document.body);
+            const cssResult = document.getElementById('css-result');
+            if (computedStyle.fontFamily.includes('Inter') || 
+                computedStyle.fontFamily.includes('sans-serif')) {
+                cssResult.textContent = '通過 ✓ (CSS 樣式正確載入)';
+                cssResult.className = 'test-result pass';
+            } else {
+                cssResult.textContent = '失敗 ✗ (CSS 樣式可能未正確載入)';
+                cssResult.className = 'test-result fail';
+            }
+            
+            // 字型測試
+            const fontResult = document.getElementById('font-result');
+            const fontLoader = document.createElement('span');
+            fontLoader.style.fontFamily = 'Inter, sans-serif';
+            fontLoader.style.visibility = 'hidden';
+            fontLoader.textContent = 'Test';
+            document.body.appendChild(fontLoader);
+            
+            // 稍後檢查字型是否已載入
+            setTimeout(() => {
+                if (document.fonts && document.fonts.check('1em Inter')) {
+                    fontResult.textContent = '通過 ✓ (Inter 字型已載入)';
+                    fontResult.className = 'test-result pass';
+                } else {
+                    fontResult.textContent = '警告 ⚠ (Inter 字型可能未完全載入，但頁面可以使用後備字型)';
+                    fontResult.className = 'test-result';
+                }
+                document.body.removeChild(fontLoader);
+            }, 1000);
+            
+            // 快取測試
+            const cacheResult = document.getElementById('cache-result');
+            fetch(window.location.href, { method: 'HEAD' })
+                .then(response => {
+                    const cacheControl = response.headers.get('Cache-Control');
+                    if (cacheControl) {
+                        cacheResult.textContent = `通過 ✓ (Cache-Control: ${cacheControl})`;
+                        cacheResult.className = 'test-result pass';
+                    } else {
+                        cacheResult.textContent = '警告 ⚠ (未找到 Cache-Control 標頭)';
+                        cacheResult.className = 'test-result';
+                    }
+                })
+                .catch(err => {
+                    cacheResult.textContent = `失敗 ✗ (快取測試錯誤: ${err.message})`;
+                    cacheResult.className = 'test-result fail';
+                });
+        }
+        
+        // 頁面載入完成後執行測試
+        window.addEventListener('load', detectEnvironment);
+    </script>
+</body>
+</html>

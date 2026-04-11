@@ -23,7 +23,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ isEnglish }) => {
 
 
 
-    <Section id="about" background="gradient">
+  <Section id="about" background="gradient" padding="xl">
       <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
         <AboutContent isEnglish={isEnglish} />
         <div className="mt-12 lg:mt-0">

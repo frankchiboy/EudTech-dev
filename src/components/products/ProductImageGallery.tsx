@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { classNames } from '../../utils/helpers';
+import { useGalleryPreloader, useFullGalleryPreloader } from '../../hooks/performance/useGalleryPreloader';
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -14,6 +15,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
   isEnglish
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showProgress, setShowProgress] = useState(true);
 
   const nextImage = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -23,6 +25,29 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  // 使用畫廊預載入 Hook 來預載入相鄰圖片
+  const preloadStatus = useGalleryPreloader(images, currentIndex, 3); // 預載入當前索引前後3張圖片
+  
+  // 預載入整個畫廊的所有圖片
+  const { startPreloading, isComplete, progress, loadedCount, totalCount } = useFullGalleryPreloader(images);
+  
+  // 當完成載入或進度超過 80% 時，隱藏進度條
+  useEffect(() => {
+    if (isComplete || progress > 80) {
+      const timer = setTimeout(() => {
+        setShowProgress(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isComplete, progress]);
+
+  // 當組件掛載後，開始預載入所有圖片
+  useEffect(() => {
+    if (images.length > 0) {
+      startPreloading();
+    }
+  }, [images.length, startPreloading]);
+
   if (images.length === 0) return null;
 
   return (
@@ -31,12 +56,31 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
         {isEnglish ? 'Product Gallery' : '產品圖庫'}
       </h3>
       
+      {/* 進度條 */}
+      {showProgress && images.length > 1 && (
+        <div className="mb-2">
+          <div className="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+            <div 
+              className="bg-blue-600 h-1.5 rounded-full transition-all duration-300" 
+              style={{ width: `${progress}%` }} 
+            />
+          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400 text-right mt-1">
+            {isEnglish 
+              ? `Loading images: ${loadedCount}/${totalCount}`
+              : `載入圖片中: ${loadedCount}/${totalCount}`
+            }
+          </p>
+        </div>
+      )}
+      
       {images.length === 1 ? (
         <div className="relative rounded-xl overflow-hidden shadow-lg">
           <img
             src={images[0]}
             alt={productName}
             className="w-full h-64 object-contain bg-gray-50 dark:bg-gray-700"
+            loading="eager" // 立即載入單一圖片
           />
         </div>
       ) : (
@@ -46,6 +90,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
               src={images[currentIndex]}
               alt={`${productName} ${currentIndex + 1}`}
               className="w-full h-64 object-contain bg-gray-50 dark:bg-gray-700 transition-transform duration-300"
+              loading="eager" // 立即載入當前顯示的圖片
             />
             
             <button
@@ -85,18 +130,28 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
                   'rounded-lg overflow-hidden border-2 transition-colors',
                   index === currentIndex 
                     ? 'border-blue-500' 
-                    : 'border-gray-200 dark:border-gray-600 hover:border-gray-300'
+                    : preloadStatus[index] === 'loaded'
+                      ? 'border-green-500 dark:border-green-700 hover:border-green-600' 
+                      : preloadStatus[index] === 'loading'
+                        ? 'border-yellow-500 dark:border-yellow-700 hover:border-yellow-600'
+                        : 'border-gray-200 dark:border-gray-600 hover:border-gray-300'
                 )}
               >
                 <img
                   src={image}
                   alt={`${productName} thumbnail ${index + 1}`}
                   className="w-full h-16 object-contain bg-gray-50 dark:bg-gray-700"
+                  loading="eager" // 立即載入所有縮圖
                 />
               </button>
             ))}
           </div>
         </>
+      )}
+
+      {/* 顯示圖片預載入進度指示器 */}
+      {showProgress && (
+        <div className="absolute top-0 left-0 right-0 h-1 bg-blue-500" style={{ width: `${progress}%` }} />
       )}
     </div>
   );

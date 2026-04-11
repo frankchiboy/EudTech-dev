@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>開發模式 - 自動重新載入</title>
+  <script>
+    // 防止頁面快取的腳本
+    (function() {
+      // 檢查是否為開發模式
+      const isDev = window.location.hostname === 'localhost' || 
+                   window.location.hostname === '127.0.0.1';
+      
+      if (isDev) {
+        // 添加 no-cache 相關 meta 標籤
+        const metaNoCache = document.createElement('meta');
+        metaNoCache.setAttribute('http-equiv', 'Cache-Control');
+        metaNoCache.setAttribute('content', 'no-cache, no-store, must-revalidate');
+        document.head.appendChild(metaNoCache);
+        
+        const metaPragma = document.createElement('meta');
+        metaPragma.setAttribute('http-equiv', 'Pragma');
+        metaPragma.setAttribute('content', 'no-cache');
+        document.head.appendChild(metaPragma);
+        
+        const metaExpires = document.createElement('meta');
+        metaExpires.setAttribute('http-equiv', 'Expires');
+        metaExpires.setAttribute('content', '0');
+        document.head.appendChild(metaExpires);
+        
+        console.log('[開發模式] 已啟用強制重新載入');
+        
+        // 不再自動重新整理頁面
+        // 用戶可以在需要時手動重新載入
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div style="background: #333; color: white; padding: 10px; margin-bottom: 10px; font-family: Arial, sans-serif;">
+    <h2>開發模式 - 無快取版</h2>
+    <p>此頁面將自動重定向到主應用，並確保所有變更都立即可見。</p>
+    <p>頁面將在 3 秒後重定向...</p>
+  </div>
+  
+  <script>
+    // 3秒後重定向到實際應用
+    setTimeout(function() {
+      // 添加時間戳參數以防止快取
+      window.location.href = '/?_nocache=' + Date.now();
+    }, 3000);
+  </script>
+</body>
+</html>

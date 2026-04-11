@@ -11,8 +11,15 @@ export const getNavLinks = (isEnglish: boolean): NavLink[] => {
       href: '#eudtech-products'
     },
     {
-      name: isEnglish ? 'Comino' : 'Comino',
-      href: '#comino-brand'
+      name: isEnglish ? 'Partner Brands' : '代理品牌',
+      href: '#',
+      isDropdown: true,
+      disabled: true,
+      disabledText: isEnglish ? 'Coming Soon' : '即將推出',
+      children: [
+        { name: 'Cyabra', href: '/brands/cyabra' },
+        { name: 'Comino', href: '/brands/comino' }
+      ]
     },
     {
       name: isEnglish ? 'About' : '關於我們',

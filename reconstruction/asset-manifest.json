@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2025-09-30T00:00:00Z",
+  "bundles": {
+    "main": {
+      "file": "assets/index-dwxak0v1.js",
+      "role": "root entry + hydration",
+      "importsDynamic": [
+        "assets/aboutsection-27losfoy.js",
+        "assets/contactsection-byyyswrd.js",
+        "assets/productdetails-c4bx2cjd.js"
+      ],
+      "css": ["assets/index-bhs9708k.css"],
+      "metaVersionTag": true
+    },
+    "aboutSection": {
+      "file": "assets/aboutsection-27losfoy.js",
+      "component": "LazyAboutSection",
+      "sourceGuess": "src/components/AboutSection.tsx"
+    },
+    "contactSection": {
+      "file": "assets/contactsection-byyyswrd.js",
+      "component": "LazyContactSection",
+      "sourceGuess": "src/components/contact/ContactSection.tsx"
+    },
+    "productDetails": {
+      "file": "assets/productdetails-c4bx2cjd.js",
+      "component": "LazyProductDetails",
+      "sourceGuess": "src/components/ProductDetails.tsx"
+    }
+  },
+  "styles": [
+    {
+      "file": "assets/index-bhs9708k.css",
+      "description": "Tailwind aggregated stylesheet + component layer"
+    }
+  ],
+  "serviceWorker": {
+    "file": "sw.js",
+    "devAwareVersioning": true,
+    "deploymentVersionExamples": ["eudtech-v2", "eudtech-v86"],
+    "injection": "prepare-deploy.sh rewrites version (timestamp % 100)"
+  },
+  "meta": {
+    "versionTag": "<meta name=\"version\" content=\"<timestamp>\">",
+    "injectedBy": "scripts/inject-version.cjs / prepare-deploy.sh"
+  },
+  "images": {
+    "brands": [
+      "amd-logo.png", "amd-logo-dark.png", "amd-partner-badge.jpg",
+      "comino-logo.png", "comino-logo-dark.png", "comino-grando-logo.png",
+      "cyabra-logo.svg", "cyabra-logo-new.svg", "cyabra-logo-original.svg"
+    ],
+    "eudtech": [
+      "EudTech-Select-server-front.png.png", "EudTech-Select-server-back.png", "EudTech-Select-server-front.png", "EudTech-Select-server-inside.png"
+    ],
+    "comino": [
+      "comino-4xa100.jpg", "comino-h100-front.jpg", "comino-h100-server.jpg", "comino-workstation-front.png", "comino-workstation-side.png", "comino-heat-recovery.png",
+      "comino-facility-1.jpg", "comino-facility-2.jpg", "comino-facility-3.jpg"
+    ],
+    "grando": [
+      "grando-8gpu-server.jpg", "grando-container-closed.png", "grando-container-opened.png", "grando-desktop-01.jpg", "grando-desktop-02.jpg", "grando-desktop-03.jpg", "grando-desktop-04.jpg", "grando-desktop-05.jpg", "grando-desktop-06.jpg",
+      "grando-dpr-4090-front.png", "grando-dpr-4090-side.png", "grando-server-main.png", "grando-three-racks.png", "grando-workstation-closed.png", "grando-workstation-open.png"
+    ],
+    "grandoGalleryLarge": [
+      "grando dpr 4090-ft_6_01.jpg", "grando dpr 4090-ft_6_02.jpg", "grando dpr 4090-ft_6_03.jpg", "grando dpr 4090-ft_6_04.jpg", "grando dpr 4090-ft_6_05.jpg", "grando dpr 4090-ft_6_06.jpg", "grando dpr 4090-ft_6_07.jpg", "grando dpr 4090-ft_6_08.jpg", "grando dpr 4090-ft_6_09.jpg", "grando dpr 4090-ft_6_10.jpg", "grando dpr 4090-ft_6_11.jpg", "grando dpr 4090-ft_6_12.jpg", "grando dpr 4090-ft_6_13.jpg", "grando dpr 4090-ft_6_14.jpg", "grando dpr 4090-ft_6_15.jpg", "grando dpr 4090-ft_6_16.jpg", "grando dpr 4090-ft_6_17.jpg", "grando dpr 4090-ft_6_18.jpg", "grando dpr 4090-ft_6_19.jpg", "grando dpr 4090-ft_6_20.jpg", "grando dpr 4090-ft_6_21.jpg", "grando dpr 4090-ft_6_22.jpg", "grando dpr 4090-ft_6_23.jpg", "grando dpr 4090-ft_6_24.jpg", "grando dpr 4090-ft_6_25.jpg", "grando dpr 4090-ft_6_26.jpg", "grando dpr 4090-ft_6_27.jpg", "grando dpr 4090-ft_6_28.jpg", "grando dpr 4090-ft_6_29.jpg", "grando dpr 4090-ft_6_30.jpg", "grando dpr 4090-ft_6_31.jpg", "grando dpr 4090-ft_6_32.jpg", "grando dpr 4090-ft_6_33.jpg", "grando dpr 4090-ft_6_34.jpg", "grando dpr 4090-ft_6_35.jpg", "grando dpr 4090-ft_6_36.jpg", "grando dpr 4090-ft_6_37.jpg", "grando dpr 4090-ft_6_38.jpg", "grando dpr 4090-ft_6_39.jpg", "grando dpr 4090-ft_6_40.jpg", "grando dpr 4090-ft_6_41.jpg", "grando dpr 4090-ft_6_42.jpg", "grando dpr 4090-ft_6_43.jpg", "grando dpr 4090-ft_6_44.jpg", "grando dpr 4090-ft_6_45.jpg", "grando dpr 4090-ft_6_46.jpg", "grando dpr 4090-ft_6_47.jpg", "grando dpr 4090-ft_6_48.jpg", "grando dpr 4090-ft_6_49.jpg", "grando dpr 4090-ft_6_50.jpg", "grando dpr 4090-ft_6_51.jpg", "grando dpr 4090-ft_6_52.jpg", "grando dpr 4090-ft_6_53.jpg"
+    ],
+    "cyabra": [
+      "cyabra-dashboard.jpg", "cyabra-dashboard.svg", "cyabra-activity-graph-min-300x225.png", "cyabra-detect-min.png", "soc2-type-2-compliance-badge.webp"
+    ],
+    "cyabraTestimonials": [
+      "cyabra-images/testimonials/jonny-bentwood.webp", "cyabra-images/testimonials/todd-grossman.webp", "cyabra-images/testimonials/vincent-obrien.webp", "cyabra-images/testimonials/drew-himmelreich.webp"
+    ],
+    "misc": [
+      "icon.svg", "image.png", "keras-logo.png", "pytorch-logo.png", "tensorflow-logo.png", "linus-review.jpg", "sentdex-review.jpg", "logo.svg", "logo-dark.svg", "navbar-logo.svg", "navbar-logo-dark.svg", "nvidia-logo.png", "nvidia-logo-dark.png", "nvidia-logo-modified.png", "nvidia-logo-backup.png"
+    ]
+  },
+  "external": {
+    "fonts": [
+      "https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap"
+    ],
+    "preconnect": [
+      "https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://images.pexels.com"
+    ],
+    "dnsPrefetch": [
+      "//fonts.googleapis.com", "//images.pexels.com"
+    ],
+    "emailjsCdn": "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+  },
+  "missingSourceFiles": [
+    "emailjs-fix.js", "emailjs-test.js", "emailjs-diagnostic.html"
+  ],
+  "notes": [
+    "Consider optimizing large gallery images via responsive <picture> or build-time resizing.",
+    "Potential duplication: EudTech-Select-server-front.png vs EudTech-Select-server-front.png.png",
+    "Product IDs mapped: 1,3,5,6,7,10,11"
+  ]
+}

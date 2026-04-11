@@ -6,11 +6,13 @@ import NavBar from './navigation/NavBar';
 import HeroSection from './hero/HeroSection';
 import EudTechProductsSection from './EudTechProductsSection';
 import ComimoBrandIntro from './ComimoBrandIntro';
+import CyabraBrandIntro from './CyabraBrandIntro';
 import Footer from './Footer';
 import ScrollToTop from './common/ScrollToTop';
 import SkipToContent from './common/SkipToContent';
 import LoadingSpinner from './ui/LoadingSpinner';
 import CareersPage from './CareersPage';
+import AtomicComponentsDemo from './demo/AtomicComponentsDemo';
 import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
 
 const AppRoutes: React.FC = () => {
@@ -40,16 +42,18 @@ const AppRoutes: React.FC = () => {
                 <HeroSection isEnglish={isEnglish} />
                 <EudTechProductsSection isEnglish={isEnglish} />
                 <ComimoBrandIntro isEnglish={isEnglish} />
+                <CyabraBrandIntro isEnglish={isEnglish} />
                 <Suspense fallback={<LoadingSpinner />}>
                   <LazyAboutSection isEnglish={isEnglish} />
                 </Suspense>
                 <Suspense fallback={<LoadingSpinner />}>
-                  <LazyContactSection isEnglish={isEnglish} />
+                  <LazyContactSection />
                 </Suspense>
                 <Footer isEnglish={isEnglish} />
               </>
             } />
             <Route path="/careers" element={<CareersPage />} />
+            <Route path="/components-demo" element={<AtomicComponentsDemo />} />
             <Route path="/products/:id" element={
               <Suspense fallback={
                 <div className="flex items-center justify-center min-h-screen">

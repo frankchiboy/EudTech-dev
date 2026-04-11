@@ -1,75 +1,162 @@
 import emailjs from '@emailjs/browser';
 import { EmailFormData } from '../types';
 
+function isBrowser(): boolean {
+  return typeof window !== 'undefined' && typeof window.document !== 'undefined';
+}
+
+function sleep(ms: number) {
+  return new Promise((res) => setTimeout(res, ms));
+}
+
 class EmailService {
   private isInitialized = false;
-  private readonly publicKey = 'NQwR0JNR9LtmNzV7O';
-  private readonly serviceId = 'service_9bxmxjj';
-  private readonly templateId = 'template_bhwkpw9';
+  private readonly publicKey?: string;
+  private readonly serviceId?: string;
+  private readonly templateId?: string;
+  private readonly enabled: boolean;
+  private readonly simulateOnMissingConfig: boolean;
+
+  constructor() {
+    const env: any = (import.meta as any)?.env || {};
+    this.publicKey = env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
+    this.serviceId = env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+    this.templateId = env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+    this.enabled = Boolean(this.publicKey && this.serviceId && this.templateId);
+    // 在開發模式下若缺設定，採用模擬以避免阻塞流程；在生產環境缺設定則視為不可用並拋錯
+    this.simulateOnMissingConfig = !this.enabled && Boolean(env?.DEV);
+
+    if (isBrowser() && this.enabled) {
+      this.init().catch((error) => {
+        console.warn('EmailJS 初始化時發生警告:', error);
+      });
+    }
+  }
+
+  private ensureConfigOrSimulate() {
+    if (this.enabled) return;
+    if (this.simulateOnMissingConfig) return; // 允許模擬
+    throw new Error('Email service 未正確設定 (缺少環境變數)。');
+  }
 
   async init(): Promise<void> {
     if (this.isInitialized) return;
-    
+    if (!isBrowser()) {
+      console.warn('EmailJS 需要瀏覽器環境，當前環境不支持');
+      return;
+    }
+    if (!this.enabled) {
+      if (this.simulateOnMissingConfig) {
+        console.info('[EmailService] 模擬模式啟用：未設定 EmailJS 環境變數');
+        return;
+      }
+      throw new Error('Email service 未正確設定 (缺少環境變數)。');
+    }
     try {
-      emailjs.init(this.publicKey);
+      emailjs.init(this.publicKey!);
       this.isInitialized = true;
+      console.log('EmailJS 服務初始化成功');
     } catch (error) {
-      console.error('Email service initialization failed:', error);
+      console.error('EmailJS 服務初始化失敗:', error);
       throw error;
     }
   }
 
+  private async withRetry<T>(fn: () => Promise<T>, retries = 2, baseDelayMs = 500): Promise<T> {
+    let attempt = 0;
+    let lastError: unknown;
+    while (attempt <= retries) {
+      try {
+        return await fn();
+      } catch (err) {
+        lastError = err;
+        if (attempt === retries) break;
+        const delay = baseDelayMs * Math.pow(2, attempt); // 500, 1000, 2000...
+        await sleep(delay);
+        attempt += 1;
+      }
+    }
+    throw lastError instanceof Error ? lastError : new Error('Email 發送失敗');
+  }
+
   async sendForm(form: HTMLFormElement): Promise<void> {
-    if (!this.isInitialized) {
-      await this.init();
+    this.ensureConfigOrSimulate();
+
+    if (!this.enabled) {
+      // 模擬模式：直接通過
+      console.info('[EmailService] 模擬 sendForm 成功');
+      return;
     }
 
+    if (!this.isInitialized) await this.init();
+
     try {
-      const result = await emailjs.sendForm(
-        this.serviceId,
-        this.templateId,
-        form,
-        this.publicKey
+      const result = await this.withRetry(() =>
+        emailjs.sendForm(this.serviceId!, this.templateId!, form, this.publicKey!)
       );
-
-      if (result.status !== 200) {
-        throw new Error(`Email send failed with status: ${result.status}`);
+      if ((result as any).status !== 200) {
+        throw new Error(`郵件發送失敗，狀態碼: ${(result as any).status}`);
       }
-
-      console.log('Email sent successfully:', result);
+      console.log('郵件發送成功:', result);
     } catch (error) {
-      console.error('Email send error:', error);
-      throw error;
+      console.error('郵件發送錯誤:', error);
+      throw new Error(error instanceof Error ? error.message : '郵件發送失敗，請稍後重試');
     }
   }
 
   async sendEmail(data: EmailFormData): Promise<void> {
-    if (!this.isInitialized) {
-      await this.init();
+    if (!isBrowser()) {
+      throw new Error('EmailJS 只能在瀏覽器環境中使用');
     }
 
+    // 驗證必要欄位
+    if (!data.firstName || !data.lastName || !data.email || !data.message) {
+      throw new Error('缺少必要欄位');
+    }
+
+    this.ensureConfigOrSimulate();
+
+    if (!this.enabled) {
+      // 模擬模式：延遲後視為成功
+      console.info('[EmailService] 模擬 sendEmail 成功:', {
+        name: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        company: data.company,
+        messagePreview: data.message.slice(0, 64),
+      });
+      await sleep(300);
+      return;
+    }
+
+    if (!this.isInitialized) await this.init();
+
     try {
-      const result = await emailjs.send(
-        this.serviceId,
-        this.templateId,
-        {
-          from_name: `${data.firstName} ${data.lastName}`,
-          from_email: data.email,
-          company: data.company || '',
-          message: data.message,
-          to_name: 'EudTech Team',
-        },
-        this.publicKey
+      const timestamp = new Date().toISOString();
+      console.log('開始發送郵件到 EmailJS...');
+      const result = await this.withRetry(() =>
+        emailjs.send(
+          this.serviceId!,
+          this.templateId!,
+          {
+            from_name: `${data.firstName} ${data.lastName}`,
+            from_email: data.email,
+            company: data.company || '未提供',
+            message: data.message,
+            to_name: 'EudTech Team',
+            subject: `網站表單聯繫 - ${timestamp}`,
+            timestamp
+          },
+          this.publicKey!
+        )
       );
 
-      if (result.status !== 200) {
-        throw new Error(`Email send failed with status: ${result.status}`);
+      if ((result as any).status !== 200) {
+        throw new Error(`郵件發送失敗，狀態碼: ${(result as any).status}`);
       }
-
-      console.log('Email sent successfully:', result);
+      console.log('郵件發送成功:', result);
     } catch (error) {
-      console.error('Email send error:', error);
-      throw error;
+      console.error('郵件發送錯誤:', error);
+      throw new Error(error instanceof Error ? error.message : '郵件發送失敗，請稍後重試');
     }
   }
 }

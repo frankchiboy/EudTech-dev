@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="100" viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d9488;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <g>
+    <!-- Server Icon -->
+    <path d="M20 25h40v10H20zM20 45h40v10H20zM20 65h40v10H20z" fill="url(#gradient)"/>
+    <!-- Circuit Lines -->
+    <path d="M70 30h10v40H70zM80 30h20v2H80zM80 68h20v2H80z" stroke="url(#gradient)" stroke-width="2"/>
+    <!-- Company Name -->
+    <text x="110" y="45" font-family="Inter, sans-serif" font-size="32" font-weight="700" fill="url(#gradient)">EudTech</text>
+    <text x="110" y="70" font-family="Inter, sans-serif" font-size="16" fill="#4B5563">Eudaemonia Technology</text>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+    <meta charset="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="author" content="EudTech">
+    <meta name="description" content="EudTech - Next Generation AI Solutions">
+    <meta name="keywords" content="AI servers, artificial intelligence, machine learning, GPU computing, liquid cooling, financial AI, EudTech">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1e3a8a" />
+    <meta name="version" content="1758455463876" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />

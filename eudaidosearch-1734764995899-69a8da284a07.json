@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "eudaidosearch-1734764995899",
+  "private_key_id": "69a8da284a07f7514ec04114f90d6305a92e2be3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDGLcofXV3U7zGx\nTOGo5qzNrBcetbePqF5q1yi78V2clDXMMXn+DG1NsH2/5GYg2AVDB2mvc9wcTGVJ\nuIOVsVYW7vHFQT5oN6znhH1RXi79JPmeIyZdSpsFu/t+S9WXq3+zkW+f0/KpQgCg\nK4uUSgPocV+AHxjkbgzqs1TAbhiPeASSbxtRzZzZPNArOKtF++qyk6CdhyUxoTnG\nvv52NPEJzCWjPzBRcVMfQzlJ5HL6UTjfLBFWkC2D6lLSqFSB+OsaAyj72wBeVdN8\n0HaMM7JJIpPqccIzwMAmh9Gsj2+PU5m86GTUURWb4EDT9h2kdKAGvaXMUEK1Xa3T\nn6WoE6mDAgMBAAECggEAGnZcyelesSMrYIBilXoP0vrKr4gWNbGGwf9u6gGlvVWx\nBU4J+xlPsxMBB5GI7ZPKyBOCUjJHTuQIllpz/5YJZ9CKKgu3OJVOmi9/yFCqN5Ur\nW6lX4xcmMhLS1x9rKvB0gdbGr/HOMjmk+b42yhtEAFK7LNF6Mm5bfS9q/rL0xptE\n2HpgrXyuvJYt1HsFQBU7ja9LEsjd1sL8cNyheE2Lf4qZsu/i8puy9tCr2V8PtAcj\nAVRO40t1ERwhWRVb/qm3XaONw63u/pDi6rlDvWbSdFWsvCm/RaO/fJ2JAIEVC441\nhvODu3bxGKy0V+jf+HKjLaj2qCXZDR4Ap68NT7O1yQKBgQDpQJR8014Qex3+QW86\nqCfpdSeVvnCx1vfKNX5qSRSe5S3Eze98MvRzS+DVGKo+5Bi5ZCk8W5lL5yV3hjoW\nN62bGH9C590fDTUicSvTGTurZ2hQbVmSblJvCgfbZwID57i+xGvD8alXZahKK5i/\nZ3bi/w9INFz5ruMugAZMQGu5dwKBgQDZgY92KCfetY/9oNyM7mEEz7INy2bSYaEf\nLrGxjI09E+lvvKmamGYRoUEFyf5KHL+8wOshSS3PMfUkKdx4J1CqRdNApBrSWoWL\naEFd5LDxwYPv8c2ToeMQp5Jfs4PWpX2+0uT8a8585jcdV60lkG85jgKqcKXQvBWj\nDfvJ1Z7TVQKBgQCEz6S8vo1czP1y/EcdGwo+v9peRSVd3Y0Rsgvc8Oew4cWBvdCS\n42CVFatbKsQlMzNwvDtOhslukpqex+rjI6jSGsy7h9I8EAUlK1NMy51SJ3sZ8GmE\nGxUM7KU0pB5dot9qn+TMmRlXDicYtGIw+fSTo69L6aTW9mGc5ICxgizUWQKBgG2q\n2b7luFSejx9+wDV+7AQVBN3XtNxWxXqHfKjdCUnGhGkGYy3DsZMqDzLwCfssS7DM\nRMHft+1EbynwwW0DxbRUyJNLKwrtAXCs/GhvKph6zh9peBH8ChUXqMIALXVItAJH\nK5XqdY6cNSXiUzchgDMw2z881R5N90rjfhTiVNaRAoGBAKmy+OIPZny/iHz/pFd8\no/ts75e+0ACXfBQNBfD6/pYLK66dj/o5XuQmlHuxuToA0TQ8IZD2eps0Sb9SDQLr\n2yl0VL1YO9zCnlIdVOa8H8b13tcOuD7NbwX6T7/lwZG3SDz/7unfF56qrQKZjCAM\n5BRKLnZwOJAxOqeKIc3ELt3e\n-----END PRIVATE KEY-----\n",
+  "client_email": "talent-api-access@eudaidosearch-1734764995899.iam.gserviceaccount.com",
+  "client_id": "114579289649505329264",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/talent-api-access%40eudaidosearch-1734764995899.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

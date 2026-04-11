@@ -1,0 +1,98 @@
+#!/bin/bash
+
+# 響應式測試 - Chrome DevTools 設備模擬
+
+echo "🔍 響應式測試指南"
+echo "=================="
+echo ""
+
+echo "📱 請在 Chrome 瀏覽器中開啟："
+echo "   本地: http://localhost:4173/"
+echo "   正式: https://eudaemonia.tech/"
+echo ""
+
+echo "🔧 開啟 Chrome DevTools (F12 或 Cmd+Option+I)"
+echo ""
+
+echo "📐 切換到裝置模式 (Cmd+Shift+M 或點擊裝置圖示)"
+echo ""
+
+echo "測試以下尺寸："
+echo ""
+
+echo "📱 手機測試"
+echo "  1. iPhone SE (375 x 667)"
+echo "  2. iPhone 12 Pro (390 x 844)"
+echo "  3. iPhone 14 Pro Max (430 x 932)"
+echo "  4. Pixel 5 (393 x 851)"
+echo ""
+
+echo "📱 平板測試"
+echo "  5. iPad Mini (768 x 1024)"
+echo "  6. iPad Air (820 x 1180)"
+echo "  7. iPad Pro 11 (834 x 1194)"
+echo ""
+
+echo "💻 桌面測試"
+echo "  8. Laptop (1280 x 720)"
+echo "  9. Desktop (1920 x 1080)"
+echo "  10. Wide (2560 x 1440)"
+echo ""
+
+echo "✅ 檢查項目："
+echo "  □ 所有文字清晰可讀"
+echo "  □ 圖片正確縮放"
+echo "  □ 按鈕可點擊且大小適當"
+echo "  □ 無橫向滾動條（除非設計允許）"
+echo "  □ 元素不重疊"
+echo "  □ 導航選單在手機版正常運作"
+echo ""
+
+echo "🎯 重點區域："
+echo "  • Hero 區段 - 背景圖與文字"
+echo "  • 產品卡片網格 - 1/2/3 列切換"
+echo "  • Comino/Cyabra Hero Image - 高度調整"
+echo "  • 客戶評價卡片 - 堆疊方式"
+echo "  • 聯絡表單 - 欄位寬度"
+echo "  • Footer - 連結排列"
+echo ""
+
+echo "⚡ Lighthouse 測試"
+echo "  1. 開啟 DevTools Lighthouse tab"
+echo "  2. 選擇 Mobile 或 Desktop"
+echo "  3. 勾選 Performance, Accessibility, Best Practices, SEO"
+echo "  4. 點擊 'Generate report'"
+echo ""
+echo "  目標分數："
+echo "    Performance:     > 90"
+echo "    Accessibility:   > 95"
+echo "    Best Practices:  > 95"
+echo "    SEO:            > 90"
+echo ""
+
+echo "📊 Network 分析"
+echo "  1. 開啟 Network tab"
+echo "  2. 重新載入頁面 (Cmd+R)"
+echo "  3. 檢查："
+echo "     • 總載入時間 < 3s"
+echo "     • 無 404 錯誤"
+echo "     • 圖片大小合理"
+echo "     • First Contentful Paint < 1.5s"
+echo ""
+
+echo "🎨 視覺回歸測試"
+echo "  使用分割視窗並排比對："
+echo "  左: http://localhost:4173/"
+echo "  右: https://eudaemonia.tech/"
+echo ""
+echo "  逐一滾動並比對每個區段"
+echo ""
+
+echo "✅ 完成所有測試後更新 TODO:"
+echo "   npm run update-todo"
+echo ""
+
+echo "🚀 準備部署?"
+echo "   npm run build && npm run preview"
+echo "   確認無誤後: netlify deploy --prod"
+echo ""

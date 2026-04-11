@@ -33,122 +33,106 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
   
   const footerLinks: FooterLinks = {
     company: {
-      title: isEnglish ? 'Company' : '公司',
+      title: isEnglish ? 'Solutions' : '解決方案',
       links: [
-        { name: isEnglish ? 'About' : '關於我們', href: '#about', active: true },
-        { name: isEnglish ? 'Careers' : '職業機會', href: '/careers', active: true },
-        { name: isEnglish ? 'News' : '新聞', href: '#', active: false },
-        { name: isEnglish ? 'Blog' : '部落格', href: '#', active: false },
+        { name: isEnglish ? 'AI Servers' : 'AI 伺服器', href: '#eudtech-products', active: true },
+        { name: 'Comino', href: '#comino-brand', active: true },
+        { name: 'Cyabra', href: '#cyabra-brand', active: true },
       ],
     },
     products: {
-      title: isEnglish ? 'Products' : '產品',
+      title: isEnglish ? 'Support' : '支援',
       links: [
-        { name: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統', href: '#eudtech-products', active: true },
-        { name: isEnglish ? 'Comino Grando' : 'Comino Grando', href: '#comino-brand', active: false },
+        { name: isEnglish ? 'Contact Sales' : '聯繫銷售', href: '#contact', active: true },
+        { name: isEnglish ? 'Documentation' : '文件', href: '#', active: false },
+        { name: isEnglish ? 'API Status' : 'API 狀態', href: '#', active: false },
       ],
     },
     legal: {
-      title: isEnglish ? 'Legal' : '法律',
+      title: isEnglish ? 'Company' : '公司',
       links: [
-        { name: isEnglish ? 'Privacy Policy' : '隱私政策', href: '#', active: false },
-        { name: isEnglish ? 'Terms of Service' : '服務條款', href: '#', active: false },
-        { name: isEnglish ? 'Cookie Policy' : 'Cookie政策', href: '#', active: false },
+        { name: isEnglish ? 'About' : '關於我們', href: '#about', active: true },
+        { name: isEnglish ? 'Blog' : '部落格', href: '#', active: false },
+        { name: isEnglish ? 'Jobs' : '工作機會', href: '/careers', active: true },
+        { name: isEnglish ? 'Press' : '新聞稿', href: '#', active: false },
       ],
     },
   };
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptNiA2djZoNnYtNmgtNnptLTYgNnY2aDZ2LTZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-40"></div>
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="xl:grid xl:grid-cols-4 xl:gap-8">
-          <div className="xl:col-span-1 space-y-8">
-            <div className="transform hover:scale-105 transition-transform duration-300">
-              <Logo />
-            </div>
-            <p className="text-gray-400 dark:text-gray-300 text-sm max-w-xs backdrop-blur-sm">
+    <footer className="bg-gray-900" aria-labelledby="footer-heading">
+      <h2 id="footer-heading" className="sr-only">
+        Footer
+      </h2>
+      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+          <div className="space-y-8">
+            <Logo />
+            <p className="text-sm leading-6 text-gray-300">
               {isEnglish
                 ? 'Pioneering AI infrastructure for the next generation of intelligent applications.'
                 : '為下一代智能應用開創人工智能基礎設施。'}
             </p>
           </div>
-          <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-3 xl:mt-0">
+          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-300 dark:text-gray-200 relative inline-block">
-                  <span className="bg-gradient-to-r from-blue-400 to-teal-400 h-0.5 w-1/2 absolute -bottom-1 left-0 transform transition-all duration-300 group-hover:w-full"></span>
-                  {footerLinks.company.title}
-                </h3>
-                <ul className="mt-4 space-y-4">
+                <h3 className="text-sm font-semibold leading-6 text-white">{footerLinks.company.title}</h3>
+                <ul role="list" className="mt-6 space-y-4">
                   {footerLinks.company.links.map((link) => (
                     <li key={link.name}>
                       {link.active ? (
                         <a
                           href={link.href}
-                          target={link.target}
-                          onClick={!link.target ? (e) => handleNavClick(link.href, e) : undefined}
-                          className="text-base text-gray-400 hover:text-gray-300 dark:text-gray-300 dark:hover:text-white transition-all duration-300 group relative inline-block"
+                          onClick={(e) => handleNavClick(link.href, e)}
+                          className="text-sm leading-6 text-gray-300 hover:text-white"
                         >
                           {link.name}
-                          <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-400 to-teal-400 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                       ) : (
-                        <span className="text-base text-gray-500 dark:text-gray-500 cursor-not-allowed opacity-60">
-                          {link.name}
-                        </span>
+                        <span className="text-sm leading-6 text-gray-500 cursor-not-allowed">{link.name}</span>
                       )}
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="mt-12 md:mt-0">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-300 dark:text-gray-200 relative inline-block">
-                  <span className="bg-gradient-to-r from-blue-400 to-teal-400 h-0.5 w-1/2 absolute -bottom-1 left-0 transform transition-all duration-300 group-hover:w-full"></span>
-                  {footerLinks.products.title}
-                </h3>
-                <ul className="mt-4 space-y-4">
+              <div className="mt-10 md:mt-0">
+                <h3 className="text-sm font-semibold leading-6 text-white">{footerLinks.products.title}</h3>
+                <ul role="list" className="mt-6 space-y-4">
                   {footerLinks.products.links.map((link) => (
                     <li key={link.name}>
                       {link.active ? (
                         <a
                           href={link.href}
                           onClick={(e) => handleNavClick(link.href, e)}
-                          className="text-base text-gray-400 hover:text-gray-300 dark:text-gray-300 dark:hover:text-white transition duration-150"
+                          className="text-sm leading-6 text-gray-300 hover:text-white"
                         >
                           {link.name}
                         </a>
                       ) : (
-                        <span className="text-base text-gray-500 dark:text-gray-500 cursor-not-allowed opacity-60">
-                          {link.name}
-                        </span>
+                        <span className="text-sm leading-6 text-gray-500 cursor-not-allowed">{link.name}</span>
                       )}
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-            <div>
+            <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-300 dark:text-gray-200 relative inline-block">
-                  <span className="bg-gradient-to-r from-blue-400 to-teal-400 h-0.5 w-1/2 absolute -bottom-1 left-0 transform transition-all duration-300 group-hover:w-full"></span>
-                  {footerLinks.legal.title}
-                </h3>
-                <ul className="mt-4 space-y-4">
+                <h3 className="text-sm font-semibold leading-6 text-white">{footerLinks.legal.title}</h3>
+                <ul role="list" className="mt-6 space-y-4">
                   {footerLinks.legal.links.map((link) => (
                     <li key={link.name}>
                       {link.active ? (
                         <a
                           href={link.href}
                           onClick={(e) => handleNavClick(link.href, e)}
-                          className="text-base text-gray-400 hover:text-gray-300 dark:text-gray-300 dark:hover:text-white transition duration-150"
+                          className="text-sm leading-6 text-gray-300 hover:text-white"
                         >
                           {link.name}
                         </a>
                       ) : (
-                        <span className="text-base text-gray-500 dark:text-gray-500 cursor-not-allowed opacity-60">
-                          {link.name}
-                        </span>
+                        <span className="text-sm leading-6 text-gray-500 cursor-not-allowed">{link.name}</span>
                       )}
                     </li>
                   ))}
@@ -157,11 +141,8 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
             </div>
           </div>
         </div>
-        <div className="mt-12 pt-8 relative">
-          <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-700 dark:via-gray-600 to-transparent"></div>
-          <p className="text-base text-gray-400 dark:text-gray-300 text-center">
-            &copy; {currentYear} <span className="bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent font-semibold">{isEnglish ? 'Eudaemonia Technology Ltd.' : '優達盟資訊科技有限公司'}</span> {isEnglish ? 'All rights reserved.' : '保留所有權利。'}
-          </p>
+        <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
+          <p className="text-xs leading-5 text-gray-400">&copy; {currentYear} {isEnglish ? 'Eudaemonia Technology Ltd.' : '優達盟資訊科技有限公司'}. All rights reserved.</p>
         </div>
       </div>
     </footer>
