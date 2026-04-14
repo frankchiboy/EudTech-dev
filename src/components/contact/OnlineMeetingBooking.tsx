@@ -4,7 +4,7 @@ import { useI18n } from '../../i18n/I18nProvider';
 
 const OnlineMeetingBooking: React.FC = () => {
   const { t } = useI18n();
-  const bookingUrl = "https://haxc4.r.bh.d.sendibt3.com/mk/cl/f/sh/1f8JIKXx3IkdaCaYhIptfOBWxd/EpLv3U0PdFph";
+  const bookingUrl = "https://outlook.office.com/book/EudTechOnlineMeeting@EudaemoniaTechnologLtd.onmicrosoft.com/";
   const emailAddress = "info@eudaemonia.tech";
 
   const handleBookMeeting = () => {
@@ -12,7 +12,28 @@ const OnlineMeetingBooking: React.FC = () => {
   };
 
   const handleEmailContact = () => {
-    window.location.href = `mailto:${emailAddress}`;
+    const mailtoLink = `mailto:${emailAddress}`;
+    const link = document.createElement('a');
+    link.href = mailtoLink;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    window.setTimeout(() => {
+      const fallbackMessage = `請透過電子郵件聯繫：${emailAddress}`;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(emailAddress).then(() => {
+          alert(`${fallbackMessage}\n\n電子郵件地址已複製到剪貼簿！`);
+        }).catch(() => {
+          alert(fallbackMessage);
+        });
+      } else {
+        alert(fallbackMessage);
+      }
+    }, 1000);
   };
 
   return (
@@ -48,6 +69,7 @@ const OnlineMeetingBooking: React.FC = () => {
 
       {/* 電子郵件聯繫按鈕 */}
       <button
+        type="button"
         onClick={handleEmailContact}
         className="w-full max-w-md flex items-center justify-center py-4 px-6
                   bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300
