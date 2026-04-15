@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '../../utils/helpers';
 
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   variant?: 'default' | 'elevated' | 'outlined' | 'glass';
@@ -14,7 +14,8 @@ const Card: React.FC<CardProps> = ({
   className,
   variant = 'default',
   padding = 'md',
-  hover = false
+  hover = false,
+  ...rest
 }) => {
   const baseStyles = 'bg-white dark:bg-gray-800 rounded-lg transition-all duration-300';
   
@@ -43,7 +44,7 @@ const Card: React.FC<CardProps> = ({
   );
 
   return (
-    <div className={cardClasses}>
+    <div className={cardClasses} {...rest}>
       {children}
     </div>
   );

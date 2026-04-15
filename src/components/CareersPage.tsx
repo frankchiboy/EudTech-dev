@@ -14,6 +14,9 @@ const applicationEmail = 'info@eudaemonia.tech';
 const CareersPage: React.FC = () => {
   const { isEnglish, toggleLanguage } = useLanguageContext();
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
+  const careersUrl = 'https://eudaemonia.tech/careers';
+  const organizationName = 'EudTech';
+  const applyEmail = 'frank.hsu@eudaemonia.tech';
 
   const jobData = [
     {
@@ -217,6 +220,8 @@ const CareersPage: React.FC = () => {
           'Help arrange schedules, confirm delivery milestones, and follow up on action items',
           'Handle administrative and project support tasks assigned by leadership',
         ],
+          'Handle administrative and project support tasks assigned by leadership',
+        ],
       },
       requirements: {
         zh: [
@@ -229,6 +234,7 @@ const CareersPage: React.FC = () => {
           'Detail-oriented, organized, and comfortable handling multiple tasks at once',
           'Strong communication skills and solid document organization ability',
           'Interested in project collaboration, process improvement, or operations support',
+          'Experience with Excel, Google Sheets, or common office tools is a plus',
           'Experience with Excel, Google Sheets, or common office tools is a plus',
         ],
       },
@@ -259,11 +265,18 @@ const CareersPage: React.FC = () => {
           'Organize technical documents, test results, and project delivery materials',
           'Support communication and alignment between engineering, product, and clients',
           'Help with administrative follow-up, testing, and coordination before and after launch',
+          'Help with administrative follow-up, testing, and coordination before and after launch',
         ],
       },
       requirements: {
         zh: [
           '邏輯清楚，願意學習技術相關流程與工具',
+          '有良好的溝通與協調能力，能追蹤細節',
+          '對網站、系統、產品或專案管理有興趣',
+          '具 Excel / Google Workspace / Notion 使用經驗者佳',
+        ],
+        en: [
+          'Clear logical thinking and willingness to learn technical processes and tools',
           '有良好的溝通與協調能力，能追蹤細節',
           '對網站、系統、產品或專案管理有興趣',
           '具 Excel / Google Workspace / Notion 使用經驗者佳',
@@ -318,6 +331,74 @@ const CareersPage: React.FC = () => {
     }, 1000);
   };
 
+  const jobPostingStructuredData = {
+    '@context': 'https://schema.org',
+    '@graph': jobData.map((job) => {
+      const isTaiwanRemote = job.location.zh.includes('遠端');
+      const isTaipeiHybrid = job.location.zh.includes('台北');
+
+      return {
+        '@type': 'JobPosting',
+        title: job.title.zh,
+        description: [
+          job.responsibilities.zh.join('；'),
+          `條件需求：${job.requirements.zh.join('；')}`,
+          `工作地點：${job.location.zh}`,
+          `工作時間：${job.workTime.zh}`,
+          `應徵方式：請寄送履歷與期待薪資至 ${applyEmail}`,
+        ].join('\n\n'),
+        identifier: {
+          '@type': 'PropertyValue',
+          name: organizationName,
+          value: `eudtech-job-${job.id}`,
+        },
+        datePosted: '2026-04-16',
+        validThrough: '2026-12-31T23:59:00+08:00',
+        employmentType: 'FULL_TIME',
+        hiringOrganization: {
+          '@type': 'Organization',
+          name: organizationName,
+          sameAs: 'https://eudaemonia.tech',
+          logo: 'https://eudaemonia.tech/logo.svg',
+        },
+        applicantLocationRequirements: {
+          '@type': 'Country',
+          name: 'Taiwan',
+        },
+        directApply: true,
+        industry: 'Artificial Intelligence',
+        jobBenefits: '醫療與休假福利',
+        workHours: job.workTime.zh,
+        url: `${careersUrl}#job-${job.id}`,
+        ...(isTaiwanRemote
+          ? {
+              jobLocationType: 'TELECOMMUTE',
+            }
+          : {}),
+        ...(isTaipeiHybrid
+          ? {
+              jobLocation: {
+                '@type': 'Place',
+                address: {
+                  '@type': 'PostalAddress',
+                  addressLocality: 'Taipei',
+                  addressCountry: 'TW',
+                },
+              },
+            }
+          : {
+              jobLocation: {
+                '@type': 'Place',
+                address: {
+                  '@type': 'PostalAddress',
+                  addressCountry: 'TW',
+                },
+              },
+            }),
+      };
+    }),
+  };
+
   return (
     <>
       <SEOHead
@@ -327,6 +408,8 @@ const CareersPage: React.FC = () => {
             ? 'Join EudTech and be part of the future of AI technology. We are looking for passionate individuals to help us build innovative solutions.'
             : '加入 EudTech，成為 AI 技術未來的一部分。我們正在尋找充滿熱忱的人才，協助我們打造創新解決方案。'
         }
+        url={careersUrl}
+        structuredData={jobPostingStructuredData}
         isEnglish={isEnglish}
       />
 
@@ -365,7 +448,8 @@ const CareersPage: React.FC = () => {
           <Section background="white" padding="xl">
             <div className="max-w-4xl mx-auto space-y-12">
               {jobData.map((job) => (
-                <Card key={job.id} variant="elevated" padding="lg" className="border border-gray-200 dark:border-gray-700">
+                <Card id={`job-${job.id}`} key={job.id} variant="elevated" padding="lg" className="border border-gray-200 dark:border-gray-700 scroll-mt-24">
+                  {/* Job Title */}
                   <div className="mb-8">
                     <div className="flex items-center mb-4">
                       <Briefcase className="h-8 w-8 text-blue-600 dark:text-blue-400 mr-3" />

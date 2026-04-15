@@ -4,16 +4,18 @@
 
 import { GoogleAuth } from 'google-auth-library';
 import axios from 'axios';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const KEYFILE_PATH = path.join(__dirname, 'eudaidosearch-1734764995899-69a8da284a07.json');
-const PROJECT_ID = 'eudaidosearch-1734764995899';
-const TENANT_ID = '8449cf21-3152-4ffc-bda8-2f72695af68d';
-const COMPANY_ID = '218e3ccd-2278-4b3e-b1e5-864ed2806038';
+const DEFAULT_KEYFILE_PATH = path.join(__dirname, 'eudaidosearch-1734764995899-69a8da284a07.json');
+const KEYFILE_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS || DEFAULT_KEYFILE_PATH;
+const PROJECT_ID = process.env.GOOGLE_JOBS_PROJECT_ID || 'eudaidosearch-1734764995899';
+const TENANT_ID = process.env.GOOGLE_JOBS_TENANT_ID || '8449cf21-3152-4ffc-bda8-2f72695af68d';
+const COMPANY_ID = process.env.GOOGLE_JOBS_COMPANY_ID || '218e3ccd-2278-4b3e-b1e5-864ed2806038';
 // 公司資訊
 const COMPANY_NAME = `projects/${PROJECT_ID}/tenants/${TENANT_ID}/companies/${COMPANY_ID}`;
 const COMPANY_WEBSITE = 'https://www.eudaemonia.tech';
@@ -129,16 +131,88 @@ const jobData = [
     ],
     workTime: '日班／一般工時',
   },
+  {
+    id: 5,
+    title: '營運與專案助理',
+    description: '協助日常營運、專案進度追蹤與跨部門溝通\n整理會議紀錄、需求文件與專案相關資料\n協助安排時程、確認交付節點與追蹤待辦事項\n處理主管交辦的行政與專案支援工作',
+    languageCode: 'zh-TW',
+    applicationInfo: {
+      emails: ['frank.hsu@eudaemonia.tech'],
+      uris: [COMPANY_CAREER_PAGE]
+    },
+    jobBenefits: ['MEDICAL', 'VACATION'],
+    employmentTypes: ['FULL_TIME'],
+    addresses: ['台北 / 遠端彈性'],
+    responsibilities: [
+      '協助日常營運、專案進度追蹤與跨部門溝通',
+      '整理會議紀錄、需求文件與專案相關資料',
+      '協助安排時程、確認交付節點與追蹤待辦事項',
+      '處理主管交辦的行政與專案支援工作'
+    ],
+    requirements: [
+      '細心、有條理，能同時處理多項任務',
+      '具良好溝通能力與基本文字整理能力',
+      '對專案協作、流程優化或營運支援有興趣',
+      '熟悉 Excel / Google Sheets / 基本文書工具者佳'
+    ],
+    workTime: '全職，周一至周五，日班',
+  },
+  {
+    id: 6,
+    title: '技術專案助理',
+    description: '協助技術專案的需求彙整、排程與進度追蹤\n整理技術文件、測試結果與專案交付資料\n協助工程、產品與客戶之間的溝通與確認\n支援專案上線前後的行政、測試與追蹤工作',
+    languageCode: 'zh-TW',
+    applicationInfo: {
+      emails: ['frank.hsu@eudaemonia.tech'],
+      uris: [COMPANY_CAREER_PAGE]
+    },
+    jobBenefits: ['MEDICAL', 'VACATION'],
+    employmentTypes: ['FULL_TIME'],
+    addresses: ['台北 / 遠端彈性'],
+    responsibilities: [
+      '協助技術專案的需求彙整、排程與進度追蹤',
+      '整理技術文件、測試結果與專案交付資料',
+      '協助工程、產品與客戶之間的溝通與確認',
+      '支援專案上線前後的行政、測試與追蹤工作'
+    ],
+    requirements: [
+      '邏輯清楚，願意學習技術相關流程與工具',
+      '有良好溝通與協調能力，能追蹤細節',
+      '對網站、系統、產品或專案管理有興趣',
+      '具 Excel / Google Workspace / Notion 使用經驗者佳'
+    ],
+    workTime: '全職，周一至周五，日班',
+  },
 ];
 
 async function getAccessToken() {
-  const auth = new GoogleAuth({
-    keyFile: KEYFILE_PATH,
+  const authOptions = {
     scopes: ['https://www.googleapis.com/auth/jobs'],
-  });
+  };
+
+  if (fs.existsSync(KEYFILE_PATH)) {
+    authOptions.keyFile = KEYFILE_PATH;
+  }
+
+  const auth = new GoogleAuth(authOptions);
   const client = await auth.getClient();
   const accessToken = await client.getAccessToken();
   return accessToken.token;
+}
+
+function buildPayload(job, companyName, existingJobName) {
+  return {
+    company: companyName,
+    requisitionId: `job-${job.id}`,
+    title: job.title,
+    description: job.description,
+    languageCode: job.languageCode,
+    applicationInfo: job.applicationInfo,
+    jobBenefits: job.jobBenefits,
+    employmentTypes: job.employmentTypes,
+    addresses: job.addresses,
+    ...(existingJobName ? { name: existingJobName } : {}),
+  };
 }
 
 
@@ -154,6 +228,10 @@ async function getAccessToken() {
 
 async function updateJobsToGoogle() {
   const accessToken = await getAccessToken();
+  const headers = {
+    Authorization: `Bearer ${accessToken}`,
+    'Content-Type': 'application/json',
+  };
   
   // 先查詢所有現有職缺，使用正確的 filter
   const listUrl = `https://jobs.googleapis.com/v4/projects/${PROJECT_ID}/tenants/${TENANT_ID}/jobs`;
@@ -170,44 +248,41 @@ async function updateJobsToGoogle() {
     const existingJobs = listResponse.data.jobs || [];
     console.log(`找到 ${existingJobs.length} 個現有職缺`);
 
+    let updatedCount = 0;
+    let createdCount = 0;
+    let failedCount = 0;
+
     for (const job of jobData) {
       // 根據 requisitionId 找到對應的現有職缺
       const existingJob = existingJobs.find(ej => ej.requisitionId === `job-${job.id}`);
-      
-      if (!existingJob) {
-        console.log(`職缺 ${job.title} 不存在，跳過更新`);
-        continue;
-      }
-
-      const payload = {
-        company: COMPANY_NAME,
-        requisitionId: `job-${job.id}`,
-        title: job.title,
-        description: job.description,
-        languageCode: job.languageCode,
-        applicationInfo: job.applicationInfo,
-        jobBenefits: job.jobBenefits,
-        employmentTypes: job.employmentTypes,
-        addresses: job.addresses,
-        name: existingJob.name
-      };
 
       try {
-        const url = `https://jobs.googleapis.com/v4/${existingJob.name}`;
-        const response = await axios.patch(url, payload, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-          params: {
-            updateMask: 'title,description,languageCode,applicationInfo,jobBenefits,employmentTypes,addresses'
-          }
-        });
-        console.log(`職缺 ${job.title} 更新成功：`, response.data.name);
+        if (existingJob) {
+          const payload = buildPayload(job, COMPANY_NAME, existingJob.name);
+          const url = `https://jobs.googleapis.com/v4/${existingJob.name}`;
+          const response = await axios.patch(url, payload, {
+            headers,
+            params: {
+              updateMask: 'title,description,languageCode,applicationInfo,jobBenefits,employmentTypes,addresses'
+            }
+          });
+          updatedCount += 1;
+          console.log(`職缺 ${job.title} 更新成功：`, response.data.name);
+        } else {
+          const payload = buildPayload(job, COMPANY_NAME);
+          const response = await axios.post(listUrl, payload, {
+            headers,
+          });
+          createdCount += 1;
+          console.log(`職缺 ${job.title} 建立成功：`, response.data.name);
+        }
       } catch (error) {
+        failedCount += 1;
         console.error(`職缺 ${job.title} 更新失敗：`, error.response ? error.response.data : error.message);
       }
     }
+
+    console.log(`同步完成：更新 ${updatedCount} 筆，建立 ${createdCount} 筆，失敗 ${failedCount} 筆`);
   } catch (listError) {
     console.error('查詢職缺失敗：', listError.response ? listError.response.data : listError.message);
   }

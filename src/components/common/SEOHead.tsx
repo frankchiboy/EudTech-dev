@@ -9,6 +9,7 @@ interface SEOHeadProps {
   url?: string;
   type?: string;
   isEnglish?: boolean;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
@@ -18,7 +19,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   image = '/logo.svg',
   url = window.location.href,
   type = 'website',
-  isEnglish = false
+  isEnglish = false,
+  structuredData
 }) => {
   const defaultTitle = isEnglish 
     ? 'EudTech - Next Generation AI Solutions'
@@ -33,6 +35,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     : 'AI伺服器, 人工智能, 機器學習, GPU運算, 液冷, 金融AI, EudTech';
 
   const fullTitle = title ? `${title} | ${defaultTitle}` : defaultTitle;
+  const structuredDataItems = structuredData
+    ? (Array.isArray(structuredData) ? structuredData : [structuredData])
+    : [];
 
   return (
     <Helmet>
@@ -61,6 +66,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       
       {/* Language */}
       <html lang={isEnglish ? 'en' : 'zh-TW'} />
+
+      {structuredDataItems.map((item, index) => (
+        <script key={`structured-data-${index}`} type="application/ld+json">
+          {JSON.stringify(item)}
+        </script>
+      ))}
     </Helmet>
   );
 };
