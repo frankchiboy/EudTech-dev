@@ -1,0 +1,53 @@
+name: Promote Dev to Main
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_sha:
+        description: "Optional: specific commit SHA from Dev to promote"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve and validate target commit
+        id: resolve
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git fetch origin Dev main --prune
+
+          INPUT_SHA="${{ github.event.inputs.commit_sha }}"
+          if [ -n "$INPUT_SHA" ]; then
+            TARGET_SHA="$INPUT_SHA"
+          else
+            TARGET_SHA="$(git rev-parse origin/Dev)"
+          fi
+
+          git cat-file -e "${TARGET_SHA}^{commit}"
+
+          # Enforce source-of-truth: promoted commit must exist on origin/Dev.
+          git merge-base --is-ancestor "$TARGET_SHA" origin/Dev
+
+          # Only allow fast-forward updates to main.
+          git merge-base --is-ancestor origin/main "$TARGET_SHA"
+
+          echo "target_sha=$TARGET_SHA" >> "$GITHUB_OUTPUT"
+
+      - name: Promote commit to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET_SHA="${{ steps.resolve.outputs.target_sha }}"
+          git push origin "${TARGET_SHA}:refs/heads/main"
