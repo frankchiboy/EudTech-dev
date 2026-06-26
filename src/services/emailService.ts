@@ -1,8 +1,25 @@
 import emailjs from '@emailjs/browser';
 import { EmailFormData } from '../types';
 
+interface EmailServiceEnv {
+  VITE_EMAILJS_PUBLIC_KEY?: string;
+  VITE_EMAILJS_SERVICE_ID?: string;
+  VITE_EMAILJS_TEMPLATE_ID?: string;
+  DEV?: boolean;
+}
+
+interface EmailJsResult {
+  status: number;
+  text?: string;
+}
+
 function isBrowser(): boolean {
   return typeof window !== 'undefined' && typeof window.document !== 'undefined';
+}
+
+function getEmailJsStatus(result: unknown) {
+  const candidate = result as Partial<EmailJsResult>;
+  return typeof candidate.status === 'number' ? candidate.status : undefined;
 }
 
 function sleep(ms: number) {
@@ -18,7 +35,7 @@ class EmailService {
   private readonly simulateOnMissingConfig: boolean;
 
   constructor() {
-    const env: any = (import.meta as any)?.env || {};
+    const env = import.meta.env as EmailServiceEnv;
     this.publicKey = env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
     this.serviceId = env.VITE_EMAILJS_SERVICE_ID as string | undefined;
     this.templateId = env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
@@ -37,6 +54,10 @@ class EmailService {
     if (this.enabled) return;
     if (this.simulateOnMissingConfig) return; // 允許模擬
     throw new Error('Email service 未正確設定 (缺少環境變數)。');
+  }
+
+  isConfigured(): boolean {
+    return this.enabled;
   }
 
   async init(): Promise<void> {
@@ -94,8 +115,9 @@ class EmailService {
       const result = await this.withRetry(() =>
         emailjs.sendForm(this.serviceId!, this.templateId!, form, this.publicKey!)
       );
-      if ((result as any).status !== 200) {
-        throw new Error(`郵件發送失敗，狀態碼: ${(result as any).status}`);
+      const status = getEmailJsStatus(result);
+      if (status !== 200) {
+        throw new Error(`郵件發送失敗，狀態碼: ${status ?? 'unknown'}`);
       }
       console.log('郵件發送成功:', result);
     } catch (error) {
@@ -132,6 +154,8 @@ class EmailService {
 
     try {
       const timestamp = new Date().toISOString();
+      const recipientEmail = data.toEmail || 'info@eudaemonia.tech';
+      const subject = data.subject || `網站表單聯繫 - ${timestamp}`;
       console.log('開始發送郵件到 EmailJS...');
       const result = await this.withRetry(() =>
         emailjs.send(
@@ -140,18 +164,24 @@ class EmailService {
           {
             from_name: `${data.firstName} ${data.lastName}`,
             from_email: data.email,
+            reply_to: data.email,
+            phone: data.phone || '未提供',
             company: data.company || '未提供',
+            country: data.country || '未提供',
             message: data.message,
             to_name: 'EudTech Team',
-            subject: `網站表單聯繫 - ${timestamp}`,
+            to_email: recipientEmail,
+            recipient_email: recipientEmail,
+            subject,
             timestamp
           },
           this.publicKey!
         )
       );
 
-      if ((result as any).status !== 200) {
-        throw new Error(`郵件發送失敗，狀態碼: ${(result as any).status}`);
+      const status = getEmailJsStatus(result);
+      if (status !== 200) {
+        throw new Error(`郵件發送失敗，狀態碼: ${status ?? 'unknown'}`);
       }
       console.log('郵件發送成功:', result);
     } catch (error) {

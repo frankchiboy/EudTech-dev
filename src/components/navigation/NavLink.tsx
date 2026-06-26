@@ -11,6 +11,19 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ link, textColorClass }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const renderLabel = () => {
+    if (!link.labelLines?.length) {
+      return link.name;
+    }
+
+    return (
+      <span className="flex flex-col items-center justify-center leading-tight">
+        {link.labelLines.map((line) => (
+          <span key={line}>{line}</span>
+        ))}
+      </span>
+    );
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -76,9 +89,10 @@ const NavLink: React.FC<NavLinkProps> = ({ link, textColorClass }) => {
     <a
       href={link.href}
       onClick={(e) => handleNavClick(link.href, e)}
-      className={`${textColorClass} px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+      aria-label={link.name}
+      className={`${textColorClass} flex min-h-10 items-center px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200`}
     >
-      {link.name}
+      {renderLabel()}
     </a>
   );
 };

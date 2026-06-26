@@ -13,6 +13,7 @@ import SkipToContent from './common/SkipToContent';
 import LoadingSpinner from './ui/LoadingSpinner';
 import CareersPage from './CareersPage';
 import AtomicComponentsDemo from './demo/AtomicComponentsDemo';
+import GrandoConfigurator from './configurator/GrandoConfigurator';
 import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
 
 const AppRoutes: React.FC = () => {
@@ -53,6 +54,8 @@ const AppRoutes: React.FC = () => {
               </>
             } />
             <Route path="/careers" element={<CareersPage />} />
+            <Route path="/configurator" element={<GrandoConfigurator />} />
+            <Route path="/configurator/:pid" element={<GrandoConfigurator />} />
             <Route path="/components-demo" element={<AtomicComponentsDemo />} />
             <Route path="/products/:id" element={
               <Suspense fallback={

@@ -21,7 +21,7 @@ export const preloadImage = (src: string): Promise<void> => {
 
 export const preloadCriticalImages = async (images: string[]): Promise<void> => {
   const promises = images.map(preloadImage);
-  await Promise.all(promises);
+  await Promise.allSettled(promises);
 };
 
 // 智能預載入即將進入視區的圖片
@@ -35,7 +35,7 @@ export const setupIntelligentImagePreloading = (): void => {
           const img = entry.target as HTMLImageElement;
           const src = img.getAttribute('data-src');
           if (src) {
-            preloadImage(src);
+            void preloadImage(src).catch(() => undefined);
             img.removeAttribute('data-src');
             observer.unobserve(img);
           }

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'eudtech-v65'; // 每次部署請更改版本號
+const CACHE_NAME = 'eudtech-v62'; // 每次部署請更改版本號
 
 // 檢測開發模式
 const isDev = self.location.hostname === 'localhost' || 

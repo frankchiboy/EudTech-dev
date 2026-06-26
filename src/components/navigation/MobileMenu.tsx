@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { NavLink } from '../../types';
+import { NavLink, ThemeMode } from '../../types';
 import { handleNavClick } from '../../utils/helpers/navigation';
 import LanguageToggle from './LanguageToggle';
 import ThemeToggle from './ThemeToggle';
@@ -11,11 +11,10 @@ interface MobileMenuProps {
   onClose: () => void;
   isEnglish: boolean;
   toggleLanguage: () => void;
-  themeMode: any;
+  themeMode: ThemeMode;
   isDarkMode: boolean;
   toggleDarkMode: () => void;
   isScrolled: boolean;
-  textColorClass: string;
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ 
@@ -27,10 +26,22 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   themeMode,
   isDarkMode,
   toggleDarkMode,
-  isScrolled,
-  textColorClass
+  isScrolled
 }) => {
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
+  const renderLinkLabel = (link: NavLink) => {
+    if (!link.labelLines?.length) {
+      return link.name;
+    }
+
+    return (
+      <span className="flex flex-col leading-tight">
+        {link.labelLines.map((line) => (
+          <span key={line}>{line}</span>
+        ))}
+      </span>
+    );
+  };
 
   if (!isOpen) return null;
 
@@ -93,8 +104,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   onClose();
                 }}
                 className="text-neutral-800 dark:text-neutral-100 hover:text-eudtech-700 dark:hover:text-eudtech-300 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                aria-label={link.name}
               >
-                {link.name}
+                {renderLinkLabel(link)}
               </a>
             )}
           </div>

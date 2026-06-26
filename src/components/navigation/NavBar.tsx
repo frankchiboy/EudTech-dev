@@ -3,6 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { getNavLinks } from '../../data/navigation';
 import { handleNavClick } from '../../utils/helpers/navigation';
+import { ThemeMode } from '../../types';
 import Logo from '../common/Logo';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
@@ -12,7 +13,7 @@ import MobileMenu from './MobileMenu';
 interface NavBarProps {
   isEnglish: boolean;
   toggleLanguage: () => void;
-  themeMode: any;
+  themeMode: ThemeMode;
   isDarkMode: boolean;
   toggleDarkMode: () => void;
 }
@@ -134,6 +135,19 @@ const NavBar: React.FC<NavBarProps> = ({
   };
 
   const textColorClass = getTextColorClass();
+  const renderLinkLabel = (link: ReturnType<typeof getNavLinks>[number]) => {
+    if (!link.labelLines?.length) {
+      return link.name;
+    }
+
+    return (
+      <span className="flex flex-col items-center justify-center leading-tight">
+        {link.labelLines.map((line) => (
+          <span key={line}>{line}</span>
+        ))}
+      </span>
+    );
+  };
 
   return (
     <nav
@@ -154,7 +168,7 @@ const NavBar: React.FC<NavBarProps> = ({
           </div>
 
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex items-center space-x-4">
               {navLinks.map((link) =>
                 link.isDropdown ? (
                   <NavLink key={link.name} link={link} textColorClass={textColorClass} />
@@ -163,11 +177,12 @@ const NavBar: React.FC<NavBarProps> = ({
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(link.href, e)}
-                    className={`${textColorClass} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-out ${
+                    aria-label={link.name}
+                    className={`${textColorClass} flex min-h-10 items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-300 ease-out ${
                       isHomePage && scrollY < 30 ? 'text-shadow-sm' : ''
                     }`}
                   >
-                    {link.name}
+                    {renderLinkLabel(link)}
                   </a>
                 )
               )}
@@ -226,7 +241,6 @@ const NavBar: React.FC<NavBarProps> = ({
         isDarkMode={isDarkMode}
         toggleDarkMode={toggleDarkMode}
         isScrolled={isScrolled}
-        textColorClass={textColorClass}
       />
     </nav>
   );

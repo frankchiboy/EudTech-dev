@@ -220,8 +220,6 @@ const CareersPage: React.FC = () => {
           'Help arrange schedules, confirm delivery milestones, and follow up on action items',
           'Handle administrative and project support tasks assigned by leadership',
         ],
-          'Handle administrative and project support tasks assigned by leadership',
-        ],
       },
       requirements: {
         zh: [
@@ -265,18 +263,11 @@ const CareersPage: React.FC = () => {
           'Organize technical documents, test results, and project delivery materials',
           'Support communication and alignment between engineering, product, and clients',
           'Help with administrative follow-up, testing, and coordination before and after launch',
-          'Help with administrative follow-up, testing, and coordination before and after launch',
         ],
       },
       requirements: {
         zh: [
           '邏輯清楚，願意學習技術相關流程與工具',
-          '有良好的溝通與協調能力，能追蹤細節',
-          '對網站、系統、產品或專案管理有興趣',
-          '具 Excel / Google Workspace / Notion 使用經驗者佳',
-        ],
-        en: [
-          'Clear logical thinking and willingness to learn technical processes and tools',
           '有良好的溝通與協調能力，能追蹤細節',
           '對網站、系統、產品或專案管理有興趣',
           '具 Excel / Google Workspace / Notion 使用經驗者佳',

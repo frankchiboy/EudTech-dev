@@ -11,6 +11,11 @@ export const getNavLinks = (isEnglish: boolean): NavLink[] => {
       href: '#eudtech-products'
     },
     {
+      name: isEnglish ? 'Comino Configurator' : 'Comino 配置器',
+      labelLines: ['Comino', isEnglish ? 'Configurator' : '配置器'],
+      href: '/configurator'
+    },
+    {
       name: isEnglish ? 'Partner Brands' : '代理品牌',
       href: '#',
       isDropdown: true,

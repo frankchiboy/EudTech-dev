@@ -10,6 +10,7 @@ export interface NavLinkChild {
 export interface NavLink {
   name: string;
   href: string;
+  labelLines?: string[];
   isDropdown?: boolean;
   disabled?: boolean;
   disabledText?: string;
@@ -32,7 +33,11 @@ export interface EmailFormData {
   firstName: string;
   lastName: string;
   email: string;
+  phone?: string;
   company?: string;
+  country?: string;
+  subject?: string;
+  toEmail?: string;
   message: string;
   privacy: boolean;
 }
