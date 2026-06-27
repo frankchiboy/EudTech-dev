@@ -163,20 +163,22 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
     url: SITE_ORIGIN,
     email: QUOTE_RECIPIENT_EMAIL
   };
-  const productStructuredData =
+  const serviceStructuredData =
     pid && device
       ? {
           '@context': 'https://schema.org',
-          '@type': 'Product',
+          '@type': 'Service',
           name: productSeo ? productSeo.title[language] : name,
           description: productSeo ? productSeo.description[language] : description,
           image: `${SITE_ORIGIN}${productSeo?.image || '/grando-8gpu-server.jpg'}`,
           url: canonicalUrl,
+          provider: {
+            ...eudTechOrganization
+          },
           brand: { '@type': 'Brand', name: productSeo?.brand || 'Comino' },
-          manufacturer: { '@type': 'Organization', name: productSeo?.manufacturer || 'Comino' },
+          serviceType: isEnglish ? 'GPU server quote configuration' : 'GPU 伺服器報價配置',
           category: productSeo ? productSeo.category[language] : translateConfiguratorDeviceType(device.type, language),
-          model: productSeo ? productSeo.model[language] : translateConfiguratorModelName(device.name, language),
-          productID: productSeo?.productId || `comino-grando-configurator-${device.id}`,
+          identifier: productSeo?.productId || `comino-grando-configurator-${device.id}`,
           additionalProperty: (productSeo?.properties || [
             {
               name: { en: 'Form factor', zh: '機構型態' },
@@ -284,7 +286,7 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
           : [])
       ]
     },
-    productStructuredData
+    serviceStructuredData
   ].filter(Boolean);
 };
 

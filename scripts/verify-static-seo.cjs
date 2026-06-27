@@ -50,17 +50,18 @@ function assertConfiguratorProduct(routePath, expectedProductId) {
   const items = collectJsonLd(routePath);
   requireType(routePath, items, 'WebApplication');
   requireType(routePath, items, 'BreadcrumbList');
-  requireType(routePath, items, 'Product');
+  requireType(routePath, items, 'Service');
 
-  const product = items.find((item) => item?.['@type'] === 'Product');
-  if (product.productID !== expectedProductId) {
-    throw new Error(`Unexpected Product productID in ${routePath}: ${product.productID}`);
-  }
-  if (product.offers) {
-    throw new Error(`Configurator product should not emit Offer without a public price: ${routePath}`);
+  if (hasType(items, 'Product')) {
+    throw new Error(`Configurator quote page should not emit Product rich-result JSON-LD without public price/review data: ${routePath}`);
   }
 
-  requireQuoteAction(routePath, product);
+  const service = items.find((item) => item?.['@type'] === 'Service');
+  if (service.identifier !== expectedProductId) {
+    throw new Error(`Unexpected Service identifier in ${routePath}: ${service.identifier}`);
+  }
+
+  requireQuoteAction(routePath, service);
 }
 
 for (const product of CONFIGURATOR_PRODUCT_SEO) {

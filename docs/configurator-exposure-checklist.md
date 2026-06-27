@@ -40,7 +40,7 @@
 17. `image-sitemap.xml` lists configurator and solution product images for image discovery.
 18. `sitemap-index.xml` groups the standard sitemap and image sitemap for crawler discovery.
 19. `npm run verify:discovery` checks that solution URLs stay aligned across sitemap, RSS, llms.txt, image sitemap, sitemap index, and robots.txt.
-20. `/configurator/28` and `/configurator/29` emit product-level JSON-LD without fake public pricing.
+20. `/configurator/28` and `/configurator/29` emit quote-service JSON-LD instead of Product rich-result JSON-LD, avoiding fake public pricing and Google Product Summary errors.
 21. `npm run verify:seo-html` validates static JSON-LD coverage for configurator product pages and solution pages.
 22. `npm run submit:search-console` submits sitemap index, sitemap, and image sitemap to Google Search Console through API.
 23. `npm run inspect:search-console` checks high-intent configurator canonical URL index status through the URL Inspection API.

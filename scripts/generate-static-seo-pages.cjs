@@ -30,7 +30,7 @@ const productSeoById = new Map((CONFIGURATOR_PRODUCT_SEO || []).map((product) =>
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
 const eudTechOrganization = { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' };
 
-function productSchemaFor(id) {
+function configuratorServiceSchemaFor(id) {
   const product = productSeoById.get(id);
   if (!product) {
     return undefined;
@@ -38,16 +38,16 @@ function productSchemaFor(id) {
 
   return {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'Service',
     name: getZh(product.title),
     description: getZh(product.description),
     image: `${siteOrigin}${product.image}`,
     url: pageUrl(product.configuratorHref),
+    provider: eudTechOrganization,
     brand: { '@type': 'Brand', name: product.brand },
-    manufacturer: { '@type': 'Organization', name: product.manufacturer },
+    serviceType: 'GPU 伺服器報價配置',
     category: getZh(product.category),
-    model: getZh(product.model),
-    productID: product.productId,
+    identifier: product.productId,
     additionalProperty: product.properties.map((property) => ({
       '@type': 'PropertyValue',
       name: getZh(property.name),
@@ -56,9 +56,9 @@ function productSchemaFor(id) {
     potentialAction: {
       '@type': 'QuoteAction',
       target: pageUrl(product.quoteHref)
-    }
-  };
-}
+      }
+    };
+  }
 
 const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
   path: `/solutions/${page.slug}`,
@@ -204,7 +204,7 @@ const routes = [
         provider: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' },
         potentialAction: { '@type': 'QuoteAction', target: pageUrl('/configurator/28?request=true') }
       },
-      productSchemaFor(28),
+      configuratorServiceSchemaFor(28),
       {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -233,7 +233,7 @@ const routes = [
         provider: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' },
         potentialAction: { '@type': 'QuoteAction', target: pageUrl('/configurator/29?request=true') }
       },
-      productSchemaFor(29),
+      configuratorServiceSchemaFor(29),
       {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
