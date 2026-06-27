@@ -57,3 +57,9 @@
 ## 2026-06-27 - Push EudTech Main
 
 1. `push到eudtech的main`
+
+2. `add,commit,push之後push到eudtech的main`
+
+## 2026-06-27 - Restore Domain To Origin Main
+
+1. `domain 掛回/origin/main`
