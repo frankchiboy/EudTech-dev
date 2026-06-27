@@ -1,0 +1,34 @@
+# EudTech Configurator
+
+EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled system configuration services for Taiwan buyers.
+
+## Primary URLs
+
+- Homepage: https://eudaemonia.tech/
+- Comino Grando Configurator: https://eudaemonia.tech/configurator
+- NVIDIA H200 GPU Server Configurator: https://eudaemonia.tech/configurator/29
+- GRANDO Rackable Workstation Configurator: https://eudaemonia.tech/configurator/28
+- GPU Server Quote Page: https://eudaemonia.tech/solutions/gpu-server-quote
+- NVIDIA H200 Server Page: https://eudaemonia.tech/solutions/nvidia-h200-server
+- RTX PRO 6000 Workstation Page: https://eudaemonia.tech/solutions/rtx-pro-6000-workstation
+- Taiwan AI Workstation Page: https://eudaemonia.tech/solutions/ai-workstation-taiwan
+- Liquid-Cooled GPU Server Page: https://eudaemonia.tech/solutions/liquid-cooled-gpu-server
+
+## High-Intent Topics
+
+- GPU server quote
+- AI server quote
+- NVIDIA H200 server
+- RTX PRO 6000 workstation
+- Comino Grando configurator
+- Liquid-cooled GPU server
+- AI workstation Taiwan
+
+## Quote Flow
+
+Users can configure GPU, CPU, RAM, storage, power supply, and networking options in the configurator. Quote requests are sent to info@eudaemonia.tech with the selected configuration URL and marketing attribution when available.
+
+## Contact
+
+- Email: info@eudaemonia.tech
+- Site: https://eudaemonia.tech/

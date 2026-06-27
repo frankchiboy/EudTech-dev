@@ -19,6 +19,8 @@
 5. `sitemap.xml` and `robots.txt` for crawler discovery.
 6. Static route HTML generation for `/`, `/configurator`, `/configurator/:pid`, and `/solutions/*`, so crawlers can read route-specific metadata before JavaScript runs.
 7. Marketing attribution capture for `utm_*`, `gclid`, `fbclid`, LinkedIn click id, first landing page, and referrer.
+8. IndexNow key file and submit script for account-free URL discovery by participating search engines.
+9. `llms.txt` with canonical configurator URLs and high-intent product topics for AI tools.
 
 ## External Promotion Queue
 
@@ -27,6 +29,7 @@
 3. Start Google Ads exact/phrase match tests around quote-intent keywords.
 4. Start LinkedIn retargeting after traffic reaches stable volume.
 5. Add case-oriented articles only after Search Console shows impressions.
+6. Submit the current sitemap URLs through IndexNow after production deploys with `npm run submit:indexnow`.
 
 ## Tracking Readiness
 
