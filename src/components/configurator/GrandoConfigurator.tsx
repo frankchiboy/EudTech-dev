@@ -65,6 +65,8 @@ import {
 import { useClipboard } from '../../hooks/ui/useClipboard';
 import { emailService } from '../../services/emailService';
 import { isValidEmail } from '../../utils/validators';
+import { SITE_ORIGIN } from '../../data/configuratorSeoPages';
+import SEOHead from '../common/SEOHead';
 import './Configurator.css';
 
 type DeviceSummary = ConfiguratorDevice & { options: ConfiguratorOption[] };
@@ -79,6 +81,7 @@ const DESKTOP_PRODUCT_IMAGE_WIDTH = 960;
 const MOBILE_PRODUCT_IMAGE_QUALITY = 68;
 const DESKTOP_PRODUCT_IMAGE_QUALITY = 80;
 const BACKGROUND_IMAGE_QUALITY = 75;
+const CONFIGURATOR_CANONICAL_URL = `${SITE_ORIGIN}/configurator`;
 const LOCAL_PRODUCT_IMAGE_FILENAMES = new Set([
   '2x6000ADA_Ddd293j',
   '2x6000ADA_ver',
@@ -138,6 +141,69 @@ interface OptionSectionProps {
 }
 
 const typeOrder = ['Server', 'Rackable Workstation', 'Desktop Workstation', 'Integration Kit'];
+
+const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: string, device?: ConfiguratorDevice) => {
+  const isEnglish = language === 'en';
+  const canonicalUrl = pid ? `${CONFIGURATOR_CANONICAL_URL}/${pid}` : CONFIGURATOR_CANONICAL_URL;
+  const name = device
+    ? `${translateConfiguratorModelName(device.name, language)} ${isEnglish ? 'Configurator' : '配置器'}`
+    : isEnglish
+      ? 'Comino Grando GPU Server Configurator'
+      : 'Comino Grando GPU 伺服器配置器';
+  const description = isEnglish
+    ? 'Configure Comino Grando GPU servers and AI workstations, then send the selected GPU, CPU, RAM, storage, power, and network options to EudTech for quote follow-up.'
+    : '配置 Comino Grando GPU 伺服器與 AI 工作站，並將已選 GPU、CPU、RAM、儲存、電源與網路選項送交 EudTech 追蹤報價。';
+
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name,
+      description,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      url: canonicalUrl,
+      provider: {
+        '@type': 'Organization',
+        name: 'EudTech',
+        url: SITE_ORIGIN,
+        email: QUOTE_RECIPIENT_EMAIL
+      },
+      potentialAction: {
+        '@type': 'QuoteAction',
+        target: `${canonicalUrl}?request=true`
+      }
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: isEnglish ? 'Home' : '首頁',
+          item: SITE_ORIGIN
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: isEnglish ? 'Configurator' : '配置器',
+          item: CONFIGURATOR_CANONICAL_URL
+        },
+        ...(pid
+          ? [
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name,
+                item: canonicalUrl
+              }
+            ]
+          : [])
+      ]
+    }
+  ];
+};
 
 const moduleOrder: ConfiguratorModule[] = [
   'gpu',
@@ -461,7 +527,25 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
   };
 
   return (
-    <section className="grando-page grando-list-page">
+    <>
+      <SEOHead
+        title={language === 'en' ? 'Comino Grando GPU Server Configurator' : 'Comino Grando GPU 伺服器配置器'}
+        description={
+          language === 'en'
+            ? 'Configure Comino Grando GPU servers, RTX PRO workstations, NVIDIA H200 systems, storage, power, and networking, then request a quote from EudTech.'
+            : '配置 Comino Grando GPU 伺服器、RTX PRO 工作站、NVIDIA H200 系統、儲存、電源與網路，並向 EudTech 取得報價。'
+        }
+        keywords={
+          language === 'en'
+            ? 'Comino Grando configurator, GPU server configurator, NVIDIA H200 server, RTX PRO 6000 workstation, AI workstation Taiwan, GPU server quote'
+            : 'Comino Grando 配置器, GPU 伺服器配置器, NVIDIA H200 伺服器, RTX PRO 6000 工作站, 台灣 AI 工作站, GPU 伺服器報價'
+        }
+        url={CONFIGURATOR_CANONICAL_URL}
+        image="/grando-8gpu-server.jpg"
+        isEnglish={language === 'en'}
+        structuredData={buildConfiguratorStructuredData(language)}
+      />
+      <section className="grando-page grando-list-page">
       <div className="grando-list-shell">
         <h1>{copy.homeTitle}</h1>
 
@@ -533,7 +617,8 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
           </div>
         ) : null}
       </div>
-    </section>
+      </section>
+    </>
   );
 };
 
@@ -1169,8 +1254,34 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
     return options.filter((option) => option.module_type === moduleKey);
   };
 
+  const modelName = device ? translateConfiguratorModelName(device.name, language) : undefined;
+  const detailTitle = modelName
+    ? `${modelName} ${language === 'en' ? 'GPU Server Configurator' : 'GPU 伺服器配置器'}`
+    : language === 'en'
+      ? 'GPU Server Configurator'
+      : 'GPU 伺服器配置器';
+  const canonicalUrl = `${CONFIGURATOR_CANONICAL_URL}/${pid}`;
+
   return (
-    <section className="grando-page grando-detail-page">
+    <>
+      <SEOHead
+        title={detailTitle}
+        description={
+          language === 'en'
+            ? 'Customize GPU, CPU, RAM, NVMe storage, power supply, and network options, then send this Comino Grando configuration to EudTech for quote follow-up.'
+            : '自訂 GPU、CPU、RAM、NVMe 儲存、電源供應與網路選項，並將此 Comino Grando 配置送交 EudTech 追蹤報價。'
+        }
+        keywords={
+          language === 'en'
+            ? 'GPU server quote, AI workstation configurator, Comino Grando, NVIDIA GPU server, liquid cooled GPU server, EudTech'
+            : 'GPU 伺服器報價, AI 工作站配置器, Comino Grando, NVIDIA GPU 伺服器, 液冷 GPU 伺服器, EudTech'
+        }
+        url={canonicalUrl}
+        image="/grando-8gpu-server.jpg"
+        isEnglish={language === 'en'}
+        structuredData={buildConfiguratorStructuredData(language, pid, device || undefined)}
+      />
+      <section className="grando-page grando-detail-page">
       <BackgroundSlider images={backgroundImages} language={language} />
 
       {loading ? <LoadingState fixed /> : null}
@@ -1236,7 +1347,8 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
           </aside>
         </div>
       ) : null}
-    </section>
+      </section>
+    </>
   );
 };
 

@@ -89,3 +89,11 @@
 11. `兩邊都分別修`
 
 12. `兩邊修好兩邊直接 add, commit,push`
+
+## 2026-06-27 - Configurator Exposure
+
+1. `現在要怎麼推廣configurator`
+
+2. `關鍵字最佳化之類？`
+
+3. `導入一切曝光configurator對策`
