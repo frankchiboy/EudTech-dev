@@ -61,6 +61,18 @@ function shouldRequireIndexed(inspectionUrl) {
   return true;
 }
 
+function shouldRequireCanonicalMatch(inspectionUrl) {
+  if (!hasFlag('fail-on-canonical-mismatch')) {
+    return false;
+  }
+
+  if (hasFlag('include-aliases') && !inspectionUrl.endsWith('/')) {
+    return false;
+  }
+
+  return true;
+}
+
 async function inspectUrl(token, inspectionUrl) {
   const response = await fetch('https://searchconsole.googleapis.com/v1/urlInspection/index:inspect', {
     method: 'POST',
@@ -83,9 +95,13 @@ async function inspectUrl(token, inspectionUrl) {
 
   const parsed = JSON.parse(body);
   const indexStatus = parsed.inspectionResult?.indexStatusResult || {};
+  const expectedCanonical = canonicalPageUrl(inspectionUrl, siteOrigin);
+  const googleCanonicalMatches = !indexStatus.googleCanonical || indexStatus.googleCanonical === expectedCanonical;
+  const userCanonicalMatches = !indexStatus.userCanonical || indexStatus.userCanonical === expectedCanonical;
 
   return {
     inspectionUrl,
+    expectedCanonical,
     verdict: indexStatus.verdict,
     coverageState: indexStatus.coverageState,
     robotsTxtState: indexStatus.robotsTxtState,
@@ -94,6 +110,8 @@ async function inspectUrl(token, inspectionUrl) {
     lastCrawlTime: indexStatus.lastCrawlTime,
     googleCanonical: indexStatus.googleCanonical,
     userCanonical: indexStatus.userCanonical,
+    googleCanonicalMatches,
+    userCanonicalMatches,
     referringUrls: indexStatus.referringUrls || [],
     sitemap: indexStatus.sitemap || []
   };
@@ -109,6 +127,20 @@ async function main() {
 
     if (shouldRequireIndexed(result.inspectionUrl) && result.coverageState !== '已提交並建立索引') {
       errors.push(`${result.inspectionUrl} is not indexed: ${result.coverageState || result.verdict || 'unknown status'}`);
+    }
+
+    if (shouldRequireCanonicalMatch(result.inspectionUrl)) {
+      if (!result.googleCanonicalMatches) {
+        errors.push(
+          `${result.inspectionUrl} Google canonical is ${result.googleCanonical}; expected ${result.expectedCanonical}`
+        );
+      }
+
+      if (!result.userCanonicalMatches) {
+        errors.push(
+          `${result.inspectionUrl} user canonical is ${result.userCanonical}; expected ${result.expectedCanonical}`
+        );
+      }
     }
   }
 
