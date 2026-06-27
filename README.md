@@ -134,6 +134,8 @@ npm run verify:live-exposure  # 驗證正式站 SEO/discovery/canonical/JSON-LD 
 npm run monitor:sitemaps  # 檢查 Google Search Console sitemap errors/warnings
 npm run exposure:postdeploy  # 部署後跑 live SEO、索引狀態與搜尋曝光報表
 npm run exposure:strict  # 嚴格檢查：尚未索引或零曝光時失敗
+npm run generate:promotion-assets  # 從 SEO 頁面產生關鍵字、UTM、LinkedIn/Email 推廣素材
+npm run verify:promotion-assets  # 檢查推廣素材是否與 SEO 頁面同步
 npm run verify:discovery  # 驗證 sitemap/RSS/llms/image sitemap URL 一致性
 npm run verify:seo-html  # 驗證靜態 SEO HTML 的 JSON-LD 結構
 npm run preview  # 預覽建置結果
@@ -177,6 +179,9 @@ Configurator 曝光主線集中在以下入口：
 | `/llms.txt` | AI/LLM 工具可讀的 configurator 摘要 |
 | `/feed.xml` | Configurator solution RSS feed |
 | `/d6fd206f713cd936d87b58a6010aa751.txt` | IndexNow key 驗證 |
+| `docs/configurator-promotion-assets.md` | 推廣素材總覽與 LinkedIn 貼文草稿 |
+| `docs/configurator-promotion-keywords.csv` | Google Ads 關鍵字與落地頁矩陣 |
+| `docs/configurator-promotion-links.csv` | LinkedIn、Email、業務開發 UTM 連結 |
 
 部署到正式站後執行：
 
@@ -196,6 +201,8 @@ npm run submit:search-console
 `verify:live-exposure` 會直接檢查正式站的 `robots.txt`、sitemap index、一般 sitemap、圖片 sitemap、RSS、llms.txt、configurator route、solution route、canonical、Open Graph URL 與 JSON-LD。`monitor:sitemaps` 會讀取 Google Search Console 的 sitemap health，要求 sitemap index、一般 sitemap 與圖片 sitemap 都存在，且 errors/warnings 為 0、沒有 pending、且近期曾被下載。`exposure:postdeploy` 則把正式站 SEO 檢查、Search Console sitemap health、URL Inspection 與 Search Analytics 報表串成部署後檢查流程，並輸出 `reports/search-console-latest.json`。`exposure:strict` 會在 canonical URL 尚未建立索引或 Search Analytics 零曝光時失敗，適合做週期性告警，不適合剛上線第一天當作 deploy gate。
 
 GitHub Actions 內的 `Public Exposure Checks` 會每週一自動執行，也可手動觸發。這條流程只依賴公開網站與 repo 檔案，會建置 SEO assets、驗證 discovery/static SEO/live exposure，並重新送出 IndexNow URL 清單；不需要 Google Search Console 憑證。
+
+`generate:promotion-assets` 會從同一份 SEO 頁面資料產生 Google Ads exact/phrase keyword rows、LinkedIn organic UTM 連結與 Email outreach UTM 連結。`verify:promotion-assets` 會在 GitHub Actions 內檢查這些推廣素材是否與目前的 configurator SEO 頁面同步。
 
 Netlify 內的 `exposure-scheduled` Scheduled Function 會每週從正式站讀取 `sitemap.xml`，並把 URL 清單提交到 IndexNow。這條流程在已發布的 Netlify deploy 上執行，不依賴 Google Search Console 憑證。
 

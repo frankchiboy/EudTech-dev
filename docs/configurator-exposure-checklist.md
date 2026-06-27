@@ -52,6 +52,8 @@
 29. `npm run exposure:strict` fails when canonical URLs are not indexed or Search Analytics has no configurator/solutions rows.
 30. GitHub Actions `Public Exposure Checks` runs weekly and on demand without Google credentials, builds SEO assets, validates discovery/static SEO/live exposure, submits IndexNow URLs, and uploads run logs.
 31. Netlify Scheduled Function `exposure-scheduled` submits the production sitemap URLs to IndexNow weekly from the deployed site.
+32. `npm run generate:promotion-assets` creates Google Ads keyword rows, LinkedIn organic UTM links, and Email outreach UTM links from the same configurator SEO source data.
+33. `npm run verify:promotion-assets` checks that promotion assets stay synchronized with the current configurator landing pages.
 
 ## External Promotion Queue
 
