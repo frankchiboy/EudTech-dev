@@ -177,6 +177,37 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
     },
     {
       '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: isEnglish ? 'EudTech configurator entry points' : 'EudTech 配置器入口',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: isEnglish ? 'GPU server quote configurator' : 'GPU 伺服器報價配置器',
+          url: `${SITE_ORIGIN}/solutions/gpu-server-quote`
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: isEnglish ? 'NVIDIA H200 GPU server configurator' : 'NVIDIA H200 GPU 伺服器配置器',
+          url: `${SITE_ORIGIN}/solutions/nvidia-h200-server`
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: isEnglish ? 'RTX PRO 6000 workstation configurator' : 'RTX PRO 6000 工作站配置器',
+          url: `${SITE_ORIGIN}/solutions/rtx-pro-6000-workstation`
+        },
+        {
+          '@type': 'ListItem',
+          position: 4,
+          name: isEnglish ? 'Liquid-cooled GPU server procurement' : '液冷 GPU 伺服器採購',
+          url: `${SITE_ORIGIN}/solutions/liquid-cooling-ai-server-procurement`
+        }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
         {
@@ -560,6 +591,7 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
         }
         url={CONFIGURATOR_CANONICAL_URL}
         image="/grando-8gpu-server.jpg"
+        imageAlt={language === 'en' ? 'Comino Grando GPU server configurator' : 'Comino Grando GPU 伺服器配置器'}
         isEnglish={language === 'en'}
         structuredData={buildConfiguratorStructuredData(language)}
       />
@@ -1320,6 +1352,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
         }
         url={canonicalUrl}
         image="/grando-8gpu-server.jpg"
+        imageAlt={detailTitle}
         isEnglish={language === 'en'}
         structuredData={buildConfiguratorStructuredData(language, pid, device || undefined)}
       />

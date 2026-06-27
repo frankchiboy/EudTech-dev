@@ -144,8 +144,11 @@ Configurator 曝光主線集中在以下入口：
 | RTX PRO 6000 工作站 | `/solutions/rtx-pro-6000-workstation` |
 | 台灣 AI 工作站 | `/solutions/ai-workstation-taiwan` |
 | 液冷 GPU 伺服器 | `/solutions/liquid-cooled-gpu-server` |
+| H200 與 RTX PRO 6000 比較 | `/solutions/h200-vs-rtx-pro-6000` |
+| GPU 伺服器 RFQ 檢核表 | `/solutions/gpu-server-rfq-checklist` |
+| 液冷 AI 伺服器採購指南 | `/solutions/liquid-cooling-ai-server-procurement` |
 
-建置時會執行 `scripts/generate-static-seo-pages.cjs`，為 `/`、`/configurator*`、`/solutions/*` 產生 route 專屬靜態 HTML。這些 HTML 會直接包含 title、description、canonical、Open Graph、Twitter Card、JSON-LD，讓 crawler 在 JavaScript 執行前也能讀到正確內容。
+建置時會先執行 `scripts/generate-discovery-files.cjs`，再執行 `scripts/generate-static-seo-pages.cjs`。`/solutions/*` 的頁面資料以 `src/data/configuratorSeoPages.ts` 為單一來源，會同步產生 sitemap、RSS、llms.txt 與 route 專屬靜態 HTML。這些 HTML 會直接包含 title、description、canonical、Open Graph、Twitter Card、JSON-LD，讓 crawler 在 JavaScript 執行前也能讀到正確內容。
 
 公開發現檔案：
 

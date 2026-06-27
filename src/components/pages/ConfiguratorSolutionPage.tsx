@@ -31,6 +31,8 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
   const pageUrl = `${SITE_ORIGIN}/solutions/${page.slug}`;
   const name = getText(page.title, isEnglish);
   const description = getText(page.description, isEnglish);
+  const isArticlePage = page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist';
+  const pageImage = `${SITE_ORIGIN}${page.image}`;
 
   return [
     {
@@ -57,25 +59,50 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
         }
       ]
     },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      name,
-      description,
-      serviceType: 'AI GPU server configuration and quote request',
-      areaServed: {
-        '@type': 'Country',
-        name: 'Taiwan'
-      },
-      provider: {
-        '@type': 'Organization',
-        name: 'EudTech',
-        url: SITE_ORIGIN,
-        email: 'info@eudaemonia.tech'
-      },
-      url: pageUrl,
-      image: `${SITE_ORIGIN}${page.image}`
-    },
+    isArticlePage
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: name,
+          description,
+          image: pageImage,
+          datePublished: '2026-06-28',
+          dateModified: '2026-06-28',
+          author: {
+            '@type': 'Organization',
+            name: 'EudTech',
+            url: SITE_ORIGIN
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'EudTech',
+            url: SITE_ORIGIN,
+            logo: {
+              '@type': 'ImageObject',
+              url: `${SITE_ORIGIN}/logo.svg`
+            }
+          },
+          mainEntityOfPage: pageUrl
+        }
+      : {
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name,
+          description,
+          serviceType: 'AI GPU server configuration and quote request',
+          areaServed: {
+            '@type': 'Country',
+            name: 'Taiwan'
+          },
+          provider: {
+            '@type': 'Organization',
+            name: 'EudTech',
+            url: SITE_ORIGIN,
+            email: 'info@eudaemonia.tech'
+          },
+          url: pageUrl,
+          image: pageImage
+        },
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -110,8 +137,9 @@ const ConfiguratorSolutionPage: React.FC = () => {
         description={getText(page.description, isEnglish)}
         keywords={getText(page.keywords, isEnglish)}
         image={page.image}
+        imageAlt={getText(page.imageAlt, isEnglish)}
         url={pageUrl}
-        type="article"
+        type={page.kind === 'solution' || !page.kind ? 'website' : 'article'}
         isEnglish={isEnglish}
         structuredData={buildStructuredData(page.slug, isEnglish)}
       />
@@ -179,12 +207,22 @@ const ConfiguratorSolutionPage: React.FC = () => {
           <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
             <div>
               <h2 className="text-3xl font-bold tracking-normal text-gray-950 dark:text-white">
-                {isEnglish ? 'Why this page matches buyer intent' : '為什麼這頁符合採購意圖'}
+                {page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist'
+                  ? isEnglish
+                    ? 'How this supports procurement decisions'
+                    : '這如何支援採購決策'
+                  : isEnglish
+                    ? 'Why this page matches buyer intent'
+                    : '為什麼這頁符合採購意圖'}
               </h2>
               <p className="mt-5 text-base leading-8 text-gray-600 dark:text-gray-300">
-                {isEnglish
-                  ? 'These pages are built for high-intent searches where the buyer is already comparing GPU servers, AI workstations, liquid cooling, and quote workflows.'
-                  : '這些頁面針對高意圖搜尋建立，使用者通常已在比較 GPU 伺服器、AI 工作站、液冷系統與報價流程。'}
+                {page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist'
+                  ? isEnglish
+                    ? 'This content gives technical and purchasing teams a structured entry point before they open the configurator or send a quote request.'
+                    : '這些內容提供技術與採購團隊在開啟配置器或送出報價前的結構化入口。'
+                  : isEnglish
+                    ? 'These pages are built for high-intent searches where the buyer is already comparing GPU servers, AI workstations, liquid cooling, and quote workflows.'
+                    : '這些頁面針對高意圖搜尋建立，使用者通常已在比較 GPU 伺服器、AI 工作站、液冷系統與報價流程。'}
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">

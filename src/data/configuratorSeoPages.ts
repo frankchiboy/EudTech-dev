@@ -1,5 +1,6 @@
 export type ConfiguratorSeoPage = {
   slug: string;
+  kind?: 'solution' | 'comparison' | 'guide' | 'checklist';
   title: {
     en: string;
     zh: string;
@@ -255,7 +256,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       en: 'Use the configurator to document GPU density, cooling-sensitive hardware choices, storage, and power needs before the quote discussion.',
       zh: '在報價討論前，先用配置器記錄 GPU 密度、散熱敏感硬體、儲存與電源需求。'
     },
-    image: '/GRANDO DPR 4090-FT_6_01.jpg',
+    image: '/GRANDO%20DPR%204090-FT_6_01.jpg',
     imageAlt: {
       en: 'Liquid-cooled Comino Grando GPU server interior',
       zh: 'Comino Grando 液冷 GPU 伺服器內部'
@@ -348,6 +349,186 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       {
         question: { en: 'Can I use the configurator link in an RFQ process?', zh: '配置器連結可以放進 RFQ 流程嗎？' },
         answer: { en: 'Yes. The share link preserves the selected configuration and helps technical reviewers see the same hardware assumptions.', zh: '可以。分享連結會保留已選配置，協助技術審查者看到同一組硬體假設。' }
+      }
+    ]
+  },
+  {
+    slug: 'h200-vs-rtx-pro-6000',
+    kind: 'comparison',
+    title: {
+      en: 'NVIDIA H200 vs RTX PRO 6000 GPU Server Comparison',
+      zh: 'NVIDIA H200 與 RTX PRO 6000 GPU 伺服器比較'
+    },
+    description: {
+      en: 'Compare NVIDIA H200 GPU servers and RTX PRO 6000 workstations for AI training, local inference, visualization, and procurement planning.',
+      zh: '比較 NVIDIA H200 GPU 伺服器與 RTX PRO 6000 工作站在 AI 訓練、本地推論、視覺化與採購規劃上的差異。'
+    },
+    keywords: {
+      en: 'H200 vs RTX PRO 6000, NVIDIA H200 server comparison, RTX PRO 6000 workstation comparison, AI GPU comparison, GPU server procurement',
+      zh: 'H200 vs RTX PRO 6000, NVIDIA H200 伺服器比較, RTX PRO 6000 工作站比較, AI GPU 比較, GPU 伺服器採購'
+    },
+    hero: {
+      en: 'H200 or RTX PRO 6000: choose by workload and deployment model',
+      zh: 'H200 或 RTX PRO 6000：依工作負載與部署型態選擇'
+    },
+    lead: {
+      en: 'Use this comparison as a procurement entry point, then open the matching configurator path to preserve the exact GPU, CPU, memory, storage, and power assumptions.',
+      zh: '以此比較作為採購入口，再進入對應配置器，保留 GPU、CPU、記憶體、儲存與電源假設。'
+    },
+    image: '/grando-8gpu-server.jpg',
+    imageAlt: {
+      en: 'Comparison of NVIDIA H200 GPU server and RTX PRO 6000 workstation configurations',
+      zh: 'NVIDIA H200 GPU 伺服器與 RTX PRO 6000 工作站配置比較'
+    },
+    configuratorHref: '/configurator',
+    quoteHref: '/configurator?request=true',
+    highlights: [
+      {
+        en: 'H200 routes fit dense AI training, HPC, and shared data center compute.',
+        zh: 'H200 路線適合高密度 AI 訓練、HPC 與共用資料中心運算。'
+      },
+      {
+        en: 'RTX PRO 6000 routes fit local AI development, visualization, and workstation deployment.',
+        zh: 'RTX PRO 6000 路線適合本地 AI 開發、視覺化與工作站部署。'
+      },
+      {
+        en: 'Configurator links make the comparison actionable for engineering and purchasing reviews.',
+        zh: '配置器連結可讓工程與採購審查直接依同一組假設討論。'
+      }
+    ],
+    specs: [
+      { label: { en: 'Best H200 fit', zh: 'H200 適合' }, value: { en: 'Training, HPC, dense multi-GPU server use', zh: '訓練、HPC、高密度多 GPU 伺服器' } },
+      { label: { en: 'Best RTX PRO fit', zh: 'RTX PRO 適合' }, value: { en: 'Local inference, rendering, simulation, workstation use', zh: '本地推論、渲染、模擬、工作站' } },
+      { label: { en: 'Decision output', zh: '決策輸出' }, value: { en: 'Configuration URL and quote request', zh: '配置連結與報價需求' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'Should AI training buyers start with H200?', zh: 'AI 訓練採購應該先看 H200 嗎？' },
+        answer: { en: 'For dense training and shared server deployment, H200 is usually the higher-intent path. For local development or visualization, RTX PRO 6000 may be the better starting point.', zh: '若需求是高密度訓練或共用伺服器部署，通常先看 H200。若是本地開發或視覺化，RTX PRO 6000 可能更適合作為起點。' }
+      },
+      {
+        question: { en: 'Can EudTech compare both configurations in one quote discussion?', zh: 'EudTech 可以在同一次報價討論比較兩種配置嗎？' },
+        answer: { en: 'Yes. Share the H200 and RTX PRO 6000 configurator URLs so the same component assumptions can be compared.', zh: '可以。請分享 H200 與 RTX PRO 6000 的配置器連結，讓雙方依同一組零組件假設比較。' }
+      }
+    ]
+  },
+  {
+    slug: 'gpu-server-rfq-checklist',
+    kind: 'checklist',
+    title: {
+      en: 'GPU Server RFQ Checklist for AI Procurement',
+      zh: 'AI 採購 GPU 伺服器 RFQ 檢核表'
+    },
+    description: {
+      en: 'Prepare a GPU server RFQ with clear GPU, CPU, RAM, storage, power, networking, cooling, and deployment assumptions before requesting a quote.',
+      zh: '在送出 GPU 伺服器報價需求前，先整理 GPU、CPU、RAM、儲存、電源、網路、散熱與部署假設。'
+    },
+    keywords: {
+      en: 'GPU server RFQ, AI server RFQ checklist, GPU server procurement checklist, AI infrastructure quote, server configurator quote',
+      zh: 'GPU 伺服器 RFQ, AI 伺服器 RFQ 檢核表, GPU 伺服器採購檢核表, AI 基礎設施報價, 伺服器配置器報價'
+    },
+    hero: {
+      en: 'GPU server RFQ checklist before quote submission',
+      zh: '送出報價前的 GPU 伺服器 RFQ 檢核表'
+    },
+    lead: {
+      en: 'A quote is easier to review when the RFQ includes workload, GPU class, CPU, memory, NVMe storage, power, networking, and deployment constraints.',
+      zh: 'RFQ 若包含工作負載、GPU 等級、CPU、記憶體、NVMe 儲存、電源、網路與部署限制，報價審查會更清楚。'
+    },
+    image: '/grando-rackable-01.jpg',
+    imageAlt: {
+      en: 'GPU server RFQ checklist and configuration workflow',
+      zh: 'GPU 伺服器 RFQ 檢核表與配置流程'
+    },
+    configuratorHref: '/configurator',
+    quoteHref: '/configurator?request=true',
+    highlights: [
+      {
+        en: 'Turns early procurement notes into a reviewable configuration URL.',
+        zh: '把早期採購備註轉成可審查的配置連結。'
+      },
+      {
+        en: 'Keeps workload, hardware, and deployment assumptions together.',
+        zh: '將工作負載、硬體與部署假設保留在同一脈絡。'
+      },
+      {
+        en: 'Useful before formal RFQ, budgetary quote, or internal approval.',
+        zh: '適合正式 RFQ、預算報價或內部核准前使用。'
+      }
+    ],
+    specs: [
+      { label: { en: 'Hardware inputs', zh: '硬體輸入' }, value: { en: 'GPU, CPU, RAM, NVMe, power, network', zh: 'GPU、CPU、RAM、NVMe、電源、網路' } },
+      { label: { en: 'Procurement inputs', zh: '採購輸入' }, value: { en: 'Workload, site constraints, review owner, timing', zh: '工作負載、場地限制、審查窗口、時程' } },
+      { label: { en: 'Configurator output', zh: '配置器輸出' }, value: { en: 'Share URL and quote request email', zh: '分享連結與報價需求信' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'What should be ready before sending a GPU server RFQ?', zh: '送出 GPU 伺服器 RFQ 前應該準備什麼？' },
+        answer: { en: 'Prepare the target workload, preferred GPU class, memory and storage expectations, power constraints, networking requirements, and deployment timeline.', zh: '請先準備目標工作負載、偏好的 GPU 等級、記憶體與儲存需求、電源限制、網路需求與部署時程。' }
+      },
+      {
+        question: { en: 'Can the configurator replace a written RFQ?', zh: '配置器可以取代書面 RFQ 嗎？' },
+        answer: { en: 'It can provide the technical configuration context. Formal procurement documents can still reference the configurator URL for the selected hardware assumptions.', zh: '配置器可提供技術配置脈絡。正式採購文件仍可引用配置器連結作為已選硬體假設。' }
+      }
+    ]
+  },
+  {
+    slug: 'liquid-cooling-ai-server-procurement',
+    kind: 'guide',
+    title: {
+      en: 'Liquid-Cooling AI Server Procurement Guide',
+      zh: '液冷 AI 伺服器採購指南'
+    },
+    description: {
+      en: 'Plan liquid-cooled AI server procurement around GPU density, sustained workloads, rack deployment, power capacity, and quote-ready configuration details.',
+      zh: '依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。'
+    },
+    keywords: {
+      en: 'liquid cooling AI server procurement, liquid cooled GPU server quote, AI data center cooling, GPU density server, Comino liquid cooling',
+      zh: '液冷 AI 伺服器採購, 液冷 GPU 伺服器報價, AI 資料中心散熱, 高密度 GPU 伺服器, Comino 液冷'
+    },
+    hero: {
+      en: 'Liquid-cooling AI server procurement starts with configuration clarity',
+      zh: '液冷 AI 伺服器採購從清楚配置開始'
+    },
+    lead: {
+      en: 'Liquid-cooled GPU systems should be evaluated with GPU count, heat load, rack constraints, power capacity, storage, networking, and service follow-up in one quote path.',
+      zh: '液冷 GPU 系統應在同一條報價流程中評估 GPU 數量、熱負載、機架限制、電源容量、儲存、網路與服務追蹤。'
+    },
+    image: '/GRANDO%20DPR%204090-FT_6_01.jpg',
+    imageAlt: {
+      en: 'Liquid-cooling AI server procurement planning with Comino Grando systems',
+      zh: '以 Comino Grando 系統規劃液冷 AI 伺服器採購'
+    },
+    configuratorHref: '/configurator/29',
+    quoteHref: '/configurator/29?request=true',
+    highlights: [
+      {
+        en: 'Targets sustained AI, simulation, and HPC workloads where heat density matters.',
+        zh: '針對熱密度重要的長時間 AI、模擬與 HPC 工作負載。'
+      },
+      {
+        en: 'Keeps cooling, power, rack, and component assumptions visible before quote review.',
+        zh: '在報價審查前保留散熱、電源、機架與零組件假設。'
+      },
+      {
+        en: 'Helps buyers compare liquid-cooled systems against conventional server options.',
+        zh: '協助採購者比較液冷系統與傳統伺服器選項。'
+      }
+    ],
+    specs: [
+      { label: { en: 'Planning inputs', zh: '規劃輸入' }, value: { en: 'GPU density, power, rack, storage, network', zh: 'GPU 密度、電源、機架、儲存、網路' } },
+      { label: { en: 'Best fit', zh: '適合需求' }, value: { en: 'Dense AI training, HPC, simulation, shared compute', zh: '高密度 AI 訓練、HPC、模擬、共用運算' } },
+      { label: { en: 'Next step', zh: '下一步' }, value: { en: 'Open rackable configurator and request quote', zh: '開啟機架式配置器並送出報價' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'When should procurement consider liquid-cooled GPU servers?', zh: '什麼情境應該考慮液冷 GPU 伺服器？' },
+        answer: { en: 'Consider liquid cooling when GPU density, sustained load, rack limits, or power and thermal planning become central to the deployment.', zh: '當 GPU 密度、長時間負載、機架限制，或電源與熱規劃成為部署核心時，就應考慮液冷。' }
+      },
+      {
+        question: { en: 'Why use a configurator before discussing liquid cooling?', zh: '為什麼討論液冷前要先使用配置器？' },
+        answer: { en: 'The configurator keeps GPU count, CPU, memory, storage, power, and networking assumptions together, which makes cooling and procurement review more precise.', zh: '配置器會保留 GPU 數量、CPU、記憶體、儲存、電源與網路假設，讓散熱與採購審查更精準。' }
       }
     ]
   }

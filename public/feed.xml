@@ -8,13 +8,6 @@
     <lastBuildDate>Sun, 28 Jun 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://eudaemonia.tech/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>GPU 伺服器報價與配置需求</title>
-      <link>https://eudaemonia.tech/solutions/gpu-server-quote</link>
-      <guid>https://eudaemonia.tech/solutions/gpu-server-quote</guid>
-      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
-      <description>用 EudTech configurator 產生 GPU 伺服器與 AI 工作站報價需求，保留 GPU、CPU、RAM、儲存、電源與網路配置脈絡。</description>
-    </item>
-    <item>
       <title>NVIDIA H200 GPU 伺服器配置器</title>
       <link>https://eudaemonia.tech/solutions/nvidia-h200-server</link>
       <guid>https://eudaemonia.tech/solutions/nvidia-h200-server</guid>
@@ -41,6 +34,34 @@
       <guid>https://eudaemonia.tech/solutions/liquid-cooled-gpu-server</guid>
       <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
       <description>探索適合長時間 AI 與 HPC 工作負載的液冷 GPU 伺服器配置，並可配置 Grando 系統後向 EudTech 取得正式報價。</description>
+    </item>
+    <item>
+      <title>GPU 伺服器報價配置器</title>
+      <link>https://eudaemonia.tech/solutions/gpu-server-quote</link>
+      <guid>https://eudaemonia.tech/solutions/gpu-server-quote</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>建立 GPU 伺服器報價需求，包含 GPU、CPU、RAM、儲存、電源與網路選項，並由 EudTech 接收配置後追蹤。</description>
+    </item>
+    <item>
+      <title>NVIDIA H200 與 RTX PRO 6000 GPU 伺服器比較</title>
+      <link>https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000</link>
+      <guid>https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>比較 NVIDIA H200 GPU 伺服器與 RTX PRO 6000 工作站在 AI 訓練、本地推論、視覺化與採購規劃上的差異。</description>
+    </item>
+    <item>
+      <title>AI 採購 GPU 伺服器 RFQ 檢核表</title>
+      <link>https://eudaemonia.tech/solutions/gpu-server-rfq-checklist</link>
+      <guid>https://eudaemonia.tech/solutions/gpu-server-rfq-checklist</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>在送出 GPU 伺服器報價需求前，先整理 GPU、CPU、RAM、儲存、電源、網路、散熱與部署假設。</description>
+    </item>
+    <item>
+      <title>液冷 AI 伺服器採購指南</title>
+      <link>https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement</link>
+      <guid>https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。</description>
     </item>
   </channel>
 </rss>

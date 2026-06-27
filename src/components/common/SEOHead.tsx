@@ -85,6 +85,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="robots" content="index, follow" />
       <meta name="author" content="EudTech" />
       <link rel="canonical" href={canonicalUrl} />
+      <link rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href={`${SITE_ORIGIN}/feed.xml`} />
       {googleSiteVerification ? <meta name="google-site-verification" content={googleSiteVerification} /> : null}
       {bingSiteVerification ? <meta name="msvalidate.01" content={bingSiteVerification} /> : null}
       

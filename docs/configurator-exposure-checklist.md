@@ -9,6 +9,9 @@
 | Taiwan buyer | AI workstation Taiwan, GPU workstation Taiwan | AI 工作站 台灣, GPU 工作站 台灣 | `/solutions/ai-workstation-taiwan` |
 | Liquid cooling | liquid cooled GPU server, liquid cooling AI server | 液冷 GPU 伺服器, 液冷 AI 伺服器 | `/solutions/liquid-cooled-gpu-server` |
 | RFQ ready | GPU server quote, AI server quote, server configurator | GPU 伺服器報價, AI 伺服器報價, 伺服器配置器 | `/solutions/gpu-server-quote` |
+| Comparison | H200 vs RTX PRO 6000, AI GPU comparison | H200 vs RTX PRO 6000, AI GPU 比較 | `/solutions/h200-vs-rtx-pro-6000` |
+| Procurement checklist | GPU server RFQ, AI server RFQ checklist | GPU 伺服器 RFQ, AI 伺服器 RFQ 檢核表 | `/solutions/gpu-server-rfq-checklist` |
+| Liquid-cooling procurement | liquid cooling AI server procurement, liquid cooled GPU server quote | 液冷 AI 伺服器採購, 液冷 GPU 伺服器報價 | `/solutions/liquid-cooling-ai-server-procurement` |
 
 ## On-Site Changes Implemented
 
@@ -23,6 +26,11 @@
 9. `llms.txt` with canonical configurator URLs and high-intent product topics for AI tools.
 10. Vercel and generic production builds run the same static SEO route generation as Netlify.
 11. RSS feed at `/feed.xml` for configurator solution discovery.
+12. Long-tail procurement pages for H200 vs RTX PRO 6000, GPU server RFQ checklist, and liquid-cooling AI server procurement.
+13. Discovery files are generated from `src/data/configuratorSeoPages.ts` by `scripts/generate-discovery-files.cjs`.
+14. Static `/solutions/*` SEO HTML is generated from the same page source by `scripts/generate-static-seo-pages.cjs`.
+15. Configurator structured data includes an `ItemList` of quote and product entry points.
+16. Vercel uses rewrites instead of legacy wildcard routes so generated static HTML can be served before SPA fallback.
 
 ## External Promotion Queue
 
@@ -32,6 +40,7 @@
 4. Start LinkedIn retargeting after traffic reaches stable volume.
 5. Add case-oriented articles only after Search Console shows impressions.
 6. Submit the current sitemap URLs through IndexNow after production deploys with `npm run submit:indexnow`.
+7. Use Search Console query data to decide whether to add deeper pages such as Supermicro comparison, power planning, rack deployment, or Taiwan public procurement wording.
 
 ## Tracking Readiness
 
@@ -44,4 +53,6 @@
 
 ## Current External Permission Gap
 
-The repo contains a Google service account file, but the Search Console API token request currently fails with `invalid_grant: Invalid JWT Signature`. Submit sitemap through Search Console after replacing the service account key or adding an already-valid OAuth credential with Search Console access.
+The repo contains a Google service account file, but the Search Console API token request currently fails with `invalid_grant: Invalid JWT Signature`. The active gcloud account also cannot call Search Console with the current token scope. Submit sitemap through Search Console after replacing the service account key or adding an already-valid OAuth credential with Search Console access.
+
+Netlify CLI is not logged in in this environment, and `NETLIFY_AUTH_TOKEN` is not set. Set a Netlify token before updating production environment variables for GA4, GTM, Google Ads, or LinkedIn tracking IDs.
