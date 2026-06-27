@@ -67,4 +67,4 @@
 
 Google Search Console API submission is available through local ADC for `frank.hsu@eudaemonia.tech` with `https://www.googleapis.com/auth/webmasters` scope. `GOOGLE_APPLICATION_CREDENTIALS` may point at an old missing service account file in some shells, so Search Console scripts intentionally ignore that environment variable and use ADC.
 
-Netlify CLI is not logged in in this environment, and `NETLIFY_AUTH_TOKEN` is not set. Set a Netlify token before updating production environment variables for GA4, GTM, Google Ads, or LinkedIn tracking IDs.
+Netlify CLI can read the linked site environment, but the site currently only exposes `NODE_VERSION`. GA4, GTM, Google Ads, and LinkedIn tracking IDs are not present in repo, Netlify env, or the visible 1Password Automation item list. Add those platform IDs before enabling paid campaign conversion tracking.
