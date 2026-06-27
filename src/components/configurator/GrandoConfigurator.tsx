@@ -72,8 +72,12 @@ type DeviceSummary = ConfiguratorDevice & { options: ConfiguratorOption[] };
 const QUOTE_RECIPIENT_EMAIL = 'info@eudaemonia.tech';
 const MOBILE_CONFIGURATOR_MEDIA_QUERY = '(max-width: 767px)';
 const MOBILE_CONFIGURATOR_IMAGE_WIDTH = 750;
+const DESKTOP_CONFIGURATOR_IMAGE_WIDTH = 1920;
 const MOBILE_PRODUCT_IMAGE_WIDTH = 480;
-const PRODUCT_IMAGE_QUALITY = 68;
+const DESKTOP_PRODUCT_IMAGE_WIDTH = 1600;
+const MOBILE_PRODUCT_IMAGE_QUALITY = 68;
+const DESKTOP_PRODUCT_IMAGE_QUALITY = 80;
+const BACKGROUND_IMAGE_QUALITY = 75;
 const LOCAL_PRODUCT_IMAGE_FILENAMES = new Set([
   '2x6000ADA_Ddd293j',
   '2x6000ADA_ver',
@@ -214,17 +218,8 @@ const useMobileConfiguratorViewport = () => {
   return isMobile;
 };
 
-const getMobileConfiguratorBackgroundUrl = (url: string, isMobile: boolean) => {
-  if (!isMobile || !url.startsWith(`${GRANDO_CONFIGURATOR_BASE_URL}/image/`)) {
-    return url;
-  }
-
-  const imagePath = url.slice(GRANDO_CONFIGURATOR_BASE_URL.length);
-  return `${GRANDO_CONFIGURATOR_BASE_URL}/_next/image?url=${encodeURIComponent(imagePath)}&w=${MOBILE_CONFIGURATOR_IMAGE_WIDTH}&q=75`;
-};
-
-const getNetlifyImageUrl = (url: string, width: number) => {
-  return `/.netlify/images?url=${encodeURIComponent(url)}&w=${width}&q=${PRODUCT_IMAGE_QUALITY}&fm=webp`;
+const getNetlifyImageUrl = (url: string, width: number, quality: number) => {
+  return `/.netlify/images?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&fm=webp`;
 };
 
 const canUseNetlifyImageCdn = () => {
@@ -242,6 +237,22 @@ const canUseNetlifyImageCdn = () => {
   );
 };
 
+const getOptimizedRemoteImageUrl = (url: string, width: number, quality: number) => {
+  return canUseNetlifyImageCdn() ? getNetlifyImageUrl(url, width, quality) : url;
+};
+
+const getConfiguratorBackgroundUrl = (url: string, isMobile: boolean) => {
+  if (!url.startsWith(`${GRANDO_CONFIGURATOR_BASE_URL}/image/`)) {
+    return url;
+  }
+
+  return getOptimizedRemoteImageUrl(
+    url,
+    isMobile ? MOBILE_CONFIGURATOR_IMAGE_WIDTH : DESKTOP_CONFIGURATOR_IMAGE_WIDTH,
+    BACKGROUND_IMAGE_QUALITY
+  );
+};
+
 const getProductImageUrl = (url: string, isMobile: boolean) => {
   if (!url.startsWith(`${GRANDO_API_BASE_URL}/media/device/`)) {
     return url;
@@ -251,18 +262,20 @@ const getProductImageUrl = (url: string, isMobile: boolean) => {
   const alias = PRODUCT_IMAGE_ALIASES[imageName];
 
   if (alias) {
-    return isMobile ? alias.mobile : alias.desktop;
+    return isMobile
+      ? alias.mobile
+      : getOptimizedRemoteImageUrl(alias.desktop, DESKTOP_PRODUCT_IMAGE_WIDTH, DESKTOP_PRODUCT_IMAGE_QUALITY);
   }
 
   if (!isMobile) {
-    return url;
+    return getOptimizedRemoteImageUrl(url, DESKTOP_PRODUCT_IMAGE_WIDTH, DESKTOP_PRODUCT_IMAGE_QUALITY);
   }
 
   if (LOCAL_PRODUCT_IMAGE_FILENAMES.has(imageName)) {
     return `/images/configurator/devices/${imageName}.webp`;
   }
 
-  return canUseNetlifyImageCdn() ? getNetlifyImageUrl(url, MOBILE_PRODUCT_IMAGE_WIDTH) : url;
+  return getOptimizedRemoteImageUrl(url, MOBILE_PRODUCT_IMAGE_WIDTH, MOBILE_PRODUCT_IMAGE_QUALITY);
 };
 
 const getOptionFilterValue = (moduleKey: ConfiguratorModule, option: ConfiguratorOption) => {
@@ -686,10 +699,11 @@ const BackgroundSlider = ({
           className={`grando-background-slide ${activeIndex === index ? 'active' : ''}`}
         >
           <img
-            src={getMobileConfiguratorBackgroundUrl(image.url, isMobile)}
+            src={getConfiguratorBackgroundUrl(image.url, isMobile)}
             alt=""
-            loading={isMobile ? 'eager' : undefined}
-            decoding={isMobile ? 'async' : undefined}
+            loading={activeIndex === index ? 'eager' : 'lazy'}
+            decoding="async"
+            fetchPriority={activeIndex === index ? 'high' : 'auto'}
           />
           {image.points.map((point, pointIndex) => (
             <span

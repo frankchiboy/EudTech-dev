@@ -10,4 +10,8 @@
   node_bundler = "esbuild"
 
 [images]
-  remote_images = ["https://prod\\.comino\\.com/media/device/.*"]
+  remote_images = [
+    "https://prod\\.comino\\.com/media/device/.*",
+    "https://configurator\\.grando\\.ai/image/.*",
+    "https://cdn\\.prod\\.website-files\\.com/.*"
+  ]
