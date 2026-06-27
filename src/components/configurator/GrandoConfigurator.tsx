@@ -72,9 +72,20 @@ type DeviceSummary = ConfiguratorDevice & { options: ConfiguratorOption[] };
 const QUOTE_RECIPIENT_EMAIL = 'info@eudaemonia.tech';
 const MOBILE_CONFIGURATOR_MEDIA_QUERY = '(max-width: 767px)';
 const MOBILE_CONFIGURATOR_IMAGE_WIDTH = 750;
-const MOBILE_PRODUCT_IMAGE_WIDTH = 640;
-const DESKTOP_PRODUCT_IMAGE_WIDTH = 960;
-const PRODUCT_IMAGE_QUALITY = 70;
+const MOBILE_PRODUCT_IMAGE_WIDTH = 480;
+const PRODUCT_IMAGE_QUALITY = 68;
+const LOCAL_PRODUCT_IMAGE_FILENAMES = new Set([
+  '2x6000ADA_Ddd293j',
+  '2x6000ADA_ver',
+  '4a100_device_2WG9u3A',
+  '4a100_device_PCwK1VP',
+  '6xA100',
+  '6xGPU_front',
+  '8x4090_8LVQBar',
+  'GRANDO_DPR_4090-FT_6_38-3',
+  'INT_SERVER_8xH100'
+]);
+const MISSING_PRODUCT_IMAGE_FILENAMES = new Set(['2x6000ADA_hH5G8vZ_J5GRGRF', 'INT_SERVER_8xH100_JbnnrGs']);
 
 interface QuoteFormData {
   firstName: string;
@@ -203,7 +214,7 @@ const getMobileConfiguratorBackgroundUrl = (url: string, isMobile: boolean) => {
 };
 
 const getNetlifyImageUrl = (url: string, width: number) => {
-  return `/.netlify/images?url=${encodeURIComponent(url)}&w=${width}&q=${PRODUCT_IMAGE_QUALITY}`;
+  return `/.netlify/images?url=${encodeURIComponent(url)}&w=${width}&q=${PRODUCT_IMAGE_QUALITY}&fm=webp`;
 };
 
 const canUseNetlifyImageCdn = () => {
@@ -222,11 +233,21 @@ const canUseNetlifyImageCdn = () => {
 };
 
 const getProductImageUrl = (url: string, isMobile: boolean) => {
-  if (!canUseNetlifyImageCdn() || !url.startsWith(`${GRANDO_API_BASE_URL}/media/device/`)) {
+  if (!isMobile || !url.startsWith(`${GRANDO_API_BASE_URL}/media/device/`)) {
     return url;
   }
 
-  return getNetlifyImageUrl(url, isMobile ? MOBILE_PRODUCT_IMAGE_WIDTH : DESKTOP_PRODUCT_IMAGE_WIDTH);
+  const imageName = url.split('/').pop()?.replace(/\.[^.]+$/, '') || '';
+
+  if (LOCAL_PRODUCT_IMAGE_FILENAMES.has(imageName)) {
+    return `/images/configurator/devices/${imageName}.webp`;
+  }
+
+  if (MISSING_PRODUCT_IMAGE_FILENAMES.has(imageName)) {
+    return '';
+  }
+
+  return canUseNetlifyImageCdn() ? getNetlifyImageUrl(url, MOBILE_PRODUCT_IMAGE_WIDTH) : url;
 };
 
 const getOptionFilterValue = (moduleKey: ConfiguratorModule, option: ConfiguratorOption) => {
