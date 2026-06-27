@@ -195,6 +195,10 @@ npm run submit:search-console
 
 `verify:live-exposure` 會直接檢查正式站的 `robots.txt`、sitemap index、一般 sitemap、圖片 sitemap、RSS、llms.txt、configurator route、solution route、canonical、Open Graph URL 與 JSON-LD。`monitor:sitemaps` 會讀取 Google Search Console 的 sitemap health，要求 sitemap index、一般 sitemap 與圖片 sitemap 都存在，且 errors/warnings 為 0、沒有 pending、且近期曾被下載。`exposure:postdeploy` 則把正式站 SEO 檢查、Search Console sitemap health、URL Inspection 與 Search Analytics 報表串成部署後檢查流程，並輸出 `reports/search-console-latest.json`。`exposure:strict` 會在 canonical URL 尚未建立索引或 Search Analytics 零曝光時失敗，適合做週期性告警，不適合剛上線第一天當作 deploy gate。
 
+GitHub Actions 內的 `Public Exposure Checks` 會每週一自動執行，也可手動觸發。這條流程只依賴公開網站與 repo 檔案，會建置 SEO assets、驗證 discovery/static SEO/live exposure，並重新送出 IndexNow URL 清單；不需要 Google Search Console 憑證。
+
+Netlify 內的 `exposure-scheduled` Scheduled Function 會每週從正式站讀取 `sitemap.xml`，並把 URL 清單提交到 IndexNow。這條流程在已發布的 Netlify deploy 上執行，不依賴 Google Search Console 憑證。
+
 行銷追蹤可用環境變數：
 
 | 變數 | 用途 |

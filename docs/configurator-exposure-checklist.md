@@ -50,10 +50,12 @@
 27. `npm run monitor:sitemaps` checks Search Console sitemap health and fails when the expected sitemap index, standard sitemap, or image sitemap is missing, pending, stale, or has errors/warnings.
 28. `npm run exposure:postdeploy` runs live exposure verification, Search Console sitemap health, URL Inspection, and Search Analytics reporting after deployment, then writes `reports/search-console-latest.json`.
 29. `npm run exposure:strict` fails when canonical URLs are not indexed or Search Analytics has no configurator/solutions rows.
+30. GitHub Actions `Public Exposure Checks` runs weekly and on demand without Google credentials, builds SEO assets, validates discovery/static SEO/live exposure, submits IndexNow URLs, and uploads run logs.
+31. Netlify Scheduled Function `exposure-scheduled` submits the production sitemap URLs to IndexNow weekly from the deployed site.
 
 ## External Promotion Queue
 
-1. Request indexing for `/configurator/`, `/solutions/gpu-server-quote/`, and `/solutions/nvidia-h200-server/`.
+1. Google Search Console indexing requests were submitted on 2026-06-28 for `/configurator/`, `/solutions/`, `/solutions/gpu-server-quote/`, `/solutions/nvidia-h200-server/`, `/configurator/28/`, and `/configurator/29/`.
 2. Start Google Ads exact/phrase match tests around quote-intent keywords.
 3. Start LinkedIn retargeting after traffic reaches stable volume.
 4. Add case-oriented articles only after Search Console shows impressions.

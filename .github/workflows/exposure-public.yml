@@ -1,0 +1,65 @@
+name: Public Exposure Checks
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  public-exposure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prepare report directory
+        run: mkdir -p reports
+
+      - name: Build SEO assets
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run build:netlify | tee reports/build-netlify.log
+
+      - name: Verify discovery files
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run verify:discovery | tee reports/verify-discovery.log
+
+      - name: Verify static SEO HTML
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run verify:seo-html | tee reports/verify-seo-html.log
+
+      - name: Verify live exposure
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run verify:live-exposure | tee reports/verify-live-exposure.log
+
+      - name: Submit IndexNow URLs
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run submit:indexnow | tee reports/submit-indexnow.log
+
+      - name: Upload exposure reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-exposure-reports
+          path: reports/
