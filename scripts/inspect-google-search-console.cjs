@@ -45,6 +45,22 @@ function getInspectionUrls() {
   return [...new Set(canonicalUrls.flatMap((url) => [url, withoutTrailingPageSlash(url)]))];
 }
 
+function hasFlag(name) {
+  return process.argv.includes(`--${name}`);
+}
+
+function shouldRequireIndexed(inspectionUrl) {
+  if (!hasFlag('fail-on-unindexed')) {
+    return false;
+  }
+
+  if (hasFlag('include-aliases') && !inspectionUrl.endsWith('/')) {
+    return false;
+  }
+
+  return true;
+}
+
 async function inspectUrl(token, inspectionUrl) {
   const response = await fetch('https://searchconsole.googleapis.com/v1/urlInspection/index:inspect', {
     method: 'POST',
@@ -86,22 +102,33 @@ async function inspectUrl(token, inspectionUrl) {
 async function main() {
   const token = getAccessToken();
   const inspected = [];
+  const errors = [];
   for (const url of getInspectionUrls()) {
-    inspected.push(await inspectUrl(token, url));
+    const result = await inspectUrl(token, url);
+    inspected.push(result);
+
+    if (shouldRequireIndexed(result.inspectionUrl) && result.coverageState !== '已提交並建立索引') {
+      errors.push(`${result.inspectionUrl} is not indexed: ${result.coverageState || result.verdict || 'unknown status'}`);
+    }
   }
 
   console.log(
     JSON.stringify(
       {
-        ok: true,
+        ok: errors.length === 0,
         siteUrl,
         userProject,
-        inspected
+        inspected,
+        errors
       },
       null,
       2
     )
   );
+
+  if (errors.length > 0) {
+    process.exit(1);
+  }
 }
 
 main().catch((error) => {

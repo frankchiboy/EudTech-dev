@@ -47,7 +47,9 @@
 24. Page URL signals are normalized to the production trailing-slash form across canonical tags, sitemap URLs, image sitemap page locs, RSS links, LLM discovery links, Open Graph URLs, and JSON-LD URLs.
 25. `npm run report:search-console` reads Search Console query, page, click, impression, CTR, and average-position data for configurator and solutions URLs.
 26. `npm run verify:live-exposure` validates production robots, sitemaps, RSS, llms.txt, redirects, canonical tags, Open Graph URLs, and JSON-LD for configurator and solution pages.
-27. `npm run exposure:postdeploy` runs live exposure verification, URL Inspection, and Search Analytics reporting after deployment.
+27. `npm run monitor:sitemaps` checks Search Console sitemap health and fails when the expected sitemap index, standard sitemap, or image sitemap is missing, pending, stale, or has errors/warnings.
+28. `npm run exposure:postdeploy` runs live exposure verification, Search Console sitemap health, URL Inspection, and Search Analytics reporting after deployment, then writes `reports/search-console-latest.json`.
+29. `npm run exposure:strict` fails when canonical URLs are not indexed or Search Analytics has no configurator/solutions rows.
 
 ## External Promotion Queue
 

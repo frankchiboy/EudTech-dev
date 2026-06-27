@@ -19,7 +19,9 @@
     "inspect:search-console": "node scripts/inspect-google-search-console.cjs",
     "report:search-console": "node scripts/report-google-search-console.cjs",
     "verify:live-exposure": "node scripts/verify-live-exposure.cjs",
-    "exposure:postdeploy": "npm run verify:live-exposure && npm run inspect:search-console -- --include-aliases && npm run report:search-console -- --days=90 --row-limit=50",
+    "monitor:sitemaps": "node scripts/monitor-google-search-console-sitemaps.cjs",
+    "exposure:postdeploy": "npm run verify:live-exposure && npm run monitor:sitemaps && npm run inspect:search-console -- --include-aliases && npm run report:search-console -- --days=90 --row-limit=50 --output=reports/search-console-latest.json",
+    "exposure:strict": "npm run verify:live-exposure && npm run monitor:sitemaps && npm run inspect:search-console -- --include-aliases --fail-on-unindexed && npm run report:search-console -- --days=90 --row-limit=50 --output=reports/search-console-latest.json --fail-on-empty",
     "verify:discovery": "node scripts/verify-discovery.cjs",
     "verify:seo-html": "node scripts/verify-static-seo.cjs"
   },

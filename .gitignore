@@ -12,6 +12,7 @@ dist
 dist-ssr
 tmp
 *.local
+reports/*.json
 
 # Editor directories and files
 .vscode/*

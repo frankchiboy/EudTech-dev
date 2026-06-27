@@ -131,7 +131,9 @@ npm run inspect:search-console  # 檢查高意圖 URL 的 Google 索引狀態
 npm run inspect:search-console -- --include-aliases  # 同時檢查無尾斜線 alias
 npm run report:search-console  # 讀取 configurator/solutions 的搜尋曝光字詞與排名
 npm run verify:live-exposure  # 驗證正式站 SEO/discovery/canonical/JSON-LD 是否可被 crawler 讀取
+npm run monitor:sitemaps  # 檢查 Google Search Console sitemap errors/warnings
 npm run exposure:postdeploy  # 部署後跑 live SEO、索引狀態與搜尋曝光報表
+npm run exposure:strict  # 嚴格檢查：尚未索引或零曝光時失敗
 npm run verify:discovery  # 驗證 sitemap/RSS/llms/image sitemap URL 一致性
 npm run verify:seo-html  # 驗證靜態 SEO HTML 的 JSON-LD 結構
 npm run preview  # 預覽建置結果
@@ -189,9 +191,9 @@ npm run submit:search-console
 
 `inspect:search-console` 會透過 URL Inspection API 檢查高意圖 configurator canonical URL 在 Google 索引中的狀態。這個 API 回報的是 Google index 版本，不是即時 live URL 測試，也不會要求 Google 重新收錄。加上 `-- --include-aliases` 可同時檢查無尾斜線 alias 是否仍被 Google 視為不同網址。
 
-`report:search-console` 會透過 Search Analytics API 讀取 configurator 與 solutions URL 的搜尋 query、page、clicks、impressions、CTR 與平均排名。預設查最近 28 天、每組 25 筆，可用 `-- --days=90`、`-- --start=2026-06-01 --end=2026-06-27` 或 `-- --row-limit=100` 調整。
+`report:search-console` 會透過 Search Analytics API 讀取 configurator 與 solutions URL 的搜尋 query、page、clicks、impressions、CTR 與平均排名。預設查最近 28 天、每組 25 筆，可用 `-- --days=90`、`-- --start=2026-06-01 --end=2026-06-27`、`-- --row-limit=100`、`-- --start-row=100`、`-- --output=reports/search-console.json` 或 `-- --fail-on-empty` 調整。
 
-`verify:live-exposure` 會直接檢查正式站的 `robots.txt`、sitemap index、一般 sitemap、圖片 sitemap、RSS、llms.txt、configurator route、solution route、canonical、Open Graph URL 與 JSON-LD。`exposure:postdeploy` 則把正式站 SEO 檢查、URL Inspection 與 Search Analytics 報表串成部署後檢查流程。
+`verify:live-exposure` 會直接檢查正式站的 `robots.txt`、sitemap index、一般 sitemap、圖片 sitemap、RSS、llms.txt、configurator route、solution route、canonical、Open Graph URL 與 JSON-LD。`monitor:sitemaps` 會讀取 Google Search Console 的 sitemap health，要求 sitemap index、一般 sitemap 與圖片 sitemap 都存在，且 errors/warnings 為 0、沒有 pending、且近期曾被下載。`exposure:postdeploy` 則把正式站 SEO 檢查、Search Console sitemap health、URL Inspection 與 Search Analytics 報表串成部署後檢查流程，並輸出 `reports/search-console-latest.json`。`exposure:strict` 會在 canonical URL 尚未建立索引或 Search Analytics 零曝光時失敗，適合做週期性告警，不適合剛上線第一天當作 deploy gate。
 
 行銷追蹤可用環境變數：
 

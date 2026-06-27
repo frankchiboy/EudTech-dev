@@ -1,4 +1,6 @@
 const { execFileSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
 const { canonicalPageUrl, withoutTrailingPageSlash } = require('./seo-url-helpers.cjs');
 
 const siteUrl = 'sc-domain:eudaemonia.tech';
@@ -73,7 +75,24 @@ function getRowLimit() {
   return rowLimit;
 }
 
-async function querySearchAnalytics(token, { startDate, endDate, dimensions, pageContains, rowLimit }) {
+function getStartRow() {
+  const startRow = Number(getArgValue('start-row', '0'));
+  if (!Number.isFinite(startRow) || startRow < 0 || startRow > 25000) {
+    throw new Error('--start-row must be a number between 0 and 25000.');
+  }
+
+  return startRow;
+}
+
+function getOutputPath() {
+  return getArgValue('output', '');
+}
+
+function hasFlag(name) {
+  return process.argv.includes(`--${name}`);
+}
+
+async function querySearchAnalytics(token, { startDate, endDate, dimensions, pageContains, rowLimit, startRow }) {
   const response = await fetch(
     `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(siteUrl)}/searchAnalytics/query`,
     {
@@ -88,6 +107,7 @@ async function querySearchAnalytics(token, { startDate, endDate, dimensions, pag
         endDate,
         dimensions,
         rowLimit,
+        startRow,
         dimensionFilterGroups: [
           {
             filters: [
@@ -122,18 +142,20 @@ function normalizeRow(row, dimensions) {
   };
 }
 
-async function buildScopeReport(token, scope, dateRange, rowLimit) {
+async function buildScopeReport(token, scope, dateRange, rowLimit, startRow) {
   const topQueries = await querySearchAnalytics(token, {
     ...dateRange,
     dimensions: ['query', 'page'],
     pageContains: scope.pageContains,
-    rowLimit
+    rowLimit,
+    startRow
   });
   const topPages = await querySearchAnalytics(token, {
     ...dateRange,
     dimensions: ['page'],
     pageContains: scope.pageContains,
-    rowLimit
+    rowLimit,
+    startRow
   });
 
   return {
@@ -143,30 +165,50 @@ async function buildScopeReport(token, scope, dateRange, rowLimit) {
   };
 }
 
+function writeOutput(outputPath, result) {
+  if (!outputPath) {
+    return;
+  }
+
+  const absolutePath = path.resolve(outputPath);
+  fs.mkdirSync(path.dirname(absolutePath), { recursive: true });
+  fs.writeFileSync(absolutePath, `${JSON.stringify(result, null, 2)}\n`);
+}
+
 async function main() {
   const token = getAccessToken();
   const dateRange = getDateRange();
   const rowLimit = getRowLimit();
+  const startRow = getStartRow();
+  const outputPath = getOutputPath();
+  const failOnEmpty = hasFlag('fail-on-empty');
   const scopes = [];
 
   for (const scope of defaultScopes) {
-    scopes.push(await buildScopeReport(token, scope, dateRange, rowLimit));
+    scopes.push(await buildScopeReport(token, scope, dateRange, rowLimit, startRow));
   }
 
-  console.log(
-    JSON.stringify(
-      {
-        ok: true,
-        siteUrl,
-        userProject,
-        dateRange,
-        rowLimit,
-        scopes
-      },
-      null,
-      2
-    )
-  );
+  const totalRows = scopes.reduce((total, scope) => total + scope.topQueries.length + scope.topPages.length, 0);
+  const errors = failOnEmpty && totalRows === 0 ? ['Search Console returned no configurator or solutions rows.'] : [];
+  const result = {
+    ok: errors.length === 0,
+    siteUrl,
+    userProject,
+    dateRange,
+    rowLimit,
+    startRow,
+    totalRows,
+    outputPath: outputPath || undefined,
+    scopes,
+    errors
+  };
+
+  writeOutput(outputPath, result);
+  console.log(JSON.stringify(result, null, 2));
+
+  if (errors.length > 0) {
+    process.exit(1);
+  }
 }
 
 main().catch((error) => {
