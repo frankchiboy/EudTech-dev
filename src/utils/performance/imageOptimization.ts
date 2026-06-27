@@ -10,6 +10,20 @@ export const generateSizes = (breakpoints: { [key: string]: string }): string =>
     .join(', ');
 };
 
+export const MOBILE_IMAGE_MEDIA_QUERY = '(max-width: 767px)';
+
+export const isMobileViewport = (): boolean => {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+    return false;
+  }
+
+  return window.matchMedia(MOBILE_IMAGE_MEDIA_QUERY).matches;
+};
+
+interface OptimizeImageLoadingOptions {
+  isMobile?: boolean;
+}
+
 export const preloadImage = (src: string): Promise<void> => {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -26,6 +40,10 @@ export const preloadCriticalImages = async (images: string[]): Promise<void> => 
 
 // 智能預載入即將進入視區的圖片
 export const setupIntelligentImagePreloading = (): void => {
+  if (typeof document === 'undefined' || typeof IntersectionObserver === 'undefined') {
+    return;
+  }
+
   const images = document.querySelectorAll('img[data-src]');
   
   const observer = new IntersectionObserver(
@@ -129,7 +147,9 @@ export const createThumbnailElements = () => {
   console.log('縮圖系統已啟動');
 };
 
-export const optimizeImageLoading = () => {
+export const optimizeImageLoading = (options: OptimizeImageLoadingOptions = {}) => {
+  const mobile = options.isMobile ?? isMobileViewport();
+
   // 預載入關鍵圖片
   const criticalImages = [
     // 首頁關鍵圖片
@@ -156,11 +176,20 @@ export const optimizeImageLoading = () => {
     '/amd-partner-badge.jpg'
   ];
   
-  // 立即預載入關鍵圖片
-  preloadCriticalImages(criticalImages);
+  if (!mobile) {
+    // 桌機版維持既有積極預載策略。
+    void preloadCriticalImages(criticalImages);
+  }
   
   // 激進預載入策略 - 延遲 500ms 後預載入所有 public 目錄下的圖片
   setTimeout(() => {
+    setupIntelligentImagePreloading();
+
+    if (mobile) {
+      console.log('手機圖片載入系統已啟動 - 已停用大型圖片批次預載');
+      return;
+    }
+
     // 找到頁面上所有圖片並預載入它們
     const allImages = document.querySelectorAll('img');
     allImages.forEach(img => {
@@ -172,9 +201,6 @@ export const optimizeImageLoading = () => {
       }
     });
     
-    // 啟動智能預載入系統
-    setupIntelligentImagePreloading();
-    
     // 預載入 public 目錄的常見格式圖片
     fetch('/public-images-list.json')
       .then(response => response.json())
@@ -184,5 +210,8 @@ export const optimizeImageLoading = () => {
       
   }, 500);
   
-  console.log('增強型圖片預載入系統已啟動 - 將主動載入所有圖片資源');
+  console.log(mobile
+    ? '手機圖片載入系統已啟動 - 保留視區載入，跳過大型批次預載'
+    : '增強型圖片預載入系統已啟動 - 將主動載入所有圖片資源'
+  );
 };

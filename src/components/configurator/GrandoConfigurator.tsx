@@ -19,6 +19,7 @@ import {
   Zap
 } from 'lucide-react';
 import {
+  GRANDO_CONFIGURATOR_BASE_URL,
   getConfiguratorAssetUrl,
   getConfiguratorDevice,
   getConfiguratorDevices
@@ -68,6 +69,8 @@ import './Configurator.css';
 type DeviceSummary = ConfiguratorDevice & { options: ConfiguratorOption[] };
 
 const QUOTE_RECIPIENT_EMAIL = 'info@eudaemonia.tech';
+const MOBILE_CONFIGURATOR_MEDIA_QUERY = '(max-width: 767px)';
+const MOBILE_CONFIGURATOR_IMAGE_WIDTH = 750;
 
 interface QuoteFormData {
   firstName: string;
@@ -152,6 +155,47 @@ const getModuleIcon = (moduleKey: ConfiguratorModule) => {
     default:
       return <HardDrive className={iconClassName} />;
   }
+};
+
+const isMobileConfiguratorViewport = () => {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+    return false;
+  }
+
+  return window.matchMedia(MOBILE_CONFIGURATOR_MEDIA_QUERY).matches;
+};
+
+const useMobileConfiguratorViewport = () => {
+  const [isMobile, setIsMobile] = useState(isMobileConfiguratorViewport);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia(MOBILE_CONFIGURATOR_MEDIA_QUERY);
+    const handleChange = () => setIsMobile(mediaQuery.matches);
+    handleChange();
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, []);
+
+  return isMobile;
+};
+
+const getMobileConfiguratorBackgroundUrl = (url: string, isMobile: boolean) => {
+  if (!isMobile || !url.startsWith(`${GRANDO_CONFIGURATOR_BASE_URL}/image/`)) {
+    return url;
+  }
+
+  const imagePath = url.slice(GRANDO_CONFIGURATOR_BASE_URL.length);
+  return `${GRANDO_CONFIGURATOR_BASE_URL}/_next/image?url=${encodeURIComponent(imagePath)}&w=${MOBILE_CONFIGURATOR_IMAGE_WIDTH}&q=75`;
 };
 
 const getOptionFilterValue = (moduleKey: ConfiguratorModule, option: ConfiguratorOption) => {
@@ -513,7 +557,16 @@ const BackgroundSlider = ({
   language: ConfiguratorLocale;
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const isMobile = useMobileConfiguratorViewport();
   const copy = CONFIGURATOR_COPY[language];
+  const renderedImages = useMemo(() => {
+    if (!isMobile) {
+      return images.map((image, index) => ({ image, index }));
+    }
+
+    const activeImage = images[activeIndex] || images[0];
+    return activeImage ? [{ image: activeImage, index: activeIndex }] : [];
+  }, [activeIndex, images, isMobile]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -529,9 +582,17 @@ const BackgroundSlider = ({
 
   return (
     <div className="grando-background-slider">
-      {images.map((image, index) => (
-        <div key={image.url} className={`grando-background-slide ${activeIndex === index ? 'active' : ''}`}>
-          <img src={image.url} alt="" />
+      {renderedImages.map(({ image, index }) => (
+        <div
+          key={isMobile ? `${image.url}-mobile-${index}` : image.url}
+          className={`grando-background-slide ${activeIndex === index ? 'active' : ''}`}
+        >
+          <img
+            src={getMobileConfiguratorBackgroundUrl(image.url, isMobile)}
+            alt=""
+            loading={isMobile ? 'eager' : undefined}
+            decoding={isMobile ? 'async' : undefined}
+          />
           {image.points.map((point, pointIndex) => (
             <span
               key={`${image.url}-${point.top}-${point.left}`}

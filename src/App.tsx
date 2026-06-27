@@ -1,7 +1,7 @@
 import { HelmetProvider } from 'react-helmet-async';
 import AppProviders from './components/providers/AppProviders';
 import AppRoutes from './components/AppRoutes';
-import { optimizeImageLoading, preloadCriticalImages } from './utils/performance/imageOptimization';
+import { isMobileViewport, optimizeImageLoading, preloadCriticalImages } from './utils/performance/imageOptimization';
 import { preloadCriticalComponents } from './utils/performance/codesplitting';
 import VersionChecker from './components/common/VersionChecker';
 
@@ -46,9 +46,13 @@ const productImages = [
 ];
 
 // 立即初始化效能優化
-optimizeImageLoading();
-preloadCriticalComponents();
-preloadCriticalImages(productImages); // 額外預載入所有產品圖片
+const mobileViewport = isMobileViewport();
+optimizeImageLoading({ isMobile: mobileViewport });
+
+if (!mobileViewport) {
+  preloadCriticalComponents();
+  void preloadCriticalImages(productImages); // 額外預載入所有產品圖片
+}
 
 function App() {
   return (

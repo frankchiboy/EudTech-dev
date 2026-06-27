@@ -969,6 +969,39 @@
 }
 
 @media (max-width: 720px) {
+  .grando-loader-fixed,
+  .grando-slide-dots,
+  .grando-sidebar,
+  .grando-spec {
+    backdrop-filter: none;
+  }
+
+  .grando-background-slide {
+    transition: none;
+  }
+
+  .grando-hotspot {
+    opacity: 1;
+    transform: scale(0.86);
+    animation: none;
+  }
+
+  .grando-hotspot::before,
+  .grando-hotspot::after {
+    opacity: 0.42;
+    transform: scale(1.8);
+    animation: none;
+  }
+
+  .grando-sidebar,
+  .grando-spec {
+    background: rgba(13, 14, 14, 0.9);
+  }
+
+  .grando-slide-dots {
+    background: rgba(255, 255, 255, 0.28);
+  }
+
   .grando-list-page {
     padding: 88px 14px 44px;
   }

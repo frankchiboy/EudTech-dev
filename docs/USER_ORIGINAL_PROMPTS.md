@@ -63,3 +63,7 @@
 ## 2026-06-27 - Restore Domain To Origin Main
 
 1. `domain 掛回/origin/main`
+
+## 2026-06-27 - Mobile Configurator Dev Performance
+
+1. `只改善手機版 先在dev做`
