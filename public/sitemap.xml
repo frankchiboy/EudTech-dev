@@ -79,6 +79,36 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://eudaemonia.tech/solutions/gpu-server-power-planning</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/rack-ai-server-deployment</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/ai-inference-server-taiwan</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://eudaemonia.tech/careers</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>

@@ -531,6 +531,305 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
         answer: { en: 'The configurator keeps GPU count, CPU, memory, storage, power, and networking assumptions together, which makes cooling and procurement review more precise.', zh: '配置器會保留 GPU 數量、CPU、記憶體、儲存、電源與網路假設，讓散熱與採購審查更精準。' }
       }
     ]
+  },
+  {
+    slug: 'gpu-server-power-planning',
+    kind: 'guide',
+    title: {
+      en: 'GPU Server Power Planning Configurator',
+      zh: 'GPU 伺服器電力規劃配置器'
+    },
+    description: {
+      en: 'Plan GPU server power capacity, redundant power supplies, GPU count, CPU platform, memory, storage, and network assumptions before requesting a quote.',
+      zh: '在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。'
+    },
+    keywords: {
+      en: 'GPU server power planning, redundant power supply GPU server, AI server power capacity, GPU server quote, data center GPU power',
+      zh: 'GPU 伺服器電力規劃, GPU 伺服器冗餘電源, AI 伺服器電力容量, GPU 伺服器報價, 資料中心 GPU 電力'
+    },
+    hero: {
+      en: 'GPU server power planning before quote review',
+      zh: '報價審查前的 GPU 伺服器電力規劃'
+    },
+    lead: {
+      en: 'Use the configurator to keep GPU count, power supply design, CPU, memory, storage, and networking assumptions in one reviewable quote path.',
+      zh: '使用配置器把 GPU 數量、電源供應設計、CPU、記憶體、儲存與網路假設保留在同一條可審查的報價路徑。'
+    },
+    image: '/grando-8gpu-server.jpg',
+    imageAlt: {
+      en: 'GPU server power planning for high-density AI systems',
+      zh: '高密度 AI 系統的 GPU 伺服器電力規劃'
+    },
+    configuratorHref: '/configurator/29',
+    quoteHref: '/configurator/29?request=true',
+    highlights: [
+      {
+        en: 'Designed for buyers checking rack power, redundant supply options, and GPU density together.',
+        zh: '適合需要同時檢查機架電力、冗餘電源選項與 GPU 密度的採購者。'
+      },
+      {
+        en: 'Configuration links keep power and component assumptions visible for facility and IT review.',
+        zh: '配置連結可讓機房與 IT 審查者看到同一組電力與零組件假設。'
+      },
+      {
+        en: 'Quote requests can include selected GPU, CPU, memory, NVMe, networking, and power supply details.',
+        zh: '詢價可包含已選 GPU、CPU、記憶體、NVMe、網路與電源供應細節。'
+      }
+    ],
+    specs: [
+      { label: { en: 'Planning focus', zh: '規劃重點' }, value: { en: 'Power capacity, redundancy, GPU density', zh: '電力容量、冗餘、GPU 密度' } },
+      { label: { en: 'Best fit', zh: '適合需求' }, value: { en: 'AI servers, HPC clusters, shared GPU systems', zh: 'AI 伺服器、HPC 叢集、共用 GPU 系統' } },
+      { label: { en: 'Quote output', zh: '報價輸出' }, value: { en: 'Configuration URL with power assumptions', zh: '包含電力假設的配置連結' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'Why include power planning in a GPU server quote?', zh: '為什麼 GPU 伺服器報價要包含電力規劃？' },
+        answer: { en: 'High-density GPU systems depend on power capacity and redundancy. Recording these assumptions before quote review reduces unclear follow-up.', zh: '高密度 GPU 系統會受電力容量與冗餘設計影響。報價前先記錄這些假設，可減少後續不清楚的追問。' }
+      },
+      {
+        question: { en: 'Does the configurator replace facility planning?', zh: '配置器可以取代機房規劃嗎？' },
+        answer: { en: 'No. It gives the hardware and power context that facility and IT teams can review before formal deployment planning.', zh: '不取代。配置器提供硬體與電力脈絡，讓機房與 IT 團隊在正式部署規劃前先審查。' }
+      }
+    ]
+  },
+  {
+    slug: 'rack-ai-server-deployment',
+    kind: 'guide',
+    title: {
+      en: 'Rack AI Server Deployment Configurator',
+      zh: '機架式 AI 伺服器部署配置器'
+    },
+    description: {
+      en: 'Prepare rack AI server deployment requirements with GPU density, rack form factor, power, cooling, storage, networking, and quote-ready configuration details.',
+      zh: '整理機架式 AI 伺服器部署需求，包含 GPU 密度、機架型態、電力、散熱、儲存、網路與可報價配置細節。'
+    },
+    keywords: {
+      en: 'rack AI server deployment, rackmount GPU server, AI rack server quote, GPU server rack planning, AI data center server',
+      zh: '機架式 AI 伺服器部署, 機架式 GPU 伺服器, AI 機架伺服器報價, GPU 伺服器機架規劃, AI 資料中心伺服器'
+    },
+    hero: {
+      en: 'Rack AI server deployment starts with a shareable configuration',
+      zh: '機架式 AI 伺服器部署從可分享配置開始'
+    },
+    lead: {
+      en: 'Use this entry point when the deployment discussion includes rack space, power, cooling, GPU count, storage, and network assumptions.',
+      zh: '當部署討論包含機架空間、電力、散熱、GPU 數量、儲存與網路假設時，可從這個入口開始。'
+    },
+    image: '/grando-rackable-01.jpg',
+    imageAlt: {
+      en: 'Rack AI server deployment planning with GPU server configurator',
+      zh: '以 GPU 伺服器配置器規劃機架式 AI 伺服器部署'
+    },
+    configuratorHref: '/configurator/29',
+    quoteHref: '/configurator/29?request=true',
+    highlights: [
+      {
+        en: 'Targets rack deployment discussions for AI, HPC, simulation, and research environments.',
+        zh: '針對 AI、HPC、模擬與研究環境的機架部署討論。'
+      },
+      {
+        en: 'Keeps selected server, GPU, CPU, memory, storage, power, and network assumptions together.',
+        zh: '保留已選伺服器、GPU、CPU、記憶體、儲存、電源與網路假設。'
+      },
+      {
+        en: 'Helps purchasing and infrastructure teams review the same deployment context.',
+        zh: '協助採購與基礎設施團隊審查同一部署脈絡。'
+      }
+    ],
+    specs: [
+      { label: { en: 'Deployment type', zh: '部署型態' }, value: { en: 'Rackable AI GPU server systems', zh: '可上架 AI GPU 伺服器系統' } },
+      { label: { en: 'Inputs', zh: '輸入項目' }, value: { en: 'Rack, power, cooling, GPU, storage, network', zh: '機架、電力、散熱、GPU、儲存、網路' } },
+      { label: { en: 'Next action', zh: '下一步' }, value: { en: 'Configure rackable system and request quote', zh: '配置機架式系統並送出報價' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'When should I use the rack deployment entry point?', zh: '什麼時候應該使用機架部署入口？' },
+        answer: { en: 'Use it when the buying process needs rack, facility, IT, and procurement teams to review the same GPU server assumptions.', zh: '當採購流程需要機架、機房、IT 與採購團隊審查同一組 GPU 伺服器假設時，適合使用這個入口。' }
+      },
+      {
+        question: { en: 'Can this help before a formal site survey?', zh: '正式場勘前可以使用嗎？' },
+        answer: { en: 'Yes. The configurator does not replace a site survey, but it gives a concrete hardware baseline for the discussion.', zh: '可以。配置器不取代場勘，但可提供具體硬體基準，方便討論。' }
+      }
+    ]
+  },
+  {
+    slug: 'taiwan-public-procurement-gpu-server',
+    kind: 'checklist',
+    title: {
+      en: 'Taiwan Public Procurement GPU Server Checklist',
+      zh: '台灣公部門 GPU 伺服器採購檢核表'
+    },
+    description: {
+      en: 'Prepare Taiwan public-sector GPU server procurement discussions with clear workload, configuration, quote, delivery, warranty, and review assumptions.',
+      zh: '為台灣公部門 GPU 伺服器採購討論整理工作負載、配置、報價、交付、保固與審查假設。'
+    },
+    keywords: {
+      en: 'Taiwan public procurement GPU server, government GPU server quote, AI server procurement Taiwan, GPU server specification checklist',
+      zh: '台灣公部門 GPU 伺服器採購, 政府 GPU 伺服器報價, AI 伺服器採購 台灣, GPU 伺服器規格檢核表'
+    },
+    hero: {
+      en: 'GPU server procurement context for Taiwan public-sector buyers',
+      zh: '台灣公部門採購者使用的 GPU 伺服器需求脈絡'
+    },
+    lead: {
+      en: 'Use a configuration URL to keep hardware assumptions visible before internal review, budgetary quote, or formal procurement documentation.',
+      zh: '在內部審查、預算報價或正式採購文件前，使用配置連結保留硬體假設。'
+    },
+    image: '/grando-rackable-01.jpg',
+    imageAlt: {
+      en: 'GPU server specification checklist for Taiwan procurement discussions',
+      zh: '台灣採購討論使用的 GPU 伺服器規格檢核表'
+    },
+    configuratorHref: '/configurator',
+    quoteHref: '/configurator?request=true',
+    highlights: [
+      {
+        en: 'Supports early specification alignment before formal procurement documents are finalized.',
+        zh: '支援正式採購文件定稿前的早期規格對齊。'
+      },
+      {
+        en: 'Keeps workload, component, deployment, and quote assumptions in one shareable URL.',
+        zh: '以一個可分享連結保留工作負載、零組件、部署與報價假設。'
+      },
+      {
+        en: 'Useful for research, university, government, and public-sector AI infrastructure teams.',
+        zh: '適合研究、學校、政府與公部門 AI 基礎設施團隊。'
+      }
+    ],
+    specs: [
+      { label: { en: 'Procurement context', zh: '採購脈絡' }, value: { en: 'Specification review and budgetary quote', zh: '規格審查與預算報價' } },
+      { label: { en: 'Required assumptions', zh: '必要假設' }, value: { en: 'Workload, GPU class, storage, power, warranty', zh: '工作負載、GPU 等級、儲存、電力、保固' } },
+      { label: { en: 'Output', zh: '輸出' }, value: { en: 'Configuration URL for internal review', zh: '供內部審查的配置連結' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'Is this legal procurement advice?', zh: '這是政府採購法律建議嗎？' },
+        answer: { en: 'No. This page is a technical and quote preparation checklist. Formal procurement wording should still be reviewed by the responsible procurement team.', zh: '不是。此頁是技術與報價準備檢核表。正式採購文字仍應由負責採購團隊審查。' }
+      },
+      {
+        question: { en: 'How does the configurator help public-sector review?', zh: '配置器如何協助公部門審查？' },
+        answer: { en: 'It preserves the selected hardware assumptions in a URL so technical reviewers and purchasing staff can discuss the same configuration.', zh: '它會用連結保留已選硬體假設，讓技術審查與採購人員可以討論同一配置。' }
+      }
+    ]
+  },
+  {
+    slug: 'supermicro-comino-gpu-server-comparison',
+    kind: 'comparison',
+    title: {
+      en: 'Supermicro and Comino GPU Server Configuration Comparison',
+      zh: 'Supermicro 與 Comino GPU 伺服器配置比較'
+    },
+    description: {
+      en: 'Compare GPU server buying paths when evaluating Supermicro-style server RFQs and Comino Grando configurator-led AI server quotes.',
+      zh: '比較評估 Supermicro 類 GPU 伺服器 RFQ 與 Comino Grando 配置器導向 AI 伺服器報價時的採購路徑。'
+    },
+    keywords: {
+      en: 'Supermicro GPU server comparison, Comino GPU server, GPU server alternative, AI server quote comparison, GPU server configurator',
+      zh: 'Supermicro GPU 伺服器比較, Comino GPU 伺服器, GPU 伺服器替代方案, AI 伺服器報價比較, GPU 伺服器配置器'
+    },
+    hero: {
+      en: 'Compare GPU server RFQs with configurator-led quote paths',
+      zh: '比較 GPU 伺服器 RFQ 與配置器導向報價路徑'
+    },
+    lead: {
+      en: 'Use this page when the buying team is comparing conventional GPU server RFQs with a configurator workflow that preserves component choices and quote context.',
+      zh: '當採購團隊比較傳統 GPU 伺服器 RFQ 與可保留零組件選擇及報價脈絡的配置器流程時，可從此頁開始。'
+    },
+    image: '/grando-8gpu-server.jpg',
+    imageAlt: {
+      en: 'Comino GPU server configuration comparison for Supermicro-style RFQ evaluation',
+      zh: '用於 Supermicro 類 RFQ 評估的 Comino GPU 伺服器配置比較'
+    },
+    configuratorHref: '/configurator',
+    quoteHref: '/configurator?request=true',
+    highlights: [
+      {
+        en: 'Frames the decision around quote workflow, configuration clarity, and deployment assumptions.',
+        zh: '以報價流程、配置清楚度與部署假設作為比較重點。'
+      },
+      {
+        en: 'Configurator URLs help both technical and purchasing teams review the same build.',
+        zh: '配置器連結協助技術與採購團隊審查同一配置。'
+      },
+      {
+        en: 'Useful when buyers need a comparable GPU server path before vendor selection.',
+        zh: '適合採購者在選擇供應商前，需要可比較的 GPU 伺服器路徑。'
+      }
+    ],
+    specs: [
+      { label: { en: 'Comparison focus', zh: '比較重點' }, value: { en: 'RFQ workflow and configuration traceability', zh: 'RFQ 流程與配置可追蹤性' } },
+      { label: { en: 'Best use', zh: '適合情境' }, value: { en: 'Vendor evaluation and quote preparation', zh: '供應商評估與報價準備' } },
+      { label: { en: 'Next step', zh: '下一步' }, value: { en: 'Open configurator and export quote context', zh: '開啟配置器並輸出報價脈絡' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'Is this a specification-by-specification benchmark?', zh: '這是逐規格效能比較嗎？' },
+        answer: { en: 'No. This page compares buying workflow and quote preparation context. Specific product performance should be reviewed against the final selected configuration.', zh: '不是。此頁比較採購流程與報價準備脈絡。具體產品效能應依最終選定配置另行審查。' }
+      },
+      {
+        question: { en: 'Why compare with a configurator workflow?', zh: '為什麼要比較配置器流程？' },
+        answer: { en: 'A configurator workflow keeps selected GPU, CPU, memory, storage, power, and network assumptions visible, which can make RFQ review more consistent.', zh: '配置器流程會保留已選 GPU、CPU、記憶體、儲存、電源與網路假設，可讓 RFQ 審查更一致。' }
+      }
+    ]
+  },
+  {
+    slug: 'ai-inference-server-taiwan',
+    title: {
+      en: 'AI Inference Server Taiwan Configurator',
+      zh: '台灣 AI 推論伺服器配置器'
+    },
+    description: {
+      en: 'Configure AI inference servers for Taiwan teams that need GPU acceleration, local model serving, memory planning, storage, networking, and quote follow-up.',
+      zh: '為台灣團隊配置 AI 推論伺服器，支援 GPU 加速、本地模型服務、記憶體規劃、儲存、網路與報價追蹤。'
+    },
+    keywords: {
+      en: 'AI inference server Taiwan, GPU inference server, local AI server quote, LLM inference server, AI server configurator Taiwan',
+      zh: 'AI 推論伺服器 台灣, GPU 推論伺服器, 本地 AI 伺服器報價, LLM 推論伺服器, AI 伺服器配置器 台灣'
+    },
+    hero: {
+      en: 'AI inference server configurations for Taiwan deployment',
+      zh: '面向台灣部署的 AI 推論伺服器配置'
+    },
+    lead: {
+      en: 'Start from GPU server or workstation configurations, then record GPU, CPU, memory, NVMe storage, and networking assumptions for inference workloads.',
+      zh: '從 GPU 伺服器或工作站配置開始，記錄推論工作負載需要的 GPU、CPU、記憶體、NVMe 儲存與網路假設。'
+    },
+    image: '/grando-desktop-01.jpg',
+    imageAlt: {
+      en: 'AI inference server configuration for Taiwan teams',
+      zh: '台灣團隊使用的 AI 推論伺服器配置'
+    },
+    configuratorHref: '/configurator',
+    quoteHref: '/configurator?request=true',
+    highlights: [
+      {
+        en: 'Targets teams planning local inference, private model serving, and GPU-accelerated application deployment.',
+        zh: '鎖定規劃本地推論、私有模型服務與 GPU 加速應用部署的團隊。'
+      },
+      {
+        en: 'Configurator links help compare workstation and rackable server directions.',
+        zh: '配置器連結可協助比較工作站與可上架伺服器方向。'
+      },
+      {
+        en: 'Quote requests preserve hardware assumptions for technical and purchasing review.',
+        zh: '詢價會保留硬體假設，方便技術與採購審查。'
+      }
+    ],
+    specs: [
+      { label: { en: 'Workload', zh: '工作負載' }, value: { en: 'Local AI inference and model serving', zh: '本地 AI 推論與模型服務' } },
+      { label: { en: 'Hardware focus', zh: '硬體重點' }, value: { en: 'GPU memory, system RAM, NVMe, network', zh: 'GPU 記憶體、系統記憶體、NVMe、網路' } },
+      { label: { en: 'Region', zh: '服務區域' }, value: { en: 'Taiwan quote follow-up', zh: '台灣報價追蹤' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'Should inference buyers choose a workstation or a rack server?', zh: '推論需求應該選工作站還是機架式伺服器？' },
+        answer: { en: 'It depends on concurrency, uptime, GPU density, rack availability, and management needs. The configurator helps preserve both options for review.', zh: '取決於併發量、可用性、GPU 密度、機架條件與管理需求。配置器可保留兩種方向供審查。' }
+      },
+      {
+        question: { en: 'Can EudTech help size an inference server from a draft configuration?', zh: 'EudTech 可以依初稿配置協助估推論伺服器規格嗎？' },
+        answer: { en: 'Yes. Send the draft configuration with workload notes so EudTech can follow up on GPU memory, system RAM, storage, and networking assumptions.', zh: '可以。送出初稿配置與工作負載備註後，EudTech 可協助追蹤 GPU 記憶體、系統記憶體、儲存與網路假設。' }
+      }
+    ]
   }
 ];
 

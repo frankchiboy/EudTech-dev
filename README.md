@@ -148,6 +148,11 @@ Configurator 曝光主線集中在以下入口：
 | H200 與 RTX PRO 6000 比較 | `/solutions/h200-vs-rtx-pro-6000` |
 | GPU 伺服器 RFQ 檢核表 | `/solutions/gpu-server-rfq-checklist` |
 | 液冷 AI 伺服器採購指南 | `/solutions/liquid-cooling-ai-server-procurement` |
+| GPU 伺服器電力規劃 | `/solutions/gpu-server-power-planning` |
+| 機架式 AI 伺服器部署 | `/solutions/rack-ai-server-deployment` |
+| 台灣公部門 GPU 伺服器採購 | `/solutions/taiwan-public-procurement-gpu-server` |
+| Supermicro 與 Comino GPU 伺服器比較 | `/solutions/supermicro-comino-gpu-server-comparison` |
+| 台灣 AI 推論伺服器 | `/solutions/ai-inference-server-taiwan` |
 
 建置時會先執行 `scripts/generate-discovery-files.cjs`，再執行 `scripts/generate-static-seo-pages.cjs`。`/solutions` 與 `/solutions/*` 的頁面資料會同步產生 sitemap、RSS、llms.txt 與 route 專屬靜態 HTML。這些 HTML 會直接包含 title、description、canonical、Open Graph、Twitter Card、JSON-LD，讓 crawler 在 JavaScript 執行前也能讀到正確內容。
 
