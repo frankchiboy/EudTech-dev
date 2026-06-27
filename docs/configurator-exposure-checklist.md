@@ -42,15 +42,16 @@
 19. `npm run verify:discovery` checks that solution URLs stay aligned across sitemap, RSS, llms.txt, image sitemap, sitemap index, and robots.txt.
 20. `/configurator/28` and `/configurator/29` emit product-level JSON-LD without fake public pricing.
 21. `npm run verify:seo-html` validates static JSON-LD coverage for configurator product pages and solution pages.
+22. `npm run submit:search-console` submits sitemap index, sitemap, and image sitemap to Google Search Console through API.
 
 ## External Promotion Queue
 
-1. Submit `https://eudaemonia.tech/sitemap.xml` in Google Search Console.
-2. Request indexing for `/configurator`, `/solutions/gpu-server-quote`, and `/solutions/nvidia-h200-server`.
-3. Start Google Ads exact/phrase match tests around quote-intent keywords.
-4. Start LinkedIn retargeting after traffic reaches stable volume.
-5. Add case-oriented articles only after Search Console shows impressions.
-6. Submit the current sitemap URLs through IndexNow after production deploys with `npm run submit:indexnow`.
+1. Request indexing for `/configurator`, `/solutions/gpu-server-quote`, and `/solutions/nvidia-h200-server`.
+2. Start Google Ads exact/phrase match tests around quote-intent keywords.
+3. Start LinkedIn retargeting after traffic reaches stable volume.
+4. Add case-oriented articles only after Search Console shows impressions.
+5. Submit the current sitemap URLs through IndexNow after production deploys with `npm run submit:indexnow`.
+6. Submit the current sitemap URLs through Google Search Console after production deploys with `npm run submit:search-console`.
 7. Use Search Console query data to decide whether to add deeper pages such as Supermicro comparison, power planning, rack deployment, or Taiwan public procurement wording.
 
 ## Tracking Readiness
@@ -64,6 +65,6 @@
 
 ## Current External Permission Gap
 
-The repo contains a Google service account file, but the Search Console API token request currently fails with `invalid_grant: Invalid JWT Signature`. The active gcloud account also cannot call Search Console with the current token scope. Submit sitemap through Search Console after replacing the service account key or adding an already-valid OAuth credential with Search Console access.
+Google Search Console API submission is available through local ADC for `frank.hsu@eudaemonia.tech` with `https://www.googleapis.com/auth/webmasters` scope. `GOOGLE_APPLICATION_CREDENTIALS` may point at an old missing service account file in some shells, so Search Console scripts intentionally ignore that environment variable and use ADC.
 
 Netlify CLI is not logged in in this environment, and `NETLIFY_AUTH_TOKEN` is not set. Set a Netlify token before updating production environment variables for GA4, GTM, Google Ads, or LinkedIn tracking IDs.

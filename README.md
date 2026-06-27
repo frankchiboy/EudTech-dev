@@ -126,6 +126,7 @@ npm run dev      # 開發伺服器
 npm run build    # 建置生產版本
 npm run build:netlify  # Netlify 建置，含靜態 SEO route HTML
 npm run submit:indexnow  # 部署後提交 sitemap URL 到 IndexNow
+npm run submit:search-console  # 提交 sitemap 到 Google Search Console
 npm run verify:discovery  # 驗證 sitemap/RSS/llms/image sitemap URL 一致性
 npm run verify:seo-html  # 驗證靜態 SEO HTML 的 JSON-LD 結構
 npm run preview  # 預覽建置結果
@@ -174,9 +175,12 @@ Configurator 曝光主線集中在以下入口：
 
 ```bash
 npm run submit:indexnow
+npm run submit:search-console
 ```
 
-此指令會讀取 `public/sitemap.xml`，向 IndexNow 提交 `https://eudaemonia.tech` 的正式 URL 清單。提交前可用 `npm run submit:indexnow -- --dry-run` 檢查 payload。
+`submit:indexnow` 會讀取 `public/sitemap.xml`，向 IndexNow 提交 `https://eudaemonia.tech` 的正式 URL 清單。提交前可用 `npm run submit:indexnow -- --dry-run` 檢查 payload。
+
+`submit:search-console` 會透過 Google Search Console API 提交 sitemap index、一般 sitemap 與圖片 sitemap。執行前需要本機 ADC 具備 `https://www.googleapis.com/auth/webmasters` scope，且 quota project 已啟用 `searchconsole.googleapis.com`。
 
 行銷追蹤可用環境變數：
 
