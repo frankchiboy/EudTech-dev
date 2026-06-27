@@ -9,8 +9,10 @@ import {
 } from '../../data/configuratorSeoPages';
 import SEOHead from '../common/SEOHead';
 import Footer from '../Footer';
+import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 
 const getText = (value: { en: string; zh: string }, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
+const SITE_ROOT_URL = canonicalPageUrl(SITE_ORIGIN);
 
 const getPageIcon = (page: ConfiguratorSeoPage) => {
   if (page.kind === 'comparison') return GitCompare;
@@ -21,7 +23,7 @@ const getPageIcon = (page: ConfiguratorSeoPage) => {
 };
 
 const buildStructuredData = (isEnglish: boolean) => {
-  const pageUrl = `${SITE_ORIGIN}/solutions`;
+  const pageUrl = canonicalPageUrl(`${SITE_ORIGIN}/solutions`);
   const name = isEnglish ? 'Configurator Solutions' : '配置器解決方案';
   const description = isEnglish
     ? 'A central index of EudTech configurator entry points for GPU server quotes, NVIDIA H200 systems, RTX PRO 6000 workstations, RFQ checklists, and liquid-cooling AI server procurement.'
@@ -36,7 +38,7 @@ const buildStructuredData = (isEnglish: boolean) => {
           '@type': 'ListItem',
           position: 1,
           name: isEnglish ? 'Home' : '首頁',
-          item: SITE_ORIGIN
+          item: SITE_ROOT_URL
         },
         {
           '@type': 'ListItem',
@@ -55,7 +57,7 @@ const buildStructuredData = (isEnglish: boolean) => {
       publisher: {
         '@type': 'Organization',
         name: 'EudTech',
-        url: SITE_ORIGIN,
+        url: SITE_ROOT_URL,
         email: 'info@eudaemonia.tech'
       },
       mainEntity: {
@@ -65,7 +67,7 @@ const buildStructuredData = (isEnglish: boolean) => {
           '@type': 'ListItem',
           position: index + 1,
           name: getText(page.title, isEnglish),
-          url: `${SITE_ORIGIN}/solutions/${page.slug}`
+          url: canonicalPageUrl(`${SITE_ORIGIN}/solutions/${page.slug}`)
         }))
       }
     }
@@ -91,7 +93,7 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
         keywords={keywords}
         image="/grando-8gpu-server.jpg"
         imageAlt={isEnglish ? 'EudTech configurator solutions for GPU server quotes' : 'EudTech GPU 伺服器報價配置器解決方案'}
-        url={`${SITE_ORIGIN}/solutions`}
+        url={canonicalPageUrl(`${SITE_ORIGIN}/solutions`)}
         isEnglish={isEnglish}
         structuredData={buildStructuredData(isEnglish)}
       />

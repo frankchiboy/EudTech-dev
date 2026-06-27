@@ -43,16 +43,19 @@
 20. `/configurator/28` and `/configurator/29` emit product-level JSON-LD without fake public pricing.
 21. `npm run verify:seo-html` validates static JSON-LD coverage for configurator product pages and solution pages.
 22. `npm run submit:search-console` submits sitemap index, sitemap, and image sitemap to Google Search Console through API.
+23. `npm run inspect:search-console` checks high-intent configurator canonical URL index status through the URL Inspection API.
+24. Page URL signals are normalized to the production trailing-slash form across canonical tags, sitemap URLs, image sitemap page locs, RSS links, LLM discovery links, Open Graph URLs, and JSON-LD URLs.
 
 ## External Promotion Queue
 
-1. Request indexing for `/configurator`, `/solutions/gpu-server-quote`, and `/solutions/nvidia-h200-server`.
+1. Request indexing for `/configurator/`, `/solutions/gpu-server-quote/`, and `/solutions/nvidia-h200-server/`.
 2. Start Google Ads exact/phrase match tests around quote-intent keywords.
 3. Start LinkedIn retargeting after traffic reaches stable volume.
 4. Add case-oriented articles only after Search Console shows impressions.
 5. Submit the current sitemap URLs through IndexNow after production deploys with `npm run submit:indexnow`.
 6. Submit the current sitemap URLs through Google Search Console after production deploys with `npm run submit:search-console`.
-7. Use Search Console query data to decide whether to add deeper pages such as Supermicro comparison, power planning, rack deployment, or Taiwan public procurement wording.
+7. Monitor high-intent canonical URL index status with `npm run inspect:search-console`.
+8. Use Search Console query data to decide whether to add deeper pages such as Supermicro comparison, power planning, rack deployment, or Taiwan public procurement wording.
 
 ## Tracking Readiness
 

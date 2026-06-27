@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 
 const SITE_ORIGIN = 'https://eudaemonia.tech';
 
@@ -47,7 +48,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     : 'AI伺服器, 人工智能, 機器學習, GPU運算, 液冷, 金融AI, EudTech';
 
   const fullTitle = title ? `${title} | ${defaultTitle}` : defaultTitle;
-  const canonicalUrl = normalizeAbsoluteUrl(url);
+  const canonicalUrl = canonicalPageUrl(normalizeAbsoluteUrl(url), SITE_ORIGIN);
   const imageUrl = normalizeAbsoluteUrl(image);
   const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION as string | undefined;
   const bingSiteVerification = import.meta.env.VITE_BING_SITE_VERIFICATION as string | undefined;

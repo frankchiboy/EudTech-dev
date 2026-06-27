@@ -1,11 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
+const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 
 const distDir = path.resolve(__dirname, '..', 'dist');
 const indexPath = path.join(distDir, 'index.html');
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
+const siteRootUrl = canonicalPageUrl(siteOrigin, siteOrigin);
 const siteSuffix = 'EudTech - 下一代AI解決方案';
 const defaultImage = `${siteOrigin}/grando-8gpu-server.jpg`;
 const googleSiteVerification = process.env.VITE_GOOGLE_SITE_VERIFICATION || '';
@@ -25,7 +27,8 @@ const schemaDate = `${taipeiDateParts.year}-${taipeiDateParts.month}-${taipeiDat
 
 const getZh = (value) => value.zh;
 const productSeoById = new Map((CONFIGURATOR_PRODUCT_SEO || []).map((product) => [product.id, product]));
-const eudTechOrganization = { '@type': 'Organization', name: 'EudTech', url: siteOrigin, email: 'info@eudaemonia.tech' };
+const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
+const eudTechOrganization = { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' };
 
 function productSchemaFor(id) {
   const product = productSeoById.get(id);
@@ -39,7 +42,7 @@ function productSchemaFor(id) {
     name: getZh(product.title),
     description: getZh(product.description),
     image: `${siteOrigin}${product.image}`,
-    url: `${siteOrigin}${product.configuratorHref}`,
+    url: pageUrl(product.configuratorHref),
     brand: { '@type': 'Brand', name: product.brand },
     manufacturer: { '@type': 'Organization', name: product.manufacturer },
     category: getZh(product.category),
@@ -52,7 +55,7 @@ function productSchemaFor(id) {
     })),
     potentialAction: {
       '@type': 'QuoteAction',
-      target: `${siteOrigin}${product.quoteHref}`
+      target: pageUrl(product.quoteHref)
     }
   };
 }
@@ -83,8 +86,8 @@ const solutionHubRoute = {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: '首頁', item: siteOrigin },
-        { '@type': 'ListItem', position: 2, name: '配置器解決方案', item: `${siteOrigin}/solutions` }
+        { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
+        { '@type': 'ListItem', position: 2, name: '配置器解決方案', item: pageUrl('/solutions') }
       ]
     },
     {
@@ -92,11 +95,11 @@ const solutionHubRoute = {
       '@type': 'CollectionPage',
       name: '配置器解決方案',
       description: 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。',
-      url: `${siteOrigin}/solutions`,
+      url: pageUrl('/solutions'),
       publisher: {
         '@type': 'Organization',
         name: 'EudTech',
-        url: siteOrigin,
+        url: siteRootUrl,
         email: 'info@eudaemonia.tech'
       },
       mainEntity: {
@@ -106,7 +109,7 @@ const solutionHubRoute = {
           '@type': 'ListItem',
           position: index + 1,
           name: getZh(page.title),
-          url: `${siteOrigin}/solutions/${page.slug}`
+          url: pageUrl(`/solutions/${page.slug}`)
         }))
       }
     }
@@ -125,15 +128,15 @@ const routes = [
         '@type': 'Organization',
         name: 'EudTech',
         alternateName: 'Eudaemonia Technology',
-        url: siteOrigin,
+        url: siteRootUrl,
         email: 'info@eudaemonia.tech',
-        sameAs: [`${siteOrigin}/configurator`]
+        sameAs: [pageUrl('/configurator')]
       },
       {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'EudTech',
-        url: siteOrigin
+        url: siteRootUrl
       }
     ]
   },
@@ -150,16 +153,16 @@ const routes = [
         description: '配置 Comino Grando GPU 伺服器與 AI 工作站，並將已選 GPU、CPU、RAM、儲存、電源與網路選項送交 EudTech 追蹤報價。',
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Web',
-        url: `${siteOrigin}/configurator`,
+        url: pageUrl('/configurator'),
         provider: {
           '@type': 'Organization',
           name: 'EudTech',
-          url: siteOrigin,
+          url: siteRootUrl,
           email: 'info@eudaemonia.tech'
         },
         potentialAction: {
           '@type': 'QuoteAction',
-          target: `${siteOrigin}/configurator?request=true`
+          target: pageUrl('/configurator?request=true')
         }
       },
       {
@@ -167,19 +170,19 @@ const routes = [
         '@type': 'ItemList',
         name: 'EudTech 配置器入口',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: '配置器解決方案總入口', url: `${siteOrigin}/solutions` },
-          { '@type': 'ListItem', position: 2, name: 'GPU 伺服器報價配置器', url: `${siteOrigin}/solutions/gpu-server-quote` },
-          { '@type': 'ListItem', position: 3, name: 'NVIDIA H200 GPU 伺服器配置器', url: `${siteOrigin}/solutions/nvidia-h200-server` },
-          { '@type': 'ListItem', position: 4, name: 'RTX PRO 6000 工作站配置器', url: `${siteOrigin}/solutions/rtx-pro-6000-workstation` },
-          { '@type': 'ListItem', position: 5, name: '液冷 GPU 伺服器採購', url: `${siteOrigin}/solutions/liquid-cooling-ai-server-procurement` }
+          { '@type': 'ListItem', position: 1, name: '配置器解決方案總入口', url: pageUrl('/solutions') },
+          { '@type': 'ListItem', position: 2, name: 'GPU 伺服器報價配置器', url: pageUrl('/solutions/gpu-server-quote') },
+          { '@type': 'ListItem', position: 3, name: 'NVIDIA H200 GPU 伺服器配置器', url: pageUrl('/solutions/nvidia-h200-server') },
+          { '@type': 'ListItem', position: 4, name: 'RTX PRO 6000 工作站配置器', url: pageUrl('/solutions/rtx-pro-6000-workstation') },
+          { '@type': 'ListItem', position: 5, name: '液冷 GPU 伺服器採購', url: pageUrl('/solutions/liquid-cooling-ai-server-procurement') }
         ]
       },
       {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: '首頁', item: siteOrigin },
-          { '@type': 'ListItem', position: 2, name: '配置器', item: `${siteOrigin}/configurator` }
+          { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
+          { '@type': 'ListItem', position: 2, name: '配置器', item: pageUrl('/configurator') }
         ]
       }
     ]
@@ -197,18 +200,18 @@ const routes = [
         description: '配置 GRANDO 機架式工作站並送出 GPU 工作站報價需求。',
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Web',
-        url: `${siteOrigin}/configurator/28`,
-        provider: { '@type': 'Organization', name: 'EudTech', url: siteOrigin, email: 'info@eudaemonia.tech' },
-        potentialAction: { '@type': 'QuoteAction', target: `${siteOrigin}/configurator/28?request=true` }
+        url: pageUrl('/configurator/28'),
+        provider: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' },
+        potentialAction: { '@type': 'QuoteAction', target: pageUrl('/configurator/28?request=true') }
       },
       productSchemaFor(28),
       {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: '首頁', item: siteOrigin },
-          { '@type': 'ListItem', position: 2, name: '配置器', item: `${siteOrigin}/configurator` },
-          { '@type': 'ListItem', position: 3, name: 'GRANDO 機架式工作站', item: `${siteOrigin}/configurator/28` }
+          { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
+          { '@type': 'ListItem', position: 2, name: '配置器', item: pageUrl('/configurator') },
+          { '@type': 'ListItem', position: 3, name: 'GRANDO 機架式工作站', item: pageUrl('/configurator/28') }
         ]
       }
     ]
@@ -226,18 +229,18 @@ const routes = [
         description: '配置 NVIDIA H200 與高密度 GPU 伺服器並送出正式報價需求。',
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Web',
-        url: `${siteOrigin}/configurator/29`,
-        provider: { '@type': 'Organization', name: 'EudTech', url: siteOrigin, email: 'info@eudaemonia.tech' },
-        potentialAction: { '@type': 'QuoteAction', target: `${siteOrigin}/configurator/29?request=true` }
+        url: pageUrl('/configurator/29'),
+        provider: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' },
+        potentialAction: { '@type': 'QuoteAction', target: pageUrl('/configurator/29?request=true') }
       },
       productSchemaFor(29),
       {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: '首頁', item: siteOrigin },
-          { '@type': 'ListItem', position: 2, name: '配置器', item: `${siteOrigin}/configurator` },
-          { '@type': 'ListItem', position: 3, name: 'NVIDIA H200 GPU 伺服器', item: `${siteOrigin}/configurator/29` }
+          { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
+          { '@type': 'ListItem', position: 2, name: '配置器', item: pageUrl('/configurator') },
+          { '@type': 'ListItem', position: 3, name: 'NVIDIA H200 GPU 伺服器', item: pageUrl('/configurator/29') }
         ]
       }
     ]
@@ -262,7 +265,7 @@ function routeSchema(route) {
     return route.schema;
   }
 
-  const url = `${siteOrigin}${route.path}`;
+  const url = pageUrl(route.path);
   const pageImage = route.image || defaultImage;
   const isArticlePage = route.kind === 'comparison' || route.kind === 'guide' || route.kind === 'checklist';
   return [
@@ -270,8 +273,8 @@ function routeSchema(route) {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: '首頁', item: siteOrigin },
-        { '@type': 'ListItem', position: 2, name: '配置器解決方案', item: `${siteOrigin}/solutions` },
+        { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
+        { '@type': 'ListItem', position: 2, name: '配置器解決方案', item: pageUrl('/solutions') },
         { '@type': 'ListItem', position: 3, name: route.serviceName || route.title, item: url }
       ]
     },
@@ -284,11 +287,11 @@ function routeSchema(route) {
           image: pageImage,
           datePublished: schemaDate,
           dateModified: schemaDate,
-          author: { '@type': 'Organization', name: 'EudTech', url: siteOrigin },
+          author: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl },
           publisher: {
             '@type': 'Organization',
             name: 'EudTech',
-            url: siteOrigin,
+            url: siteRootUrl,
             logo: { '@type': 'ImageObject', url: `${siteOrigin}/logo.svg` }
           },
           mainEntityOfPage: url
@@ -300,13 +303,13 @@ function routeSchema(route) {
           description: route.description,
           serviceType: 'AI GPU server configuration and quote request',
           areaServed: { '@type': 'Country', name: 'Taiwan' },
-          provider: { '@type': 'Organization', name: 'EudTech', url: siteOrigin, email: 'info@eudaemonia.tech' },
+          provider: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' },
           url,
           image: pageImage,
           potentialAction: route.quoteHref
             ? {
                 '@type': 'QuoteAction',
-                target: `${siteOrigin}${route.quoteHref}`
+                target: pageUrl(route.quoteHref)
               }
             : undefined
         },
@@ -333,7 +336,7 @@ function verificationTags() {
 
 function injectHead(baseHtml, route) {
   const title = `${route.title} | ${siteSuffix}`;
-  const url = `${siteOrigin}${route.path}`;
+  const url = pageUrl(route.path);
   const image = route.image || defaultImage;
   const isArticlePage = route.kind === 'comparison' || route.kind === 'guide' || route.kind === 'checklist';
   const managedHead = [

@@ -9,9 +9,11 @@ import {
   SITE_ORIGIN,
   getConfiguratorSeoPage
 } from '../../data/configuratorSeoPages';
+import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import { getSeoSchemaDate } from '../../utils/seo/schemaDate';
 
 const getText = (value: { en: string; zh: string }, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
+const SITE_ROOT_URL = canonicalPageUrl(SITE_ORIGIN);
 
 const trackLeadIntent = (slug: string, action: string) => {
   window.dispatchEvent(
@@ -29,7 +31,7 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
   const page = getConfiguratorSeoPage(slug);
   if (!page) return [];
 
-  const pageUrl = `${SITE_ORIGIN}/solutions/${page.slug}`;
+  const pageUrl = canonicalPageUrl(`${SITE_ORIGIN}/solutions/${page.slug}`);
   const name = getText(page.title, isEnglish);
   const description = getText(page.description, isEnglish);
   const isArticlePage = page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist';
@@ -45,13 +47,13 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
           '@type': 'ListItem',
           position: 1,
           name: isEnglish ? 'Home' : '首頁',
-          item: SITE_ORIGIN
+          item: SITE_ROOT_URL
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: isEnglish ? 'Configurator Solutions' : '配置器解決方案',
-          item: `${SITE_ORIGIN}/solutions`
+          item: canonicalPageUrl(`${SITE_ORIGIN}/solutions`)
         },
         {
           '@type': 'ListItem',
@@ -73,12 +75,12 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
           author: {
             '@type': 'Organization',
             name: 'EudTech',
-            url: SITE_ORIGIN
+            url: SITE_ROOT_URL
           },
           publisher: {
             '@type': 'Organization',
             name: 'EudTech',
-            url: SITE_ORIGIN,
+            url: SITE_ROOT_URL,
             logo: {
               '@type': 'ImageObject',
               url: `${SITE_ORIGIN}/logo.svg`
@@ -99,7 +101,7 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
           provider: {
             '@type': 'Organization',
             name: 'EudTech',
-            url: SITE_ORIGIN,
+            url: SITE_ROOT_URL,
             email: 'info@eudaemonia.tech'
           },
           url: pageUrl,
@@ -129,7 +131,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
     return <Navigate to="/configurator" replace />;
   }
 
-  const pageUrl = `${SITE_ORIGIN}/solutions/${page.slug}`;
+  const pageUrl = canonicalPageUrl(`${SITE_ORIGIN}/solutions/${page.slug}`);
   const relatedPages = CONFIGURATOR_SEO_PAGES.filter((item) => item.slug !== page.slug).slice(0, 4);
 
   return (

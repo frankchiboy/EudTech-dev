@@ -1,12 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
+const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const publicDir = path.resolve(__dirname, '..', 'public');
-const solutionHubUrl = `${siteOrigin}/solutions`;
-const solutionUrls = CONFIGURATOR_SEO_PAGES.map((page) => `${siteOrigin}/solutions/${page.slug}`);
+const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
+const solutionHubUrl = pageUrl('/solutions');
+const solutionUrls = CONFIGURATOR_SEO_PAGES.map((page) => pageUrl(`/solutions/${page.slug}`));
 const requiredSolutionUrls = [solutionHubUrl, ...solutionUrls];
 
 const readPublicFile = (filename) => fs.readFileSync(path.join(publicDir, filename), 'utf8');

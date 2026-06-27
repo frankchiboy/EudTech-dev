@@ -19,6 +19,7 @@ import ConfiguratorSolutionPage from './pages/ConfiguratorSolutionPage';
 import ConfiguratorSolutionsHubPage from './pages/ConfiguratorSolutionsHubPage';
 import MarketingEvents from './analytics/MarketingEvents';
 import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
+import { canonicalPageUrl } from '../utils/seo/canonicalUrl';
 
 const AppRoutes: React.FC = () => {
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
@@ -29,15 +30,15 @@ const AppRoutes: React.FC = () => {
       '@type': 'Organization',
       name: 'EudTech',
       alternateName: 'Eudaemonia Technology',
-      url: 'https://eudaemonia.tech',
+      url: canonicalPageUrl('https://eudaemonia.tech'),
       email: 'info@eudaemonia.tech',
-      sameAs: ['https://eudaemonia.tech/configurator']
+      sameAs: [canonicalPageUrl('https://eudaemonia.tech/configurator')]
     },
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: 'EudTech',
-      url: 'https://eudaemonia.tech'
+      url: canonicalPageUrl('https://eudaemonia.tech')
     }
   ];
 
