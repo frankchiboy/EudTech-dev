@@ -67,6 +67,7 @@ import { emailService } from '../../services/emailService';
 import { isValidEmail } from '../../utils/validators';
 import { getMarketingAttribution, getMarketingAttributionEntries } from '../../utils/marketing/attribution';
 import { SITE_ORIGIN } from '../../data/configuratorSeoPages';
+import { getConfiguratorProductSeo } from '../../data/configuratorProductSeo';
 import SEOHead from '../common/SEOHead';
 import './Configurator.css';
 
@@ -146,6 +147,7 @@ const typeOrder = ['Server', 'Rackable Workstation', 'Desktop Workstation', 'Int
 const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: string, device?: ConfiguratorDevice) => {
   const isEnglish = language === 'en';
   const canonicalUrl = pid ? `${CONFIGURATOR_CANONICAL_URL}/${pid}` : CONFIGURATOR_CANONICAL_URL;
+  const productSeo = getConfiguratorProductSeo(pid);
   const name = device
     ? `${translateConfiguratorModelName(device.name, language)} ${isEnglish ? 'Configurator' : '配置器'}`
     : isEnglish
@@ -154,6 +156,50 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
   const description = isEnglish
     ? 'Configure Comino Grando GPU servers and AI workstations, then send the selected GPU, CPU, RAM, storage, power, and network options to EudTech for quote follow-up.'
     : '配置 Comino Grando GPU 伺服器與 AI 工作站，並將已選 GPU、CPU、RAM、儲存、電源與網路選項送交 EudTech 追蹤報價。';
+  const eudTechOrganization = {
+    '@type': 'Organization',
+    name: 'EudTech',
+    url: SITE_ORIGIN,
+    email: QUOTE_RECIPIENT_EMAIL
+  };
+  const productStructuredData =
+    pid && device
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: productSeo ? productSeo.title[language] : name,
+          description: productSeo ? productSeo.description[language] : description,
+          image: `${SITE_ORIGIN}${productSeo?.image || '/grando-8gpu-server.jpg'}`,
+          url: canonicalUrl,
+          brand: { '@type': 'Brand', name: productSeo?.brand || 'Comino' },
+          manufacturer: { '@type': 'Organization', name: productSeo?.manufacturer || 'Comino' },
+          category: productSeo ? productSeo.category[language] : translateConfiguratorDeviceType(device.type, language),
+          model: productSeo ? productSeo.model[language] : translateConfiguratorModelName(device.name, language),
+          productID: productSeo?.productId || `comino-grando-configurator-${device.id}`,
+          additionalProperty: (productSeo?.properties || [
+            {
+              name: { en: 'Form factor', zh: '機構型態' },
+              value: { en: translateConfiguratorDeviceType(device.type, 'en'), zh: translateConfiguratorDeviceType(device.type, 'zh') }
+            },
+            {
+              name: { en: 'GPU slots', zh: 'GPU 插槽' },
+              value: { en: String(device.gpu_slots), zh: String(device.gpu_slots) }
+            },
+            {
+              name: { en: 'Quote path', zh: '詢價路徑' },
+              value: { en: 'Configurator request to EudTech', zh: '配置器詢價送至 EudTech' }
+            }
+          ]).map((property) => ({
+            '@type': 'PropertyValue',
+            name: property.name[language],
+            value: property.value[language]
+          })),
+          potentialAction: {
+            '@type': 'QuoteAction',
+            target: `${canonicalUrl}?request=true`
+          }
+        }
+      : undefined;
 
   return [
     {
@@ -165,10 +211,7 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
       operatingSystem: 'Web',
       url: canonicalUrl,
       provider: {
-        '@type': 'Organization',
-        name: 'EudTech',
-        url: SITE_ORIGIN,
-        email: QUOTE_RECIPIENT_EMAIL
+        ...eudTechOrganization
       },
       potentialAction: {
         '@type': 'QuoteAction',
@@ -239,8 +282,9 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
             ]
           : [])
       ]
-    }
-  ];
+    },
+    productStructuredData
+  ].filter(Boolean);
 };
 
 const moduleOrder: ConfiguratorModule[] = [

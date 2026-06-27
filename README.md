@@ -127,6 +127,7 @@ npm run build    # 建置生產版本
 npm run build:netlify  # Netlify 建置，含靜態 SEO route HTML
 npm run submit:indexnow  # 部署後提交 sitemap URL 到 IndexNow
 npm run verify:discovery  # 驗證 sitemap/RSS/llms/image sitemap URL 一致性
+npm run verify:seo-html  # 驗證靜態 SEO HTML 的 JSON-LD 結構
 npm run preview  # 預覽建置結果
 npm run lint     # 代碼檢查
 ```

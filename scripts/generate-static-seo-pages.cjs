@@ -4,7 +4,7 @@ const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs'
 
 const distDir = path.resolve(__dirname, '..', 'dist');
 const indexPath = path.join(distDir, 'index.html');
-const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES } = readConfiguratorSeoPages();
+const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const siteSuffix = 'EudTech - 下一代AI解決方案';
 const defaultImage = `${siteOrigin}/grando-8gpu-server.jpg`;
@@ -24,6 +24,39 @@ const taipeiDateParts = Object.fromEntries(
 const schemaDate = `${taipeiDateParts.year}-${taipeiDateParts.month}-${taipeiDateParts.day}`;
 
 const getZh = (value) => value.zh;
+const productSeoById = new Map((CONFIGURATOR_PRODUCT_SEO || []).map((product) => [product.id, product]));
+const eudTechOrganization = { '@type': 'Organization', name: 'EudTech', url: siteOrigin, email: 'info@eudaemonia.tech' };
+
+function productSchemaFor(id) {
+  const product = productSeoById.get(id);
+  if (!product) {
+    return undefined;
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: getZh(product.title),
+    description: getZh(product.description),
+    image: `${siteOrigin}${product.image}`,
+    url: `${siteOrigin}${product.configuratorHref}`,
+    brand: { '@type': 'Brand', name: product.brand },
+    manufacturer: { '@type': 'Organization', name: product.manufacturer },
+    category: getZh(product.category),
+    model: getZh(product.model),
+    productID: product.productId,
+    additionalProperty: product.properties.map((property) => ({
+      '@type': 'PropertyValue',
+      name: getZh(property.name),
+      value: getZh(property.value)
+    })),
+    potentialAction: {
+      '@type': 'QuoteAction',
+      target: `${siteOrigin}${product.quoteHref}`
+    }
+  };
+}
+
 const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
   path: `/solutions/${page.slug}`,
   title: getZh(page.title),
@@ -33,6 +66,8 @@ const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
   imageAlt: getZh(page.imageAlt),
   serviceName: getZh(page.title),
   kind: page.kind || 'solution',
+  configuratorHref: page.configuratorHref,
+  quoteHref: page.quoteHref,
   faq: page.faqs.map((faq) => [getZh(faq.question), getZh(faq.answer)])
 }));
 const solutionHubRoute = {
@@ -166,6 +201,7 @@ const routes = [
         provider: { '@type': 'Organization', name: 'EudTech', url: siteOrigin, email: 'info@eudaemonia.tech' },
         potentialAction: { '@type': 'QuoteAction', target: `${siteOrigin}/configurator/28?request=true` }
       },
+      productSchemaFor(28),
       {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -194,6 +230,7 @@ const routes = [
         provider: { '@type': 'Organization', name: 'EudTech', url: siteOrigin, email: 'info@eudaemonia.tech' },
         potentialAction: { '@type': 'QuoteAction', target: `${siteOrigin}/configurator/29?request=true` }
       },
+      productSchemaFor(29),
       {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -265,7 +302,13 @@ function routeSchema(route) {
           areaServed: { '@type': 'Country', name: 'Taiwan' },
           provider: { '@type': 'Organization', name: 'EudTech', url: siteOrigin, email: 'info@eudaemonia.tech' },
           url,
-          image: pageImage
+          image: pageImage,
+          potentialAction: route.quoteHref
+            ? {
+                '@type': 'QuoteAction',
+                target: `${siteOrigin}${route.quoteHref}`
+              }
+            : undefined
         },
     {
       '@context': 'https://schema.org',
@@ -318,7 +361,9 @@ function injectHead(baseHtml, route) {
     `<link data-rh="true" rel="canonical" href="${escapeHtml(url)}">`,
     `<link data-rh="true" rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href="${siteOrigin}/feed.xml">`,
     ...verificationTags(),
-    ...routeSchema(route).map((item, index) => `<script data-rh="true" type="application/ld+json" data-static-seo="${index}">${safeJson(item)}</script>`)
+    ...routeSchema(route)
+      .filter(Boolean)
+      .map((item, index) => `<script data-rh="true" type="application/ld+json" data-static-seo="${index}">${safeJson(item)}</script>`)
   ].join('\n    ');
 
   return baseHtml

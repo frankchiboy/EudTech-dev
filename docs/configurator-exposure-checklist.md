@@ -40,6 +40,8 @@
 17. `image-sitemap.xml` lists configurator and solution product images for image discovery.
 18. `sitemap-index.xml` groups the standard sitemap and image sitemap for crawler discovery.
 19. `npm run verify:discovery` checks that solution URLs stay aligned across sitemap, RSS, llms.txt, image sitemap, sitemap index, and robots.txt.
+20. `/configurator/28` and `/configurator/29` emit product-level JSON-LD without fake public pricing.
+21. `npm run verify:seo-html` validates static JSON-LD coverage for configurator product pages and solution pages.
 
 ## External Promotion Queue
 
