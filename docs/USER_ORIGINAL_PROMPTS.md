@@ -67,3 +67,5 @@
 ## 2026-06-27 - Mobile Configurator Dev Performance
 
 1. `只改善手機版 先在dev做`
+
+2. `還是很慢`

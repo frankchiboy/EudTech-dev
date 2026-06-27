@@ -19,6 +19,7 @@ import {
   Zap
 } from 'lucide-react';
 import {
+  GRANDO_API_BASE_URL,
   GRANDO_CONFIGURATOR_BASE_URL,
   getConfiguratorAssetUrl,
   getConfiguratorDevice,
@@ -71,6 +72,9 @@ type DeviceSummary = ConfiguratorDevice & { options: ConfiguratorOption[] };
 const QUOTE_RECIPIENT_EMAIL = 'info@eudaemonia.tech';
 const MOBILE_CONFIGURATOR_MEDIA_QUERY = '(max-width: 767px)';
 const MOBILE_CONFIGURATOR_IMAGE_WIDTH = 750;
+const MOBILE_PRODUCT_IMAGE_WIDTH = 640;
+const DESKTOP_PRODUCT_IMAGE_WIDTH = 960;
+const PRODUCT_IMAGE_QUALITY = 70;
 
 interface QuoteFormData {
   firstName: string;
@@ -198,6 +202,33 @@ const getMobileConfiguratorBackgroundUrl = (url: string, isMobile: boolean) => {
   return `${GRANDO_CONFIGURATOR_BASE_URL}/_next/image?url=${encodeURIComponent(imagePath)}&w=${MOBILE_CONFIGURATOR_IMAGE_WIDTH}&q=75`;
 };
 
+const getNetlifyImageUrl = (url: string, width: number) => {
+  return `/.netlify/images?url=${encodeURIComponent(url)}&w=${width}&q=${PRODUCT_IMAGE_QUALITY}`;
+};
+
+const canUseNetlifyImageCdn = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  const hostname = window.location.hostname;
+  return !(
+    hostname === 'localhost' ||
+    hostname === '127.0.0.1' ||
+    hostname.startsWith('192.168.') ||
+    hostname.startsWith('10.') ||
+    /^172\.(1[6-9]|2\d|3[0-1])\./.test(hostname)
+  );
+};
+
+const getProductImageUrl = (url: string, isMobile: boolean) => {
+  if (!canUseNetlifyImageCdn() || !url.startsWith(`${GRANDO_API_BASE_URL}/media/device/`)) {
+    return url;
+  }
+
+  return getNetlifyImageUrl(url, isMobile ? MOBILE_PRODUCT_IMAGE_WIDTH : DESKTOP_PRODUCT_IMAGE_WIDTH);
+};
+
 const getOptionFilterValue = (moduleKey: ConfiguratorModule, option: ConfiguratorOption) => {
   if (moduleKey === 'gpu' || moduleKey === 'cpu') {
     return option.brand || '';
@@ -225,26 +256,52 @@ const ErrorState = ({ message, actionLabel, onRetry }: { message: string; action
   </div>
 );
 
-const ProductCard = ({ device, language }: { device: DeviceSummary; language: ConfiguratorLocale }) => {
+const ProductCard = ({
+  device,
+  language,
+  priority = false
+}: {
+  device: DeviceSummary;
+  language: ConfiguratorLocale;
+  priority?: boolean;
+}) => {
   const navigate = useNavigate();
+  const isMobile = useMobileConfiguratorViewport();
   const [imageFailed, setImageFailed] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const copy = CONFIGURATOR_COPY[language];
   const gpu = device.options.find((option) => option.module_type === 'gpu');
   const cpu = device.options.find((option) => option.module_type === 'cpu');
-  const imageUrl = device.photo && !imageFailed ? getConfiguratorAssetUrl(device.photo) : '';
+  const originalImageUrl = device.photo ? getConfiguratorAssetUrl(device.photo) : '';
+  const imageUrl = originalImageUrl && !imageFailed ? getProductImageUrl(originalImageUrl, isMobile) : '';
+
+  useEffect(() => {
+    setImageFailed(false);
+    setImageLoaded(false);
+  }, [originalImageUrl, isMobile]);
 
   return (
     <article className={`grando-product-card ${device.type === 'Server' ? 'grando-product-card-server' : ''}`}>
       <header className="grando-product-media">
         <div className="grando-product-image-wrap">
           {imageUrl ? (
-            <img
-              src={imageUrl}
-              alt={`Comino Grando ${device.name}`}
-              className="grando-product-image"
-              loading="lazy"
-              onError={() => setImageFailed(true)}
-            />
+            <>
+              {!imageLoaded ? (
+                <div className="grando-product-image-placeholder" aria-hidden="true">
+                  {getTypeIcon(device.type)}
+                </div>
+              ) : null}
+              <img
+                src={imageUrl}
+                alt={`Comino Grando ${device.name}`}
+                className={`grando-product-image ${imageLoaded ? 'loaded' : 'loading'}`}
+                loading={priority ? 'eager' : 'lazy'}
+                decoding="async"
+                fetchPriority={priority ? 'high' : 'auto'}
+                onLoad={() => setImageLoaded(true)}
+                onError={() => setImageFailed(true)}
+              />
+            </>
           ) : (
             <div className="grando-product-image-fallback" aria-label={`Comino Grando ${device.name}`}>
               {getTypeIcon(device.type)}
@@ -394,8 +451,13 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
                   <h2>{translateConfiguratorDeviceType(group.type, language, true)}</h2>
                   <hr />
                   <div className="grando-product-grid">
-                    {group.devices.map((device) => (
-                      <ProductCard key={device.id} device={device} language={language} />
+                    {group.devices.map((device, deviceIndex) => (
+                      <ProductCard
+                        key={device.id}
+                        device={device}
+                        language={language}
+                        priority={group.type === 'Server' && deviceIndex < 3}
+                      />
                     ))}
                   </div>
                 </section>

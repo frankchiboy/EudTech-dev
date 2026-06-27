@@ -162,6 +162,7 @@
 }
 
 .grando-product-image-wrap {
+  position: relative;
   display: flex;
   width: 100%;
   height: 180px;
@@ -171,10 +172,41 @@
 }
 
 .grando-product-image {
+  position: relative;
+  z-index: 1;
   max-width: 100%;
   max-height: 150px;
   object-fit: contain;
-  transition: transform 260ms ease;
+  opacity: 1;
+  transition: opacity 180ms ease, transform 260ms ease;
+}
+
+.grando-product-image.loading {
+  opacity: 0;
+}
+
+.grando-product-image.loaded {
+  opacity: 1;
+}
+
+.grando-product-image-placeholder {
+  position: absolute;
+  inset: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 190, 95, 0.2);
+  border-radius: 8px;
+  color: rgba(0, 190, 95, 0.72);
+  background:
+    linear-gradient(135deg, rgba(0, 190, 95, 0.1), rgba(255, 255, 255, 0.03)),
+    #111616;
+  pointer-events: none;
+}
+
+.grando-product-image-placeholder svg {
+  width: 34px;
+  height: 34px;
 }
 
 .grando-product-image-fallback {

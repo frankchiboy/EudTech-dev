@@ -8,3 +8,6 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+
+[images]
+  remote_images = ["https://prod\\.comino\\.com/media/device/.*"]
