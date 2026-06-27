@@ -25,7 +25,7 @@
 2. Configurator title, description, canonical URL, and JSON-LD.
 3. Home page SEO metadata focused on AI GPU server and configurator searches.
 4. Footer internal links to high-intent configurator entry points.
-5. `sitemap.xml`, `image-sitemap.xml`, and `robots.txt` for crawler discovery.
+5. `sitemap.xml`, `sitemap-index.xml`, `image-sitemap.xml`, and `robots.txt` for crawler discovery.
 6. Static route HTML generation for `/`, `/configurator`, `/configurator/:pid`, `/solutions`, and `/solutions/*`, so crawlers can read route-specific metadata before JavaScript runs.
 7. Marketing attribution capture for `utm_*`, `gclid`, `fbclid`, LinkedIn click id, first landing page, and referrer.
 8. IndexNow key file and submit script for account-free URL discovery by participating search engines.
@@ -38,6 +38,8 @@
 15. Configurator structured data includes an `ItemList` of quote and product entry points.
 16. Vercel uses rewrites instead of legacy wildcard routes so generated static HTML can be served before SPA fallback.
 17. `image-sitemap.xml` lists configurator and solution product images for image discovery.
+18. `sitemap-index.xml` groups the standard sitemap and image sitemap for crawler discovery.
+19. `npm run verify:discovery` checks that solution URLs stay aligned across sitemap, RSS, llms.txt, image sitemap, sitemap index, and robots.txt.
 
 ## External Promotion Queue
 

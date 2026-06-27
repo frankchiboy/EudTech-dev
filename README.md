@@ -126,6 +126,7 @@ npm run dev      # 開發伺服器
 npm run build    # 建置生產版本
 npm run build:netlify  # Netlify 建置，含靜態 SEO route HTML
 npm run submit:indexnow  # 部署後提交 sitemap URL 到 IndexNow
+npm run verify:discovery  # 驗證 sitemap/RSS/llms/image sitemap URL 一致性
 npm run preview  # 預覽建置結果
 npm run lint     # 代碼檢查
 ```
@@ -161,6 +162,7 @@ Configurator 曝光主線集中在以下入口：
 | 檔案 | 用途 |
 |---|---|
 | `/sitemap.xml` | 搜尋引擎 URL 發現 |
+| `/sitemap-index.xml` | 一般 sitemap 與圖片 sitemap 索引 |
 | `/image-sitemap.xml` | 產品圖與配置器圖片發現 |
 | `/robots.txt` | crawler 規則與 sitemap 位置 |
 | `/llms.txt` | AI/LLM 工具可讀的 configurator 摘要 |

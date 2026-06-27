@@ -10,6 +10,18 @@ const siteSuffix = 'EudTech - 下一代AI解決方案';
 const defaultImage = `${siteOrigin}/grando-8gpu-server.jpg`;
 const googleSiteVerification = process.env.VITE_GOOGLE_SITE_VERIFICATION || '';
 const bingSiteVerification = process.env.VITE_BING_SITE_VERIFICATION || '';
+const taipeiDateParts = Object.fromEntries(
+  new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Taipei',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  })
+    .formatToParts(new Date())
+    .filter((part) => part.type !== 'literal')
+    .map((part) => [part.type, part.value])
+);
+const schemaDate = `${taipeiDateParts.year}-${taipeiDateParts.month}-${taipeiDateParts.day}`;
 
 const getZh = (value) => value.zh;
 const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
@@ -233,8 +245,8 @@ function routeSchema(route) {
           headline: route.serviceName || route.title,
           description: route.description,
           image: pageImage,
-          datePublished: '2026-06-28',
-          dateModified: '2026-06-28',
+          datePublished: schemaDate,
+          dateModified: schemaDate,
           author: { '@type': 'Organization', name: 'EudTech', url: siteOrigin },
           publisher: {
             '@type': 'Organization',

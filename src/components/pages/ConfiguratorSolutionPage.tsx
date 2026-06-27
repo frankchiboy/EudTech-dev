@@ -9,6 +9,7 @@ import {
   SITE_ORIGIN,
   getConfiguratorSeoPage
 } from '../../data/configuratorSeoPages';
+import { getSeoSchemaDate } from '../../utils/seo/schemaDate';
 
 const getText = (value: { en: string; zh: string }, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
 
@@ -33,6 +34,7 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
   const description = getText(page.description, isEnglish);
   const isArticlePage = page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist';
   const pageImage = `${SITE_ORIGIN}${page.image}`;
+  const schemaDate = getSeoSchemaDate();
 
   return [
     {
@@ -66,8 +68,8 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
           headline: name,
           description,
           image: pageImage,
-          datePublished: '2026-06-28',
-          dateModified: '2026-06-28',
+          datePublished: schemaDate,
+          dateModified: schemaDate,
           author: {
             '@type': 'Organization',
             name: 'EudTech',

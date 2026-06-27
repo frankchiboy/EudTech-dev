@@ -84,6 +84,23 @@ ${sitemapEntries
 </urlset>
 `;
 
+const sitemapIndexEntries = [
+  `${siteOrigin}/sitemap.xml`,
+  `${siteOrigin}/image-sitemap.xml`
+];
+const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapIndexEntries
+  .map(
+    (loc) => `  <sitemap>
+    <loc>${escapeXml(loc)}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>`
+  )
+  .join('\n')}
+</sitemapindex>
+`;
+
 const pageImageEntries = [
   {
     loc: `${siteOrigin}/`,
@@ -223,9 +240,11 @@ Users can configure GPU, CPU, RAM, storage, power supply, and networking options
 `;
 
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap);
+fs.writeFileSync(path.join(publicDir, 'sitemap-index.xml'), sitemapIndex);
 fs.writeFileSync(path.join(publicDir, 'image-sitemap.xml'), imageSitemap);
 fs.writeFileSync(path.join(publicDir, 'feed.xml'), feed);
 fs.writeFileSync(path.join(publicDir, 'llms.txt'), llms);
 
 console.log(`✓ Generated discovery files for ${solutionUrls.length + 1} configurator solution pages`);
+console.log(`✓ Generated sitemap index for ${sitemapIndexEntries.length} sitemaps`);
 console.log(`✓ Generated image sitemap for ${pageImageEntries.length} pages`);

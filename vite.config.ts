@@ -5,6 +5,24 @@ import { copyFileSync, existsSync, mkdirSync, renameSync, readdirSync } from 'fs
 
 // https://vitejs.dev/config/
 
+function formatTaipeiDate(date: Date) {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Asia/Taipei',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
+      .formatToParts(date)
+      .filter((part) => part.type !== 'literal')
+      .map((part) => [part.type, part.value])
+  );
+
+  return `${parts.year}-${parts.month}-${parts.day}`;
+}
+
+process.env.VITE_BUILD_DATE = process.env.VITE_BUILD_DATE || formatTaipeiDate(new Date());
+
 // 自動複製 _redirects 和 _headers 到 dist 目錄，並重命名 template 檔案
 function copyDeployFiles() {
   return {
@@ -70,7 +88,7 @@ function copyDeployFiles() {
                 try {
                   copyFileSync(srcPath, destPath);
                   console.log(`✓ Copied ${file.name} to dist/`);
-                } catch (err) {
+                } catch {
                   // 跳過無法複製的檔案
                 }
               }

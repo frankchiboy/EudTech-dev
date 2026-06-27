@@ -7,14 +7,15 @@
     "dev": "rm -rf node_modules/.vite && vite --force",
     "dev:full": "bash prepare-deploy.sh && vite --force",
     "dev:clean": "rm -rf node_modules/.vite dist && vite --force",
-    "build": "node scripts/generate-discovery-files.cjs && bash prepare-deploy.sh && vite build && node scripts/generate-static-seo-pages.cjs",
-    "build:vercel": "node scripts/generate-discovery-files.cjs && bash prepare-deploy.sh && vite build && node scripts/generate-static-seo-pages.cjs && node scripts/vercel-build.cjs",
+    "build": "node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && bash prepare-deploy.sh && vite build && node scripts/generate-static-seo-pages.cjs",
+    "build:vercel": "node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && bash prepare-deploy.sh && vite build && node scripts/generate-static-seo-pages.cjs && node scripts/vercel-build.cjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "postbuild": "node scripts/inject-version.cjs",
     "test-env": "vite preview --open public/test-environment.html",
-    "build:netlify": "node scripts/generate-discovery-files.cjs && vite build && node scripts/generate-static-seo-pages.cjs",
-    "submit:indexnow": "node scripts/generate-discovery-files.cjs && node scripts/submit-indexnow.cjs"
+    "build:netlify": "node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && vite build && node scripts/generate-static-seo-pages.cjs",
+    "submit:indexnow": "node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && node scripts/submit-indexnow.cjs",
+    "verify:discovery": "node scripts/verify-discovery.cjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
