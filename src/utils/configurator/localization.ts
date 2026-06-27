@@ -29,7 +29,7 @@ export const CONFIGURATOR_COPY = {
     quoteEmailIntro: 'A customer submitted a Grando configurator quote request.',
     quoteErrorFallback: 'Something went wrong. Please try again later.',
     emailServiceMissingConfig:
-      'Email delivery is not configured. Set VITE_EMAILJS_PUBLIC_KEY, VITE_EMAILJS_SERVICE_ID, and VITE_EMAILJS_TEMPLATE_ID before submitting real quote requests.',
+      'Email delivery is not configured. Set VITE_EMAIL_API_ENDPOINT or EmailJS variables before submitting real quote requests.',
     requiredField: 'Required',
     invalidEmail: 'Invalid email',
     optionalField: 'optional',
@@ -89,7 +89,7 @@ export const CONFIGURATOR_COPY = {
     quoteEmailIntro: '客戶送出 Grando 配置器報價需求。',
     quoteErrorFallback: '發生錯誤，請稍後再試。',
     emailServiceMissingConfig:
-      '尚未設定 EmailJS 寄信服務。請先設定 VITE_EMAILJS_PUBLIC_KEY、VITE_EMAILJS_SERVICE_ID、VITE_EMAILJS_TEMPLATE_ID，才能送出真實報價需求。',
+      '尚未設定寄信服務。請先設定 VITE_EMAIL_API_ENDPOINT 或 EmailJS 環境變數，才能送出真實報價需求。',
     requiredField: '必填',
     invalidEmail: 'Email 格式不正確',
     optionalField: '選填',

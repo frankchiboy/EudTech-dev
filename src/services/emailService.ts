@@ -27,6 +27,18 @@ function sleep(ms: number) {
   return new Promise((res) => setTimeout(res, ms));
 }
 
+function getDefaultApiEndpoint(): string | undefined {
+  if (!isBrowser()) return undefined;
+
+  const { hostname } = window.location;
+  const hasNetlifyFunctions =
+    hostname.endsWith('.netlify.app') ||
+    hostname === 'eudaemonia.tech' ||
+    hostname === 'www.eudaemonia.tech';
+
+  return hasNetlifyFunctions ? '/.netlify/functions/send-email' : undefined;
+}
+
 class EmailService {
   private isInitialized = false;
   private readonly publicKey?: string;
@@ -42,7 +54,7 @@ class EmailService {
     this.publicKey = env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
     this.serviceId = env.VITE_EMAILJS_SERVICE_ID as string | undefined;
     this.templateId = env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
-    this.apiEndpoint = env.VITE_EMAIL_API_ENDPOINT as string | undefined;
+    this.apiEndpoint = (env.VITE_EMAIL_API_ENDPOINT as string | undefined) || getDefaultApiEndpoint();
     this.emailJsEnabled = Boolean(this.publicKey && this.serviceId && this.templateId);
     this.enabled = Boolean(this.apiEndpoint || this.emailJsEnabled);
     // 在開發模式下若缺設定，採用模擬以避免阻塞流程；在生產環境缺設定則視為不可用並拋錯
