@@ -49,7 +49,7 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
           '@type': 'ListItem',
           position: 2,
           name: isEnglish ? 'Configurator Solutions' : '配置器解決方案',
-          item: `${SITE_ORIGIN}/configurator`
+          item: `${SITE_ORIGIN}/solutions`
         },
         {
           '@type': 'ListItem',
@@ -269,10 +269,10 @@ const ConfiguratorSolutionPage: React.FC = () => {
                 </p>
               </div>
               <Link
-                to="/configurator"
+                to="/solutions"
                 className="inline-flex items-center text-sm font-semibold text-emerald-600 hover:text-emerald-500 dark:text-emerald-400"
               >
-                {isEnglish ? 'View all systems' : '查看全部系統'}
+                {isEnglish ? 'View all entry points' : '查看全部入口'}
                 <ExternalLink className="ml-2 h-4 w-4" />
               </Link>
             </div>

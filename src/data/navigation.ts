@@ -16,6 +16,10 @@ export const getNavLinks = (isEnglish: boolean): NavLink[] => {
       href: '/configurator'
     },
     {
+      name: isEnglish ? 'Solutions' : '解決方案',
+      href: '/solutions'
+    },
+    {
       name: isEnglish ? 'Partner Brands' : '代理品牌',
       href: '#',
       isDropdown: true,

@@ -137,6 +137,7 @@ Configurator 曝光主線集中在以下入口：
 | 類型 | 路徑 |
 |---|---|
 | 配置器首頁 | `/configurator` |
+| 配置器解決方案總入口 | `/solutions` |
 | GRANDO 機架式工作站 | `/configurator/28` |
 | NVIDIA H200 GPU 伺服器 | `/configurator/29` |
 | GPU 伺服器報價 | `/solutions/gpu-server-quote` |
@@ -148,7 +149,7 @@ Configurator 曝光主線集中在以下入口：
 | GPU 伺服器 RFQ 檢核表 | `/solutions/gpu-server-rfq-checklist` |
 | 液冷 AI 伺服器採購指南 | `/solutions/liquid-cooling-ai-server-procurement` |
 
-建置時會先執行 `scripts/generate-discovery-files.cjs`，再執行 `scripts/generate-static-seo-pages.cjs`。`/solutions/*` 的頁面資料以 `src/data/configuratorSeoPages.ts` 為單一來源，會同步產生 sitemap、RSS、llms.txt 與 route 專屬靜態 HTML。這些 HTML 會直接包含 title、description、canonical、Open Graph、Twitter Card、JSON-LD，讓 crawler 在 JavaScript 執行前也能讀到正確內容。
+建置時會先執行 `scripts/generate-discovery-files.cjs`，再執行 `scripts/generate-static-seo-pages.cjs`。`/solutions` 與 `/solutions/*` 的頁面資料會同步產生 sitemap、RSS、llms.txt 與 route 專屬靜態 HTML。這些 HTML 會直接包含 title、description、canonical、Open Graph、Twitter Card、JSON-LD，讓 crawler 在 JavaScript 執行前也能讀到正確內容。
 
 公開發現檔案：
 

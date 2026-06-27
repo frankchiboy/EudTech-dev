@@ -30,10 +30,17 @@ const solutionUrls = CONFIGURATOR_SEO_PAGES.map((page) => ({
   description: getZh(page.description),
   priority: priorityBySlug[page.slug] || '0.85'
 }));
+const solutionHubUrl = {
+  loc: `${siteOrigin}/solutions`,
+  title: '配置器解決方案與 GPU 伺服器報價指南',
+  description: 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。',
+  priority: '0.93'
+};
 
 const sitemapEntries = [
   { loc: `${siteOrigin}/`, changefreq: 'weekly', priority: '1.0' },
   { loc: `${siteOrigin}/configurator`, changefreq: 'weekly', priority: '0.95' },
+  { loc: solutionHubUrl.loc, changefreq: 'weekly', priority: solutionHubUrl.priority },
   { loc: `${siteOrigin}/configurator/28`, changefreq: 'weekly', priority: '0.9' },
   { loc: `${siteOrigin}/configurator/29`, changefreq: 'weekly', priority: '0.9' },
   ...solutionUrls.map((entry) => ({ loc: entry.loc, changefreq: 'weekly', priority: entry.priority })),
@@ -55,7 +62,7 @@ ${sitemapEntries
 </urlset>
 `;
 
-const feedItems = solutionUrls
+const feedItems = [solutionHubUrl, ...solutionUrls]
   .map(
     (entry) => `    <item>
       <title>${escapeXml(entry.title)}</title>
@@ -71,8 +78,8 @@ const feed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>EudTech Configurator Updates</title>
-    <link>${siteOrigin}/configurator</link>
-    <description>AI GPU server, Comino Grando configurator, and workstation quote entry points from EudTech.</description>
+    <link>${siteOrigin}/solutions</link>
+    <description>AI GPU server, Comino Grando configurator, workstation quote, and procurement solution entry points from EudTech.</description>
     <language>zh-TW</language>
     <lastBuildDate>${pubDate}</lastBuildDate>
     <atom:link href="${siteOrigin}/feed.xml" rel="self" type="application/rss+xml" />
@@ -84,6 +91,7 @@ ${feedItems}
 const llmsPrimaryUrls = [
   ['Homepage', `${siteOrigin}/`],
   ['Comino Grando Configurator', `${siteOrigin}/configurator`],
+  ['Configurator Solutions Hub', `${siteOrigin}/solutions`],
   ['NVIDIA H200 GPU Server Configurator', `${siteOrigin}/configurator/29`],
   ['GRANDO Rackable Workstation Configurator', `${siteOrigin}/configurator/28`],
   ...solutionUrls.map((entry) => [entry.title, entry.loc])
@@ -128,4 +136,4 @@ fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(publicDir, 'feed.xml'), feed);
 fs.writeFileSync(path.join(publicDir, 'llms.txt'), llms);
 
-console.log(`✓ Generated discovery files for ${solutionUrls.length} configurator solution pages`);
+console.log(`✓ Generated discovery files for ${solutionUrls.length + 1} configurator solution pages`);

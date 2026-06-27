@@ -2,11 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>EudTech Configurator Updates</title>
-    <link>https://eudaemonia.tech/configurator</link>
-    <description>AI GPU server, Comino Grando configurator, and workstation quote entry points from EudTech.</description>
+    <link>https://eudaemonia.tech/solutions</link>
+    <description>AI GPU server, Comino Grando configurator, workstation quote, and procurement solution entry points from EudTech.</description>
     <language>zh-TW</language>
     <lastBuildDate>Sun, 28 Jun 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://eudaemonia.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>配置器解決方案與 GPU 伺服器報價指南</title>
+      <link>https://eudaemonia.tech/solutions</link>
+      <guid>https://eudaemonia.tech/solutions</guid>
+      <pubDate>Sun, 28 Jun 2026 00:00:00 +0800</pubDate>
+      <description>EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。</description>
+    </item>
     <item>
       <title>NVIDIA H200 GPU 伺服器配置器</title>
       <link>https://eudaemonia.tech/solutions/nvidia-h200-server</link>

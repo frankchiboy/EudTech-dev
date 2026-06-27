@@ -23,6 +23,48 @@ const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
   kind: page.kind || 'solution',
   faq: page.faqs.map((faq) => [getZh(faq.question), getZh(faq.answer)])
 }));
+const solutionHubRoute = {
+  path: '/solutions',
+  title: '配置器解決方案與 GPU 伺服器報價指南',
+  description: 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。',
+  keywords: 'GPU 伺服器報價, AI 伺服器報價, 配置器解決方案, NVIDIA H200 伺服器, RTX PRO 6000 工作站, GPU 伺服器 RFQ, 液冷 AI 伺服器',
+  image: defaultImage,
+  imageAlt: 'EudTech GPU 伺服器報價配置器解決方案',
+  kind: 'collection',
+  schema: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '首頁', item: siteOrigin },
+        { '@type': 'ListItem', position: 2, name: '配置器解決方案', item: `${siteOrigin}/solutions` }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: '配置器解決方案',
+      description: 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。',
+      url: `${siteOrigin}/solutions`,
+      publisher: {
+        '@type': 'Organization',
+        name: 'EudTech',
+        url: siteOrigin,
+        email: 'info@eudaemonia.tech'
+      },
+      mainEntity: {
+        '@type': 'ItemList',
+        name: '配置器解決方案頁面',
+        itemListElement: CONFIGURATOR_SEO_PAGES.map((page, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: getZh(page.title),
+          url: `${siteOrigin}/solutions/${page.slug}`
+        }))
+      }
+    }
+  ]
+};
 
 const routes = [
   {
@@ -78,10 +120,11 @@ const routes = [
         '@type': 'ItemList',
         name: 'EudTech 配置器入口',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'GPU 伺服器報價配置器', url: `${siteOrigin}/solutions/gpu-server-quote` },
-          { '@type': 'ListItem', position: 2, name: 'NVIDIA H200 GPU 伺服器配置器', url: `${siteOrigin}/solutions/nvidia-h200-server` },
-          { '@type': 'ListItem', position: 3, name: 'RTX PRO 6000 工作站配置器', url: `${siteOrigin}/solutions/rtx-pro-6000-workstation` },
-          { '@type': 'ListItem', position: 4, name: '液冷 GPU 伺服器採購', url: `${siteOrigin}/solutions/liquid-cooling-ai-server-procurement` }
+          { '@type': 'ListItem', position: 1, name: '配置器解決方案總入口', url: `${siteOrigin}/solutions` },
+          { '@type': 'ListItem', position: 2, name: 'GPU 伺服器報價配置器', url: `${siteOrigin}/solutions/gpu-server-quote` },
+          { '@type': 'ListItem', position: 3, name: 'NVIDIA H200 GPU 伺服器配置器', url: `${siteOrigin}/solutions/nvidia-h200-server` },
+          { '@type': 'ListItem', position: 4, name: 'RTX PRO 6000 工作站配置器', url: `${siteOrigin}/solutions/rtx-pro-6000-workstation` },
+          { '@type': 'ListItem', position: 5, name: '液冷 GPU 伺服器採購', url: `${siteOrigin}/solutions/liquid-cooling-ai-server-procurement` }
         ]
       },
       {
@@ -149,7 +192,8 @@ const routes = [
         ]
       }
     ]
-  }
+  },
+  solutionHubRoute
 ].concat(solutionRoutes);
 
 function escapeHtml(value) {
@@ -178,7 +222,7 @@ function routeSchema(route) {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: '首頁', item: siteOrigin },
-        { '@type': 'ListItem', position: 2, name: '配置器解決方案', item: `${siteOrigin}/configurator` },
+        { '@type': 'ListItem', position: 2, name: '配置器解決方案', item: `${siteOrigin}/solutions` },
         { '@type': 'ListItem', position: 3, name: route.serviceName || route.title, item: url }
       ]
     },

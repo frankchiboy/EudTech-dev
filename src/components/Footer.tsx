@@ -35,11 +35,12 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
     company: {
       title: isEnglish ? 'Solutions' : '解決方案',
       links: [
+        { name: isEnglish ? 'Configurator Solutions' : '配置器解決方案', href: '/solutions', active: true },
         { name: isEnglish ? 'AI Servers' : 'AI 伺服器', href: '#eudtech-products', active: true },
         { name: isEnglish ? 'GPU Server Quote' : 'GPU 伺服器報價', href: '/solutions/gpu-server-quote', active: true },
         { name: isEnglish ? 'NVIDIA H200 Server' : 'NVIDIA H200 伺服器', href: '/solutions/nvidia-h200-server', active: true },
         { name: isEnglish ? 'H200 vs RTX PRO' : 'H200 與 RTX PRO 比較', href: '/solutions/h200-vs-rtx-pro-6000', active: true },
-        { name: 'Comino', href: '#comino-brand', active: true },
+        { name: isEnglish ? 'AI Workstation Taiwan' : '台灣 AI 工作站', href: '/solutions/ai-workstation-taiwan', active: true },
       ],
     },
     products: {
@@ -47,6 +48,7 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
       links: [
         { name: isEnglish ? 'Comino Configurator' : 'Comino 配置器', href: '/configurator', active: true },
         { name: isEnglish ? 'RTX PRO Workstation' : 'RTX PRO 工作站', href: '/solutions/rtx-pro-6000-workstation', active: true },
+        { name: isEnglish ? 'Liquid-Cooled GPU Server' : '液冷 GPU 伺服器', href: '/solutions/liquid-cooled-gpu-server', active: true },
         { name: isEnglish ? 'GPU Server RFQ Checklist' : 'GPU 伺服器 RFQ 檢核表', href: '/solutions/gpu-server-rfq-checklist', active: true },
         { name: isEnglish ? 'Liquid-Cooling AI Server' : '液冷 AI 伺服器採購', href: '/solutions/liquid-cooling-ai-server-procurement', active: true },
         { name: isEnglish ? 'Contact Sales' : '聯繫銷售', href: '#contact', active: true },

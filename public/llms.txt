@@ -6,6 +6,7 @@ EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled 
 
 - Homepage: https://eudaemonia.tech/
 - Comino Grando Configurator: https://eudaemonia.tech/configurator
+- Configurator Solutions Hub: https://eudaemonia.tech/solutions
 - NVIDIA H200 GPU Server Configurator: https://eudaemonia.tech/configurator/29
 - GRANDO Rackable Workstation Configurator: https://eudaemonia.tech/configurator/28
 - NVIDIA H200 GPU 伺服器配置器: https://eudaemonia.tech/solutions/nvidia-h200-server

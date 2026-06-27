@@ -183,24 +183,30 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
         {
           '@type': 'ListItem',
           position: 1,
+          name: isEnglish ? 'Configurator solutions hub' : '配置器解決方案總入口',
+          url: `${SITE_ORIGIN}/solutions`
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
           name: isEnglish ? 'GPU server quote configurator' : 'GPU 伺服器報價配置器',
           url: `${SITE_ORIGIN}/solutions/gpu-server-quote`
         },
         {
           '@type': 'ListItem',
-          position: 2,
+          position: 3,
           name: isEnglish ? 'NVIDIA H200 GPU server configurator' : 'NVIDIA H200 GPU 伺服器配置器',
           url: `${SITE_ORIGIN}/solutions/nvidia-h200-server`
         },
         {
           '@type': 'ListItem',
-          position: 3,
+          position: 4,
           name: isEnglish ? 'RTX PRO 6000 workstation configurator' : 'RTX PRO 6000 工作站配置器',
           url: `${SITE_ORIGIN}/solutions/rtx-pro-6000-workstation`
         },
         {
           '@type': 'ListItem',
-          position: 4,
+          position: 5,
           name: isEnglish ? 'Liquid-cooled GPU server procurement' : '液冷 GPU 伺服器採購',
           url: `${SITE_ORIGIN}/solutions/liquid-cooling-ai-server-procurement`
         }

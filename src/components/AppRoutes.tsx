@@ -16,6 +16,7 @@ import AtomicComponentsDemo from './demo/AtomicComponentsDemo';
 import GrandoConfigurator from './configurator/GrandoConfigurator';
 import SEOHead from './common/SEOHead';
 import ConfiguratorSolutionPage from './pages/ConfiguratorSolutionPage';
+import ConfiguratorSolutionsHubPage from './pages/ConfiguratorSolutionsHubPage';
 import MarketingEvents from './analytics/MarketingEvents';
 import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
 
@@ -93,6 +94,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/configurator" element={<GrandoConfigurator />} />
             <Route path="/configurator/:pid" element={<GrandoConfigurator />} />
+            <Route path="/solutions" element={<ConfiguratorSolutionsHubPage />} />
             <Route path="/solutions/:slug" element={<ConfiguratorSolutionPage />} />
             <Route path="/components-demo" element={<AtomicComponentsDemo />} />
             <Route path="/products/:id" element={
