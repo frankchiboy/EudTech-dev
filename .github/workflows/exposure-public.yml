@@ -54,6 +54,12 @@ jobs:
           set -o pipefail
           npm run verify:promotion-assets | tee reports/verify-promotion-assets.log
 
+      - name: Audit exposure readiness
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run audit:exposure-readiness | tee reports/audit-exposure-readiness.log
+
       - name: Verify live exposure
         shell: bash
         run: |

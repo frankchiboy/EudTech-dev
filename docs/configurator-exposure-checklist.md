@@ -54,6 +54,8 @@
 31. Netlify Scheduled Function `exposure-scheduled` submits the production sitemap URLs to IndexNow weekly from the deployed site.
 32. `npm run generate:promotion-assets` creates Google Ads keyword rows, LinkedIn organic UTM links, and Email outreach UTM links from the same configurator SEO source data.
 33. `npm run verify:promotion-assets` checks that promotion assets stay synchronized with the current configurator landing pages.
+34. `npm run audit:exposure-readiness` checks search discovery, campaign assets, conversion events, automation, and external tracking gaps without failing CI on missing platform IDs.
+35. `npm run audit:exposure-readiness:strict` turns missing GA/GTM/Google Ads/LinkedIn/quote-email environment variables into a failure for launch-readiness gates.
 
 ## External Promotion Queue
 
