@@ -18,6 +18,8 @@
     "submit:search-console": "node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && node scripts/submit-google-search-console.cjs",
     "inspect:search-console": "node scripts/inspect-google-search-console.cjs",
     "report:search-console": "node scripts/report-google-search-console.cjs",
+    "verify:live-exposure": "node scripts/verify-live-exposure.cjs",
+    "exposure:postdeploy": "npm run verify:live-exposure && npm run inspect:search-console -- --include-aliases && npm run report:search-console -- --days=90 --row-limit=50",
     "verify:discovery": "node scripts/verify-discovery.cjs",
     "verify:seo-html": "node scripts/verify-static-seo.cjs"
   },

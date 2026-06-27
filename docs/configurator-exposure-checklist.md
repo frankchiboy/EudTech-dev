@@ -46,6 +46,8 @@
 23. `npm run inspect:search-console` checks high-intent configurator canonical URL index status through the URL Inspection API.
 24. Page URL signals are normalized to the production trailing-slash form across canonical tags, sitemap URLs, image sitemap page locs, RSS links, LLM discovery links, Open Graph URLs, and JSON-LD URLs.
 25. `npm run report:search-console` reads Search Console query, page, click, impression, CTR, and average-position data for configurator and solutions URLs.
+26. `npm run verify:live-exposure` validates production robots, sitemaps, RSS, llms.txt, redirects, canonical tags, Open Graph URLs, and JSON-LD for configurator and solution pages.
+27. `npm run exposure:postdeploy` runs live exposure verification, URL Inspection, and Search Analytics reporting after deployment.
 
 ## External Promotion Queue
 
@@ -57,6 +59,7 @@
 6. Submit the current sitemap URLs through Google Search Console after production deploys with `npm run submit:search-console`.
 7. Monitor high-intent canonical URL index status with `npm run inspect:search-console`.
 8. Use `npm run report:search-console` to decide whether to add deeper pages such as Supermicro comparison, power planning, rack deployment, or Taiwan public procurement wording.
+9. Run `npm run exposure:postdeploy` after production deploys to catch live crawler-readiness regressions.
 
 ## Tracking Readiness
 
