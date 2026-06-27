@@ -58,12 +58,10 @@ export const CONFIGURATOR_COPY = {
     pcieSlotsPlanned: 'PCIe slots planned',
     totalGpuMemory: 'Total GPU Memory',
     nic: 'Network Interface Controller',
-    estimatedPrice: 'Estimated Price',
     quoteSubject: 'Grando Configurator Request',
     quoteRequest: 'Configurator request',
     configurationLink: 'Configuration link',
     model: 'Model',
-    priceEstimate: 'Price estimate',
     systemFallback: 'Grando system',
     loadErrorFallback: 'Something went wrong.'
   },
@@ -120,12 +118,10 @@ export const CONFIGURATOR_COPY = {
     pcieSlotsPlanned: '個 PCIe 插槽已規劃',
     totalGpuMemory: 'GPU 總記憶體',
     nic: '網路介面控制器',
-    estimatedPrice: '預估價格',
     quoteSubject: 'Grando 配置器報價需求',
     quoteRequest: '配置需求',
     configurationLink: '配置連結',
     model: '機型',
-    priceEstimate: '預估價格',
     systemFallback: 'Grando 系統',
     loadErrorFallback: '發生錯誤，請稍後再試。'
   }

@@ -386,7 +386,6 @@ const OptionSection = ({
   onQuantityChange
 }: OptionSectionProps) => {
   const copy = CONFIGURATOR_COPY[language];
-  const numberLocale = getConfiguratorNumberLocale(language);
   const filterValues = useMemo(() => {
     const values = options
       .map((option) => getOptionFilterValue(moduleKey, option))
@@ -496,7 +495,6 @@ const OptionSection = ({
                   onClick={() => onSelect(moduleKey, option)}
                 >
                   <span>{option.name}</span>
-                  {option.price ? <strong>+ {option.price.toLocaleString(numberLocale)}</strong> : null}
                 </button>
               );
             })}
@@ -618,7 +616,6 @@ const QuotePanel = ({
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [submitError, setSubmitError] = useState('');
   const copy = CONFIGURATOR_COPY[language];
-  const numberLocale = getConfiguratorNumberLocale(language);
   const modelName = translateConfiguratorModelName(getConfiguratorModelName(spec), language);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   const quoteSummary = [
@@ -627,7 +624,6 @@ const QuotePanel = ({
     `GPU: ${spec.gpu?.total_quantity || 1}x ${spec.gpu?.name || ''}`,
     `CPU: ${formatLocalizedSpecValue('cpu', spec.cpu, language)}`,
     `RAM: ${formatLocalizedSpecValue('ram', spec.ram, language)}`,
-    `${copy.priceEstimate}: ${spec.price?.toLocaleString(numberLocale) || 0}`,
     `${copy.configurationLink}: ${currentUrl}`
   ].join('\n');
   const quoteSubject = `${copy.quoteSubject} - ${modelName}`;
@@ -911,7 +907,6 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
   const [openModule, setOpenModule] = useState<ConfiguratorModule>('gpu');
   const copy = CONFIGURATOR_COPY[language];
   const moduleLabels = CONFIGURATOR_MODULE_LABELS[language];
-  const numberLocale = getConfiguratorNumberLocale(language);
 
   const loadDevice = useCallback(async () => {
     setLoading(true);
@@ -1049,11 +1044,6 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
                   language={language}
                 />
               ))}
-            </div>
-
-            <div className="grando-price">
-              <span>{copy.estimatedPrice}</span>
-              <strong>{Number(spec.price || 0).toLocaleString(numberLocale)}</strong>
             </div>
 
             <QuotePanel spec={spec} validation={validation} requestMode={requestMode} language={language} />

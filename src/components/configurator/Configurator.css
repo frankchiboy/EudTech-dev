@@ -586,12 +586,6 @@
   background: #00be5f;
 }
 
-.grando-option strong {
-  margin-left: 12px;
-  color: #c9ffdf;
-  font-size: 0.75rem;
-}
-
 .grando-spec {
   scroll-margin-top: 82px;
   padding: 22px;
@@ -663,27 +657,6 @@
   color: rgba(255, 255, 255, 0.62);
   font-size: 0.73rem;
   font-weight: 600;
-}
-
-.grando-price {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  padding-top: 16px;
-}
-
-.grando-price span {
-  color: rgba(255, 255, 255, 0.66);
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.grando-price strong {
-  color: #00be5f;
-  font-size: 1.65rem;
-  line-height: 1;
 }
 
 .grando-quote-panel {

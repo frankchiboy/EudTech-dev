@@ -5,6 +5,7 @@ interface EmailServiceEnv {
   VITE_EMAILJS_PUBLIC_KEY?: string;
   VITE_EMAILJS_SERVICE_ID?: string;
   VITE_EMAILJS_TEMPLATE_ID?: string;
+  VITE_EMAIL_API_ENDPOINT?: string;
   DEV?: boolean;
 }
 
@@ -31,7 +32,9 @@ class EmailService {
   private readonly publicKey?: string;
   private readonly serviceId?: string;
   private readonly templateId?: string;
+  private readonly apiEndpoint?: string;
   private readonly enabled: boolean;
+  private readonly emailJsEnabled: boolean;
   private readonly simulateOnMissingConfig: boolean;
 
   constructor() {
@@ -39,11 +42,13 @@ class EmailService {
     this.publicKey = env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
     this.serviceId = env.VITE_EMAILJS_SERVICE_ID as string | undefined;
     this.templateId = env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
-    this.enabled = Boolean(this.publicKey && this.serviceId && this.templateId);
+    this.apiEndpoint = env.VITE_EMAIL_API_ENDPOINT as string | undefined;
+    this.emailJsEnabled = Boolean(this.publicKey && this.serviceId && this.templateId);
+    this.enabled = Boolean(this.apiEndpoint || this.emailJsEnabled);
     // 在開發模式下若缺設定，採用模擬以避免阻塞流程；在生產環境缺設定則視為不可用並拋錯
     this.simulateOnMissingConfig = !this.enabled && Boolean(env?.DEV);
 
-    if (isBrowser() && this.enabled) {
+    if (isBrowser() && this.emailJsEnabled) {
       this.init().catch((error) => {
         console.warn('EmailJS 初始化時發生警告:', error);
       });
@@ -66,7 +71,7 @@ class EmailService {
       console.warn('EmailJS 需要瀏覽器環境，當前環境不支持');
       return;
     }
-    if (!this.enabled) {
+    if (!this.emailJsEnabled) {
       if (this.simulateOnMissingConfig) {
         console.info('[EmailService] 模擬模式啟用：未設定 EmailJS 環境變數');
         return;
@@ -103,7 +108,24 @@ class EmailService {
   async sendForm(form: HTMLFormElement): Promise<void> {
     this.ensureConfigOrSimulate();
 
-    if (!this.enabled) {
+    if (this.apiEndpoint) {
+      const formData = new FormData(form);
+      await this.sendEmail({
+        firstName: String(formData.get('firstName') || ''),
+        lastName: String(formData.get('lastName') || ''),
+        email: String(formData.get('email') || ''),
+        phone: String(formData.get('phone') || ''),
+        company: String(formData.get('company') || ''),
+        country: String(formData.get('country') || ''),
+        subject: String(formData.get('subject') || ''),
+        toEmail: String(formData.get('toEmail') || ''),
+        message: String(formData.get('message') || ''),
+        privacy: true
+      });
+      return;
+    }
+
+    if (!this.emailJsEnabled) {
       // 模擬模式：直接通過
       console.info('[EmailService] 模擬 sendForm 成功');
       return;
@@ -138,7 +160,32 @@ class EmailService {
 
     this.ensureConfigOrSimulate();
 
-    if (!this.enabled) {
+    if (this.apiEndpoint) {
+      const response = await this.withRetry(() =>
+        fetch(this.apiEndpoint!, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+      );
+      if (!response.ok) {
+        let message = '郵件發送失敗，請稍後重試';
+        try {
+          const payload = (await response.json()) as { error?: string };
+          if (payload.error) {
+            message = payload.error;
+          }
+        } catch {
+          // Keep the fallback message when the response is not JSON.
+        }
+        throw new Error(message);
+      }
+      return;
+    }
+
+    if (!this.emailJsEnabled) {
       // 模擬模式：延遲後視為成功
       console.info('[EmailService] 模擬 sendEmail 成功:', {
         name: `${data.firstName} ${data.lastName}`,

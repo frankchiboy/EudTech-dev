@@ -35,3 +35,25 @@
 9. `你還要重製取得報價按鈕按下去之後的效果與程序 送出表單後要寄到info@eudaemonia.tech`
 
 10. `add, commit, push`
+
+## 2026-06-27 - Grando Quote Delivery Verification
+
+1. `有測試成功嗎 我沒看到詢價信件`
+
+2. `netflext 沒自動部署嗎`
+
+3. `這是測試站 隨便部署到一個netlify臨時站`
+
+4. `繼續`
+
+## 2026-06-27 - Grando Price Display Alignment
+
+1. `我們的configurator和原廠的configurator為什麼多出了預估價格`
+
+2. `研究原廠的預估價格是做什麼用的`
+
+3. `改成跟原廠的一樣`
+
+## 2026-06-27 - Push EudTech Main
+
+1. `push到eudtech的main`
