@@ -72,9 +72,10 @@ type DeviceSummary = ConfiguratorDevice & { options: ConfiguratorOption[] };
 const QUOTE_RECIPIENT_EMAIL = 'info@eudaemonia.tech';
 const MOBILE_CONFIGURATOR_MEDIA_QUERY = '(max-width: 767px)';
 const MOBILE_CONFIGURATOR_IMAGE_WIDTH = 750;
-const DESKTOP_CONFIGURATOR_IMAGE_WIDTH = 1920;
+const CONFIGURATOR_BACKGROUND_WIDTHS = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
+const DESKTOP_CONFIGURATOR_IMAGE_WIDTH = 3840;
 const MOBILE_PRODUCT_IMAGE_WIDTH = 480;
-const DESKTOP_PRODUCT_IMAGE_WIDTH = 1600;
+const DESKTOP_PRODUCT_IMAGE_WIDTH = 960;
 const MOBILE_PRODUCT_IMAGE_QUALITY = 68;
 const DESKTOP_PRODUCT_IMAGE_QUALITY = 80;
 const BACKGROUND_IMAGE_QUALITY = 75;
@@ -251,6 +252,16 @@ const getConfiguratorBackgroundUrl = (url: string, isMobile: boolean) => {
     isMobile ? MOBILE_CONFIGURATOR_IMAGE_WIDTH : DESKTOP_CONFIGURATOR_IMAGE_WIDTH,
     BACKGROUND_IMAGE_QUALITY
   );
+};
+
+const getConfiguratorBackgroundSrcSet = (url: string) => {
+  if (!url.startsWith(`${GRANDO_CONFIGURATOR_BASE_URL}/image/`) || !canUseNetlifyImageCdn()) {
+    return undefined;
+  }
+
+  return CONFIGURATOR_BACKGROUND_WIDTHS.map((width) => (
+    `${getNetlifyImageUrl(url, width, BACKGROUND_IMAGE_QUALITY)} ${width}w`
+  )).join(', ');
 };
 
 const getProductImageUrl = (url: string, isMobile: boolean) => {
@@ -700,6 +711,8 @@ const BackgroundSlider = ({
         >
           <img
             src={getConfiguratorBackgroundUrl(image.url, isMobile)}
+            srcSet={isMobile ? undefined : getConfiguratorBackgroundSrcSet(image.url)}
+            sizes={isMobile ? undefined : '100vw'}
             alt=""
             loading={activeIndex === index ? 'eager' : 'lazy'}
             decoding="async"
