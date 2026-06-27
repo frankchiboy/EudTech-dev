@@ -1,0 +1,11 @@
+.git
+.netlify
+node_modules
+dist
+dist-ssr
+reports
+tmp
+reconstruction
+.netlify-functions-build-test
+*.log
+.DS_Store
