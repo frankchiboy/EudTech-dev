@@ -260,6 +260,8 @@ function injectHead(baseHtml, route) {
     `<meta data-rh="true" property="og:description" content="${escapeHtml(route.description)}">`,
     `<meta data-rh="true" property="og:image" content="${escapeHtml(image)}">`,
     `<meta data-rh="true" property="og:image:alt" content="${escapeHtml(route.title)}">`,
+    '<meta data-rh="true" property="og:image:width" content="1200">',
+    '<meta data-rh="true" property="og:image:height" content="630">',
     `<meta data-rh="true" property="og:url" content="${escapeHtml(url)}">`,
     '<meta data-rh="true" property="og:type" content="website">',
     '<meta data-rh="true" property="og:site_name" content="EudTech">',
@@ -268,6 +270,7 @@ function injectHead(baseHtml, route) {
     `<meta data-rh="true" name="twitter:title" content="${escapeHtml(title)}">`,
     `<meta data-rh="true" name="twitter:description" content="${escapeHtml(route.description)}">`,
     `<meta data-rh="true" name="twitter:image" content="${escapeHtml(image)}">`,
+    `<meta data-rh="true" name="twitter:image:alt" content="${escapeHtml(route.title)}">`,
     `<meta data-rh="true" name="twitter:url" content="${escapeHtml(url)}">`,
     `<link data-rh="true" rel="canonical" href="${escapeHtml(url)}">`,
     ...verificationTags(),
@@ -277,7 +280,7 @@ function injectHead(baseHtml, route) {
   return baseHtml
     .replace(/<html lang="[^"]*"/, '<html lang="zh-TW"')
     .replace(/\s*<title>[\s\S]*?<\/title>/, '')
-    .replace(/\s*<meta[^>]+(?:name|property)="(?:description|keywords|author|robots|og:title|og:description|og:image|og:image:alt|og:url|og:type|og:site_name|og:locale|twitter:card|twitter:title|twitter:description|twitter:image|twitter:url)"[^>]*>/g, '')
+    .replace(/\s*<meta[^>]+(?:name|property)="(?:description|keywords|author|robots|og:title|og:description|og:image|og:image:alt|og:image:width|og:image:height|og:url|og:type|og:site_name|og:locale|twitter:card|twitter:title|twitter:description|twitter:image|twitter:image:alt|twitter:url)"[^>]*>/g, '')
     .replace(/\s*<link[^>]+rel="canonical"[^>]*>/g, '')
     .replace(/\s*<script[^>]+type="application\/ld\+json"[\s\S]*?<\/script>/g, '')
     .replace('</head>', `    ${managedHead}\n  </head>`);

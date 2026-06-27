@@ -11,6 +11,7 @@ export type MarketingAttribution = {
   gclid?: string;
   fbclid?: string;
   liFatId?: string;
+  msclkid?: string;
 };
 
 const ATTRIBUTION_STORAGE_KEY = 'eudtech_marketing_attribution';
@@ -23,7 +24,8 @@ const queryKeyMap: Record<string, keyof MarketingAttribution> = {
   utm_content: 'utmContent',
   gclid: 'gclid',
   fbclid: 'fbclid',
-  li_fat_id: 'liFatId'
+  li_fat_id: 'liFatId',
+  msclkid: 'msclkid'
 };
 
 const isBrowser = () => typeof window !== 'undefined' && typeof window.sessionStorage !== 'undefined';
@@ -94,5 +96,6 @@ export const getMarketingAttributionEntries = (attribution: MarketingAttribution
     ['UTM content', attribution.utmContent],
     ['Google click id', attribution.gclid],
     ['Meta click id', attribution.fbclid],
-    ['LinkedIn click id', attribution.liFatId]
+    ['LinkedIn click id', attribution.liFatId],
+    ['Microsoft click id', attribution.msclkid]
   ].filter((entry): entry is [string, string] => Boolean(entry[1]));

@@ -167,7 +167,13 @@ const MarketingEvents: React.FC = () => {
       referrer: attribution.referrer,
       utm_source: attribution.utmSource,
       utm_medium: attribution.utmMedium,
-      utm_campaign: attribution.utmCampaign
+      utm_campaign: attribution.utmCampaign,
+      utm_term: attribution.utmTerm,
+      utm_content: attribution.utmContent,
+      gclid: attribution.gclid,
+      fbclid: attribution.fbclid,
+      li_fat_id: attribution.liFatId,
+      msclkid: attribution.msclkid
     });
     const timer = window.setTimeout(sendPageView, 0);
     return () => window.clearTimeout(timer);

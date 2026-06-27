@@ -21,6 +21,8 @@
 7. Marketing attribution capture for `utm_*`, `gclid`, `fbclid`, LinkedIn click id, first landing page, and referrer.
 8. IndexNow key file and submit script for account-free URL discovery by participating search engines.
 9. `llms.txt` with canonical configurator URLs and high-intent product topics for AI tools.
+10. Vercel and generic production builds run the same static SEO route generation as Netlify.
+11. RSS feed at `/feed.xml` for configurator solution discovery.
 
 ## External Promotion Queue
 
@@ -38,6 +40,7 @@
 3. Use the `configurator_lead_intent` event in GTM/GA4. Key actions are `configure`, `quote`, `quote_form_open`, `share`, `quote_submit_success`, and `quote_submit_error`.
 4. Treat `quote_submit_success` as the primary conversion event.
 5. Quote emails include marketing attribution fields when URL parameters or referrers are available.
+6. Attribution tracking includes `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `fbclid`, `li_fat_id`, and `msclkid`.
 
 ## Current External Permission Gap
 

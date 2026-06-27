@@ -8,6 +8,7 @@ interface SEOHeadProps {
   description?: string;
   keywords?: string;
   image?: string;
+  imageAlt?: string;
   url?: string;
   type?: string;
   isEnglish?: boolean;
@@ -27,6 +28,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   description,
   keywords,
   image = '/logo.svg',
+  imageAlt,
   url = window.location.href,
   type = 'website',
   isEnglish = false,
@@ -63,7 +65,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description || defaultDescription} />
       <meta property="og:image" content={imageUrl} />
-      <meta property="og:image:alt" content={title || defaultTitle} />
+      <meta property="og:image:alt" content={imageAlt || title || defaultTitle} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="EudTech" />
@@ -74,6 +78,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description || defaultDescription} />
       <meta name="twitter:image" content={imageUrl} />
+      <meta name="twitter:image:alt" content={imageAlt || title || defaultTitle} />
       <meta name="twitter:url" content={canonicalUrl} />
       
       {/* Additional SEO */}

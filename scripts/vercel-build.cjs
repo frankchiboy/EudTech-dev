@@ -2,15 +2,17 @@
 const fs = require('fs');
 const path = require('path');
 
+const rootDir = path.resolve(__dirname, '..');
+const distDir = path.resolve(rootDir, 'dist');
+
 // 檢查是否在 Vercel 環境中
 if (process.env.VERCEL) {
   console.log('Running in Vercel environment, applying platform-specific settings...');
   
   // 複製 _redirects 和 _headers 到 dist 目錄
   try {
-    const redirectsPath = path.resolve(__dirname, '_redirects');
-    const headersPath = path.resolve(__dirname, '_headers');
-    const distDir = path.resolve(__dirname, 'dist');
+    const redirectsPath = path.resolve(rootDir, '_redirects');
+    const headersPath = path.resolve(rootDir, '_headers');
     
     // 確保 dist 目錄存在
     if (!fs.existsSync(distDir)) {
@@ -42,7 +44,7 @@ if (process.env.VERCEL) {
 
 // 將版本號注入到 index.html
 const version = Date.now().toString();
-const indexPath = path.resolve(__dirname, 'dist/index.html');
+const indexPath = path.resolve(distDir, 'index.html');
 
 if (fs.existsSync(indexPath)) {
   let html = fs.readFileSync(indexPath, 'utf-8');

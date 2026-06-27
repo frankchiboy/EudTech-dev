@@ -124,9 +124,59 @@ transitions.scale({ easing: 'ease-out' })
 ```bash
 npm run dev      # 開發伺服器
 npm run build    # 建置生產版本
+npm run build:netlify  # Netlify 建置，含靜態 SEO route HTML
+npm run submit:indexnow  # 部署後提交 sitemap URL 到 IndexNow
 npm run preview  # 預覽建置結果
 npm run lint     # 代碼檢查
 ```
+
+## 🔎 Configurator 曝光與 SEO
+
+Configurator 曝光主線集中在以下入口：
+
+| 類型 | 路徑 |
+|---|---|
+| 配置器首頁 | `/configurator` |
+| GRANDO 機架式工作站 | `/configurator/28` |
+| NVIDIA H200 GPU 伺服器 | `/configurator/29` |
+| GPU 伺服器報價 | `/solutions/gpu-server-quote` |
+| NVIDIA H200 伺服器 | `/solutions/nvidia-h200-server` |
+| RTX PRO 6000 工作站 | `/solutions/rtx-pro-6000-workstation` |
+| 台灣 AI 工作站 | `/solutions/ai-workstation-taiwan` |
+| 液冷 GPU 伺服器 | `/solutions/liquid-cooled-gpu-server` |
+
+建置時會執行 `scripts/generate-static-seo-pages.cjs`，為 `/`、`/configurator*`、`/solutions/*` 產生 route 專屬靜態 HTML。這些 HTML 會直接包含 title、description、canonical、Open Graph、Twitter Card、JSON-LD，讓 crawler 在 JavaScript 執行前也能讀到正確內容。
+
+公開發現檔案：
+
+| 檔案 | 用途 |
+|---|---|
+| `/sitemap.xml` | 搜尋引擎 URL 發現 |
+| `/robots.txt` | crawler 規則與 sitemap 位置 |
+| `/llms.txt` | AI/LLM 工具可讀的 configurator 摘要 |
+| `/feed.xml` | Configurator solution RSS feed |
+| `/d6fd206f713cd936d87b58a6010aa751.txt` | IndexNow key 驗證 |
+
+部署到正式站後執行：
+
+```bash
+npm run submit:indexnow
+```
+
+此指令會讀取 `public/sitemap.xml`，向 IndexNow 提交 `https://eudaemonia.tech` 的正式 URL 清單。提交前可用 `npm run submit:indexnow -- --dry-run` 檢查 payload。
+
+行銷追蹤可用環境變數：
+
+| 變數 | 用途 |
+|---|---|
+| `VITE_GTM_ID` | Google Tag Manager |
+| `VITE_GA_MEASUREMENT_ID` | GA4 page view 與事件 |
+| `VITE_GOOGLE_ADS_ID` | Google Ads tag |
+| `VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL` | 詢價成功轉換 |
+| `VITE_LINKEDIN_PARTNER_ID` | LinkedIn Insight |
+| `VITE_LINKEDIN_QUOTE_CONVERSION_ID` | LinkedIn 詢價轉換 |
+| `VITE_GOOGLE_SITE_VERIFICATION` | Google Search Console 驗證 meta |
+| `VITE_BING_SITE_VERIFICATION` | Bing Webmaster Tools 驗證 meta |
 
 ## 📦 模組使用
 
