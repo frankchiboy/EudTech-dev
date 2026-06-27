@@ -1385,7 +1385,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
     : language === 'en'
       ? 'GPU Server Configurator'
       : 'GPU 伺服器配置器';
-  const canonicalUrl = `${CONFIGURATOR_CANONICAL_URL}/${pid}`;
+  const canonicalUrl = canonicalPageUrl(`${SITE_ORIGIN}/configurator/${pid}`);
 
   return (
     <>
