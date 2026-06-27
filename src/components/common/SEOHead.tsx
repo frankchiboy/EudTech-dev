@@ -1,6 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
+const SITE_ORIGIN = 'https://eudaemonia.tech';
+
 interface SEOHeadProps {
   title?: string;
   description?: string;
@@ -11,6 +13,14 @@ interface SEOHeadProps {
   isEnglish?: boolean;
   structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
+
+const normalizeAbsoluteUrl = (value: string) => {
+  if (value.startsWith('http://') || value.startsWith('https://')) {
+    return value;
+  }
+
+  return `${SITE_ORIGIN}${value.startsWith('/') ? value : `/${value}`}`;
+};
 
 const SEOHead: React.FC<SEOHeadProps> = ({
   title,
@@ -35,6 +45,10 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     : 'AI伺服器, 人工智能, 機器學習, GPU運算, 液冷, 金融AI, EudTech';
 
   const fullTitle = title ? `${title} | ${defaultTitle}` : defaultTitle;
+  const canonicalUrl = normalizeAbsoluteUrl(url);
+  const imageUrl = normalizeAbsoluteUrl(image);
+  const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION as string | undefined;
+  const bingSiteVerification = import.meta.env.VITE_BING_SITE_VERIFICATION as string | undefined;
   const structuredDataItems = structuredData
     ? (Array.isArray(structuredData) ? structuredData : [structuredData])
     : [];
@@ -48,21 +62,26 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description || defaultDescription} />
-      <meta property="og:image" content={image} />
-      <meta property="og:url" content={url} />
+      <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:alt" content={title || defaultTitle} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="EudTech" />
+      <meta property="og:locale" content={isEnglish ? 'en_US' : 'zh_TW'} />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description || defaultDescription} />
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={imageUrl} />
+      <meta name="twitter:url" content={canonicalUrl} />
       
       {/* Additional SEO */}
       <meta name="robots" content="index, follow" />
       <meta name="author" content="EudTech" />
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={canonicalUrl} />
+      {googleSiteVerification ? <meta name="google-site-verification" content={googleSiteVerification} /> : null}
+      {bingSiteVerification ? <meta name="msvalidate.01" content={bingSiteVerification} /> : null}
       
       {/* Language */}
       <html lang={isEnglish ? 'en' : 'zh-TW'} />

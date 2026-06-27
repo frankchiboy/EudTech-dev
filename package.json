@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "postbuild": "node scripts/inject-version.cjs",
     "test-env": "vite preview --open public/test-environment.html",
-    "build:netlify": "vite build"
+    "build:netlify": "vite build && node scripts/generate-static-seo-pages.cjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

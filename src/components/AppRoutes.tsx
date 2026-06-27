@@ -16,6 +16,7 @@ import AtomicComponentsDemo from './demo/AtomicComponentsDemo';
 import GrandoConfigurator from './configurator/GrandoConfigurator';
 import SEOHead from './common/SEOHead';
 import ConfiguratorSolutionPage from './pages/ConfiguratorSolutionPage';
+import MarketingEvents from './analytics/MarketingEvents';
 import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
 
 const AppRoutes: React.FC = () => {
@@ -50,6 +51,7 @@ const AppRoutes: React.FC = () => {
         isDarkMode={isDarkModeActive}
         toggleDarkMode={toggleDarkMode}
       />
+      <MarketingEvents />
       <main id="main-content" role="main">
         <Suspense fallback={
           <div className="flex items-center justify-center min-h-screen">

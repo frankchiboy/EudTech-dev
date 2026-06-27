@@ -65,6 +65,7 @@ import {
 import { useClipboard } from '../../hooks/ui/useClipboard';
 import { emailService } from '../../services/emailService';
 import { isValidEmail } from '../../utils/validators';
+import { getMarketingAttribution, getMarketingAttributionEntries } from '../../utils/marketing/attribution';
 import { SITE_ORIGIN } from '../../data/configuratorSeoPages';
 import SEOHead from '../common/SEOHead';
 import './Configurator.css';
@@ -259,6 +260,23 @@ const isMobileConfiguratorViewport = () => {
   }
 
   return window.matchMedia(MOBILE_CONFIGURATOR_MEDIA_QUERY).matches;
+};
+
+const dispatchConfiguratorLeadIntent = (action: string, detail: Record<string, unknown> = {}) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  window.dispatchEvent(
+    new CustomEvent('configurator-lead-intent', {
+      detail: {
+        action,
+        path: window.location.pathname,
+        configurationUrl: window.location.href,
+        ...detail
+      }
+    })
+  );
 };
 
 const useMobileConfiguratorViewport = () => {
@@ -938,10 +956,20 @@ const QuotePanel = ({
     setFormOpen(true);
     setSubmitStatus('idle');
     setSubmitError('');
+    dispatchConfiguratorLeadIntent('quote_form_open', {
+      modelName,
+      deviceId: spec.device?.id,
+      deviceName: spec.device?.name
+    });
   };
 
   const handleShare = () => {
     void copyToClipboard(currentUrl);
+    dispatchConfiguratorLeadIntent('share', {
+      modelName,
+      deviceId: spec.device?.id,
+      deviceName: spec.device?.name
+    });
   };
 
   const updateQuoteField = (field: keyof QuoteFormData, value: string) => {
@@ -989,6 +1017,7 @@ const QuotePanel = ({
       return;
     }
 
+    const attributionEntries = getMarketingAttributionEntries(getMarketingAttribution());
     const message = [
       copy.quoteEmailIntro,
       '',
@@ -996,7 +1025,10 @@ const QuotePanel = ({
       '',
       `${copy.quoteFields.phone}: ${formData.phone.trim()}`,
       `${copy.quoteFields.country}: ${formData.country.trim() || copy.notProvided}`,
-      `${copy.quoteFields.comment}: ${formData.comment.trim() || copy.notProvided}`
+      `${copy.quoteFields.comment}: ${formData.comment.trim() || copy.notProvided}`,
+      ...(attributionEntries.length
+        ? ['', 'Marketing attribution', ...attributionEntries.map(([label, value]) => `${label}: ${value}`)]
+        : [])
     ].join('\n');
 
     try {
@@ -1014,9 +1046,19 @@ const QuotePanel = ({
       setSubmitStatus('success');
       setFormData(initialQuoteFormData);
       setFormErrors({});
+      dispatchConfiguratorLeadIntent('quote_submit_success', {
+        modelName,
+        deviceId: spec.device?.id,
+        deviceName: spec.device?.name
+      });
     } catch (error) {
       setSubmitStatus('error');
       setSubmitError(error instanceof Error ? error.message : copy.quoteErrorFallback);
+      dispatchConfiguratorLeadIntent('quote_submit_error', {
+        modelName,
+        deviceId: spec.device?.id,
+        deviceName: spec.device?.name
+      });
     }
   };
 
