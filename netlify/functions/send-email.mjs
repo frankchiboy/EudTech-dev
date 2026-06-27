@@ -22,7 +22,10 @@ const validEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 const uniqueEmails = (values) =>
   [...new Set(values.map(normalize).filter(Boolean))];
 
-const getEnv = (key) => globalThis.Netlify?.env?.get(key) || '';
+const getEnv = (key) =>
+  globalThis.Netlify?.env?.get?.(key) ||
+  (typeof process !== 'undefined' ? process.env?.[key] : '') ||
+  '';
 
 const escapeHtml = (value) =>
   value
