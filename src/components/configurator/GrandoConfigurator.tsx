@@ -85,7 +85,17 @@ const LOCAL_PRODUCT_IMAGE_FILENAMES = new Set([
   'GRANDO_DPR_4090-FT_6_38-3',
   'INT_SERVER_8xH100'
 ]);
-const MISSING_PRODUCT_IMAGE_FILENAMES = new Set(['2x6000ADA_hH5G8vZ_J5GRGRF', 'INT_SERVER_8xH100_JbnnrGs']);
+const PRODUCT_IMAGE_ALIASES: Record<string, { mobile: string; desktop: string }> = {
+  INT_SERVER_8xH100_JbnnrGs: {
+    mobile: '/images/configurator/devices/comino-integration-kit-8x-pro-6000.webp',
+    desktop:
+      'https://cdn.prod.website-files.com/6277aefa6e0ea678fd302833/698d8eb289b9d6f4d8105f3a__DSF5156%20(1).jpg'
+  },
+  '2x6000ADA_hH5G8vZ_J5GRGRF': {
+    mobile: '/images/configurator/devices/comino-rtx-pro-6000-workstation.webp',
+    desktop: 'https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/670fd78318945795ec618274_23-2.jpg'
+  }
+};
 
 interface QuoteFormData {
   firstName: string;
@@ -233,18 +243,23 @@ const canUseNetlifyImageCdn = () => {
 };
 
 const getProductImageUrl = (url: string, isMobile: boolean) => {
-  if (!isMobile || !url.startsWith(`${GRANDO_API_BASE_URL}/media/device/`)) {
+  if (!url.startsWith(`${GRANDO_API_BASE_URL}/media/device/`)) {
     return url;
   }
 
   const imageName = url.split('/').pop()?.replace(/\.[^.]+$/, '') || '';
+  const alias = PRODUCT_IMAGE_ALIASES[imageName];
+
+  if (alias) {
+    return isMobile ? alias.mobile : alias.desktop;
+  }
+
+  if (!isMobile) {
+    return url;
+  }
 
   if (LOCAL_PRODUCT_IMAGE_FILENAMES.has(imageName)) {
     return `/images/configurator/devices/${imageName}.webp`;
-  }
-
-  if (MISSING_PRODUCT_IMAGE_FILENAMES.has(imageName)) {
-    return '';
   }
 
   return canUseNetlifyImageCdn() ? getNetlifyImageUrl(url, MOBILE_PRODUCT_IMAGE_WIDTH) : url;
