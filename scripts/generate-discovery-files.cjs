@@ -5,8 +5,22 @@ const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs'
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const publicDir = path.resolve(__dirname, '..', 'public');
-const lastmod = '2026-06-28';
-const pubDate = 'Sun, 28 Jun 2026 00:00:00 +0800';
+const now = new Date();
+const taipeiDateParts = Object.fromEntries(
+  new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Taipei',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  })
+    .formatToParts(now)
+    .filter((part) => part.type !== 'literal')
+    .map((part) => [part.type, part.value])
+);
+const lastmod = `${taipeiDateParts.year}-${taipeiDateParts.month}-${taipeiDateParts.day}`;
+const pubDateWeekday = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Taipei', weekday: 'short' }).format(now);
+const pubDateMonth = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Taipei', month: 'short' }).format(now);
+const pubDate = `${pubDateWeekday}, ${taipeiDateParts.day} ${pubDateMonth} ${taipeiDateParts.year} 00:00:00 +0800`;
 
 const escapeXml = (value) =>
   String(value)
@@ -17,6 +31,14 @@ const escapeXml = (value) =>
     .replace(/'/g, '&apos;');
 
 const getZh = (value) => value.zh;
+const absoluteUrl = (value) => {
+  if (value.startsWith('http://') || value.startsWith('https://')) {
+    return value;
+  }
+
+  return `${siteOrigin}${value.startsWith('/') ? value : `/${value}`}`;
+};
+
 const priorityBySlug = {
   'nvidia-h200-server': '0.9',
   'rtx-pro-6000-workstation': '0.9',
@@ -56,6 +78,74 @@ ${sitemapEntries
     <lastmod>${lastmod}</lastmod>
     <changefreq>${entry.changefreq}</changefreq>
     <priority>${entry.priority}</priority>
+  </url>`
+  )
+  .join('\n')}
+</urlset>
+`;
+
+const pageImageEntries = [
+  {
+    loc: `${siteOrigin}/`,
+    images: [
+      { loc: absoluteUrl('/grando-8gpu-server.jpg'), title: 'EudTech Comino Grando GPU 伺服器' },
+      { loc: absoluteUrl('/grando-desktop-01.jpg'), title: 'EudTech AI 工作站' },
+      { loc: absoluteUrl('/comino-workstation-front.png'), title: 'Comino Grando 工作站正面' }
+    ]
+  },
+  {
+    loc: `${siteOrigin}/configurator`,
+    images: [
+      { loc: absoluteUrl('/grando-8gpu-server.jpg'), title: 'Comino Grando GPU 伺服器配置器' },
+      { loc: absoluteUrl('/grando-rackable-01.jpg'), title: 'Grando 機架式工作站配置器' },
+      { loc: absoluteUrl('/images/configurator/devices/comino-integration-kit-8x-pro-6000.webp'), title: 'Comino Integration Kit GPU 伺服器' },
+      { loc: absoluteUrl('/images/configurator/devices/comino-rtx-pro-6000-workstation.webp'), title: 'Comino RTX PRO 6000 工作站' }
+    ]
+  },
+  {
+    loc: `${siteOrigin}/configurator/28`,
+    images: [
+      { loc: absoluteUrl('/comino-workstation-front.png'), title: 'GRANDO 機架式工作站配置器' },
+      { loc: absoluteUrl('/images/configurator/devices/comino-rtx-pro-6000-workstation.webp'), title: 'RTX PRO 6000 工作站配置' }
+    ]
+  },
+  {
+    loc: `${siteOrigin}/configurator/29`,
+    images: [
+      { loc: absoluteUrl('/grando-8gpu-server.jpg'), title: 'NVIDIA H200 GPU 伺服器配置器' },
+      { loc: absoluteUrl('/images/configurator/devices/comino-integration-kit-8x-pro-6000.webp'), title: '高密度 GPU 伺服器配置' }
+    ]
+  },
+  {
+    loc: solutionHubUrl.loc,
+    images: [{ loc: absoluteUrl('/grando-8gpu-server.jpg'), title: solutionHubUrl.title }]
+  },
+  ...CONFIGURATOR_SEO_PAGES.map((page) => ({
+    loc: `${siteOrigin}/solutions/${page.slug}`,
+    images: [
+      {
+        loc: absoluteUrl(page.image),
+        title: getZh(page.imageAlt),
+        caption: getZh(page.description)
+      }
+    ]
+  }))
+];
+
+const imageSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${pageImageEntries
+  .map(
+    (entry) => `  <url>
+    <loc>${escapeXml(entry.loc)}</loc>
+${entry.images
+  .map(
+    (image) => `    <image:image>
+      <image:loc>${escapeXml(image.loc)}</image:loc>
+      <image:title>${escapeXml(image.title)}</image:title>${image.caption ? `\n      <image:caption>${escapeXml(image.caption)}</image:caption>` : ''}
+    </image:image>`
+  )
+  .join('\n')}
   </url>`
   )
   .join('\n')}
@@ -133,7 +223,9 @@ Users can configure GPU, CPU, RAM, storage, power supply, and networking options
 `;
 
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap);
+fs.writeFileSync(path.join(publicDir, 'image-sitemap.xml'), imageSitemap);
 fs.writeFileSync(path.join(publicDir, 'feed.xml'), feed);
 fs.writeFileSync(path.join(publicDir, 'llms.txt'), llms);
 
 console.log(`✓ Generated discovery files for ${solutionUrls.length + 1} configurator solution pages`);
+console.log(`✓ Generated image sitemap for ${pageImageEntries.length} pages`);

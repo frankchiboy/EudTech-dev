@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://eudaemonia.tech/</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-8gpu-server.jpg</image:loc>
+      <image:title>EudTech Comino Grando GPU 伺服器</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-desktop-01.jpg</image:loc>
+      <image:title>EudTech AI 工作站</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/comino-workstation-front.png</image:loc>
+      <image:title>Comino Grando 工作站正面</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/configurator</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-8gpu-server.jpg</image:loc>
+      <image:title>Comino Grando GPU 伺服器配置器</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-rackable-01.jpg</image:loc>
+      <image:title>Grando 機架式工作站配置器</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/images/configurator/devices/comino-integration-kit-8x-pro-6000.webp</image:loc>
+      <image:title>Comino Integration Kit GPU 伺服器</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/images/configurator/devices/comino-rtx-pro-6000-workstation.webp</image:loc>
+      <image:title>Comino RTX PRO 6000 工作站</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/configurator/28</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/comino-workstation-front.png</image:loc>
+      <image:title>GRANDO 機架式工作站配置器</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/images/configurator/devices/comino-rtx-pro-6000-workstation.webp</image:loc>
+      <image:title>RTX PRO 6000 工作站配置</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/configurator/29</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-8gpu-server.jpg</image:loc>
+      <image:title>NVIDIA H200 GPU 伺服器配置器</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/images/configurator/devices/comino-integration-kit-8x-pro-6000.webp</image:loc>
+      <image:title>高密度 GPU 伺服器配置</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-8gpu-server.jpg</image:loc>
+      <image:title>配置器解決方案與 GPU 伺服器報價指南</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/nvidia-h200-server</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-8gpu-server.jpg</image:loc>
+      <image:title>可配置 NVIDIA H200 的 Grando 液冷 GPU 伺服器</image:title>
+      <image:caption>配置液冷 NVIDIA H200 GPU 伺服器，適用於 AI 訓練、推論與 HPC 工作負載，並可直接送出配置需求取得正式報價。</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/rtx-pro-6000-workstation</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/comino-workstation-front.png</image:loc>
+      <image:title>可配置 RTX PRO 6000 的 Comino Grando 工作站</image:title>
+      <image:caption>配置 RTX PRO 6000 工作站，適用於 AI 開發、渲染、模擬與本地推論，並可直接送出需求給 EudTech 追蹤報價。</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/ai-workstation-taiwan</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-desktop-01.jpg</image:loc>
+      <image:title>台灣團隊使用的 AI 工作站配置</image:title>
+      <image:caption>為台灣團隊配置 AI 工作站，支援 GPU 加速、本地推論、模型開發、渲染與模擬工作負載。</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/liquid-cooled-gpu-server</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/GRANDO%20DPR%204090-FT_6_01.jpg</image:loc>
+      <image:title>Comino Grando 液冷 GPU 伺服器內部</image:title>
+      <image:caption>探索適合長時間 AI 與 HPC 工作負載的液冷 GPU 伺服器配置，並可配置 Grando 系統後向 EudTech 取得正式報價。</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/gpu-server-quote</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-rackable-01.jpg</image:loc>
+      <image:title>GPU 伺服器報價需求配置器</image:title>
+      <image:caption>建立 GPU 伺服器報價需求，包含 GPU、CPU、RAM、儲存、電源與網路選項，並由 EudTech 接收配置後追蹤。</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-8gpu-server.jpg</image:loc>
+      <image:title>NVIDIA H200 GPU 伺服器與 RTX PRO 6000 工作站配置比較</image:title>
+      <image:caption>比較 NVIDIA H200 GPU 伺服器與 RTX PRO 6000 工作站在 AI 訓練、本地推論、視覺化與採購規劃上的差異。</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/gpu-server-rfq-checklist</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/grando-rackable-01.jpg</image:loc>
+      <image:title>GPU 伺服器 RFQ 檢核表與配置流程</image:title>
+      <image:caption>在送出 GPU 伺服器報價需求前，先整理 GPU、CPU、RAM、儲存、電源、網路、散熱與部署假設。</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/GRANDO%20DPR%204090-FT_6_01.jpg</image:loc>
+      <image:title>以 Comino Grando 系統規劃液冷 AI 伺服器採購</image:title>
+      <image:caption>依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。</image:caption>
+    </image:image>
+  </url>
+</urlset>

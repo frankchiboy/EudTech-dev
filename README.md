@@ -156,6 +156,7 @@ Configurator 曝光主線集中在以下入口：
 | 檔案 | 用途 |
 |---|---|
 | `/sitemap.xml` | 搜尋引擎 URL 發現 |
+| `/image-sitemap.xml` | 產品圖與配置器圖片發現 |
 | `/robots.txt` | crawler 規則與 sitemap 位置 |
 | `/llms.txt` | AI/LLM 工具可讀的 configurator 摘要 |
 | `/feed.xml` | Configurator solution RSS feed |
