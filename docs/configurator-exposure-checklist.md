@@ -65,6 +65,10 @@
 42. `npm run audit:external-platform-access` writes `reports/external-platform-access.json` with Netlify, Google ADC, GitHub, and 1Password access readiness for external tracking setup.
 43. `npm run generate:promotion-assets` also creates Google Ads Editor keyword imports, search ad copy, complete organic posts, and LinkedIn URL tracking parameter sheets.
 44. `npm run audit:exposure-readiness` verifies organic copy coverage, Google Ads Editor keyword coverage, search ad copy length validity, and LinkedIn URL parameter coverage.
+45. `npm run generate:social-images` creates dedicated 1200x630 JPEG social preview images for every configurator and solution landing page.
+46. Static SEO HTML uses the generated social preview images for Open Graph and Twitter/X cards, with `og:image:alt`, `twitter:image:alt`, image width, and image height.
+47. `image-sitemap.xml` lists the generated social preview images and no longer emits deprecated `image:title` or `image:caption` fields.
+48. `npm run verify:social-images`, `npm run verify:seo-html`, `npm run verify:discovery`, and `npm run verify:live-exposure` validate social image size, format, page metadata, sitemap coverage, and production accessibility.
 
 ## External Promotion Queue
 

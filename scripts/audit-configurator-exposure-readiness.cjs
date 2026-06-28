@@ -1,8 +1,15 @@
 const fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const { evaluateMarketingPlatformEnv } = require('./marketing-platform-env.cjs');
+const {
+  SOCIAL_IMAGE_WIDTH,
+  SOCIAL_IMAGE_HEIGHT,
+  SOCIAL_IMAGE_MAX_BYTES,
+  getConfiguratorSocialPreviewRoutes
+} = require('./configurator-social-preview-routes.cjs');
 
 const args = new Set(process.argv.slice(2));
 const failOnExternalGaps = args.has('--fail-on-external-gaps');
@@ -16,6 +23,7 @@ const reportsDir = path.join(rootDir, 'reports');
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
+const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
 
 const requiredEnv = {
   quoteEmail: ['QUOTE_SENDER_EMAIL', 'GMAIL_OAUTH_CLIENT_ID', 'GMAIL_OAUTH_CLIENT_SECRET', 'GMAIL_OAUTH_REFRESH_TOKEN']
@@ -28,6 +36,10 @@ const csvContainsField = (filename, value) => exists(filename) && read(filename)
 const csvContainsUrlPrefix = (filename, value) => exists(filename) && (
   read(filename).includes(`"${value}"`) || read(filename).includes(`"${value}?`)
 );
+
+function publicAssetPath(assetPath) {
+  return path.join(publicDir, decodeURIComponent(assetPath.replace(/^\//, '')));
+}
 
 function envGroupStatus(keys, mode = 'all') {
   const present = keys.filter((key) => Boolean(process.env[key]));
@@ -140,6 +152,44 @@ async function probeProductionMarketingEventFunction() {
   }
 }
 
+async function inspectSocialPreviewImages() {
+  const images = [];
+
+  for (const route of socialPreviewRoutes) {
+    const filename = publicAssetPath(route.socialImage);
+    const sourceFilename = publicAssetPath(route.sourceImage);
+    const item = {
+      path: route.path,
+      canonicalUrl: route.canonicalUrl,
+      sourceImage: route.sourceImage,
+      socialImage: route.socialImage,
+      socialImageUrl: route.socialImageUrl,
+      exists: fs.existsSync(filename),
+      sourceExists: fs.existsSync(sourceFilename)
+    };
+
+    if (item.exists) {
+      const metadata = await sharp(filename).metadata();
+      item.width = metadata.width;
+      item.height = metadata.height;
+      item.format = metadata.format;
+      item.size = fs.statSync(filename).size;
+      item.ready =
+        item.sourceExists &&
+        item.width === SOCIAL_IMAGE_WIDTH &&
+        item.height === SOCIAL_IMAGE_HEIGHT &&
+        item.format === 'jpeg' &&
+        item.size < SOCIAL_IMAGE_MAX_BYTES;
+    } else {
+      item.ready = false;
+    }
+
+    images.push(item);
+  }
+
+  return images;
+}
+
 const canonicalUrls = [
   pageUrl('/configurator'),
   pageUrl('/configurator/28'),
@@ -171,6 +221,7 @@ async function main() {
   const quoteFunctionProbe = await probeProductionQuoteFunction();
   const marketingEventFunctionProbe = await probeProductionMarketingEventFunction();
   const marketingPlatformEnv = evaluateMarketingPlatformEnv(process.env);
+  const socialPreviewImages = await inspectSocialPreviewImages();
 
   addCheck('search_discovery', 'canonical landing pages defined', canonicalUrls.length >= 17, {
     count: canonicalUrls.length
@@ -188,6 +239,20 @@ async function main() {
     missing: canonicalUrls.filter((url) => !llms.includes(url))
   });
   addCheck('search_discovery', 'robots points to sitemap index and sitemaps', ['sitemap.xml', 'image-sitemap.xml', 'sitemap-index.xml'].every((file) => robots.includes(`${siteOrigin}/${file}`)));
+  addCheck('social_preview', 'social preview images exist for every landing page', socialPreviewImages.every((image) => image.exists && image.sourceExists), {
+    missing: socialPreviewImages.filter((image) => !image.exists || !image.sourceExists)
+  });
+  addCheck('social_preview', 'social preview images use 1200x630 JPEG format', socialPreviewImages.every((image) => image.width === SOCIAL_IMAGE_WIDTH && image.height === SOCIAL_IMAGE_HEIGHT && image.format === 'jpeg'), {
+    invalid: socialPreviewImages.filter((image) => image.width !== SOCIAL_IMAGE_WIDTH || image.height !== SOCIAL_IMAGE_HEIGHT || image.format !== 'jpeg')
+  });
+  addCheck('social_preview', 'social preview images stay under 5 MB platform limit', socialPreviewImages.every((image) => image.size < SOCIAL_IMAGE_MAX_BYTES), {
+    invalid: socialPreviewImages.filter((image) => image.size >= SOCIAL_IMAGE_MAX_BYTES),
+    maxBytes: SOCIAL_IMAGE_MAX_BYTES
+  });
+  addCheck('social_preview', 'image sitemap uses generated social preview images', socialPreviewImages.every((image) => imageSitemap.includes(image.socialImageUrl)), {
+    missing: socialPreviewImages.filter((image) => !imageSitemap.includes(image.socialImageUrl))
+  });
+  addCheck('social_preview', 'image sitemap excludes deprecated image title and caption tags', !/<image:(?:title|caption)>/i.test(imageSitemap));
 
   addCheck('promotion_assets', 'promotion asset overview exists', exists(promotionAssetsPath), {
     path: promotionAssetsPath
@@ -284,7 +349,10 @@ async function main() {
 
   addCheck('automation', 'public exposure workflow runs on main push', workflow.includes('push:') && workflow.includes('- main'));
   addCheck('automation', 'public exposure workflow verifies promotion assets', workflow.includes('verify:promotion-assets'));
+  addCheck('automation', 'public exposure workflow verifies social preview images', workflow.includes('verify:social-images'));
   addCheck('automation', 'scheduled Netlify IndexNow function exists', exists('netlify/functions/exposure-scheduled.mjs'));
+  addCheck('automation', 'package exposes social image generation command', Boolean(packageJson.scripts?.['generate:social-images']));
+  addCheck('automation', 'package exposes social image verification command', Boolean(packageJson.scripts?.['verify:social-images']));
   addCheck('automation', 'package exposes readiness command', Boolean(packageJson.scripts?.['audit:exposure-readiness']));
   addCheck('automation', 'package exposes strict exposure command', Boolean(packageJson.scripts?.['exposure:strict']));
 
@@ -315,6 +383,7 @@ async function main() {
     landingPages: canonicalUrls.length,
     solutionPages: CONFIGURATOR_SEO_PAGES.length,
     configuratorProductPages: CONFIGURATOR_PRODUCT_SEO.length,
+    socialPreviewImages,
     checks,
     failedChecks,
     externalReadiness,

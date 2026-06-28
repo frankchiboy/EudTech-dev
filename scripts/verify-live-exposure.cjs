@@ -1,8 +1,17 @@
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
+const sharp = require('sharp');
+const {
+  SOCIAL_IMAGE_WIDTH,
+  SOCIAL_IMAGE_HEIGHT,
+  SOCIAL_IMAGE_MAX_BYTES,
+  getConfiguratorSocialPreviewRoutes
+} = require('./configurator-social-preview-routes.cjs');
 
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
+const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
+const socialPreviewByUrl = new Map(socialPreviewRoutes.map((route) => [route.canonicalUrl, route]));
 const requiredPageUrls = [
   canonicalPageUrl(`${siteOrigin}/configurator`, siteOrigin),
   ...CONFIGURATOR_PRODUCT_SEO.map((product) => canonicalPageUrl(`${siteOrigin}${product.configuratorHref}`, siteOrigin)),
@@ -43,6 +52,45 @@ async function fetchText(url, options = {}) {
         finalUrl: response.url.replace(/[?&]t=\d+$/, ''),
         location: response.headers.get('location'),
         text
+      };
+
+      if (response.status < 500 || attempt === attempts) {
+        return result;
+      }
+      lastError = new Error(`${url} returned HTTP ${response.status}`);
+    } catch (error) {
+      lastError = error;
+      if (attempt === attempts) {
+        break;
+      }
+    }
+
+    await sleep(1500 * attempt);
+  }
+
+  throw lastError;
+}
+
+async function fetchImageInfo(url, options = {}) {
+  const cacheBustedUrl = options.cacheBust === false ? url : `${url}${url.includes('?') ? '&' : '?'}t=${Date.now()}`;
+  const attempts = options.attempts || 4;
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(cacheBustedUrl, {
+        cache: 'no-store'
+      });
+      const buffer = Buffer.from(await response.arrayBuffer());
+      const metadata = response.ok ? await sharp(buffer).metadata() : {};
+      const result = {
+        url,
+        status: response.status,
+        contentType: response.headers.get('content-type') || '',
+        bytes: buffer.byteLength,
+        width: metadata.width,
+        height: metadata.height,
+        format: metadata.format
       };
 
       if (response.status < 500 || attempt === attempts) {
@@ -138,6 +186,12 @@ function checkDiscoveryFiles(discovery, errors) {
     assert(feed.includes(url) || url.includes('/configurator/'), errors, `feed.xml missing ${url}.`);
     assert(llms.includes(url), errors, `llms.txt missing ${url}.`);
   }
+
+  for (const route of socialPreviewRoutes) {
+    assert(imageSitemap.includes(route.socialImageUrl), errors, `image-sitemap.xml missing ${route.socialImageUrl}.`);
+  }
+
+  assert(!/<image:(?:title|caption)>/i.test(imageSitemap), errors, 'image-sitemap.xml should not include deprecated image:title or image:caption tags.');
 }
 
 async function checkPages(errors) {
@@ -147,21 +201,43 @@ async function checkPages(errors) {
     const html = result.text;
     const canonical = getMetaContent(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)/i);
     const ogUrl = getMetaContent(html, /<meta[^>]+property=["']og:url["'][^>]+content=["']([^"']+)/i);
+    const ogImage = getMetaContent(html, /<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/i);
+    const ogImageAlt = getMetaContent(html, /<meta[^>]+property=["']og:image:alt["'][^>]+content=["']([^"']+)/i);
+    const ogImageWidth = getMetaContent(html, /<meta[^>]+property=["']og:image:width["'][^>]+content=["']([^"']+)/i);
+    const ogImageHeight = getMetaContent(html, /<meta[^>]+property=["']og:image:height["'][^>]+content=["']([^"']+)/i);
+    const ogType = getMetaContent(html, /<meta[^>]+property=["']og:type["'][^>]+content=["']([^"']+)/i);
+    const twitterCard = getMetaContent(html, /<meta[^>]+name=["']twitter:card["'][^>]+content=["']([^"']+)/i);
+    const twitterImage = getMetaContent(html, /<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)/i);
+    const twitterImageAlt = getMetaContent(html, /<meta[^>]+name=["']twitter:image:alt["'][^>]+content=["']([^"']+)/i);
+    const twitterUrl = getMetaContent(html, /<meta[^>]+name=["']twitter:url["'][^>]+content=["']([^"']+)/i);
     const description = getMetaContent(html, /<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)/i);
     const robots = getMetaContent(html, /<meta[^>]+name=["']robots["'][^>]+content=["']([^"']+)/i);
     const jsonLd = collectJsonLd(html);
+    const socialPreview = socialPreviewByUrl.get(url);
 
     pages.push({
       url,
       status: result.status,
       canonical,
       ogUrl,
+      ogImage,
+      twitterImage,
       jsonLdTypes: jsonLd.map((item) => item['@type']).filter(Boolean)
     });
 
     assert(result.status === 200, errors, `${url} should return HTTP 200.`);
     assert(canonical === url, errors, `${url} canonical is ${canonical || 'missing'}.`);
     assert(ogUrl === url, errors, `${url} og:url is ${ogUrl || 'missing'}.`);
+    assert(twitterUrl === url, errors, `${url} twitter:url is ${twitterUrl || 'missing'}.`);
+    assert(Boolean(socialPreview), errors, `${url} missing local social preview route definition.`);
+    assert(ogImage === socialPreview?.socialImageUrl, errors, `${url} og:image is ${ogImage || 'missing'}.`);
+    assert(twitterImage === socialPreview?.socialImageUrl, errors, `${url} twitter:image is ${twitterImage || 'missing'}.`);
+    assert(ogImageAlt === socialPreview?.imageAlt, errors, `${url} og:image:alt is ${ogImageAlt || 'missing'}.`);
+    assert(twitterImageAlt === socialPreview?.imageAlt, errors, `${url} twitter:image:alt is ${twitterImageAlt || 'missing'}.`);
+    assert(ogImageWidth === String(SOCIAL_IMAGE_WIDTH), errors, `${url} og:image:width is ${ogImageWidth || 'missing'}.`);
+    assert(ogImageHeight === String(SOCIAL_IMAGE_HEIGHT), errors, `${url} og:image:height is ${ogImageHeight || 'missing'}.`);
+    assert(ogType === socialPreview?.ogType, errors, `${url} og:type is ${ogType || 'missing'}.`);
+    assert(twitterCard === 'summary_large_image', errors, `${url} twitter:card should be summary_large_image.`);
     assert(description.length > 40, errors, `${url} meta description is missing or too short.`);
     assert(/index/i.test(robots) && /follow/i.test(robots), errors, `${url} robots meta should include index, follow.`);
     assert(jsonLd.length > 0, errors, `${url} missing JSON-LD.`);
@@ -169,6 +245,23 @@ async function checkPages(errors) {
   }
 
   return pages;
+}
+
+async function checkSocialPreviewImages(errors) {
+  const images = [];
+  const uniqueImages = [...new Map(socialPreviewRoutes.map((route) => [route.socialImageUrl, route])).values()];
+
+  for (const route of uniqueImages) {
+    const image = await fetchImageInfo(route.socialImageUrl);
+    images.push(image);
+    assert(image.status === 200, errors, `${route.socialImageUrl} should return HTTP 200.`);
+    assert(/^image\/jpe?g/i.test(image.contentType), errors, `${route.socialImageUrl} content-type is ${image.contentType || 'missing'}.`);
+    assert(image.format === 'jpeg', errors, `${route.socialImageUrl} format is ${image.format || 'missing'}.`);
+    assert(image.width === SOCIAL_IMAGE_WIDTH && image.height === SOCIAL_IMAGE_HEIGHT, errors, `${route.socialImageUrl} is ${image.width || 'missing'}x${image.height || 'missing'}.`);
+    assert(image.bytes < SOCIAL_IMAGE_MAX_BYTES, errors, `${route.socialImageUrl} is ${image.bytes} bytes, expected below ${SOCIAL_IMAGE_MAX_BYTES}.`);
+  }
+
+  return images;
 }
 
 async function main() {
@@ -180,6 +273,7 @@ async function main() {
 
   checkDiscoveryFiles(discovery, errors);
   const pages = await checkPages(errors);
+  const socialPreviewImages = await checkSocialPreviewImages(errors);
   const redirects = await checkRedirects(errors);
 
   const result = {
@@ -187,8 +281,10 @@ async function main() {
     siteOrigin,
     checkedDiscoveryUrls: requiredDiscoveryUrls.length,
     checkedPageUrls: unique(requiredPageUrls).length,
+    checkedSocialPreviewImages: socialPreviewImages.length,
     redirects,
     pages,
+    socialPreviewImages,
     errors
   };
 

@@ -42,6 +42,12 @@ jobs:
           set -o pipefail
           npm run verify:discovery | tee reports/verify-discovery.log
 
+      - name: Verify social preview images
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run verify:social-images | tee reports/verify-social-images.log
+
       - name: Verify static SEO HTML
         shell: bash
         run: |

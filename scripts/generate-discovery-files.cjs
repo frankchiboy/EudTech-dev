@@ -2,11 +2,13 @@ const fs = require('fs');
 const path = require('path');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
+const { getConfiguratorSocialPreviewRoutes } = require('./configurator-social-preview-routes.cjs');
 
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const publicDir = path.resolve(__dirname, '..', 'public');
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
+const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
 const now = new Date();
 const taipeiDateParts = Object.fromEntries(
   new Intl.DateTimeFormat('en-CA', {
@@ -33,14 +35,6 @@ const escapeXml = (value) =>
     .replace(/'/g, '&apos;');
 
 const getZh = (value) => value.zh;
-const absoluteUrl = (value) => {
-  if (value.startsWith('http://') || value.startsWith('https://')) {
-    return value;
-  }
-
-  return `${siteOrigin}${value.startsWith('/') ? value : `/${value}`}`;
-};
-
 const priorityBySlug = {
   'nvidia-h200-server': '0.9',
   'rtx-pro-6000-workstation': '0.9',
@@ -103,53 +97,10 @@ ${sitemapIndexEntries
 </sitemapindex>
 `;
 
-const pageImageEntries = [
-  {
-    loc: `${siteOrigin}/`,
-    images: [
-      { loc: absoluteUrl('/grando-8gpu-server.jpg'), title: 'EudTech Comino Grando GPU 伺服器' },
-      { loc: absoluteUrl('/grando-desktop-01.jpg'), title: 'EudTech AI 工作站' },
-      { loc: absoluteUrl('/comino-workstation-front.png'), title: 'Comino Grando 工作站正面' }
-    ]
-  },
-  {
-    loc: pageUrl('/configurator'),
-    images: [
-      { loc: absoluteUrl('/grando-8gpu-server.jpg'), title: 'Comino Grando GPU 伺服器配置器' },
-      { loc: absoluteUrl('/grando-rackable-01.jpg'), title: 'Grando 機架式工作站配置器' },
-      { loc: absoluteUrl('/images/configurator/devices/comino-integration-kit-8x-pro-6000.webp'), title: 'Comino Integration Kit GPU 伺服器' },
-      { loc: absoluteUrl('/images/configurator/devices/comino-rtx-pro-6000-workstation.webp'), title: 'Comino RTX PRO 6000 工作站' }
-    ]
-  },
-  {
-    loc: pageUrl('/configurator/28'),
-    images: [
-      { loc: absoluteUrl('/comino-workstation-front.png'), title: 'GRANDO 機架式工作站配置器' },
-      { loc: absoluteUrl('/images/configurator/devices/comino-rtx-pro-6000-workstation.webp'), title: 'RTX PRO 6000 工作站配置' }
-    ]
-  },
-  {
-    loc: pageUrl('/configurator/29'),
-    images: [
-      { loc: absoluteUrl('/grando-8gpu-server.jpg'), title: 'NVIDIA H200 GPU 伺服器配置器' },
-      { loc: absoluteUrl('/images/configurator/devices/comino-integration-kit-8x-pro-6000.webp'), title: '高密度 GPU 伺服器配置' }
-    ]
-  },
-  {
-    loc: solutionHubUrl.loc,
-    images: [{ loc: absoluteUrl('/grando-8gpu-server.jpg'), title: solutionHubUrl.title }]
-  },
-  ...CONFIGURATOR_SEO_PAGES.map((page) => ({
-    loc: pageUrl(`/solutions/${page.slug}`),
-    images: [
-      {
-        loc: absoluteUrl(page.image),
-        title: getZh(page.imageAlt),
-        caption: getZh(page.description)
-      }
-    ]
-  }))
-];
+const pageImageEntries = socialPreviewRoutes.map((route) => ({
+  loc: route.canonicalUrl,
+  images: [{ loc: route.socialImageUrl }]
+}));
 
 const imageSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
@@ -161,7 +112,6 @@ ${entry.images
   .map(
     (image) => `    <image:image>
       <image:loc>${escapeXml(image.loc)}</image:loc>
-      <image:title>${escapeXml(image.title)}</image:title>${image.caption ? `\n      <image:caption>${escapeXml(image.caption)}</image:caption>` : ''}
     </image:image>`
   )
   .join('\n')}
