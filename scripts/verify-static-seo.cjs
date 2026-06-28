@@ -77,6 +77,39 @@ function requireNonEmpty(routePath, label, actual) {
   }
 }
 
+function bodyText(html) {
+  return (html.match(/<body[\s\S]*?<\/body>/i)?.[0] || '')
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function assertStaticSeoFallback(route) {
+  const html = readRouteHtml(route.path);
+  if (!html.includes('data-static-seo-fallback')) {
+    throw new Error(`${route.path} missing static SEO body fallback.`);
+  }
+
+  const text = bodyText(html);
+  if (text.length < 220) {
+    throw new Error(`${route.path} static SEO body fallback is too short: ${text.length} characters.`);
+  }
+
+  if (!text.includes(route.title)) {
+    throw new Error(`${route.path} static SEO body fallback missing title text.`);
+  }
+
+  if (!text.includes('info@eudaemonia.tech')) {
+    throw new Error(`${route.path} static SEO body fallback missing quote contact email.`);
+  }
+}
+
 function assertSocialMeta(route) {
   const html = readRouteHtml(route.path);
   const canonical = getCanonicalHref(html);
@@ -122,6 +155,7 @@ function assertSocialMeta(route) {
   requireNonEmpty(route.path, 'og:description', ogDescription);
   requireNonEmpty(route.path, 'twitter:title', twitterTitle);
   requireNonEmpty(route.path, 'twitter:description', twitterDescription);
+  assertStaticSeoFallback(route);
 
   if (!/index/i.test(robots) || !/follow/i.test(robots)) {
     throw new Error(`${route.path} robots meta should include index, follow.`);

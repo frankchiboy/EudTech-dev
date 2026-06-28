@@ -104,12 +104,18 @@ const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
   title: getZh(page.title),
   description: getZh(page.description),
   keywords: getZh(page.keywords),
+  lead: getZh(page.lead),
   image: `${siteOrigin}${page.image}`,
   imageAlt: getZh(page.imageAlt),
   serviceName: getZh(page.title),
   kind: page.kind || 'solution',
   configuratorHref: page.configuratorHref,
   quoteHref: page.quoteHref,
+  highlights: page.highlights.map((highlight) => getZh(highlight)),
+  specs: page.specs.map((spec) => ({
+    label: getZh(spec.label),
+    value: getZh(spec.value)
+  })),
   faq: page.faqs.map((faq) => [getZh(faq.question), getZh(faq.answer)])
 }));
 const solutionHubRoute = {
@@ -117,9 +123,22 @@ const solutionHubRoute = {
   title: '配置器解決方案與 GPU 伺服器報價指南',
   description: 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。',
   keywords: 'GPU 伺服器報價, AI 伺服器報價, 配置器解決方案, NVIDIA H200 伺服器, RTX PRO 6000 工作站, GPU 伺服器 RFQ, 液冷 AI 伺服器',
+  lead: '集中整理 EudTech 配置器、GPU 伺服器報價、AI 工作站與採購檢核內容，協助技術與採購團隊進入最符合需求的配置頁。',
   image: defaultImage,
   imageAlt: 'EudTech GPU 伺服器報價配置器解決方案',
   kind: 'collection',
+  configuratorHref: '/configurator',
+  quoteHref: '/configurator?request=true',
+  highlights: [
+    '高意圖搜尋入口：GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、液冷 AI 伺服器。',
+    '每個頁面都連回可操作的配置器與詢價流程。',
+    '適合台灣企業、研究單位與採購團隊進行規格初步對齊。'
+  ],
+  specs: [
+    { label: '主要轉換', value: '送出配置器詢價需求' },
+    { label: '服務區域', value: 'Taiwan' },
+    { label: '聯絡信箱', value: 'info@eudaemonia.tech' }
+  ],
   schema: [
     {
       '@context': 'https://schema.org',
@@ -155,10 +174,21 @@ const productRoutes = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
   title: getZh(product.title),
   description: getZh(product.description),
   keywords: getZh(product.keywords),
+  lead: getZh(product.description),
   image: `${siteOrigin}${product.image}`,
   imageAlt: getZh(product.imageAlt),
   kind: 'configurator-product',
+  configuratorHref: product.configuratorHref,
   quoteHref: product.quoteHref,
+  highlights: [
+    `${getZh(product.model)}：${getZh(product.category)}`,
+    `GPU 重點：${getZh(product.properties.find((property) => getZh(property.name) === 'GPU 重點')?.value || product.category)}`,
+    '送出詢價時會保留配置連結，方便技術與採購團隊審查。'
+  ],
+  specs: product.properties.map((property) => ({
+    label: getZh(property.name),
+    value: getZh(property.value)
+  })),
   schema: [
     {
       '@context': 'https://schema.org',
@@ -190,7 +220,20 @@ const routes = [
     title: 'AI GPU 伺服器與 Comino 配置器',
     description: 'EudTech 提供 AI GPU 伺服器、Comino Grando 液冷系統，以及可送出 GPU 伺服器與工作站報價需求的配置器。',
     keywords: 'AI GPU 伺服器, GPU 伺服器報價, Comino Grando, NVIDIA H200 伺服器, RTX PRO 6000 工作站, 液冷 GPU 伺服器, 台灣 AI 工作站',
+    lead: 'EudTech 協助台灣團隊規劃 AI GPU 伺服器、AI 工作站與 Comino Grando 液冷系統，並提供可送出正式報價需求的配置器入口。',
     imageAlt: 'EudTech AI GPU 伺服器與 Comino 配置器',
+    configuratorHref: '/configurator',
+    quoteHref: '/configurator?request=true',
+    highlights: [
+      '可配置 GPU、CPU、記憶體、儲存、電源與網路選項。',
+      '配置完成後可送出詢價，並保留可分享的配置連結。',
+      '面向台灣 AI、HPC、研究與企業採購需求。'
+    ],
+    specs: [
+      { label: '主力產品', value: 'AI GPU 伺服器與 AI 工作站' },
+      { label: '配置器', value: 'Comino Grando GPU 伺服器配置器' },
+      { label: '聯絡信箱', value: 'info@eudaemonia.tech' }
+    ],
     schema: [
       {
         '@context': 'https://schema.org',
@@ -209,8 +252,20 @@ const routes = [
     title: 'Comino Grando GPU 伺服器配置器',
     description: '配置 Comino Grando GPU 伺服器、RTX PRO 工作站、NVIDIA H200 系統、儲存、電源與網路，並向 EudTech 取得報價。',
     keywords: 'Comino Grando 配置器, GPU 伺服器配置器, NVIDIA H200 伺服器, RTX PRO 6000 工作站, AI 工作站 台灣, GPU 伺服器報價',
+    lead: '使用 EudTech 配置器建立 Comino Grando GPU 伺服器或 AI 工作站需求，確認硬體選項後送出報價。',
     imageAlt: 'Comino Grando GPU 伺服器配置器',
+    configuratorHref: '/configurator',
     quoteHref: '/configurator?request=true',
+    highlights: [
+      '支援 GPU、CPU、RAM、OS Drive、Data Drive、Power Supply 與 Network 選項。',
+      '詢價表單會包含目前配置、配置連結與聯絡資訊。',
+      '適合在採購前先完成技術規格對齊。'
+    ],
+    specs: [
+      { label: '可配置項目', value: 'GPU、CPU、RAM、儲存、電源、網路' },
+      { label: '報價流程', value: '配置器送出至 info@eudaemonia.tech' },
+      { label: '服務區域', value: 'Taiwan' }
+    ],
     schema: [
       {
         '@context': 'https://schema.org',
@@ -262,6 +317,182 @@ function escapeHtml(value) {
 
 function safeJson(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c');
+}
+
+function staticSeoFallbackStyle() {
+  return `<style data-static-seo-fallback>
+      .static-seo-fallback {
+        box-sizing: border-box;
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 56px 20px 72px;
+        color: #111827;
+        background: #ffffff;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.65;
+      }
+      .static-seo-fallback * { box-sizing: border-box; }
+      .static-seo-fallback h1 {
+        margin: 0 0 16px;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 1.12;
+        color: #0f172a;
+      }
+      .static-seo-fallback h2 {
+        margin: 40px 0 14px;
+        font-size: 1.25rem;
+        color: #0f172a;
+      }
+      .static-seo-fallback p { margin: 0 0 16px; font-size: 1rem; }
+      .static-seo-kicker {
+        margin-bottom: 10px;
+        color: #047857;
+        font-size: .82rem;
+        font-weight: 700;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      .static-seo-lead {
+        max-width: 760px;
+        color: #374151;
+        font-size: 1.08rem;
+      }
+      .static-seo-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 28px 0 36px;
+      }
+      .static-seo-actions a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 10px 18px;
+        border: 1px solid #059669;
+        border-radius: 6px;
+        color: #047857;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .static-seo-actions a:first-child {
+        background: #059669;
+        color: #ffffff;
+      }
+      .static-seo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .static-seo-grid li,
+      .static-seo-faq li {
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 14px 16px;
+        background: #f9fafb;
+      }
+      .static-seo-specs {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+      }
+      .static-seo-specs th,
+      .static-seo-specs td {
+        padding: 12px 14px;
+        border-bottom: 1px solid #e5e7eb;
+        text-align: left;
+        vertical-align: top;
+      }
+      .static-seo-specs th {
+        width: 30%;
+        color: #111827;
+        background: #f3f4f6;
+      }
+      .static-seo-faq {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .static-seo-faq strong { display: block; margin-bottom: 6px; color: #111827; }
+      .static-seo-contact {
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid #e5e7eb;
+        color: #374151;
+      }
+    </style>`;
+}
+
+function dedupeLinks(links) {
+  const seen = new Set();
+  return links.filter((link) => {
+    if (!link.href || seen.has(link.href)) {
+      return false;
+    }
+    seen.add(link.href);
+    return true;
+  });
+}
+
+function staticSeoFallback(route) {
+  const links = dedupeLinks([
+    route.configuratorHref ? { label: '開啟配置器', href: pageUrl(route.configuratorHref) } : null,
+    route.quoteHref ? { label: '取得報價', href: pageUrl(route.quoteHref) } : null,
+    route.path !== '/solutions' ? { label: '查看解決方案', href: pageUrl('/solutions') } : null
+  ].filter(Boolean));
+  const highlights = (route.highlights || []).filter(Boolean);
+  const specs = (route.specs || []).filter((spec) => spec.label && spec.value);
+  const faqs = (route.faq || []).filter(([question, answer]) => question && answer);
+
+  return `<main class="static-seo-fallback" data-static-seo-fallback>
+      <section aria-labelledby="static-seo-title">
+        <div class="static-seo-kicker">EudTech Configurator</div>
+        <h1 id="static-seo-title">${escapeHtml(route.title)}</h1>
+        <p class="static-seo-lead">${escapeHtml(route.lead || route.description)}</p>
+        <nav class="static-seo-actions" aria-label="配置器曝光入口">
+          ${links.map((link) => `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>`).join('\n          ')}
+        </nav>
+      </section>
+      ${
+        highlights.length
+          ? `<section aria-labelledby="static-seo-highlights">
+        <h2 id="static-seo-highlights">重點</h2>
+        <ul class="static-seo-grid">
+          ${highlights.map((item) => `<li>${escapeHtml(item)}</li>`).join('\n          ')}
+        </ul>
+      </section>`
+          : ''
+      }
+      ${
+        specs.length
+          ? `<section aria-labelledby="static-seo-specs">
+        <h2 id="static-seo-specs">規格與服務資訊</h2>
+        <table class="static-seo-specs">
+          <tbody>
+            ${specs.map((spec) => `<tr><th scope="row">${escapeHtml(spec.label)}</th><td>${escapeHtml(spec.value)}</td></tr>`).join('\n            ')}
+          </tbody>
+        </table>
+      </section>`
+          : ''
+      }
+      ${
+        faqs.length
+          ? `<section aria-labelledby="static-seo-faq">
+        <h2 id="static-seo-faq">常見問題</h2>
+        <ul class="static-seo-faq">
+          ${faqs.map(([question, answer]) => `<li><strong>${escapeHtml(question)}</strong>${escapeHtml(answer)}</li>`).join('\n          ')}
+        </ul>
+      </section>`
+          : ''
+      }
+      <p class="static-seo-contact">正式詢價與配置討論請聯絡 <a href="mailto:info@eudaemonia.tech">info@eudaemonia.tech</a>。</p>
+    </main>`;
 }
 
 function webPageSchema(route, { title, url, image, imageAlt }) {
@@ -412,6 +643,7 @@ function injectHead(baseHtml, route) {
     `<meta data-rh="true" name="twitter:url" content="${escapeHtml(url)}">`,
     `<link data-rh="true" rel="canonical" href="${escapeHtml(url)}">`,
     `<link data-rh="true" rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href="${siteOrigin}/feed.xml">`,
+    staticSeoFallbackStyle(),
     ...verificationTags(),
     ...schemaItems
       .filter(Boolean)
@@ -425,7 +657,8 @@ function injectHead(baseHtml, route) {
     .replace(/\s*<link[^>]+rel="canonical"[^>]*>/g, '')
     .replace(/\s*<link[^>]+rel="alternate"[^>]+type="application\/rss\+xml"[^>]*>/g, '')
     .replace(/\s*<script[^>]+type="application\/ld\+json"[\s\S]*?<\/script>/g, '')
-    .replace('</head>', `    ${managedHead}\n  </head>`);
+    .replace('</head>', `    ${managedHead}\n  </head>`)
+    .replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">\n    ${staticSeoFallback(route)}\n    </div>`);
 }
 
 function writeRouteHtml(route, html) {

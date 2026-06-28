@@ -26,7 +26,7 @@
 3. Home page SEO metadata focused on AI GPU server and configurator searches.
 4. Footer internal links to high-intent configurator entry points.
 5. `sitemap.xml`, `sitemap-index.xml`, `image-sitemap.xml`, and `robots.txt` for crawler discovery.
-6. Static route HTML generation for `/`, `/configurator`, `/configurator/:pid`, `/solutions`, and `/solutions/*`, so crawlers can read route-specific metadata before JavaScript runs.
+6. Static route HTML generation for `/`, `/configurator`, `/configurator/:pid`, `/solutions`, and `/solutions/*`, so crawlers can read route-specific metadata and body content before JavaScript runs.
 7. Marketing attribution capture for `utm_*`, `gclid`, `fbclid`, LinkedIn click id, first landing page, and referrer.
 8. IndexNow key file and submit script for account-free URL discovery by participating search engines.
 9. `npm run submit:indexnow:dry-run` reads the current `public/sitemap.xml` and prints the IndexNow payload without regenerating discovery assets or sending the request.
@@ -89,6 +89,7 @@
 66. `docs/marketing-platform-onboarding.md` maps each external platform ID/token to the exact repo field, expected format, storage type, and official source.
 67. `npm run verify:exposure-workflow-env` statically checks that `Public Exposure Checks` maps every deployable marketing variable and GitHub Actions secret into the workflow environment.
 68. `npm run audit:external-platform-access` performs read-only API probes when credentials exist: Google Ads accessible customers plus customer `searchStream`, GA4 Admin property read, GTM container read, LinkedIn ad account visibility, Meta ad account/Pixel reads, and Microsoft Ads SOAP `GetUser`/`GetAccount`.
+69. Generated static SEO HTML now includes visible fallback body content for every configurator and solution route: H1, lead copy, CTA links, highlights, specs, FAQ where available, and `info@eudaemonia.tech`; `verify:seo-html` and `verify:live-exposure` fail if this fallback disappears or becomes too short.
 
 ## External Promotion Queue
 

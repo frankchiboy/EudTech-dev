@@ -133,6 +133,19 @@ function collectJsonLd(html) {
   }).filter(Boolean);
 }
 
+function bodyText(html) {
+  return (html.match(/<body[\s\S]*?<\/body>/i)?.[0] || '')
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function getMetaContent(html, selector) {
   return html.match(selector)?.[1] || '';
 }
@@ -316,6 +329,7 @@ async function checkPages(errors) {
     const socialPreview = socialPreviewByUrl.get(url);
     const expectedPageType = new URL(url).pathname === '/solutions/' ? 'CollectionPage' : 'WebPage';
     const pageSchema = jsonLd.find((item) => item['@type'] === expectedPageType);
+    const staticBodyText = bodyText(html);
 
     pages.push({
       url,
@@ -326,7 +340,8 @@ async function checkPages(errors) {
       ogImageSecureUrl,
       twitterImage,
       jsonLdTypes: jsonLd.map((item) => item['@type']).filter(Boolean),
-      pageSchemaType: pageSchema?.['@type'] || null
+      pageSchemaType: pageSchema?.['@type'] || null,
+      staticSeoBodyTextLength: staticBodyText.length
     });
 
     assert(result.status === 200, errors, `${url} should return HTTP 200.`);
@@ -345,6 +360,10 @@ async function checkPages(errors) {
     assert(twitterCard === 'summary_large_image', errors, `${url} twitter:card should be summary_large_image.`);
     assert(description.length > 40, errors, `${url} meta description is missing or too short.`);
     assert(/index/i.test(robots) && /follow/i.test(robots), errors, `${url} robots meta should include index, follow.`);
+    assert(html.includes('data-static-seo-fallback'), errors, `${url} missing static SEO body fallback.`);
+    assert(staticBodyText.length >= 220, errors, `${url} static SEO body fallback is too short: ${staticBodyText.length}.`);
+    assert(!socialPreview?.title || staticBodyText.includes(socialPreview.title), errors, `${url} static SEO body fallback missing route title.`);
+    assert(staticBodyText.includes('info@eudaemonia.tech'), errors, `${url} static SEO body fallback missing quote contact email.`);
     assert(jsonLd.length > 0, errors, `${url} missing JSON-LD.`);
     assert(jsonLd.some((item) => item['@type'] === 'BreadcrumbList'), errors, `${url} missing BreadcrumbList JSON-LD.`);
     assert(Boolean(pageSchema), errors, `${url} missing ${expectedPageType} JSON-LD.`);
