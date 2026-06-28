@@ -14,6 +14,33 @@ permissions:
 jobs:
   public-exposure:
     runs-on: ubuntu-latest
+    env:
+      VITE_GTM_ID: ${{ vars.VITE_GTM_ID }}
+      VITE_GA_MEASUREMENT_ID: ${{ vars.VITE_GA_MEASUREMENT_ID }}
+      VITE_GOOGLE_ADS_ID: ${{ vars.VITE_GOOGLE_ADS_ID }}
+      VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL: ${{ vars.VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL }}
+      VITE_LINKEDIN_PARTNER_ID: ${{ vars.VITE_LINKEDIN_PARTNER_ID }}
+      VITE_LINKEDIN_QUOTE_CONVERSION_ID: ${{ vars.VITE_LINKEDIN_QUOTE_CONVERSION_ID }}
+      VITE_META_PIXEL_ID: ${{ vars.VITE_META_PIXEL_ID }}
+      VITE_META_QUOTE_EVENT_NAME: ${{ vars.VITE_META_QUOTE_EVENT_NAME }}
+      VITE_MICROSOFT_UET_TAG_ID: ${{ vars.VITE_MICROSOFT_UET_TAG_ID }}
+      VITE_MICROSOFT_UET_QUOTE_EVENT: ${{ vars.VITE_MICROSOFT_UET_QUOTE_EVENT }}
+      VITE_MARKETING_EVENT_ENDPOINT: ${{ vars.VITE_MARKETING_EVENT_ENDPOINT }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      GOOGLE_ADS_DEVELOPER_TOKEN: ${{ secrets.GOOGLE_ADS_DEVELOPER_TOKEN }}
+      GOOGLE_ADS_LOGIN_CUSTOMER_ID: ${{ secrets.GOOGLE_ADS_LOGIN_CUSTOMER_ID }}
+      LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+      LINKEDIN_ORGANIZATION_ID: ${{ secrets.LINKEDIN_ORGANIZATION_ID }}
+      LINKEDIN_AD_ACCOUNT_ID: ${{ secrets.LINKEDIN_AD_ACCOUNT_ID }}
+      META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+      META_AD_ACCOUNT_ID: ${{ secrets.META_AD_ACCOUNT_ID }}
+      META_PIXEL_ID: ${{ secrets.META_PIXEL_ID }}
+      MICROSOFT_ADS_DEVELOPER_TOKEN: ${{ secrets.MICROSOFT_ADS_DEVELOPER_TOKEN }}
+      MICROSOFT_ADS_CUSTOMER_ID: ${{ secrets.MICROSOFT_ADS_CUSTOMER_ID }}
+      MICROSOFT_ADS_ACCOUNT_ID: ${{ secrets.MICROSOFT_ADS_ACCOUNT_ID }}
+      MICROSOFT_ADS_REFRESH_TOKEN: ${{ secrets.MICROSOFT_ADS_REFRESH_TOKEN }}
+      MICROSOFT_ADS_ACCESS_TOKEN: ${{ secrets.MICROSOFT_ADS_ACCESS_TOKEN }}
+      MICROSOFT_UET_TAG_ID: ${{ secrets.MICROSOFT_UET_TAG_ID }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -65,6 +92,13 @@ jobs:
         run: |
           set -o pipefail
           npm run verify:marketing-platform-env | tee reports/verify-marketing-platform-env.log
+
+      - name: Verify 1Password marketing item structure
+        if: env.OP_SERVICE_ACCOUNT_TOKEN != ''
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run verify:marketing-1password-item -- --structure-only --op-item "EudTech Configurator Marketing Platforms" | tee reports/verify-marketing-1password-item.log
 
       - name: Audit external platform access
         shell: bash

@@ -65,6 +65,35 @@ if (variablesToApply.length === 0) {
   process.exit(1);
 }
 
+function extractEnvKeys(payload) {
+  const keys = [];
+  const envKeyPattern = /^[A-Z][A-Z0-9_]+$/;
+
+  function visit(value) {
+    if (Array.isArray(value)) {
+      value.forEach(visit);
+      return;
+    }
+
+    if (!value || typeof value !== 'object') {
+      return;
+    }
+
+    for (const [key, nestedValue] of Object.entries(value)) {
+      if (envKeyPattern.test(key)) {
+        keys.push(key);
+      }
+      if (['key', 'name', 'variable'].includes(key) && typeof nestedValue === 'string' && envKeyPattern.test(nestedValue)) {
+        keys.push(nestedValue);
+      }
+      visit(nestedValue);
+    }
+  }
+
+  visit(payload);
+  return [...new Set(keys)].sort((a, b) => a.localeCompare(b));
+}
+
 const applied = [];
 for (const variable of variablesToApply) {
   const command = [
@@ -122,9 +151,66 @@ for (const variable of variablesToApply) {
   });
 }
 
+let readback = null;
+if (!dryRun) {
+  const child = spawnSync('npx', [
+    'netlify',
+    'env:list',
+    '--json',
+    '--site',
+    site,
+    '--context',
+    context
+  ], {
+    cwd: path.resolve(__dirname, '..'),
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    env: {
+      ...process.env,
+      NETLIFY_AUTH_TOKEN: authToken
+    }
+  });
+
+  if (child.status !== 0) {
+    console.error(child.stdout);
+    console.error(child.stderr);
+    console.log(JSON.stringify({
+      ok: false,
+      error: 'Netlify env write succeeded but readback failed',
+      status: child.status
+    }, null, 2));
+    process.exit(child.status || 1);
+  }
+
+  const presentKeys = extractEnvKeys(JSON.parse(child.stdout));
+  const missingKeys = variablesToApply
+    .map((variable) => variable.key)
+    .filter((key) => !presentKeys.includes(key));
+
+  readback = {
+    site,
+    context,
+    scope,
+    presentKeys: variablesToApply
+      .map((variable) => variable.key)
+      .filter((key) => presentKeys.includes(key)),
+    missingKeys
+  };
+
+  if (missingKeys.length > 0) {
+    console.log(JSON.stringify({
+      ok: false,
+      error: 'Netlify env readback did not include every applied key',
+      readback
+    }, null, 2));
+    process.exit(1);
+  }
+}
+
 console.log(JSON.stringify({
   ok: true,
   envFile,
   applied,
+  readback,
   readiness: result
 }, null, 2));

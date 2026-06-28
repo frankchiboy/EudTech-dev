@@ -83,6 +83,11 @@
 60. The production marketing event endpoint accepts `linkedin_quote_conversion`, `meta_quote_conversion`, and `microsoft_quote_conversion` events.
 61. `npm run create:marketing-env-template` creates a local `marketing.env` template with safe blank values and default first-party/quote event names; `marketing.env*` is ignored by git so platform IDs are not accidentally committed.
 62. `npm run sync:marketing-platform-env` can read a local env file or a 1Password Automation vault item with environment-variable field names, then dry-run or write the same values to local env files, Netlify production build env, or GitHub Actions variables/secrets without printing secret values.
+63. `npm run create:marketing-1password-template` creates a git-ignored 1Password item JSON template named `EudTech Configurator Marketing Platforms`, and `npm run verify:marketing-1password-item` checks that the Automation item has all required field names without printing values.
+64. GitHub Actions `Public Exposure Checks` maps repository `vars.*` and `secrets.*` into the runner environment so marketing env readiness and external-platform audits can see configured platform IDs and credentials.
+65. `apply:marketing-platform-env:netlify` now reads Netlify env back after a real write and fails if any applied key is missing from the production context readback.
+66. `docs/marketing-platform-onboarding.md` maps each external platform ID/token to the exact repo field, expected format, storage type, and official source.
+67. `npm run verify:exposure-workflow-env` statically checks that `Public Exposure Checks` maps every deployable marketing variable and GitHub Actions secret into the workflow environment.
 
 ## External Promotion Queue
 
@@ -117,7 +122,8 @@
 12. Use `npm run verify:marketing-platform-env:strict` before paid campaigns; it fails until GA/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET IDs are all present and valid.
 13. Use `npm run create:marketing-env-template`, fill real platform IDs in `marketing.env`, then use `npm run sync:marketing-platform-env -- --env-file <file> --target netlify --dry-run` or `npm run apply:marketing-platform-env:netlify -- --env-file <file> --dry-run` before writing Netlify env values. Rerun a production deploy after successful write.
 14. Use `npm run sync:marketing-platform-env -- --op-item <item> --target github-actions --dry-run` when platform IDs and API credentials are stored in 1Password Automation with environment-variable field names.
-15. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
+15. Use `npm run verify:marketing-1password-item:strict -- --op-item "EudTech Configurator Marketing Platforms"` before syncing from 1Password; it fails until required fields are present and non-empty.
+16. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
 
 ## Current External Permission Gap
 
@@ -125,6 +131,6 @@ Google Search Console API submission is currently usable in this shell through l
 
 Production verification in this workspace has confirmed `/build-meta.json` can be matched against an expected deployed commit with `npm run verify:live-exposure -- --expect-commit <sha>`, and `npm run audit:exposure-readiness:production` passed. The previous verified production commit was `0a37267e3c75dd6ae2df3e5b82970cb56833d5e9`. The production marketing endpoint accepts LinkedIn, Meta, and Microsoft conversion events.
 
-Netlify CLI is not currently authenticated in this shell and no Netlify token is visible in the Automation vault. The Automation vault has generic Google, LinkedIn, and Facebook login candidates, but no visible Netlify token, advertising API token, or platform ID item that can close the CLI/API setup. GA4/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET tracking IDs are not present in repo, GitHub variables/secrets, environment variables, or Netlify production env as readable from this shell. Add those platform IDs and a Netlify token before enabling paid campaign conversion tracking.
+Netlify CLI is not currently authenticated in this shell. The Automation vault now has a scaffold item named `EudTech Configurator Marketing Platforms` with the required field names, but the platform IDs and tokens are still empty. GA4/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET tracking IDs are not present in repo, GitHub variables/secrets, environment variables, or Netlify production env as readable from this shell. Add those platform IDs and a Netlify token before enabling paid campaign conversion tracking.
 
 The missing external-access items are: `NETLIFY_AUTH_TOKEN`, valid non-broken Google credentials or refreshed Google ADC scopes for Analytics/GTM/Ads, `GOOGLE_ADS_DEVELOPER_TOKEN`, LinkedIn API env, Meta API/env, Microsoft Ads API/env, and the corresponding frontend tracking IDs for Netlify production build env.

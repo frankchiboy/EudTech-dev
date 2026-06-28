@@ -1,6 +1,14 @@
 const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const {
+  authOnlyKeys,
+  deployableVariableKeys,
+  evaluateMarketingPlatformEnv,
+  githubSecretKeys,
+  marketingOnePasswordItemTitle,
+  requiredExternalCredentialKeys
+} = require('./marketing-platform-env.cjs');
 
 const args = new Set(process.argv.slice(2));
 const writeReport = args.has('--write-report');
@@ -474,7 +482,8 @@ function checkOnePasswordMarketingItems() {
 
   const opEnv = {
     ...process.env,
-    OP_SERVICE_ACCOUNT_TOKEN: serviceToken.token
+    OP_SERVICE_ACCOUNT_TOKEN: serviceToken.token,
+    OP_BIOMETRIC_UNLOCK_ENABLED: 'false'
   };
   const result = run('op', ['item', 'list', '--vault', automationVaultName, '--format', 'json'], {
     env: opEnv,
@@ -495,13 +504,37 @@ function checkOnePasswordMarketingItems() {
   }
 
   const items = parseJson(result.stdout, []);
-  const matcher = /(netlify|google analytics|analytics|tag manager|gtm|google ads|adwords|linkedin campaign|linkedin ads|campaign manager|insight tag|meta pixel|facebook pixel|microsoft ads|bing ads|uet)/i;
+  const matcher = new RegExp(
+    [
+      marketingOnePasswordItemTitle,
+      'configurator marketing',
+      'netlify',
+      'google analytics',
+      'analytics',
+      'tag manager',
+      'gtm',
+      'google ads',
+      'adwords',
+      'linkedin campaign',
+      'linkedin ads',
+      'campaign manager',
+      'insight tag',
+      'meta pixel',
+      'facebook pixel',
+      'microsoft ads',
+      'bing ads',
+      'uet'
+    ].join('|'),
+    'i'
+  );
   const matchingSourceItems = items.filter((item) => matcher.test([
     item.title,
     item.category,
     item.additional_information
   ].filter(Boolean).join(' ')));
   const fieldNames = [];
+  const nonEmptyFieldNames = [];
+  const onePasswordValues = {};
   const unreadableItemCount = matchingSourceItems.reduce((count, item) => {
     const detail = run('op', ['item', 'get', item.id, '--vault', automationVaultName, '--format', 'json'], {
       env: opEnv,
@@ -511,20 +544,53 @@ function checkOnePasswordMarketingItems() {
     const itemFieldNames = (parsed.fields || [])
       .map((field) => field.label || field.id || field.type)
       .filter(Boolean);
+    const itemNonEmptyFieldNames = (parsed.fields || [])
+      .filter((field) => typeof field.value === 'string' && field.value.trim())
+      .map((field) => field.label || field.id || field.type)
+      .filter(Boolean);
+    for (const field of parsed.fields || []) {
+      const name = field.label || field.id;
+      const value = typeof field.value === 'string' ? field.value.trim() : '';
+      if (name && value) {
+        onePasswordValues[name] = value;
+      }
+    }
 
     fieldNames.push(...itemFieldNames);
+    nonEmptyFieldNames.push(...itemNonEmptyFieldNames);
     return detail.ok ? count : count + 1;
   }, 0);
   const fieldNamesPresent = uniqueSorted(fieldNames);
+  const nonEmptyFieldNamesPresent = uniqueSorted(nonEmptyFieldNames);
+  const templateFieldKeys = [...deployableVariableKeys, ...githubSecretKeys, ...authOnlyKeys];
+  const missingTemplateFieldKeys = templateFieldKeys.filter((key) => !fieldNamesPresent.includes(key));
+  const emptyTemplateFieldKeys = templateFieldKeys.filter((key) => (
+    fieldNamesPresent.includes(key) && !nonEmptyFieldNamesPresent.includes(key)
+  ));
+  const missingRequiredCredentialFieldKeys = requiredExternalCredentialKeys.filter((key) => !fieldNamesPresent.includes(key));
+  const emptyRequiredCredentialFieldKeys = requiredExternalCredentialKeys.filter((key) => (
+    fieldNamesPresent.includes(key) && !nonEmptyFieldNamesPresent.includes(key)
+  ));
+  const platformReadiness = evaluateMarketingPlatformEnv(onePasswordValues);
+  const marketingEnvReady = platformReadiness.ok && platformReadiness.missingPlatforms.length === 0;
+  const requiredCredentialReady = missingRequiredCredentialFieldKeys.length === 0 && emptyRequiredCredentialFieldKeys.length === 0;
+  const githubAuthFieldPresent = authOnlyKeys.some((key) => nonEmptyFieldNamesPresent.includes(key));
 
   return {
-    ready: matchingSourceItems.length > 0,
+    ready: matchingSourceItems.length > 0 && marketingEnvReady && requiredCredentialReady,
     opInstalled: opVersion.ok,
     serviceTokenAvailable: true,
     serviceTokenSource: serviceToken.source,
     automationVaultReadable: true,
     matchingItemCount: matchingSourceItems.length,
+    matchingItemTitles: matchingSourceItems.map((item) => item.title),
     unreadableItemCount,
+    missingTemplateFieldKeys,
+    emptyTemplateFieldKeys,
+    missingRequiredCredentialFieldKeys,
+    emptyRequiredCredentialFieldKeys,
+    missingMarketingPlatforms: platformReadiness.missingPlatforms,
+    githubAuthFieldPresent,
     partnerIdVisible: fieldNamesPresent.some((field) => /partner.*id|linkedin.*partner/i.test(field)),
     quoteConversionIdVisible: fieldNamesPresent.some((field) => /conversion|quote/i.test(field)),
     metaPixelIdVisible: fieldNamesPresent.some((field) => /meta.*pixel|facebook.*pixel|pixel.*id/i.test(field)),

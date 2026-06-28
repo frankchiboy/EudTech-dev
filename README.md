@@ -140,6 +140,8 @@ npm run verify:marketing-platform-env  # 檢查 GA/GTM/Ads/LinkedIn/Meta/Microso
 npm run verify:marketing-platform-env:strict  # 外部平台 ID 缺少或格式錯誤時失敗
 npm run create:marketing-env-template  # 產生本機 marketing.env 範本；檔案已被 git 忽略
 npm run sync:marketing-platform-env -- --env-file ./marketing.env --target netlify --dry-run  # 從 env 檔 dry-run 同步 Netlify
+npm run create:marketing-1password-template  # 產生 1Password item JSON 範本；檔案已被 git 忽略
+npm run verify:marketing-1password-item  # 檢查 1Password Automation item 是否有必要欄位，不輸出 secret
 npm run apply:marketing-platform-env:netlify -- --env-file ./marketing.env  # 驗證後寫入 Netlify production build env
 npm run audit:external-platform-access  # 檢查 Netlify/Google/LinkedIn/Meta/Microsoft/GitHub/1Password 外部平台權限缺口
 npm run audit:external-platform-access:strict  # 外部平台權限缺少時失敗
@@ -203,6 +205,7 @@ Configurator 曝光主線集中在以下入口：
 | `docs/configurator-promotion-assets.md` | 推廣素材總覽與 LinkedIn 貼文草稿 |
 | `docs/configurator-promotion-keywords.csv` | Google Ads 關鍵字與落地頁矩陣 |
 | `docs/configurator-promotion-links.csv` | LinkedIn、Email、業務開發 UTM 連結 |
+| `docs/marketing-platform-onboarding.md` | GA/GTM、Google Ads、LinkedIn、Meta、Microsoft Ads、Netlify、GitHub Actions 欄位與官方來源 |
 
 部署到正式站後執行：
 
@@ -284,6 +287,9 @@ npm run apply:marketing-platform-env:netlify -- --env-file ./marketing.env
 若平台 ID 與 token 已存成 1Password Automation vault item，且欄位名稱使用相同環境變數名稱，可改用：
 
 ```bash
+npm run create:marketing-1password-template
+op item create --vault Automation --template marketing-1password-item.json --dry-run
+npm run verify:marketing-1password-item -- --op-item "EudTech Configurator Marketing Platforms"
 npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target env-file --output marketing.env
 npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target netlify --dry-run
 npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target github-actions --dry-run
@@ -291,6 +297,7 @@ npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing
 
 `sync:marketing-platform-env` 只在結果中列出 key 名稱與缺口，不輸出 secret 值。GitHub Actions 寫入使用 `gh variable set` / `gh secret set` 的標準輸入；Netlify 寫入仍使用 Netlify CLI，並要求 `NETLIFY_AUTH_TOKEN` 來自目前程序環境或指定的 1Password item。
 若 1Password item 有 `NETLIFY_AUTH_TOKEN`、`GH_TOKEN` 或 `GITHUB_TOKEN` 欄位，`sync:marketing-platform-env` 會只注入該次子程序，不會寫入 repo 或輸出值。
+`marketing-1password-item.json` 與 `marketing-1password-item.*.json` 已被 `.gitignore` 排除；填入實值後不要提交。
 
 ## 📦 模組使用
 

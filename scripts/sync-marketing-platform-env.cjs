@@ -3,8 +3,10 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const {
+  authOnlyKeys,
   deployableVariableKeys,
   evaluateMarketingPlatformEnv,
+  githubSecretKeys,
   parseEnvFile
 } = require('./marketing-platform-env.cjs');
 
@@ -50,29 +52,6 @@ if (!envFile && !opItem) {
   throw new Error('Pass --env-file <path> or --op-item <item title or id>.');
 }
 
-const githubSecretKeys = [
-  'NETLIFY_AUTH_TOKEN',
-  'GOOGLE_ADS_DEVELOPER_TOKEN',
-  'GOOGLE_ADS_LOGIN_CUSTOMER_ID',
-  'LINKEDIN_ACCESS_TOKEN',
-  'LINKEDIN_ORGANIZATION_ID',
-  'LINKEDIN_AD_ACCOUNT_ID',
-  'META_ACCESS_TOKEN',
-  'META_AD_ACCOUNT_ID',
-  'META_PIXEL_ID',
-  'MICROSOFT_ADS_DEVELOPER_TOKEN',
-  'MICROSOFT_ADS_CUSTOMER_ID',
-  'MICROSOFT_ADS_ACCOUNT_ID',
-  'MICROSOFT_ADS_REFRESH_TOKEN',
-  'MICROSOFT_ADS_ACCESS_TOKEN',
-  'MICROSOFT_UET_TAG_ID'
-];
-
-const authOnlyKeys = [
-  'GH_TOKEN',
-  'GITHUB_TOKEN'
-];
-
 const supportedKeys = [...deployableVariableKeys, ...githubSecretKeys, ...authOnlyKeys];
 
 function readServiceToken() {
@@ -107,7 +86,8 @@ function readOnePasswordValues(item) {
     stdio: ['ignore', 'pipe', 'pipe'],
     env: {
       ...process.env,
-      OP_SERVICE_ACCOUNT_TOKEN: token
+      OP_SERVICE_ACCOUNT_TOKEN: token,
+      OP_BIOMETRIC_UNLOCK_ENABLED: 'false'
     }
   });
 

@@ -18,6 +18,8 @@ marketing.env.*
 !marketing.env.example
 external-platform-access.env
 external-platform-access.env.*
+marketing-1password-item.json
+marketing-1password-item.*.json
 
 # Editor directories and files
 .vscode/*

@@ -83,6 +83,45 @@ const variableSpecs = [
 
 const deployableVariableKeys = variableSpecs.map((spec) => spec.key);
 
+const githubSecretKeys = [
+  'NETLIFY_AUTH_TOKEN',
+  'GOOGLE_ADS_DEVELOPER_TOKEN',
+  'GOOGLE_ADS_LOGIN_CUSTOMER_ID',
+  'LINKEDIN_ACCESS_TOKEN',
+  'LINKEDIN_ORGANIZATION_ID',
+  'LINKEDIN_AD_ACCOUNT_ID',
+  'META_ACCESS_TOKEN',
+  'META_AD_ACCOUNT_ID',
+  'META_PIXEL_ID',
+  'MICROSOFT_ADS_DEVELOPER_TOKEN',
+  'MICROSOFT_ADS_CUSTOMER_ID',
+  'MICROSOFT_ADS_ACCOUNT_ID',
+  'MICROSOFT_ADS_REFRESH_TOKEN',
+  'MICROSOFT_ADS_ACCESS_TOKEN',
+  'MICROSOFT_UET_TAG_ID'
+];
+
+const requiredExternalCredentialKeys = [
+  'NETLIFY_AUTH_TOKEN',
+  'GOOGLE_ADS_DEVELOPER_TOKEN',
+  'LINKEDIN_ACCESS_TOKEN',
+  'LINKEDIN_ORGANIZATION_ID',
+  'LINKEDIN_AD_ACCOUNT_ID',
+  'META_ACCESS_TOKEN',
+  'META_AD_ACCOUNT_ID',
+  'MICROSOFT_ADS_DEVELOPER_TOKEN',
+  'MICROSOFT_ADS_CUSTOMER_ID',
+  'MICROSOFT_ADS_ACCOUNT_ID',
+  'MICROSOFT_ADS_REFRESH_TOKEN'
+];
+
+const authOnlyKeys = [
+  'GH_TOKEN',
+  'GITHUB_TOKEN'
+];
+
+const marketingOnePasswordItemTitle = 'EudTech Configurator Marketing Platforms';
+
 const requiredPlatformKeys = {
   analytics: ['VITE_GTM_ID', 'VITE_GA_MEASUREMENT_ID'],
   googleAds: ['VITE_GOOGLE_ADS_ID', 'VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL'],
@@ -190,8 +229,12 @@ function evaluateMarketingPlatformEnv(env) {
 }
 
 module.exports = {
+  authOnlyKeys,
   deployableVariableKeys,
   evaluateMarketingPlatformEnv,
+  githubSecretKeys,
+  marketingOnePasswordItemTitle,
   parseEnvFile,
+  requiredExternalCredentialKeys,
   variableSpecs
 };
