@@ -56,14 +56,14 @@
 33. `npm run generate:promotion-assets` creates Google Ads keyword rows, LinkedIn organic UTM links, and Email outreach UTM links from the same configurator SEO source data.
 34. `npm run verify:promotion-assets` checks that promotion assets stay synchronized with the current configurator landing pages.
 35. `npm run audit:exposure-readiness` checks search discovery, campaign assets, conversion events, automation, and external tracking gaps without failing CI on missing platform IDs.
-36. `npm run audit:exposure-readiness:strict` turns missing GA/GTM/Google Ads/LinkedIn/quote-email environment variables into a failure for launch-readiness gates.
+36. `npm run audit:exposure-readiness:strict` turns missing GA/GTM, Google Ads, LinkedIn, Meta Pixel, Microsoft Ads UET, and quote-email environment variables into a failure for launch-readiness gates.
 37. `npm run audit:exposure-readiness:production` fails when the deployed first-party marketing event endpoint is not yet available.
-38. First-party exposure events are collected through `/.netlify/functions/marketing-event`, so page views, attribution captures, configurator clicks, shares, and quote-submit success events still reach server-side logs before GA/GTM/Ads/LinkedIn IDs are available.
+38. First-party exposure events are collected through `/.netlify/functions/marketing-event`, so page views, attribution captures, configurator clicks, shares, quote-funnel diagnostics, and quote-submit success events still reach server-side logs before GA/GTM/Ads/LinkedIn/Meta/Microsoft IDs are available.
 39. `/.netlify/functions/send-email` exposes a health check and writes a sanitized `quote_email_sent` conversion log after successful quote delivery.
-40. `npm run verify:marketing-platform-env` validates GA/GTM, Google Ads, LinkedIn, and first-party event endpoint environment variable formats before deployment.
+40. `npm run verify:marketing-platform-env` validates GA/GTM, Google Ads, LinkedIn, Meta Pixel, Microsoft Ads UET, and first-party event endpoint environment variable formats before deployment.
 41. The legacy `AnalyticsService` no longer posts to the unavailable `/api/analytics` path; supported analytics events now use the same first-party Netlify Function endpoint.
 42. `npm run apply:marketing-platform-env:netlify -- --env-file <file>` validates marketing platform IDs, then writes them to Netlify production build environment when `NETLIFY_AUTH_TOKEN` is available.
-43. `npm run audit:external-platform-access` writes `reports/external-platform-access.json` with Netlify, Google ADC, GitHub, and 1Password access readiness for external tracking setup.
+43. `npm run audit:external-platform-access` writes `reports/external-platform-access.json` with Netlify, Google ADC, Google Ads, LinkedIn, Meta, Microsoft Ads, GitHub, and 1Password access readiness for external tracking setup.
 44. `npm run generate:promotion-assets` also creates Google Ads Editor keyword imports, search ad copy, complete organic posts, and LinkedIn URL tracking parameter sheets.
 45. `npm run audit:exposure-readiness` verifies organic copy coverage, Google Ads Editor keyword coverage, search ad copy length validity, and LinkedIn URL parameter coverage.
 46. `npm run generate:social-images` creates dedicated 1200x630 JPEG social preview images for every configurator product and solution landing page.
@@ -77,12 +77,16 @@
 54. Production builds emit `/build-meta.json` with the deployed Git commit, branch, build time, deploy context, and source. `npm run verify:live-exposure -- --expect-commit <sha>` can prove the live site has reached the expected commit instead of only proving that an older deployment still passes SEO checks.
 55. GitHub Actions `Public Exposure Checks` now runs `npm run verify:live-exposure -- --expect-commit "$GITHUB_SHA" --wait-for-commit-ms 600000`, so it waits up to 10 minutes for Netlify production to deploy the pushed commit before passing live exposure.
 56. `llms-full.txt` publishes the complete configurator product, solution, FAQ, quote URL, and product-id context from the shared route inventory for AI assistants and procurement research tools. `verify-discovery`, `audit:exposure-readiness`, and `verify:live-exposure` all fail if it loses a landing page or product id.
+57. Configurator events now map important user actions to GA4/GTM recommended events: `view_item`, `select_item`, `share`, and `generate_lead`.
+58. Quote-funnel diagnostics now emit `quote_submit_attempt`, `quote_validation_error`, `quote_submit_not_configured`, `quote_form_abandon`, and `quote_form_close`.
+59. External retargeting/conversion hooks are implemented for Meta Pixel `PageView`/`Lead` and Microsoft Ads UET SPA `page_view`/quote events.
+60. The production marketing event endpoint accepts `linkedin_quote_conversion`, `meta_quote_conversion`, and `microsoft_quote_conversion` events.
 
 ## External Promotion Queue
 
 1. Google Search Console sitemap submission succeeded on 2026-06-29 for `sitemap-index.xml`, `sitemap.xml`, and `image-sitemap.xml`; `monitor:sitemaps` reports 0 errors and 0 warnings.
 2. Start Google Ads exact/phrase match tests around quote-intent keywords.
-3. Start LinkedIn retargeting after traffic reaches stable volume.
+3. Start LinkedIn, Meta, and Microsoft Ads retargeting after traffic reaches stable volume and platform IDs are installed.
 4. Add case-oriented articles only after Search Console shows impressions.
 5. Submit the current sitemap URLs through IndexNow after production deploys with `npm run submit:indexnow`.
 6. Submit the current sitemap URLs through Google Search Console after production deploys with `npm run submit:search-console`.
@@ -93,23 +97,31 @@
 11. Use `docs/configurator-organic-posts.csv` for immediate LinkedIn, Email, and sales outreach posts before paid-platform access is available.
 12. Use `docs/configurator-google-ads-editor-keywords.csv` and `docs/configurator-search-ad-copy.csv` as paused Google Ads Editor import material after Google Ads access is ready.
 13. Use `docs/configurator-linkedin-url-parameters.csv` as static or dynamic URL tracking input when LinkedIn Campaign Manager access is ready.
+14. Use Meta Pixel audiences and Microsoft Ads UET audiences only after the corresponding environment variables are present in Netlify and a production deploy has completed.
 
 ## Tracking Readiness
 
 1. Add `VITE_GTM_ID` or `VITE_GA_MEASUREMENT_ID` in Netlify to capture page views.
 2. Add `VITE_GOOGLE_ADS_ID` and `VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL` before starting Google Ads.
-3. Use the `configurator_lead_intent` event in GTM/GA4. Key actions are `configure`, `quote`, `quote_form_open`, `share`, `quote_submit_success`, and `quote_submit_error`.
-4. Treat `quote_submit_success` as the primary conversion event.
-5. Quote emails include marketing attribution fields when URL parameters or referrers are available.
-6. Attribution tracking includes `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `fbclid`, `li_fat_id`, and `msclkid`.
-7. First-party server-side event collection records `page_view`, `marketing_attribution`, `configurator_lead_intent`, and `linkedin_quote_conversion` events in Netlify Function logs.
-8. Share actions add `utm_source=share`, `utm_medium=referral`, `utm_campaign=configurator_<device>`, and `utm_content=share_button` to the copied or native-shared URL.
-9. Use `npm run verify:marketing-platform-env:strict` before paid campaigns; it fails until GA/GTM, Google Ads, and LinkedIn IDs are all present and valid.
-10. Use `npm run apply:marketing-platform-env:netlify -- --env-file <file> --dry-run` before writing Netlify env values, then rerun a production deploy after successful write.
-11. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
+3. Add `VITE_LINKEDIN_PARTNER_ID` and `VITE_LINKEDIN_QUOTE_CONVERSION_ID` before starting LinkedIn conversion tracking.
+4. Add `VITE_META_PIXEL_ID` before starting Meta retargeting and quote Lead tracking.
+5. Add `VITE_MICROSOFT_UET_TAG_ID` before starting Microsoft Ads retargeting and quote-event tracking.
+6. Use the `configurator_lead_intent` event in GTM/GA4. Key actions are `product_card_customize`, `product_card_quote`, `configurator_filter`, `configurator_module_toggle`, `option_select`, `configurator_quantity_change`, `quote_form_open`, `share`, `quote_submit_success`, `quote_submit_error`, and `quote_validation_error`.
+7. Treat `quote_submit_success` as the primary conversion event.
+8. Quote emails include marketing attribution fields when URL parameters or referrers are available.
+9. Attribution tracking includes `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `fbclid`, `li_fat_id`, and `msclkid`.
+10. First-party server-side event collection records `page_view`, `marketing_attribution`, `configurator_lead_intent`, `linkedin_quote_conversion`, `meta_quote_conversion`, and `microsoft_quote_conversion` events in Netlify Function logs.
+11. Share actions add `utm_source=share`, `utm_medium=referral`, `utm_campaign=configurator_<device>`, and `utm_content=share_button` to the copied or native-shared URL.
+12. Use `npm run verify:marketing-platform-env:strict` before paid campaigns; it fails until GA/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET IDs are all present and valid.
+13. Use `npm run apply:marketing-platform-env:netlify -- --env-file <file> --dry-run` before writing Netlify env values, then rerun a production deploy after successful write.
+14. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
 
 ## Current External Permission Gap
 
-Google Search Console API submission is currently usable in this shell through local ADC when the scripts request the explicit `https://www.googleapis.com/auth/webmasters` scope. `npm run submit:search-console` has successfully submitted `sitemap-index.xml`, `sitemap.xml`, and `image-sitemap.xml`; `npm run monitor:sitemaps`, `npm run inspect:search-console`, and `npm run report:search-console` also complete without printing tokens. `GOOGLE_APPLICATION_CREDENTIALS` may still point at an old missing service-account file, so the Search Console scripts intentionally ignore that environment variable and use scoped ADC instead.
+Google Search Console API submission is currently usable in this shell through local ADC when the scripts request the explicit `https://www.googleapis.com/auth/webmasters` scope. `npm run submit:search-console` has successfully submitted `sitemap-index.xml`, `sitemap.xml`, and `image-sitemap.xml`; `npm run monitor:sitemaps`, `npm run inspect:search-console`, and `npm run report:search-console` also complete without printing tokens. `GOOGLE_APPLICATION_CREDENTIALS` still points at an old missing service-account file, so the Search Console scripts intentionally ignore that environment variable and use scoped ADC instead.
 
-Netlify CLI is not currently authenticated in this shell and no Netlify token is visible in the Automation vault. GA4, GTM, Google Ads, and LinkedIn tracking IDs are not present in repo, GitHub variables/secrets, or the visible 1Password Automation item list. Add those platform IDs and a Netlify token before enabling paid campaign conversion tracking.
+The site is live on commit `8d1bb80`, and `npm run verify:live-exposure -- --expect-commit 8d1bb80977ee54313c7c56d278ceeeb21fe4cf15` plus `npm run audit:exposure-readiness:production` both pass. The production marketing endpoint accepts LinkedIn, Meta, and Microsoft conversion events.
+
+Netlify CLI is not currently authenticated in this shell and no Netlify token is visible in the Automation vault. GA4/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET tracking IDs are not present in repo, GitHub variables/secrets, environment variables, or the visible 1Password Automation item list. Add those platform IDs and a Netlify token before enabling paid campaign conversion tracking.
+
+The missing external-access items are: `NETLIFY_AUTH_TOKEN`, valid non-broken Google credentials or refreshed Google ADC scopes for Analytics/GTM/Ads, `GOOGLE_ADS_DEVELOPER_TOKEN`, LinkedIn API env, Meta API/env, Microsoft Ads API/env, and the corresponding frontend tracking IDs for Netlify production build env.
