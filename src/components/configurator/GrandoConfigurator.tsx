@@ -85,6 +85,17 @@ const MOBILE_PRODUCT_IMAGE_QUALITY = 68;
 const DESKTOP_PRODUCT_IMAGE_QUALITY = 80;
 const BACKGROUND_IMAGE_QUALITY = 75;
 const CONFIGURATOR_CANONICAL_URL = canonicalPageUrl(`${SITE_ORIGIN}/configurator`);
+const CONFIGURATOR_SHARE_TRACKING_KEYS = [
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_term',
+  'utm_content',
+  'gclid',
+  'fbclid',
+  'li_fat_id',
+  'msclkid'
+];
 const LOCAL_PRODUCT_IMAGE_FILENAMES = new Set([
   '2x6000ADA_Ddd293j',
   '2x6000ADA_ver',
@@ -361,6 +372,27 @@ const dispatchConfiguratorLeadIntent = (action: string, detail: Record<string, u
       }
     })
   );
+};
+
+const buildConfiguratorShareUrl = (currentUrl: string, spec: ConfiguratorSpec) => {
+  if (!currentUrl) {
+    return '';
+  }
+
+  try {
+    const shareUrl = new URL(currentUrl);
+    CONFIGURATOR_SHARE_TRACKING_KEYS.forEach((key) => {
+      shareUrl.searchParams.delete(key);
+    });
+    const deviceId = spec.device?.id ? String(spec.device.id) : 'index';
+    shareUrl.searchParams.set('utm_source', 'share');
+    shareUrl.searchParams.set('utm_medium', 'referral');
+    shareUrl.searchParams.set('utm_campaign', `configurator_${deviceId}`);
+    shareUrl.searchParams.set('utm_content', 'share_button');
+    return shareUrl.toString();
+  } catch {
+    return currentUrl;
+  }
 };
 
 const useMobileConfiguratorViewport = () => {
@@ -992,6 +1024,8 @@ const QuotePanel = ({
   const copy = CONFIGURATOR_COPY[language];
   const modelName = translateConfiguratorModelName(getConfiguratorModelName(spec), language);
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareUrl = buildConfiguratorShareUrl(currentUrl, spec);
+  const shareTitle = `${modelName} | ${copy.shareTitleSuffix}`;
   const quoteSummary = [
     `${copy.quoteRequest}: ${spec.device?.name || copy.systemFallback}`,
     `${copy.model}: ${modelName}`,
@@ -1048,12 +1082,34 @@ const QuotePanel = ({
     });
   };
 
-  const handleShare = () => {
-    void copyToClipboard(currentUrl);
+  const handleShare = async () => {
+    let shareMethod = 'copy';
+    const shareData: ShareData = {
+      title: shareTitle,
+      text: copy.shareText,
+      url: shareUrl || currentUrl
+    };
+
+    if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
+      try {
+        await navigator.share(shareData);
+        shareMethod = 'native';
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          return;
+        }
+        await copyToClipboard(shareUrl || currentUrl);
+      }
+    } else {
+      await copyToClipboard(shareUrl || currentUrl);
+    }
+
     dispatchConfiguratorLeadIntent('share', {
       modelName,
       deviceId: spec.device?.id,
-      deviceName: spec.device?.name
+      deviceName: spec.device?.name,
+      configurationUrl: shareUrl || currentUrl,
+      shareMethod
     });
   };
 

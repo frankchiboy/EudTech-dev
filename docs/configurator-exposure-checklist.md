@@ -69,6 +69,8 @@
 46. Static SEO HTML uses the generated social preview images for Open Graph and Twitter/X cards, with `og:image:alt`, `twitter:image:alt`, image width, and image height.
 47. `image-sitemap.xml` lists the generated social preview images and no longer emits deprecated `image:title` or `image:caption` fields.
 48. `npm run verify:social-images`, `npm run verify:seo-html`, `npm run verify:discovery`, and `npm run verify:live-exposure` validate social image size, format, page metadata, sitemap coverage, and production accessibility.
+49. The configurator Share button prefers native Web Share API, falls back to clipboard copy, and adds share-specific UTM parameters while preserving the selected configuration.
+50. First-party configurator lead events keep the shared configuration URL and share method so organic sharing can be measured before external ad-platform IDs are available.
 
 ## External Promotion Queue
 
@@ -94,9 +96,10 @@
 5. Quote emails include marketing attribution fields when URL parameters or referrers are available.
 6. Attribution tracking includes `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `fbclid`, `li_fat_id`, and `msclkid`.
 7. First-party server-side event collection records `page_view`, `marketing_attribution`, `configurator_lead_intent`, and `linkedin_quote_conversion` events in Netlify Function logs.
-8. Use `npm run verify:marketing-platform-env:strict` before paid campaigns; it fails until GA/GTM, Google Ads, and LinkedIn IDs are all present and valid.
-9. Use `npm run apply:marketing-platform-env:netlify -- --env-file <file> --dry-run` before writing Netlify env values, then rerun a production deploy after successful write.
-10. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
+8. Share actions add `utm_source=share`, `utm_medium=referral`, `utm_campaign=configurator_<device>`, and `utm_content=share_button` to the copied or native-shared URL.
+9. Use `npm run verify:marketing-platform-env:strict` before paid campaigns; it fails until GA/GTM, Google Ads, and LinkedIn IDs are all present and valid.
+10. Use `npm run apply:marketing-platform-env:netlify -- --env-file <file> --dry-run` before writing Netlify env values, then rerun a production deploy after successful write.
+11. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
 
 ## Current External Permission Gap
 

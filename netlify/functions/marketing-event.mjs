@@ -39,6 +39,8 @@ const allowedConfiguratorKeys = new Set([
   'model_name',
   'device_id',
   'device_name',
+  'share_method',
+  'url',
   'conversion_id'
 ]);
 
@@ -147,6 +149,11 @@ async function collectMarketingEvent(request) {
     return json(400, { error: 'Unsupported marketing event' });
   }
 
+  const configurator = sanitizeObject(payload.configurator, allowedConfiguratorKeys);
+  if (configurator.url) {
+    configurator.url = sanitizeUrl(configurator.url);
+  }
+
   const eventRecord = {
     event,
     eventId: normalize(payload.event_id || payload.eventId, 120),
@@ -158,7 +165,7 @@ async function collectMarketingEvent(request) {
     sessionId: normalize(payload.session_id || payload.sessionId, 120),
     conversionId: normalize(payload.conversion_id || payload.conversionId, 120),
     attribution: sanitizeObject(payload.attribution, allowedAttributionKeys),
-    configurator: sanitizeObject(payload.configurator, allowedConfiguratorKeys),
+    configurator,
     eventContext: sanitizeObject(payload.event_context || payload.eventContext, allowedEventContextKeys),
     userAgent: normalize(request.headers.get('user-agent'), 300),
     referer: sanitizeUrl(request.headers.get('referer'))

@@ -10,6 +10,7 @@ type LeadIntentDetail = {
   deviceId?: number | string;
   deviceName?: string;
   configurationUrl?: string;
+  shareMethod?: string;
 };
 
 type GtagArguments = [command: string, target: string | Date, params?: Record<string, unknown>];
@@ -206,6 +207,7 @@ const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
     configurator_model_name: detail.modelName,
     configurator_device_id: detail.deviceId,
     configurator_device_name: detail.deviceName,
+    configurator_share_method: detail.shareMethod,
     configurator_url: detail.configurationUrl || window.location.href
   };
 
@@ -223,6 +225,7 @@ const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
       model_name: detail.modelName,
       device_id: detail.deviceId,
       device_name: detail.deviceName,
+      share_method: detail.shareMethod,
       url: detail.configurationUrl || window.location.href
     }
   });
