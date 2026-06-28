@@ -13,6 +13,11 @@ dist-ssr
 tmp
 *.local
 reports/*.json
+marketing.env
+marketing.env.*
+!marketing.env.example
+external-platform-access.env
+external-platform-access.env.*
 
 # Editor directories and files
 .vscode/*

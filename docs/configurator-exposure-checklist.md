@@ -81,6 +81,8 @@
 58. Quote-funnel diagnostics now emit `quote_submit_attempt`, `quote_validation_error`, `quote_submit_not_configured`, `quote_form_abandon`, and `quote_form_close`.
 59. External retargeting/conversion hooks are implemented for Meta Pixel `PageView`/`Lead` and Microsoft Ads UET SPA `page_view`/quote events.
 60. The production marketing event endpoint accepts `linkedin_quote_conversion`, `meta_quote_conversion`, and `microsoft_quote_conversion` events.
+61. `npm run create:marketing-env-template` creates a local `marketing.env` template with safe blank values and default first-party/quote event names; `marketing.env*` is ignored by git so platform IDs are not accidentally committed.
+62. `npm run sync:marketing-platform-env` can read a local env file or a 1Password Automation vault item with environment-variable field names, then dry-run or write the same values to local env files, Netlify production build env, or GitHub Actions variables/secrets without printing secret values.
 
 ## External Promotion Queue
 
@@ -113,15 +115,16 @@
 10. First-party server-side event collection records `page_view`, `marketing_attribution`, `configurator_lead_intent`, `linkedin_quote_conversion`, `meta_quote_conversion`, and `microsoft_quote_conversion` events in Netlify Function logs.
 11. Share actions add `utm_source=share`, `utm_medium=referral`, `utm_campaign=configurator_<device>`, and `utm_content=share_button` to the copied or native-shared URL.
 12. Use `npm run verify:marketing-platform-env:strict` before paid campaigns; it fails until GA/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET IDs are all present and valid.
-13. Use `npm run apply:marketing-platform-env:netlify -- --env-file <file> --dry-run` before writing Netlify env values, then rerun a production deploy after successful write.
-14. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
+13. Use `npm run create:marketing-env-template`, fill real platform IDs in `marketing.env`, then use `npm run sync:marketing-platform-env -- --env-file <file> --target netlify --dry-run` or `npm run apply:marketing-platform-env:netlify -- --env-file <file> --dry-run` before writing Netlify env values. Rerun a production deploy after successful write.
+14. Use `npm run sync:marketing-platform-env -- --op-item <item> --target github-actions --dry-run` when platform IDs and API credentials are stored in 1Password Automation with environment-variable field names.
+15. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
 
 ## Current External Permission Gap
 
 Google Search Console API submission is currently usable in this shell through local ADC when the scripts request the explicit `https://www.googleapis.com/auth/webmasters` scope. `npm run submit:search-console` has successfully submitted `sitemap-index.xml`, `sitemap.xml`, and `image-sitemap.xml`; `npm run monitor:sitemaps`, `npm run inspect:search-console`, and `npm run report:search-console` also complete without printing tokens. `GOOGLE_APPLICATION_CREDENTIALS` still points at an old missing service-account file, so the Search Console scripts intentionally ignore that environment variable and use scoped ADC instead.
 
-The site is live on commit `8d1bb80`, and `npm run verify:live-exposure -- --expect-commit 8d1bb80977ee54313c7c56d278ceeeb21fe4cf15` plus `npm run audit:exposure-readiness:production` both pass. The production marketing endpoint accepts LinkedIn, Meta, and Microsoft conversion events.
+Production verification in this workspace has confirmed `/build-meta.json` can be matched against an expected deployed commit with `npm run verify:live-exposure -- --expect-commit <sha>`, and `npm run audit:exposure-readiness:production` passed. The previous verified production commit was `0a37267e3c75dd6ae2df3e5b82970cb56833d5e9`. The production marketing endpoint accepts LinkedIn, Meta, and Microsoft conversion events.
 
-Netlify CLI is not currently authenticated in this shell and no Netlify token is visible in the Automation vault. GA4/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET tracking IDs are not present in repo, GitHub variables/secrets, environment variables, or the visible 1Password Automation item list. Add those platform IDs and a Netlify token before enabling paid campaign conversion tracking.
+Netlify CLI is not currently authenticated in this shell and no Netlify token is visible in the Automation vault. The Automation vault has generic Google, LinkedIn, and Facebook login candidates, but no visible Netlify token, advertising API token, or platform ID item that can close the CLI/API setup. GA4/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET tracking IDs are not present in repo, GitHub variables/secrets, environment variables, or Netlify production env as readable from this shell. Add those platform IDs and a Netlify token before enabling paid campaign conversion tracking.
 
 The missing external-access items are: `NETLIFY_AUTH_TOKEN`, valid non-broken Google credentials or refreshed Google ADC scopes for Analytics/GTM/Ads, `GOOGLE_ADS_DEVELOPER_TOKEN`, LinkedIn API env, Meta API/env, Microsoft Ads API/env, and the corresponding frontend tracking IDs for Netlify production build env.

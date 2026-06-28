@@ -23,6 +23,8 @@
     "verify:promotion-assets": "node scripts/generate-configurator-promotion-assets.cjs --check",
     "verify:marketing-platform-env": "node scripts/verify-marketing-platform-env.cjs --write-report",
     "verify:marketing-platform-env:strict": "node scripts/verify-marketing-platform-env.cjs --write-report --fail-on-missing",
+    "create:marketing-env-template": "node scripts/create-marketing-env-template.cjs --output marketing.env",
+    "sync:marketing-platform-env": "node scripts/sync-marketing-platform-env.cjs",
     "apply:marketing-platform-env:netlify": "node scripts/apply-marketing-platform-env-to-netlify.cjs",
     "audit:external-platform-access": "node scripts/audit-external-platform-access.cjs --write-report",
     "audit:external-platform-access:strict": "node scripts/audit-external-platform-access.cjs --write-report --fail-on-missing",
