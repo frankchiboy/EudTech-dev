@@ -108,7 +108,7 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
       ? 'Enterprise-grade AI server with optimized performance for large language models and AI workloads.'
       : '企業級AI伺服器，為大型語言模型和AI工作負載優化效能。',
     icon: React.createElement(Server, { className: "h-8 w-8 text-blue-800" }),
-    image: "/EudTech-Select-server-front.png.png",
+    image: "/EudTech-Select-server-front.png",
     features: isEnglish
       ? [
           '8-GPU direct-connect architecture',

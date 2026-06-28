@@ -47,7 +47,7 @@ export const products = (isEnglish: boolean): ProductImage[] => [
       ? 'Enterprise-grade AI server with optimized performance for large language models and AI workloads.'
       : '企業級AI伺服器，為大型語言模型和AI工作負載優化效能。',
     icon: 'server', // 使用字串表示
-    image: '/EudTech-Select-server-front.png.png',
+    image: '/EudTech-Select-server-front.png',
     features: isEnglish
       ? [
           '8-GPU direct-connect architecture',
@@ -88,8 +88,8 @@ export const products = (isEnglish: boolean): ProductImage[] => [
         },
     comingSoon: false,
     images: [
-      '/EudTech-Select-server-front.png.png',
-      '/EudTech-Select-server-back.png.png',
+      '/EudTech-Select-server-front.png',
+      '/EudTech-Select-server-back.png',
       '/EudTech-Select-server-inside.png'
     ],
     detailedDescription: null
