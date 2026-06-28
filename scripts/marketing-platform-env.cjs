@@ -53,6 +53,8 @@ const variableSpecs = [
   }
 ];
 
+const deployableVariableKeys = variableSpecs.map((spec) => spec.key);
+
 const requiredPlatformKeys = {
   analytics: ['VITE_GTM_ID', 'VITE_GA_MEASUREMENT_ID'],
   googleAds: ['VITE_GOOGLE_ADS_ID', 'VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL'],
@@ -156,6 +158,7 @@ function evaluateMarketingPlatformEnv(env) {
 }
 
 module.exports = {
+  deployableVariableKeys,
   evaluateMarketingPlatformEnv,
   parseEnvFile,
   variableSpecs

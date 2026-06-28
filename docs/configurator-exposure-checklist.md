@@ -61,6 +61,7 @@
 38. `/.netlify/functions/send-email` exposes a health check and writes a sanitized `quote_email_sent` conversion log after successful quote delivery.
 39. `npm run verify:marketing-platform-env` validates GA/GTM, Google Ads, LinkedIn, and first-party event endpoint environment variable formats before deployment.
 40. The legacy `AnalyticsService` no longer posts to the unavailable `/api/analytics` path; supported analytics events now use the same first-party Netlify Function endpoint.
+41. `npm run apply:marketing-platform-env:netlify -- --env-file <file>` validates marketing platform IDs, then writes them to Netlify production build environment when `NETLIFY_AUTH_TOKEN` is available.
 
 ## External Promotion Queue
 
@@ -84,9 +85,10 @@
 6. Attribution tracking includes `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `fbclid`, `li_fat_id`, and `msclkid`.
 7. First-party server-side event collection records `page_view`, `marketing_attribution`, `configurator_lead_intent`, and `linkedin_quote_conversion` events in Netlify Function logs.
 8. Use `npm run verify:marketing-platform-env:strict` before paid campaigns; it fails until GA/GTM, Google Ads, and LinkedIn IDs are all present and valid.
+9. Use `npm run apply:marketing-platform-env:netlify -- --env-file <file> --dry-run` before writing Netlify env values, then rerun a production deploy after successful write.
 
 ## Current External Permission Gap
 
 Google Search Console API submission is available through local ADC for `frank.hsu@eudaemonia.tech` with `https://www.googleapis.com/auth/webmasters` scope. `GOOGLE_APPLICATION_CREDENTIALS` may point at an old missing service account file in some shells, so Search Console scripts intentionally ignore that environment variable and use ADC.
 
-Netlify CLI can read the linked site environment, but the site currently only exposes `NODE_VERSION`. GA4, GTM, Google Ads, and LinkedIn tracking IDs are not present in repo, Netlify env, or the visible 1Password Automation item list. Add those platform IDs before enabling paid campaign conversion tracking.
+Netlify CLI is not currently authenticated in this shell and no Netlify token is visible in the Automation vault. GA4, GTM, Google Ads, and LinkedIn tracking IDs are not present in repo, GitHub variables/secrets, or the visible 1Password Automation item list. Add those platform IDs and a Netlify token before enabling paid campaign conversion tracking.
