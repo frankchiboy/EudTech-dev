@@ -63,6 +63,8 @@
 40. The legacy `AnalyticsService` no longer posts to the unavailable `/api/analytics` path; supported analytics events now use the same first-party Netlify Function endpoint.
 41. `npm run apply:marketing-platform-env:netlify -- --env-file <file>` validates marketing platform IDs, then writes them to Netlify production build environment when `NETLIFY_AUTH_TOKEN` is available.
 42. `npm run audit:external-platform-access` writes `reports/external-platform-access.json` with Netlify, Google ADC, GitHub, and 1Password access readiness for external tracking setup.
+43. `npm run generate:promotion-assets` also creates Google Ads Editor keyword imports, search ad copy, complete organic posts, and LinkedIn URL tracking parameter sheets.
+44. `npm run audit:exposure-readiness` verifies organic copy coverage, Google Ads Editor keyword coverage, search ad copy length validity, and LinkedIn URL parameter coverage.
 
 ## External Promotion Queue
 
@@ -75,6 +77,9 @@
 7. Monitor high-intent canonical URL index status with `npm run inspect:search-console`.
 8. Use `npm run report:search-console` to decide whether to add deeper pages such as Supermicro comparison, power planning, rack deployment, or Taiwan public procurement wording.
 9. Run `npm run exposure:postdeploy` after production deploys to catch live crawler-readiness regressions.
+10. Use `docs/configurator-organic-posts.csv` for immediate LinkedIn, Email, and sales outreach posts before paid-platform access is available.
+11. Use `docs/configurator-google-ads-editor-keywords.csv` and `docs/configurator-search-ad-copy.csv` as paused Google Ads Editor import material after Google Ads access is ready.
+12. Use `docs/configurator-linkedin-url-parameters.csv` as static or dynamic URL tracking input when LinkedIn Campaign Manager access is ready.
 
 ## Tracking Readiness
 

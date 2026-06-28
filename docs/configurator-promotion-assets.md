@@ -4,16 +4,20 @@
 
 ## 使用方式
 
-1. Google Ads 使用 `docs/configurator-promotion-keywords.csv` 匯入或人工建立廣告群組。
-2. LinkedIn、Email、業務開發使用 `docs/configurator-promotion-links.csv` 內的 UTM 連結。
-3. 所有推廣連結都保留 `utm_source`、`utm_medium`、`utm_campaign`、`utm_content`，搜尋廣告另保留 `utm_term`。
-4. 實際投放前必須先在 Netlify 設定 GA4、GTM、Google Ads 或 LinkedIn 追蹤 ID。
+1. Google Ads 使用 `docs/configurator-promotion-keywords.csv` 做規劃，或使用 `docs/configurator-google-ads-editor-keywords.csv` 匯入 Google Ads Editor。
+2. 搜尋廣告文案使用 `docs/configurator-search-ad-copy.csv`，此檔會標記 headline、description、path 長度是否合格。
+3. LinkedIn、Email、業務開發使用 `docs/configurator-promotion-links.csv` 內的 UTM 連結。
+4. 完整自然曝光文案使用 `docs/configurator-organic-posts.csv`，覆蓋每個 landing page 的技術、採購、詢價追蹤三種情境。
+5. LinkedIn Campaign Manager URL tracking 參數使用 `docs/configurator-linkedin-url-parameters.csv`。
+6. 所有推廣連結都保留 `utm_source`、`utm_medium`、`utm_campaign`、`utm_content`，搜尋廣告另保留 `utm_term`。
+7. 實際投放前必須先在 Netlify 設定 GA4、GTM、Google Ads 或 LinkedIn 追蹤 ID。
 
 ## Priority Landing Pages
 
 | 類型 | 頁面 | 主要關鍵字 | URL |
 |---|---|---|---|
 | configurator | Comino Grando GPU 伺服器配置器 | Comino Grando 配置器, GPU 伺服器配置器, GPU 伺服器報價 | https://eudaemonia.tech/configurator/ |
+| solution-hub | 配置器解決方案總覽 | 配置器解決方案, GPU 伺服器報價指南, AI 伺服器配置器 | https://eudaemonia.tech/solutions/ |
 | configurator-product | GRANDO 機架式工作站 GPU 配置器 | GRANDO 機架式工作站, RTX PRO 6000 工作站, GPU 工作站報價, AI 工作站配置器 | https://eudaemonia.tech/configurator/28/ |
 | configurator-product | NVIDIA H200 GPU 伺服器配置器 | NVIDIA H200 GPU 伺服器, H200 伺服器報價, AI GPU 伺服器配置器, 液冷 GPU 伺服器 | https://eudaemonia.tech/configurator/29/ |
 | solution | NVIDIA H200 GPU 伺服器配置器 | NVIDIA H200 伺服器, H200 GPU 伺服器, AI 訓練伺服器, HPC GPU 伺服器, GPU 伺服器報價, 液冷 GPU 伺服器, 台灣 AI 伺服器 | https://eudaemonia.tech/solutions/nvidia-h200-server/ |
@@ -33,17 +37,17 @@
 ## Google Ads Search Groups
 
 1. Comino Grando GPU 伺服器配置器：Comino Grando 配置器、GPU 伺服器配置器、GPU 伺服器報價。落地頁：https://eudaemonia.tech/configurator/
-2. GRANDO 機架式工作站 GPU 配置器：GRANDO 機架式工作站、RTX PRO 6000 工作站、GPU 工作站報價、AI 工作站配置器。落地頁：https://eudaemonia.tech/configurator/28/
-3. NVIDIA H200 GPU 伺服器配置器：NVIDIA H200 GPU 伺服器、H200 伺服器報價、AI GPU 伺服器配置器、液冷 GPU 伺服器。落地頁：https://eudaemonia.tech/configurator/29/
-4. NVIDIA H200 GPU 伺服器配置器：NVIDIA H200 伺服器、H200 GPU 伺服器、AI 訓練伺服器、HPC GPU 伺服器。落地頁：https://eudaemonia.tech/solutions/nvidia-h200-server/
-5. RTX PRO 6000 AI 工作站配置器：RTX PRO 6000 工作站、AI 工作站、GPU 工作站報價、NVIDIA 工作站 台灣。落地頁：https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/
-6. 台灣 AI 工作站配置器：AI 工作站 台灣、GPU 工作站 台灣、AI 電腦報價、NVIDIA 工作站報價。落地頁：https://eudaemonia.tech/solutions/ai-workstation-taiwan/
-7. 液冷 GPU 伺服器配置器：液冷 GPU 伺服器、液冷 AI 伺服器、Comino Grando、GPU 伺服器配置器。落地頁：https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/
-8. GPU 伺服器報價配置器：GPU 伺服器報價、AI 伺服器報價、GPU 工作站報價、伺服器配置器。落地頁：https://eudaemonia.tech/solutions/gpu-server-quote/
-9. NVIDIA H200 與 RTX PRO 6000 GPU 伺服器比較：H200 vs RTX PRO 6000、NVIDIA H200 伺服器比較、RTX PRO 6000 工作站比較、AI GPU 比較。落地頁：https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/
-10. AI 採購 GPU 伺服器 RFQ 檢核表：GPU 伺服器 RFQ、AI 伺服器 RFQ 檢核表、GPU 伺服器採購檢核表、AI 基礎設施報價。落地頁：https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/
-11. 液冷 AI 伺服器採購指南：液冷 AI 伺服器採購、液冷 GPU 伺服器報價、AI 資料中心散熱、高密度 GPU 伺服器。落地頁：https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/
-12. GPU 伺服器電力規劃配置器：GPU 伺服器電力規劃、GPU 伺服器冗餘電源、AI 伺服器電力容量、GPU 伺服器報價。落地頁：https://eudaemonia.tech/solutions/gpu-server-power-planning/
+2. 配置器解決方案總覽：配置器解決方案、GPU 伺服器報價指南、AI 伺服器配置器。落地頁：https://eudaemonia.tech/solutions/
+3. GRANDO 機架式工作站 GPU 配置器：GRANDO 機架式工作站、RTX PRO 6000 工作站、GPU 工作站報價、AI 工作站配置器。落地頁：https://eudaemonia.tech/configurator/28/
+4. NVIDIA H200 GPU 伺服器配置器：NVIDIA H200 GPU 伺服器、H200 伺服器報價、AI GPU 伺服器配置器、液冷 GPU 伺服器。落地頁：https://eudaemonia.tech/configurator/29/
+5. NVIDIA H200 GPU 伺服器配置器：NVIDIA H200 伺服器、H200 GPU 伺服器、AI 訓練伺服器、HPC GPU 伺服器。落地頁：https://eudaemonia.tech/solutions/nvidia-h200-server/
+6. RTX PRO 6000 AI 工作站配置器：RTX PRO 6000 工作站、AI 工作站、GPU 工作站報價、NVIDIA 工作站 台灣。落地頁：https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/
+7. 台灣 AI 工作站配置器：AI 工作站 台灣、GPU 工作站 台灣、AI 電腦報價、NVIDIA 工作站報價。落地頁：https://eudaemonia.tech/solutions/ai-workstation-taiwan/
+8. 液冷 GPU 伺服器配置器：液冷 GPU 伺服器、液冷 AI 伺服器、Comino Grando、GPU 伺服器配置器。落地頁：https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/
+9. GPU 伺服器報價配置器：GPU 伺服器報價、AI 伺服器報價、GPU 工作站報價、伺服器配置器。落地頁：https://eudaemonia.tech/solutions/gpu-server-quote/
+10. NVIDIA H200 與 RTX PRO 6000 GPU 伺服器比較：H200 vs RTX PRO 6000、NVIDIA H200 伺服器比較、RTX PRO 6000 工作站比較、AI GPU 比較。落地頁：https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/
+11. AI 採購 GPU 伺服器 RFQ 檢核表：GPU 伺服器 RFQ、AI 伺服器 RFQ 檢核表、GPU 伺服器採購檢核表、AI 基礎設施報價。落地頁：https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/
+12. 液冷 AI 伺服器採購指南：液冷 AI 伺服器採購、液冷 GPU 伺服器報價、AI 資料中心散熱、高密度 GPU 伺服器。落地頁：https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/
 
 ## LinkedIn Organic Drafts
 
@@ -91,3 +95,9 @@ https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/?utm_source=linkedin&
 | Google Ads | `VITE_GOOGLE_ADS_ID`、`VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL` | `quote_submit_success` |
 | LinkedIn Insight | `VITE_LINKEDIN_PARTNER_ID`、`VITE_LINKEDIN_QUOTE_CONVERSION_ID` | `quote_submit_success` |
 | Search Console | sitemap 已提交後追蹤 query、page、impressions、clicks | 非即時，需等待 Google 收錄與曝光 |
+
+## Platform Import Notes
+
+1. Google Ads Editor CSV 使用英文欄位：`Campaign`、`Campaign type`、`Networks`、`Ad group`、`Keyword`、`Type`、`Final URL`、`Status`。
+2. Google 搜尋廣告文案包遵守 headline 30、description 90、path 15 的長度上限；中文字元以雙寬字元計算。
+3. LinkedIn Campaign Manager 可使用 static UTM 或 dynamic URL parameters；新階層參數可用 `AD_ID`，舊階層仍保留 `CREATIVE_ID` 供帳戶畫面對照。

@@ -24,6 +24,10 @@ const requiredEnv = {
 const read = (filename) => fs.readFileSync(path.join(rootDir, filename), 'utf8');
 const exists = (filename) => fs.existsSync(path.join(rootDir, filename));
 const lineCount = (filename) => read(filename).trim().split(/\r?\n/).filter(Boolean).length;
+const csvContainsField = (filename, value) => exists(filename) && read(filename).includes(`"${value}"`);
+const csvContainsUrlPrefix = (filename, value) => exists(filename) && (
+  read(filename).includes(`"${value}"`) || read(filename).includes(`"${value}?`)
+);
 
 function envGroupStatus(keys, mode = 'all') {
   const present = keys.filter((key) => Boolean(process.env[key]));
@@ -159,6 +163,10 @@ async function main() {
   const packageJson = JSON.parse(read('package.json'));
   const promotionKeywordsPath = 'docs/configurator-promotion-keywords.csv';
   const promotionLinksPath = 'docs/configurator-promotion-links.csv';
+  const googleAdsEditorKeywordsPath = 'docs/configurator-google-ads-editor-keywords.csv';
+  const searchAdCopyPath = 'docs/configurator-search-ad-copy.csv';
+  const organicPostsPath = 'docs/configurator-organic-posts.csv';
+  const linkedinUrlParametersPath = 'docs/configurator-linkedin-url-parameters.csv';
   const promotionAssetsPath = 'docs/configurator-promotion-assets.md';
   const quoteFunctionProbe = await probeProductionQuoteFunction();
   const marketingEventFunctionProbe = await probeProductionMarketingEventFunction();
@@ -192,11 +200,43 @@ async function main() {
     path: promotionLinksPath,
     rows: exists(promotionLinksPath) ? lineCount(promotionLinksPath) - 1 : 0
   });
-  addCheck('promotion_assets', 'keyword CSV covers every landing page', canonicalUrls.every((url) => read(promotionKeywordsPath).includes(url)), {
-    missing: canonicalUrls.filter((url) => !read(promotionKeywordsPath).includes(url))
+  addCheck('promotion_assets', 'Google Ads Editor keyword CSV exists', exists(googleAdsEditorKeywordsPath), {
+    path: googleAdsEditorKeywordsPath,
+    rows: exists(googleAdsEditorKeywordsPath) ? lineCount(googleAdsEditorKeywordsPath) - 1 : 0
   });
-  addCheck('promotion_assets', 'UTM link CSV covers every landing page', canonicalUrls.every((url) => read(promotionLinksPath).includes(url)), {
-    missing: canonicalUrls.filter((url) => !read(promotionLinksPath).includes(url))
+  addCheck('promotion_assets', 'search ad copy CSV exists', exists(searchAdCopyPath), {
+    path: searchAdCopyPath,
+    rows: exists(searchAdCopyPath) ? lineCount(searchAdCopyPath) - 1 : 0
+  });
+  addCheck('promotion_assets', 'organic post CSV exists', exists(organicPostsPath), {
+    path: organicPostsPath,
+    rows: exists(organicPostsPath) ? lineCount(organicPostsPath) - 1 : 0
+  });
+  addCheck('promotion_assets', 'LinkedIn URL parameter CSV exists', exists(linkedinUrlParametersPath), {
+    path: linkedinUrlParametersPath,
+    rows: exists(linkedinUrlParametersPath) ? lineCount(linkedinUrlParametersPath) - 1 : 0
+  });
+  addCheck('promotion_assets', 'keyword CSV covers every landing page', canonicalUrls.every((url) => csvContainsField(promotionKeywordsPath, url)), {
+    missing: canonicalUrls.filter((url) => !csvContainsField(promotionKeywordsPath, url))
+  });
+  addCheck('promotion_assets', 'UTM link CSV covers every landing page', canonicalUrls.every((url) => csvContainsField(promotionLinksPath, url)), {
+    missing: canonicalUrls.filter((url) => !csvContainsField(promotionLinksPath, url))
+  });
+  addCheck('promotion_assets', 'organic copy covers every landing page', canonicalUrls.every((url) => csvContainsField(organicPostsPath, url)), {
+    missing: canonicalUrls.filter((url) => !csvContainsField(organicPostsPath, url))
+  });
+  addCheck('promotion_assets', 'organic copy covers three outreach contexts per landing page', exists(organicPostsPath) && lineCount(organicPostsPath) - 1 === canonicalUrls.length * 3, {
+    expectedRows: canonicalUrls.length * 3,
+    rows: exists(organicPostsPath) ? lineCount(organicPostsPath) - 1 : 0
+  });
+  addCheck('promotion_assets', 'search ad copy rows are length-valid', exists(searchAdCopyPath) && !read(searchAdCopyPath).split(/\r?\n/).some((line) => line.endsWith('"no"')), {
+    invalidRows: exists(searchAdCopyPath) ? read(searchAdCopyPath).split(/\r?\n/).filter((line) => line.endsWith('"no"')).length : null
+  });
+  addCheck('promotion_assets', 'Google Ads Editor keywords cover every landing page', canonicalUrls.every((url) => csvContainsUrlPrefix(googleAdsEditorKeywordsPath, url)), {
+    missing: canonicalUrls.filter((url) => !csvContainsUrlPrefix(googleAdsEditorKeywordsPath, url))
+  });
+  addCheck('promotion_assets', 'LinkedIn URL parameters cover every landing page', canonicalUrls.every((url) => csvContainsField(linkedinUrlParametersPath, url)), {
+    missing: canonicalUrls.filter((url) => !csvContainsField(linkedinUrlParametersPath, url))
   });
 
   addCheck('external_tracking', 'marketing platform env values use valid formats', marketingPlatformEnv.invalidVariables.length === 0, {
