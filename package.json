@@ -18,6 +18,8 @@
     "submit:search-console": "node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && node scripts/submit-google-search-console.cjs",
     "generate:promotion-assets": "node scripts/generate-configurator-promotion-assets.cjs",
     "verify:promotion-assets": "node scripts/generate-configurator-promotion-assets.cjs --check",
+    "verify:marketing-platform-env": "node scripts/verify-marketing-platform-env.cjs --write-report",
+    "verify:marketing-platform-env:strict": "node scripts/verify-marketing-platform-env.cjs --write-report --fail-on-missing",
     "audit:exposure-readiness": "node scripts/audit-configurator-exposure-readiness.cjs --write-report",
     "audit:exposure-readiness:strict": "node scripts/audit-configurator-exposure-readiness.cjs --write-report --fail-on-external-gaps",
     "audit:exposure-readiness:production": "node scripts/audit-configurator-exposure-readiness.cjs --write-report --fail-on-production-probes",

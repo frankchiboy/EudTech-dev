@@ -59,6 +59,8 @@
 36. `npm run audit:exposure-readiness:production` fails when the deployed first-party marketing event endpoint is not yet available.
 37. First-party exposure events are collected through `/.netlify/functions/marketing-event`, so page views, attribution captures, configurator clicks, shares, and quote-submit success events still reach server-side logs before GA/GTM/Ads/LinkedIn IDs are available.
 38. `/.netlify/functions/send-email` exposes a health check and writes a sanitized `quote_email_sent` conversion log after successful quote delivery.
+39. `npm run verify:marketing-platform-env` validates GA/GTM, Google Ads, LinkedIn, and first-party event endpoint environment variable formats before deployment.
+40. The legacy `AnalyticsService` no longer posts to the unavailable `/api/analytics` path; supported analytics events now use the same first-party Netlify Function endpoint.
 
 ## External Promotion Queue
 
@@ -81,6 +83,7 @@
 5. Quote emails include marketing attribution fields when URL parameters or referrers are available.
 6. Attribution tracking includes `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `fbclid`, `li_fat_id`, and `msclkid`.
 7. First-party server-side event collection records `page_view`, `marketing_attribution`, `configurator_lead_intent`, and `linkedin_quote_conversion` events in Netlify Function logs.
+8. Use `npm run verify:marketing-platform-env:strict` before paid campaigns; it fails until GA/GTM, Google Ads, and LinkedIn IDs are all present and valid.
 
 ## Current External Permission Gap
 

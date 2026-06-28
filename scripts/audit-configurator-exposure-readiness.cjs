@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
+const { evaluateMarketingPlatformEnv } = require('./marketing-platform-env.cjs');
 
 const args = new Set(process.argv.slice(2));
 const failOnExternalGaps = args.has('--fail-on-external-gaps');
@@ -17,9 +18,6 @@ const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
 
 const requiredEnv = {
-  analytics: ['VITE_GTM_ID', 'VITE_GA_MEASUREMENT_ID'],
-  googleAds: ['VITE_GOOGLE_ADS_ID', 'VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL'],
-  linkedIn: ['VITE_LINKEDIN_PARTNER_ID', 'VITE_LINKEDIN_QUOTE_CONVERSION_ID'],
   quoteEmail: ['QUOTE_SENDER_EMAIL', 'GMAIL_OAUTH_CLIENT_ID', 'GMAIL_OAUTH_CLIENT_SECRET', 'GMAIL_OAUTH_REFRESH_TOKEN']
 };
 
@@ -164,6 +162,7 @@ async function main() {
   const promotionAssetsPath = 'docs/configurator-promotion-assets.md';
   const quoteFunctionProbe = await probeProductionQuoteFunction();
   const marketingEventFunctionProbe = await probeProductionMarketingEventFunction();
+  const marketingPlatformEnv = evaluateMarketingPlatformEnv(process.env);
 
   addCheck('search_discovery', 'canonical landing pages defined', canonicalUrls.length >= 17, {
     count: canonicalUrls.length
@@ -198,6 +197,18 @@ async function main() {
   });
   addCheck('promotion_assets', 'UTM link CSV covers every landing page', canonicalUrls.every((url) => read(promotionLinksPath).includes(url)), {
     missing: canonicalUrls.filter((url) => !read(promotionLinksPath).includes(url))
+  });
+
+  addCheck('external_tracking', 'marketing platform env values use valid formats', marketingPlatformEnv.invalidVariables.length === 0, {
+    invalid: marketingPlatformEnv.invalidVariables.map((variable) => ({
+      key: variable.key,
+      expected: variable.expected
+    }))
+  });
+  addCheck('external_tracking', 'first-party marketing event endpoint env is configured', marketingPlatformEnv.groups.firstParty.ready, {
+    present: marketingPlatformEnv.groups.firstParty.present,
+    missing: marketingPlatformEnv.groups.firstParty.missing,
+    invalid: marketingPlatformEnv.groups.firstParty.invalid
   });
 
   addCheck('conversion_path', 'quote email function exists', exists('netlify/functions/send-email.mjs'), {
@@ -239,9 +250,9 @@ async function main() {
 
   const localQuoteEmailEnv = envGroupStatus(requiredEnv.quoteEmail);
   const externalReadiness = {
-    analytics: envGroupStatus(requiredEnv.analytics, 'any'),
-    googleAds: envGroupStatus(requiredEnv.googleAds),
-    linkedIn: envGroupStatus(requiredEnv.linkedIn),
+    analytics: marketingPlatformEnv.groups.analytics,
+    googleAds: marketingPlatformEnv.groups.googleAds,
+    linkedIn: marketingPlatformEnv.groups.linkedIn,
     quoteEmail: {
       ready: localQuoteEmailEnv.ready || quoteFunctionProbe.ready,
       present: localQuoteEmailEnv.present,
@@ -267,7 +278,8 @@ async function main() {
     checks,
     failedChecks,
     externalReadiness,
-    externalGaps
+    externalGaps,
+    marketingPlatformEnv
   };
 
   if (writeReport) {

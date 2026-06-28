@@ -1,6 +1,6 @@
 interface AnalyticsEvent {
   name: string;
-  properties?: Record<string, any>;
+  properties?: Record<string, unknown>;
   timestamp?: number;
 }
 
@@ -14,6 +14,12 @@ export class AnalyticsService {
   private static instance: AnalyticsService;
   private isEnabled: boolean = true;
   private queue: AnalyticsEvent[] = [];
+  private supportedEvents = new Set([
+    'page_view',
+    'user_interaction',
+    'form_submission',
+    'product_view'
+  ]);
 
   static getInstance(): AnalyticsService {
     if (!this.instance) {
@@ -64,17 +70,15 @@ export class AnalyticsService {
       }
     };
 
-    // 在開發環境中記錄到控制台
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
       console.log('Analytics Event:', enrichedEvent);
     }
 
-    // 在生產環境中發送到分析服務
     this.sendEvent(enrichedEvent);
   }
 
   // 追蹤用戶互動
-  trackInteraction(element: string, action: string, properties?: Record<string, any>): void {
+  trackInteraction(element: string, action: string, properties?: Record<string, unknown>): void {
     this.trackEvent({
       name: 'user_interaction',
       properties: {
@@ -86,7 +90,7 @@ export class AnalyticsService {
   }
 
   // 追蹤表單提交
-  trackFormSubmission(formName: string, success: boolean, properties?: Record<string, any>): void {
+  trackFormSubmission(formName: string, success: boolean, properties?: Record<string, unknown>): void {
     this.trackEvent({
       name: 'form_submission',
       properties: {
@@ -108,27 +112,72 @@ export class AnalyticsService {
     });
   }
 
-  // 發送事件到分析服務
-  private sendEvent(event: AnalyticsEvent): void {
-    // 這裡可以整合 Google Analytics, Mixpanel 等服務
-    // 目前只是模擬發送
-    
-    if (navigator.sendBeacon) {
-      // 使用 sendBeacon API 發送數據
-      const data = JSON.stringify(event);
-      navigator.sendBeacon('/api/analytics', data);
-    } else {
-      // 降級到普通的 fetch
-      fetch('/api/analytics', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(event),
-      }).catch(error => {
-        console.error('Failed to send analytics event:', error);
-      });
+  private getDefaultEndpoint(): string | undefined {
+    const { hostname } = window.location;
+    const hasNetlifyFunctions =
+      hostname.endsWith('.netlify.app') ||
+      hostname === 'eudaemonia.tech' ||
+      hostname === 'www.eudaemonia.tech';
+
+    return hasNetlifyFunctions ? '/.netlify/functions/marketing-event' : undefined;
+  }
+
+  private getEndpoint(): string | undefined {
+    return import.meta.env.VITE_MARKETING_EVENT_ENDPOINT || this.getDefaultEndpoint();
+  }
+
+  private buildFirstPartyPayload(event: AnalyticsEvent): Record<string, unknown> | undefined {
+    if (!this.supportedEvents.has(event.name)) {
+      return undefined;
     }
+
+    const properties = event.properties || {};
+    return {
+      event: event.name,
+      event_id: window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+      source: 'eudtech_analytics_service',
+      page_location: window.location.href,
+      page_path: `${window.location.pathname}${window.location.search}`,
+      page_title: document.title,
+      event_context: {
+        path: properties.path,
+        title: properties.title,
+        element: properties.element,
+        action: properties.action,
+        form_name: properties.form_name,
+        success: properties.success,
+        product_id: properties.product_id,
+        product_name: properties.product_name
+      }
+    };
+  }
+
+  private sendEvent(event: AnalyticsEvent): void {
+    const endpoint = this.getEndpoint();
+    const payload = this.buildFirstPartyPayload(event);
+    if (!endpoint || !payload) {
+      return;
+    }
+
+    const data = JSON.stringify(payload);
+
+    if (navigator.sendBeacon) {
+      const sent = navigator.sendBeacon(endpoint, new Blob([data], { type: 'application/json' }));
+      if (sent) return;
+    }
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: data,
+      keepalive: true
+    }).catch((error) => {
+      if (import.meta.env.DEV) {
+        console.error('Failed to send analytics event:', error);
+      }
+    });
   }
 
   // 處理排隊的事件

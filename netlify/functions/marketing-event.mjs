@@ -2,7 +2,10 @@ const allowedEvents = new Set([
   'page_view',
   'marketing_attribution',
   'configurator_lead_intent',
-  'linkedin_quote_conversion'
+  'linkedin_quote_conversion',
+  'user_interaction',
+  'form_submission',
+  'product_view'
 ]);
 
 const json = (status, body) =>
@@ -37,6 +40,17 @@ const allowedConfiguratorKeys = new Set([
   'device_id',
   'device_name',
   'conversion_id'
+]);
+
+const allowedEventContextKeys = new Set([
+  'path',
+  'title',
+  'element',
+  'action',
+  'form_name',
+  'success',
+  'product_id',
+  'product_name'
 ]);
 
 const allowedUrlParams = new Set([
@@ -145,6 +159,7 @@ async function collectMarketingEvent(request) {
     conversionId: normalize(payload.conversion_id || payload.conversionId, 120),
     attribution: sanitizeObject(payload.attribution, allowedAttributionKeys),
     configurator: sanitizeObject(payload.configurator, allowedConfiguratorKeys),
+    eventContext: sanitizeObject(payload.event_context || payload.eventContext, allowedEventContextKeys),
     userAgent: normalize(request.headers.get('user-agent'), 300),
     referer: sanitizeUrl(request.headers.get('referer'))
   };
