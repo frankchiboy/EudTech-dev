@@ -192,8 +192,7 @@ async function inspectSocialPreviewImages() {
 
 const canonicalUrls = [
   pageUrl('/configurator'),
-  pageUrl('/configurator/28'),
-  pageUrl('/configurator/29'),
+  ...CONFIGURATOR_PRODUCT_SEO.map((product) => pageUrl(product.configuratorHref)),
   pageUrl('/solutions'),
   ...CONFIGURATOR_SEO_PAGES.map((page) => pageUrl(`/solutions/${page.slug}`))
 ];

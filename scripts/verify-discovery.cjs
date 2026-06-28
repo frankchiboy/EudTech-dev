@@ -4,13 +4,14 @@ const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs'
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const { getConfiguratorSocialPreviewRoutes } = require('./configurator-social-preview-routes.cjs');
 
-const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES } = readConfiguratorSeoPages();
+const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const publicDir = path.resolve(__dirname, '..', 'public');
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
 const solutionHubUrl = pageUrl('/solutions');
 const solutionUrls = CONFIGURATOR_SEO_PAGES.map((page) => pageUrl(`/solutions/${page.slug}`));
-const requiredSolutionUrls = [solutionHubUrl, ...solutionUrls];
+const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => pageUrl(product.configuratorHref));
+const requiredDiscoveryUrls = [pageUrl('/configurator'), ...productUrls, solutionHubUrl, ...solutionUrls];
 const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
 
 const readPublicFile = (filename) => fs.readFileSync(path.join(publicDir, filename), 'utf8');
@@ -40,10 +41,10 @@ const requireAll = (label, values, predicate) => {
   });
 };
 
-requireAll('sitemap.xml', requiredSolutionUrls, (url) => sitemapLocs.has(url));
-requireAll('image-sitemap.xml', requiredSolutionUrls, (url) => imageSitemapPageLocs.has(url));
-requireAll('feed.xml', requiredSolutionUrls, (url) => feedLinks.has(url));
-requireAll('llms.txt', requiredSolutionUrls, (url) => llmsText.includes(url));
+requireAll('sitemap.xml', requiredDiscoveryUrls, (url) => sitemapLocs.has(url));
+requireAll('image-sitemap.xml', requiredDiscoveryUrls, (url) => imageSitemapPageLocs.has(url));
+requireAll('feed.xml', requiredDiscoveryUrls, (url) => feedLinks.has(url));
+requireAll('llms.txt', requiredDiscoveryUrls, (url) => llmsText.includes(url));
 requireAll('sitemap-index.xml', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`], (url) => sitemapIndexLocs.has(url));
 requireAll('robots.txt', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`, `${siteOrigin}/sitemap-index.xml`], (url) =>
   robotsText.includes(`Sitemap: ${url}`)
@@ -79,7 +80,8 @@ console.log(
     {
       ok: true,
       solutionPageCount: CONFIGURATOR_SEO_PAGES.length,
-      checkedUrls: requiredSolutionUrls.length,
+      configuratorProductPages: CONFIGURATOR_PRODUCT_SEO.length,
+      checkedUrls: requiredDiscoveryUrls.length,
       socialPreviewImages: socialPreviewRoutes.length,
       sitemapIndexCount: sitemapIndexLocs.size
     },

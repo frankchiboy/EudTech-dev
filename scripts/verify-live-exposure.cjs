@@ -137,8 +137,10 @@ function assert(condition, errors, message) {
 async function checkRedirects(errors) {
   const checks = [
     [`${siteOrigin}/configurator`, canonicalPageUrl(`${siteOrigin}/configurator`, siteOrigin)],
-    [`${siteOrigin}/configurator/28`, canonicalPageUrl(`${siteOrigin}/configurator/28`, siteOrigin)],
-    [`${siteOrigin}/configurator/29`, canonicalPageUrl(`${siteOrigin}/configurator/29`, siteOrigin)],
+    ...CONFIGURATOR_PRODUCT_SEO.map((product) => [
+      `${siteOrigin}${product.configuratorHref}`,
+      canonicalPageUrl(`${siteOrigin}${product.configuratorHref}`, siteOrigin)
+    ]),
     [`${siteOrigin}/solutions`, canonicalPageUrl(`${siteOrigin}/solutions`, siteOrigin)],
     [`${siteOrigin}/solutions/gpu-server-quote`, canonicalPageUrl(`${siteOrigin}/solutions/gpu-server-quote`, siteOrigin)]
   ];
@@ -183,7 +185,7 @@ function checkDiscoveryFiles(discovery, errors) {
   for (const url of requiredPageUrls) {
     assert(sitemapLocs.has(url), errors, `sitemap.xml missing ${url}.`);
     assert(imageSitemapLocs.has(url), errors, `image-sitemap.xml missing ${url}.`);
-    assert(feed.includes(url) || url.includes('/configurator/'), errors, `feed.xml missing ${url}.`);
+    assert(feed.includes(url), errors, `feed.xml missing ${url}.`);
     assert(llms.includes(url), errors, `llms.txt missing ${url}.`);
   }
 

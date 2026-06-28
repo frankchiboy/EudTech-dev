@@ -158,8 +158,17 @@ Configurator 曝光主線集中在以下入口：
 |---|---|
 | 配置器首頁 | `/configurator` |
 | 配置器解決方案總入口 | `/solutions` |
-| GRANDO 機架式工作站 | `/configurator/28` |
-| NVIDIA H200 GPU 伺服器 | `/configurator/29` |
+| INTEGRATION KIT 8x H200 | `/configurator/27` |
+| INTEGRATION KIT 8x PRO 6000 | `/configurator/36` |
+| SERVER 6xH200 | `/configurator/29` |
+| SERVER 4xH200 | `/configurator/28` |
+| SERVER 8x PRO 6000 | `/configurator/23` |
+| WORKSTATION 2x PRO 6000 | `/configurator/34` |
+| WORKSTATION 2xH200 | `/configurator/30` |
+| RACKABLE WS 6x R9700 | `/configurator/22` |
+| WORKSTATION 2x5090 | `/configurator/13` |
+| RACKABLE WS 4x PRO 6000 | `/configurator/5` |
+| RACKABLE WS 6x5090 | `/configurator/21` |
 | GPU 伺服器報價 | `/solutions/gpu-server-quote` |
 | NVIDIA H200 伺服器 | `/solutions/nvidia-h200-server` |
 | RTX PRO 6000 工作站 | `/solutions/rtx-pro-6000-workstation` |
@@ -174,7 +183,7 @@ Configurator 曝光主線集中在以下入口：
 | Supermicro 與 Comino GPU 伺服器比較 | `/solutions/supermicro-comino-gpu-server-comparison` |
 | 台灣 AI 推論伺服器 | `/solutions/ai-inference-server-taiwan` |
 
-建置時會先執行 `scripts/generate-discovery-files.cjs`，再執行 `scripts/generate-static-seo-pages.cjs`。`/solutions` 與 `/solutions/*` 的頁面資料會同步產生 sitemap、RSS、llms.txt 與 route 專屬靜態 HTML。這些 HTML 會直接包含 title、description、canonical、Open Graph、Twitter Card、JSON-LD，讓 crawler 在 JavaScript 執行前也能讀到正確內容。
+建置時會先執行 `scripts/generate-discovery-files.cjs`，再執行 `scripts/generate-static-seo-pages.cjs`。`/configurator/{id}`、`/solutions` 與 `/solutions/*` 的頁面資料會同步產生 sitemap、RSS、llms.txt 與 route 專屬靜態 HTML。這些 HTML 會直接包含 title、description、canonical、Open Graph、Twitter Card、JSON-LD，讓 crawler 在 JavaScript 執行前也能讀到正確內容。
 
 公開發現檔案：
 
@@ -185,7 +194,7 @@ Configurator 曝光主線集中在以下入口：
 | `/image-sitemap.xml` | 產品圖與配置器圖片發現 |
 | `/robots.txt` | crawler 規則與 sitemap 位置 |
 | `/llms.txt` | AI/LLM 工具可讀的 configurator 摘要 |
-| `/feed.xml` | Configurator solution RSS feed |
+| `/feed.xml` | Configurator product and solution RSS feed |
 | `/d6fd206f713cd936d87b58a6010aa751.txt` | IndexNow key 驗證 |
 | `docs/configurator-promotion-assets.md` | 推廣素材總覽與 LinkedIn 貼文草稿 |
 | `docs/configurator-promotion-keywords.csv` | Google Ads 關鍵字與落地頁矩陣 |

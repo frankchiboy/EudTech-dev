@@ -18,8 +18,17 @@
 |---|---|---|---|
 | configurator | Comino Grando GPU 伺服器配置器 | Comino Grando 配置器, GPU 伺服器配置器, GPU 伺服器報價 | https://eudaemonia.tech/configurator/ |
 | solution-hub | 配置器解決方案總覽 | 配置器解決方案, GPU 伺服器報價指南, AI 伺服器配置器 | https://eudaemonia.tech/solutions/ |
-| configurator-product | GRANDO 機架式工作站 GPU 配置器 | GRANDO 機架式工作站, RTX PRO 6000 工作站, GPU 工作站報價, AI 工作站配置器 | https://eudaemonia.tech/configurator/28/ |
-| configurator-product | NVIDIA H200 GPU 伺服器配置器 | NVIDIA H200 GPU 伺服器, H200 伺服器報價, AI GPU 伺服器配置器, 液冷 GPU 伺服器 | https://eudaemonia.tech/configurator/29/ |
+| configurator-product | INTEGRATION KIT 8x H200 配置器 | INTEGRATION KIT 8x H200, H200 整合套件, NVIDIA H200 GPU 伺服器, 8x H200 報價, AI GPU 伺服器配置器 | https://eudaemonia.tech/configurator/27/ |
+| configurator-product | INTEGRATION KIT 8x PRO 6000 配置器 | INTEGRATION KIT 8x PRO 6000, RTX PRO 6000 整合套件, 8x PRO 6000 報價, AI GPU 整合套件 | https://eudaemonia.tech/configurator/36/ |
+| configurator-product | SERVER 6xH200 GPU 伺服器配置器 | SERVER 6xH200, NVIDIA H200 GPU 伺服器, H200 伺服器報價, 6x H200 伺服器, AI GPU 伺服器配置器 | https://eudaemonia.tech/configurator/29/ |
+| configurator-product | SERVER 4xH200 GPU 伺服器配置器 | SERVER 4xH200, NVIDIA H200 GPU 伺服器, 4x H200 伺服器報價, AI 訓練伺服器, GPU 伺服器配置器 | https://eudaemonia.tech/configurator/28/ |
+| configurator-product | SERVER 8x PRO 6000 GPU 伺服器配置器 | SERVER 8x PRO 6000, RTX PRO 6000 GPU 伺服器, 8x PRO 6000 報價, AI 推論伺服器, GPU 渲染伺服器 | https://eudaemonia.tech/configurator/23/ |
+| configurator-product | WORKSTATION 2x PRO 6000 AI 工作站配置器 | WORKSTATION 2x PRO 6000, RTX PRO 6000 工作站, AI 工作站報價, GPU 工作站配置器 | https://eudaemonia.tech/configurator/34/ |
+| configurator-product | WORKSTATION 2xH200 AI 工作站配置器 | WORKSTATION 2xH200, H200 工作站, NVIDIA H200 工作站報價, AI 工作站配置器 | https://eudaemonia.tech/configurator/30/ |
+| configurator-product | RACKABLE WS 6x R9700 配置器 | RACKABLE WS 6x R9700, AMD Radeon AI PRO R9700, 可上架工作站報價, AMD AI 工作站 | https://eudaemonia.tech/configurator/22/ |
+| configurator-product | WORKSTATION 2x5090 AI 工作站配置器 | WORKSTATION 2x5090, RTX 5090 工作站, AI 工作站報價, GPU 工作站配置器 | https://eudaemonia.tech/configurator/13/ |
+| configurator-product | RACKABLE WS 4x PRO 6000 配置器 | RACKABLE WS 4x PRO 6000, RTX PRO 6000 可上架工作站, 4x PRO 6000 報價, AI 工作站配置器 | https://eudaemonia.tech/configurator/5/ |
+| configurator-product | RACKABLE WS 6x5090 配置器 | RACKABLE WS 6x5090, RTX 5090 可上架工作站, 6x RTX 5090 報價, AI 工作站配置器 | https://eudaemonia.tech/configurator/21/ |
 | solution | NVIDIA H200 GPU 伺服器配置器 | NVIDIA H200 伺服器, H200 GPU 伺服器, AI 訓練伺服器, HPC GPU 伺服器, GPU 伺服器報價, 液冷 GPU 伺服器, 台灣 AI 伺服器 | https://eudaemonia.tech/solutions/nvidia-h200-server/ |
 | solution | RTX PRO 6000 AI 工作站配置器 | RTX PRO 6000 工作站, AI 工作站, GPU 工作站報價, NVIDIA 工作站 台灣, 本地 AI 推論工作站 | https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/ |
 | solution | 台灣 AI 工作站配置器 | AI 工作站 台灣, GPU 工作站 台灣, AI 電腦報價, NVIDIA 工作站報價, 本地 AI 工作站 | https://eudaemonia.tech/solutions/ai-workstation-taiwan/ |
@@ -38,16 +47,16 @@
 
 1. Comino Grando GPU 伺服器配置器：Comino Grando 配置器、GPU 伺服器配置器、GPU 伺服器報價。落地頁：https://eudaemonia.tech/configurator/
 2. 配置器解決方案總覽：配置器解決方案、GPU 伺服器報價指南、AI 伺服器配置器。落地頁：https://eudaemonia.tech/solutions/
-3. GRANDO 機架式工作站 GPU 配置器：GRANDO 機架式工作站、RTX PRO 6000 工作站、GPU 工作站報價、AI 工作站配置器。落地頁：https://eudaemonia.tech/configurator/28/
-4. NVIDIA H200 GPU 伺服器配置器：NVIDIA H200 GPU 伺服器、H200 伺服器報價、AI GPU 伺服器配置器、液冷 GPU 伺服器。落地頁：https://eudaemonia.tech/configurator/29/
-5. NVIDIA H200 GPU 伺服器配置器：NVIDIA H200 伺服器、H200 GPU 伺服器、AI 訓練伺服器、HPC GPU 伺服器。落地頁：https://eudaemonia.tech/solutions/nvidia-h200-server/
-6. RTX PRO 6000 AI 工作站配置器：RTX PRO 6000 工作站、AI 工作站、GPU 工作站報價、NVIDIA 工作站 台灣。落地頁：https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/
-7. 台灣 AI 工作站配置器：AI 工作站 台灣、GPU 工作站 台灣、AI 電腦報價、NVIDIA 工作站報價。落地頁：https://eudaemonia.tech/solutions/ai-workstation-taiwan/
-8. 液冷 GPU 伺服器配置器：液冷 GPU 伺服器、液冷 AI 伺服器、Comino Grando、GPU 伺服器配置器。落地頁：https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/
-9. GPU 伺服器報價配置器：GPU 伺服器報價、AI 伺服器報價、GPU 工作站報價、伺服器配置器。落地頁：https://eudaemonia.tech/solutions/gpu-server-quote/
-10. NVIDIA H200 與 RTX PRO 6000 GPU 伺服器比較：H200 vs RTX PRO 6000、NVIDIA H200 伺服器比較、RTX PRO 6000 工作站比較、AI GPU 比較。落地頁：https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/
-11. AI 採購 GPU 伺服器 RFQ 檢核表：GPU 伺服器 RFQ、AI 伺服器 RFQ 檢核表、GPU 伺服器採購檢核表、AI 基礎設施報價。落地頁：https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/
-12. 液冷 AI 伺服器採購指南：液冷 AI 伺服器採購、液冷 GPU 伺服器報價、AI 資料中心散熱、高密度 GPU 伺服器。落地頁：https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/
+3. INTEGRATION KIT 8x H200 配置器：INTEGRATION KIT 8x H200、H200 整合套件、NVIDIA H200 GPU 伺服器、8x H200 報價。落地頁：https://eudaemonia.tech/configurator/27/
+4. INTEGRATION KIT 8x PRO 6000 配置器：INTEGRATION KIT 8x PRO 6000、RTX PRO 6000 整合套件、8x PRO 6000 報價、AI GPU 整合套件。落地頁：https://eudaemonia.tech/configurator/36/
+5. SERVER 6xH200 GPU 伺服器配置器：SERVER 6xH200、NVIDIA H200 GPU 伺服器、H200 伺服器報價、6x H200 伺服器。落地頁：https://eudaemonia.tech/configurator/29/
+6. SERVER 4xH200 GPU 伺服器配置器：SERVER 4xH200、NVIDIA H200 GPU 伺服器、4x H200 伺服器報價、AI 訓練伺服器。落地頁：https://eudaemonia.tech/configurator/28/
+7. SERVER 8x PRO 6000 GPU 伺服器配置器：SERVER 8x PRO 6000、RTX PRO 6000 GPU 伺服器、8x PRO 6000 報價、AI 推論伺服器。落地頁：https://eudaemonia.tech/configurator/23/
+8. WORKSTATION 2x PRO 6000 AI 工作站配置器：WORKSTATION 2x PRO 6000、RTX PRO 6000 工作站、AI 工作站報價、GPU 工作站配置器。落地頁：https://eudaemonia.tech/configurator/34/
+9. WORKSTATION 2xH200 AI 工作站配置器：WORKSTATION 2xH200、H200 工作站、NVIDIA H200 工作站報價、AI 工作站配置器。落地頁：https://eudaemonia.tech/configurator/30/
+10. RACKABLE WS 6x R9700 配置器：RACKABLE WS 6x R9700、AMD Radeon AI PRO R9700、可上架工作站報價、AMD AI 工作站。落地頁：https://eudaemonia.tech/configurator/22/
+11. WORKSTATION 2x5090 AI 工作站配置器：WORKSTATION 2x5090、RTX 5090 工作站、AI 工作站報價、GPU 工作站配置器。落地頁：https://eudaemonia.tech/configurator/13/
+12. RACKABLE WS 4x PRO 6000 配置器：RACKABLE WS 4x PRO 6000、RTX PRO 6000 可上架工作站、4x PRO 6000 報價、AI 工作站配置器。落地頁：https://eudaemonia.tech/configurator/5/
 
 ## LinkedIn Organic Drafts
 
@@ -57,7 +66,7 @@
 
 https://eudaemonia.tech/configurator/?utm_source=linkedin&utm_medium=organic&utm_campaign=configurator_configurator&utm_content=technical
 
-### NVIDIA H200 GPU 伺服器配置器
+### SERVER 6xH200 GPU 伺服器配置器
 
 技術與採購團隊可以先用配置器整理 GPU、CPU、記憶體、NVMe、電源與網路假設，再把配置連結交給 EudTech 追蹤報價。
 

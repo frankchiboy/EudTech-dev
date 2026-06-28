@@ -7,8 +7,17 @@ EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled 
 - Homepage: https://eudaemonia.tech/
 - Comino Grando Configurator: https://eudaemonia.tech/configurator/
 - Configurator Solutions Hub: https://eudaemonia.tech/solutions/
-- NVIDIA H200 GPU Server Configurator: https://eudaemonia.tech/configurator/29/
-- GRANDO Rackable Workstation Configurator: https://eudaemonia.tech/configurator/28/
+- INTEGRATION KIT 8x H200 配置器: https://eudaemonia.tech/configurator/27/
+- INTEGRATION KIT 8x PRO 6000 配置器: https://eudaemonia.tech/configurator/36/
+- SERVER 6xH200 GPU 伺服器配置器: https://eudaemonia.tech/configurator/29/
+- SERVER 4xH200 GPU 伺服器配置器: https://eudaemonia.tech/configurator/28/
+- SERVER 8x PRO 6000 GPU 伺服器配置器: https://eudaemonia.tech/configurator/23/
+- WORKSTATION 2x PRO 6000 AI 工作站配置器: https://eudaemonia.tech/configurator/34/
+- WORKSTATION 2xH200 AI 工作站配置器: https://eudaemonia.tech/configurator/30/
+- RACKABLE WS 6x R9700 配置器: https://eudaemonia.tech/configurator/22/
+- WORKSTATION 2x5090 AI 工作站配置器: https://eudaemonia.tech/configurator/13/
+- RACKABLE WS 4x PRO 6000 配置器: https://eudaemonia.tech/configurator/5/
+- RACKABLE WS 6x5090 配置器: https://eudaemonia.tech/configurator/21/
 - NVIDIA H200 GPU 伺服器配置器: https://eudaemonia.tech/solutions/nvidia-h200-server/
 - RTX PRO 6000 AI 工作站配置器: https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/
 - 台灣 AI 工作站配置器: https://eudaemonia.tech/solutions/ai-workstation-taiwan/

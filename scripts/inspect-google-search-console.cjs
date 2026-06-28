@@ -1,13 +1,14 @@
 const { execFileSync } = require('child_process');
 const { canonicalPageUrl, withoutTrailingPageSlash } = require('./seo-url-helpers.cjs');
+const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 
 const siteUrl = 'sc-domain:eudaemonia.tech';
 const siteOrigin = 'https://eudaemonia.tech';
 const userProject = process.env.GOOGLE_SEARCH_CONSOLE_QUOTA_PROJECT || 'personal-gmail-vault';
+const { CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const defaultPaths = [
   '/configurator',
-  '/configurator/28',
-  '/configurator/29',
+  ...CONFIGURATOR_PRODUCT_SEO.map((product) => product.configuratorHref),
   '/solutions',
   '/solutions/gpu-server-quote',
   '/solutions/nvidia-h200-server'

@@ -36,16 +36,6 @@ const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, sit
 const eudTechOrganization = { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' };
 const socialPreviewByPath = new Map(getConfiguratorSocialPreviewRoutes().map((route) => [route.path, route]));
 
-function productSocialImage(id) {
-  const product = productSeoById.get(id);
-  return product?.image ? `${siteOrigin}${product.image}` : defaultImage;
-}
-
-function productSocialImageAlt(id, fallback) {
-  const product = productSeoById.get(id);
-  return product?.imageAlt ? getZh(product.imageAlt) : fallback;
-}
-
 function configuratorServiceSchemaFor(id) {
   const product = productSeoById.get(id);
   if (!product) {
@@ -132,6 +122,39 @@ const solutionHubRoute = {
   ]
 };
 
+const productRoutes = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
+  path: product.configuratorHref,
+  title: getZh(product.title),
+  description: getZh(product.description),
+  keywords: getZh(product.keywords),
+  image: `${siteOrigin}${product.image}`,
+  imageAlt: getZh(product.imageAlt),
+  kind: 'configurator-product',
+  schema: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: getZh(product.title),
+      description: getZh(product.description),
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      url: pageUrl(product.configuratorHref),
+      provider: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' },
+      potentialAction: { '@type': 'QuoteAction', target: pageUrl(product.quoteHref) }
+    },
+    configuratorServiceSchemaFor(product.id),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
+        { '@type': 'ListItem', position: 2, name: '配置器', item: pageUrl('/configurator') },
+        { '@type': 'ListItem', position: 3, name: getZh(product.model), item: pageUrl(product.configuratorHref) }
+      ]
+    }
+  ]
+}));
+
 const routes = [
   {
     path: '/',
@@ -205,68 +228,7 @@ const routes = [
       }
     ]
   },
-  {
-    path: '/configurator/28',
-    title: 'GRANDO 機架式工作站 GPU 配置器',
-    description: '自訂 GRANDO 機架式工作站的 GPU、CPU、記憶體、NVMe 儲存、電源與網路，並送出完整配置給 EudTech 追蹤報價。',
-    keywords: 'GRANDO 機架式工作站, GPU 工作站報價, RTX PRO 6000 工作站, Comino Grando, EudTech',
-    image: productSocialImage(28),
-    imageAlt: productSocialImageAlt(28, 'GRANDO 機架式工作站 GPU 配置器'),
-    schema: [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'WebApplication',
-        name: 'GRANDO 機架式工作站 GPU 配置器',
-        description: '配置 GRANDO 機架式工作站並送出 GPU 工作站報價需求。',
-        applicationCategory: 'BusinessApplication',
-        operatingSystem: 'Web',
-        url: pageUrl('/configurator/28'),
-        provider: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' },
-        potentialAction: { '@type': 'QuoteAction', target: pageUrl('/configurator/28?request=true') }
-      },
-      configuratorServiceSchemaFor(28),
-      {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
-          { '@type': 'ListItem', position: 2, name: '配置器', item: pageUrl('/configurator') },
-          { '@type': 'ListItem', position: 3, name: 'GRANDO 機架式工作站', item: pageUrl('/configurator/28') }
-        ]
-      }
-    ]
-  },
-  {
-    path: '/configurator/29',
-    title: 'NVIDIA H200 GPU 伺服器配置器',
-    description: '自訂 NVIDIA H200、RTX PRO 6000 與高密度 GPU 伺服器配置，送出 GPU、CPU、RAM、儲存與電源需求給 EudTech 取得報價。',
-    keywords: 'NVIDIA H200 GPU 伺服器, H200 伺服器報價, GPU 伺服器配置器, 液冷 GPU 伺服器, Comino Grando',
-    image: productSocialImage(29),
-    imageAlt: productSocialImageAlt(29, 'NVIDIA H200 GPU 伺服器配置器'),
-    schema: [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'WebApplication',
-        name: 'NVIDIA H200 GPU 伺服器配置器',
-        description: '配置 NVIDIA H200 與高密度 GPU 伺服器並送出正式報價需求。',
-        applicationCategory: 'BusinessApplication',
-        operatingSystem: 'Web',
-        url: pageUrl('/configurator/29'),
-        provider: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' },
-        potentialAction: { '@type': 'QuoteAction', target: pageUrl('/configurator/29?request=true') }
-      },
-      configuratorServiceSchemaFor(29),
-      {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
-          { '@type': 'ListItem', position: 2, name: '配置器', item: pageUrl('/configurator') },
-          { '@type': 'ListItem', position: 3, name: 'NVIDIA H200 GPU 伺服器', item: pageUrl('/configurator/29') }
-        ]
-      }
-    ]
-  },
+  ...productRoutes,
   solutionHubRoute
 ].concat(solutionRoutes);
 

@@ -4,7 +4,7 @@ const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs'
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const { getConfiguratorSocialPreviewRoutes } = require('./configurator-social-preview-routes.cjs');
 
-const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES } = readConfiguratorSeoPages();
+const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const publicDir = path.resolve(__dirname, '..', 'public');
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
@@ -48,19 +48,30 @@ const solutionUrls = CONFIGURATOR_SEO_PAGES.map((page) => ({
   description: getZh(page.description),
   priority: priorityBySlug[page.slug] || '0.85'
 }));
+const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
+  loc: pageUrl(product.configuratorHref),
+  title: getZh(product.title),
+  description: getZh(product.description),
+  priority: product.id === 28 || product.id === 29 ? '0.9' : '0.86'
+}));
 const solutionHubUrl = {
   loc: pageUrl('/solutions'),
   title: '配置器解決方案與 GPU 伺服器報價指南',
   description: 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。',
   priority: '0.93'
 };
+const configuratorUrl = {
+  loc: pageUrl('/configurator'),
+  title: 'Comino Grando GPU 伺服器配置器',
+  description: '配置 Comino Grando GPU 伺服器、RTX PRO 工作站、NVIDIA H200 系統、儲存、電源與網路，並向 EudTech 取得報價。',
+  priority: '0.95'
+};
 
 const sitemapEntries = [
   { loc: `${siteOrigin}/`, changefreq: 'weekly', priority: '1.0' },
-  { loc: pageUrl('/configurator'), changefreq: 'weekly', priority: '0.95' },
+  { loc: configuratorUrl.loc, changefreq: 'weekly', priority: configuratorUrl.priority },
   { loc: solutionHubUrl.loc, changefreq: 'weekly', priority: solutionHubUrl.priority },
-  { loc: pageUrl('/configurator/28'), changefreq: 'weekly', priority: '0.9' },
-  { loc: pageUrl('/configurator/29'), changefreq: 'weekly', priority: '0.9' },
+  ...productUrls.map((entry) => ({ loc: entry.loc, changefreq: 'weekly', priority: entry.priority })),
   ...solutionUrls.map((entry) => ({ loc: entry.loc, changefreq: 'weekly', priority: entry.priority })),
   { loc: `${siteOrigin}/careers`, changefreq: 'monthly', priority: '0.45' }
 ];
@@ -121,7 +132,7 @@ ${entry.images
 </urlset>
 `;
 
-const feedItems = [solutionHubUrl, ...solutionUrls]
+const feedItems = [configuratorUrl, solutionHubUrl, ...productUrls, ...solutionUrls]
   .map(
     (entry) => `    <item>
       <title>${escapeXml(entry.title)}</title>
@@ -151,8 +162,7 @@ const llmsPrimaryUrls = [
   ['Homepage', `${siteOrigin}/`],
   ['Comino Grando Configurator', pageUrl('/configurator')],
   ['Configurator Solutions Hub', pageUrl('/solutions')],
-  ['NVIDIA H200 GPU Server Configurator', pageUrl('/configurator/29')],
-  ['GRANDO Rackable Workstation Configurator', pageUrl('/configurator/28')],
+  ...productUrls.map((entry) => [entry.title, entry.loc]),
   ...solutionUrls.map((entry) => [entry.title, entry.loc])
 ];
 
@@ -198,5 +208,6 @@ fs.writeFileSync(path.join(publicDir, 'feed.xml'), feed);
 fs.writeFileSync(path.join(publicDir, 'llms.txt'), llms);
 
 console.log(`✓ Generated discovery files for ${solutionUrls.length + 1} configurator solution pages`);
+console.log(`✓ Generated discovery files for ${productUrls.length} configurator product pages`);
 console.log(`✓ Generated sitemap index for ${sitemapIndexEntries.length} sitemaps`);
 console.log(`✓ Generated image sitemap for ${pageImageEntries.length} pages`);
