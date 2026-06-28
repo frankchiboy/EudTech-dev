@@ -195,6 +195,7 @@ Configurator 曝光主線集中在以下入口：
 | `/robots.txt` | crawler 規則與 sitemap 位置 |
 | `/llms.txt` | AI/LLM 工具可讀的 configurator 摘要 |
 | `/feed.xml` | Configurator product and solution RSS feed |
+| `/build-meta.json` | 正式站部署 commit 與 build metadata，用於確認 production 已更新到指定 commit |
 | `/d6fd206f713cd936d87b58a6010aa751.txt` | IndexNow key 驗證 |
 | `docs/configurator-promotion-assets.md` | 推廣素材總覽與 LinkedIn 貼文草稿 |
 | `docs/configurator-promotion-keywords.csv` | Google Ads 關鍵字與落地頁矩陣 |

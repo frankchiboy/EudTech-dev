@@ -10,6 +10,8 @@ const {
 
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
+const expectedDeployCommit = getFlagValue('--expect-commit') || process.env.EXPECTED_DEPLOY_COMMIT || '';
+const waitForCommitMs = Number(getFlagValue('--wait-for-commit-ms') || process.env.WAIT_FOR_DEPLOY_COMMIT_MS || '0');
 const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
 const socialPreviewByUrl = new Map(socialPreviewRoutes.map((route) => [route.canonicalUrl, route]));
 const requiredPageUrls = [
@@ -31,6 +33,11 @@ function unique(values) {
   return [...new Set(values)];
 }
 
+function getFlagValue(name) {
+  const index = process.argv.indexOf(name);
+  return index >= 0 ? process.argv[index + 1] : '';
+}
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function fetchText(url, options = {}) {
@@ -48,6 +55,7 @@ async function fetchText(url, options = {}) {
       const result = {
         url,
         status: response.status,
+        contentType: response.headers.get('content-type') || '',
         redirected: response.redirected,
         finalUrl: response.url.replace(/[?&]t=\d+$/, ''),
         location: response.headers.get('location'),
@@ -134,6 +142,83 @@ function assert(condition, errors, message) {
   }
 }
 
+async function checkBuildMetadata(errors) {
+  const url = `${siteOrigin}/build-meta.json`;
+  const deadline = Date.now() + (Number.isFinite(waitForCommitMs) && waitForCommitMs > 0 ? waitForCommitMs : 0);
+
+  async function readMetadata() {
+    const result = await fetchText(url);
+    const metadata = {
+      url,
+      status: result.status,
+      available: result.status === 200,
+      commit: null,
+      shortCommit: null,
+      branch: null,
+      builtAt: null,
+      source: null,
+      contentType: result.contentType,
+      expectedDeployCommit: expectedDeployCommit || null,
+      waitForCommitMs: waitForCommitMs || 0
+    };
+
+    if (result.status !== 200 || !/application\/json/i.test(result.contentType || '')) {
+      metadata.available = false;
+      return metadata;
+    }
+
+    try {
+      const parsed = JSON.parse(result.text);
+      metadata.commit = parsed.commit || null;
+      metadata.shortCommit = parsed.shortCommit || null;
+      metadata.branch = parsed.branch || null;
+      metadata.builtAt = parsed.builtAt || null;
+      metadata.source = parsed.source || null;
+    } catch {
+      metadata.parseError = `${url} is not valid JSON.`;
+    }
+
+    return metadata;
+  }
+
+  let metadata = await readMetadata();
+  while (
+    expectedDeployCommit &&
+    waitForCommitMs > 0 &&
+    metadata.commit !== expectedDeployCommit &&
+    Date.now() < deadline
+  ) {
+    await sleep(10000);
+    metadata = await readMetadata();
+  }
+
+  const result = {
+    url,
+    ...metadata
+  };
+
+  if (!result.available) {
+    if (expectedDeployCommit) {
+      errors.push(`${url} should return HTTP 200 JSON when verifying expected deploy commit ${expectedDeployCommit}.`);
+    }
+    return result;
+  }
+
+  if (result.parseError) {
+    errors.push(result.parseError);
+    return result;
+  }
+
+  assert(/^[0-9a-f]{40}$/i.test(result.commit || ''), errors, `${url} commit is missing or not a full Git SHA.`);
+  assert(
+    !expectedDeployCommit || result.commit === expectedDeployCommit,
+    errors,
+    `${url} commit is ${result.commit || 'missing'}, expected ${expectedDeployCommit}.`
+  );
+
+  return result;
+}
+
 async function checkRedirects(errors) {
   const checks = [
     [`${siteOrigin}/configurator`, canonicalPageUrl(`${siteOrigin}/configurator`, siteOrigin)],
@@ -142,7 +227,10 @@ async function checkRedirects(errors) {
       canonicalPageUrl(`${siteOrigin}${product.configuratorHref}`, siteOrigin)
     ]),
     [`${siteOrigin}/solutions`, canonicalPageUrl(`${siteOrigin}/solutions`, siteOrigin)],
-    [`${siteOrigin}/solutions/gpu-server-quote`, canonicalPageUrl(`${siteOrigin}/solutions/gpu-server-quote`, siteOrigin)]
+    ...CONFIGURATOR_SEO_PAGES.map((page) => [
+      `${siteOrigin}/solutions/${page.slug}`,
+      canonicalPageUrl(`${siteOrigin}/solutions/${page.slug}`, siteOrigin)
+    ])
   ];
 
   const results = [];
@@ -274,6 +362,7 @@ async function main() {
   }
 
   checkDiscoveryFiles(discovery, errors);
+  const buildMetadata = await checkBuildMetadata(errors);
   const pages = await checkPages(errors);
   const socialPreviewImages = await checkSocialPreviewImages(errors);
   const redirects = await checkRedirects(errors);
@@ -284,6 +373,7 @@ async function main() {
     checkedDiscoveryUrls: requiredDiscoveryUrls.length,
     checkedPageUrls: unique(requiredPageUrls).length,
     checkedSocialPreviewImages: socialPreviewImages.length,
+    buildMetadata,
     redirects,
     pages,
     socialPreviewImages,

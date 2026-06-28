@@ -82,7 +82,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          npm run verify:live-exposure | tee reports/verify-live-exposure.log
+          npm run verify:live-exposure -- --expect-commit "$GITHUB_SHA" --wait-for-commit-ms 600000 | tee reports/verify-live-exposure.log
 
       - name: Submit IndexNow URLs
         shell: bash

@@ -46,7 +46,7 @@
 23. `npm run inspect:search-console` checks high-intent configurator canonical URL index status through the URL Inspection API.
 24. Page URL signals are normalized to the production trailing-slash form across canonical tags, sitemap URLs, image sitemap page locs, RSS links, LLM discovery links, Open Graph URLs, and JSON-LD URLs.
 25. `npm run report:search-console` reads Search Console query, page, click, impression, CTR, and average-position data for configurator and solutions URLs.
-26. `npm run verify:live-exposure` validates production robots, sitemaps, RSS, llms.txt, redirects, canonical tags, Open Graph URLs, and JSON-LD for configurator and solution pages.
+26. `npm run verify:live-exposure` validates production robots, sitemaps, RSS, llms.txt, redirects, canonical tags, Open Graph URLs, and JSON-LD for every configurator product page and solution page.
 27. `npm run monitor:sitemaps` checks Search Console sitemap health and fails when the expected sitemap index, standard sitemap, or image sitemap is missing, pending, stale, or has errors/warnings.
 28. `npm run exposure:postdeploy` runs live exposure verification, Search Console sitemap health, URL Inspection, and Search Analytics reporting after deployment, then writes `reports/search-console-latest.json`.
 29. `npm run exposure:strict` fails when canonical URLs are not indexed or Search Analytics has no configurator/solutions rows.
@@ -73,6 +73,8 @@
 50. First-party configurator lead events keep the shared configuration URL and share method so organic sharing can be measured before external ad-platform IDs are available.
 51. `src/data/configuratorProductSeo.ts` covers all 11 currently public Comino device routes: `/configurator/5/`, `/configurator/13/`, `/configurator/21/`, `/configurator/22/`, `/configurator/23/`, `/configurator/27/`, `/configurator/28/`, `/configurator/29/`, `/configurator/30/`, `/configurator/34/`, and `/configurator/36/`.
 52. Product-level exposure assets now cover 26 landing pages, 27 social preview images, 480 Google Ads keyword rows, 78 organic post rows, and 78 tracked UTM links.
+53. Production builds emit `/build-meta.json` with the deployed Git commit, branch, build time, deploy context, and source. `npm run verify:live-exposure -- --expect-commit <sha>` can prove the live site has reached the expected commit instead of only proving that an older deployment still passes SEO checks.
+54. GitHub Actions `Public Exposure Checks` now runs `npm run verify:live-exposure -- --expect-commit "$GITHUB_SHA" --wait-for-commit-ms 600000`, so it waits up to 10 minutes for Netlify production to deploy the pushed commit before passing live exposure.
 
 ## External Promotion Queue
 
@@ -82,12 +84,13 @@
 4. Add case-oriented articles only after Search Console shows impressions.
 5. Submit the current sitemap URLs through IndexNow after production deploys with `npm run submit:indexnow`.
 6. Submit the current sitemap URLs through Google Search Console after production deploys with `npm run submit:search-console`.
-7. Monitor high-intent canonical URL index status with `npm run inspect:search-console`.
+7. Monitor high-intent canonical URL index status with `npm run inspect:search-console`; use `npm run inspect:search-console -- --list-urls` to verify the full default URL set before Google credentials are available.
 8. Use `npm run report:search-console` to decide whether to add deeper pages such as Supermicro comparison, power planning, rack deployment, or Taiwan public procurement wording.
 9. Run `npm run exposure:postdeploy` after production deploys to catch live crawler-readiness regressions.
-10. Use `docs/configurator-organic-posts.csv` for immediate LinkedIn, Email, and sales outreach posts before paid-platform access is available.
-11. Use `docs/configurator-google-ads-editor-keywords.csv` and `docs/configurator-search-ad-copy.csv` as paused Google Ads Editor import material after Google Ads access is ready.
-12. Use `docs/configurator-linkedin-url-parameters.csv` as static or dynamic URL tracking input when LinkedIn Campaign Manager access is ready.
+10. Run `npm run verify:live-exposure -- --expect-commit <sha>` after Netlify finishes deploying a production push, then confirm `/build-meta.json` reports that same commit.
+11. Use `docs/configurator-organic-posts.csv` for immediate LinkedIn, Email, and sales outreach posts before paid-platform access is available.
+12. Use `docs/configurator-google-ads-editor-keywords.csv` and `docs/configurator-search-ad-copy.csv` as paused Google Ads Editor import material after Google Ads access is ready.
+13. Use `docs/configurator-linkedin-url-parameters.csv` as static or dynamic URL tracking input when LinkedIn Campaign Manager access is ready.
 
 ## Tracking Readiness
 
@@ -105,6 +108,6 @@
 
 ## Current External Permission Gap
 
-Google Search Console API submission is available through local ADC for `frank.hsu@eudaemonia.tech` with `https://www.googleapis.com/auth/webmasters` scope. `GOOGLE_APPLICATION_CREDENTIALS` may point at an old missing service account file in some shells, so Search Console scripts intentionally ignore that environment variable and use ADC.
+Google Search Console API submission is currently blocked in this shell because local ADC cannot refresh non-interactively. `GOOGLE_APPLICATION_CREDENTIALS` also points at an old missing service account file in some shells, and the repo-local `eudaidosearch-1734764995899-69a8da284a07.json` service account key could not mint a valid token. Reauthorize ADC with Search Console scope or provide a valid service account that has access to `sc-domain:eudaemonia.tech` before running `npm run submit:search-console`, `npm run inspect:search-console`, or `npm run report:search-console`.
 
 Netlify CLI is not currently authenticated in this shell and no Netlify token is visible in the Automation vault. GA4, GTM, Google Ads, and LinkedIn tracking IDs are not present in repo, GitHub variables/secrets, or the visible 1Password Automation item list. Add those platform IDs and a Netlify token before enabling paid campaign conversion tracking.

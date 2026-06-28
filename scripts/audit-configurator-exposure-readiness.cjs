@@ -213,6 +213,7 @@ async function main() {
   const configuratorSource = read('src/components/configurator/GrandoConfigurator.tsx');
   const marketingEventsSource = read('src/components/analytics/MarketingEvents.tsx');
   const marketingEventFunctionSource = read('netlify/functions/marketing-event.mjs');
+  const verifyLiveExposureSource = read('scripts/verify-live-exposure.cjs');
   const promotionKeywordsPath = 'docs/configurator-promotion-keywords.csv';
   const promotionLinksPath = 'docs/configurator-promotion-links.csv';
   const googleAdsEditorKeywordsPath = 'docs/configurator-google-ads-editor-keywords.csv';
@@ -357,7 +358,11 @@ async function main() {
   addCheck('automation', 'public exposure workflow runs on main push', workflow.includes('push:') && workflow.includes('- main'));
   addCheck('automation', 'public exposure workflow verifies promotion assets', workflow.includes('verify:promotion-assets'));
   addCheck('automation', 'public exposure workflow verifies social preview images', workflow.includes('verify:social-images'));
+  addCheck('automation', 'public exposure workflow waits for deployed commit', workflow.includes('--expect-commit "$GITHUB_SHA"') && workflow.includes('--wait-for-commit-ms 600000'));
   addCheck('automation', 'scheduled Netlify IndexNow function exists', exists('netlify/functions/exposure-scheduled.mjs'));
+  addCheck('automation', 'production build metadata generator exists', exists('scripts/generate-build-metadata.cjs'));
+  addCheck('automation', 'build commands generate deployment metadata', ['build', 'build:netlify', 'build:vercel'].every((script) => packageJson.scripts?.[script]?.includes('generate-build-metadata.cjs')));
+  addCheck('automation', 'live exposure verifies expected deployment commit', verifyLiveExposureSource.includes('--expect-commit') && verifyLiveExposureSource.includes('/build-meta.json'));
   addCheck('automation', 'package exposes social image generation command', Boolean(packageJson.scripts?.['generate:social-images']));
   addCheck('automation', 'package exposes social image verification command', Boolean(packageJson.scripts?.['verify:social-images']));
   addCheck('automation', 'package exposes readiness command', Boolean(packageJson.scripts?.['audit:exposure-readiness']));

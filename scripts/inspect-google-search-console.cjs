@@ -5,13 +5,12 @@ const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs'
 const siteUrl = 'sc-domain:eudaemonia.tech';
 const siteOrigin = 'https://eudaemonia.tech';
 const userProject = process.env.GOOGLE_SEARCH_CONSOLE_QUOTA_PROJECT || 'personal-gmail-vault';
-const { CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
+const { CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const defaultPaths = [
   '/configurator',
   ...CONFIGURATOR_PRODUCT_SEO.map((product) => product.configuratorHref),
   '/solutions',
-  '/solutions/gpu-server-quote',
-  '/solutions/nvidia-h200-server'
+  ...CONFIGURATOR_SEO_PAGES.map((page) => `/solutions/${page.slug}`)
 ];
 
 function getAccessToken() {
@@ -119,10 +118,28 @@ async function inspectUrl(token, inspectionUrl) {
 }
 
 async function main() {
+  const inspectionUrls = getInspectionUrls();
+  if (hasFlag('list-urls')) {
+    console.log(
+      JSON.stringify(
+        {
+          ok: true,
+          siteUrl,
+          userProject,
+          count: inspectionUrls.length,
+          inspectionUrls
+        },
+        null,
+        2
+      )
+    );
+    return;
+  }
+
   const token = getAccessToken();
   const inspected = [];
   const errors = [];
-  for (const url of getInspectionUrls()) {
+  for (const url of inspectionUrls) {
     const result = await inspectUrl(token, url);
     inspected.push(result);
 
