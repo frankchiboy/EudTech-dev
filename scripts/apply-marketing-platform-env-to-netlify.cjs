@@ -15,7 +15,7 @@ const contextIndex = args.indexOf('--context');
 const scopeIndex = args.indexOf('--scope');
 
 const site = siteIndex >= 0 ? args[siteIndex + 1] : process.env.NETLIFY_SITE_ID || '325fdd3d-ba57-4a86-987f-4f0267a2b8ed';
-const authToken = authIndex >= 0 ? args[authIndex + 1] : process.env.NETLIFY_AUTH_TOKEN;
+const authToken = process.env.NETLIFY_AUTH_TOKEN;
 const context = contextIndex >= 0 ? args[contextIndex + 1] : 'production';
 const scope = scopeIndex >= 0 ? args[scopeIndex + 1] : 'builds';
 
@@ -27,8 +27,12 @@ if (!site) {
   throw new Error('Missing Netlify site id. Pass --site or set NETLIFY_SITE_ID.');
 }
 
+if (authIndex >= 0) {
+  throw new Error('Do not pass Netlify tokens on the command line. Set NETLIFY_AUTH_TOKEN in the process environment.');
+}
+
 if (!dryRun && !authToken) {
-  throw new Error('Missing Netlify auth token. Pass --auth or set NETLIFY_AUTH_TOKEN.');
+  throw new Error('Missing Netlify auth token. Set NETLIFY_AUTH_TOKEN in the process environment.');
 }
 
 const envFile = path.resolve(args[envFileIndex + 1]);
@@ -77,10 +81,6 @@ for (const variable of variablesToApply) {
     '--force'
   ];
 
-  if (authToken) {
-    command.push('--auth', authToken);
-  }
-
   if (dryRun) {
     applied.push({
       key: variable.key,
@@ -95,7 +95,11 @@ for (const variable of variablesToApply) {
   const child = spawnSync('npx', command, {
     cwd: path.resolve(__dirname, '..'),
     encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe']
+    stdio: ['ignore', 'pipe', 'pipe'],
+    env: {
+      ...process.env,
+      NETLIFY_AUTH_TOKEN: authToken
+    }
   });
 
   if (child.status !== 0) {

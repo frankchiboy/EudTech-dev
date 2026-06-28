@@ -139,6 +139,8 @@ npm run verify:promotion-assets  # 檢查推廣素材是否與 SEO 頁面同步
 npm run verify:marketing-platform-env  # 檢查 GA/GTM/Ads/LinkedIn 環境變數格式
 npm run verify:marketing-platform-env:strict  # 外部平台 ID 缺少或格式錯誤時失敗
 npm run apply:marketing-platform-env:netlify -- --env-file ./marketing.env  # 驗證後寫入 Netlify production build env
+npm run audit:external-platform-access  # 檢查 Netlify/Google/LinkedIn/GitHub/1Password 外部平台權限缺口
+npm run audit:external-platform-access:strict  # 外部平台權限缺少時失敗
 npm run audit:exposure-readiness  # 檢查搜尋、推廣素材、轉換事件、外部追蹤缺口
 npm run audit:exposure-readiness:strict  # 外部追蹤 ID 缺少時也視為失敗
 npm run audit:exposure-readiness:production  # 正式站第一方事件端點未上線時失敗
@@ -212,7 +214,9 @@ GitHub Actions 內的 `Public Exposure Checks` 會每週一自動執行，也可
 
 `verify:marketing-platform-env` 會檢查 GA/GTM、Google Ads、LinkedIn 與第一方事件端點的環境變數格式。預設只擋格式錯誤，不擋尚未設定；`verify:marketing-platform-env:strict` 會把缺少外部平台 ID 也視為失敗，適合在正式投放前使用。
 
-`apply:marketing-platform-env:netlify` 會先驗證 env 檔格式，再呼叫 Netlify CLI 寫入 production build environment。需要 `NETLIFY_AUTH_TOKEN` 或 `--auth <token>`，且 token 必須有目標 site 的環境變數寫入權限。可先用 `--dry-run` 檢查會寫入哪些 key。
+`apply:marketing-platform-env:netlify` 會先驗證 env 檔格式，再呼叫 Netlify CLI 寫入 production build environment。需要在執行程序環境中設定 `NETLIFY_AUTH_TOKEN`，且 token 必須有目標 site 的環境變數寫入權限。不要用命令列參數傳 token。可先用 `--dry-run` 檢查會寫入哪些 key。
+
+`audit:external-platform-access` 會檢查目前 shell 是否具備外部平台閉環需要的權限：Netlify token/CLI、`GOOGLE_APPLICATION_CREDENTIALS` 是否壞路徑、Google ADC 是否有 Search Console、Analytics、Tag Manager、Google Ads scopes、GitHub repo 是否有行銷 variables/secrets、1Password Automation vault 是否看得到 Netlify/GA/Ads/LinkedIn 相關 item。預設只產生報告；`:strict` 會在缺權限時失敗。
 
 `audit:exposure-readiness` 會把曝光拆成五層檢查：搜尋發現、可投放推廣素材、詢價轉換路徑、第一方事件紀錄、自動化監控。GA4、GTM、Google Ads 與 LinkedIn Insight 這類外部平台 ID 會列為缺口，但預設不讓 CI 失敗；要把缺少外部追蹤也視為失敗時，使用 `audit:exposure-readiness:strict`。部署完成後可用 `audit:exposure-readiness:production` 檢查正式站第一方曝光事件端點是否已上線。
 

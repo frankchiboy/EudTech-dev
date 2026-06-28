@@ -60,6 +60,12 @@ jobs:
           set -o pipefail
           npm run verify:marketing-platform-env | tee reports/verify-marketing-platform-env.log
 
+      - name: Audit external platform access
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run audit:external-platform-access | tee reports/audit-external-platform-access.log
+
       - name: Audit exposure readiness
         shell: bash
         run: |

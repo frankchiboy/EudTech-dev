@@ -97,3 +97,9 @@
 2. `關鍵字最佳化之類？`
 
 3. `導入一切曝光configurator對策`
+
+## 2026-06-28 - Configurator Exposure Permission Closure
+
+1. `你懂我所謂曝光的意思嗎`
+
+2. `對`

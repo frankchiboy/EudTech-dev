@@ -21,6 +21,8 @@
     "verify:marketing-platform-env": "node scripts/verify-marketing-platform-env.cjs --write-report",
     "verify:marketing-platform-env:strict": "node scripts/verify-marketing-platform-env.cjs --write-report --fail-on-missing",
     "apply:marketing-platform-env:netlify": "node scripts/apply-marketing-platform-env-to-netlify.cjs",
+    "audit:external-platform-access": "node scripts/audit-external-platform-access.cjs --write-report",
+    "audit:external-platform-access:strict": "node scripts/audit-external-platform-access.cjs --write-report --fail-on-missing",
     "audit:exposure-readiness": "node scripts/audit-configurator-exposure-readiness.cjs --write-report",
     "audit:exposure-readiness:strict": "node scripts/audit-configurator-exposure-readiness.cjs --write-report --fail-on-external-gaps",
     "audit:exposure-readiness:production": "node scripts/audit-configurator-exposure-readiness.cjs --write-report --fail-on-production-probes",

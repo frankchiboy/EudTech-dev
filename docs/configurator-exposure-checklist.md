@@ -62,6 +62,7 @@
 39. `npm run verify:marketing-platform-env` validates GA/GTM, Google Ads, LinkedIn, and first-party event endpoint environment variable formats before deployment.
 40. The legacy `AnalyticsService` no longer posts to the unavailable `/api/analytics` path; supported analytics events now use the same first-party Netlify Function endpoint.
 41. `npm run apply:marketing-platform-env:netlify -- --env-file <file>` validates marketing platform IDs, then writes them to Netlify production build environment when `NETLIFY_AUTH_TOKEN` is available.
+42. `npm run audit:external-platform-access` writes `reports/external-platform-access.json` with Netlify, Google ADC, GitHub, and 1Password access readiness for external tracking setup.
 
 ## External Promotion Queue
 
@@ -86,6 +87,7 @@
 7. First-party server-side event collection records `page_view`, `marketing_attribution`, `configurator_lead_intent`, and `linkedin_quote_conversion` events in Netlify Function logs.
 8. Use `npm run verify:marketing-platform-env:strict` before paid campaigns; it fails until GA/GTM, Google Ads, and LinkedIn IDs are all present and valid.
 9. Use `npm run apply:marketing-platform-env:netlify -- --env-file <file> --dry-run` before writing Netlify env values, then rerun a production deploy after successful write.
+10. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
 
 ## Current External Permission Gap
 
