@@ -506,7 +506,7 @@ const markdown = `# Configurator Promotion Assets
 4. 完整自然曝光文案使用 \`docs/configurator-organic-posts.csv\`，覆蓋每個 landing page 的技術、採購、詢價追蹤三種情境。
 5. LinkedIn Campaign Manager URL tracking 參數使用 \`docs/configurator-linkedin-url-parameters.csv\`。
 6. 所有推廣連結都保留 \`utm_source\`、\`utm_medium\`、\`utm_campaign\`、\`utm_content\`，搜尋廣告另保留 \`utm_term\`。
-7. 實際投放前必須先在 Netlify 設定 GA4、GTM、Google Ads 或 LinkedIn 追蹤 ID。
+7. 實際投放前必須先在 Netlify 設定 GA4、GTM、Google Ads、LinkedIn、Meta Pixel 或 Microsoft Ads UET 追蹤 ID。
 
 ## Priority Landing Pages
 
@@ -528,7 +528,20 @@ ${linkedinDraftsMarkdown}
 | GA4 / GTM | \`VITE_GTM_ID\` 或 \`VITE_GA_MEASUREMENT_ID\` | \`configurator_lead_intent\` |
 | Google Ads | \`VITE_GOOGLE_ADS_ID\`、\`VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL\` | \`quote_submit_success\` |
 | LinkedIn Insight | \`VITE_LINKEDIN_PARTNER_ID\`、\`VITE_LINKEDIN_QUOTE_CONVERSION_ID\` | \`quote_submit_success\` |
+| Meta Pixel | \`VITE_META_PIXEL_ID\`、選用 \`VITE_META_QUOTE_EVENT_NAME\` | \`Lead\` |
+| Microsoft Ads UET | \`VITE_MICROSOFT_UET_TAG_ID\`、選用 \`VITE_MICROSOFT_UET_QUOTE_EVENT\` | \`quote_submit_success\` |
 | Search Console | sitemap 已提交後追蹤 query、page、impressions、clicks | 非即時，需等待 Google 收錄與曝光 |
+
+## Event Map
+
+| 行為 | 內部事件 | GA4 / GTM 推薦事件 |
+|---|---|---|
+| 詳細配置頁載入 | \`view_item\` | \`view_item\` |
+| 首頁產品卡自訂 / 詢價 | \`product_card_customize\`、\`product_card_quote\` | \`select_item\` |
+| 配置零件選擇 | \`option_select\` | \`select_item\` |
+| 分享配置連結 | \`share\` | \`share\` |
+| 詢價表單成功送出 | \`quote_submit_success\` | \`generate_lead\` |
+| 詢價漏斗診斷 | \`quote_submit_attempt\`、\`quote_validation_error\`、\`quote_form_abandon\` | 由 GTM 以自訂事件接收 |
 
 ## Platform Import Notes
 

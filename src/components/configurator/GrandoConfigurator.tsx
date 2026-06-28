@@ -534,6 +534,14 @@ const ProductCard = ({
   const cpu = device.options.find((option) => option.module_type === 'cpu');
   const originalImageUrl = device.photo ? getConfiguratorAssetUrl(device.photo) : '';
   const imageUrl = originalImageUrl && !imageFailed ? getProductImageUrl(originalImageUrl, isMobile) : '';
+  const trackProductAction = (action: string) => {
+    dispatchConfiguratorLeadIntent(action, {
+      modelName: translateConfiguratorModelName(device.name, language),
+      deviceId: device.id,
+      deviceName: device.name,
+      productType: device.type
+    });
+  };
 
   useEffect(() => {
     setImageFailed(false);
@@ -597,13 +605,23 @@ const ProductCard = ({
       </div>
 
       <footer className="grando-product-actions">
-        <button type="button" className="grando-button" onClick={() => navigate(`/configurator/${device.id}`)}>
+        <button
+          type="button"
+          className="grando-button"
+          onClick={() => {
+            trackProductAction('product_card_customize');
+            navigate(`/configurator/${device.id}`);
+          }}
+        >
           {copy.customize}
         </button>
         <button
           type="button"
           className="grando-button grando-button-secondary"
-          onClick={() => navigate(`/configurator/${device.id}?request=true`)}
+          onClick={() => {
+            trackProductAction('product_card_quote');
+            navigate(`/configurator/${device.id}?request=true`);
+          }}
         >
           {copy.requestQuote}
         </button>
@@ -657,7 +675,20 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
 
   const scrollToType = (type: string) => {
     const element = document.getElementById(`grando-${type.toLowerCase().replace(/\s+/g, '-')}`);
+    dispatchConfiguratorLeadIntent('configurator_type_nav', {
+      productType: type
+    });
     element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleUsageFilter = (usage: string) => {
+    setSelectedUsage((current) => {
+      const next = current === usage ? null : usage;
+      dispatchConfiguratorLeadIntent('configurator_filter', {
+        filterValue: next || 'all'
+      });
+      return next;
+    });
   };
 
   return (
@@ -701,7 +732,7 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
                 key={usage}
                 type="button"
                 className={selectedUsage === usage ? 'active' : ''}
-                onClick={() => setSelectedUsage((current) => (current === usage ? null : usage))}
+                onClick={() => handleUsageFilter(usage)}
               >
                 {translateConfiguratorUsage(usage, language)}
               </button>
@@ -744,7 +775,14 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
             ) : (
               <div className="grando-empty">
                 <p>{copy.emptyMessage}</p>
-                <button type="button" className="grando-button" onClick={() => setSelectedUsage(null)}>
+                <button
+                  type="button"
+                  className="grando-button"
+                  onClick={() => {
+                    dispatchConfiguratorLeadIntent('configurator_filter', { filterValue: 'all' });
+                    setSelectedUsage(null);
+                  }}
+                >
                   {copy.clearFilter}
                 </button>
               </div>
@@ -785,6 +823,14 @@ const OptionSection = ({
   useEffect(() => {
     setActiveFilter(selectedFilter);
   }, [selectedFilter]);
+
+  const handleFilterSelect = (value: string) => {
+    setActiveFilter(value);
+    dispatchConfiguratorLeadIntent('configurator_option_filter', {
+      moduleKey,
+      filterValue: value
+    });
+  };
 
   const visibleOptions = useMemo(() => {
     const list = activeFilter
@@ -828,7 +874,7 @@ const OptionSection = ({
                   key={value}
                   type="button"
                   className={activeFilter.toLowerCase() === value.toLowerCase() ? 'active' : ''}
-                  onClick={() => setActiveFilter(value)}
+                  onClick={() => handleFilterSelect(value)}
                 >
                   {translateConfiguratorFilterLabel(value, language)}
                 </button>
@@ -1035,15 +1081,38 @@ const QuotePanel = ({
     `${copy.configurationLink}: ${currentUrl}`
   ].join('\n');
   const quoteSubject = `${copy.quoteSubject} - ${modelName}`;
+  const requestModeTrackedRef = useRef(false);
+  const quoteTrackingDetail = useMemo(
+    () => ({
+      modelName,
+      deviceId: spec.device?.id,
+      deviceName: spec.device?.name,
+      productType: spec.device?.type
+    }),
+    [modelName, spec.device?.id, spec.device?.name, spec.device?.type]
+  );
 
   useEffect(() => {
     if (requestMode) {
       quotePanelRef.current?.scrollIntoView({ block: 'center' });
       if (!validation.button) {
         setFormOpen(true);
+        if (!requestModeTrackedRef.current) {
+          dispatchConfiguratorLeadIntent('quote_form_open', {
+            ...quoteTrackingDetail,
+            filterValue: 'request_mode'
+          });
+          requestModeTrackedRef.current = true;
+        }
+      } else if (!requestModeTrackedRef.current) {
+        dispatchConfiguratorLeadIntent('quote_request_blocked', {
+          ...quoteTrackingDetail,
+          validationErrors: ['configuration_not_feasible']
+        });
+        requestModeTrackedRef.current = true;
       }
     }
-  }, [requestMode, validation.button]);
+  }, [requestMode, quoteTrackingDetail, validation.button]);
 
   useEffect(() => {
     if (!formOpen) {
@@ -1068,6 +1137,10 @@ const QuotePanel = ({
   }, [formOpen, submitStatus]);
 
   const handleFixConfig = () => {
+    dispatchConfiguratorLeadIntent('quote_fix_config', {
+      ...quoteTrackingDetail,
+      validationErrors: validation.button ? ['configuration_not_feasible'] : undefined
+    });
     document.querySelector('.grando-sidebar')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
   };
 
@@ -1076,9 +1149,7 @@ const QuotePanel = ({
     setSubmitStatus('idle');
     setSubmitError('');
     dispatchConfiguratorLeadIntent('quote_form_open', {
-      modelName,
-      deviceId: spec.device?.id,
-      deviceName: spec.device?.name
+      ...quoteTrackingDetail
     });
   };
 
@@ -1105,9 +1176,7 @@ const QuotePanel = ({
     }
 
     dispatchConfiguratorLeadIntent('share', {
-      modelName,
-      deviceId: spec.device?.id,
-      deviceName: spec.device?.name,
+      ...quoteTrackingDetail,
       configurationUrl: shareUrl || currentUrl,
       shareMethod
     });
@@ -1139,13 +1208,23 @@ const QuotePanel = ({
     }
 
     setFormErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
+    return nextErrors;
   };
 
   const handleQuoteSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!validateQuoteForm()) {
+    dispatchConfiguratorLeadIntent('quote_submit_attempt', {
+      ...quoteTrackingDetail
+    });
+
+    const nextErrors = validateQuoteForm();
+    const validationErrors = Object.keys(nextErrors);
+    if (validationErrors.length > 0) {
+      dispatchConfiguratorLeadIntent('quote_validation_error', {
+        ...quoteTrackingDetail,
+        validationErrors
+      });
       return;
     }
 
@@ -1155,6 +1234,9 @@ const QuotePanel = ({
     if (!emailService.isConfigured()) {
       setSubmitStatus('error');
       setSubmitError(copy.emailServiceMissingConfig);
+      dispatchConfiguratorLeadIntent('quote_submit_not_configured', {
+        ...quoteTrackingDetail
+      });
       return;
     }
 
@@ -1188,17 +1270,13 @@ const QuotePanel = ({
       setFormData(initialQuoteFormData);
       setFormErrors({});
       dispatchConfiguratorLeadIntent('quote_submit_success', {
-        modelName,
-        deviceId: spec.device?.id,
-        deviceName: spec.device?.name
+        ...quoteTrackingDetail
       });
     } catch (error) {
       setSubmitStatus('error');
       setSubmitError(error instanceof Error ? error.message : copy.quoteErrorFallback);
       dispatchConfiguratorLeadIntent('quote_submit_error', {
-        modelName,
-        deviceId: spec.device?.id,
-        deviceName: spec.device?.name
+        ...quoteTrackingDetail
       });
     }
   };
@@ -1207,6 +1285,13 @@ const QuotePanel = ({
     if (submitStatus === 'submitting') {
       return;
     }
+    const hasInput = Object.values(formData).some((value) => value.trim().length > 0);
+    dispatchConfiguratorLeadIntent(
+      submitStatus === 'success' ? 'quote_form_done' : hasInput ? 'quote_form_abandon' : 'quote_form_close',
+      {
+        ...quoteTrackingDetail
+      }
+    );
     setFormOpen(false);
   };
 
@@ -1394,11 +1479,28 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
   const validation = useMemo(() => getConfiguratorValidation(spec), [spec]);
   const backgroundImages = useMemo(() => getConfiguratorBackgrounds(openModule, spec), [openModule, spec]);
   const requestMode = searchParams.get('request') === 'true';
+  const getTrackingDeviceDetail = () => ({
+    modelName: device ? translateConfiguratorModelName(device.name, language) : undefined,
+    deviceId: device?.id,
+    deviceName: device?.name,
+    productType: device?.type
+  });
 
   const updateSearch = (updater: (next: URLSearchParams) => void) => {
     const next = new URLSearchParams(searchParams);
     updater(next);
     setSearchParams(next, { replace: false });
+  };
+
+  const toggleModule = (moduleKey: ConfiguratorModule) => {
+    setOpenModule((current) => {
+      const next = current === moduleKey ? 'gpu' : moduleKey;
+      dispatchConfiguratorLeadIntent('configurator_module_toggle', {
+        ...getTrackingDeviceDetail(),
+        moduleKey: next
+      });
+      return next;
+    });
   };
 
   const selectOption = (moduleKey: ConfiguratorModule, option: ConfiguratorOption) => {
@@ -1419,6 +1521,16 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
         next.set('cpu_value', String(quantity));
       }
     });
+    dispatchConfiguratorLeadIntent('option_select', {
+      ...getTrackingDeviceDetail(),
+      moduleKey,
+      optionId: option.unique_id || option.id,
+      optionName: option.name,
+      quantity:
+        moduleKey === 'gpu' || moduleKey === 'cpu'
+          ? (spec[moduleKey] as ConfiguratorSpecItem | undefined)?.total_quantity || option.custom_values[0]
+          : undefined
+    });
   };
 
   const changeQuantity = (moduleKey: ConfiguratorModule, quantity: number) => {
@@ -1430,6 +1542,14 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
       if (moduleKey === 'cpu') {
         next.set('cpu_value', String(quantity));
       }
+    });
+    const selected = spec[moduleKey] as ConfiguratorSpecItem | undefined;
+    dispatchConfiguratorLeadIntent('configurator_quantity_change', {
+      ...getTrackingDeviceDetail(),
+      moduleKey,
+      optionId: selected?.unique_id || selected?.id,
+      optionName: selected?.name,
+      quantity
     });
   };
 
@@ -1444,6 +1564,19 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
       ? 'GPU Server Configurator'
       : 'GPU 伺服器配置器';
   const canonicalUrl = canonicalPageUrl(`${SITE_ORIGIN}/configurator/${pid}`);
+
+  useEffect(() => {
+    if (!device) {
+      return;
+    }
+
+    dispatchConfiguratorLeadIntent('view_item', {
+      modelName,
+      deviceId: device.id,
+      deviceName: device.name,
+      productType: device.type
+    });
+  }, [device, modelName]);
 
   return (
     <>
@@ -1492,7 +1625,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
                 isOpen={openModule === moduleKey}
                 max={moduleKey === 'gpu' ? device.gpu_slots : 99}
                 validation={validation}
-                onToggle={() => setOpenModule((current) => (current === moduleKey ? 'gpu' : moduleKey))}
+                onToggle={() => toggleModule(moduleKey)}
                 onSelect={selectOption}
                 onQuantityChange={changeQuantity}
               />

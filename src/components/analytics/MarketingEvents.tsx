@@ -9,19 +9,42 @@ type LeadIntentDetail = {
   modelName?: string;
   deviceId?: number | string;
   deviceName?: string;
+  productType?: string;
+  moduleKey?: string;
+  optionId?: number | string;
+  optionName?: string;
+  quantity?: number;
+  filterValue?: string;
+  validationErrors?: string[];
   configurationUrl?: string;
   shareMethod?: string;
 };
 
 type GtagArguments = [command: string, target: string | Date, params?: Record<string, unknown>];
+type FbqFunction = ((...args: unknown[]) => void) & {
+  callMethod?: (...args: unknown[]) => void;
+  queue: unknown[];
+  push?: FbqFunction;
+  loaded?: boolean;
+  version?: string;
+};
+type UetQueue = {
+  push: (...args: unknown[]) => unknown;
+};
 
 declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: GtagArguments) => void;
+    fbq?: FbqFunction;
+    _fbq?: FbqFunction;
     lintrk?: (...args: unknown[]) => void;
     _linkedin_partner_id?: string;
     _linkedin_data_partner_ids?: string[];
+    UET?: new (options: Record<string, unknown>) => UetQueue;
+    uetq?: UetQueue | unknown[];
+    __eudtechMetaPixelInitialized?: boolean;
+    __eudtechMicrosoftUetInitialized?: boolean;
   }
 }
 
@@ -32,6 +55,11 @@ const marketingConfig = {
   googleAdsQuoteConversionLabel: import.meta.env.VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL as string | undefined,
   linkedInPartnerId: import.meta.env.VITE_LINKEDIN_PARTNER_ID as string | undefined,
   linkedInQuoteConversionId: import.meta.env.VITE_LINKEDIN_QUOTE_CONVERSION_ID as string | undefined,
+  metaPixelId: import.meta.env.VITE_META_PIXEL_ID as string | undefined,
+  metaQuoteEventName: (import.meta.env.VITE_META_QUOTE_EVENT_NAME as string | undefined) || 'Lead',
+  microsoftUetTagId: import.meta.env.VITE_MICROSOFT_UET_TAG_ID as string | undefined,
+  microsoftQuoteEventName:
+    (import.meta.env.VITE_MICROSOFT_UET_QUOTE_EVENT as string | undefined) || 'quote_submit_success',
   eventEndpoint: import.meta.env.VITE_MARKETING_EVENT_ENDPOINT as string | undefined
 };
 
@@ -62,16 +90,21 @@ const getSessionId = () => {
 
 const getEventId = () => window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
-const appendScript = (id: string, src: string) => {
-  if (document.getElementById(id)) {
-    return;
+const appendScript = (id: string, src: string, onLoad?: () => void) => {
+  const existing = document.getElementById(id) as HTMLScriptElement | null;
+  if (existing) {
+    return existing;
   }
 
   const script = document.createElement('script');
   script.id = id;
   script.async = true;
   script.src = src;
+  if (onLoad) {
+    script.onload = onLoad;
+  }
   document.head.appendChild(script);
+  return script;
 };
 
 const pushDataLayer = (payload: Record<string, unknown>) => {
@@ -94,6 +127,23 @@ const attributionPayload = (attribution: MarketingAttribution) => ({
   li_fat_id: attribution.liFatId,
   msclkid: attribution.msclkid
 });
+
+const getConfiguratorItem = (detail: LeadIntentDetail) => ({
+  item_id: detail.deviceId ? String(detail.deviceId) : detail.optionId ? String(detail.optionId) : 'configurator',
+  item_name: detail.optionName || detail.modelName || detail.deviceName || 'Comino Grando configurator',
+  item_category: detail.productType || 'configurator',
+  item_variant: detail.moduleKey,
+  quantity: detail.quantity
+});
+
+const sendRecommendedEvent = (eventName: string, params: Record<string, unknown>) => {
+  const payload = { event: eventName, ...params };
+  pushDataLayer(payload);
+
+  if (marketingConfig.gaMeasurementId) {
+    window.gtag?.('event', eventName, params);
+  }
+};
 
 const sendFirstPartyEvent = (payload: Record<string, unknown>) => {
   const endpoint = getMarketingEventEndpoint();
@@ -168,6 +218,75 @@ const initializeLinkedInInsight = () => {
   appendScript('eudtech-linkedin-insight', 'https://snap.licdn.com/li.lms-analytics/insight.min.js');
 };
 
+const initializeMetaPixel = () => {
+  if (!marketingConfig.metaPixelId || window.__eudtechMetaPixelInitialized) {
+    return;
+  }
+
+  if (!window.fbq) {
+    const queuedCalls: unknown[] = [];
+    const fbq = ((...args: unknown[]) => {
+      if (fbq.callMethod) {
+        fbq.callMethod(...args);
+        return;
+      }
+      queuedCalls.push(args);
+    }) as FbqFunction;
+
+    fbq.loaded = true;
+    fbq.push = fbq;
+    fbq.version = '2.0';
+    fbq.queue = queuedCalls;
+    window.fbq = fbq;
+    window._fbq = fbq;
+  }
+
+  window.__eudtechMetaPixelInitialized = true;
+  window.fbq?.('init', marketingConfig.metaPixelId);
+  appendScript('eudtech-meta-pixel', 'https://connect.facebook.net/en_US/fbevents.js');
+};
+
+const initializeMicrosoftUet = () => {
+  if (!marketingConfig.microsoftUetTagId || window.__eudtechMicrosoftUetInitialized) {
+    return;
+  }
+
+  window.__eudtechMicrosoftUetInitialized = true;
+  window.uetq = window.uetq || [];
+  appendScript('eudtech-microsoft-uet', 'https://bat.bing.com/bat.js', () => {
+    if (!window.UET || !Array.isArray(window.uetq)) {
+      return;
+    }
+
+    const queue = window.uetq;
+    window.uetq = new window.UET({
+      ti: marketingConfig.microsoftUetTagId,
+      enableAutoSpaTracking: true,
+      q: queue
+    });
+  });
+};
+
+const sendMetaPageView = () => {
+  if (!marketingConfig.metaPixelId) {
+    return;
+  }
+
+  window.fbq?.('track', 'PageView');
+};
+
+const sendMicrosoftPageView = (pagePath: string, pageTitle: string) => {
+  if (!marketingConfig.microsoftUetTagId) {
+    return;
+  }
+
+  window.uetq = window.uetq || [];
+  window.uetq.push('event', 'page_view', {
+    page_path: pagePath,
+    page_title: pageTitle
+  });
+};
+
 const sendPageView = (attribution: MarketingAttribution) => {
   const pageLocation = window.location.href;
   const pagePath = `${window.location.pathname}${window.location.search}`;
@@ -194,11 +313,15 @@ const sendPageView = (attribution: MarketingAttribution) => {
       page_title: pageTitle
     });
   }
+
+  sendMetaPageView();
+  sendMicrosoftPageView(pagePath, pageTitle);
 };
 
 const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
   const action = detail.action || 'unknown';
   const attribution = captureMarketingAttribution();
+  const item = getConfiguratorItem(detail);
   const payload = {
     event: 'configurator_lead_intent',
     configurator_action: action,
@@ -207,6 +330,13 @@ const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
     configurator_model_name: detail.modelName,
     configurator_device_id: detail.deviceId,
     configurator_device_name: detail.deviceName,
+    configurator_product_type: detail.productType,
+    configurator_module_key: detail.moduleKey,
+    configurator_option_id: detail.optionId,
+    configurator_option_name: detail.optionName,
+    configurator_quantity: detail.quantity,
+    configurator_filter_value: detail.filterValue,
+    configurator_validation_errors: detail.validationErrors,
     configurator_share_method: detail.shareMethod,
     configurator_url: detail.configurationUrl || window.location.href
   };
@@ -225,11 +355,49 @@ const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
       model_name: detail.modelName,
       device_id: detail.deviceId,
       device_name: detail.deviceName,
+      product_type: detail.productType,
+      module_key: detail.moduleKey,
+      option_id: detail.optionId,
+      option_name: detail.optionName,
+      quantity: detail.quantity,
+      filter_value: detail.filterValue,
+      validation_errors: detail.validationErrors,
       share_method: detail.shareMethod,
       url: detail.configurationUrl || window.location.href
     }
   });
   window.gtag?.('event', 'configurator_lead_intent', payload);
+
+  if (action === 'view_item') {
+    sendRecommendedEvent('view_item', {
+      item_list_name: 'configurator',
+      items: [item]
+    });
+  }
+
+  if (['product_card_customize', 'product_card_quote', 'option_select'].includes(action)) {
+    sendRecommendedEvent('select_item', {
+      item_list_name: action === 'option_select' ? 'configurator_options' : 'configurator_products',
+      items: [item]
+    });
+  }
+
+  if (action === 'share') {
+    sendRecommendedEvent('share', {
+      method: detail.shareMethod || 'copy',
+      content_type: 'configurator',
+      item_id: item.item_id,
+      item_name: item.item_name
+    });
+  }
+
+  if (action === 'quote_submit_success') {
+    sendRecommendedEvent('generate_lead', {
+      method: 'configurator_quote_form',
+      item_id: item.item_id,
+      item_name: item.item_name
+    });
+  }
 
   if (
     action === 'quote_submit_success' &&
@@ -242,28 +410,70 @@ const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
   }
 
   if (action === 'quote_submit_success') {
+    if (marketingConfig.metaPixelId) {
+      window.fbq?.('track', marketingConfig.metaQuoteEventName, {
+        content_name: detail.modelName,
+        content_category: 'configurator_quote',
+        content_ids: detail.deviceId ? [String(detail.deviceId)] : undefined
+      });
+      sendFirstPartyEvent({
+        event: 'meta_quote_conversion',
+        conversion_id: marketingConfig.metaPixelId,
+        page_location: window.location.href,
+        page_path: `${window.location.pathname}${window.location.search}`,
+        page_title: document.title,
+        attribution: attributionPayload(attribution),
+        configurator: {
+          action,
+          model_name: detail.modelName,
+          device_id: detail.deviceId,
+          device_name: detail.deviceName,
+          conversion_id: marketingConfig.metaPixelId
+        }
+      });
+    }
+    if (marketingConfig.microsoftUetTagId) {
+      window.uetq = window.uetq || [];
+      window.uetq.push('event', marketingConfig.microsoftQuoteEventName, {
+        event_category: 'configurator',
+        event_label: detail.modelName || action
+      });
+      sendFirstPartyEvent({
+        event: 'microsoft_quote_conversion',
+        conversion_id: marketingConfig.microsoftUetTagId,
+        page_location: window.location.href,
+        page_path: `${window.location.pathname}${window.location.search}`,
+        page_title: document.title,
+        attribution: attributionPayload(attribution),
+        configurator: {
+          action,
+          model_name: detail.modelName,
+          device_id: detail.deviceId,
+          device_name: detail.deviceName,
+          conversion_id: marketingConfig.microsoftUetTagId
+        }
+      });
+    }
     if (marketingConfig.linkedInQuoteConversionId) {
       pushDataLayer({
         event: 'linkedin_quote_conversion',
         conversion_id: marketingConfig.linkedInQuoteConversionId
       });
-    }
-    sendFirstPartyEvent({
-      event: 'linkedin_quote_conversion',
-      conversion_id: marketingConfig.linkedInQuoteConversionId,
-      page_location: window.location.href,
-      page_path: `${window.location.pathname}${window.location.search}`,
-      page_title: document.title,
-      attribution: attributionPayload(attribution),
-      configurator: {
-        action,
-        model_name: detail.modelName,
-        device_id: detail.deviceId,
-        device_name: detail.deviceName,
-        conversion_id: marketingConfig.linkedInQuoteConversionId
-      }
-    });
-    if (marketingConfig.linkedInQuoteConversionId) {
+      sendFirstPartyEvent({
+        event: 'linkedin_quote_conversion',
+        conversion_id: marketingConfig.linkedInQuoteConversionId,
+        page_location: window.location.href,
+        page_path: `${window.location.pathname}${window.location.search}`,
+        page_title: document.title,
+        attribution: attributionPayload(attribution),
+        configurator: {
+          action,
+          model_name: detail.modelName,
+          device_id: detail.deviceId,
+          device_name: detail.deviceName,
+          conversion_id: marketingConfig.linkedInQuoteConversionId
+        }
+      });
       window.lintrk?.('track', { conversion_id: marketingConfig.linkedInQuoteConversionId });
     }
   }
@@ -276,6 +486,8 @@ const MarketingEvents: React.FC = () => {
     initializeGoogleTagManager();
     initializeGoogleTag();
     initializeLinkedInInsight();
+    initializeMetaPixel();
+    initializeMicrosoftUet();
   }, []);
 
   useEffect(() => {

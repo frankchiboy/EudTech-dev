@@ -17,7 +17,11 @@ const marketingEnvKeys = [
   'VITE_GOOGLE_ADS_ID',
   'VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL',
   'VITE_LINKEDIN_PARTNER_ID',
-  'VITE_LINKEDIN_QUOTE_CONVERSION_ID'
+  'VITE_LINKEDIN_QUOTE_CONVERSION_ID',
+  'VITE_META_PIXEL_ID',
+  'VITE_META_QUOTE_EVENT_NAME',
+  'VITE_MICROSOFT_UET_TAG_ID',
+  'VITE_MICROSOFT_UET_QUOTE_EVENT'
 ];
 
 const googleScopes = [
@@ -33,6 +37,18 @@ const linkedInRequiredEnvKeys = [
   'LINKEDIN_ACCESS_TOKEN',
   'LINKEDIN_ORGANIZATION_ID',
   'LINKEDIN_AD_ACCOUNT_ID'
+];
+
+const metaRequiredEnvKeys = [
+  'META_ACCESS_TOKEN',
+  'META_AD_ACCOUNT_ID'
+];
+
+const microsoftAdsRequiredEnvKeys = [
+  'MICROSOFT_ADS_DEVELOPER_TOKEN',
+  'MICROSOFT_ADS_CUSTOMER_ID',
+  'MICROSOFT_ADS_ACCOUNT_ID',
+  'MICROSOFT_ADS_REFRESH_TOKEN'
 ];
 
 function run(command, commandArgs, options = {}) {
@@ -65,6 +81,10 @@ function redactKnownSecrets(text) {
     process.env.GITHUB_TOKEN,
     process.env.GOOGLE_ADS_DEVELOPER_TOKEN,
     process.env.LINKEDIN_ACCESS_TOKEN,
+    process.env.META_ACCESS_TOKEN,
+    process.env.MICROSOFT_ADS_ACCESS_TOKEN,
+    process.env.MICROSOFT_ADS_REFRESH_TOKEN,
+    process.env.MICROSOFT_ADS_DEVELOPER_TOKEN,
     process.env.OP_SERVICE_ACCOUNT_TOKEN
   ].filter((value) => value && value.length > 3);
 
@@ -309,6 +329,49 @@ function checkLinkedInAccess() {
   };
 }
 
+function checkMetaAccess() {
+  const missingEnvKeys = metaRequiredEnvKeys.filter((key) => !process.env[key]);
+  const pixelIdVisible = Boolean(process.env.VITE_META_PIXEL_ID || process.env.META_PIXEL_ID);
+
+  return {
+    ready: missingEnvKeys.length === 0 && pixelIdVisible,
+    requiredEnvKeys: [...metaRequiredEnvKeys, 'VITE_META_PIXEL_ID or META_PIXEL_ID'],
+    missingEnvKeys: [
+      ...missingEnvKeys,
+      ...(pixelIdVisible ? [] : ['VITE_META_PIXEL_ID or META_PIXEL_ID'])
+    ],
+    accessTokenEnvPresent: Boolean(process.env.META_ACCESS_TOKEN),
+    adAccountIdEnvPresent: Boolean(process.env.META_AD_ACCOUNT_ID),
+    pixelIdVisible,
+    apiProbe: missingEnvKeys.length === 0 && pixelIdVisible
+      ? 'not_attempted_read_only_audit'
+      : 'not_attempted_missing_meta_api_credentials'
+  };
+}
+
+function checkMicrosoftAdsAccess() {
+  const missingEnvKeys = microsoftAdsRequiredEnvKeys.filter((key) => !process.env[key]);
+  const uetTagIdVisible = Boolean(process.env.VITE_MICROSOFT_UET_TAG_ID || process.env.MICROSOFT_UET_TAG_ID);
+
+  return {
+    ready: missingEnvKeys.length === 0 && uetTagIdVisible,
+    requiredEnvKeys: [...microsoftAdsRequiredEnvKeys, 'VITE_MICROSOFT_UET_TAG_ID or MICROSOFT_UET_TAG_ID'],
+    missingEnvKeys: [
+      ...missingEnvKeys,
+      ...(uetTagIdVisible ? [] : ['VITE_MICROSOFT_UET_TAG_ID or MICROSOFT_UET_TAG_ID'])
+    ],
+    developerTokenEnvPresent: Boolean(process.env.MICROSOFT_ADS_DEVELOPER_TOKEN),
+    customerIdEnvPresent: Boolean(process.env.MICROSOFT_ADS_CUSTOMER_ID),
+    accountIdEnvPresent: Boolean(process.env.MICROSOFT_ADS_ACCOUNT_ID),
+    refreshTokenEnvPresent: Boolean(process.env.MICROSOFT_ADS_REFRESH_TOKEN),
+    accessTokenEnvPresent: Boolean(process.env.MICROSOFT_ADS_ACCESS_TOKEN),
+    uetTagIdVisible,
+    apiProbe: missingEnvKeys.length === 0 && uetTagIdVisible
+      ? 'not_attempted_read_only_audit'
+      : 'not_attempted_missing_microsoft_ads_api_credentials'
+  };
+}
+
 function checkGithubMarketingConfig() {
   const ghCli = run('gh', ['--version']);
   const ghToken = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
@@ -432,7 +495,7 @@ function checkOnePasswordMarketingItems() {
   }
 
   const items = parseJson(result.stdout, []);
-  const matcher = /(netlify|google analytics|analytics|tag manager|gtm|google ads|adwords|linkedin campaign|linkedin ads|campaign manager|insight tag)/i;
+  const matcher = /(netlify|google analytics|analytics|tag manager|gtm|google ads|adwords|linkedin campaign|linkedin ads|campaign manager|insight tag|meta pixel|facebook pixel|microsoft ads|bing ads|uet)/i;
   const matchingSourceItems = items.filter((item) => matcher.test([
     item.title,
     item.category,
@@ -464,6 +527,8 @@ function checkOnePasswordMarketingItems() {
     unreadableItemCount,
     partnerIdVisible: fieldNamesPresent.some((field) => /partner.*id|linkedin.*partner/i.test(field)),
     quoteConversionIdVisible: fieldNamesPresent.some((field) => /conversion|quote/i.test(field)),
+    metaPixelIdVisible: fieldNamesPresent.some((field) => /meta.*pixel|facebook.*pixel|pixel.*id/i.test(field)),
+    microsoftUetTagIdVisible: fieldNamesPresent.some((field) => /microsoft.*uet|bing.*uet|uet.*tag/i.test(field)),
     apiTokenItemVisible: fieldNamesPresent.some((field) => /token|api|credential|secret|developer/i.test(field)),
     fieldNamesPresent
   };
@@ -486,6 +551,12 @@ function buildMissingList(checks) {
   }
   if (!checks.linkedIn.ready) {
     missing.push(`LinkedIn API env: ${checks.linkedIn.missingEnvKeys.join(', ')}`);
+  }
+  if (!checks.meta.ready) {
+    missing.push(`Meta API/env: ${checks.meta.missingEnvKeys.join(', ')}`);
+  }
+  if (!checks.microsoftAds.ready) {
+    missing.push(`Microsoft Ads API/env: ${checks.microsoftAds.missingEnvKeys.join(', ')}`);
   }
 
   return missing;
@@ -511,6 +582,8 @@ function createReport() {
     googleAdcScopes: checkGoogleAdcScopes(),
     googleAdsDeveloperToken: checkGoogleAdsDeveloperToken(),
     linkedIn: checkLinkedInAccess(),
+    meta: checkMetaAccess(),
+    microsoftAds: checkMicrosoftAdsAccess(),
     github: checkGithubMarketingConfig(),
     onePassword: checkOnePasswordMarketingItems()
   };

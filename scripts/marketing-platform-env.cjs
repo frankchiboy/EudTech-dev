@@ -45,6 +45,34 @@ const variableSpecs = [
     example: '12345678'
   },
   {
+    key: 'VITE_META_PIXEL_ID',
+    platform: 'meta',
+    label: 'Meta Pixel ID',
+    pattern: /^\d+$/,
+    example: '123456789012345'
+  },
+  {
+    key: 'VITE_META_QUOTE_EVENT_NAME',
+    platform: 'meta',
+    label: 'Meta quote conversion event name',
+    pattern: /^[A-Za-z][A-Za-z0-9_]{1,63}$/,
+    example: 'Lead'
+  },
+  {
+    key: 'VITE_MICROSOFT_UET_TAG_ID',
+    platform: 'microsoftAds',
+    label: 'Microsoft Advertising UET tag ID',
+    pattern: /^\d+$/,
+    example: '123456789'
+  },
+  {
+    key: 'VITE_MICROSOFT_UET_QUOTE_EVENT',
+    platform: 'microsoftAds',
+    label: 'Microsoft Advertising quote event action',
+    pattern: /^[A-Za-z][A-Za-z0-9_]{1,63}$/,
+    example: 'quote_submit_success'
+  },
+  {
     key: 'VITE_MARKETING_EVENT_ENDPOINT',
     platform: 'firstParty',
     label: 'First-party marketing event endpoint',
@@ -59,6 +87,8 @@ const requiredPlatformKeys = {
   analytics: ['VITE_GTM_ID', 'VITE_GA_MEASUREMENT_ID'],
   googleAds: ['VITE_GOOGLE_ADS_ID', 'VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL'],
   linkedIn: ['VITE_LINKEDIN_PARTNER_ID', 'VITE_LINKEDIN_QUOTE_CONVERSION_ID'],
+  meta: ['VITE_META_PIXEL_ID'],
+  microsoftAds: ['VITE_MICROSOFT_UET_TAG_ID'],
   firstParty: ['VITE_MARKETING_EVENT_ENDPOINT']
 };
 
@@ -66,6 +96,8 @@ const platformLabels = {
   analytics: 'GA4 or Google Tag Manager',
   googleAds: 'Google Ads conversion tracking',
   linkedIn: 'LinkedIn Insight conversion tracking',
+  meta: 'Meta Pixel retargeting and conversion tracking',
+  microsoftAds: 'Microsoft Advertising UET conversion tracking',
   firstParty: 'First-party event collection'
 };
 

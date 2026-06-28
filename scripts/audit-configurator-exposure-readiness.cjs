@@ -98,7 +98,9 @@ async function probeProductionMarketingEventFunction() {
     'page_view',
     'marketing_attribution',
     'configurator_lead_intent',
-    'linkedin_quote_conversion'
+    'linkedin_quote_conversion',
+    'meta_quote_conversion',
+    'microsoft_quote_conversion'
   ];
 
   try {
@@ -333,12 +335,24 @@ async function main() {
     required: failOnProductionProbes
   });
   addCheck('conversion_path', 'quote submit success event exists', configuratorSource.includes('quote_submit_success'));
+  addCheck('conversion_path', 'quote submit attempt event exists', configuratorSource.includes('quote_submit_attempt'));
+  addCheck('conversion_path', 'quote validation error event exists', configuratorSource.includes('quote_validation_error'));
+  addCheck('conversion_path', 'quote missing mail config event exists', configuratorSource.includes('quote_submit_not_configured'));
+  addCheck('conversion_path', 'quote form abandon or close events exist', configuratorSource.includes('quote_form_abandon') && configuratorSource.includes('quote_form_close'));
   addCheck('conversion_path', 'quote form open event exists', configuratorSource.includes('quote_form_open'));
   addCheck('conversion_path', 'share event exists', configuratorSource.includes("'share'"));
   addCheck('conversion_path', 'share button uses Web Share API with clipboard fallback', configuratorSource.includes('navigator.share') && configuratorSource.includes('copyToClipboard(shareUrl || currentUrl)'));
   addCheck('conversion_path', 'share URL uses first-party UTM tracking', ['utm_source', "'share'", 'utm_medium', "'referral'", 'utm_campaign', 'utm_content'].every((token) => configuratorSource.includes(token)));
   addCheck('conversion_path', 'share event includes configuration URL and share method', configuratorSource.includes('configurationUrl: shareUrl || currentUrl') && configuratorSource.includes('shareMethod'));
   addCheck('conversion_path', 'marketing attribution included in quote message', configuratorSource.includes('Marketing attribution'));
+  addCheck('conversion_path', 'home product cards emit customize and quote events', configuratorSource.includes('product_card_customize') && configuratorSource.includes('product_card_quote'));
+  addCheck('conversion_path', 'configurator interaction events cover filters, module toggles, option selection, and quantity changes', [
+    'configurator_filter',
+    'configurator_module_toggle',
+    'configurator_option_filter',
+    'option_select',
+    'configurator_quantity_change'
+  ].every((token) => configuratorSource.includes(token)));
 
   addCheck('first_party_measurement', 'marketing event function exists', exists('netlify/functions/marketing-event.mjs'), {
     path: 'netlify/functions/marketing-event.mjs'
@@ -358,7 +372,17 @@ async function main() {
   addCheck('first_party_measurement', 'frontend sends configurator lead events to first-party endpoint', marketingEventsSource.includes("event: 'configurator_lead_intent'"));
   addCheck('first_party_measurement', 'frontend sends share method with configurator lead events', marketingEventsSource.includes('share_method: detail.shareMethod'));
   addCheck('first_party_measurement', 'frontend sends quote conversion to first-party endpoint', marketingEventsSource.includes("event: 'linkedin_quote_conversion'"));
-  addCheck('first_party_measurement', 'marketing event function preserves sanitized configurator URL and share method', marketingEventFunctionSource.includes("'share_method'") && marketingEventFunctionSource.includes("'url'") && marketingEventFunctionSource.includes('configurator.url = sanitizeUrl(configurator.url)'));
+  addCheck('first_party_measurement', 'frontend sends Meta quote conversion to first-party endpoint', marketingEventsSource.includes("event: 'meta_quote_conversion'"));
+  addCheck('first_party_measurement', 'frontend sends Microsoft Ads quote conversion to first-party endpoint', marketingEventsSource.includes("event: 'microsoft_quote_conversion'"));
+  addCheck('first_party_measurement', 'frontend maps configurator actions to GA4 recommended events', [
+    "sendRecommendedEvent('view_item'",
+    "sendRecommendedEvent('select_item'",
+    "sendRecommendedEvent('share'",
+    "sendRecommendedEvent('generate_lead'"
+  ].every((token) => marketingEventsSource.includes(token)));
+  addCheck('first_party_measurement', 'marketing event function preserves sanitized configurator URL, share method, and option context', marketingEventFunctionSource.includes("'share_method'") && marketingEventFunctionSource.includes("'url'") && marketingEventFunctionSource.includes("'module_key'") && marketingEventFunctionSource.includes("'option_name'") && marketingEventFunctionSource.includes('configurator.url = sanitizeUrl(configurator.url)'));
+  addCheck('external_tracking', 'frontend supports Meta Pixel PageView and quote Lead events', marketingEventsSource.includes('initializeMetaPixel') && marketingEventsSource.includes("window.fbq?.('track', 'PageView')") && marketingEventsSource.includes("event: 'meta_quote_conversion'"));
+  addCheck('external_tracking', 'frontend supports Microsoft Ads UET SPA page_view and quote events', marketingEventsSource.includes('initializeMicrosoftUet') && marketingEventsSource.includes("window.uetq.push('event', 'page_view'") && marketingEventsSource.includes("event: 'microsoft_quote_conversion'"));
 
   addCheck('automation', 'public exposure workflow runs on main push', workflow.includes('push:') && workflow.includes('- main'));
   addCheck('automation', 'public exposure workflow verifies promotion assets', workflow.includes('verify:promotion-assets'));
@@ -378,6 +402,8 @@ async function main() {
     analytics: marketingPlatformEnv.groups.analytics,
     googleAds: marketingPlatformEnv.groups.googleAds,
     linkedIn: marketingPlatformEnv.groups.linkedIn,
+    meta: marketingPlatformEnv.groups.meta,
+    microsoftAds: marketingPlatformEnv.groups.microsoftAds,
     quoteEmail: {
       ready: localQuoteEmailEnv.ready || quoteFunctionProbe.ready,
       present: localQuoteEmailEnv.present,

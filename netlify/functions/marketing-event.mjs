@@ -3,6 +3,8 @@ const allowedEvents = new Set([
   'marketing_attribution',
   'configurator_lead_intent',
   'linkedin_quote_conversion',
+  'meta_quote_conversion',
+  'microsoft_quote_conversion',
   'user_interaction',
   'form_submission',
   'product_view'
@@ -39,6 +41,13 @@ const allowedConfiguratorKeys = new Set([
   'model_name',
   'device_id',
   'device_name',
+  'product_type',
+  'module_key',
+  'option_id',
+  'option_name',
+  'quantity',
+  'filter_value',
+  'validation_errors',
   'share_method',
   'url',
   'conversion_id'
@@ -112,6 +121,27 @@ const sanitizePath = (value, maxLength = 250) => {
   }
 };
 
+const sanitizeFieldValue = (item) => {
+  if (typeof item === 'string') {
+    return normalize(item, 250);
+  }
+
+  if (Array.isArray(item)) {
+    const values = item
+      .filter((value) => typeof value === 'string')
+      .map((value) => normalize(value, 120))
+      .filter(Boolean)
+      .slice(0, 10);
+    return values.length > 0 ? values : undefined;
+  }
+
+  if (typeof item === 'number' || typeof item === 'boolean') {
+    return item;
+  }
+
+  return undefined;
+};
+
 const sanitizeObject = (value, allowedKeys) => {
   if (!value || typeof value !== 'object' || Array.isArray(value)) {
     return {};
@@ -120,7 +150,8 @@ const sanitizeObject = (value, allowedKeys) => {
   return Object.fromEntries(
     Object.entries(value)
       .filter(([key, item]) => allowedKeys.has(key) && item !== undefined && item !== null && item !== '')
-      .map(([key, item]) => [key, typeof item === 'string' ? normalize(item, 250) : item])
+      .map(([key, item]) => [key, sanitizeFieldValue(item)])
+      .filter(([, item]) => item !== undefined)
   );
 };
 
