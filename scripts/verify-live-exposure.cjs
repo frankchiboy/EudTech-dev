@@ -22,21 +22,44 @@ function unique(values) {
   return [...new Set(values)];
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function fetchText(url, options = {}) {
   const cacheBustedUrl = options.cacheBust === false ? url : `${url}${url.includes('?') ? '&' : '?'}t=${Date.now()}`;
-  const response = await fetch(cacheBustedUrl, {
-    redirect: options.redirect || 'follow',
-    cache: 'no-store'
-  });
-  const text = await response.text();
-  return {
-    url,
-    status: response.status,
-    redirected: response.redirected,
-    finalUrl: response.url.replace(/[?&]t=\d+$/, ''),
-    location: response.headers.get('location'),
-    text
-  };
+  const attempts = options.attempts || 4;
+  let lastError;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(cacheBustedUrl, {
+        redirect: options.redirect || 'follow',
+        cache: 'no-store'
+      });
+      const text = await response.text();
+      const result = {
+        url,
+        status: response.status,
+        redirected: response.redirected,
+        finalUrl: response.url.replace(/[?&]t=\d+$/, ''),
+        location: response.headers.get('location'),
+        text
+      };
+
+      if (response.status < 500 || attempt === attempts) {
+        return result;
+      }
+      lastError = new Error(`${url} returned HTTP ${response.status}`);
+    } catch (error) {
+      lastError = error;
+      if (attempt === attempts) {
+        break;
+      }
+    }
+
+    await sleep(1500 * attempt);
+  }
+
+  throw lastError;
 }
 
 function collectXmlLocs(xml) {
