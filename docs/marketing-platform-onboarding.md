@@ -32,6 +32,13 @@ npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing
 | Google Ads | `VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL` | public ID | conversion label | Quote conversion action label. |
 | Google Ads API | `GOOGLE_ADS_DEVELOPER_TOKEN` | secret | 22-character token | Google Ads API access. |
 | Google Ads API | `GOOGLE_ADS_LOGIN_CUSTOMER_ID` | secret | customer id | Optional manager-account login customer id. |
+| Google Ads API | `GOOGLE_ADS_CUSTOMER_ID` | secret | customer id | Customer account used for `searchStream` read-probe. |
+| Google Ads API | `GOOGLE_ADS_ACCESS_TOKEN` | secret | OAuth access token | Optional direct token; otherwise scoped ADC is used. |
+| GA4 Admin API | `GOOGLE_ANALYTICS_ACCESS_TOKEN` | secret | OAuth access token | Optional direct token; otherwise scoped ADC is used. |
+| GA4 Admin API | `GOOGLE_ANALYTICS_PROPERTY_ID` | secret/id | numeric property id or `properties/...` | Property used for Analytics Admin read-probe. |
+| GTM API | `GOOGLE_TAG_MANAGER_ACCESS_TOKEN` | secret | OAuth access token | Optional direct token; otherwise scoped ADC is used. |
+| GTM API | `GOOGLE_TAG_MANAGER_ACCOUNT_ID` | secret/id | account id | Account used for GTM container read-probe. |
+| GTM API | `GOOGLE_TAG_MANAGER_CONTAINER_ID` | secret/id | container id | Optional direct container read-probe target. |
 | LinkedIn | `VITE_LINKEDIN_PARTNER_ID` | public ID | digits | LinkedIn Insight Tag partner id. |
 | LinkedIn | `VITE_LINKEDIN_QUOTE_CONVERSION_ID` | public ID | digits | Quote conversion id. |
 | LinkedIn API | `LINKEDIN_ACCESS_TOKEN` | secret | access token | Campaign Manager API access. |
@@ -48,7 +55,7 @@ npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing
 | Microsoft Ads API | `MICROSOFT_ADS_CUSTOMER_ID` | secret | customer id | Customer context. |
 | Microsoft Ads API | `MICROSOFT_ADS_ACCOUNT_ID` | secret | account id | Account context. |
 | Microsoft Ads API | `MICROSOFT_ADS_REFRESH_TOKEN` | secret | OAuth refresh token | API refresh flow. |
-| Microsoft Ads API | `MICROSOFT_ADS_ACCESS_TOKEN` | secret | OAuth access token | Optional short-lived access token. |
+| Microsoft Ads API | `MICROSOFT_ADS_ACCESS_TOKEN` | secret | OAuth access token | Required for the current SOAP read-probe. |
 | Microsoft Ads API | `MICROSOFT_UET_TAG_ID` | secret/public ID | digits | API-side UET tag id when not using `VITE_MICROSOFT_UET_TAG_ID`. |
 | GitHub | `GH_TOKEN` or `GITHUB_TOKEN` | secret | repo token | Optional write path for GitHub Actions variables/secrets. |
 
@@ -89,3 +96,17 @@ npm run verify:live-exposure -- --expect-commit <sha> --wait-for-commit-ms 60000
 npm run audit:external-platform-access:strict
 npm run audit:exposure-readiness:strict
 ```
+
+## API Read-Probe Coverage
+
+`npm run audit:external-platform-access` performs read-only probes when the relevant credentials are present. It never prints response bodies or token values.
+
+| Platform | Probe | Success signal |
+|---|---|---|
+| Google Ads | `customers:listAccessibleCustomers` with developer token and an `adwords` OAuth token | Google Ads API returns accessible customer resource names. |
+| Google Ads customer | `customers/{customer_id}/googleAds:searchStream` | The configured customer account can be queried. |
+| GA4 Admin | `properties/{property}` | The configured GA4 property is readable. |
+| GTM API | `accounts/{account}/containers` or `accounts/{account}/containers/{container}` | The configured GTM account/container is readable and can match `VITE_GTM_ID`. |
+| LinkedIn | `adAccountUsers?q=authenticatedUser` with `LINKEDIN_ACCESS_TOKEN` | The configured sponsored ad account is visible to the token. |
+| Meta | Graph API ad account and Pixel reads | The configured ad account and Pixel are readable. |
+| Microsoft Ads | Customer Management SOAP `GetUser` and `GetAccount` | The configured access token, developer token, customer, and account can read both user and account. |

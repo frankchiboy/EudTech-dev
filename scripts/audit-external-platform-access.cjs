@@ -59,6 +59,8 @@ const microsoftAdsRequiredEnvKeys = [
   'MICROSOFT_ADS_REFRESH_TOKEN'
 ];
 
+const defaultFetchTimeoutMs = 15000;
+
 function run(command, commandArgs, options = {}) {
   try {
     return {
@@ -88,6 +90,9 @@ function redactKnownSecrets(text) {
     process.env.GH_TOKEN,
     process.env.GITHUB_TOKEN,
     process.env.GOOGLE_ADS_DEVELOPER_TOKEN,
+    process.env.GOOGLE_ADS_ACCESS_TOKEN,
+    process.env.GOOGLE_ANALYTICS_ACCESS_TOKEN,
+    process.env.GOOGLE_TAG_MANAGER_ACCESS_TOKEN,
     process.env.LINKEDIN_ACCESS_TOKEN,
     process.env.META_ACCESS_TOKEN,
     process.env.MICROSOFT_ADS_ACCESS_TOKEN,
@@ -110,6 +115,84 @@ function firstErrorLine(result) {
     .split('\n')
     .map((line) => line.trim())
     .find(Boolean);
+}
+
+function safeProbeError(error) {
+  return redactKnownSecrets(error instanceof Error ? error.message : String(error || 'unknown error'));
+}
+
+async function fetchJsonProbe(url, options = {}) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), options.timeoutMs || defaultFetchTimeoutMs);
+
+  try {
+    const response = await fetch(url, {
+      method: options.method || 'GET',
+      headers: options.headers || {},
+      body: options.body,
+      signal: controller.signal
+    });
+    const text = await response.text();
+    const json = parseJson(text, null);
+    const inspected = options.inspect ? options.inspect(json, response) : {};
+    const ok = response.ok && inspected.ok !== false;
+
+    return {
+      attempted: true,
+      ok,
+      status: response.status,
+      ...inspected
+    };
+  } catch (error) {
+    return {
+      attempted: true,
+      ok: false,
+      error: safeProbeError(error)
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function fetchTextProbe(url, options = {}) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), options.timeoutMs || defaultFetchTimeoutMs);
+
+  try {
+    const response = await fetch(url, {
+      method: options.method || 'GET',
+      headers: options.headers || {},
+      body: options.body,
+      signal: controller.signal
+    });
+    const text = await response.text();
+    const inspected = options.inspect ? options.inspect(text, response) : {};
+    const ok = response.ok && inspected.ok !== false;
+
+    return {
+      attempted: true,
+      ok,
+      status: response.status,
+      ...inspected
+    };
+  } catch (error) {
+    return {
+      attempted: true,
+      ok: false,
+      error: safeProbeError(error)
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function escapeXml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 
 function parseJson(text, fallback) {
@@ -307,24 +390,232 @@ function checkGoogleAdcScopes() {
   };
 }
 
-function checkGoogleAdsDeveloperToken() {
-  const requiredEnvKeys = ['GOOGLE_ADS_DEVELOPER_TOKEN'];
-  const optionalEnvKeys = ['GOOGLE_ADS_LOGIN_CUSTOMER_ID'];
+function getGoogleAccessToken(scope, envKey, googleEnv) {
+  if (process.env[envKey]) {
+    return {
+      ok: true,
+      source: envKey,
+      token: process.env[envKey]
+    };
+  }
+
+  const result = run('gcloud', [
+    'auth',
+    'application-default',
+    'print-access-token',
+    '--scopes',
+    scope
+  ], {
+    env: googleEnv
+  });
 
   return {
-    ready: requiredEnvKeys.every((key) => Boolean(process.env[key])),
-    requiredEnvKeys,
-    optionalEnvKeys,
-    developerTokenEnvPresent: Boolean(process.env.GOOGLE_ADS_DEVELOPER_TOKEN),
-    loginCustomerIdEnvPresent: Boolean(process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID)
+    ok: result.ok && Boolean(result.stdout.trim()),
+    source: `gcloud_adc_${scope}`,
+    token: result.ok ? result.stdout.trim() : '',
+    error: result.ok ? undefined : firstErrorLine(result)
   };
 }
 
-function checkLinkedInAccess() {
-  const missingEnvKeys = linkedInRequiredEnvKeys.filter((key) => !process.env[key]);
+function normalizeGoogleAnalyticsPropertyName(value) {
+  if (!value) {
+    return '';
+  }
+
+  return value.startsWith('properties/') ? value : `properties/${value}`;
+}
+
+async function checkGoogleAnalyticsAccess() {
+  const propertyName = normalizeGoogleAnalyticsPropertyName(process.env.GOOGLE_ANALYTICS_PROPERTY_ID || '');
+  const googleEnv = { ...process.env };
+  delete googleEnv.GOOGLE_APPLICATION_CREDENTIALS;
+  const accessToken = getGoogleAccessToken(
+    'https://www.googleapis.com/auth/analytics.readonly',
+    'GOOGLE_ANALYTICS_ACCESS_TOKEN',
+    googleEnv
+  );
+  const propertyProbe = propertyName && accessToken.ok
+    ? await fetchJsonProbe(`https://analyticsadmin.googleapis.com/v1beta/${encodeURIComponent(propertyName).replace('%2F', '/')}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken.token}`
+        },
+        inspect: (json) => ({
+          propertyReadable: json?.name === propertyName,
+          ok: json?.name === propertyName
+        })
+      })
+    : {
+        attempted: false,
+        ok: false,
+        reason: propertyName
+          ? accessToken.error || 'missing_google_analytics_access_token'
+          : 'missing_google_analytics_property_id'
+      };
 
   return {
-    ready: missingEnvKeys.length === 0,
+    ready: Boolean(propertyName) && accessToken.ok && propertyProbe.ok,
+    requiredEnvKeys: ['GOOGLE_ANALYTICS_PROPERTY_ID'],
+    optionalEnvKeys: ['GOOGLE_ANALYTICS_ACCESS_TOKEN'],
+    propertyIdPresent: Boolean(process.env.GOOGLE_ANALYTICS_PROPERTY_ID),
+    measurementIdVisible: Boolean(process.env.VITE_GA_MEASUREMENT_ID),
+    accessTokenSource: accessToken.ok ? accessToken.source : null,
+    propertyProbe
+  };
+}
+
+async function checkGoogleTagManagerAccess() {
+  const accountId = process.env.GOOGLE_TAG_MANAGER_ACCOUNT_ID;
+  const containerId = process.env.GOOGLE_TAG_MANAGER_CONTAINER_ID;
+  const gtmPublicId = process.env.VITE_GTM_ID;
+  const googleEnv = { ...process.env };
+  delete googleEnv.GOOGLE_APPLICATION_CREDENTIALS;
+  const accessToken = getGoogleAccessToken(
+    'https://www.googleapis.com/auth/tagmanager.readonly',
+    'GOOGLE_TAG_MANAGER_ACCESS_TOKEN',
+    googleEnv
+  );
+  const endpoint = accountId
+    ? containerId
+      ? `https://tagmanager.googleapis.com/tagmanager/v2/accounts/${encodeURIComponent(accountId)}/containers/${encodeURIComponent(containerId)}`
+      : `https://tagmanager.googleapis.com/tagmanager/v2/accounts/${encodeURIComponent(accountId)}/containers`
+    : '';
+  const containerProbe = endpoint && accessToken.ok
+    ? await fetchJsonProbe(endpoint, {
+        headers: {
+          Authorization: `Bearer ${accessToken.token}`
+        },
+        inspect: (json) => {
+          const containers = Array.isArray(json?.container) ? json.container : (json?.publicId ? [json] : []);
+          const publicIdVisible = gtmPublicId
+            ? containers.some((container) => container.publicId === gtmPublicId)
+            : containers.length > 0;
+          return {
+            containerCount: containers.length,
+            publicIdVisible,
+            ok: publicIdVisible
+          };
+        }
+      })
+    : {
+        attempted: false,
+        ok: false,
+        reason: accountId
+          ? accessToken.error || 'missing_google_tag_manager_access_token'
+          : 'missing_google_tag_manager_account_id'
+      };
+
+  return {
+    ready: Boolean(accountId) && accessToken.ok && containerProbe.ok,
+    requiredEnvKeys: ['GOOGLE_TAG_MANAGER_ACCOUNT_ID'],
+    optionalEnvKeys: ['GOOGLE_TAG_MANAGER_ACCESS_TOKEN', 'GOOGLE_TAG_MANAGER_CONTAINER_ID'],
+    accountIdPresent: Boolean(accountId),
+    containerIdPresent: Boolean(containerId),
+    gtmPublicIdVisible: Boolean(gtmPublicId),
+    accessTokenSource: accessToken.ok ? accessToken.source : null,
+    containerProbe
+  };
+}
+
+async function checkGoogleAdsDeveloperToken() {
+  const requiredEnvKeys = ['GOOGLE_ADS_DEVELOPER_TOKEN', 'GOOGLE_ADS_CUSTOMER_ID'];
+  const optionalEnvKeys = ['GOOGLE_ADS_LOGIN_CUSTOMER_ID', 'GOOGLE_ADS_ACCESS_TOKEN'];
+  const developerTokenPresent = Boolean(process.env.GOOGLE_ADS_DEVELOPER_TOKEN);
+  const googleEnv = { ...process.env };
+  delete googleEnv.GOOGLE_APPLICATION_CREDENTIALS;
+  const accessToken = getGoogleAccessToken(
+    'https://www.googleapis.com/auth/adwords',
+    'GOOGLE_ADS_ACCESS_TOKEN',
+    googleEnv
+  );
+  const apiVersion = process.env.GOOGLE_ADS_API_VERSION || 'v24';
+  const customerId = process.env.GOOGLE_ADS_CUSTOMER_ID;
+  const apiProbe = developerTokenPresent && accessToken.ok
+    ? await fetchJsonProbe(`https://googleads.googleapis.com/${apiVersion}/customers:listAccessibleCustomers`, {
+        headers: {
+          Authorization: `Bearer ${accessToken.token}`,
+          'developer-token': process.env.GOOGLE_ADS_DEVELOPER_TOKEN
+        },
+        inspect: (json) => ({
+          resourceNameCount: Array.isArray(json?.resourceNames) ? json.resourceNames.length : 0
+        })
+      })
+    : {
+        attempted: false,
+        ok: false,
+        reason: developerTokenPresent
+          ? accessToken.error || 'missing_google_ads_oauth_access_token'
+          : 'missing_google_ads_developer_token'
+      };
+  const customerProbe = developerTokenPresent && accessToken.ok && customerId
+    ? await fetchJsonProbe(`https://googleads.googleapis.com/${apiVersion}/customers/${encodeURIComponent(customerId)}/googleAds:searchStream`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken.token}`,
+          'developer-token': process.env.GOOGLE_ADS_DEVELOPER_TOKEN,
+          ...(process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID ? { 'login-customer-id': process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID } : {}),
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          query: 'SELECT customer.id FROM customer LIMIT 1'
+        }),
+        inspect: (json) => ({
+          resultBatchCount: Array.isArray(json) ? json.length : 0,
+          ok: Array.isArray(json)
+        })
+      })
+    : {
+        attempted: false,
+        ok: false,
+        reason: customerId
+          ? apiProbe.reason || 'missing_google_ads_access'
+          : 'missing_google_ads_customer_id'
+      };
+
+  return {
+    ready: requiredEnvKeys.every((key) => Boolean(process.env[key])) && apiProbe.ok && customerProbe.ok,
+    requiredEnvKeys,
+    optionalEnvKeys,
+    developerTokenEnvPresent: developerTokenPresent,
+    customerIdEnvPresent: Boolean(customerId),
+    loginCustomerIdEnvPresent: Boolean(process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID),
+    apiVersion,
+    accessTokenSource: accessToken.ok ? accessToken.source : null,
+    apiProbe,
+    customerProbe
+  };
+}
+
+async function checkLinkedInAccess() {
+  const missingEnvKeys = linkedInRequiredEnvKeys.filter((key) => !process.env[key]);
+  const linkedInVersion = process.env.LINKEDIN_API_VERSION || '202506';
+  const normalizedAdAccountUrn = process.env.LINKEDIN_AD_ACCOUNT_ID?.startsWith('urn:')
+    ? process.env.LINKEDIN_AD_ACCOUNT_ID
+    : `urn:li:sponsoredAccount:${process.env.LINKEDIN_AD_ACCOUNT_ID || ''}`;
+  const adAccountReadProbe = missingEnvKeys.length === 0
+    ? await fetchJsonProbe('https://api.linkedin.com/rest/adAccountUsers?q=authenticatedUser', {
+        headers: {
+          Authorization: `Bearer ${process.env.LINKEDIN_ACCESS_TOKEN}`,
+          'LinkedIn-Version': linkedInVersion,
+          'X-Restli-Protocol-Version': '2.0.0'
+        },
+        inspect: (json) => {
+          const elements = Array.isArray(json?.elements) ? json.elements : [];
+          const adAccountVisible = elements.some((element) => element.account === normalizedAdAccountUrn);
+          return {
+            accountCount: elements.length,
+            adAccountVisible,
+            ok: adAccountVisible
+          };
+        }
+      })
+    : {
+        attempted: false,
+        ok: false,
+        reason: 'missing_linkedin_api_credentials'
+      };
+
+  return {
+    ready: missingEnvKeys.length === 0 && adAccountReadProbe.ok,
     requiredEnvKeys: linkedInRequiredEnvKeys,
     missingEnvKeys,
     accessTokenEnvPresent: Boolean(process.env.LINKEDIN_ACCESS_TOKEN),
@@ -332,17 +623,53 @@ function checkLinkedInAccess() {
     adAccountIdEnvPresent: Boolean(process.env.LINKEDIN_AD_ACCOUNT_ID),
     partnerIdVisible: Boolean(process.env.VITE_LINKEDIN_PARTNER_ID),
     quoteConversionIdVisible: Boolean(process.env.VITE_LINKEDIN_QUOTE_CONVERSION_ID),
-    tokenScopeProbe: 'not_attempted_missing_linkedin_api_credentials',
-    adAccountReadProbe: 'not_attempted_missing_linkedin_api_credentials'
+    linkedInVersion,
+    tokenScopeProbe: adAccountReadProbe,
+    adAccountReadProbe
   };
 }
 
-function checkMetaAccess() {
+async function checkMetaAccess() {
   const missingEnvKeys = metaRequiredEnvKeys.filter((key) => !process.env[key]);
   const pixelIdVisible = Boolean(process.env.VITE_META_PIXEL_ID || process.env.META_PIXEL_ID);
+  const graphVersion = process.env.META_GRAPH_VERSION || 'v20.0';
+  const normalizedAdAccountId = process.env.META_AD_ACCOUNT_ID?.startsWith('act_')
+    ? process.env.META_AD_ACCOUNT_ID
+    : `act_${process.env.META_AD_ACCOUNT_ID || ''}`;
+  const pixelId = process.env.VITE_META_PIXEL_ID || process.env.META_PIXEL_ID;
+  const accountProbe = missingEnvKeys.length === 0
+    ? await fetchJsonProbe(`https://graph.facebook.com/${graphVersion}/${encodeURIComponent(normalizedAdAccountId)}?fields=id,account_status`, {
+        headers: {
+          Authorization: `Bearer ${process.env.META_ACCESS_TOKEN}`
+        },
+        inspect: (json) => ({
+          adAccountReadable: Boolean(json?.id),
+          ok: Boolean(json?.id)
+        })
+      })
+    : {
+        attempted: false,
+        ok: false,
+        reason: 'missing_meta_api_credentials'
+      };
+  const pixelProbe = missingEnvKeys.length === 0 && pixelId
+    ? await fetchJsonProbe(`https://graph.facebook.com/${graphVersion}/${encodeURIComponent(pixelId)}?fields=id,name`, {
+        headers: {
+          Authorization: `Bearer ${process.env.META_ACCESS_TOKEN}`
+        },
+        inspect: (json) => ({
+          pixelReadable: Boolean(json?.id),
+          ok: Boolean(json?.id)
+        })
+      })
+    : {
+        attempted: false,
+        ok: false,
+        reason: pixelId ? 'missing_meta_api_credentials' : 'missing_meta_pixel_id'
+      };
 
   return {
-    ready: missingEnvKeys.length === 0 && pixelIdVisible,
+    ready: missingEnvKeys.length === 0 && pixelIdVisible && accountProbe.ok && pixelProbe.ok,
     requiredEnvKeys: [...metaRequiredEnvKeys, 'VITE_META_PIXEL_ID or META_PIXEL_ID'],
     missingEnvKeys: [
       ...missingEnvKeys,
@@ -351,19 +678,99 @@ function checkMetaAccess() {
     accessTokenEnvPresent: Boolean(process.env.META_ACCESS_TOKEN),
     adAccountIdEnvPresent: Boolean(process.env.META_AD_ACCOUNT_ID),
     pixelIdVisible,
-    apiProbe: missingEnvKeys.length === 0 && pixelIdVisible
-      ? 'not_attempted_read_only_audit'
-      : 'not_attempted_missing_meta_api_credentials'
+    graphVersion,
+    accountProbe,
+    pixelProbe,
+    apiProbe: {
+      accountProbe,
+      pixelProbe
+    }
   };
 }
 
-function checkMicrosoftAdsAccess() {
-  const missingEnvKeys = microsoftAdsRequiredEnvKeys.filter((key) => !process.env[key]);
+async function checkMicrosoftAdsAccess() {
+  const missingEnvKeys = [
+    ...microsoftAdsRequiredEnvKeys.filter((key) => !process.env[key]),
+    ...(process.env.MICROSOFT_ADS_ACCESS_TOKEN ? [] : ['MICROSOFT_ADS_ACCESS_TOKEN'])
+  ];
   const uetTagIdVisible = Boolean(process.env.VITE_MICROSOFT_UET_TAG_ID || process.env.MICROSOFT_UET_TAG_ID);
+  const accessTokenPresent = Boolean(process.env.MICROSOFT_ADS_ACCESS_TOKEN);
+  const soapProbe = missingEnvKeys.length === 0 && uetTagIdVisible && accessTokenPresent
+    ? await fetchTextProbe('https://clientcenter.api.bingads.microsoft.com/Api/CustomerManagement/v13/CustomerManagementService.svc', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/xml; charset=utf-8',
+          SOAPAction: 'GetUser'
+        },
+        body: [
+          '<s:Envelope xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">',
+          '<s:Header xmlns="https://bingads.microsoft.com/Customer/v13">',
+          '<Action mustUnderstand="1">GetUser</Action>',
+          `<AuthenticationToken i:nil="false">${escapeXml(process.env.MICROSOFT_ADS_ACCESS_TOKEN)}</AuthenticationToken>`,
+          `<CustomerAccountId i:nil="false">${escapeXml(process.env.MICROSOFT_ADS_ACCOUNT_ID)}</CustomerAccountId>`,
+          `<CustomerId i:nil="false">${escapeXml(process.env.MICROSOFT_ADS_CUSTOMER_ID)}</CustomerId>`,
+          `<DeveloperToken i:nil="false">${escapeXml(process.env.MICROSOFT_ADS_DEVELOPER_TOKEN)}</DeveloperToken>`,
+          '</s:Header>',
+          '<s:Body>',
+          '<GetUserRequest xmlns="https://bingads.microsoft.com/Customer/v13">',
+          '<UserId i:nil="true" />',
+          '</GetUserRequest>',
+          '</s:Body>',
+          '</s:Envelope>'
+        ].join(''),
+        inspect: (text) => ({
+          userReadable: /<User\b|<a:User\b|GetUserResponse/i.test(text),
+          ok: /<User\b|<a:User\b|GetUserResponse/i.test(text)
+        })
+      })
+    : {
+        attempted: false,
+        ok: false,
+        reason: missingEnvKeys.length > 0
+          ? 'missing_microsoft_ads_api_credentials'
+          : accessTokenPresent
+            ? 'missing_microsoft_ads_uet_tag_id'
+            : 'missing_microsoft_ads_access_token'
+      };
+  const accountProbe = missingEnvKeys.length === 0 && accessTokenPresent
+    ? await fetchTextProbe('https://clientcenter.api.bingads.microsoft.com/Api/CustomerManagement/v13/CustomerManagementService.svc', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/xml; charset=utf-8',
+          SOAPAction: 'GetAccount'
+        },
+        body: [
+          '<s:Envelope xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">',
+          '<s:Header xmlns="https://bingads.microsoft.com/Customer/v13">',
+          '<Action mustUnderstand="1">GetAccount</Action>',
+          `<AuthenticationToken i:nil="false">${escapeXml(process.env.MICROSOFT_ADS_ACCESS_TOKEN)}</AuthenticationToken>`,
+          `<CustomerAccountId i:nil="false">${escapeXml(process.env.MICROSOFT_ADS_ACCOUNT_ID)}</CustomerAccountId>`,
+          `<CustomerId i:nil="false">${escapeXml(process.env.MICROSOFT_ADS_CUSTOMER_ID)}</CustomerId>`,
+          `<DeveloperToken i:nil="false">${escapeXml(process.env.MICROSOFT_ADS_DEVELOPER_TOKEN)}</DeveloperToken>`,
+          '</s:Header>',
+          '<s:Body>',
+          '<GetAccountRequest xmlns="https://bingads.microsoft.com/Customer/v13">',
+          `<AccountId>${escapeXml(process.env.MICROSOFT_ADS_ACCOUNT_ID)}</AccountId>`,
+          '</GetAccountRequest>',
+          '</s:Body>',
+          '</s:Envelope>'
+        ].join(''),
+        inspect: (text) => ({
+          accountReadable: /<Account\b|<a:Account\b|GetAccountResponse/i.test(text),
+          ok: /<Account\b|<a:Account\b|GetAccountResponse/i.test(text)
+        })
+      })
+    : {
+        attempted: false,
+        ok: false,
+        reason: missingEnvKeys.length > 0
+          ? 'missing_microsoft_ads_api_credentials'
+          : 'missing_microsoft_ads_access_token'
+      };
 
   return {
-    ready: missingEnvKeys.length === 0 && uetTagIdVisible,
-    requiredEnvKeys: [...microsoftAdsRequiredEnvKeys, 'VITE_MICROSOFT_UET_TAG_ID or MICROSOFT_UET_TAG_ID'],
+    ready: missingEnvKeys.length === 0 && uetTagIdVisible && soapProbe.ok && accountProbe.ok,
+    requiredEnvKeys: [...microsoftAdsRequiredEnvKeys, 'MICROSOFT_ADS_ACCESS_TOKEN', 'VITE_MICROSOFT_UET_TAG_ID or MICROSOFT_UET_TAG_ID'],
     missingEnvKeys: [
       ...missingEnvKeys,
       ...(uetTagIdVisible ? [] : ['VITE_MICROSOFT_UET_TAG_ID or MICROSOFT_UET_TAG_ID'])
@@ -372,17 +779,22 @@ function checkMicrosoftAdsAccess() {
     customerIdEnvPresent: Boolean(process.env.MICROSOFT_ADS_CUSTOMER_ID),
     accountIdEnvPresent: Boolean(process.env.MICROSOFT_ADS_ACCOUNT_ID),
     refreshTokenEnvPresent: Boolean(process.env.MICROSOFT_ADS_REFRESH_TOKEN),
-    accessTokenEnvPresent: Boolean(process.env.MICROSOFT_ADS_ACCESS_TOKEN),
+    accessTokenEnvPresent: accessTokenPresent,
     uetTagIdVisible,
-    apiProbe: missingEnvKeys.length === 0 && uetTagIdVisible
-      ? 'not_attempted_read_only_audit'
-      : 'not_attempted_missing_microsoft_ads_api_credentials'
+    soapProbe,
+    accountProbe,
+    apiProbe: {
+      userProbe: soapProbe,
+      accountProbe
+    }
   };
 }
 
 function checkGithubMarketingConfig() {
   const ghCli = run('gh', ['--version']);
   const ghToken = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
+  const expectedVariables = deployableVariableKeys;
+  const expectedSecrets = githubSecretKeys;
 
   if (!ghToken) {
     return {
@@ -394,7 +806,8 @@ function checkGithubMarketingConfig() {
       secretsReadable: false,
       presentVariables: [],
       presentSecrets: [],
-      missingMarketingKeys: marketingEnvKeys,
+      missingVariables: expectedVariables,
+      missingSecrets: expectedSecrets,
       updatedAtByName: {},
       errors: ['GH_TOKEN or GITHUB_TOKEN is not set; keychain auth is intentionally not used']
     };
@@ -411,28 +824,27 @@ function checkGithubMarketingConfig() {
   const secretItems = secrets.ok ? parseJson(secrets.stdout, []) : [];
   const variableNames = variableItems.map((item) => item.name);
   const secretNames = secretItems.map((item) => item.name);
-  const presentMarketingKeys = uniqueSorted(
-    marketingEnvKeys.filter((key) => variableNames.includes(key) || secretNames.includes(key))
-  );
-  const missingMarketingKeys = marketingEnvKeys.filter((key) => !presentMarketingKeys.includes(key));
+  const missingVariables = expectedVariables.filter((key) => !variableNames.includes(key));
+  const missingSecrets = expectedSecrets.filter((key) => !secretNames.includes(key));
   const updatedAtByName = {};
 
   for (const item of [...variableItems, ...secretItems]) {
-    if (marketingEnvKeys.includes(item.name)) {
+    if ([...expectedVariables, ...expectedSecrets].includes(item.name)) {
       updatedAtByName[item.name] = item.updatedAt;
     }
   }
 
   return {
-    ready: missingMarketingKeys.length === 0,
+    ready: missingVariables.length === 0 && missingSecrets.length === 0,
     repo,
     ghCliInstalled: ghCli.ok,
     authSourceEnvOnly: true,
     variablesReadable: variables.ok,
     secretsReadable: secrets.ok,
-    presentVariables: marketingEnvKeys.filter((key) => variableNames.includes(key)),
-    presentSecrets: marketingEnvKeys.filter((key) => secretNames.includes(key)),
-    missingMarketingKeys,
+    presentVariables: expectedVariables.filter((key) => variableNames.includes(key)),
+    presentSecrets: expectedSecrets.filter((key) => secretNames.includes(key)),
+    missingVariables,
+    missingSecrets,
     updatedAtByName,
     errors: [variables, secrets]
       .filter((result) => !result.ok)
@@ -612,17 +1024,35 @@ function buildMissingList(checks) {
   if (checks.googleAdcScopes.missingScopes.length > 0) {
     missing.push(`Google ADC scopes: ${checks.googleAdcScopes.missingScopes.join(', ')}`);
   }
+  if (!checks.googleAnalytics.ready) {
+    missing.push(checks.googleAnalytics.propertyIdPresent
+      ? 'Google Analytics Admin API property read probe'
+      : 'GOOGLE_ANALYTICS_PROPERTY_ID');
+  }
+  if (!checks.googleTagManager.ready) {
+    missing.push(checks.googleTagManager.accountIdPresent
+      ? 'Google Tag Manager API container read probe'
+      : 'GOOGLE_TAG_MANAGER_ACCOUNT_ID');
+  }
   if (!checks.googleAdsDeveloperToken.ready) {
-    missing.push('GOOGLE_ADS_DEVELOPER_TOKEN');
+    missing.push(checks.googleAdsDeveloperToken.developerTokenEnvPresent
+      ? 'Google Ads API read probe'
+      : 'GOOGLE_ADS_DEVELOPER_TOKEN / GOOGLE_ADS_CUSTOMER_ID');
   }
   if (!checks.linkedIn.ready) {
-    missing.push(`LinkedIn API env: ${checks.linkedIn.missingEnvKeys.join(', ')}`);
+    missing.push(checks.linkedIn.missingEnvKeys.length > 0
+      ? `LinkedIn API env: ${checks.linkedIn.missingEnvKeys.join(', ')}`
+      : 'LinkedIn API ad account read probe');
   }
   if (!checks.meta.ready) {
-    missing.push(`Meta API/env: ${checks.meta.missingEnvKeys.join(', ')}`);
+    missing.push(checks.meta.missingEnvKeys.length > 0
+      ? `Meta API/env: ${checks.meta.missingEnvKeys.join(', ')}`
+      : 'Meta Graph API ad account/pixel read probe');
   }
   if (!checks.microsoftAds.ready) {
-    missing.push(`Microsoft Ads API/env: ${checks.microsoftAds.missingEnvKeys.join(', ')}`);
+    missing.push(checks.microsoftAds.missingEnvKeys.length > 0
+      ? `Microsoft Ads API/env: ${checks.microsoftAds.missingEnvKeys.join(', ')}`
+      : 'Microsoft Ads SOAP GetUser read probe');
   }
 
   return missing;
@@ -632,7 +1062,11 @@ function buildOptionalMissingList(checks) {
   const optionalMissing = [];
 
   if (!checks.github.ready) {
-    optionalMissing.push(`GitHub marketing variables/secrets: ${checks.github.missingMarketingKeys.join(', ')}`);
+    const missingGithubKeys = [
+      ...(checks.github.missingVariables || []),
+      ...(checks.github.missingSecrets || [])
+    ];
+    optionalMissing.push(`GitHub marketing variables/secrets: ${missingGithubKeys.join(', ')}`);
   }
   if (!checks.onePassword.ready) {
     optionalMissing.push('1Password Netlify or ad platform token/items');
@@ -641,18 +1075,20 @@ function buildOptionalMissingList(checks) {
   return optionalMissing;
 }
 
-function createReport() {
+async function createReport() {
   const checks = {
     netlify: checkNetlifyAccess(),
     googleCredentialEnv: checkGoogleCredentialEnv(),
     googleAdcScopes: checkGoogleAdcScopes(),
-    googleAdsDeveloperToken: checkGoogleAdsDeveloperToken(),
-    linkedIn: checkLinkedInAccess(),
-    meta: checkMetaAccess(),
-    microsoftAds: checkMicrosoftAdsAccess(),
     github: checkGithubMarketingConfig(),
     onePassword: checkOnePasswordMarketingItems()
   };
+  checks.googleAdsDeveloperToken = await checkGoogleAdsDeveloperToken();
+  checks.googleAnalytics = await checkGoogleAnalyticsAccess();
+  checks.googleTagManager = await checkGoogleTagManagerAccess();
+  checks.linkedIn = await checkLinkedInAccess();
+  checks.meta = await checkMetaAccess();
+  checks.microsoftAds = await checkMicrosoftAdsAccess();
   const result = {
     ok: true,
     failOnMissing,
@@ -672,18 +1108,26 @@ function createReport() {
   return result;
 }
 
-const result = createReport();
+createReport()
+  .then((result) => {
+    if (writeReport) {
+      fs.mkdirSync(reportsDir, { recursive: true });
+      fs.writeFileSync(
+        path.join(reportsDir, 'external-platform-access.json'),
+        `${JSON.stringify(result, null, 2)}\n`
+      );
+    }
 
-if (writeReport) {
-  fs.mkdirSync(reportsDir, { recursive: true });
-  fs.writeFileSync(
-    path.join(reportsDir, 'external-platform-access.json'),
-    `${JSON.stringify(result, null, 2)}\n`
-  );
-}
+    console.log(JSON.stringify(result, null, 2));
 
-console.log(JSON.stringify(result, null, 2));
-
-if (!result.ok) {
-  process.exit(1);
-}
+    if (!result.ok) {
+      process.exit(1);
+    }
+  })
+  .catch((error) => {
+    console.log(JSON.stringify({
+      ok: false,
+      error: safeProbeError(error)
+    }, null, 2));
+    process.exit(1);
+  });

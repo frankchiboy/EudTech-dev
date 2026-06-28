@@ -88,6 +88,7 @@
 65. `apply:marketing-platform-env:netlify` now reads Netlify env back after a real write and fails if any applied key is missing from the production context readback.
 66. `docs/marketing-platform-onboarding.md` maps each external platform ID/token to the exact repo field, expected format, storage type, and official source.
 67. `npm run verify:exposure-workflow-env` statically checks that `Public Exposure Checks` maps every deployable marketing variable and GitHub Actions secret into the workflow environment.
+68. `npm run audit:external-platform-access` performs read-only API probes when credentials exist: Google Ads accessible customers plus customer `searchStream`, GA4 Admin property read, GTM container read, LinkedIn ad account visibility, Meta ad account/Pixel reads, and Microsoft Ads SOAP `GetUser`/`GetAccount`.
 
 ## External Promotion Queue
 
