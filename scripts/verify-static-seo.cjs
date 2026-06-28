@@ -49,6 +49,10 @@ function hasType(items, type) {
   return items.some((item) => item && item['@type'] === type);
 }
 
+function findType(items, type) {
+  return items.find((item) => item && item['@type'] === type);
+}
+
 function requireType(routePath, items, type) {
   if (!hasType(items, type)) {
     throw new Error(`Missing ${type} JSON-LD in ${routePath}`);
@@ -81,6 +85,7 @@ function assertSocialMeta(route) {
   const ogTitle = getMetaContent(html, 'property', 'og:title');
   const ogDescription = getMetaContent(html, 'property', 'og:description');
   const ogImage = getMetaContent(html, 'property', 'og:image');
+  const ogImageSecureUrl = getMetaContent(html, 'property', 'og:image:secure_url');
   const ogImageAlt = getMetaContent(html, 'property', 'og:image:alt');
   const ogImageWidth = getMetaContent(html, 'property', 'og:image:width');
   const ogImageHeight = getMetaContent(html, 'property', 'og:image:height');
@@ -88,6 +93,8 @@ function assertSocialMeta(route) {
   const ogType = getMetaContent(html, 'property', 'og:type');
   const ogSiteName = getMetaContent(html, 'property', 'og:site_name');
   const ogLocale = getMetaContent(html, 'property', 'og:locale');
+  const articlePublishedTime = getMetaContent(html, 'property', 'article:published_time');
+  const articleModifiedTime = getMetaContent(html, 'property', 'article:modified_time');
   const twitterCard = getMetaContent(html, 'name', 'twitter:card');
   const twitterTitle = getMetaContent(html, 'name', 'twitter:title');
   const twitterDescription = getMetaContent(html, 'name', 'twitter:description');
@@ -100,6 +107,7 @@ function assertSocialMeta(route) {
   requireEqual(route.path, 'og:url', ogUrl, expectedUrl);
   requireEqual(route.path, 'twitter:url', twitterUrl, expectedUrl);
   requireEqual(route.path, 'og:image', ogImage, route.socialImageUrl);
+  requireEqual(route.path, 'og:image:secure_url', ogImageSecureUrl, route.socialImageUrl);
   requireEqual(route.path, 'twitter:image', twitterImage, route.socialImageUrl);
   requireEqual(route.path, 'og:image:alt', ogImageAlt, route.imageAlt);
   requireEqual(route.path, 'twitter:image:alt', twitterImageAlt, route.imageAlt);
@@ -119,7 +127,37 @@ function assertSocialMeta(route) {
     throw new Error(`${route.path} robots meta should include index, follow.`);
   }
 
+  if (route.ogType === 'article') {
+    requireNonEmpty(route.path, 'article:published_time', articlePublishedTime);
+    requireNonEmpty(route.path, 'article:modified_time', articleModifiedTime);
+  }
+
   return { html, jsonLd: collectJsonLd(route.path, html) };
+}
+
+function assertWebPageSchema(routePath, expectedUrl, expectedImage, items) {
+  const expectedType = routePath === '/solutions' ? 'CollectionPage' : 'WebPage';
+  const schema = findType(items, expectedType);
+
+  if (!schema) {
+    throw new Error(`Missing ${expectedType} page JSON-LD in ${routePath}`);
+  }
+
+  requireEqual(routePath, `${expectedType} url`, schema.url, expectedUrl);
+  requireEqual(routePath, `${expectedType} @id`, schema['@id'], `${expectedUrl}#webpage`);
+  requireEqual(routePath, `${expectedType} inLanguage`, schema.inLanguage, 'zh-TW');
+  requireEqual(routePath, `${expectedType} image`, schema.primaryImageOfPage?.url, expectedImage);
+  requireEqual(routePath, `${expectedType} image width`, String(schema.primaryImageOfPage?.width), String(SOCIAL_IMAGE_WIDTH));
+  requireEqual(routePath, `${expectedType} image height`, String(schema.primaryImageOfPage?.height), String(SOCIAL_IMAGE_HEIGHT));
+  requireNonEmpty(routePath, `${expectedType} image caption`, schema.primaryImageOfPage?.caption);
+
+  if (!schema.publisher?.['@id']?.endsWith('#organization')) {
+    throw new Error(`${routePath} ${expectedType} publisher should point to #organization.`);
+  }
+
+  if (!schema.isPartOf?.['@id']?.endsWith('#website')) {
+    throw new Error(`${routePath} ${expectedType} isPartOf should point to #website.`);
+  }
 }
 
 function assertConfiguratorProduct(routePath, expectedProductId, items) {
@@ -141,6 +179,7 @@ function assertConfiguratorProduct(routePath, expectedProductId, items) {
 
 for (const route of expectedRoutes) {
   const { jsonLd } = assertSocialMeta(route);
+  assertWebPageSchema(route.path, route.canonicalUrl, route.socialImageUrl, jsonLd);
   if (route.productId) {
     assertConfiguratorProduct(route.path, route.productId, jsonLd);
   }

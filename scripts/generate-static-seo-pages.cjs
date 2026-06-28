@@ -33,7 +33,40 @@ const schemaDate = `${taipeiDateParts.year}-${taipeiDateParts.month}-${taipeiDat
 const getZh = (value) => value.zh;
 const productSeoById = new Map((CONFIGURATOR_PRODUCT_SEO || []).map((product) => [product.id, product]));
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
-const eudTechOrganization = { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' };
+const organizationId = `${siteRootUrl}#organization`;
+const websiteId = `${siteRootUrl}#website`;
+const eudTechOrganization = {
+  '@type': 'Organization',
+  '@id': organizationId,
+  name: 'EudTech',
+  alternateName: 'Eudaemonia Technology',
+  url: siteRootUrl,
+  email: 'info@eudaemonia.tech',
+  logo: {
+    '@type': 'ImageObject',
+    url: `${siteOrigin}/logo.svg`
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Taiwan'
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    email: 'info@eudaemonia.tech',
+    availableLanguage: ['zh-TW', 'en']
+  }
+};
+const eudTechWebSite = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  name: 'EudTech',
+  url: siteRootUrl,
+  publisher: {
+    '@id': organizationId
+  },
+  inLanguage: 'zh-TW'
+};
 const socialPreviewByPath = new Map(getConfiguratorSocialPreviewRoutes().map((route) => [route.path, route]));
 
 function configuratorServiceSchemaFor(id) {
@@ -102,12 +135,7 @@ const solutionHubRoute = {
       name: '配置器解決方案',
       description: 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。',
       url: pageUrl('/solutions'),
-      publisher: {
-        '@type': 'Organization',
-        name: 'EudTech',
-        url: siteRootUrl,
-        email: 'info@eudaemonia.tech'
-      },
+      publisher: eudTechOrganization,
       mainEntity: {
         '@type': 'ItemList',
         name: '配置器解決方案頁面',
@@ -130,6 +158,7 @@ const productRoutes = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
   image: `${siteOrigin}${product.image}`,
   imageAlt: getZh(product.imageAlt),
   kind: 'configurator-product',
+  quoteHref: product.quoteHref,
   schema: [
     {
       '@context': 'https://schema.org',
@@ -139,7 +168,7 @@ const productRoutes = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
       url: pageUrl(product.configuratorHref),
-      provider: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' },
+      provider: eudTechOrganization,
       potentialAction: { '@type': 'QuoteAction', target: pageUrl(product.quoteHref) }
     },
     configuratorServiceSchemaFor(product.id),
@@ -166,17 +195,12 @@ const routes = [
       {
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        name: 'EudTech',
-        alternateName: 'Eudaemonia Technology',
-        url: siteRootUrl,
-        email: 'info@eudaemonia.tech',
-        sameAs: [pageUrl('/configurator')]
+        ...eudTechOrganization
       },
       {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        name: 'EudTech',
-        url: siteRootUrl
+        ...eudTechWebSite
       }
     ]
   },
@@ -186,6 +210,7 @@ const routes = [
     description: '配置 Comino Grando GPU 伺服器、RTX PRO 工作站、NVIDIA H200 系統、儲存、電源與網路，並向 EudTech 取得報價。',
     keywords: 'Comino Grando 配置器, GPU 伺服器配置器, NVIDIA H200 伺服器, RTX PRO 6000 工作站, AI 工作站 台灣, GPU 伺服器報價',
     imageAlt: 'Comino Grando GPU 伺服器配置器',
+    quoteHref: '/configurator?request=true',
     schema: [
       {
         '@context': 'https://schema.org',
@@ -195,12 +220,7 @@ const routes = [
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Web',
         url: pageUrl('/configurator'),
-        provider: {
-          '@type': 'Organization',
-          name: 'EudTech',
-          url: siteRootUrl,
-          email: 'info@eudaemonia.tech'
-        },
+        provider: eudTechOrganization,
         potentialAction: {
           '@type': 'QuoteAction',
           target: pageUrl('/configurator?request=true')
@@ -244,6 +264,44 @@ function safeJson(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c');
 }
 
+function webPageSchema(route, { title, url, image, imageAlt }) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': route.kind === 'collection' ? 'CollectionPage' : 'WebPage',
+    '@id': `${url}#webpage`,
+    url,
+    name: title,
+    description: route.description,
+    inLanguage: 'zh-TW',
+    isPartOf: {
+      '@id': websiteId
+    },
+    publisher: {
+      '@id': organizationId
+    },
+    dateModified: schemaDate,
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: image,
+      width: SOCIAL_IMAGE_WIDTH,
+      height: SOCIAL_IMAGE_HEIGHT,
+      caption: imageAlt
+    },
+    breadcrumb: {
+      '@id': `${url}#breadcrumb`
+    }
+  };
+
+  if (route.quoteHref) {
+    schema.potentialAction = {
+      '@type': 'QuoteAction',
+      target: pageUrl(route.quoteHref)
+    };
+  }
+
+  return schema;
+}
+
 function routeSchema(route) {
   if (route.schema) {
     return route.schema;
@@ -272,12 +330,7 @@ function routeSchema(route) {
           datePublished: schemaDate,
           dateModified: schemaDate,
           author: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl },
-          publisher: {
-            '@type': 'Organization',
-            name: 'EudTech',
-            url: siteRootUrl,
-            logo: { '@type': 'ImageObject', url: `${siteOrigin}/logo.svg` }
-          },
+          publisher: eudTechOrganization,
           mainEntityOfPage: url
         }
       : {
@@ -287,7 +340,7 @@ function routeSchema(route) {
           description: route.description,
           serviceType: 'AI GPU server configuration and quote request',
           areaServed: { '@type': 'Country', name: 'Taiwan' },
-          provider: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl, email: 'info@eudaemonia.tech' },
+          provider: eudTechOrganization,
           url,
           image: pageImage,
           potentialAction: route.quoteHref
@@ -326,6 +379,13 @@ function injectHead(baseHtml, route) {
   const imageAlt = socialPreview?.imageAlt || route.imageAlt || route.title;
   const isArticlePage = route.kind === 'comparison' || route.kind === 'guide' || route.kind === 'checklist';
   const ogType = socialPreview?.ogType || (isArticlePage ? 'article' : 'website');
+  const articleTimeTags = isArticlePage
+    ? [
+        `<meta data-rh="true" property="article:published_time" content="${schemaDate}">`,
+        `<meta data-rh="true" property="article:modified_time" content="${schemaDate}">`
+      ]
+    : [];
+  const schemaItems = [webPageSchema(route, { title, url, image, imageAlt }), ...routeSchema(route)];
   const managedHead = [
     `<title>${escapeHtml(title)}</title>`,
     `<meta data-rh="true" name="description" content="${escapeHtml(route.description)}">`,
@@ -335,6 +395,7 @@ function injectHead(baseHtml, route) {
     `<meta data-rh="true" property="og:title" content="${escapeHtml(title)}">`,
     `<meta data-rh="true" property="og:description" content="${escapeHtml(route.description)}">`,
     `<meta data-rh="true" property="og:image" content="${escapeHtml(image)}">`,
+    `<meta data-rh="true" property="og:image:secure_url" content="${escapeHtml(image)}">`,
     `<meta data-rh="true" property="og:image:alt" content="${escapeHtml(imageAlt)}">`,
     `<meta data-rh="true" property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}">`,
     `<meta data-rh="true" property="og:image:height" content="${SOCIAL_IMAGE_HEIGHT}">`,
@@ -342,6 +403,7 @@ function injectHead(baseHtml, route) {
     `<meta data-rh="true" property="og:type" content="${ogType}">`,
     '<meta data-rh="true" property="og:site_name" content="EudTech">',
     '<meta data-rh="true" property="og:locale" content="zh_TW">',
+    ...articleTimeTags,
     '<meta data-rh="true" name="twitter:card" content="summary_large_image">',
     `<meta data-rh="true" name="twitter:title" content="${escapeHtml(title)}">`,
     `<meta data-rh="true" name="twitter:description" content="${escapeHtml(route.description)}">`,
@@ -351,7 +413,7 @@ function injectHead(baseHtml, route) {
     `<link data-rh="true" rel="canonical" href="${escapeHtml(url)}">`,
     `<link data-rh="true" rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href="${siteOrigin}/feed.xml">`,
     ...verificationTags(),
-    ...routeSchema(route)
+    ...schemaItems
       .filter(Boolean)
       .map((item, index) => `<script data-rh="true" type="application/ld+json" data-static-seo="${index}">${safeJson(item)}</script>`)
   ].join('\n    ');
@@ -359,7 +421,7 @@ function injectHead(baseHtml, route) {
   return baseHtml
     .replace(/<html lang="[^"]*"/, '<html lang="zh-TW"')
     .replace(/\s*<title>[\s\S]*?<\/title>/, '')
-    .replace(/\s*<meta[^>]+(?:name|property)="(?:description|keywords|author|robots|og:title|og:description|og:image|og:image:alt|og:image:width|og:image:height|og:url|og:type|og:site_name|og:locale|twitter:card|twitter:title|twitter:description|twitter:image|twitter:image:alt|twitter:url)"[^>]*>/g, '')
+    .replace(/\s*<meta[^>]+(?:name|property)="(?:description|keywords|author|robots|og:title|og:description|og:image|og:image:secure_url|og:image:alt|og:image:width|og:image:height|og:url|og:type|og:site_name|og:locale|article:published_time|article:modified_time|twitter:card|twitter:title|twitter:description|twitter:image|twitter:image:alt|twitter:url)"[^>]*>/g, '')
     .replace(/\s*<link[^>]+rel="canonical"[^>]*>/g, '')
     .replace(/\s*<link[^>]+rel="alternate"[^>]+type="application\/rss\+xml"[^>]*>/g, '')
     .replace(/\s*<script[^>]+type="application\/ld\+json"[\s\S]*?<\/script>/g, '')

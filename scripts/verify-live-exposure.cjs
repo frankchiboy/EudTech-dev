@@ -299,6 +299,7 @@ async function checkPages(errors) {
     const canonical = getMetaContent(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)/i);
     const ogUrl = getMetaContent(html, /<meta[^>]+property=["']og:url["'][^>]+content=["']([^"']+)/i);
     const ogImage = getMetaContent(html, /<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/i);
+    const ogImageSecureUrl = getMetaContent(html, /<meta[^>]+property=["']og:image:secure_url["'][^>]+content=["']([^"']+)/i);
     const ogImageAlt = getMetaContent(html, /<meta[^>]+property=["']og:image:alt["'][^>]+content=["']([^"']+)/i);
     const ogImageWidth = getMetaContent(html, /<meta[^>]+property=["']og:image:width["'][^>]+content=["']([^"']+)/i);
     const ogImageHeight = getMetaContent(html, /<meta[^>]+property=["']og:image:height["'][^>]+content=["']([^"']+)/i);
@@ -309,8 +310,12 @@ async function checkPages(errors) {
     const twitterUrl = getMetaContent(html, /<meta[^>]+name=["']twitter:url["'][^>]+content=["']([^"']+)/i);
     const description = getMetaContent(html, /<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)/i);
     const robots = getMetaContent(html, /<meta[^>]+name=["']robots["'][^>]+content=["']([^"']+)/i);
+    const articlePublishedTime = getMetaContent(html, /<meta[^>]+property=["']article:published_time["'][^>]+content=["']([^"']+)/i);
+    const articleModifiedTime = getMetaContent(html, /<meta[^>]+property=["']article:modified_time["'][^>]+content=["']([^"']+)/i);
     const jsonLd = collectJsonLd(html);
     const socialPreview = socialPreviewByUrl.get(url);
+    const expectedPageType = new URL(url).pathname === '/solutions/' ? 'CollectionPage' : 'WebPage';
+    const pageSchema = jsonLd.find((item) => item['@type'] === expectedPageType);
 
     pages.push({
       url,
@@ -318,8 +323,10 @@ async function checkPages(errors) {
       canonical,
       ogUrl,
       ogImage,
+      ogImageSecureUrl,
       twitterImage,
-      jsonLdTypes: jsonLd.map((item) => item['@type']).filter(Boolean)
+      jsonLdTypes: jsonLd.map((item) => item['@type']).filter(Boolean),
+      pageSchemaType: pageSchema?.['@type'] || null
     });
 
     assert(result.status === 200, errors, `${url} should return HTTP 200.`);
@@ -328,6 +335,7 @@ async function checkPages(errors) {
     assert(twitterUrl === url, errors, `${url} twitter:url is ${twitterUrl || 'missing'}.`);
     assert(Boolean(socialPreview), errors, `${url} missing local social preview route definition.`);
     assert(ogImage === socialPreview?.socialImageUrl, errors, `${url} og:image is ${ogImage || 'missing'}.`);
+    assert(ogImageSecureUrl === socialPreview?.socialImageUrl, errors, `${url} og:image:secure_url is ${ogImageSecureUrl || 'missing'}.`);
     assert(twitterImage === socialPreview?.socialImageUrl, errors, `${url} twitter:image is ${twitterImage || 'missing'}.`);
     assert(ogImageAlt === socialPreview?.imageAlt, errors, `${url} og:image:alt is ${ogImageAlt || 'missing'}.`);
     assert(twitterImageAlt === socialPreview?.imageAlt, errors, `${url} twitter:image:alt is ${twitterImageAlt || 'missing'}.`);
@@ -339,6 +347,17 @@ async function checkPages(errors) {
     assert(/index/i.test(robots) && /follow/i.test(robots), errors, `${url} robots meta should include index, follow.`);
     assert(jsonLd.length > 0, errors, `${url} missing JSON-LD.`);
     assert(jsonLd.some((item) => item['@type'] === 'BreadcrumbList'), errors, `${url} missing BreadcrumbList JSON-LD.`);
+    assert(Boolean(pageSchema), errors, `${url} missing ${expectedPageType} JSON-LD.`);
+    assert(pageSchema?.url === url, errors, `${url} ${expectedPageType} url is ${pageSchema?.url || 'missing'}.`);
+    assert(pageSchema?.['@id'] === `${url}#webpage`, errors, `${url} ${expectedPageType} @id is ${pageSchema?.['@id'] || 'missing'}.`);
+    assert(pageSchema?.inLanguage === 'zh-TW', errors, `${url} ${expectedPageType} inLanguage is ${pageSchema?.inLanguage || 'missing'}.`);
+    assert(pageSchema?.primaryImageOfPage?.url === socialPreview?.socialImageUrl, errors, `${url} ${expectedPageType} primaryImageOfPage is ${pageSchema?.primaryImageOfPage?.url || 'missing'}.`);
+    assert(pageSchema?.publisher?.['@id']?.endsWith('#organization'), errors, `${url} ${expectedPageType} publisher should point to #organization.`);
+    assert(pageSchema?.isPartOf?.['@id']?.endsWith('#website'), errors, `${url} ${expectedPageType} isPartOf should point to #website.`);
+    if (socialPreview?.ogType === 'article') {
+      assert(Boolean(articlePublishedTime), errors, `${url} missing article:published_time.`);
+      assert(Boolean(articleModifiedTime), errors, `${url} missing article:modified_time.`);
+    }
   }
 
   return pages;
