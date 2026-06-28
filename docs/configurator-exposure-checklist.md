@@ -96,11 +96,11 @@
 
 ## External Promotion Queue
 
-1. Google Search Console sitemap submission succeeded on 2026-06-29 for `sitemap-index.xml`, `sitemap.xml`, and `image-sitemap.xml`; `monitor:sitemaps` reports 0 errors and 0 warnings.
+1. Google Search Console sitemap submission succeeded on 2026-06-29 07:44 Asia/Taipei for `sitemap-index.xml`, `sitemap.xml`, and `image-sitemap.xml`; `monitor:sitemaps` reports 0 errors and 0 warnings.
 2. Start Google Ads exact/phrase match tests around quote-intent keywords.
 3. Start LinkedIn, Meta, and Microsoft Ads retargeting after traffic reaches stable volume and platform IDs are installed.
 4. Add case-oriented articles only after Search Console shows impressions.
-5. Submit the current sitemap URLs through IndexNow after production deploys with `npm run submit:indexnow`.
+5. Submit the current sitemap URLs through IndexNow after production deploys with `npm run submit:indexnow`; the 2026-06-29 07:44 Asia/Taipei submission returned HTTP 200.
 6. Submit the current sitemap URLs through Google Search Console after production deploys with `npm run submit:search-console`.
 7. Monitor high-intent canonical URL index status with `npm run inspect:search-console`; use `npm run inspect:search-console -- --list-urls` to verify the full default URL set before Google credentials are available.
 8. Use `npm run report:search-console` to decide whether to add deeper pages such as Supermicro comparison, power planning, rack deployment, or Taiwan public procurement wording.
@@ -128,15 +128,16 @@
 12. Use `npm run verify:marketing-platform-env:strict` before paid campaigns; it fails until GA/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET IDs are all present and valid.
 13. Use `npm run create:marketing-env-template`, fill real platform IDs in `marketing.env`, then use `npm run sync:marketing-platform-env -- --env-file <file> --target netlify --dry-run` or `npm run apply:marketing-platform-env:netlify -- --env-file <file> --dry-run` before writing Netlify env values. Rerun a production deploy after successful write.
 14. Use `npm run sync:marketing-platform-env -- --op-item <item> --target github-actions --dry-run` when platform IDs and API credentials are stored in 1Password Automation with environment-variable field names.
-15. Use `npm run verify:marketing-1password-item:strict -- --op-item "EudTech Configurator Marketing Platforms"` before syncing from 1Password; it fails until required fields are present and non-empty.
-16. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
+15. Use `npm run verify:marketing-platform-env:readonly` and `npm run audit:external-platform-access:readonly` for no-report read-only checks during investigation.
+16. Use `npm run verify:marketing-1password-item:strict -- --op-item "EudTech Configurator Marketing Platforms"` before syncing from 1Password; it fails until required fields are present and non-empty.
+17. Use `npm run audit:external-platform-access:strict` after adding Netlify and ad-platform credentials; it fails until the external platform access path is actually available.
 
 ## Current External Permission Gap
 
-Google Search Console API submission is currently usable in this shell through local ADC when the scripts request the explicit `https://www.googleapis.com/auth/webmasters` scope. `npm run submit:search-console` has successfully submitted `sitemap-index.xml`, `sitemap.xml`, and `image-sitemap.xml`; `npm run monitor:sitemaps`, `npm run inspect:search-console`, and `npm run report:search-console` also complete without printing tokens. `GOOGLE_APPLICATION_CREDENTIALS` still points at an old missing service-account file, so the Search Console scripts intentionally ignore that environment variable and use scoped ADC instead.
+Google Search Console API submission is currently usable in this shell through local ADC when the scripts request the explicit `https://www.googleapis.com/auth/webmasters` scope. `npm run submit:search-console` has successfully submitted `sitemap-index.xml`, `sitemap.xml`, and `image-sitemap.xml`; `npm run monitor:sitemaps`, `npm run inspect:search-console`, and `npm run report:search-console` also complete without printing tokens. On 2026-06-29 07:44 Asia/Taipei, Search Console accepted all three sitemap submissions with HTTP 204 and `monitor:sitemaps` reported `errors: 0`, `warnings: 0`. `GOOGLE_APPLICATION_CREDENTIALS` still points at an old missing service-account file, so the Search Console scripts intentionally ignore that environment variable and use scoped ADC instead.
 
-Production verification in this workspace has confirmed `/build-meta.json` can be matched against an expected deployed commit with `npm run verify:live-exposure -- --expect-commit <sha>`, and `npm run audit:exposure-readiness:production` passed. The previous verified production commit was `0a37267e3c75dd6ae2df3e5b82970cb56833d5e9`. The production marketing endpoint accepts LinkedIn, Meta, and Microsoft conversion events.
+Production verification in this workspace has confirmed `/build-meta.json` can be matched against an expected deployed commit with `npm run verify:live-exposure -- --expect-commit <sha>`, and `npm run audit:exposure-readiness:production` passed. The latest verified production commit in this run was `86494494f8b6108972c8c496cd2c6987c8aa4745`. The production marketing endpoint accepts LinkedIn, Meta, and Microsoft conversion events.
 
-Netlify CLI is not currently authenticated in this shell. The Automation vault now has a scaffold item named `EudTech Configurator Marketing Platforms` with the required field names, but the platform IDs and tokens are still empty. GA4/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET tracking IDs are not present in repo, GitHub variables/secrets, environment variables, or Netlify production env as readable from this shell. Add those platform IDs and a Netlify token before enabling paid campaign conversion tracking.
+Netlify CLI is not currently authenticated in this shell. The Automation vault now has a scaffold item named `EudTech Configurator Marketing Platforms` with the required field names, but the platform IDs and tokens are still empty. GA4/GTM, Google Ads, LinkedIn, Meta Pixel, and Microsoft Ads UET tracking IDs are not present in repo, GitHub variables/secrets, environment variables, or Netlify production env as readable from this shell. Search Console currently shows 0 Search Analytics rows for configurator and solutions pages for the 2026-03-29 to 2026-06-26 range, so impression/click optimization is not yet evidence-based. Add those platform IDs and a Netlify token before enabling paid campaign conversion tracking.
 
 The missing external-access items are: `NETLIFY_AUTH_TOKEN`, valid non-broken Google credentials or refreshed Google ADC scopes for Analytics/GTM/Ads, `GOOGLE_ADS_DEVELOPER_TOKEN`, LinkedIn API env, Meta API/env, Microsoft Ads API/env, and the corresponding frontend tracking IDs for Netlify production build env.
