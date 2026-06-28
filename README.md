@@ -216,6 +216,8 @@ npm run submit:search-console
 
 `submit:indexnow` 會先重產 discovery 檔案，再讀取 `public/sitemap.xml`，向 IndexNow 提交 `https://eudaemonia.tech` 的正式 URL 清單。提交前可用 `npm run submit:indexnow:dry-run` 只讀現有 sitemap 並檢查 payload，不會重新產生檔案。
 
+`submit:indexnow:current` 只讀目前 `public/sitemap.xml` 並提交 IndexNow，不重產 discovery 檔案。只需要確認目前 sitemap 已是要提交的版本。
+
 `submit:search-console` 會透過 Google Search Console API 提交 sitemap index、一般 sitemap 與圖片 sitemap。Search Console 腳本會明確使用 `https://www.googleapis.com/auth/webmasters` scope，並忽略壞掉的 `GOOGLE_APPLICATION_CREDENTIALS` 路徑；執行前仍需要本機 ADC 可用且 quota project 已啟用 `searchconsole.googleapis.com`。
 
 `inspect:search-console` 會透過 URL Inspection API 檢查高意圖 configurator canonical URL 在 Google 索引中的狀態。這個 API 回報的是 Google index 版本，不是即時 live URL 測試，也不會要求 Google 重新收錄。加上 `-- --include-aliases` 可同時檢查無尾斜線 alias 是否仍被 Google 視為不同網址。
@@ -235,6 +237,12 @@ GitHub Actions 內的 `Public Exposure Checks` 會每週一自動執行，也可
 `audit:external-platform-access` 會檢查目前 shell 是否具備外部平台閉環需要的權限：Netlify token/CLI、`GOOGLE_APPLICATION_CREDENTIALS` 是否壞路徑、Google ADC 是否有 Search Console、Analytics、Tag Manager、Google Ads scopes、LinkedIn API env、Meta API env、Microsoft Ads API env、GitHub repo 是否有行銷 variables/secrets、1Password Automation vault 是否看得到 Netlify/GA/Ads/LinkedIn/Meta/Microsoft Ads 相關 item。預設只產生報告；`:strict` 會在缺權限時失敗。
 
 `audit:exposure-readiness` 會把曝光拆成五層檢查：搜尋發現、可投放推廣素材、詢價轉換路徑、第一方事件紀錄、自動化監控。GA4、GTM、Google Ads、LinkedIn Insight、Meta Pixel 與 Microsoft Ads UET 這類外部平台 ID 會列為缺口，但預設不讓 CI 失敗；要把缺少外部追蹤也視為失敗時，使用 `audit:exposure-readiness:strict`。部署完成後可用 `audit:exposure-readiness:production` 檢查正式站第一方曝光事件端點是否已上線。
+
+`audit:exposure-summary` 會執行同一套 readiness audit，但輸出人可讀的摘要表，並寫入 `reports/configurator-exposure-summary.md`。這個摘要只列狀態、缺口 key 與下一步，不輸出任何 secret 值。
+
+`audit:public-assets` 會只讀檢查 `public/` 的資產數量、總大小、超大檔、完全重複檔、`.DS_Store` 與誤產生的 `.png.png` 檔。預設不刪檔、不改圖、不壓縮；`:strict` 會把這些治理問題視為失敗。
+
+`verify:marketing-event-health` 只對正式站第一方曝光事件端點做 GET 健康檢查，不送出測試事件。`exposure:public:readonly` 會串接 discovery、社群圖、推廣素材、public 資產、正式站 live exposure、IndexNow dry-run 與 marketing endpoint health，是目前不需要外部平台憑證的公開曝光閉環。
 
 Netlify 內的 `exposure-scheduled` Scheduled Function 會每週從正式站讀取 `sitemap.xml`，並把 URL 清單提交到 IndexNow。這條流程在已發布的 Netlify deploy 上執行，不依賴 Google Search Console 憑證。
 

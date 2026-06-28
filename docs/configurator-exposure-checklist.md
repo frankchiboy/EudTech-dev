@@ -90,6 +90,9 @@
 67. `npm run verify:exposure-workflow-env` statically checks that `Public Exposure Checks` maps every deployable marketing variable and GitHub Actions secret into the workflow environment.
 68. `npm run audit:external-platform-access` performs read-only API probes when credentials exist: Google Ads accessible customers plus customer `searchStream`, GA4 Admin property read, GTM container read, LinkedIn ad account visibility, Meta ad account/Pixel reads, and Microsoft Ads SOAP `GetUser`/`GetAccount`.
 69. Generated static SEO HTML now includes visible fallback body content for every configurator and solution route: H1, lead copy, CTA links, highlights, specs, FAQ where available, and `info@eudaemonia.tech`; `verify:seo-html` and `verify:live-exposure` fail if this fallback disappears or becomes too short.
+70. `npm run audit:exposure-summary` runs the same readiness audit and writes a human-readable `reports/configurator-exposure-summary.md` summary for on-site status, external tracking gaps, and the next required action.
+71. `npm run audit:public-assets` reports public asset count, total bytes, oversized files, exact duplicate groups, `.DS_Store`, and accidental `.png.png` files without deleting or rewriting assets.
+72. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, social images, promotion assets, public asset audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
 
 ## External Promotion Queue
 
@@ -107,6 +110,7 @@
 12. Use `docs/configurator-google-ads-editor-keywords.csv` and `docs/configurator-search-ad-copy.csv` as paused Google Ads Editor import material after Google Ads access is ready.
 13. Use `docs/configurator-linkedin-url-parameters.csv` as static or dynamic URL tracking input when LinkedIn Campaign Manager access is ready.
 14. Use Meta Pixel audiences and Microsoft Ads UET audiences only after the corresponding environment variables are present in Netlify and a production deploy has completed.
+15. Use `npm run exposure:public:readonly` for a public, repeatable exposure check when Google Search Console, ad-platform IDs, or paid-media API credentials are not available.
 
 ## Tracking Readiness
 

@@ -15,6 +15,8 @@ const args = new Set(process.argv.slice(2));
 const failOnExternalGaps = args.has('--fail-on-external-gaps');
 const failOnProductionProbes = args.has('--fail-on-production-probes');
 const writeReport = args.has('--write-report');
+const writeSummary = args.has('--write-summary');
+const summaryOnly = args.has('--summary-only');
 
 const rootDir = path.resolve(__dirname, '..');
 const docsDir = path.join(rootDir, 'docs');
@@ -46,6 +48,67 @@ function envGroupStatus(keys, mode = 'all') {
   const missing = keys.filter((key) => !process.env[key]);
   const ready = mode === 'any' ? present.length > 0 : missing.length === 0;
   return { ready, present, missing };
+}
+
+function statusLabel(ready) {
+  return ready ? 'ready' : 'needs action';
+}
+
+function externalGapLines(externalGaps) {
+  if (externalGaps.length === 0) {
+    return ['- No external tracking gaps detected in the current process environment.'];
+  }
+
+  return externalGaps.map((gap) => {
+    const missing = Array.isArray(gap.missing) && gap.missing.length > 0
+      ? gap.missing.join(', ')
+      : 'configuration missing';
+    return `- ${gap.name}: ${missing}`;
+  });
+}
+
+function failedCheckLines(failedChecks) {
+  if (failedChecks.length === 0) {
+    return ['- No required on-site checks failed.'];
+  }
+
+  return failedChecks.map((check) => `- ${check.category}: ${check.name}`);
+}
+
+function buildSummary(result) {
+  const rows = [
+    ['On-site exposure', statusLabel(result.onSiteReady)],
+    ['External tracking', statusLabel(result.externalTrackingReady)],
+    ['Landing pages', String(result.landingPages)],
+    ['Configurator product pages', String(result.configuratorProductPages)],
+    ['Solution pages', String(result.solutionPages)],
+    ['Social preview images', String(result.socialPreviewImages.length)]
+  ];
+
+  return [
+    '# Configurator Exposure Summary',
+    '',
+    `Generated at: ${new Date().toISOString()}`,
+    '',
+    '| Area | Status |',
+    '|---|---|',
+    ...rows.map(([area, status]) => `| ${area} | ${status} |`),
+    '',
+    '## Failed Required Checks',
+    '',
+    ...failedCheckLines(result.failedChecks),
+    '',
+    '## External Tracking Gaps',
+    '',
+    ...externalGapLines(result.externalGaps),
+    '',
+    '## Next Action',
+    '',
+    result.externalTrackingReady
+      ? '- Run production verification after the next deploy and keep Search Console monitoring active.'
+      : '- Fill the missing platform IDs and API credentials in the 1Password Automation item, then sync them to Netlify and GitHub Actions.',
+    ''
+  ].join('\n');
 }
 
 async function probeProductionQuoteFunction() {
@@ -439,7 +502,13 @@ async function main() {
     fs.writeFileSync(path.join(reportsDir, 'configurator-exposure-readiness.json'), `${JSON.stringify(result, null, 2)}\n`);
   }
 
-  console.log(JSON.stringify(result, null, 2));
+  const summary = buildSummary(result);
+  if (writeSummary || summaryOnly) {
+    fs.mkdirSync(reportsDir, { recursive: true });
+    fs.writeFileSync(path.join(reportsDir, 'configurator-exposure-summary.md'), `${summary}\n`);
+  }
+
+  console.log(summaryOnly ? summary : JSON.stringify(result, null, 2));
 
   if (!result.ok) {
     process.exit(1);
