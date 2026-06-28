@@ -56,6 +56,9 @@
 33. `npm run verify:promotion-assets` checks that promotion assets stay synchronized with the current configurator landing pages.
 34. `npm run audit:exposure-readiness` checks search discovery, campaign assets, conversion events, automation, and external tracking gaps without failing CI on missing platform IDs.
 35. `npm run audit:exposure-readiness:strict` turns missing GA/GTM/Google Ads/LinkedIn/quote-email environment variables into a failure for launch-readiness gates.
+36. `npm run audit:exposure-readiness:production` fails when the deployed first-party marketing event endpoint is not yet available.
+37. First-party exposure events are collected through `/.netlify/functions/marketing-event`, so page views, attribution captures, configurator clicks, shares, and quote-submit success events still reach server-side logs before GA/GTM/Ads/LinkedIn IDs are available.
+38. `/.netlify/functions/send-email` exposes a health check and writes a sanitized `quote_email_sent` conversion log after successful quote delivery.
 
 ## External Promotion Queue
 
@@ -77,6 +80,7 @@
 4. Treat `quote_submit_success` as the primary conversion event.
 5. Quote emails include marketing attribution fields when URL parameters or referrers are available.
 6. Attribution tracking includes `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `fbclid`, `li_fat_id`, and `msclkid`.
+7. First-party server-side event collection records `page_view`, `marketing_attribution`, `configurator_lead_intent`, and `linkedin_quote_conversion` events in Netlify Function logs.
 
 ## Current External Permission Gap
 

@@ -1,0 +1,161 @@
+const allowedEvents = new Set([
+  'page_view',
+  'marketing_attribution',
+  'configurator_lead_intent',
+  'linkedin_quote_conversion'
+]);
+
+const json = (status, body) =>
+  Response.json(body, {
+    status,
+    headers: {
+      'Cache-Control': 'no-store'
+    }
+  });
+
+const allowedAttributionKeys = new Set([
+  'first_landing_page',
+  'landing_page',
+  'first_referrer',
+  'referrer',
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_term',
+  'utm_content',
+  'gclid',
+  'fbclid',
+  'li_fat_id',
+  'msclkid'
+]);
+
+const allowedConfiguratorKeys = new Set([
+  'action',
+  'slug',
+  'path',
+  'model_name',
+  'device_id',
+  'device_name',
+  'conversion_id'
+]);
+
+const allowedUrlParams = new Set([
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_term',
+  'utm_content',
+  'gclid',
+  'fbclid',
+  'li_fat_id',
+  'msclkid'
+]);
+
+const redactSensitiveText = (value) =>
+  value
+    .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[redacted-email]')
+    .replace(/\+?\d[\d\s().-]{7,}\d/g, '[redacted-phone]');
+
+const normalize = (value, maxLength = 500) =>
+  typeof value === 'string' ? redactSensitiveText(value.trim()).slice(0, maxLength) : undefined;
+
+const sanitizeUrl = (value, maxLength = 500) => {
+  const normalized = normalize(value, maxLength);
+  if (!normalized) return undefined;
+
+  try {
+    const parsed = new URL(normalized, 'https://eudaemonia.tech');
+    const clean = new URL(`${parsed.origin}${parsed.pathname}`);
+    [...parsed.searchParams.entries()].forEach(([key, item]) => {
+      if (allowedUrlParams.has(key)) {
+        clean.searchParams.set(key, normalize(item, 120) || '');
+      }
+    });
+    return clean.toString().slice(0, maxLength);
+  } catch {
+    return normalized;
+  }
+};
+
+const sanitizePath = (value, maxLength = 250) => {
+  const normalized = normalize(value, maxLength);
+  if (!normalized) return undefined;
+
+  try {
+    const parsed = new URL(normalized, 'https://eudaemonia.tech');
+    const search = new URLSearchParams();
+    [...parsed.searchParams.entries()].forEach(([key, item]) => {
+      if (allowedUrlParams.has(key)) {
+        search.set(key, normalize(item, 120) || '');
+      }
+    });
+    const query = search.toString();
+    return `${parsed.pathname}${query ? `?${query}` : ''}`.slice(0, maxLength);
+  } catch {
+    return normalized;
+  }
+};
+
+const sanitizeObject = (value, allowedKeys) => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return {};
+  }
+
+  return Object.fromEntries(
+    Object.entries(value)
+      .filter(([key, item]) => allowedKeys.has(key) && item !== undefined && item !== null && item !== '')
+      .map(([key, item]) => [key, typeof item === 'string' ? normalize(item, 250) : item])
+  );
+};
+
+async function collectMarketingEvent(request) {
+  if (request.method === 'GET') {
+    return json(200, {
+      ok: true,
+      endpoint: 'marketing-event',
+      acceptedEvents: [...allowedEvents]
+    });
+  }
+
+  if (request.method !== 'POST') {
+    return json(405, { error: 'Method not allowed' });
+  }
+
+  let payload;
+  try {
+    payload = await request.json();
+  } catch {
+    return json(400, { error: 'Invalid JSON payload' });
+  }
+
+  const event = normalize(payload.event, 120);
+  if (!event || !allowedEvents.has(event)) {
+    return json(400, { error: 'Unsupported marketing event' });
+  }
+
+  const eventRecord = {
+    event,
+    eventId: normalize(payload.event_id || payload.eventId, 120),
+    receivedAt: new Date().toISOString(),
+    pageLocation: sanitizeUrl(payload.page_location || payload.pageLocation),
+    pagePath: sanitizePath(payload.page_path || payload.pagePath),
+    pageTitle: normalize(payload.page_title || payload.pageTitle, 250),
+    source: normalize(payload.source, 120),
+    sessionId: normalize(payload.session_id || payload.sessionId, 120),
+    conversionId: normalize(payload.conversion_id || payload.conversionId, 120),
+    attribution: sanitizeObject(payload.attribution, allowedAttributionKeys),
+    configurator: sanitizeObject(payload.configurator, allowedConfiguratorKeys),
+    userAgent: normalize(request.headers.get('user-agent'), 300),
+    referer: sanitizeUrl(request.headers.get('referer'))
+  };
+
+  console.log('Marketing event received:', JSON.stringify(eventRecord));
+
+  return json(202, {
+    ok: true,
+    event,
+    receivedAt: eventRecord.receivedAt
+  });
+}
+
+export default collectMarketingEvent;

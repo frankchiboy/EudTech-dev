@@ -59,6 +59,14 @@ const buildHtml = (payload) => {
 };
 
 async function sendQuoteEmail(request) {
+  if (request.method === 'GET') {
+    return json(200, {
+      ok: true,
+      endpoint: 'send-email',
+      requiredFields: ['firstName', 'lastName', 'email', 'message']
+    });
+  }
+
   if (request.method !== 'POST') {
     return json(405, { error: 'Method not allowed' });
   }
@@ -123,6 +131,16 @@ async function sendQuoteEmail(request) {
       html: buildHtml({ ...payload, firstName, lastName, email, message })
     });
 
+    console.log('Configurator quote conversion sent:', JSON.stringify({
+      event: 'quote_email_sent',
+      receivedAt: new Date().toISOString(),
+      messageId: result.messageId,
+      acceptedCount: result.accepted?.length || 0,
+      rejectedCount: result.rejected?.length || 0,
+      subject,
+      hasMarketingAttribution: message.includes('Marketing attribution')
+    }));
+
     return json(200, {
       ok: true,
       messageId: result.messageId,
@@ -137,17 +155,3 @@ async function sendQuoteEmail(request) {
 }
 
 export default sendQuoteEmail;
-
-export const handler = async (event) => {
-  const request = new Request('http://localhost/.netlify/functions/send-email', {
-    method: event.httpMethod,
-    headers: event.headers,
-    body: event.body
-  });
-  const response = await sendQuoteEmail(request);
-  return {
-    statusCode: response.status,
-    headers: Object.fromEntries(response.headers.entries()),
-    body: await response.text()
-  };
-};

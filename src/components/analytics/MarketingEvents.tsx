@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { captureMarketingAttribution } from '../../utils/marketing/attribution';
+import { MarketingAttribution, captureMarketingAttribution } from '../../utils/marketing/attribution';
 
 type LeadIntentDetail = {
   action?: string;
@@ -30,8 +30,36 @@ const marketingConfig = {
   googleAdsId: import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined,
   googleAdsQuoteConversionLabel: import.meta.env.VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL as string | undefined,
   linkedInPartnerId: import.meta.env.VITE_LINKEDIN_PARTNER_ID as string | undefined,
-  linkedInQuoteConversionId: import.meta.env.VITE_LINKEDIN_QUOTE_CONVERSION_ID as string | undefined
+  linkedInQuoteConversionId: import.meta.env.VITE_LINKEDIN_QUOTE_CONVERSION_ID as string | undefined,
+  eventEndpoint: import.meta.env.VITE_MARKETING_EVENT_ENDPOINT as string | undefined
 };
+
+const getDefaultEventEndpoint = () => {
+  const { hostname } = window.location;
+  const hasNetlifyFunctions =
+    hostname.endsWith('.netlify.app') ||
+    hostname === 'eudaemonia.tech' ||
+    hostname === 'www.eudaemonia.tech';
+
+  return hasNetlifyFunctions ? '/.netlify/functions/marketing-event' : undefined;
+};
+
+const getMarketingEventEndpoint = () => marketingConfig.eventEndpoint || getDefaultEventEndpoint();
+
+const getSessionId = () => {
+  const key = 'eudtech_marketing_session_id';
+  try {
+    const existing = window.sessionStorage.getItem(key);
+    if (existing) return existing;
+    const next = window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    window.sessionStorage.setItem(key, next);
+    return next;
+  } catch {
+    return undefined;
+  }
+};
+
+const getEventId = () => window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
 const appendScript = (id: string, src: string) => {
   if (document.getElementById(id)) {
@@ -48,6 +76,54 @@ const appendScript = (id: string, src: string) => {
 const pushDataLayer = (payload: Record<string, unknown>) => {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(payload);
+};
+
+const attributionPayload = (attribution: MarketingAttribution) => ({
+  first_landing_page: attribution.firstLandingPage,
+  landing_page: attribution.landingPage,
+  first_referrer: attribution.firstReferrer,
+  referrer: attribution.referrer,
+  utm_source: attribution.utmSource,
+  utm_medium: attribution.utmMedium,
+  utm_campaign: attribution.utmCampaign,
+  utm_term: attribution.utmTerm,
+  utm_content: attribution.utmContent,
+  gclid: attribution.gclid,
+  fbclid: attribution.fbclid,
+  li_fat_id: attribution.liFatId,
+  msclkid: attribution.msclkid
+});
+
+const sendFirstPartyEvent = (payload: Record<string, unknown>) => {
+  const endpoint = getMarketingEventEndpoint();
+  if (!endpoint) {
+    return;
+  }
+
+  const body = JSON.stringify({
+    ...payload,
+    event_id: getEventId(),
+    source: 'eudtech_frontend',
+    session_id: getSessionId()
+  });
+
+  if (navigator.sendBeacon) {
+    const sent = navigator.sendBeacon(endpoint, new Blob([body], { type: 'application/json' }));
+    if (sent) {
+      return;
+    }
+  }
+
+  fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body,
+    keepalive: true
+  }).catch(() => {
+    // First-party analytics must never block the site or quote workflow.
+  });
 };
 
 const initializeGoogleTag = () => {
@@ -91,16 +167,22 @@ const initializeLinkedInInsight = () => {
   appendScript('eudtech-linkedin-insight', 'https://snap.licdn.com/li.lms-analytics/insight.min.js');
 };
 
-const sendPageView = () => {
+const sendPageView = (attribution: MarketingAttribution) => {
   const pageLocation = window.location.href;
   const pagePath = `${window.location.pathname}${window.location.search}`;
   const pageTitle = document.title;
 
-  pushDataLayer({
+  const payload = {
     event: 'page_view',
     page_location: pageLocation,
     page_path: pagePath,
     page_title: pageTitle
+  };
+
+  pushDataLayer(payload);
+  sendFirstPartyEvent({
+    ...payload,
+    attribution: attributionPayload(attribution)
   });
 
   if (marketingConfig.gaMeasurementId) {
@@ -115,6 +197,7 @@ const sendPageView = () => {
 
 const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
   const action = detail.action || 'unknown';
+  const attribution = captureMarketingAttribution();
   const payload = {
     event: 'configurator_lead_intent',
     configurator_action: action,
@@ -127,6 +210,22 @@ const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
   };
 
   pushDataLayer(payload);
+  sendFirstPartyEvent({
+    event: 'configurator_lead_intent',
+    page_location: window.location.href,
+    page_path: `${window.location.pathname}${window.location.search}`,
+    page_title: document.title,
+    attribution: attributionPayload(attribution),
+    configurator: {
+      action,
+      slug: detail.slug,
+      path: detail.path || window.location.pathname,
+      model_name: detail.modelName,
+      device_id: detail.deviceId,
+      device_name: detail.deviceName,
+      url: detail.configurationUrl || window.location.href
+    }
+  });
   window.gtag?.('event', 'configurator_lead_intent', payload);
 
   if (
@@ -139,12 +238,31 @@ const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
     });
   }
 
-  if (action === 'quote_submit_success' && marketingConfig.linkedInQuoteConversionId) {
-    pushDataLayer({
+  if (action === 'quote_submit_success') {
+    if (marketingConfig.linkedInQuoteConversionId) {
+      pushDataLayer({
+        event: 'linkedin_quote_conversion',
+        conversion_id: marketingConfig.linkedInQuoteConversionId
+      });
+    }
+    sendFirstPartyEvent({
       event: 'linkedin_quote_conversion',
-      conversion_id: marketingConfig.linkedInQuoteConversionId
+      conversion_id: marketingConfig.linkedInQuoteConversionId,
+      page_location: window.location.href,
+      page_path: `${window.location.pathname}${window.location.search}`,
+      page_title: document.title,
+      attribution: attributionPayload(attribution),
+      configurator: {
+        action,
+        model_name: detail.modelName,
+        device_id: detail.deviceId,
+        device_name: detail.deviceName,
+        conversion_id: marketingConfig.linkedInQuoteConversionId
+      }
     });
-    window.lintrk?.('track', { conversion_id: marketingConfig.linkedInQuoteConversionId });
+    if (marketingConfig.linkedInQuoteConversionId) {
+      window.lintrk?.('track', { conversion_id: marketingConfig.linkedInQuoteConversionId });
+    }
   }
 };
 
@@ -159,23 +277,19 @@ const MarketingEvents: React.FC = () => {
 
   useEffect(() => {
     const attribution = captureMarketingAttribution();
-    pushDataLayer({
+    const payload = {
       event: 'marketing_attribution',
-      first_landing_page: attribution.firstLandingPage,
-      landing_page: attribution.landingPage,
-      first_referrer: attribution.firstReferrer,
-      referrer: attribution.referrer,
-      utm_source: attribution.utmSource,
-      utm_medium: attribution.utmMedium,
-      utm_campaign: attribution.utmCampaign,
-      utm_term: attribution.utmTerm,
-      utm_content: attribution.utmContent,
-      gclid: attribution.gclid,
-      fbclid: attribution.fbclid,
-      li_fat_id: attribution.liFatId,
-      msclkid: attribution.msclkid
+      ...attributionPayload(attribution)
+    };
+    pushDataLayer(payload);
+    sendFirstPartyEvent({
+      ...payload,
+      page_location: window.location.href,
+      page_path: `${window.location.pathname}${window.location.search}`,
+      page_title: document.title,
+      attribution: attributionPayload(attribution)
     });
-    const timer = window.setTimeout(sendPageView, 0);
+    const timer = window.setTimeout(() => sendPageView(attribution), 0);
     return () => window.clearTimeout(timer);
   }, [location.pathname, location.search]);
 

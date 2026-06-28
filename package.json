@@ -20,6 +20,7 @@
     "verify:promotion-assets": "node scripts/generate-configurator-promotion-assets.cjs --check",
     "audit:exposure-readiness": "node scripts/audit-configurator-exposure-readiness.cjs --write-report",
     "audit:exposure-readiness:strict": "node scripts/audit-configurator-exposure-readiness.cjs --write-report --fail-on-external-gaps",
+    "audit:exposure-readiness:production": "node scripts/audit-configurator-exposure-readiness.cjs --write-report --fail-on-production-probes",
     "inspect:search-console": "node scripts/inspect-google-search-console.cjs",
     "report:search-console": "node scripts/report-google-search-console.cjs",
     "verify:live-exposure": "node scripts/verify-live-exposure.cjs",
