@@ -194,6 +194,7 @@ Configurator 曝光主線集中在以下入口：
 | `/image-sitemap.xml` | 產品圖與配置器圖片發現 |
 | `/robots.txt` | crawler 規則與 sitemap 位置 |
 | `/llms.txt` | AI/LLM 工具可讀的 configurator 摘要 |
+| `/llms-full.txt` | AI/LLM 工具可讀的完整 configurator 產品、solution、FAQ 與詢價路徑清單 |
 | `/feed.xml` | Configurator product and solution RSS feed |
 | `/build-meta.json` | 正式站部署 commit 與 build metadata，用於確認 production 已更新到指定 commit |
 | `/d6fd206f713cd936d87b58a6010aa751.txt` | IndexNow key 驗證 |
@@ -208,15 +209,15 @@ npm run submit:indexnow
 npm run submit:search-console
 ```
 
-`submit:indexnow` 會讀取 `public/sitemap.xml`，向 IndexNow 提交 `https://eudaemonia.tech` 的正式 URL 清單。提交前可用 `npm run submit:indexnow -- --dry-run` 檢查 payload。
+`submit:indexnow` 會先重產 discovery 檔案，再讀取 `public/sitemap.xml`，向 IndexNow 提交 `https://eudaemonia.tech` 的正式 URL 清單。提交前可用 `npm run submit:indexnow:dry-run` 只讀現有 sitemap 並檢查 payload，不會重新產生檔案。
 
-`submit:search-console` 會透過 Google Search Console API 提交 sitemap index、一般 sitemap 與圖片 sitemap。執行前需要本機 ADC 具備 `https://www.googleapis.com/auth/webmasters` scope，且 quota project 已啟用 `searchconsole.googleapis.com`。
+`submit:search-console` 會透過 Google Search Console API 提交 sitemap index、一般 sitemap 與圖片 sitemap。Search Console 腳本會明確使用 `https://www.googleapis.com/auth/webmasters` scope，並忽略壞掉的 `GOOGLE_APPLICATION_CREDENTIALS` 路徑；執行前仍需要本機 ADC 可用且 quota project 已啟用 `searchconsole.googleapis.com`。
 
 `inspect:search-console` 會透過 URL Inspection API 檢查高意圖 configurator canonical URL 在 Google 索引中的狀態。這個 API 回報的是 Google index 版本，不是即時 live URL 測試，也不會要求 Google 重新收錄。加上 `-- --include-aliases` 可同時檢查無尾斜線 alias 是否仍被 Google 視為不同網址。
 
 `report:search-console` 會透過 Search Analytics API 讀取 configurator 與 solutions URL 的搜尋 query、page、clicks、impressions、CTR 與平均排名。預設查最近 28 天、每組 25 筆，可用 `-- --days=90`、`-- --start=2026-06-01 --end=2026-06-27`、`-- --row-limit=100`、`-- --start-row=100`、`-- --output=reports/search-console.json` 或 `-- --fail-on-empty` 調整。
 
-`verify:live-exposure` 會直接檢查正式站的 `robots.txt`、sitemap index、一般 sitemap、圖片 sitemap、RSS、llms.txt、configurator route、solution route、canonical、Open Graph URL 與 JSON-LD。`monitor:sitemaps` 會讀取 Google Search Console 的 sitemap health，要求 sitemap index、一般 sitemap 與圖片 sitemap 都存在，且 errors/warnings 為 0、沒有 pending、且近期曾被下載。`exposure:postdeploy` 則把正式站 SEO 檢查、Search Console sitemap health、URL Inspection 與 Search Analytics 報表串成部署後檢查流程，並輸出 `reports/search-console-latest.json`。`exposure:strict` 會在 canonical URL 尚未建立索引或 Search Analytics 零曝光時失敗，適合做週期性告警，不適合剛上線第一天當作 deploy gate。
+`verify:live-exposure` 會直接檢查正式站的 `robots.txt`、sitemap index、一般 sitemap、圖片 sitemap、RSS、llms.txt、llms-full.txt、configurator route、solution route、canonical、Open Graph URL 與 JSON-LD。`monitor:sitemaps` 會讀取 Google Search Console 的 sitemap health，要求 sitemap index、一般 sitemap 與圖片 sitemap 都存在，且 errors/warnings 為 0、近期曾被下載；剛提交後的 pending 狀態有 30 分鐘寬限，避免 Google 正常處理延遲誤擋自動化。`exposure:postdeploy` 則把正式站 SEO 檢查、Search Console sitemap health、URL Inspection 與 Search Analytics 報表串成部署後檢查流程，並輸出 `reports/search-console-latest.json`。`exposure:strict` 會在 canonical URL 尚未建立索引或 Search Analytics 零曝光時失敗，適合做週期性告警，不適合剛上線第一天當作 deploy gate。
 
 GitHub Actions 內的 `Public Exposure Checks` 會每週一自動執行，也可手動觸發。這條流程只依賴公開網站與 repo 檔案，會建置 SEO assets、驗證 discovery/static SEO/live exposure，並重新送出 IndexNow URL 清單；不需要 Google Search Console 憑證。
 

@@ -1,6 +1,6 @@
-const { execFileSync } = require('child_process');
 const { canonicalPageUrl, withoutTrailingPageSlash } = require('./seo-url-helpers.cjs');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
+const { getSearchConsoleAccessToken } = require('./google-search-console-auth.cjs');
 
 const siteUrl = 'sc-domain:eudaemonia.tech';
 const siteOrigin = 'https://eudaemonia.tech';
@@ -12,23 +12,6 @@ const defaultPaths = [
   '/solutions',
   ...CONFIGURATOR_SEO_PAGES.map((page) => `/solutions/${page.slug}`)
 ];
-
-function getAccessToken() {
-  const env = { ...process.env };
-  delete env.GOOGLE_APPLICATION_CREDENTIALS;
-
-  try {
-    return execFileSync('gcloud', ['auth', 'application-default', 'print-access-token'], {
-      env,
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe']
-    }).trim();
-  } catch (error) {
-    throw new Error(
-      `Unable to get Google ADC access token. Run gcloud auth application-default login with the Search Console scope first. ${error.message}`
-    );
-  }
-}
 
 function getInspectionUrls() {
   const includeAliases = process.argv.includes('--include-aliases');
@@ -136,7 +119,7 @@ async function main() {
     return;
   }
 
-  const token = getAccessToken();
+  const token = getSearchConsoleAccessToken();
   const inspected = [];
   const errors = [];
   for (const url of inspectionUrls) {

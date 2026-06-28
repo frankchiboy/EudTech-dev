@@ -207,6 +207,7 @@ async function main() {
   const imageSitemap = read('public/image-sitemap.xml');
   const feed = read('public/feed.xml');
   const llms = read('public/llms.txt');
+  const llmsFull = read('public/llms-full.txt');
   const robots = read('public/robots.txt');
   const workflow = read('.github/workflows/exposure-public.yml');
   const packageJson = JSON.parse(read('package.json'));
@@ -240,6 +241,10 @@ async function main() {
   });
   addCheck('search_discovery', 'llms.txt contains configurator topics', canonicalUrls.every((url) => llms.includes(url)), {
     missing: canonicalUrls.filter((url) => !llms.includes(url))
+  });
+  addCheck('search_discovery', 'llms-full.txt contains every landing page and product id', canonicalUrls.every((url) => llmsFull.includes(url)) && CONFIGURATOR_PRODUCT_SEO.every((product) => llmsFull.includes(product.productId)), {
+    missingUrls: canonicalUrls.filter((url) => !llmsFull.includes(url)),
+    missingProductIds: CONFIGURATOR_PRODUCT_SEO.map((product) => product.productId).filter((productId) => !llmsFull.includes(productId))
   });
   addCheck('search_discovery', 'robots points to sitemap index and sitemaps', ['sitemap.xml', 'image-sitemap.xml', 'sitemap-index.xml'].every((file) => robots.includes(`${siteOrigin}/${file}`)));
   addCheck('social_preview', 'social preview images exist for every landing page', socialPreviewImages.every((image) => image.exists && image.sourceExists), {

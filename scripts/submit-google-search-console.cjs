@@ -1,6 +1,6 @@
-const { execFileSync } = require('child_process');
 const { readFileSync } = require('fs');
 const path = require('path');
+const { getSearchConsoleAccessToken } = require('./google-search-console-auth.cjs');
 
 const siteUrl = 'sc-domain:eudaemonia.tech';
 const userProject = process.env.GOOGLE_SEARCH_CONSOLE_QUOTA_PROJECT || 'personal-gmail-vault';
@@ -9,23 +9,6 @@ const sitemaps = [
   'https://eudaemonia.tech/sitemap.xml',
   'https://eudaemonia.tech/image-sitemap.xml'
 ];
-
-function getAccessToken() {
-  const env = { ...process.env };
-  delete env.GOOGLE_APPLICATION_CREDENTIALS;
-
-  try {
-    return execFileSync('gcloud', ['auth', 'application-default', 'print-access-token'], {
-      env,
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe']
-    }).trim();
-  } catch (error) {
-    throw new Error(
-      `Unable to get Google ADC access token. Run gcloud auth application-default login with the Search Console scope first. ${error.message}`
-    );
-  }
-}
 
 async function submitSitemap(token, sitemap) {
   const endpoint = `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(siteUrl)}/sitemaps/${encodeURIComponent(
@@ -71,7 +54,7 @@ async function main() {
     throw new Error('public/sitemap.xml does not contain the configurator URL.');
   }
 
-  const token = getAccessToken();
+  const token = getSearchConsoleAccessToken();
   const submitted = [];
   for (const sitemap of sitemaps) {
     submitted.push(await submitSitemap(token, sitemap));

@@ -45,6 +45,10 @@ EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled 
 - GPU server RFQ checklist
 - Liquid-cooling AI server procurement
 
+## Full Context
+
+For detailed product, solution, quote, and FAQ context, read https://eudaemonia.tech/llms-full.txt
+
 ## Quote Flow
 
 Users can configure GPU, CPU, RAM, storage, power supply, and networking options in the configurator. Quote requests are sent to info@eudaemonia.tech with the selected configuration URL and marketing attribution when available.

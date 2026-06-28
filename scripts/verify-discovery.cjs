@@ -24,6 +24,7 @@ const imageSitemapXml = readPublicFile('image-sitemap.xml');
 const sitemapIndexXml = readPublicFile('sitemap-index.xml');
 const feedXml = readPublicFile('feed.xml');
 const llmsText = readPublicFile('llms.txt');
+const llmsFullText = readPublicFile('llms-full.txt');
 const robotsText = readPublicFile('robots.txt');
 
 const sitemapLocs = new Set(collectXmlLocs(sitemapXml));
@@ -45,6 +46,11 @@ requireAll('sitemap.xml', requiredDiscoveryUrls, (url) => sitemapLocs.has(url));
 requireAll('image-sitemap.xml', requiredDiscoveryUrls, (url) => imageSitemapPageLocs.has(url));
 requireAll('feed.xml', requiredDiscoveryUrls, (url) => feedLinks.has(url));
 requireAll('llms.txt', requiredDiscoveryUrls, (url) => llmsText.includes(url));
+requireAll('llms-full.txt', requiredDiscoveryUrls, (url) => llmsFullText.includes(url));
+requireAll('llms-full.txt product ids', CONFIGURATOR_PRODUCT_SEO.map((product) => product.productId), (productId) =>
+  llmsFullText.includes(productId)
+);
+requireAll('llms-full.txt solution slugs', CONFIGURATOR_SEO_PAGES.map((page) => page.slug), (slug) => llmsFullText.includes(slug));
 requireAll('sitemap-index.xml', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`], (url) => sitemapIndexLocs.has(url));
 requireAll('robots.txt', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`, `${siteOrigin}/sitemap-index.xml`], (url) =>
   robotsText.includes(`Sitemap: ${url}`)
@@ -83,7 +89,8 @@ console.log(
       configuratorProductPages: CONFIGURATOR_PRODUCT_SEO.length,
       checkedUrls: requiredDiscoveryUrls.length,
       socialPreviewImages: socialPreviewRoutes.length,
-      sitemapIndexCount: sitemapIndexLocs.size
+      sitemapIndexCount: sitemapIndexLocs.size,
+      llmsFull: true
     },
     null,
     2

@@ -1,7 +1,7 @@
-const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const { canonicalPageUrl, withoutTrailingPageSlash } = require('./seo-url-helpers.cjs');
+const { getSearchConsoleAccessToken } = require('./google-search-console-auth.cjs');
 
 const siteUrl = 'sc-domain:eudaemonia.tech';
 const siteOrigin = 'https://eudaemonia.tech';
@@ -10,23 +10,6 @@ const defaultScopes = [
   { label: 'configurator', pageContains: withoutTrailingPageSlash(canonicalPageUrl(`${siteOrigin}/configurator`, siteOrigin)) },
   { label: 'solutions', pageContains: withoutTrailingPageSlash(canonicalPageUrl(`${siteOrigin}/solutions`, siteOrigin)) }
 ];
-
-function getAccessToken() {
-  const env = { ...process.env };
-  delete env.GOOGLE_APPLICATION_CREDENTIALS;
-
-  try {
-    return execFileSync('gcloud', ['auth', 'application-default', 'print-access-token'], {
-      env,
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe']
-    }).trim();
-  } catch (error) {
-    throw new Error(
-      `Unable to get Google ADC access token. Run gcloud auth application-default login with the Search Console scope first. ${error.message}`
-    );
-  }
-}
 
 function getArgValue(name, fallback) {
   const prefix = `--${name}=`;
@@ -176,7 +159,7 @@ function writeOutput(outputPath, result) {
 }
 
 async function main() {
-  const token = getAccessToken();
+  const token = getSearchConsoleAccessToken();
   const dateRange = getDateRange();
   const rowLimit = getRowLimit();
   const startRow = getStartRow();

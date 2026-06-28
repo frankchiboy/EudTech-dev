@@ -476,7 +476,7 @@ function buildMissingList(checks) {
     missing.push('NETLIFY_AUTH_TOKEN or authenticated Netlify CLI');
   }
   if (!checks.googleCredentialEnv.ready) {
-    missing.push('valid GOOGLE_APPLICATION_CREDENTIALS path or unset broken credential path');
+    missing.push('valid GOOGLE_APPLICATION_CREDENTIALS path or unset broken credential path for generic Google ADC flows');
   }
   if (checks.googleAdcScopes.missingScopes.length > 0) {
     missing.push(`Google ADC scopes: ${checks.googleAdcScopes.missingScopes.join(', ')}`);

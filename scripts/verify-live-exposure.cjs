@@ -26,7 +26,8 @@ const requiredDiscoveryUrls = [
   `${siteOrigin}/sitemap.xml`,
   `${siteOrigin}/image-sitemap.xml`,
   `${siteOrigin}/feed.xml`,
-  `${siteOrigin}/llms.txt`
+  `${siteOrigin}/llms.txt`,
+  `${siteOrigin}/llms-full.txt`
 ];
 
 function unique(values) {
@@ -255,6 +256,7 @@ function checkDiscoveryFiles(discovery, errors) {
   const imageSitemap = discovery.find((item) => item.url.endsWith('/image-sitemap.xml'))?.text || '';
   const feed = discovery.find((item) => item.url.endsWith('/feed.xml'))?.text || '';
   const llms = discovery.find((item) => item.url.endsWith('/llms.txt'))?.text || '';
+  const llmsFull = discovery.find((item) => item.url.endsWith('/llms-full.txt'))?.text || '';
   const sitemapLocs = new Set(collectXmlLocs(sitemap));
   const imageSitemapLocs = new Set(collectXmlLocs(imageSitemap).filter((loc) => loc.startsWith(siteOrigin) && !/\.(jpg|jpeg|png|webp|svg)$/i.test(loc)));
   const sitemapIndexLocs = new Set(collectXmlLocs(sitemapIndex));
@@ -275,6 +277,11 @@ function checkDiscoveryFiles(discovery, errors) {
     assert(imageSitemapLocs.has(url), errors, `image-sitemap.xml missing ${url}.`);
     assert(feed.includes(url), errors, `feed.xml missing ${url}.`);
     assert(llms.includes(url), errors, `llms.txt missing ${url}.`);
+    assert(llmsFull.includes(url), errors, `llms-full.txt missing ${url}.`);
+  }
+
+  for (const product of CONFIGURATOR_PRODUCT_SEO) {
+    assert(llmsFull.includes(product.productId), errors, `llms-full.txt missing ${product.productId}.`);
   }
 
   for (const route of socialPreviewRoutes) {

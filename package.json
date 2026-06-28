@@ -15,6 +15,7 @@
     "test-env": "vite preview --open public/test-environment.html",
     "build:netlify": "npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs",
     "submit:indexnow": "npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && node scripts/submit-indexnow.cjs",
+    "submit:indexnow:dry-run": "node scripts/submit-indexnow.cjs --dry-run",
     "submit:search-console": "npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && node scripts/submit-google-search-console.cjs",
     "generate:social-images": "node scripts/generate-configurator-social-images.cjs",
     "verify:social-images": "node scripts/generate-configurator-social-images.cjs --check",
