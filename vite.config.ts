@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
-import { copyFileSync, existsSync, mkdirSync, renameSync, readdirSync } from 'fs';
+import { copyFileSync, cpSync, existsSync, mkdirSync, renameSync, statSync } from 'fs';
 
 // https://vitejs.dev/config/
 
@@ -22,6 +22,105 @@ function formatTaipeiDate(date: Date) {
 }
 
 process.env.VITE_BUILD_DATE = process.env.VITE_BUILD_DATE || formatTaipeiDate(new Date());
+
+const PUBLIC_FILE_ALLOWLIST = [
+  'robots.txt',
+  'sitemap.xml',
+  'sitemap-index.xml',
+  'image-sitemap.xml',
+  'feed.xml',
+  'llms.txt',
+  'llms-full.txt',
+  'd6fd206f713cd936d87b58a6010aa751.txt',
+  'sw.js',
+  'logo.svg',
+  'icon.svg',
+  'amd-logo.png',
+  'amd-partner-badge.jpg',
+  'comino-4xa100.jpg',
+  'comino-facility-1.jpg',
+  'comino-facility-2.jpg',
+  'comino-facility-3.jpg',
+  'comino-grando-logo.png',
+  'comino-h100-server.jpg',
+  'comino-logo.png',
+  'comino-workstation-front.png',
+  'cyabra-dashboard.jpg',
+  'cyabra-dashboard.svg',
+  'cyabra-logo.svg',
+  'EudTech-Select-server-front.png',
+  'EudTech-Select-server-back.png',
+  'EudTech-Select-server-inside.png',
+  'grando-8gpu-server.jpg',
+  'grando-desktop-01.jpg',
+  'grando-rackable-01.jpg',
+  'grando-rackable-02.jpg',
+  'grando-rackable-03.jpg',
+  'grando-rackable-04.jpg',
+  'grando-rackable-05.jpg',
+  'grando-rackable-06.jpg',
+  'GRANDO DPR 4090-FT_6_01.jpg',
+  'GRANDO DPR 4090-FT_6_02.jpg',
+  'GRANDO DPR 4090-FT_6_03.jpg',
+  'GRANDO DPR 4090-FT_6_04.jpg',
+  'GRANDO DPR 4090-FT_6_05.jpg',
+  'GRANDO DPR 4090-FT_6_06.jpg',
+  'GRANDO WS TRP_4xA100_01.jpg',
+  'GRANDO WS TRP_4xA100_02.jpg',
+  'GRANDO WS TRP_4xA100_03.jpg',
+  'GRANDO WS TRP_4xA100_04.jpg',
+  'GRANDO WS TRP_4xA100_05.jpg',
+  'GRANDO WS TRP_4xA100_06.jpg',
+  'GRANDO WS TRP_4xA100_07.jpg',
+  'GRANDO WS TRP_4xA100_08.jpg',
+  'GRANDO WS TRP_4xA100_09.jpg',
+  'GRANDO WS TRP_4xA100_10.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_01.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_02.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_03.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_04.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_05.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_06.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_07.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_08.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_09.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_10.jpg',
+  'GRANDO_RM-M-CRPS_9004_8xGPU_21.jpg',
+  'keras-logo.png',
+  'linus-review.jpg',
+  'nvidia-logo.png',
+  'pytorch-logo.png',
+  'sentdex-review.jpg',
+  'tensorflow-logo.png'
+];
+
+const PUBLIC_DIRECTORY_ALLOWLIST = [
+  'cyabra-images',
+  'images/configurator/devices',
+  'social'
+];
+
+function copyPublicAsset(publicDir: string, distDir: string, relativePath: string) {
+  const normalizedPath = relativePath.replace(/^\/+/, '');
+  const srcPath = resolve(publicDir, normalizedPath);
+  const destPath = resolve(distDir, normalizedPath);
+
+  if (!existsSync(srcPath)) {
+    console.warn(`⚠ Skipped missing public asset: ${normalizedPath}`);
+    return false;
+  }
+
+  mkdirSync(resolve(destPath, '..'), { recursive: true });
+
+  const stat = statSync(srcPath);
+  if (stat.isDirectory()) {
+    cpSync(srcPath, destPath, { recursive: true });
+  } else {
+    copyFileSync(srcPath, destPath);
+  }
+
+  return true;
+}
 
 // 自動複製 _redirects 和 _headers 到 dist 目錄，並重命名 template 檔案
 function copyDeployFiles() {
@@ -74,29 +173,11 @@ function copyDeployFiles() {
         }
       }
       
-      // 複製 public 目錄中的所有檔案 (排除目錄和特殊檔案)
+      // 僅複製 production 實際需要的 public 資產，避免把素材庫完整送到正式站。
       if (existsSync(publicDir)) {
-        try {
-          const files = readdirSync(publicDir, { withFileTypes: true });
-          for (const file of files) {
-            // 只複製檔案，跳過目錄和特殊檔案
-            if (file.isFile() && !file.name.startsWith('.')) {
-              const srcPath = resolve(publicDir, file.name);
-              const destPath = resolve(distDir, file.name);
-              // 避免覆蓋已存在的檔案
-              if (!existsSync(destPath)) {
-                try {
-                  copyFileSync(srcPath, destPath);
-                  console.log(`✓ Copied ${file.name} to dist/`);
-                } catch {
-                  // 跳過無法複製的檔案
-                }
-              }
-            }
-          }
-        } catch (e) {
-          console.warn('⚠ Failed to copy some public files:', e);
-        }
+        const copiedFiles = PUBLIC_FILE_ALLOWLIST.filter((assetPath) => copyPublicAsset(publicDir, distDir, assetPath)).length;
+        const copiedDirectories = PUBLIC_DIRECTORY_ALLOWLIST.filter((assetPath) => copyPublicAsset(publicDir, distDir, assetPath)).length;
+        console.log(`✓ Copied ${copiedFiles} public files and ${copiedDirectories} public directories to dist/`);
       }
     },
   };
@@ -130,6 +211,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    copyPublicDir: false,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
