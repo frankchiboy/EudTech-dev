@@ -108,6 +108,7 @@
 85. Search Console URL Inspection output now includes an indexing summary with indexed/unindexed canonical counts, discovered-but-not-indexed URLs, stale canonical mismatch records, double-slash user canonical records, sitemap signal gaps, and feed.xml signal coverage.
 86. Shared canonical URL helpers collapse repeated path slashes before adding trailing slashes, so runtime SEO metadata, generated discovery files, and Search Console inspection all agree on single-slash canonical URLs.
 87. Desktop startup no longer performs a second global preload pass across the full product image list; original-resolution image URLs are unchanged, while duplicate early network pressure is reduced.
+88. Configurator solution landing pages use Netlify Image CDN responsive hero image URLs on production domains, keeping source images intact while reducing first-viewport transfer size for SEO entry pages.
 
 ## External Promotion Queue
 

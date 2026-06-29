@@ -12,9 +12,12 @@ import {
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath, getConfiguratorSocialPreviewUrl } from '../../utils/seo/socialPreview';
 import { getSeoSchemaDate } from '../../utils/seo/schemaDate';
+import { getResponsiveNetlifyImageProps } from '../../utils/performance/netlifyImageCdn';
 
 const getText = (value: { en: string; zh: string }, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
 const SITE_ROOT_URL = canonicalPageUrl(SITE_ORIGIN);
+const HERO_IMAGE_WIDTHS = [768, 1280, 1920, 2560];
+const HERO_IMAGE_SIZES = '100vw';
 
 const trackLeadIntent = (slug: string, action: string) => {
   window.dispatchEvent(
@@ -134,6 +137,12 @@ const ConfiguratorSolutionPage: React.FC = () => {
 
   const pageUrl = canonicalPageUrl(`${SITE_ORIGIN}/solutions/${page.slug}`);
   const relatedPages = CONFIGURATOR_SEO_PAGES.filter((item) => item.slug !== page.slug).slice(0, 4);
+  const heroImage = getResponsiveNetlifyImageProps(page.image, {
+    widths: HERO_IMAGE_WIDTHS,
+    sizes: HERO_IMAGE_SIZES,
+    quality: 92,
+    format: 'webp'
+  });
 
   return (
     <>
@@ -153,9 +162,14 @@ const ConfiguratorSolutionPage: React.FC = () => {
         <section className="relative overflow-hidden bg-gray-950 pt-28 text-white">
           <div className="absolute inset-0">
             <img
-              src={page.image}
+              src={heroImage.src}
+              srcSet={heroImage.srcSet}
+              sizes={heroImage.sizes}
               alt={getText(page.imageAlt, isEnglish)}
               className="h-full w-full object-cover opacity-40"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/86 to-gray-950/46" />
           </div>

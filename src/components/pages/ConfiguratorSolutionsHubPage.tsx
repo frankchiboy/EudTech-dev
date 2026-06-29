@@ -11,9 +11,12 @@ import SEOHead from '../common/SEOHead';
 import Footer from '../Footer';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath, getConfiguratorSocialPreviewUrl } from '../../utils/seo/socialPreview';
+import { getResponsiveNetlifyImageProps } from '../../utils/performance/netlifyImageCdn';
 
 const getText = (value: { en: string; zh: string }, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
 const SITE_ROOT_URL = canonicalPageUrl(SITE_ORIGIN);
+const HERO_IMAGE_WIDTHS = [768, 1280, 1920, 2560];
+const HERO_IMAGE_SIZES = '100vw';
 
 const getPageIcon = (page: ConfiguratorSeoPage) => {
   if (page.kind === 'comparison') return GitCompare;
@@ -86,6 +89,12 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
   const keywords = isEnglish
     ? 'GPU server quote, AI server quote, configurator solutions, NVIDIA H200 server, RTX PRO 6000 workstation, GPU server RFQ, liquid cooling AI server'
     : 'GPU 伺服器報價, AI 伺服器報價, 配置器解決方案, NVIDIA H200 伺服器, RTX PRO 6000 工作站, GPU 伺服器 RFQ, 液冷 AI 伺服器';
+  const heroImage = getResponsiveNetlifyImageProps('/grando-8gpu-server.jpg', {
+    widths: HERO_IMAGE_WIDTHS,
+    sizes: HERO_IMAGE_SIZES,
+    quality: 92,
+    format: 'webp'
+  });
 
   return (
     <>
@@ -103,7 +112,16 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
       <div className="min-h-screen bg-white text-gray-950 dark:bg-gray-950 dark:text-white">
         <section className="relative overflow-hidden bg-gray-950 pt-28 text-white">
           <div className="absolute inset-0">
-            <img src="/grando-8gpu-server.jpg" alt="" className="h-full w-full object-cover opacity-40" />
+            <img
+              src={heroImage.src}
+              srcSet={heroImage.srcSet}
+              sizes={heroImage.sizes}
+              alt=""
+              className="h-full w-full object-cover opacity-40"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
             <div className="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/88 to-gray-950/52" />
           </div>
 
