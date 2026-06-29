@@ -90,6 +90,15 @@ function bodyText(html) {
     .trim();
 }
 
+function relatedInternalLinks(html) {
+  const section = html.match(/<section[^>]+aria-labelledby=["']static-seo-related["'][\s\S]*?<\/section>/i)?.[0] || '';
+  return [...section.matchAll(/<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)]
+    .map((match) => ({
+      href: match[1],
+      text: match[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+    }));
+}
+
 function assertStaticSeoFallback(route) {
   const html = readRouteHtml(route.path);
   if (!html.includes('data-static-seo-fallback')) {
@@ -107,6 +116,21 @@ function assertStaticSeoFallback(route) {
 
   if (!text.includes('info@eudaemonia.tech')) {
     throw new Error(`${route.path} static SEO body fallback missing quote contact email.`);
+  }
+
+  const links = relatedInternalLinks(html);
+  if (links.length < 3) {
+    throw new Error(`${route.path} static SEO body fallback needs at least 3 related internal links; found ${links.length}.`);
+  }
+
+  const invalidLinks = links.filter((link) => !link.href.startsWith('https://eudaemonia.tech/') || !link.text);
+  if (invalidLinks.length > 0) {
+    throw new Error(`${route.path} static SEO related links must use crawlable EudTech URLs and anchor text.`);
+  }
+
+  const selfLinks = links.filter((link) => link.href === route.canonicalUrl);
+  if (selfLinks.length > 0) {
+    throw new Error(`${route.path} static SEO related links should not point to the same canonical URL.`);
   }
 }
 
@@ -240,7 +264,8 @@ console.log(
       configuratorProductPages: CONFIGURATOR_PRODUCT_SEO.length,
       solutionPages: CONFIGURATOR_SEO_PAGES.length,
       checkedStaticRoutes: expectedRoutes.length,
-      checkedSocialPreviewTags: true
+      checkedSocialPreviewTags: true,
+      checkedRelatedInternalLinks: true
     },
     null,
     2

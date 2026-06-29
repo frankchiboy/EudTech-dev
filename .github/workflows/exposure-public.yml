@@ -77,6 +77,12 @@ jobs:
           set -o pipefail
           npm run verify:discovery | tee reports/verify-discovery.log
 
+      - name: Audit configurator route coverage
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run audit:configurator-route-coverage:strict | tee reports/audit-configurator-route-coverage.log
+
       - name: Verify social preview images
         shell: bash
         run: |

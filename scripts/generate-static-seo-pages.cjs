@@ -111,6 +111,7 @@ const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
   kind: page.kind || 'solution',
   configuratorHref: page.configuratorHref,
   quoteHref: page.quoteHref,
+  relatedLinks: solutionRelatedLinks(page),
   highlights: page.highlights.map((highlight) => getZh(highlight)),
   specs: page.specs.map((spec) => ({
     label: getZh(spec.label),
@@ -129,6 +130,13 @@ const solutionHubRoute = {
   kind: 'collection',
   configuratorHref: '/configurator',
   quoteHref: '/configurator?request=true',
+  relatedLinks: [
+    routeLink('/configurator', '開啟 Comino Grando 配置器'),
+    routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
+    routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置'),
+    routeLink('/solutions/rtx-pro-6000-workstation', 'RTX PRO 6000 工作站配置'),
+    routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表')
+  ],
   highlights: [
     '高意圖搜尋入口：GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、液冷 AI 伺服器。',
     '每個頁面都連回可操作的配置器與詢價流程。',
@@ -180,6 +188,7 @@ const productRoutes = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
   kind: 'configurator-product',
   configuratorHref: product.configuratorHref,
   quoteHref: product.quoteHref,
+  relatedLinks: productRelatedLinks(product),
   highlights: [
     `${getZh(product.model)}：${getZh(product.category)}`,
     `GPU 重點：${getZh(product.properties.find((property) => getZh(property.name) === 'GPU 重點')?.value || product.category)}`,
@@ -224,6 +233,13 @@ const routes = [
     imageAlt: 'EudTech AI GPU 伺服器與 Comino 配置器',
     configuratorHref: '/configurator',
     quoteHref: '/configurator?request=true',
+    relatedLinks: [
+      routeLink('/configurator', 'Comino Grando GPU 伺服器配置器'),
+      routeLink('/solutions', '配置器解決方案總覽'),
+      routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
+      routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置'),
+      routeLink('/solutions/rtx-pro-6000-workstation', 'RTX PRO 6000 工作站配置')
+    ],
     highlights: [
       '可配置 GPU、CPU、記憶體、儲存、電源與網路選項。',
       '配置完成後可送出詢價，並保留可分享的配置連結。',
@@ -256,6 +272,13 @@ const routes = [
     imageAlt: 'Comino Grando GPU 伺服器配置器',
     configuratorHref: '/configurator',
     quoteHref: '/configurator?request=true',
+    relatedLinks: [
+      routeLink('/configurator/29', 'SERVER 6xH200 配置器'),
+      routeLink('/configurator/28', 'SERVER 4xH200 配置器'),
+      routeLink('/configurator/23', 'SERVER 8x PRO 6000 配置器'),
+      routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
+      routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表')
+    ],
     highlights: [
       '支援 GPU、CPU、RAM、OS Drive、Data Drive、Power Supply 與 Network 選項。',
       '詢價表單會包含目前配置、配置連結與聯絡資訊。',
@@ -420,6 +443,25 @@ function staticSeoFallbackStyle() {
         list-style: none;
       }
       .static-seo-faq strong { display: block; margin-bottom: 6px; color: #111827; }
+      .static-seo-related {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .static-seo-related a {
+        display: block;
+        min-height: 44px;
+        padding: 12px 14px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        color: #065f46;
+        background: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+      }
       .static-seo-contact {
         margin-top: 40px;
         padding-top: 24px;
@@ -440,12 +482,65 @@ function dedupeLinks(links) {
   });
 }
 
+function routeLink(pathname, label) {
+  return {
+    label,
+    href: pageUrl(pathname)
+  };
+}
+
+function productRelatedLinks(product) {
+  const searchText = [
+    getZh(product.title),
+    product.title.en,
+    getZh(product.description),
+    product.description.en,
+    getZh(product.category),
+    product.category.en,
+    getZh(product.keywords),
+    product.keywords.en
+  ].join(' ').toLowerCase();
+  const links = [
+    routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
+    routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表')
+  ];
+
+  if (searchText.includes('h200')) {
+    links.push(routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置指南'));
+  }
+  if (searchText.includes('pro 6000')) {
+    links.push(routeLink('/solutions/rtx-pro-6000-workstation', 'RTX PRO 6000 工作站配置指南'));
+  }
+  if (searchText.includes('workstation') || searchText.includes('工作站')) {
+    links.push(routeLink('/solutions/ai-workstation-taiwan', '台灣 AI 工作站採購入口'));
+  }
+  if (searchText.includes('server') || searchText.includes('伺服器') || searchText.includes('integration kit')) {
+    links.push(routeLink('/solutions/liquid-cooled-gpu-server', '液冷 GPU 伺服器配置'));
+    links.push(routeLink('/solutions/rack-ai-server-deployment', '機架式 AI 伺服器部署'));
+  }
+
+  return dedupeLinks(links).slice(0, 5);
+}
+
+function solutionRelatedLinks(page) {
+  const links = [
+    routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
+    routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表'),
+    routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置'),
+    routeLink('/solutions/rtx-pro-6000-workstation', 'RTX PRO 6000 工作站配置'),
+    routeLink('/solutions/liquid-cooling-ai-server-procurement', '液冷 AI 伺服器採購')
+  ].filter((link) => link.href !== pageUrl(`/solutions/${page.slug}`));
+
+  return dedupeLinks(links).slice(0, 4);
+}
+
 function staticSeoFallback(route) {
   const links = dedupeLinks([
     route.configuratorHref ? { label: '開啟配置器', href: pageUrl(route.configuratorHref) } : null,
     route.quoteHref ? { label: '取得報價', href: pageUrl(route.quoteHref) } : null,
     route.path !== '/solutions' ? { label: '查看解決方案', href: pageUrl('/solutions') } : null
   ].filter(Boolean));
+  const relatedLinks = dedupeLinks(route.relatedLinks || []);
   const highlights = (route.highlights || []).filter(Boolean);
   const specs = (route.specs || []).filter((spec) => spec.label && spec.value);
   const faqs = (route.faq || []).filter(([question, answer]) => question && answer);
@@ -487,6 +582,16 @@ function staticSeoFallback(route) {
         <h2 id="static-seo-faq">常見問題</h2>
         <ul class="static-seo-faq">
           ${faqs.map(([question, answer]) => `<li><strong>${escapeHtml(question)}</strong>${escapeHtml(answer)}</li>`).join('\n          ')}
+        </ul>
+      </section>`
+          : ''
+      }
+      ${
+        relatedLinks.length
+          ? `<section aria-labelledby="static-seo-related">
+        <h2 id="static-seo-related">相關配置器與採購頁面</h2>
+        <ul class="static-seo-related">
+          ${relatedLinks.map((link) => `<li><a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a></li>`).join('\n          ')}
         </ul>
       </section>`
           : ''

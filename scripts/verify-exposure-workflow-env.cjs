@@ -15,6 +15,7 @@ const missingSecrets = githubSecretKeys.filter((key) => (
   !workflow.includes(`${key}: \${{ secrets.${key} }}`)
 ));
 const expectedCommands = [
+  'npm run audit:configurator-route-coverage:strict',
   'npm run audit:public-assets -- --write-report',
   'npm run audit:external-platform-access',
   'npm run audit:external-exposure-status',
