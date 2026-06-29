@@ -618,6 +618,12 @@ function routeFaqs(route, specs = []) {
     [
       `${route.title} 適合台灣採購流程使用嗎？`,
       '適合。此頁保留中文搜尋內容、配置器入口、詢價連結與 EudTech 聯絡信箱，便於台灣企業、研究單位與採購團隊整理需求。'
+    ],
+    [
+      `${route.title} 在送出 RFQ 前應先確認哪些條件？`,
+      specLabels
+        ? `建議先確認 ${specLabels}，並補充交期、部署地點、供電、散熱、網路、軟體堆疊與採購窗口。`
+        : '建議先確認 GPU、CPU、記憶體、儲存、供電、散熱、網路、軟體堆疊、交期與採購窗口。'
     ]
   ];
   const seen = new Set();

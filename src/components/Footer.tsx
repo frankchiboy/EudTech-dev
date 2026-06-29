@@ -47,6 +47,7 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
       title: isEnglish ? 'Support' : '支援',
       links: [
         { name: isEnglish ? 'Comino Configurator' : 'Comino 配置器', href: '/configurator', active: true },
+        { name: isEnglish ? 'Configurator Link Index' : '配置器連結索引', href: '/configurator-links.html', active: true },
         { name: isEnglish ? 'RTX PRO Workstation' : 'RTX PRO 工作站', href: '/solutions/rtx-pro-6000-workstation', active: true },
         { name: isEnglish ? 'Liquid-Cooled GPU Server' : '液冷 GPU 伺服器', href: '/solutions/liquid-cooled-gpu-server', active: true },
         { name: isEnglish ? 'GPU Server RFQ Checklist' : 'GPU 伺服器 RFQ 檢核表', href: '/solutions/gpu-server-rfq-checklist', active: true },

@@ -9,6 +9,7 @@ const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const publicDir = path.resolve(__dirname, '..', 'public');
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
 const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
+const CONFIGURATOR_LINK_INDEX_PATH = '/configurator-links.html';
 const now = new Date();
 const taipeiDateParts = Object.fromEntries(
   new Intl.DateTimeFormat('en-CA', {
@@ -33,6 +34,14 @@ const escapeXml = (value) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
+
+const escapeHtml = (value) =>
+  String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 
 const getZh = (value) => value.zh;
 const priorityBySlug = {
@@ -66,11 +75,18 @@ const configuratorUrl = {
   description: '配置 Comino Grando GPU 伺服器、RTX PRO 工作站、NVIDIA H200 系統、儲存、電源與網路，並向 EudTech 取得報價。',
   priority: '0.95'
 };
+const configuratorLinkIndexUrl = {
+  loc: pageUrl(CONFIGURATOR_LINK_INDEX_PATH),
+  title: 'EudTech 配置器公開連結索引',
+  description: 'EudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。',
+  priority: '0.82'
+};
 
 const sitemapEntries = [
   { loc: `${siteOrigin}/`, changefreq: 'weekly', priority: '1.0' },
   { loc: configuratorUrl.loc, changefreq: 'weekly', priority: configuratorUrl.priority },
   { loc: solutionHubUrl.loc, changefreq: 'weekly', priority: solutionHubUrl.priority },
+  { loc: configuratorLinkIndexUrl.loc, changefreq: 'weekly', priority: configuratorLinkIndexUrl.priority },
   ...productUrls.map((entry) => ({ loc: entry.loc, changefreq: 'weekly', priority: entry.priority })),
   ...solutionUrls.map((entry) => ({ loc: entry.loc, changefreq: 'weekly', priority: entry.priority })),
   { loc: `${siteOrigin}/careers`, changefreq: 'monthly', priority: '0.45' }
@@ -142,7 +158,7 @@ ${entry.images
 </urlset>
 `;
 
-const feedItems = [configuratorUrl, solutionHubUrl, ...productUrls, ...solutionUrls]
+const feedItems = [configuratorUrl, solutionHubUrl, configuratorLinkIndexUrl, ...productUrls, ...solutionUrls]
   .map(
     (entry) => `    <item>
       <title>${escapeXml(entry.title)}</title>
@@ -172,6 +188,7 @@ const llmsPrimaryUrls = [
   ['Homepage', `${siteOrigin}/`],
   ['Comino Grando Configurator', pageUrl('/configurator')],
   ['Configurator Solutions Hub', pageUrl('/solutions')],
+  ['Configurator Link Index', pageUrl(CONFIGURATOR_LINK_INDEX_PATH)],
   ...productUrls.map((entry) => [entry.title, entry.loc]),
   ...solutionUrls.map((entry) => [entry.title, entry.loc])
 ];
@@ -296,6 +313,184 @@ ${formatFaqs(page.faqs)}`
 - For procurement/RFQ preparation, start with ${pageUrl('/solutions/gpu-server-rfq-checklist')}.
 `;
 
+const configuratorLinkListJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: configuratorLinkIndexUrl.title,
+  description: configuratorLinkIndexUrl.description,
+  url: configuratorLinkIndexUrl.loc,
+  inLanguage: 'zh-TW',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'EudTech',
+    url: siteOrigin
+  },
+  mainEntity: {
+    '@type': 'ItemList',
+    name: 'EudTech Configurator URLs',
+    itemListElement: [configuratorUrl, solutionHubUrl, ...productUrls, ...solutionUrls].map((entry, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: entry.title,
+      url: entry.loc
+    }))
+  }
+};
+
+const linkCard = (entry) => `          <li>
+            <a href="${escapeHtml(entry.loc)}">${escapeHtml(entry.title)}</a>
+            <p>${escapeHtml(entry.description)}</p>
+          </li>`;
+
+const configuratorLinksHtml = `<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${escapeHtml(configuratorLinkIndexUrl.title)} | EudTech</title>
+    <meta name="description" content="${escapeHtml(configuratorLinkIndexUrl.description)}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="${escapeHtml(configuratorLinkIndexUrl.loc)}">
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      body {
+        margin: 0;
+        background: #f8fafc;
+        color: #111827;
+      }
+      main {
+        box-sizing: border-box;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 56px 20px 72px;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 1.12;
+      }
+      h2 {
+        margin: 40px 0 16px;
+        font-size: 1.35rem;
+      }
+      p {
+        max-width: 780px;
+        line-height: 1.7;
+      }
+      .lead {
+        margin-top: 18px;
+        color: #374151;
+        font-size: 1.08rem;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .actions a,
+      li a {
+        color: #047857;
+        font-weight: 700;
+      }
+      .actions a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        border: 1px solid #059669;
+        border-radius: 6px;
+        padding: 10px 16px;
+        text-decoration: none;
+      }
+      .actions a:first-child {
+        background: #059669;
+        color: #ffffff;
+      }
+      ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      li {
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 16px;
+      }
+      li p {
+        margin: 8px 0 0;
+        color: #4b5563;
+        font-size: .94rem;
+      }
+      footer {
+        margin-top: 40px;
+        border-top: 1px solid #d1d5db;
+        padding-top: 24px;
+        color: #4b5563;
+        font-size: .9rem;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #030712;
+          color: #f9fafb;
+        }
+        .lead,
+        li p,
+        footer {
+          color: #d1d5db;
+        }
+        li {
+          border-color: #1f2937;
+          background: #111827;
+        }
+        .actions a,
+        li a {
+          color: #34d399;
+        }
+        .actions a:first-child {
+          color: #ffffff;
+        }
+      }
+    </style>
+    <script type="application/ld+json">${JSON.stringify(configuratorLinkListJsonLd).replace(/</g, '\\u003c')}</script>
+  </head>
+  <body>
+    <main>
+      <h1>${escapeHtml(configuratorLinkIndexUrl.title)}</h1>
+      <p class="lead">${escapeHtml(configuratorLinkIndexUrl.description)} 此頁集中提供可爬取的正式 URL，方便採購者、搜尋引擎與 AI 搜尋工具進入正確配置頁。</p>
+      <div class="actions">
+        <a href="${escapeHtml(configuratorUrl.loc)}">開啟 Comino Grando 配置器</a>
+        <a href="${escapeHtml(solutionHubUrl.loc)}">查看配置器解決方案</a>
+      </div>
+
+      <section aria-labelledby="configurator-product-links">
+        <h2 id="configurator-product-links">產品配置頁</h2>
+        <ul>
+${productUrls.map(linkCard).join('\n')}
+        </ul>
+      </section>
+
+      <section aria-labelledby="configurator-solution-links">
+        <h2 id="configurator-solution-links">採購與方案入口</h2>
+        <ul>
+${solutionUrls.map(linkCard).join('\n')}
+        </ul>
+      </section>
+
+      <footer>
+        <p>正式報價與供應條件以 EudTech 後續回覆為準。聯絡信箱：<a href="mailto:info@eudaemonia.tech">info@eudaemonia.tech</a></p>
+      </footer>
+    </main>
+  </body>
+</html>
+`;
+
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(publicDir, 'sitemap-index.xml'), sitemapIndex);
 fs.writeFileSync(path.join(publicDir, 'image-sitemap.xml'), imageSitemap);
@@ -303,8 +498,10 @@ fs.writeFileSync(path.join(publicDir, 'robots.txt'), robots);
 fs.writeFileSync(path.join(publicDir, 'feed.xml'), feed);
 fs.writeFileSync(path.join(publicDir, 'llms.txt'), llms);
 fs.writeFileSync(path.join(publicDir, 'llms-full.txt'), llmsFull);
+fs.writeFileSync(path.join(publicDir, 'configurator-links.html'), configuratorLinksHtml);
 
 console.log(`✓ Generated discovery files for ${solutionUrls.length + 1} configurator solution pages`);
 console.log(`✓ Generated discovery files for ${productUrls.length} configurator product pages`);
 console.log(`✓ Generated sitemap index for ${sitemapIndexEntries.length} sitemaps`);
 console.log(`✓ Generated image sitemap for ${pageImageEntries.length} pages`);
+console.log(`✓ Generated configurator link index at ${CONFIGURATOR_LINK_INDEX_PATH}`);

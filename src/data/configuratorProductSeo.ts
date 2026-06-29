@@ -73,6 +73,34 @@ const buildProductSeo = ({
     { name: { en: 'Form factor', zh: '機構型態' }, value: formFactor },
     { name: { en: 'CPU platform', zh: 'CPU 平台' }, value: cpuPlatform },
     {
+      name: { en: 'Workload fit', zh: '工作負載適配' },
+      value: {
+        en: `${gpuFocus.en} for ${category.en.toLowerCase()} planning, AI workload sizing, and quote review`,
+        zh: `${gpuFocus.zh}，適合${category.zh}規劃、AI 工作負載估算與報價審查`
+      }
+    },
+    {
+      name: { en: 'Procurement cue', zh: '採購判斷' },
+      value: {
+        en: `Review ${formFactor.en.toLowerCase()}, ${cpuPlatform.en}, memory, NVMe storage, power, and networking before RFQ.`,
+        zh: `送出 RFQ 前先確認${formFactor.zh}、${cpuPlatform.zh}、記憶體、NVMe 儲存、電源與網路需求。`
+      }
+    },
+    {
+      name: { en: 'Deployment note', zh: '部署注意' },
+      value: {
+        en: 'Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.',
+        zh: '使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。'
+      }
+    },
+    {
+      name: { en: 'Quote readiness', zh: '報價準備' },
+      value: {
+        en: 'Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.',
+        zh: '送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。'
+      }
+    },
+    {
       name: { en: 'Quote path', zh: '詢價路徑' },
       value: {
         en: 'Configurator request to EudTech',

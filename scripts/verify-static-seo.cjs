@@ -10,11 +10,11 @@ const {
 const distDir = path.resolve(__dirname, '..', 'dist');
 const { CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const expectedRoutes = getConfiguratorSocialPreviewRoutes();
-const MIN_STATIC_SEO_TEXT_LENGTH = 760;
+const MIN_STATIC_SEO_TEXT_LENGTH = 1200;
 const MIN_STATIC_SEO_HIGHLIGHTS = 3;
 const MIN_STATIC_SEO_SPEC_ROWS = 3;
 const MIN_STATIC_SEO_CHECKLIST_ITEMS = 3;
-const MIN_STATIC_SEO_FAQ_ITEMS = 2;
+const MIN_STATIC_SEO_FAQ_ITEMS = 4;
 const MIN_STATIC_SEO_RELATED_LINKS = 4;
 
 function readRouteHtml(routePath) {

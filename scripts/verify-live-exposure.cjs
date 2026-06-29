@@ -10,6 +10,7 @@ const {
 
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
+const configuratorLinkIndexUrl = `${siteOrigin}/configurator-links.html`;
 const expectedDeployCommit = getFlagValue('--expect-commit') || process.env.EXPECTED_DEPLOY_COMMIT || '';
 const waitForCommitMs = Number(getFlagValue('--wait-for-commit-ms') || process.env.WAIT_FOR_DEPLOY_COMMIT_MS || '0');
 const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
@@ -26,14 +27,15 @@ const requiredDiscoveryUrls = [
   `${siteOrigin}/sitemap.xml`,
   `${siteOrigin}/image-sitemap.xml`,
   `${siteOrigin}/feed.xml`,
+  configuratorLinkIndexUrl,
   `${siteOrigin}/llms.txt`,
   `${siteOrigin}/llms-full.txt`
 ];
-const MIN_STATIC_SEO_TEXT_LENGTH = 760;
+const MIN_STATIC_SEO_TEXT_LENGTH = 1200;
 const MIN_STATIC_SEO_HIGHLIGHTS = 3;
 const MIN_STATIC_SEO_SPEC_ROWS = 3;
 const MIN_STATIC_SEO_CHECKLIST_ITEMS = 3;
-const MIN_STATIC_SEO_FAQ_ITEMS = 2;
+const MIN_STATIC_SEO_FAQ_ITEMS = 4;
 const MIN_STATIC_SEO_RELATED_LINKS = 4;
 
 function unique(values) {
@@ -338,6 +340,7 @@ function checkDiscoveryFiles(discovery, errors) {
   const sitemap = discovery.find((item) => item.url.endsWith('/sitemap.xml'))?.text || '';
   const imageSitemap = discovery.find((item) => item.url.endsWith('/image-sitemap.xml'))?.text || '';
   const feed = discovery.find((item) => item.url.endsWith('/feed.xml'))?.text || '';
+  const configuratorLinksHtml = discovery.find((item) => item.url === configuratorLinkIndexUrl)?.text || '';
   const llms = discovery.find((item) => item.url.endsWith('/llms.txt'))?.text || '';
   const llmsFull = discovery.find((item) => item.url.endsWith('/llms-full.txt'))?.text || '';
   const sitemapLocs = new Set(collectXmlLocs(sitemap));
@@ -365,7 +368,16 @@ function checkDiscoveryFiles(discovery, errors) {
     assert(feed.includes(url), errors, `feed.xml missing ${url}.`);
     assert(llms.includes(url), errors, `llms.txt missing ${url}.`);
     assert(llmsFull.includes(url), errors, `llms-full.txt missing ${url}.`);
+    assert(configuratorLinksHtml.includes(`href="${url}"`), errors, `configurator-links.html missing ${url}.`);
   }
+
+  assert(sitemapLocs.has(configuratorLinkIndexUrl), errors, `sitemap.xml missing ${configuratorLinkIndexUrl}.`);
+  assert(feed.includes(configuratorLinkIndexUrl), errors, `feed.xml missing ${configuratorLinkIndexUrl}.`);
+  assert(llms.includes(configuratorLinkIndexUrl), errors, `llms.txt missing ${configuratorLinkIndexUrl}.`);
+  assert(llmsFull.includes(configuratorLinkIndexUrl), errors, `llms-full.txt missing ${configuratorLinkIndexUrl}.`);
+  assert(configuratorLinksHtml.includes(`<link rel="canonical" href="${configuratorLinkIndexUrl}">`), errors, 'configurator-links.html missing canonical link.');
+  assert(/<meta name="robots" content="index, follow">/i.test(configuratorLinksHtml), errors, 'configurator-links.html should be index, follow.');
+  assert(configuratorLinksHtml.includes('application/ld+json'), errors, 'configurator-links.html missing JSON-LD.');
 
   for (const product of CONFIGURATOR_PRODUCT_SEO) {
     assert(llmsFull.includes(product.productId), errors, `llms-full.txt missing ${product.productId}.`);

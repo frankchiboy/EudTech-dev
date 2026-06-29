@@ -16,6 +16,7 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Homepage: https://eudaemonia.tech/
 - Comino Grando Configurator: https://eudaemonia.tech/configurator/
 - Configurator Solutions Hub: https://eudaemonia.tech/solutions/
+- Configurator Link Index: https://eudaemonia.tech/configurator-links.html
 - INTEGRATION KIT 8x H200 配置器: https://eudaemonia.tech/configurator/27/
 - INTEGRATION KIT 8x PRO 6000 配置器: https://eudaemonia.tech/configurator/36/
 - SERVER 6xH200 GPU 伺服器配置器: https://eudaemonia.tech/configurator/29/
@@ -60,6 +61,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 8 張 NVIDIA H200 141GB / 8x NVIDIA H200 141GB
   - 機構型態 / Form factor: 整合套件 / Integration kit
   - CPU 平台 / CPU platform: AMD DUAL EPYC 9004 / 9005 / AMD DUAL EPYC 9004 / 9005
+  - 工作負載適配 / Workload fit: 8 張 NVIDIA H200 141GB，適合AI GPU 整合套件規劃、AI 工作負載估算與報價審查 / 8x NVIDIA H200 141GB for ai gpu integration kit planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認整合套件、AMD DUAL EPYC 9004 / 9005、記憶體、NVMe 儲存、電源與網路需求。 / Review integration kit, AMD DUAL EPYC 9004 / 9005, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ### INTEGRATION KIT 8x PRO 6000 配置器 / INTEGRATION KIT 8x PRO 6000 Configurator
@@ -79,6 +84,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 8 張 NVIDIA RTX PRO 6000 96GB / 8x NVIDIA RTX PRO 6000 96GB
   - 機構型態 / Form factor: 整合套件 / Integration kit
   - CPU 平台 / CPU platform: AMD DUAL EPYC 9004 / 9005 / AMD DUAL EPYC 9004 / 9005
+  - 工作負載適配 / Workload fit: 8 張 NVIDIA RTX PRO 6000 96GB，適合AI GPU 整合套件規劃、AI 工作負載估算與報價審查 / 8x NVIDIA RTX PRO 6000 96GB for ai gpu integration kit planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認整合套件、AMD DUAL EPYC 9004 / 9005、記憶體、NVMe 儲存、電源與網路需求。 / Review integration kit, AMD DUAL EPYC 9004 / 9005, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ### SERVER 6xH200 GPU 伺服器配置器 / SERVER 6xH200 GPU Server Configurator
@@ -98,6 +107,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 6 張 NVIDIA H200 141GB / 6x NVIDIA H200 141GB
   - 機構型態 / Form factor: AI GPU 伺服器 / AI GPU server
   - CPU 平台 / CPU platform: AMD EPYC 9004 / 9005 / AMD EPYC 9004 / 9005
+  - 工作負載適配 / Workload fit: 6 張 NVIDIA H200 141GB，適合AI GPU 伺服器規劃、AI 工作負載估算與報價審查 / 6x NVIDIA H200 141GB for ai gpu server planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認AI GPU 伺服器、AMD EPYC 9004 / 9005、記憶體、NVMe 儲存、電源與網路需求。 / Review ai gpu server, AMD EPYC 9004 / 9005, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ### SERVER 4xH200 GPU 伺服器配置器 / SERVER 4xH200 GPU Server Configurator
@@ -117,6 +130,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 4 張 NVIDIA H200 141GB / 4x NVIDIA H200 141GB
   - 機構型態 / Form factor: AI GPU 伺服器 / AI GPU server
   - CPU 平台 / CPU platform: AMD EPYC 9004 / 9005 / AMD EPYC 9004 / 9005
+  - 工作負載適配 / Workload fit: 4 張 NVIDIA H200 141GB，適合AI GPU 伺服器規劃、AI 工作負載估算與報價審查 / 4x NVIDIA H200 141GB for ai gpu server planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認AI GPU 伺服器、AMD EPYC 9004 / 9005、記憶體、NVMe 儲存、電源與網路需求。 / Review ai gpu server, AMD EPYC 9004 / 9005, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ### SERVER 8x PRO 6000 GPU 伺服器配置器 / SERVER 8x PRO 6000 GPU Server Configurator
@@ -136,6 +153,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 8 張 NVIDIA RTX PRO 6000 96GB / 8x NVIDIA RTX PRO 6000 96GB
   - 機構型態 / Form factor: AI GPU 伺服器 / AI GPU server
   - CPU 平台 / CPU platform: AMD EPYC 9004 / 9005 / AMD EPYC 9004 / 9005
+  - 工作負載適配 / Workload fit: 8 張 NVIDIA RTX PRO 6000 96GB，適合AI GPU 伺服器規劃、AI 工作負載估算與報價審查 / 8x NVIDIA RTX PRO 6000 96GB for ai gpu server planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認AI GPU 伺服器、AMD EPYC 9004 / 9005、記憶體、NVMe 儲存、電源與網路需求。 / Review ai gpu server, AMD EPYC 9004 / 9005, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ### WORKSTATION 2x PRO 6000 AI 工作站配置器 / WORKSTATION 2x PRO 6000 AI Workstation Configurator
@@ -155,6 +176,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 2 張 NVIDIA RTX PRO 6000 96GB / 2x NVIDIA RTX PRO 6000 96GB
   - 機構型態 / Form factor: 桌面工作站 / Desktop workstation
   - CPU 平台 / CPU platform: AMD Threadripper PRO 7000WX / AMD Threadripper PRO 7000WX
+  - 工作負載適配 / Workload fit: 2 張 NVIDIA RTX PRO 6000 96GB，適合AI GPU 工作站規劃、AI 工作負載估算與報價審查 / 2x NVIDIA RTX PRO 6000 96GB for ai gpu workstation planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認桌面工作站、AMD Threadripper PRO 7000WX、記憶體、NVMe 儲存、電源與網路需求。 / Review desktop workstation, AMD Threadripper PRO 7000WX, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ### WORKSTATION 2xH200 AI 工作站配置器 / WORKSTATION 2xH200 AI Workstation Configurator
@@ -174,6 +199,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 2 張 NVIDIA H200 141GB / 2x NVIDIA H200 141GB
   - 機構型態 / Form factor: 桌面工作站 / Desktop workstation
   - CPU 平台 / CPU platform: AMD EPYC 9004 / 9005 / AMD EPYC 9004 / 9005
+  - 工作負載適配 / Workload fit: 2 張 NVIDIA H200 141GB，適合AI GPU 工作站規劃、AI 工作負載估算與報價審查 / 2x NVIDIA H200 141GB for ai gpu workstation planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認桌面工作站、AMD EPYC 9004 / 9005、記憶體、NVMe 儲存、電源與網路需求。 / Review desktop workstation, AMD EPYC 9004 / 9005, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ### RACKABLE WS 6x R9700 配置器 / RACKABLE WS 6x R9700 Configurator
@@ -193,6 +222,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 6 張 AMD Radeon AI PRO R9700 / 6x AMD Radeon AI PRO R9700
   - 機構型態 / Form factor: 可上架工作站 / Rackable workstation
   - CPU 平台 / CPU platform: AMD EPYC 9004 / 9005 / AMD EPYC 9004 / 9005
+  - 工作負載適配 / Workload fit: 6 張 AMD Radeon AI PRO R9700，適合可上架 GPU 工作站規劃、AI 工作負載估算與報價審查 / 6x AMD Radeon AI PRO R9700 for rackable gpu workstation planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認可上架工作站、AMD EPYC 9004 / 9005、記憶體、NVMe 儲存、電源與網路需求。 / Review rackable workstation, AMD EPYC 9004 / 9005, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ### WORKSTATION 2x5090 AI 工作站配置器 / WORKSTATION 2x5090 AI Workstation Configurator
@@ -212,6 +245,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 2 張 NVIDIA GeForce RTX 5090 32GB / 2x NVIDIA GeForce RTX 5090 32GB
   - 機構型態 / Form factor: 桌面工作站 / Desktop workstation
   - CPU 平台 / CPU platform: AMD Threadripper PRO 7000WX / AMD Threadripper PRO 7000WX
+  - 工作負載適配 / Workload fit: 2 張 NVIDIA GeForce RTX 5090 32GB，適合AI GPU 工作站規劃、AI 工作負載估算與報價審查 / 2x NVIDIA GeForce RTX 5090 32GB for ai gpu workstation planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認桌面工作站、AMD Threadripper PRO 7000WX、記憶體、NVMe 儲存、電源與網路需求。 / Review desktop workstation, AMD Threadripper PRO 7000WX, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ### RACKABLE WS 4x PRO 6000 配置器 / RACKABLE WS 4x PRO 6000 Configurator
@@ -231,6 +268,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 4 張 NVIDIA RTX PRO 6000 96GB / 4x NVIDIA RTX PRO 6000 96GB
   - 機構型態 / Form factor: 可上架工作站 / Rackable workstation
   - CPU 平台 / CPU platform: AMD DUAL EPYC 9004 / 9005 / AMD DUAL EPYC 9004 / 9005
+  - 工作負載適配 / Workload fit: 4 張 NVIDIA RTX PRO 6000 96GB，適合可上架 GPU 工作站規劃、AI 工作負載估算與報價審查 / 4x NVIDIA RTX PRO 6000 96GB for rackable gpu workstation planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認可上架工作站、AMD DUAL EPYC 9004 / 9005、記憶體、NVMe 儲存、電源與網路需求。 / Review rackable workstation, AMD DUAL EPYC 9004 / 9005, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ### RACKABLE WS 6x5090 配置器 / RACKABLE WS 6x5090 Configurator
@@ -250,6 +291,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - GPU 重點 / GPU focus: 6 張 NVIDIA GeForce RTX 5090 32GB / 6x NVIDIA GeForce RTX 5090 32GB
   - 機構型態 / Form factor: 可上架工作站 / Rackable workstation
   - CPU 平台 / CPU platform: AMD EPYC 9004 / 9005 / AMD EPYC 9004 / 9005
+  - 工作負載適配 / Workload fit: 6 張 NVIDIA GeForce RTX 5090 32GB，適合可上架 GPU 工作站規劃、AI 工作負載估算與報價審查 / 6x NVIDIA GeForce RTX 5090 32GB for rackable gpu workstation planning, AI workload sizing, and quote review
+  - 採購判斷 / Procurement cue: 送出 RFQ 前先確認可上架工作站、AMD EPYC 9004 / 9005、記憶體、NVMe 儲存、電源與網路需求。 / Review rackable workstation, AMD EPYC 9004 / 9005, memory, NVMe storage, power, and networking before RFQ.
+  - 部署注意 / Deployment note: 使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。 / Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.
+  - 報價準備 / Quote readiness: 送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。 / Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.
   - 詢價路徑 / Quote path: 配置器詢價送至 EudTech / Configurator request to EudTech
 
 ## Solution Routes

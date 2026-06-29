@@ -201,6 +201,7 @@ Configurator 曝光主線集中在以下入口：
 | `/llms.txt` | AI/LLM 工具可讀的 configurator 摘要 |
 | `/llms-full.txt` | AI/LLM 工具可讀的完整 configurator 產品、solution、FAQ 與詢價路徑清單 |
 | `/feed.xml` | Configurator product and solution RSS feed |
+| `/configurator-links.html` | 可被 crawler 與 AI 搜尋工具直接讀取的 configurator 產品頁、solution 頁完整 HTML 連結索引 |
 | `/build-meta.json` | 正式站部署 commit 與 build metadata，用於確認 production 已更新到指定 commit |
 | `/d6fd206f713cd936d87b58a6010aa751.txt` | IndexNow key 驗證 |
 | `docs/configurator-promotion-assets.md` | 推廣素材總覽與 LinkedIn 貼文草稿 |
@@ -225,7 +226,7 @@ npm run submit:search-console
 
 `report:search-console` 會透過 Search Analytics API 讀取 configurator 與 solutions URL 的搜尋 query、page、clicks、impressions、CTR 與平均排名。預設查最近 28 天、每組 25 筆，可用 `-- --days=90`、`-- --start=2026-06-01 --end=2026-06-27`、`-- --row-limit=100`、`-- --start-row=100`、`-- --output=reports/search-console.json` 或 `-- --fail-on-empty` 調整。
 
-`verify:live-exposure` 會直接檢查正式站的 `robots.txt`、sitemap index、一般 sitemap、圖片 sitemap、RSS、llms.txt、llms-full.txt、configurator route、solution route、canonical、Open Graph URL 與 JSON-LD，也會確認 discovery 檔、social preview 圖與 `/build-meta.json` 的 Netlify HTTP cache headers。`monitor:sitemaps` 會讀取 Google Search Console 的 sitemap health，要求 sitemap index、一般 sitemap 與圖片 sitemap 都存在，且 errors/warnings 為 0、近期曾被下載；剛提交後的 pending 狀態有 30 分鐘寬限，避免 Google 正常處理延遲誤擋自動化。`exposure:postdeploy` 則把正式站 SEO 檢查、Search Console sitemap health、URL Inspection 與 Search Analytics 報表串成部署後檢查流程，並輸出 `reports/search-console-latest.json`。`exposure:strict` 會在 canonical URL 尚未建立索引或 Search Analytics 零曝光時失敗，適合做週期性告警，不適合剛上線第一天當作 deploy gate。
+`verify:live-exposure` 會直接檢查正式站的 `robots.txt`、sitemap index、一般 sitemap、圖片 sitemap、RSS、`configurator-links.html`、llms.txt、llms-full.txt、configurator route、solution route、canonical、Open Graph URL 與 JSON-LD，也會確認 discovery 檔、social preview 圖與 `/build-meta.json` 的 Netlify HTTP cache headers。`monitor:sitemaps` 會讀取 Google Search Console 的 sitemap health，要求 sitemap index、一般 sitemap 與圖片 sitemap 都存在，且 errors/warnings 為 0、近期曾被下載；剛提交後的 pending 狀態有 30 分鐘寬限，避免 Google 正常處理延遲誤擋自動化。`exposure:postdeploy` 則把正式站 SEO 檢查、Search Console sitemap health、URL Inspection 與 Search Analytics 報表串成部署後檢查流程，並輸出 `reports/search-console-latest.json`。`exposure:strict` 會在 canonical URL 尚未建立索引或 Search Analytics 零曝光時失敗，適合做週期性告警，不適合剛上線第一天當作 deploy gate。
 
 GitHub Actions 內的 `Public Exposure Checks` 會每週一自動執行，也可手動觸發。這條流程只依賴公開網站與 repo 檔案，會建置 SEO assets、驗證 discovery/static SEO/live exposure，並重新送出 IndexNow URL 清單；不需要 Google Search Console 憑證。外部平台 ID 尚未填完整時會輸出 warning 與報告，不阻斷公開曝光主線；正式投放前仍要另外執行 `verify:marketing-platform-env:strict:readonly`、`audit:external-platform-access:strict` 與 `audit:external-exposure-status:strict`。
 

@@ -20,6 +20,7 @@ const requiredFiles = [
   'sitemap-index.xml',
   'image-sitemap.xml',
   'feed.xml',
+  'configurator-links.html',
   'llms.txt',
   'llms-full.txt',
   'logo.svg',

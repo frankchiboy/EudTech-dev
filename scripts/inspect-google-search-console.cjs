@@ -12,6 +12,7 @@ const DEFAULT_REQUEST_TIMEOUT_MS = 15000;
 const DEFAULT_CONCURRENCY = 4;
 const defaultPaths = [
   '/configurator',
+  '/configurator-links.html',
   ...CONFIGURATOR_PRODUCT_SEO.map((product) => product.configuratorHref),
   '/solutions',
   ...CONFIGURATOR_SEO_PAGES.map((page) => `/solutions/${page.slug}`)

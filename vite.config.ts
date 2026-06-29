@@ -29,6 +29,7 @@ const PUBLIC_FILE_ALLOWLIST = [
   'sitemap-index.xml',
   'image-sitemap.xml',
   'feed.xml',
+  'configurator-links.html',
   'llms.txt',
   'llms-full.txt',
   'd6fd206f713cd936d87b58a6010aa751.txt',

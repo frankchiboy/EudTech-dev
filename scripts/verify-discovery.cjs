@@ -8,10 +8,12 @@ const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readCo
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const publicDir = path.resolve(__dirname, '..', 'public');
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
+const configuratorLinkIndexUrl = pageUrl('/configurator-links.html');
 const solutionHubUrl = pageUrl('/solutions');
 const solutionUrls = CONFIGURATOR_SEO_PAGES.map((page) => pageUrl(`/solutions/${page.slug}`));
 const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => pageUrl(product.configuratorHref));
-const requiredDiscoveryUrls = [pageUrl('/configurator'), ...productUrls, solutionHubUrl, ...solutionUrls];
+const requiredPageUrls = [pageUrl('/configurator'), ...productUrls, solutionHubUrl, ...solutionUrls];
+const requiredIndexUrls = [...requiredPageUrls, configuratorLinkIndexUrl];
 const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
 
 const readPublicFile = (filename) => fs.readFileSync(path.join(publicDir, filename), 'utf8');
@@ -27,6 +29,7 @@ const llmsText = readPublicFile('llms.txt');
 const llmsFullText = readPublicFile('llms-full.txt');
 const robotsText = readPublicFile('robots.txt');
 const headersText = readPublicFile('_headers');
+const configuratorLinksHtml = readPublicFile('configurator-links.html');
 
 const sitemapLocs = new Set(collectXmlLocs(sitemapXml));
 const imageSitemapPageLocs = new Set(collectXmlLocs(imageSitemapXml).filter((loc) => loc.startsWith(`${siteOrigin}/solutions`) || loc === `${siteOrigin}/` || loc.startsWith(`${siteOrigin}/configurator`)));
@@ -43,11 +46,12 @@ const requireAll = (label, values, predicate) => {
   });
 };
 
-requireAll('sitemap.xml', requiredDiscoveryUrls, (url) => sitemapLocs.has(url));
-requireAll('image-sitemap.xml', requiredDiscoveryUrls, (url) => imageSitemapPageLocs.has(url));
-requireAll('feed.xml', requiredDiscoveryUrls, (url) => feedLinks.has(url));
-requireAll('llms.txt', requiredDiscoveryUrls, (url) => llmsText.includes(url));
-requireAll('llms-full.txt', requiredDiscoveryUrls, (url) => llmsFullText.includes(url));
+requireAll('sitemap.xml', requiredIndexUrls, (url) => sitemapLocs.has(url));
+requireAll('image-sitemap.xml', requiredPageUrls, (url) => imageSitemapPageLocs.has(url));
+requireAll('feed.xml', requiredIndexUrls, (url) => feedLinks.has(url));
+requireAll('llms.txt', requiredIndexUrls, (url) => llmsText.includes(url));
+requireAll('llms-full.txt', requiredIndexUrls, (url) => llmsFullText.includes(url));
+requireAll('configurator-links.html', requiredPageUrls, (url) => configuratorLinksHtml.includes(`href="${url}"`));
 requireAll('llms-full.txt product ids', CONFIGURATOR_PRODUCT_SEO.map((product) => product.productId), (productId) =>
   llmsFullText.includes(productId)
 );
@@ -77,6 +81,7 @@ const requiredHeaderRules = [
   '/sitemap-index.xml',
   '/image-sitemap.xml',
   '/feed.xml',
+  '/configurator-links.html',
   '/llms*.txt',
   '/social/configurator/*',
   '/assets/*'
@@ -96,8 +101,24 @@ if (!/\/sitemap-index\.xml[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(heade
   errors.push('public/_headers missing sitemap index cache-control rule.');
 }
 
+if (!/\/configurator-links\.html[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
+  errors.push('public/_headers missing configurator link index cache-control rule.');
+}
+
 if (!/\/build-meta\.json[\s\S]*max-age=0[\s\S]*must-revalidate/i.test(headersText)) {
   errors.push('public/_headers missing build metadata cache-control rule.');
+}
+
+if (!configuratorLinksHtml.includes(`<link rel="canonical" href="${configuratorLinkIndexUrl}">`)) {
+  errors.push('configurator-links.html missing canonical link.');
+}
+
+if (!/<meta name="robots" content="index, follow">/i.test(configuratorLinksHtml)) {
+  errors.push('configurator-links.html should be index, follow.');
+}
+
+if (!configuratorLinksHtml.includes('application/ld+json')) {
+  errors.push('configurator-links.html missing JSON-LD.');
 }
 
 const duplicateSlugs = CONFIGURATOR_SEO_PAGES.filter(
@@ -118,7 +139,8 @@ console.log(
       ok: true,
       solutionPageCount: CONFIGURATOR_SEO_PAGES.length,
       configuratorProductPages: CONFIGURATOR_PRODUCT_SEO.length,
-      checkedUrls: requiredDiscoveryUrls.length,
+      checkedUrls: requiredIndexUrls.length,
+      configuratorLinkIndex: true,
       socialPreviewImages: socialPreviewRoutes.length,
       sitemapIndexCount: sitemapIndexLocs.size,
       llmsFull: true
