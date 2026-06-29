@@ -44,12 +44,12 @@
 21. All 11 API-backed `/configurator/{id}` product routes emit quote-service JSON-LD instead of Product rich-result JSON-LD, avoiding fake public pricing and Google Product Summary errors.
 22. `npm run verify:seo-html` validates static JSON-LD coverage for configurator product pages and solution pages.
 23. `npm run submit:search-console` submits sitemap index, sitemap, image sitemap, and RSS feed to Google Search Console through API.
-24. `npm run inspect:search-console` checks high-intent configurator canonical URL index status through the URL Inspection API.
+24. `npm run inspect:search-console` checks high-intent configurator canonical URL index status through the URL Inspection API; `npm run inspect:search-console:report` also inspects no-trailing-slash and legacy double-slash aliases, then writes `reports/search-console-indexing.json` and `reports/search-console-indexing-summary.md`.
 25. Page URL signals are normalized to the production trailing-slash form across canonical tags, sitemap URLs, image sitemap page locs, RSS links, LLM discovery links, Open Graph URLs, and JSON-LD URLs.
 26. `npm run report:search-console` reads Search Console query, page, click, impression, CTR, and average-position data for configurator and solutions URLs.
 27. `npm run verify:live-exposure` validates production robots, sitemaps, RSS, llms.txt, redirects, canonical tags, Open Graph URLs, and JSON-LD for every configurator product page and solution page.
 28. `npm run monitor:sitemaps` checks Search Console sitemap health and fails when the expected sitemap index, standard sitemap, image sitemap, or RSS feed is missing, stale, or has errors/warnings; newly submitted pending files have a short grace window before last-download checks apply.
-29. `npm run exposure:postdeploy` runs live exposure verification, submits the current discovery files to Search Console, checks Search Console sitemap health, runs URL Inspection, and writes `reports/search-console-latest.json`.
+29. `npm run exposure:postdeploy` runs live exposure verification, submits the current discovery files to Search Console, checks Search Console sitemap health, runs URL Inspection, writes indexing JSON/Markdown summaries, and writes `reports/search-console-latest.json`.
 30. `npm run exposure:strict` fails when canonical URLs are not indexed or Search Analytics has no configurator/solutions rows.
 31. GitHub Actions `Public Exposure Checks` runs weekly and on demand without Google credentials, builds SEO assets, validates discovery/static SEO/live exposure, submits IndexNow URLs, and uploads run logs.
 32. Netlify Scheduled Function `exposure-scheduled` submits the production sitemap URLs to IndexNow weekly from the deployed site.
@@ -105,6 +105,8 @@
 82. `feed.xml` is now included in `sitemap-index.xml`, declared in `robots.txt` with a `Sitemap:` line, submitted by `npm run submit:search-console`, and monitored by `npm run monitor:sitemaps`, so feed-based discovery is part of the same deploy verification path as XML sitemaps.
 83. React runtime metadata now uses the same `/social/configurator/*.jpg` social preview image path convention as the generated static SEO HTML, including `og:image:secure_url`, so hydration does not replace crawlable social metadata with raw product images.
 84. `npm run verify:original-prompts` confirms that the root and docs prompt archives preserve the configurator migration and exposure prompts without secret-like values, and `exposure:public:readonly` plus GitHub Actions run it as part of the public exposure gate.
+85. Search Console URL Inspection output now includes an indexing summary with indexed/unindexed canonical counts, discovered-but-not-indexed URLs, stale canonical mismatch records, double-slash user canonical records, sitemap signal gaps, and feed.xml signal coverage.
+86. Shared canonical URL helpers collapse repeated path slashes before adding trailing slashes, so runtime SEO metadata, generated discovery files, and Search Console inspection all agree on single-slash canonical URLs.
 
 ## External Promotion Queue
 

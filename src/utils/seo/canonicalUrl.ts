@@ -7,6 +7,7 @@ const hasFileExtension = (pathname: string) => {
 
 export const canonicalPageUrl = (value: string, siteOrigin = DEFAULT_SITE_ORIGIN) => {
   const url = new URL(value, siteOrigin);
+  url.pathname = url.pathname.replace(/\/{2,}/g, '/');
 
   if (!url.pathname.endsWith('/') && !hasFileExtension(url.pathname)) {
     url.pathname = `${url.pathname}/`;
