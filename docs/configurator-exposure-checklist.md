@@ -107,6 +107,7 @@
 84. `npm run verify:original-prompts` confirms that the root and docs prompt archives preserve the configurator migration and exposure prompts without secret-like values, and `exposure:public:readonly` plus GitHub Actions run it as part of the public exposure gate.
 85. Search Console URL Inspection output now includes an indexing summary with indexed/unindexed canonical counts, discovered-but-not-indexed URLs, stale canonical mismatch records, double-slash user canonical records, sitemap signal gaps, and feed.xml signal coverage.
 86. Shared canonical URL helpers collapse repeated path slashes before adding trailing slashes, so runtime SEO metadata, generated discovery files, and Search Console inspection all agree on single-slash canonical URLs.
+87. Desktop startup no longer performs a second global preload pass across the full product image list; original-resolution image URLs are unchanged, while duplicate early network pressure is reduced.
 
 ## External Promotion Queue
 
