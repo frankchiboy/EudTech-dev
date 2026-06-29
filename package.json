@@ -46,6 +46,7 @@
     "audit:configurator-route-coverage:readonly": "node scripts/audit-configurator-route-coverage.cjs",
     "audit:configurator-route-coverage:strict": "node scripts/audit-configurator-route-coverage.cjs --write-report --fail-on-drift",
     "audit:configurator-route-coverage:strict:readonly": "node scripts/audit-configurator-route-coverage.cjs --fail-on-drift",
+    "verify:deploy-public-assets": "node scripts/verify-deploy-public-assets.cjs --write-report",
     "audit:public-assets": "node scripts/audit-public-assets.cjs",
     "audit:public-assets:safe-duplicates": "node scripts/audit-public-assets.cjs --fail-on-safe-duplicates --summary-only",
     "clean:public-assets:safe-duplicates": "node scripts/audit-public-assets.cjs --write-report --delete-safe-duplicates --summary-only",

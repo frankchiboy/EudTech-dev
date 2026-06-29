@@ -19,6 +19,7 @@ const expectedCommands = [
   'npm run verify:scheduled-exposure',
   'npm run verify:original-prompts',
   'npm run audit:public-assets -- --write-report',
+  'npm run verify:deploy-public-assets',
   'npm run verify:marketing-platform-env | tee reports/verify-marketing-platform-env.log',
   'npm run verify:marketing-platform-env:strict:readonly',
   'npm run verify:marketing-1password-item -- --structure-only --fail-on-missing',

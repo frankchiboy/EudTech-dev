@@ -203,6 +203,10 @@ function assert(condition, errors, message) {
   }
 }
 
+function pagePath(url) {
+  return new URL(url).pathname;
+}
+
 async function checkBuildMetadata(errors) {
   const url = `${siteOrigin}/build-meta.json`;
   const deadline = Date.now() + (Number.isFinite(waitForCommitMs) && waitForCommitMs > 0 ? waitForCommitMs : 0);
@@ -285,7 +289,7 @@ async function checkBuildMetadata(errors) {
 }
 
 async function checkRedirects(errors) {
-  const checks = [
+  const canonicalRedirectChecks = [
     [`${siteOrigin}/configurator`, canonicalPageUrl(`${siteOrigin}/configurator`, siteOrigin)],
     ...CONFIGURATOR_PRODUCT_SEO.map((product) => [
       `${siteOrigin}${product.configuratorHref}`,
@@ -297,17 +301,32 @@ async function checkRedirects(errors) {
       canonicalPageUrl(`${siteOrigin}/solutions/${page.slug}`, siteOrigin)
     ])
   ];
+  const doubleSlashAliasChecks = [
+    ...CONFIGURATOR_PRODUCT_SEO.map((product) => [
+      `${siteOrigin}/configurator//${product.id}/`,
+      canonicalPageUrl(`${siteOrigin}${product.configuratorHref}`, siteOrigin)
+    ]),
+    ...CONFIGURATOR_SEO_PAGES.map((page) => [
+      `${siteOrigin}/solutions//${page.slug}/`,
+      canonicalPageUrl(`${siteOrigin}/solutions/${page.slug}`, siteOrigin)
+    ])
+  ];
+  const checks = [
+    ...canonicalRedirectChecks.map(([url, expectedLocation]) => ({ kind: 'canonical_trailing_slash', url, expectedLocation })),
+    ...doubleSlashAliasChecks.map(([url, expectedLocation]) => ({ kind: 'double_slash_alias', url, expectedLocation }))
+  ];
 
   const results = [];
-  for (const [url, expectedLocation] of checks) {
+  for (const { kind, url, expectedLocation } of checks) {
     const result = await fetchText(url, { redirect: 'manual', cacheBust: false });
     results.push({
+      kind,
       url,
       status: result.status,
       location: result.location
     });
     assert(result.status === 301 || result.status === 308, errors, `${url} should redirect to canonical page URL.`);
-    assert(result.location === new URL(expectedLocation).pathname, errors, `${url} redirects to ${result.location}, expected ${new URL(expectedLocation).pathname}.`);
+    assert(result.location === pagePath(expectedLocation), errors, `${url} redirects to ${result.location}, expected ${pagePath(expectedLocation)}.`);
   }
 
   return results;
