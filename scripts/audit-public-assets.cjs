@@ -4,7 +4,10 @@ const crypto = require('crypto');
 
 const args = new Set(process.argv.slice(2));
 const failOnIssues = args.has('--fail-on-issues');
+const failOnSafeDuplicates = args.has('--fail-on-safe-duplicates');
+const deleteSafeDuplicates = args.has('--delete-safe-duplicates');
 const writeReport = args.has('--write-report');
+const summaryOnly = args.has('--summary-only');
 const rootDir = path.resolve(__dirname, '..');
 const publicDir = path.join(rootDir, 'public');
 const reportsDir = path.join(rootDir, 'reports');
@@ -241,38 +244,68 @@ const fileRecords = files.map((file) => {
   };
 });
 
-const disallowedFiles = fileRecords.filter((file) =>
+const duplicateGroups = findDuplicateGroups(files);
+const duplicateCleanup = buildDuplicateCleanupSummary(duplicateGroups, textFiles);
+if (deleteSafeDuplicates) {
+  for (const candidate of duplicateCleanup.safeDeleteCandidates) {
+    fs.unlinkSync(path.join(publicDir, candidate.path));
+  }
+}
+const finalFiles = deleteSafeDuplicates ? walkFiles(publicDir) : files;
+const finalFileRecords = finalFiles.map((file) => {
+  const relativePath = relativePublicPath(file);
+  return {
+    path: relativePath,
+    bytes: fs.statSync(file).size
+  };
+});
+const finalDuplicateGroups = deleteSafeDuplicates ? findDuplicateGroups(finalFiles) : duplicateGroups;
+const finalDuplicateCleanup = deleteSafeDuplicates
+  ? buildDuplicateCleanupSummary(finalDuplicateGroups, textFiles)
+  : duplicateCleanup;
+const finalTotalBytes = finalFileRecords.reduce((total, file) => total + file.bytes, 0);
+const disallowedFiles = finalFileRecords.filter((file) =>
   file.path.endsWith('/.DS_Store') ||
   file.path === '.DS_Store' ||
   /\.png\.png$/i.test(file.path)
 );
-const oversizedFiles = fileRecords
+const oversizedFiles = finalFileRecords
   .filter((file) => file.bytes > largeAssetBytes)
   .sort((a, b) => b.bytes - a.bytes);
-const duplicateGroups = findDuplicateGroups(files);
-const duplicateCleanup = buildDuplicateCleanupSummary(duplicateGroups, textFiles);
-const largestFiles = [...fileRecords].sort((a, b) => b.bytes - a.bytes).slice(0, 25);
+const largestFiles = [...finalFileRecords].sort((a, b) => b.bytes - a.bytes).slice(0, 25);
 const totalBytes = fileRecords.reduce((total, file) => total + file.bytes, 0);
-const errors = failOnIssues && (disallowedFiles.length || oversizedFiles.length || duplicateGroups.length)
+const errors = [
+  ...(failOnIssues && (disallowedFiles.length || oversizedFiles.length || finalDuplicateGroups.length)
   ? [
       ...(disallowedFiles.length ? [`public contains ${disallowedFiles.length} disallowed local or duplicated-extension files`] : []),
       ...(oversizedFiles.length ? [`public contains ${oversizedFiles.length} files larger than ${largeAssetBytes} bytes`] : []),
-      ...(duplicateGroups.length ? [`public contains ${duplicateGroups.length} exact duplicate file groups`] : [])
+      ...(finalDuplicateGroups.length ? [`public contains ${finalDuplicateGroups.length} exact duplicate file groups`] : [])
     ]
-  : [];
+  : []),
+  ...(failOnSafeDuplicates && finalDuplicateCleanup.safeDeleteCandidates.length
+    ? [`public contains ${finalDuplicateCleanup.safeDeleteCandidates.length} safe exact duplicate delete candidates`]
+    : [])
+];
 
 const result = {
   ok: errors.length === 0,
   failOnIssues,
+  failOnSafeDuplicates,
+  deleteSafeDuplicates,
   publicDir,
   textFilesScanned: textFiles.map(relativeRootPath).length,
   fileCount: fileRecords.length,
+  finalFileCount: finalFileRecords.length,
   totalBytes,
+  finalTotalBytes,
   largeAssetBytes,
+  deletedSafeDuplicates: deleteSafeDuplicates ? duplicateCleanup.safeDeleteCandidates : [],
+  deletedSafeDuplicateBytes: deleteSafeDuplicates ? duplicateCleanup.estimatedSafeDeleteBytes : 0,
   disallowedFiles,
   oversizedFiles,
-  duplicateGroups,
-  duplicateCleanup,
+  duplicateGroups: finalDuplicateGroups,
+  duplicateCleanup: finalDuplicateCleanup,
+  initialDuplicateCleanup: deleteSafeDuplicates ? duplicateCleanup : undefined,
   largestFiles,
   errors
 };
@@ -282,7 +315,28 @@ if (writeReport) {
   fs.writeFileSync(path.join(reportsDir, 'public-assets-audit.json'), `${JSON.stringify(result, null, 2)}\n`);
 }
 
-console.log(JSON.stringify(result, null, 2));
+if (summaryOnly) {
+  console.log(JSON.stringify({
+    ok: result.ok,
+    failOnIssues: result.failOnIssues,
+    failOnSafeDuplicates: result.failOnSafeDuplicates,
+    deleteSafeDuplicates: result.deleteSafeDuplicates,
+    fileCount: result.fileCount,
+    finalFileCount: result.finalFileCount,
+    totalBytes: result.totalBytes,
+    finalTotalBytes: result.finalTotalBytes,
+    deletedSafeDuplicates: result.deletedSafeDuplicates.length,
+    deletedSafeDuplicateBytes: result.deletedSafeDuplicateBytes,
+    remainingSafeDeleteCandidates: result.duplicateCleanup.safeDeleteCandidates.length,
+    remainingSafeDeleteBytes: result.duplicateCleanup.estimatedSafeDeleteBytes,
+    duplicateGroups: result.duplicateGroups.length,
+    oversizedFiles: result.oversizedFiles.length,
+    disallowedFiles: result.disallowedFiles.length,
+    errors: result.errors
+  }, null, 2));
+} else {
+  console.log(JSON.stringify(result, null, 2));
+}
 
 if (errors.length > 0) {
   process.exit(1);

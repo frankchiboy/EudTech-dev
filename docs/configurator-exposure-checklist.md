@@ -95,7 +95,9 @@
 72. `npm run audit:configurator-route-coverage` compares the live Comino public devices API against local SEO product routes, social route metadata, sitemap, image sitemap, and `llms-full.txt`, without external platform credentials.
 73. `npm run audit:exposure-summary` runs the same readiness audit and writes a human-readable `reports/configurator-exposure-summary.md` summary for on-site status, external tracking gaps, and the next required action.
 74. `npm run audit:public-assets` reports public asset count, total bytes, oversized files, exact duplicate groups, `.DS_Store`, and accidental `.png.png` files without deleting or rewriting assets.
-75. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, social images, promotion assets, configurator route coverage, public asset audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
+75. `npm run clean:public-assets:safe-duplicates` removes only exact duplicate public files with zero detected references while keeping a same-hash canonical file.
+76. `npm run audit:public-assets:safe-duplicates` fails when unreferenced exact duplicate public files return.
+77. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, social images, promotion assets, configurator route coverage, public asset audit, safe-duplicate audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
 
 ## External Promotion Queue
 
