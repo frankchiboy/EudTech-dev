@@ -334,9 +334,11 @@ function checkDiscoveryFiles(discovery, errors) {
 
   assert(robots.includes(`Sitemap: ${siteOrigin}/sitemap.xml`), errors, 'robots.txt missing sitemap.xml.');
   assert(robots.includes(`Sitemap: ${siteOrigin}/image-sitemap.xml`), errors, 'robots.txt missing image-sitemap.xml.');
+  assert(robots.includes(`Sitemap: ${siteOrigin}/feed.xml`), errors, 'robots.txt missing feed.xml.');
   assert(robots.includes(`Sitemap: ${siteOrigin}/sitemap-index.xml`), errors, 'robots.txt missing sitemap-index.xml.');
   assert(sitemapIndexLocs.has(`${siteOrigin}/sitemap.xml`), errors, 'sitemap-index.xml missing sitemap.xml.');
   assert(sitemapIndexLocs.has(`${siteOrigin}/image-sitemap.xml`), errors, 'sitemap-index.xml missing image-sitemap.xml.');
+  assert(sitemapIndexLocs.has(`${siteOrigin}/feed.xml`), errors, 'sitemap-index.xml missing feed.xml.');
 
   for (const url of requiredPageUrls) {
     assert(sitemapLocs.has(url), errors, `sitemap.xml missing ${url}.`);

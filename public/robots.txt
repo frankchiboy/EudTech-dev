@@ -3,4 +3,5 @@ Allow: /
 
 Sitemap: https://eudaemonia.tech/sitemap.xml
 Sitemap: https://eudaemonia.tech/image-sitemap.xml
+Sitemap: https://eudaemonia.tech/feed.xml
 Sitemap: https://eudaemonia.tech/sitemap-index.xml

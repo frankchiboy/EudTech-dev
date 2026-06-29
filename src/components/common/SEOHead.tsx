@@ -66,6 +66,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description || defaultDescription} />
       <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:secure_url" content={imageUrl} />
       <meta property="og:image:alt" content={imageAlt || title || defaultTitle} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />

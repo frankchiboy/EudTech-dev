@@ -93,7 +93,8 @@ ${sitemapEntries
 
 const sitemapIndexEntries = [
   `${siteOrigin}/sitemap.xml`,
-  `${siteOrigin}/image-sitemap.xml`
+  `${siteOrigin}/image-sitemap.xml`,
+  `${siteOrigin}/feed.xml`
 ];
 const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -106,6 +107,15 @@ ${sitemapIndexEntries
   )
   .join('\n')}
 </sitemapindex>
+`;
+
+const robots = `User-agent: *
+Allow: /
+
+Sitemap: ${siteOrigin}/sitemap.xml
+Sitemap: ${siteOrigin}/image-sitemap.xml
+Sitemap: ${siteOrigin}/feed.xml
+Sitemap: ${siteOrigin}/sitemap-index.xml
 `;
 
 const pageImageEntries = socialPreviewRoutes.map((route) => ({
@@ -289,6 +299,7 @@ ${formatFaqs(page.faqs)}`
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(publicDir, 'sitemap-index.xml'), sitemapIndex);
 fs.writeFileSync(path.join(publicDir, 'image-sitemap.xml'), imageSitemap);
+fs.writeFileSync(path.join(publicDir, 'robots.txt'), robots);
 fs.writeFileSync(path.join(publicDir, 'feed.xml'), feed);
 fs.writeFileSync(path.join(publicDir, 'llms.txt'), llms);
 fs.writeFileSync(path.join(publicDir, 'llms-full.txt'), llmsFull);

@@ -5,7 +5,8 @@ const userProject = process.env.GOOGLE_SEARCH_CONSOLE_QUOTA_PROJECT || 'personal
 const expectedSitemaps = [
   'https://eudaemonia.tech/sitemap-index.xml',
   'https://eudaemonia.tech/sitemap.xml',
-  'https://eudaemonia.tech/image-sitemap.xml'
+  'https://eudaemonia.tech/image-sitemap.xml',
+  'https://eudaemonia.tech/feed.xml'
 ];
 const maxDownloadAgeDays = Number(process.env.GOOGLE_SEARCH_CONSOLE_MAX_SITEMAP_DOWNLOAD_AGE_DAYS || '14');
 const pendingGraceMinutes = Number(process.env.GOOGLE_SEARCH_CONSOLE_PENDING_GRACE_MINUTES || '30');
@@ -68,9 +69,9 @@ async function main() {
     if (item.isPending && !withinPendingGrace) {
       errors.push(`${sitemap} is still pending in Search Console`);
     }
-    if (!item.lastDownloaded) {
+    if (!item.lastDownloaded && !withinPendingGrace) {
       errors.push(`${sitemap} has no lastDownloaded timestamp`);
-    } else if (Number.isFinite(maxDownloadAgeDays) && maxDownloadAgeDays > 0) {
+    } else if (item.lastDownloaded && Number.isFinite(maxDownloadAgeDays) && maxDownloadAgeDays > 0) {
       const lastDownloadedTime = Date.parse(item.lastDownloaded);
       const maxAgeMs = maxDownloadAgeDays * 24 * 60 * 60 * 1000;
       if (!Number.isFinite(lastDownloadedTime) || now - lastDownloadedTime > maxAgeMs) {

@@ -10,6 +10,7 @@ import {
   getConfiguratorSeoPage
 } from '../../data/configuratorSeoPages';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
+import { getConfiguratorSocialPreviewPath, getConfiguratorSocialPreviewUrl } from '../../utils/seo/socialPreview';
 import { getSeoSchemaDate } from '../../utils/seo/schemaDate';
 
 const getText = (value: { en: string; zh: string }, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
@@ -35,7 +36,7 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
   const name = getText(page.title, isEnglish);
   const description = getText(page.description, isEnglish);
   const isArticlePage = page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist';
-  const pageImage = `${SITE_ORIGIN}${page.image}`;
+  const pageImage = getConfiguratorSocialPreviewUrl(`/solutions/${page.slug}`);
   const schemaDate = getSeoSchemaDate();
 
   return [
@@ -140,7 +141,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
         title={getText(page.title, isEnglish)}
         description={getText(page.description, isEnglish)}
         keywords={getText(page.keywords, isEnglish)}
-        image={page.image}
+        image={getConfiguratorSocialPreviewPath(`/solutions/${page.slug}`)}
         imageAlt={getText(page.imageAlt, isEnglish)}
         url={pageUrl}
         type={page.kind === 'solution' || !page.kind ? 'website' : 'article'}

@@ -8,4 +8,8 @@
     <loc>https://eudaemonia.tech/image-sitemap.xml</loc>
     <lastmod>2026-06-29</lastmod>
   </sitemap>
+  <sitemap>
+    <loc>https://eudaemonia.tech/feed.xml</loc>
+    <lastmod>2026-06-29</lastmod>
+  </sitemap>
 </sitemapindex>

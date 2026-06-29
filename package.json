@@ -57,9 +57,9 @@
     "verify:live-exposure": "node scripts/verify-live-exposure.cjs",
     "verify:marketing-event-health": "node scripts/check-marketing-event-health.cjs",
     "monitor:sitemaps": "node scripts/monitor-google-search-console-sitemaps.cjs",
-    "exposure:public:readonly": "npm run verify:discovery && npm run verify:social-images && npm run verify:promotion-assets && npm run verify:scheduled-exposure && npm run audit:configurator-route-coverage:readonly && npm run audit:public-assets && npm run audit:public-assets:safe-duplicates && npm run verify:live-exposure && npm run submit:indexnow:dry-run && npm run verify:marketing-event-health",
-    "exposure:postdeploy": "npm run verify:live-exposure && npm run monitor:sitemaps && npm run inspect:search-console -- --include-aliases && npm run report:search-console -- --days=90 --row-limit=50 --output=reports/search-console-latest.json",
-    "exposure:strict": "npm run verify:live-exposure && npm run monitor:sitemaps && npm run inspect:search-console -- --include-aliases --fail-on-unindexed --fail-on-canonical-mismatch && npm run report:search-console -- --days=90 --row-limit=50 --output=reports/search-console-latest.json --fail-on-empty",
+    "exposure:public:readonly": "npm run verify:discovery && npm run verify:seo-html && npm run verify:social-images && npm run verify:promotion-assets && npm run verify:scheduled-exposure && npm run audit:configurator-route-coverage:strict && npm run audit:public-assets && npm run audit:public-assets:safe-duplicates && npm run verify:live-exposure && npm run submit:indexnow:dry-run && npm run verify:marketing-event-health",
+    "exposure:postdeploy": "npm run verify:live-exposure && npm run submit:search-console && npm run monitor:sitemaps && npm run inspect:search-console -- --include-aliases && npm run report:search-console -- --days=90 --row-limit=50 --output=reports/search-console-latest.json",
+    "exposure:strict": "npm run verify:live-exposure && npm run submit:search-console && npm run monitor:sitemaps && npm run inspect:search-console -- --include-aliases --fail-on-unindexed --fail-on-canonical-mismatch && npm run report:search-console -- --days=90 --row-limit=50 --output=reports/search-console-latest.json --fail-on-empty",
     "verify:discovery": "node scripts/verify-discovery.cjs",
     "verify:seo-html": "node scripts/verify-static-seo.cjs"
   },

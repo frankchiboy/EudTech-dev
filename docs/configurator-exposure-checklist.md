@@ -25,7 +25,7 @@
 2. Configurator title, description, canonical URL, and JSON-LD.
 3. Home page SEO metadata focused on AI GPU server and configurator searches.
 4. Footer internal links to high-intent configurator entry points.
-5. `sitemap.xml`, `sitemap-index.xml`, `image-sitemap.xml`, and `robots.txt` for crawler discovery.
+5. `sitemap.xml`, `sitemap-index.xml`, `image-sitemap.xml`, `feed.xml`, and `robots.txt` for crawler discovery.
 6. Static route HTML generation for `/`, `/configurator`, `/configurator/:pid`, `/solutions`, and `/solutions/*`, so crawlers can read route-specific metadata and body content before JavaScript runs.
 7. Marketing attribution capture for `utm_*`, `gclid`, `fbclid`, LinkedIn click id, first landing page, and referrer.
 8. IndexNow key file and submit script for account-free URL discovery by participating search engines.
@@ -40,16 +40,16 @@
 17. Vercel uses rewrites instead of legacy wildcard routes so generated static HTML can be served before SPA fallback.
 18. `image-sitemap.xml` lists configurator and solution product images for image discovery.
 19. `sitemap-index.xml` groups the standard sitemap and image sitemap for crawler discovery.
-20. `npm run verify:discovery` checks that configurator product and solution URLs stay aligned across sitemap, RSS, llms.txt, image sitemap, sitemap index, and robots.txt.
+20. `npm run verify:discovery` checks that configurator product and solution URLs stay aligned across sitemap, RSS, llms.txt, image sitemap, sitemap index, and robots.txt, including the RSS feed as a sitemap-discoverable URL source.
 21. All 11 API-backed `/configurator/{id}` product routes emit quote-service JSON-LD instead of Product rich-result JSON-LD, avoiding fake public pricing and Google Product Summary errors.
 22. `npm run verify:seo-html` validates static JSON-LD coverage for configurator product pages and solution pages.
-23. `npm run submit:search-console` submits sitemap index, sitemap, and image sitemap to Google Search Console through API.
+23. `npm run submit:search-console` submits sitemap index, sitemap, image sitemap, and RSS feed to Google Search Console through API.
 24. `npm run inspect:search-console` checks high-intent configurator canonical URL index status through the URL Inspection API.
 25. Page URL signals are normalized to the production trailing-slash form across canonical tags, sitemap URLs, image sitemap page locs, RSS links, LLM discovery links, Open Graph URLs, and JSON-LD URLs.
 26. `npm run report:search-console` reads Search Console query, page, click, impression, CTR, and average-position data for configurator and solutions URLs.
 27. `npm run verify:live-exposure` validates production robots, sitemaps, RSS, llms.txt, redirects, canonical tags, Open Graph URLs, and JSON-LD for every configurator product page and solution page.
-28. `npm run monitor:sitemaps` checks Search Console sitemap health and fails when the expected sitemap index, standard sitemap, or image sitemap is missing, pending, stale, or has errors/warnings.
-29. `npm run exposure:postdeploy` runs live exposure verification, Search Console sitemap health, URL Inspection, and Search Analytics reporting after deployment, then writes `reports/search-console-latest.json`.
+28. `npm run monitor:sitemaps` checks Search Console sitemap health and fails when the expected sitemap index, standard sitemap, image sitemap, or RSS feed is missing, stale, or has errors/warnings; newly submitted pending files have a short grace window before last-download checks apply.
+29. `npm run exposure:postdeploy` runs live exposure verification, submits the current discovery files to Search Console, checks Search Console sitemap health, runs URL Inspection, and writes `reports/search-console-latest.json`.
 30. `npm run exposure:strict` fails when canonical URLs are not indexed or Search Analytics has no configurator/solutions rows.
 31. GitHub Actions `Public Exposure Checks` runs weekly and on demand without Google credentials, builds SEO assets, validates discovery/static SEO/live exposure, submits IndexNow URLs, and uploads run logs.
 32. Netlify Scheduled Function `exposure-scheduled` submits the production sitemap URLs to IndexNow weekly from the deployed site.
@@ -99,13 +99,15 @@
 76. `npm run clean:public-assets:safe-duplicates` removes only exact duplicate public files with zero detected references while keeping a same-hash canonical file.
 77. `npm run audit:public-assets:safe-duplicates` fails when unreferenced exact duplicate public files return.
 78. Netlify `_headers` gives `/build-meta.json` no-cache revalidation, discovery files hourly revalidation, social preview images one-day cache with stale revalidation, and immutable cache for hashed `/assets/*`; `verify:discovery` and `verify:live-exposure` both check the relevant rules.
-79. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, social images, promotion assets, configurator route coverage, public asset audit, safe-duplicate audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
+79. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, static SEO HTML, social images, promotion assets, strict configurator route coverage, public asset audit, safe-duplicate audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
 80. `npm run inspect:search-console` uses a per-URL request timeout and low concurrency for the Google URL Inspection API, so post-deploy checks fail with an actionable timeout instead of hanging indefinitely on one route or waiting on every URL serially.
 81. `npm run verify:scheduled-exposure` statically verifies that the Netlify scheduled exposure function exists, uses the expected weekly schedule, reads the sitemap, submits to IndexNow, and matches the public IndexNow key file.
+82. `feed.xml` is now included in `sitemap-index.xml`, declared in `robots.txt` with a `Sitemap:` line, submitted by `npm run submit:search-console`, and monitored by `npm run monitor:sitemaps`, so feed-based discovery is part of the same deploy verification path as XML sitemaps.
+83. React runtime metadata now uses the same `/social/configurator/*.jpg` social preview image path convention as the generated static SEO HTML, including `og:image:secure_url`, so hydration does not replace crawlable social metadata with raw product images.
 
 ## External Promotion Queue
 
-1. Google Search Console sitemap submission succeeded on 2026-06-29 07:44 Asia/Taipei for `sitemap-index.xml`, `sitemap.xml`, and `image-sitemap.xml`; `monitor:sitemaps` reports 0 errors and 0 warnings.
+1. Google Search Console sitemap submission should include `sitemap-index.xml`, `sitemap.xml`, `image-sitemap.xml`, and `feed.xml`; `monitor:sitemaps` reports errors, warnings, pending state, and stale downloads for all four discovery files.
 2. Start Google Ads exact/phrase match tests around quote-intent keywords.
 3. Start LinkedIn, Meta, and Microsoft Ads retargeting after traffic reaches stable volume and platform IDs are installed.
 4. Add case-oriented articles only after Search Console shows impressions.

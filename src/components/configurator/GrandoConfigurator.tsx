@@ -69,6 +69,7 @@ import { getMarketingAttribution, getMarketingAttributionEntries } from '../../u
 import { SITE_ORIGIN } from '../../data/configuratorSeoPages';
 import { getConfiguratorProductSeo } from '../../data/configuratorProductSeo';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
+import { getConfiguratorSocialPreviewPath, getConfiguratorSocialPreviewUrl } from '../../utils/seo/socialPreview';
 import SEOHead from '../common/SEOHead';
 import './Configurator.css';
 
@@ -181,7 +182,7 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
           '@type': 'Service',
           name: productSeo ? productSeo.title[language] : name,
           description: productSeo ? productSeo.description[language] : description,
-          image: `${SITE_ORIGIN}${productSeo?.image || '/grando-8gpu-server.jpg'}`,
+          image: getConfiguratorSocialPreviewUrl(`/configurator/${pid}`),
           url: canonicalUrl,
           provider: {
             ...eudTechOrganization
@@ -706,7 +707,7 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
             : 'Comino Grando 配置器, GPU 伺服器配置器, NVIDIA H200 伺服器, RTX PRO 6000 工作站, 台灣 AI 工作站, GPU 伺服器報價'
         }
         url={CONFIGURATOR_CANONICAL_URL}
-        image="/grando-8gpu-server.jpg"
+        image={getConfiguratorSocialPreviewPath('/configurator')}
         imageAlt={language === 'en' ? 'Comino Grando GPU server configurator' : 'Comino Grando GPU 伺服器配置器'}
         isEnglish={language === 'en'}
         structuredData={buildConfiguratorStructuredData(language)}
@@ -1593,7 +1594,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
             : 'GPU 伺服器報價, AI 工作站配置器, Comino Grando, NVIDIA GPU 伺服器, 液冷 GPU 伺服器, EudTech'
         }
         url={canonicalUrl}
-        image="/grando-8gpu-server.jpg"
+        image={getConfiguratorSocialPreviewPath(`/configurator/${pid}`)}
         imageAlt={detailTitle}
         isEnglish={language === 'en'}
         structuredData={buildConfiguratorStructuredData(language, pid, device || undefined)}

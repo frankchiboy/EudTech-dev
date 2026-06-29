@@ -51,6 +51,16 @@ function getCanonicalHref(html) {
   return html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["'][^>]*>/i)?.[1] || '';
 }
 
+function getRssAlternateHref(html) {
+  const links = [...html.matchAll(/<link\b[^>]*>/gi)].map((match) => match[0]);
+  const rssLink = links.find(
+    (tag) =>
+      /rel=["'][^"']*\balternate\b[^"']*["']/i.test(tag) &&
+      /type=["']application\/rss\+xml["']/i.test(tag)
+  );
+  return rssLink?.match(/href=["']([^"']+)["']/i)?.[1] || '';
+}
+
 function hasType(items, type) {
   return items.some((item) => item && item['@type'] === type);
 }
@@ -202,6 +212,7 @@ function assertSocialMeta(route) {
   const html = readRouteHtml(route.path);
   const jsonLd = collectJsonLd(route.path, html);
   const canonical = getCanonicalHref(html);
+  const rssAlternate = getRssAlternateHref(html);
   const description = getMetaContent(html, 'name', 'description');
   const robots = getMetaContent(html, 'name', 'robots');
   const ogTitle = getMetaContent(html, 'property', 'og:title');
@@ -226,6 +237,7 @@ function assertSocialMeta(route) {
   const expectedUrl = route.canonicalUrl;
 
   requireEqual(route.path, 'canonical', canonical, expectedUrl);
+  requireEqual(route.path, 'RSS alternate link', rssAlternate, `${new URL(expectedUrl).origin}/feed.xml`);
   requireEqual(route.path, 'og:url', ogUrl, expectedUrl);
   requireEqual(route.path, 'twitter:url', twitterUrl, expectedUrl);
   requireEqual(route.path, 'og:image', ogImage, route.socialImageUrl);

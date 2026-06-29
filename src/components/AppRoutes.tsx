@@ -20,6 +20,7 @@ import ConfiguratorSolutionsHubPage from './pages/ConfiguratorSolutionsHubPage';
 import MarketingEvents from './analytics/MarketingEvents';
 import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
 import { canonicalPageUrl } from '../utils/seo/canonicalUrl';
+import { getConfiguratorSocialPreviewPath } from '../utils/seo/socialPreview';
 
 const AppRoutes: React.FC = () => {
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
@@ -76,6 +77,8 @@ const AppRoutes: React.FC = () => {
                       : 'AI GPU 伺服器, GPU 伺服器報價, Comino Grando, NVIDIA H200 伺服器, RTX PRO 6000 工作站, 液冷 GPU 伺服器, 台灣 AI 工作站'
                   }
                   url="https://eudaemonia.tech/"
+                  image={getConfiguratorSocialPreviewPath('/')}
+                  imageAlt={isEnglish ? 'EudTech AI GPU servers and Comino configurator' : 'EudTech AI GPU 伺服器與 Comino 配置器'}
                   structuredData={homeStructuredData}
                   isEnglish={isEnglish}
                 />

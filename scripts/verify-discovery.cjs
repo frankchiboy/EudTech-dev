@@ -52,8 +52,8 @@ requireAll('llms-full.txt product ids', CONFIGURATOR_PRODUCT_SEO.map((product) =
   llmsFullText.includes(productId)
 );
 requireAll('llms-full.txt solution slugs', CONFIGURATOR_SEO_PAGES.map((page) => page.slug), (slug) => llmsFullText.includes(slug));
-requireAll('sitemap-index.xml', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`], (url) => sitemapIndexLocs.has(url));
-requireAll('robots.txt', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`, `${siteOrigin}/sitemap-index.xml`], (url) =>
+requireAll('sitemap-index.xml', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`, `${siteOrigin}/feed.xml`], (url) => sitemapIndexLocs.has(url));
+requireAll('robots.txt', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`, `${siteOrigin}/feed.xml`, `${siteOrigin}/sitemap-index.xml`], (url) =>
   robotsText.includes(`Sitemap: ${url}`)
 );
 requireAll('image-sitemap.xml page loc', socialPreviewRoutes.map((route) => route.canonicalUrl), (url) => imageSitemapPageLocs.has(url));

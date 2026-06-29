@@ -7,7 +7,8 @@ const userProject = process.env.GOOGLE_SEARCH_CONSOLE_QUOTA_PROJECT || 'personal
 const sitemaps = [
   'https://eudaemonia.tech/sitemap-index.xml',
   'https://eudaemonia.tech/sitemap.xml',
-  'https://eudaemonia.tech/image-sitemap.xml'
+  'https://eudaemonia.tech/image-sitemap.xml',
+  'https://eudaemonia.tech/feed.xml'
 ];
 
 async function submitSitemap(token, sitemap) {

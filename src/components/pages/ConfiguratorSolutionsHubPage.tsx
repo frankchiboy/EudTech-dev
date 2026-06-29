@@ -10,6 +10,7 @@ import {
 import SEOHead from '../common/SEOHead';
 import Footer from '../Footer';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
+import { getConfiguratorSocialPreviewPath, getConfiguratorSocialPreviewUrl } from '../../utils/seo/socialPreview';
 
 const getText = (value: { en: string; zh: string }, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
 const SITE_ROOT_URL = canonicalPageUrl(SITE_ORIGIN);
@@ -54,6 +55,7 @@ const buildStructuredData = (isEnglish: boolean) => {
       name,
       description,
       url: pageUrl,
+      image: getConfiguratorSocialPreviewUrl('/solutions'),
       publisher: {
         '@type': 'Organization',
         name: 'EudTech',
@@ -91,7 +93,7 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
         title={title}
         description={description}
         keywords={keywords}
-        image="/grando-8gpu-server.jpg"
+        image={getConfiguratorSocialPreviewPath('/solutions')}
         imageAlt={isEnglish ? 'EudTech configurator solutions for GPU server quotes' : 'EudTech GPU 伺服器報價配置器解決方案'}
         url={canonicalPageUrl(`${SITE_ORIGIN}/solutions`)}
         isEnglish={isEnglish}
