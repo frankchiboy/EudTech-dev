@@ -239,8 +239,8 @@ function buildReadySignals({ marketingEnv, externalAccess, searchConsole }) {
 function buildNextCommands() {
   return [
     `npm run verify:marketing-1password-item:strict -- --op-item "${marketingOnePasswordItemTitle}"`,
-    `npm run sync:marketing-platform-env -- --op-item "${marketingOnePasswordItemTitle}" --target netlify --dry-run`,
-    `npm run sync:marketing-platform-env -- --op-item "${marketingOnePasswordItemTitle}" --target github-actions --dry-run`,
+    `npm run sync:marketing-platform-env -- --op-item "${marketingOnePasswordItemTitle}" --target netlify --dry-run --fail-on-missing`,
+    `npm run sync:marketing-platform-env -- --op-item "${marketingOnePasswordItemTitle}" --target github-actions --dry-run --fail-on-missing`,
     'npm run audit:external-platform-access:strict',
     'npm run audit:exposure-readiness:strict',
     'npm run verify:live-exposure -- --expect-commit <sha> --wait-for-commit-ms 600000'
@@ -268,8 +268,8 @@ function buildMinimumFillOrder(blockers) {
       requiredFields: ['NETLIFY_AUTH_TOKEN', 'GH_TOKEN or GITHUB_TOKEN'],
       ready: !hasBlocking('netlify') && !hasBlocking('github_actions'),
       verify: [
-        `npm run sync:marketing-platform-env -- --op-item "${marketingOnePasswordItemTitle}" --target netlify --dry-run`,
-        `npm run sync:marketing-platform-env -- --op-item "${marketingOnePasswordItemTitle}" --target github-actions --dry-run`
+        `npm run sync:marketing-platform-env -- --op-item "${marketingOnePasswordItemTitle}" --target netlify --dry-run --fail-on-missing`,
+        `npm run sync:marketing-platform-env -- --op-item "${marketingOnePasswordItemTitle}" --target github-actions --dry-run --fail-on-missing`
       ]
     },
     {

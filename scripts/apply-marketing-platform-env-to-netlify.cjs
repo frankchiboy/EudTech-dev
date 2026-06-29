@@ -8,6 +8,8 @@ const {
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
+const allowPartial = args.includes('--allow-partial');
+const failOnMissing = args.includes('--fail-on-missing');
 const envFileIndex = args.indexOf('--env-file');
 const siteIndex = args.indexOf('--site');
 const authIndex = args.indexOf('--auth');
@@ -39,12 +41,27 @@ const envFile = path.resolve(args[envFileIndex + 1]);
 const envValues = parseEnvFile(envFile);
 const result = evaluateMarketingPlatformEnv(envValues);
 const invalidVariables = result.invalidVariables.filter((variable) => deployableVariableKeys.includes(variable.key));
+const readyForMarketingSync = result.ok && result.missingPlatforms.length === 0;
 
 if (invalidVariables.length > 0) {
   console.log(JSON.stringify({
     ok: false,
     error: 'Invalid marketing platform environment values',
     invalidVariables
+  }, null, 2));
+  process.exit(1);
+}
+
+if (result.missingPlatforms.length > 0 && (failOnMissing || (!dryRun && !allowPartial))) {
+  console.log(JSON.stringify({
+    ok: false,
+    error: 'Missing required marketing platform values',
+    dryRun,
+    allowPartial,
+    missingPlatforms: result.missingPlatforms,
+    nextAction: allowPartial
+      ? 'Fill the missing platform values before running strict exposure verification.'
+      : 'Fill the missing platform values, or pass --allow-partial only for an intentional partial Netlify sync.'
   }, null, 2));
   process.exit(1);
 }
@@ -212,5 +229,8 @@ console.log(JSON.stringify({
   envFile,
   applied,
   readback,
-  readiness: result
+  readiness: {
+    ...result,
+    readyForMarketingSync
+  }
 }, null, 2));

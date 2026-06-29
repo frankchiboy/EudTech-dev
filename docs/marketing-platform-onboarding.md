@@ -10,15 +10,15 @@ This document maps each external configurator exposure credential to the repo en
 4. Validate structure without printing values:
 
 ```bash
-npm run verify:marketing-1password-item -- --structure-only --op-item "EudTech Configurator Marketing Platforms"
+npm run verify:marketing-1password-item -- --structure-only --fail-on-missing --op-item "EudTech Configurator Marketing Platforms"
 ```
 
 5. Validate filled values before syncing:
 
 ```bash
 npm run verify:marketing-1password-item:strict -- --op-item "EudTech Configurator Marketing Platforms"
-npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target netlify --dry-run
-npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target github-actions --dry-run
+npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target netlify --dry-run --fail-on-missing
+npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target github-actions --dry-run --fail-on-missing
 ```
 
 ## Required Fields
@@ -83,9 +83,9 @@ After the 1Password item has real values:
 
 ```bash
 npm run verify:marketing-1password-item:strict -- --op-item "EudTech Configurator Marketing Platforms"
-npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target netlify --dry-run
+npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target netlify --dry-run --fail-on-missing
 npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target netlify
-npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target github-actions --dry-run
+npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target github-actions --dry-run --fail-on-missing
 npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target github-actions
 ```
 

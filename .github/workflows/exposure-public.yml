@@ -111,14 +111,14 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          npm run verify:marketing-platform-env | tee reports/verify-marketing-platform-env.log
+          npm run verify:marketing-platform-env:strict:readonly | tee reports/verify-marketing-platform-env.log
 
       - name: Verify 1Password marketing item structure
         if: env.OP_SERVICE_ACCOUNT_TOKEN != ''
         shell: bash
         run: |
           set -o pipefail
-          npm run verify:marketing-1password-item -- --structure-only --op-item "EudTech Configurator Marketing Platforms" | tee reports/verify-marketing-1password-item.log
+          npm run verify:marketing-1password-item -- --structure-only --fail-on-missing --op-item "EudTech Configurator Marketing Platforms" | tee reports/verify-marketing-1password-item.log
 
       - name: Audit external platform access
         shell: bash

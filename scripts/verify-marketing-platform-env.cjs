@@ -19,10 +19,14 @@ const result = evaluateMarketingPlatformEnv({
 });
 
 const missingBlocking = failOnMissing ? result.missingPlatforms : [];
+const formatOk = result.ok;
+const readyForMarketingSync = formatOk && result.missingPlatforms.length === 0;
 const output = {
   ...result,
+  formatOk,
+  readyForMarketingSync,
   failOnMissing,
-  ok: result.ok && missingBlocking.length === 0,
+  ok: formatOk && missingBlocking.length === 0,
   missingBlocking
 };
 

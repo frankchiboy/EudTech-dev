@@ -17,6 +17,8 @@ const missingSecrets = githubSecretKeys.filter((key) => (
 const expectedCommands = [
   'npm run audit:configurator-route-coverage:strict',
   'npm run audit:public-assets -- --write-report',
+  'npm run verify:marketing-platform-env:strict:readonly',
+  'npm run verify:marketing-1password-item -- --structure-only --fail-on-missing',
   'npm run audit:external-platform-access',
   'npm run audit:external-exposure-status',
   'npm run verify:live-exposure -- --expect-commit "$GITHUB_SHA" --wait-for-commit-ms 600000'

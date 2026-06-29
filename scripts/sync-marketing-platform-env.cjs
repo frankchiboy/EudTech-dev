@@ -29,6 +29,8 @@ function argValues(name) {
 
 const dryRun = args.includes('--dry-run');
 const force = args.includes('--force');
+const allowPartial = args.includes('--allow-partial');
+const failOnMissing = args.includes('--fail-on-missing');
 const envFile = argValue('--env-file');
 const opItem = argValue('--op-item');
 const vault = argValue('--vault', process.env.OP_VAULT || 'Automation');
@@ -249,6 +251,36 @@ const sourceValues = {
 };
 
 const platformReadiness = evaluateMarketingPlatformEnv(sourceValues);
+const deployTargetsSelected = selectedTargets.some((target) => ['netlify', 'github-actions'].includes(target));
+
+if (!platformReadiness.ok) {
+  console.log(JSON.stringify({
+    ok: false,
+    error: 'Invalid marketing platform environment values',
+    dryRun,
+    missingPlatforms: platformReadiness.missingPlatforms,
+    invalidVariables: platformReadiness.invalidVariables.map((item) => item.key)
+  }, null, 2));
+  process.exit(1);
+}
+
+if (
+  platformReadiness.missingPlatforms.length > 0
+  && (failOnMissing || (!dryRun && deployTargetsSelected && !allowPartial))
+) {
+  console.log(JSON.stringify({
+    ok: false,
+    error: 'Missing required marketing platform values',
+    dryRun,
+    allowPartial,
+    missingPlatforms: platformReadiness.missingPlatforms,
+    nextAction: allowPartial
+      ? 'Fill the missing platform values before running strict exposure verification.'
+      : 'Fill the missing platform values, or pass --allow-partial only for an intentional partial sync.'
+  }, null, 2));
+  process.exit(1);
+}
+
 const results = selectedTargets.map((target) => {
   if (target === 'env-file') return writeEnvFile(sourceValues);
   if (target === 'netlify') return applyNetlify(sourceValues);
@@ -265,6 +297,7 @@ console.log(JSON.stringify({
   },
   readiness: {
     ok: platformReadiness.ok,
+    readyForMarketingSync: platformReadiness.missingPlatforms.length === 0,
     missingPlatforms: platformReadiness.missingPlatforms,
     invalidVariables: platformReadiness.invalidVariables.map((item) => item.key)
   },
