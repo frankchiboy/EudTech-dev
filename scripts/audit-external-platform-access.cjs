@@ -361,11 +361,14 @@ function checkGoogleAdcScopes() {
     };
   });
   const missingScopes = scopeChecks.filter((scope) => !scope.ready).map((scope) => scope.scope);
+  const scopedTokenMintable = scopeChecks.some((scope) => scope.ready);
 
   return {
     ready: missingScopes.length === 0,
     gcloudInstalled: gcloudVersion.ok,
-    adcTokenMintable: adcBaseToken.ok && Boolean(adcBaseToken.stdout.trim()),
+    adcBaseTokenMintable: adcBaseToken.ok && Boolean(adcBaseToken.stdout.trim()),
+    adcTokenMintable: (adcBaseToken.ok && Boolean(adcBaseToken.stdout.trim())) || scopedTokenMintable,
+    scopedTokenMintable,
     activeAccount: activeAccount.ok ? activeAccount.stdout.trim() || null : null,
     quotaProject: quotaProject.ok ? quotaProject.stdout.trim() || null : null,
     configProject: configProject.ok ? configProject.stdout.trim() || null : null,
@@ -386,7 +389,7 @@ function checkGoogleAdcScopes() {
       .filter((scope) => scope.scope.includes('/adwords'))
       .every((scope) => scope.ready),
     scopeChecks,
-    error: adcBaseToken.ok ? undefined : firstErrorLine(adcBaseToken)
+    error: adcBaseToken.ok || scopedTokenMintable ? undefined : firstErrorLine(adcBaseToken)
   };
 }
 
@@ -1083,6 +1086,13 @@ async function createReport() {
     github: checkGithubMarketingConfig(),
     onePassword: checkOnePasswordMarketingItems()
   };
+  const googleAdcWorksWithoutBrokenCredentialPath = checks.googleCredentialEnv.isBrokenPath && checks.googleAdcScopes.scopedTokenMintable;
+  if (googleAdcWorksWithoutBrokenCredentialPath) {
+    checks.googleCredentialEnv.ready = true;
+    checks.googleCredentialEnv.blocksAdc = false;
+    checks.googleCredentialEnv.adcWorkaroundUsed = true;
+    checks.googleCredentialEnv.warning = 'GOOGLE_APPLICATION_CREDENTIALS points to a missing file, but Google ADC probes can continue after unsetting it in child processes.';
+  }
   checks.googleAdsDeveloperToken = await checkGoogleAdsDeveloperToken();
   checks.googleAnalytics = await checkGoogleAnalyticsAccess();
   checks.googleTagManager = await checkGoogleTagManagerAccess();

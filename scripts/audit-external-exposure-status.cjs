@@ -259,6 +259,7 @@ function buildMinimumFillOrder(blockers) {
   const groups = blockersByArea(blockers);
   const hasBlocking = (area) => (groups[area] || []).some((blocker) => blocker.severity === 'blocking');
   const hasWarning = (area) => (groups[area] || []).some((blocker) => blocker.severity === 'warning');
+  const googleCredentialEnvNeedsRepair = hasWarning('google_adc');
 
   return [
     {
@@ -329,9 +330,11 @@ function buildMinimumFillOrder(blockers) {
     {
       step: 4,
       name: 'Repair Google ADC environment for generic probes',
-      reason: 'The current shell can read Search Console, but the broken credential path and missing scopes block Analytics, GTM, and Ads ADC probes.',
+      reason: googleCredentialEnvNeedsRepair
+        ? 'The current shell can read Search Console, but the broken credential path and missing scopes block Analytics, GTM, and Ads ADC probes.'
+        : 'Search Console scope is usable after the audit unsets the stale credential path; Analytics, GTM, and Ads scopes are still missing.',
       requiredFields: [
-        'Unset or replace broken GOOGLE_APPLICATION_CREDENTIALS',
+        ...(googleCredentialEnvNeedsRepair ? ['Unset or replace broken GOOGLE_APPLICATION_CREDENTIALS'] : []),
         'Analytics, Tag Manager, and Ads OAuth scopes, or explicit platform access tokens'
       ],
       ready: !hasWarning('google_adc') && !hasBlocking('google_adc_scopes'),
