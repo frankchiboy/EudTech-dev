@@ -64,7 +64,7 @@
 41. The legacy `AnalyticsService` no longer posts to the unavailable `/api/analytics` path; supported analytics events now use the same first-party Netlify Function endpoint.
 42. `npm run apply:marketing-platform-env:netlify -- --env-file <file>` validates marketing platform IDs, then writes them to Netlify production build environment when `NETLIFY_AUTH_TOKEN` is available.
 43. `npm run audit:external-platform-access` writes `reports/external-platform-access.json` with Netlify, Google ADC, Google Ads, LinkedIn, Meta, Microsoft Ads, GitHub, and 1Password access readiness for external tracking setup.
-44. `npm run audit:external-exposure-status` combines marketing env readiness, external platform access probes, and Search Console performance reports into `reports/external-exposure-status.md` and `.json`.
+44. `npm run audit:external-exposure-status` combines marketing env readiness, external platform access probes, and Search Console performance reports into `reports/external-exposure-status.md` and `.json`, including the minimum fill order for Netlify/GitHub write access, browser tracking IDs, platform API credentials, Google ADC repair, and production verification.
 45. `npm run generate:promotion-assets` also creates Google Ads Editor keyword imports, search ad copy, complete organic posts, and LinkedIn URL tracking parameter sheets.
 46. `npm run audit:exposure-readiness` verifies organic copy coverage, Google Ads Editor keyword coverage, search ad copy length validity, and LinkedIn URL parameter coverage.
 47. `npm run generate:social-images` creates dedicated route-differentiated 1200x630 JPEG social preview images for every configurator product and solution landing page.

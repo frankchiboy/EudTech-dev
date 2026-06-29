@@ -247,10 +247,121 @@ function buildNextCommands() {
   ];
 }
 
+function blockersByArea(blockers) {
+  return blockers.reduce((groups, blocker) => {
+    groups[blocker.area] = groups[blocker.area] || [];
+    groups[blocker.area].push(blocker);
+    return groups;
+  }, {});
+}
+
+function buildMinimumFillOrder(blockers) {
+  const groups = blockersByArea(blockers);
+  const hasBlocking = (area) => (groups[area] || []).some((blocker) => blocker.severity === 'blocking');
+  const hasWarning = (area) => (groups[area] || []).some((blocker) => blocker.severity === 'warning');
+
+  return [
+    {
+      step: 1,
+      name: 'Unlock deployment writes',
+      reason: 'Netlify and GitHub write access are needed before platform IDs can be deployed and CI can reuse the same values.',
+      requiredFields: ['NETLIFY_AUTH_TOKEN', 'GH_TOKEN or GITHUB_TOKEN'],
+      ready: !hasBlocking('netlify') && !hasBlocking('github_actions'),
+      verify: [
+        `npm run sync:marketing-platform-env -- --op-item "${marketingOnePasswordItemTitle}" --target netlify --dry-run`,
+        `npm run sync:marketing-platform-env -- --op-item "${marketingOnePasswordItemTitle}" --target github-actions --dry-run`
+      ]
+    },
+    {
+      step: 2,
+      name: 'Fill browser-side tracking IDs',
+      reason: 'These IDs enable front-end page view, retargeting, and quote conversion signals after the next production build.',
+      requiredFields: [
+        'VITE_GTM_ID or VITE_GA_MEASUREMENT_ID',
+        'VITE_GOOGLE_ADS_ID',
+        'VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL',
+        'VITE_LINKEDIN_PARTNER_ID',
+        'VITE_LINKEDIN_QUOTE_CONVERSION_ID',
+        'VITE_META_PIXEL_ID',
+        'VITE_MICROSOFT_UET_TAG_ID'
+      ],
+      ready: !hasBlocking('tracking_env'),
+      verify: [
+        `npm run verify:marketing-1password-item:strict -- --op-item "${marketingOnePasswordItemTitle}"`,
+        'npm run audit:exposure-readiness:strict'
+      ]
+    },
+    {
+      step: 3,
+      name: 'Fill external platform API read credentials',
+      reason: 'Read probes prove the account, ad account, container, property, Pixel, and UET objects are actually accessible.',
+      requiredFields: [
+        'GOOGLE_ANALYTICS_PROPERTY_ID',
+        'GOOGLE_TAG_MANAGER_ACCOUNT_ID',
+        'GOOGLE_ADS_DEVELOPER_TOKEN',
+        'GOOGLE_ADS_CUSTOMER_ID',
+        'GOOGLE_ADS_ACCESS_TOKEN or Google ADC adwords scope',
+        'GOOGLE_ANALYTICS_ACCESS_TOKEN or Google ADC analytics scope',
+        'GOOGLE_TAG_MANAGER_ACCESS_TOKEN or Google ADC tagmanager scope',
+        'LINKEDIN_ACCESS_TOKEN',
+        'LINKEDIN_ORGANIZATION_ID',
+        'LINKEDIN_AD_ACCOUNT_ID',
+        'META_ACCESS_TOKEN',
+        'META_AD_ACCOUNT_ID',
+        'META_PIXEL_ID or VITE_META_PIXEL_ID',
+        'MICROSOFT_ADS_DEVELOPER_TOKEN',
+        'MICROSOFT_ADS_CUSTOMER_ID',
+        'MICROSOFT_ADS_ACCOUNT_ID',
+        'MICROSOFT_ADS_REFRESH_TOKEN',
+        'MICROSOFT_ADS_ACCESS_TOKEN',
+        'MICROSOFT_UET_TAG_ID or VITE_MICROSOFT_UET_TAG_ID'
+      ],
+      ready: [
+        'google_analytics_api',
+        'google_tag_manager_api',
+        'google_ads_api',
+        'linkedin_api',
+        'meta_api',
+        'microsoft_ads_api'
+      ].every((area) => !hasBlocking(area)),
+      verify: ['npm run audit:external-platform-access:strict']
+    },
+    {
+      step: 4,
+      name: 'Repair Google ADC environment for generic probes',
+      reason: 'The current shell can read Search Console, but the broken credential path and missing scopes block Analytics, GTM, and Ads ADC probes.',
+      requiredFields: [
+        'Unset or replace broken GOOGLE_APPLICATION_CREDENTIALS',
+        'Analytics, Tag Manager, and Ads OAuth scopes, or explicit platform access tokens'
+      ],
+      ready: !hasWarning('google_adc') && !hasBlocking('google_adc_scopes'),
+      verify: ['npm run audit:external-platform-access:strict']
+    },
+    {
+      step: 5,
+      name: 'Deploy and prove production exposure',
+      reason: 'After values are filled and synced, production must rebuild before browser tracking tags and conversion events can be verified.',
+      requiredFields: ['Deployed commit on Netlify production'],
+      ready: blockers.filter((blocker) => blocker.severity === 'blocking').length === 0,
+      verify: [
+        'npm run verify:live-exposure -- --expect-commit <sha> --wait-for-commit-ms 600000',
+        'npm run audit:external-exposure-status:strict'
+      ]
+    }
+  ];
+}
+
 function renderMarkdown(result) {
   const blockerRows = result.blockers.length
     ? result.blockers.map((blocker) => `| ${blocker.area} | ${blocker.severity} | ${blocker.name} | ${blocker.missing.join(', ')} | ${blocker.nextAction} |`)
     : ['| none | ready | No blocker detected |  | Keep post-deploy verification active. |'];
+  const fillRows = result.minimumFillOrder.map((item) => [
+    item.step,
+    item.ready ? 'ready' : 'needs action',
+    item.name,
+    item.requiredFields.join(', '),
+    item.verify.map((command) => `\`${command}\``).join('<br>')
+  ].join(' | '));
 
   return [
     '# External Exposure Status',
@@ -269,6 +380,12 @@ function renderMarkdown(result) {
     '|---|---|---|---|---|',
     ...blockerRows,
     '',
+    '## Minimum Fill Order',
+    '',
+    '| Step | Status | Action | Required fields | Verify |',
+    '|---|---|---|---|---|',
+    ...fillRows.map((row) => `| ${row} |`),
+    '',
     '## Next Commands',
     '',
     ...result.nextCommands.map((command) => `- \`${command}\``),
@@ -282,6 +399,7 @@ const searchConsole = readJsonReport('search-console-latest.json');
 const blockers = buildBlockers({ marketingEnv, externalAccess, searchConsole });
 const readySignals = buildReadySignals({ marketingEnv, externalAccess, searchConsole });
 const blockingItems = blockers.filter((blocker) => blocker.severity === 'blocking');
+const minimumFillOrder = buildMinimumFillOrder(blockers);
 const result = {
   ok: !failOnMissing || blockingItems.length === 0,
   ready: blockingItems.length === 0,
@@ -294,6 +412,7 @@ const result = {
   },
   readySignals,
   blockers,
+  minimumFillOrder,
   nextCommands: buildNextCommands()
 };
 
