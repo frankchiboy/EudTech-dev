@@ -10,6 +10,12 @@ const {
 const distDir = path.resolve(__dirname, '..', 'dist');
 const { CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const expectedRoutes = getConfiguratorSocialPreviewRoutes();
+const MIN_STATIC_SEO_TEXT_LENGTH = 760;
+const MIN_STATIC_SEO_HIGHLIGHTS = 3;
+const MIN_STATIC_SEO_SPEC_ROWS = 3;
+const MIN_STATIC_SEO_CHECKLIST_ITEMS = 3;
+const MIN_STATIC_SEO_FAQ_ITEMS = 2;
+const MIN_STATIC_SEO_RELATED_LINKS = 4;
 
 function readRouteHtml(routePath) {
   const htmlPath = path.join(distDir, ...routePath.split('/').filter(Boolean), 'index.html');
@@ -99,14 +105,64 @@ function relatedInternalLinks(html) {
     }));
 }
 
-function assertStaticSeoFallback(route) {
+function staticSection(html, id) {
+  return html.match(new RegExp(`<section[^>]+aria-labelledby=["']${id}["'][\\s\\S]*?<\\/section>`, 'i'))?.[0] || '';
+}
+
+function htmlText(value) {
+  return value
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function listItemCount(html, sectionId) {
+  return [...staticSection(html, sectionId).matchAll(/<li\b/gi)].length;
+}
+
+function tableRowCount(html, sectionId) {
+  return [...staticSection(html, sectionId).matchAll(/<tr\b/gi)].length;
+}
+
+function visibleFaqQuestions(html) {
+  return [...staticSection(html, 'static-seo-faq').matchAll(/<li\b[^>]*>\s*<strong>([\s\S]*?)<\/strong>/gi)]
+    .map((match) => htmlText(match[1]))
+    .filter(Boolean);
+}
+
+function requireAtLeast(routePath, label, actual, expected) {
+  if (actual < expected) {
+    throw new Error(`${routePath} static SEO ${label} needs at least ${expected}; found ${actual}.`);
+  }
+}
+
+function assertFaqSchema(routePath, questions, items) {
+  const faqSchema = findType(items, 'FAQPage');
+  if (!faqSchema) {
+    throw new Error(`${routePath} missing FAQPage JSON-LD for visible static SEO FAQs.`);
+  }
+
+  const schemaQuestions = (faqSchema.mainEntity || []).map((item) => item.name).filter(Boolean);
+  requireAtLeast(routePath, 'FAQ schema entries', schemaQuestions.length, MIN_STATIC_SEO_FAQ_ITEMS);
+
+  const missingQuestions = questions.filter((question) => !schemaQuestions.includes(question));
+  if (missingQuestions.length > 0) {
+    throw new Error(`${routePath} FAQPage JSON-LD is missing visible FAQ questions: ${missingQuestions.join(', ')}`);
+  }
+}
+
+function assertStaticSeoFallback(route, jsonLd) {
   const html = readRouteHtml(route.path);
   if (!html.includes('data-static-seo-fallback')) {
     throw new Error(`${route.path} missing static SEO body fallback.`);
   }
 
   const text = bodyText(html);
-  if (text.length < 220) {
+  if (text.length < MIN_STATIC_SEO_TEXT_LENGTH) {
     throw new Error(`${route.path} static SEO body fallback is too short: ${text.length} characters.`);
   }
 
@@ -118,9 +174,17 @@ function assertStaticSeoFallback(route) {
     throw new Error(`${route.path} static SEO body fallback missing quote contact email.`);
   }
 
+  requireAtLeast(route.path, 'highlight items', listItemCount(html, 'static-seo-highlights'), MIN_STATIC_SEO_HIGHLIGHTS);
+  requireAtLeast(route.path, 'spec rows', tableRowCount(html, 'static-seo-specs'), MIN_STATIC_SEO_SPEC_ROWS);
+  requireAtLeast(route.path, 'checklist items', listItemCount(html, 'static-seo-checklist'), MIN_STATIC_SEO_CHECKLIST_ITEMS);
+
+  const faqQuestions = visibleFaqQuestions(html);
+  requireAtLeast(route.path, 'FAQ items', faqQuestions.length, MIN_STATIC_SEO_FAQ_ITEMS);
+  assertFaqSchema(route.path, faqQuestions, jsonLd);
+
   const links = relatedInternalLinks(html);
-  if (links.length < 3) {
-    throw new Error(`${route.path} static SEO body fallback needs at least 3 related internal links; found ${links.length}.`);
+  if (links.length < MIN_STATIC_SEO_RELATED_LINKS) {
+    throw new Error(`${route.path} static SEO body fallback needs at least ${MIN_STATIC_SEO_RELATED_LINKS} related internal links; found ${links.length}.`);
   }
 
   const invalidLinks = links.filter((link) => !link.href.startsWith('https://eudaemonia.tech/') || !link.text);
@@ -136,6 +200,7 @@ function assertStaticSeoFallback(route) {
 
 function assertSocialMeta(route) {
   const html = readRouteHtml(route.path);
+  const jsonLd = collectJsonLd(route.path, html);
   const canonical = getCanonicalHref(html);
   const description = getMetaContent(html, 'name', 'description');
   const robots = getMetaContent(html, 'name', 'robots');
@@ -179,7 +244,7 @@ function assertSocialMeta(route) {
   requireNonEmpty(route.path, 'og:description', ogDescription);
   requireNonEmpty(route.path, 'twitter:title', twitterTitle);
   requireNonEmpty(route.path, 'twitter:description', twitterDescription);
-  assertStaticSeoFallback(route);
+  assertStaticSeoFallback(route, jsonLd);
 
   if (!/index/i.test(robots) || !/follow/i.test(robots)) {
     throw new Error(`${route.path} robots meta should include index, follow.`);
@@ -190,7 +255,7 @@ function assertSocialMeta(route) {
     requireNonEmpty(route.path, 'article:modified_time', articleModifiedTime);
   }
 
-  return { html, jsonLd: collectJsonLd(route.path, html) };
+  return { html, jsonLd };
 }
 
 function assertWebPageSchema(routePath, expectedUrl, expectedImage, items) {

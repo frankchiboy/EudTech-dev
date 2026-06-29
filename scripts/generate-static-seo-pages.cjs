@@ -410,7 +410,8 @@ function staticSeoFallbackStyle() {
         list-style: none;
       }
       .static-seo-grid li,
-      .static-seo-faq li {
+      .static-seo-faq li,
+      .static-seo-checklist li {
         border: 1px solid #d1d5db;
         border-radius: 8px;
         padding: 14px 16px;
@@ -441,6 +442,15 @@ function staticSeoFallbackStyle() {
         margin: 0;
         padding: 0;
         list-style: none;
+      }
+      .static-seo-copy {
+        max-width: 860px;
+      }
+      .static-seo-checklist {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding-left: 20px;
       }
       .static-seo-faq strong { display: block; margin-bottom: 6px; color: #111827; }
       .static-seo-related {
@@ -501,6 +511,8 @@ function productRelatedLinks(product) {
     product.keywords.en
   ].join(' ').toLowerCase();
   const links = [
+    routeLink('/configurator', 'Comino Grando 配置器總覽'),
+    routeLink('/solutions', '配置器解決方案總覽'),
     routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
     routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表')
   ];
@@ -534,6 +546,108 @@ function solutionRelatedLinks(page) {
   return dedupeLinks(links).slice(0, 4);
 }
 
+function compactList(values) {
+  return values.map((value) => String(value || '').trim()).filter(Boolean);
+}
+
+function routeKeywords(route) {
+  return compactList(String(route.keywords || '').split(',')).slice(0, 4);
+}
+
+function routeSpecSummary(specs) {
+  return specs
+    .slice(0, 4)
+    .map((spec) => `${spec.label}：${spec.value}`)
+    .join('；');
+}
+
+function routeStaticCopy(route, specs, highlights) {
+  const keywords = routeKeywords(route);
+  const specSummary = routeSpecSummary(specs);
+  const firstHighlight = highlights[0] || route.lead || route.description;
+  const quoteText = route.quoteHref
+    ? '送出詢價時會帶入目前配置連結與表單聯絡資料，方便 EudTech 後續確認正式規格與報價。'
+    : '此頁提供進入配置器與相關採購頁面的路徑，便於後續整理詢價需求。';
+
+  return compactList([
+    `${route.title} 是 EudTech 針對 ${keywords.length ? keywords.join('、') : 'AI GPU 伺服器與工作站需求'} 建立的配置與詢價入口，重點是讓技術規格、採購語境與可分享連結集中在同一個頁面。`,
+    specSummary ? `頁面目前可直接讀取的規格重點包含 ${specSummary}。這些內容可協助採購、IT 與研發團隊在開啟互動配置器前先完成初步判斷。` : '',
+    `${firstHighlight} ${quoteText}`,
+    '本頁不顯示公開售價或預估價格；正式金額、交期與供應條件需依實際配置與需求，由 EudTech 以正式報價回覆確認。'
+  ]);
+}
+
+function routeUseCases(route, specs, highlights) {
+  const gpuSpec = specs.find((spec) => /GPU|顯示|圖形/i.test(spec.label)) || specs[0];
+  const platformSpec = specs.find((spec) => /CPU|平台|機構|型態/i.test(spec.label)) || specs[1];
+  const bestFitSpec = specs.find((spec) => /適合|Best fit|需求/i.test(spec.label)) || specs[2];
+
+  return compactList([
+    gpuSpec ? `需要先確認 ${gpuSpec.label} 為 ${gpuSpec.value} 的 GPU 伺服器、AI 工作站或整合套件採購。` : '',
+    platformSpec ? `需要把 ${platformSpec.label}、記憶體、儲存、電源與網路選項放在同一次規格審查中。` : '',
+    bestFitSpec ? `適合以「${bestFitSpec.value}」作為初步需求輪廓，再進入配置器確認細節。` : '',
+    highlights[1] ? `${highlights[1]}` : ''
+  ]).slice(0, 4);
+}
+
+function routeQuoteChecklist(route, specs) {
+  const specLabels = specs.slice(0, 4).map((spec) => spec.label).join('、');
+
+  return compactList([
+    specLabels ? `確認 ${specLabels} 是否已符合採購或專案需求。` : '確認 GPU、CPU、記憶體、儲存、電源與網路需求是否已整理完成。',
+    route.configuratorHref ? '開啟配置器後保留目前選項與可分享連結，避免規格溝通時版本不一致。' : '',
+    route.quoteHref ? '使用取得報價流程送出聯絡資料、公司資訊、備註與配置連結。' : '',
+    '送出後由 EudTech 透過 info@eudaemonia.tech 追蹤正式報價，不以此靜態頁面上的文字取代正式報價單。'
+  ]);
+}
+
+function routeFaqs(route, specs = []) {
+  const configuredFaqs = (route.faq || []).filter(([question, answer]) => question && answer);
+  const specLabels = specs.slice(0, 4).map((spec) => spec.label).join('、');
+  const generatedFaqs = [
+    [
+      `${route.title} 的詢價會包含哪些資訊？`,
+      specLabels
+        ? `詢價會包含目前頁面的配置連結、${specLabels} 等已選或已整理的資訊，以及使用者在表單中提供的聯絡資料。`
+        : '詢價會包含目前頁面的配置連結、已選硬體資訊，以及使用者在表單中提供的聯絡資料。'
+    ],
+    [
+      `${route.title} 是否有公開價格？`,
+      '沒有。本頁不顯示預估價格或公開售價；正式報價會依實際配置、採購需求與供應條件由 EudTech 回覆確認。'
+    ],
+    [
+      `${route.title} 適合台灣採購流程使用嗎？`,
+      '適合。此頁保留中文搜尋內容、配置器入口、詢價連結與 EudTech 聯絡信箱，便於台灣企業、研究單位與採購團隊整理需求。'
+    ]
+  ];
+  const seen = new Set();
+
+  return [...configuredFaqs, ...generatedFaqs].filter(([question]) => {
+    if (seen.has(question)) {
+      return false;
+    }
+    seen.add(question);
+    return true;
+  }).slice(0, 4);
+}
+
+function faqSchema(route) {
+  const faqs = routeFaqs(route, (route.specs || []).filter((spec) => spec.label && spec.value));
+  if (!faqs.length) {
+    return undefined;
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(([question, answer]) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: answer }
+    }))
+  };
+}
+
 function staticSeoFallback(route) {
   const links = dedupeLinks([
     route.configuratorHref ? { label: '開啟配置器', href: pageUrl(route.configuratorHref) } : null,
@@ -543,7 +657,10 @@ function staticSeoFallback(route) {
   const relatedLinks = dedupeLinks(route.relatedLinks || []);
   const highlights = (route.highlights || []).filter(Boolean);
   const specs = (route.specs || []).filter((spec) => spec.label && spec.value);
-  const faqs = (route.faq || []).filter(([question, answer]) => question && answer);
+  const copy = routeStaticCopy(route, specs, highlights);
+  const useCases = routeUseCases(route, specs, highlights);
+  const checklist = routeQuoteChecklist(route, specs);
+  const faqs = routeFaqs(route, specs);
 
   return `<main class="static-seo-fallback" data-static-seo-fallback>
       <section aria-labelledby="static-seo-title">
@@ -553,6 +670,12 @@ function staticSeoFallback(route) {
         <nav class="static-seo-actions" aria-label="配置器曝光入口">
           ${links.map((link) => `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>`).join('\n          ')}
         </nav>
+      </section>
+      <section aria-labelledby="static-seo-overview">
+        <h2 id="static-seo-overview">配置與詢價說明</h2>
+        <div class="static-seo-copy">
+          ${copy.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('\n          ')}
+        </div>
       </section>
       ${
         highlights.length
@@ -573,6 +696,26 @@ function staticSeoFallback(route) {
             ${specs.map((spec) => `<tr><th scope="row">${escapeHtml(spec.label)}</th><td>${escapeHtml(spec.value)}</td></tr>`).join('\n            ')}
           </tbody>
         </table>
+      </section>`
+          : ''
+      }
+      ${
+        useCases.length
+          ? `<section aria-labelledby="static-seo-use-cases">
+        <h2 id="static-seo-use-cases">適用情境</h2>
+        <ul class="static-seo-grid">
+          ${useCases.map((item) => `<li>${escapeHtml(item)}</li>`).join('\n          ')}
+        </ul>
+      </section>`
+          : ''
+      }
+      ${
+        checklist.length
+          ? `<section aria-labelledby="static-seo-checklist">
+        <h2 id="static-seo-checklist">詢價前檢核</h2>
+        <ol class="static-seo-checklist">
+          ${checklist.map((item) => `<li>${escapeHtml(item)}</li>`).join('\n          ')}
+        </ol>
       </section>`
           : ''
       }
@@ -640,7 +783,7 @@ function webPageSchema(route, { title, url, image, imageAlt }) {
 
 function routeSchema(route) {
   if (route.schema) {
-    return route.schema;
+    return [...route.schema, faqSchema(route)].filter(Boolean);
   }
 
   const url = pageUrl(route.path);
@@ -686,16 +829,8 @@ function routeSchema(route) {
               }
             : undefined
         },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: (route.faq || []).map(([question, answer]) => ({
-        '@type': 'Question',
-        name: question,
-        acceptedAnswer: { '@type': 'Answer', text: answer }
-      }))
-    }
-  ];
+    faqSchema(route)
+  ].filter(Boolean);
 }
 
 function verificationTags() {

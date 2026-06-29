@@ -187,7 +187,7 @@ Configurator 曝光主線集中在以下入口：
 | Supermicro 與 Comino GPU 伺服器比較 | `/solutions/supermicro-comino-gpu-server-comparison` |
 | 台灣 AI 推論伺服器 | `/solutions/ai-inference-server-taiwan` |
 
-建置時會先執行 `scripts/generate-discovery-files.cjs`，再執行 `scripts/generate-static-seo-pages.cjs`。`/configurator/{id}`、`/solutions` 與 `/solutions/*` 的頁面資料會同步產生 sitemap、RSS、llms.txt 與 route 專屬靜態 HTML。這些 HTML 會直接包含 title、description、canonical、Open Graph、Twitter Card、JSON-LD，讓 crawler 在 JavaScript 執行前也能讀到正確內容。
+建置時會先執行 `scripts/generate-discovery-files.cjs`，再執行 `scripts/generate-static-seo-pages.cjs`。`/configurator/{id}`、`/solutions` 與 `/solutions/*` 的頁面資料會同步產生 sitemap、RSS、llms.txt 與 route 專屬靜態 HTML。這些 HTML 會直接包含 title、description、canonical、Open Graph、Twitter Card、JSON-LD，以及至少 760 字的可見 fallback 內容，讓 crawler 在 JavaScript 執行前也能讀到配置說明、規格、適用情境、詢價檢核、FAQ 與相關內部連結。
 
 公開發現檔案：
 

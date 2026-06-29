@@ -29,6 +29,12 @@ const requiredDiscoveryUrls = [
   `${siteOrigin}/llms.txt`,
   `${siteOrigin}/llms-full.txt`
 ];
+const MIN_STATIC_SEO_TEXT_LENGTH = 760;
+const MIN_STATIC_SEO_HIGHLIGHTS = 3;
+const MIN_STATIC_SEO_SPEC_ROWS = 3;
+const MIN_STATIC_SEO_CHECKLIST_ITEMS = 3;
+const MIN_STATIC_SEO_FAQ_ITEMS = 2;
+const MIN_STATIC_SEO_RELATED_LINKS = 4;
 
 function unique(values) {
   return [...new Set(values)];
@@ -144,6 +150,43 @@ function bodyText(html) {
     .replace(/&#39;|&apos;/g, "'")
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+function staticSection(html, id) {
+  return html.match(new RegExp(`<section[^>]+aria-labelledby=["']${id}["'][\\s\\S]*?<\\/section>`, 'i'))?.[0] || '';
+}
+
+function listItemCount(html, sectionId) {
+  return [...staticSection(html, sectionId).matchAll(/<li\b/gi)].length;
+}
+
+function tableRowCount(html, sectionId) {
+  return [...staticSection(html, sectionId).matchAll(/<tr\b/gi)].length;
+}
+
+function relatedInternalLinks(html) {
+  return [...staticSection(html, 'static-seo-related').matchAll(/<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)]
+    .map((match) => ({
+      href: match[1],
+      text: match[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+    }));
+}
+
+function htmlText(value) {
+  return value
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function visibleFaqQuestions(html) {
+  return [...staticSection(html, 'static-seo-faq').matchAll(/<li\b[^>]*>\s*<strong>([\s\S]*?)<\/strong>/gi)]
+    .map((match) => htmlText(match[1]))
+    .filter(Boolean);
 }
 
 function getMetaContent(html, selector) {
@@ -330,6 +373,13 @@ async function checkPages(errors) {
     const expectedPageType = new URL(url).pathname === '/solutions/' ? 'CollectionPage' : 'WebPage';
     const pageSchema = jsonLd.find((item) => item['@type'] === expectedPageType);
     const staticBodyText = bodyText(html);
+    const staticHighlights = listItemCount(html, 'static-seo-highlights');
+    const staticSpecRows = tableRowCount(html, 'static-seo-specs');
+    const staticChecklistItems = listItemCount(html, 'static-seo-checklist');
+    const staticFaqQuestions = visibleFaqQuestions(html);
+    const staticRelatedLinks = relatedInternalLinks(html);
+    const faqSchema = jsonLd.find((item) => item['@type'] === 'FAQPage');
+    const faqSchemaQuestions = (faqSchema?.mainEntity || []).map((item) => item.name).filter(Boolean);
 
     pages.push({
       url,
@@ -341,7 +391,12 @@ async function checkPages(errors) {
       twitterImage,
       jsonLdTypes: jsonLd.map((item) => item['@type']).filter(Boolean),
       pageSchemaType: pageSchema?.['@type'] || null,
-      staticSeoBodyTextLength: staticBodyText.length
+      staticSeoBodyTextLength: staticBodyText.length,
+      staticSeoHighlights: staticHighlights,
+      staticSeoSpecRows: staticSpecRows,
+      staticSeoChecklistItems: staticChecklistItems,
+      staticSeoFaqItems: staticFaqQuestions.length,
+      staticSeoRelatedLinks: staticRelatedLinks.length
     });
 
     assert(result.status === 200, errors, `${url} should return HTTP 200.`);
@@ -361,11 +416,21 @@ async function checkPages(errors) {
     assert(description.length > 40, errors, `${url} meta description is missing or too short.`);
     assert(/index/i.test(robots) && /follow/i.test(robots), errors, `${url} robots meta should include index, follow.`);
     assert(html.includes('data-static-seo-fallback'), errors, `${url} missing static SEO body fallback.`);
-    assert(staticBodyText.length >= 220, errors, `${url} static SEO body fallback is too short: ${staticBodyText.length}.`);
+    assert(staticBodyText.length >= MIN_STATIC_SEO_TEXT_LENGTH, errors, `${url} static SEO body fallback is too short: ${staticBodyText.length}.`);
     assert(!socialPreview?.title || staticBodyText.includes(socialPreview.title), errors, `${url} static SEO body fallback missing route title.`);
     assert(staticBodyText.includes('info@eudaemonia.tech'), errors, `${url} static SEO body fallback missing quote contact email.`);
+    assert(staticHighlights >= MIN_STATIC_SEO_HIGHLIGHTS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_HIGHLIGHTS} highlights; found ${staticHighlights}.`);
+    assert(staticSpecRows >= MIN_STATIC_SEO_SPEC_ROWS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_SPEC_ROWS} spec rows; found ${staticSpecRows}.`);
+    assert(staticChecklistItems >= MIN_STATIC_SEO_CHECKLIST_ITEMS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_CHECKLIST_ITEMS} checklist items; found ${staticChecklistItems}.`);
+    assert(staticFaqQuestions.length >= MIN_STATIC_SEO_FAQ_ITEMS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_FAQ_ITEMS} FAQ items; found ${staticFaqQuestions.length}.`);
+    assert(staticRelatedLinks.length >= MIN_STATIC_SEO_RELATED_LINKS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_RELATED_LINKS} related links; found ${staticRelatedLinks.length}.`);
+    assert(staticRelatedLinks.every((link) => link.href.startsWith(siteOrigin) && link.text), errors, `${url} static SEO related links must use crawlable EudTech URLs and anchor text.`);
+    assert(staticRelatedLinks.every((link) => link.href !== url), errors, `${url} static SEO related links should not point to the same canonical URL.`);
     assert(jsonLd.length > 0, errors, `${url} missing JSON-LD.`);
     assert(jsonLd.some((item) => item['@type'] === 'BreadcrumbList'), errors, `${url} missing BreadcrumbList JSON-LD.`);
+    assert(Boolean(faqSchema), errors, `${url} missing FAQPage JSON-LD for visible static SEO FAQs.`);
+    assert(faqSchemaQuestions.length >= MIN_STATIC_SEO_FAQ_ITEMS, errors, `${url} FAQPage JSON-LD needs at least ${MIN_STATIC_SEO_FAQ_ITEMS} entries; found ${faqSchemaQuestions.length}.`);
+    assert(staticFaqQuestions.every((question) => faqSchemaQuestions.includes(question)), errors, `${url} FAQPage JSON-LD is missing a visible static SEO FAQ question.`);
     assert(Boolean(pageSchema), errors, `${url} missing ${expectedPageType} JSON-LD.`);
     assert(pageSchema?.url === url, errors, `${url} ${expectedPageType} url is ${pageSchema?.url || 'missing'}.`);
     assert(pageSchema?.['@id'] === `${url}#webpage`, errors, `${url} ${expectedPageType} @id is ${pageSchema?.['@id'] || 'missing'}.`);
