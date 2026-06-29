@@ -86,7 +86,7 @@
 63. `npm run sync:marketing-platform-env` can read a local env file or a 1Password Automation vault item with environment-variable field names, then preview (`--dry-run --fail-on-missing`) or write the same values to local env files, Netlify production build env, or GitHub Actions variables/secrets without printing secret values.
 64. `sync:marketing-platform-env` fails Netlify or GitHub Actions writes when required browser tracking IDs are incomplete, unless `--allow-partial` is explicitly passed for an intentional partial sync.
 65. `npm run create:marketing-1password-template` creates a git-ignored 1Password item JSON template named `EudTech Configurator Marketing Platforms`, and `npm run verify:marketing-1password-item` checks that the Automation item has all required field names without printing values.
-66. GitHub Actions `Public Exposure Checks` maps repository `vars.*` and `secrets.*` into the runner environment so marketing env readiness and external-platform audits can see configured platform IDs and credentials.
+66. GitHub Actions `Public Exposure Checks` maps repository `vars.*` and `secrets.*` into the runner environment so marketing env readiness and external-platform audits can see configured platform IDs and credentials; incomplete external platform IDs are logged as warnings in the public exposure workflow, while strict launch-readiness remains available through the dedicated strict commands.
 67. `apply:marketing-platform-env:netlify` now blocks incomplete platform ID sets by default, reads Netlify env back after a real write, and fails if any applied key is missing from the production context readback.
 68. `docs/marketing-platform-onboarding.md` maps each external platform ID/token to the exact repo field, expected format, storage type, and official source.
 69. `npm run verify:exposure-workflow-env` statically checks that `Public Exposure Checks` maps every deployable marketing variable, GitHub Actions secret, workflow-only `OP_SERVICE_ACCOUNT_TOKEN`, and required exposure command into the workflow environment.
@@ -98,7 +98,8 @@
 75. `npm run audit:public-assets` reports public asset count, total bytes, oversized files, exact duplicate groups, `.DS_Store`, and accidental `.png.png` files without deleting or rewriting assets.
 76. `npm run clean:public-assets:safe-duplicates` removes only exact duplicate public files with zero detected references while keeping a same-hash canonical file.
 77. `npm run audit:public-assets:safe-duplicates` fails when unreferenced exact duplicate public files return.
-78. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, social images, promotion assets, configurator route coverage, public asset audit, safe-duplicate audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
+78. Netlify `_headers` gives `/build-meta.json` no-cache revalidation, discovery files hourly revalidation, social preview images one-day cache with stale revalidation, and immutable cache for hashed `/assets/*`; `verify:discovery` and `verify:live-exposure` both check the relevant rules.
+79. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, social images, promotion assets, configurator route coverage, public asset audit, safe-duplicate audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
 
 ## External Promotion Queue
 

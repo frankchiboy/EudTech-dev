@@ -111,7 +111,10 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          npm run verify:marketing-platform-env:strict:readonly | tee reports/verify-marketing-platform-env.log
+          npm run verify:marketing-platform-env | tee reports/verify-marketing-platform-env.log
+          if ! npm run verify:marketing-platform-env:strict:readonly | tee reports/verify-marketing-platform-env-strict.log; then
+            echo "::warning::Marketing platform IDs are incomplete. See reports/verify-marketing-platform-env-strict.log."
+          fi
 
       - name: Verify 1Password marketing item structure
         if: env.OP_SERVICE_ACCOUNT_TOKEN != ''

@@ -26,6 +26,7 @@ const feedXml = readPublicFile('feed.xml');
 const llmsText = readPublicFile('llms.txt');
 const llmsFullText = readPublicFile('llms-full.txt');
 const robotsText = readPublicFile('robots.txt');
+const headersText = readPublicFile('_headers');
 
 const sitemapLocs = new Set(collectXmlLocs(sitemapXml));
 const imageSitemapPageLocs = new Set(collectXmlLocs(imageSitemapXml).filter((loc) => loc.startsWith(`${siteOrigin}/solutions`) || loc === `${siteOrigin}/` || loc.startsWith(`${siteOrigin}/configurator`)));
@@ -67,6 +68,36 @@ for (const route of socialPreviewRoutes) {
 
 if (/<image:(?:title|caption)>/i.test(imageSitemapXml)) {
   errors.push('image-sitemap.xml should not include deprecated image:title or image:caption tags');
+}
+
+const requiredHeaderRules = [
+  '/build-meta.json',
+  '/robots.txt',
+  '/sitemap.xml',
+  '/sitemap-index.xml',
+  '/image-sitemap.xml',
+  '/feed.xml',
+  '/llms*.txt',
+  '/social/configurator/*',
+  '/assets/*'
+];
+
+requireAll('public/_headers', requiredHeaderRules, (rule) => headersText.includes(rule));
+
+if (!/\/social\/configurator\/\*[\s\S]*max-age=86400[\s\S]*stale-while-revalidate=604800/i.test(headersText)) {
+  errors.push('public/_headers missing social preview cache-control rule.');
+}
+
+if (!/\/sitemap\.xml[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
+  errors.push('public/_headers missing sitemap cache-control rule.');
+}
+
+if (!/\/sitemap-index\.xml[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
+  errors.push('public/_headers missing sitemap index cache-control rule.');
+}
+
+if (!/\/build-meta\.json[\s\S]*max-age=0[\s\S]*must-revalidate/i.test(headersText)) {
+  errors.push('public/_headers missing build metadata cache-control rule.');
 }
 
 const duplicateSlugs = CONFIGURATOR_SEO_PAGES.filter(

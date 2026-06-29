@@ -63,6 +63,8 @@ async function fetchText(url, options = {}) {
         url,
         status: response.status,
         contentType: response.headers.get('content-type') || '',
+        cacheControl: response.headers.get('cache-control') || '',
+        xContentTypeOptions: response.headers.get('x-content-type-options') || '',
         redirected: response.redirected,
         finalUrl: response.url.replace(/[?&]t=\d+$/, ''),
         location: response.headers.get('location'),
@@ -102,6 +104,8 @@ async function fetchImageInfo(url, options = {}) {
         url,
         status: response.status,
         contentType: response.headers.get('content-type') || '',
+        cacheControl: response.headers.get('cache-control') || '',
+        xContentTypeOptions: response.headers.get('x-content-type-options') || '',
         bytes: buffer.byteLength,
         width: metadata.width,
         height: metadata.height,
@@ -215,6 +219,8 @@ async function checkBuildMetadata(errors) {
       builtAt: null,
       source: null,
       contentType: result.contentType,
+      cacheControl: result.cacheControl,
+      xContentTypeOptions: result.xContentTypeOptions,
       expectedDeployCommit: expectedDeployCommit || null,
       waitForCommitMs: waitForCommitMs || 0
     };
@@ -267,6 +273,8 @@ async function checkBuildMetadata(errors) {
   }
 
   assert(/^[0-9a-f]{40}$/i.test(result.commit || ''), errors, `${url} commit is missing or not a full Git SHA.`);
+  assert(/max-age=0/i.test(result.cacheControl || '') && /must-revalidate/i.test(result.cacheControl || ''), errors, `${url} Cache-Control should keep build metadata revalidating.`);
+  assert(/nosniff/i.test(result.xContentTypeOptions || ''), errors, `${url} should send X-Content-Type-Options: nosniff.`);
   assert(
     !expectedDeployCommit || result.commit === expectedDeployCommit,
     errors,
@@ -320,6 +328,8 @@ function checkDiscoveryFiles(discovery, errors) {
   for (const url of requiredDiscoveryUrls) {
     const item = discovery.find((entry) => entry.url === url);
     assert(item?.status === 200, errors, `${url} should return HTTP 200.`);
+    assert(/max-age=3600/i.test(item?.cacheControl || '') && /must-revalidate/i.test(item?.cacheControl || ''), errors, `${url} Cache-Control should use hourly revalidation.`);
+    assert(/nosniff/i.test(item?.xContentTypeOptions || ''), errors, `${url} should send X-Content-Type-Options: nosniff.`);
   }
 
   assert(robots.includes(`Sitemap: ${siteOrigin}/sitemap.xml`), errors, 'robots.txt missing sitemap.xml.');
@@ -456,6 +466,8 @@ async function checkSocialPreviewImages(errors) {
     images.push(image);
     assert(image.status === 200, errors, `${route.socialImageUrl} should return HTTP 200.`);
     assert(/^image\/jpe?g/i.test(image.contentType), errors, `${route.socialImageUrl} content-type is ${image.contentType || 'missing'}.`);
+    assert(/max-age=86400/i.test(image.cacheControl || '') && /stale-while-revalidate=604800/i.test(image.cacheControl || ''), errors, `${route.socialImageUrl} Cache-Control should use one-day cache with stale revalidation.`);
+    assert(/nosniff/i.test(image.xContentTypeOptions || ''), errors, `${route.socialImageUrl} should send X-Content-Type-Options: nosniff.`);
     assert(image.format === 'jpeg', errors, `${route.socialImageUrl} format is ${image.format || 'missing'}.`);
     assert(image.width === SOCIAL_IMAGE_WIDTH && image.height === SOCIAL_IMAGE_HEIGHT, errors, `${route.socialImageUrl} is ${image.width || 'missing'}x${image.height || 'missing'}.`);
     assert(image.bytes < SOCIAL_IMAGE_MAX_BYTES, errors, `${route.socialImageUrl} is ${image.bytes} bytes, expected below ${SOCIAL_IMAGE_MAX_BYTES}.`);
