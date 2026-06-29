@@ -101,6 +101,7 @@
 78. Netlify `_headers` gives `/build-meta.json` no-cache revalidation, discovery files hourly revalidation, social preview images one-day cache with stale revalidation, and immutable cache for hashed `/assets/*`; `verify:discovery` and `verify:live-exposure` both check the relevant rules.
 79. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, social images, promotion assets, configurator route coverage, public asset audit, safe-duplicate audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
 80. `npm run inspect:search-console` uses a per-URL request timeout and low concurrency for the Google URL Inspection API, so post-deploy checks fail with an actionable timeout instead of hanging indefinitely on one route or waiting on every URL serially.
+81. `npm run verify:scheduled-exposure` statically verifies that the Netlify scheduled exposure function exists, uses the expected weekly schedule, reads the sitemap, submits to IndexNow, and matches the public IndexNow key file.
 
 ## External Promotion Queue
 
@@ -119,7 +120,8 @@
 13. Use `docs/configurator-google-ads-editor-keywords.csv` and `docs/configurator-search-ad-copy.csv` as paused Google Ads Editor import material after Google Ads access is ready.
 14. Use `docs/configurator-linkedin-url-parameters.csv` as static or dynamic URL tracking input when LinkedIn Campaign Manager access is ready.
 15. Use Meta Pixel audiences and Microsoft Ads UET audiences only after the corresponding environment variables are present in Netlify and a production deploy has completed.
-16. Use `npm run exposure:public:readonly` for a public, repeatable exposure check when Google Search Console, ad-platform IDs, or paid-media API credentials are not available.
+16. Use `npm run verify:scheduled-exposure` after changing `netlify.toml`, `netlify/functions/exposure-scheduled.mjs`, or the IndexNow key file.
+17. Use `npm run exposure:public:readonly` for a public, repeatable exposure check when Google Search Console, ad-platform IDs, or paid-media API credentials are not available.
 
 ## Tracking Readiness
 

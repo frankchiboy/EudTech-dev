@@ -101,6 +101,12 @@ jobs:
           set -o pipefail
           npm run verify:promotion-assets | tee reports/verify-promotion-assets.log
 
+      - name: Verify scheduled exposure function
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run verify:scheduled-exposure | tee reports/verify-scheduled-exposure.log
+
       - name: Audit public assets
         shell: bash
         run: |

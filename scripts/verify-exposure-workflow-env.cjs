@@ -16,6 +16,7 @@ const missingSecrets = githubSecretKeys.filter((key) => (
 ));
 const expectedCommands = [
   'npm run audit:configurator-route-coverage:strict',
+  'npm run verify:scheduled-exposure',
   'npm run audit:public-assets -- --write-report',
   'npm run verify:marketing-platform-env | tee reports/verify-marketing-platform-env.log',
   'npm run verify:marketing-platform-env:strict:readonly',
