@@ -100,6 +100,7 @@
 77. `npm run audit:public-assets:safe-duplicates` fails when unreferenced exact duplicate public files return.
 78. Netlify `_headers` gives `/build-meta.json` no-cache revalidation, discovery files hourly revalidation, social preview images one-day cache with stale revalidation, and immutable cache for hashed `/assets/*`; `verify:discovery` and `verify:live-exposure` both check the relevant rules.
 79. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, social images, promotion assets, configurator route coverage, public asset audit, safe-duplicate audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
+80. `npm run inspect:search-console` uses a per-URL request timeout and low concurrency for the Google URL Inspection API, so post-deploy checks fail with an actionable timeout instead of hanging indefinitely on one route or waiting on every URL serially.
 
 ## External Promotion Queue
 
@@ -110,14 +111,15 @@
 5. Submit the current sitemap URLs through IndexNow after production deploys with `npm run submit:indexnow`; the 2026-06-29 07:44 Asia/Taipei submission returned HTTP 200.
 6. Submit the current sitemap URLs through Google Search Console after production deploys with `npm run submit:search-console`.
 7. Monitor high-intent canonical URL index status with `npm run inspect:search-console`; use `npm run inspect:search-console -- --list-urls` to verify the full default URL set before Google credentials are available.
-8. Use `npm run report:search-console` to decide whether to add deeper pages such as Supermicro comparison, power planning, rack deployment, or Taiwan public procurement wording.
-9. Run `npm run exposure:postdeploy` after production deploys to catch live crawler-readiness regressions.
-10. Run `npm run verify:live-exposure -- --expect-commit <sha>` after Netlify finishes deploying a production push, then confirm `/build-meta.json` reports that same commit.
-11. Use `docs/configurator-organic-posts.csv` for immediate LinkedIn, Email, and sales outreach posts before paid-platform access is available.
-12. Use `docs/configurator-google-ads-editor-keywords.csv` and `docs/configurator-search-ad-copy.csv` as paused Google Ads Editor import material after Google Ads access is ready.
-13. Use `docs/configurator-linkedin-url-parameters.csv` as static or dynamic URL tracking input when LinkedIn Campaign Manager access is ready.
-14. Use Meta Pixel audiences and Microsoft Ads UET audiences only after the corresponding environment variables are present in Netlify and a production deploy has completed.
-15. Use `npm run exposure:public:readonly` for a public, repeatable exposure check when Google Search Console, ad-platform IDs, or paid-media API credentials are not available.
+8. Use `npm run inspect:search-console -- --request-timeout-ms=30000 --concurrency=4` only when Google URL Inspection is slow but still responding; the default timeout and low concurrency keep post-deploy checks from blocking indefinitely.
+9. Use `npm run report:search-console` to decide whether to add deeper pages such as Supermicro comparison, power planning, rack deployment, or Taiwan public procurement wording.
+10. Run `npm run exposure:postdeploy` after production deploys to catch live crawler-readiness regressions.
+11. Run `npm run verify:live-exposure -- --expect-commit <sha>` after Netlify finishes deploying a production push, then confirm `/build-meta.json` reports that same commit.
+12. Use `docs/configurator-organic-posts.csv` for immediate LinkedIn, Email, and sales outreach posts before paid-platform access is available.
+13. Use `docs/configurator-google-ads-editor-keywords.csv` and `docs/configurator-search-ad-copy.csv` as paused Google Ads Editor import material after Google Ads access is ready.
+14. Use `docs/configurator-linkedin-url-parameters.csv` as static or dynamic URL tracking input when LinkedIn Campaign Manager access is ready.
+15. Use Meta Pixel audiences and Microsoft Ads UET audiences only after the corresponding environment variables are present in Netlify and a production deploy has completed.
+16. Use `npm run exposure:public:readonly` for a public, repeatable exposure check when Google Search Console, ad-platform IDs, or paid-media API credentials are not available.
 
 ## Tracking Readiness
 

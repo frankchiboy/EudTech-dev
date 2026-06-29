@@ -6,6 +6,8 @@ const siteUrl = 'sc-domain:eudaemonia.tech';
 const siteOrigin = 'https://eudaemonia.tech';
 const userProject = process.env.GOOGLE_SEARCH_CONSOLE_QUOTA_PROJECT || 'personal-gmail-vault';
 const { CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
+const DEFAULT_REQUEST_TIMEOUT_MS = 15000;
+const DEFAULT_CONCURRENCY = 4;
 const defaultPaths = [
   '/configurator',
   ...CONFIGURATOR_PRODUCT_SEO.map((product) => product.configuratorHref),
@@ -32,6 +34,31 @@ function hasFlag(name) {
   return process.argv.includes(`--${name}`);
 }
 
+function readNumberArg(name, fallback) {
+  const prefix = `--${name}=`;
+  const inlineArg = process.argv.find((arg) => arg.startsWith(prefix));
+  const value = inlineArg ? inlineArg.slice(prefix.length) : process.env[name.toUpperCase().replace(/-/g, '_')];
+  if (!value) {
+    return fallback;
+  }
+
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    throw new Error(`Invalid --${name} value: ${value}`);
+  }
+
+  return parsed;
+}
+
+function readIntegerArg(name, fallback) {
+  const parsed = readNumberArg(name, fallback);
+  if (!Number.isInteger(parsed)) {
+    throw new Error(`Invalid --${name} value: ${parsed}`);
+  }
+
+  return parsed;
+}
+
 function shouldRequireIndexed(inspectionUrl) {
   if (!hasFlag('fail-on-unindexed')) {
     return false;
@@ -56,7 +83,9 @@ function shouldRequireCanonicalMatch(inspectionUrl) {
   return true;
 }
 
-async function inspectUrl(token, inspectionUrl) {
+async function inspectUrl(token, inspectionUrl, requestTimeoutMs) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), requestTimeoutMs);
   const response = await fetch('https://searchconsole.googleapis.com/v1/urlInspection/index:inspect', {
     method: 'POST',
     headers: {
@@ -68,8 +97,9 @@ async function inspectUrl(token, inspectionUrl) {
       inspectionUrl,
       siteUrl,
       languageCode: 'zh-TW'
-    })
-  });
+    }),
+    signal: controller.signal
+  }).finally(() => clearTimeout(timeout));
 
   const body = await response.text();
   if (!response.ok) {
@@ -102,6 +132,8 @@ async function inspectUrl(token, inspectionUrl) {
 
 async function main() {
   const inspectionUrls = getInspectionUrls();
+  const requestTimeoutMs = readNumberArg('request-timeout-ms', DEFAULT_REQUEST_TIMEOUT_MS);
+  const concurrency = Math.min(readIntegerArg('concurrency', DEFAULT_CONCURRENCY), inspectionUrls.length || 1);
   if (hasFlag('list-urls')) {
     console.log(
       JSON.stringify(
@@ -109,6 +141,8 @@ async function main() {
           ok: true,
           siteUrl,
           userProject,
+          requestTimeoutMs,
+          concurrency,
           count: inspectionUrls.length,
           inspectionUrls
         },
@@ -120,11 +154,28 @@ async function main() {
   }
 
   const token = getSearchConsoleAccessToken();
-  const inspected = [];
+  const inspected = new Array(inspectionUrls.length);
   const errors = [];
-  for (const url of inspectionUrls) {
-    const result = await inspectUrl(token, url);
-    inspected.push(result);
+  let nextIndex = 0;
+
+  async function inspectNextUrl() {
+    const index = nextIndex;
+    nextIndex += 1;
+    if (index >= inspectionUrls.length) {
+      return;
+    }
+
+    const url = inspectionUrls[index];
+    let result;
+    try {
+      result = await inspectUrl(token, url, requestTimeoutMs);
+    } catch (error) {
+      const message = error.name === 'AbortError' ? `timed out after ${requestTimeoutMs}ms` : error.message;
+      errors.push(`${url} inspection failed: ${message}`);
+      await inspectNextUrl();
+      return;
+    }
+    inspected[index] = result;
 
     if (shouldRequireIndexed(result.inspectionUrl) && result.coverageState !== '已提交並建立索引') {
       errors.push(`${result.inspectionUrl} is not indexed: ${result.coverageState || result.verdict || 'unknown status'}`);
@@ -143,7 +194,11 @@ async function main() {
         );
       }
     }
+
+    await inspectNextUrl();
   }
+
+  await Promise.all(Array.from({ length: concurrency }, inspectNextUrl));
 
   console.log(
     JSON.stringify(
@@ -151,7 +206,9 @@ async function main() {
         ok: errors.length === 0,
         siteUrl,
         userProject,
-        inspected,
+        requestTimeoutMs,
+        concurrency,
+        inspected: inspected.filter(Boolean),
         errors
       },
       null,
