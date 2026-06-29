@@ -67,10 +67,10 @@
 44. `npm run audit:external-exposure-status` combines marketing env readiness, external platform access probes, and Search Console performance reports into `reports/external-exposure-status.md` and `.json`.
 45. `npm run generate:promotion-assets` also creates Google Ads Editor keyword imports, search ad copy, complete organic posts, and LinkedIn URL tracking parameter sheets.
 46. `npm run audit:exposure-readiness` verifies organic copy coverage, Google Ads Editor keyword coverage, search ad copy length validity, and LinkedIn URL parameter coverage.
-47. `npm run generate:social-images` creates dedicated 1200x630 JPEG social preview images for every configurator product and solution landing page.
+47. `npm run generate:social-images` creates dedicated route-differentiated 1200x630 JPEG social preview images for every configurator product and solution landing page.
 48. Static SEO HTML uses the generated social preview images for Open Graph and Twitter/X cards, with `og:image:alt`, `twitter:image:alt`, image width, and image height.
 49. `image-sitemap.xml` lists the generated social preview images and no longer emits deprecated `image:title` or `image:caption` fields.
-50. `npm run verify:social-images`, `npm run verify:seo-html`, `npm run verify:discovery`, and `npm run verify:live-exposure` validate social image size, format, page metadata, sitemap coverage, and production accessibility.
+50. `npm run verify:social-images`, `npm run verify:seo-html`, `npm run verify:discovery`, and `npm run verify:live-exposure` validate social image uniqueness, size, format, page metadata, sitemap coverage, and production accessibility.
 51. The configurator Share button prefers native Web Share API, falls back to clipboard copy, and adds share-specific UTM parameters while preserving the selected configuration.
 52. First-party configurator lead events keep the shared configuration URL and share method so organic sharing can be measured before external ad-platform IDs are available.
 53. `src/data/configuratorProductSeo.ts` covers all 11 currently public Comino device routes: `/configurator/5/`, `/configurator/13/`, `/configurator/21/`, `/configurator/22/`, `/configurator/23/`, `/configurator/27/`, `/configurator/28/`, `/configurator/29/`, `/configurator/30/`, `/configurator/34/`, and `/configurator/36/`.

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const sharp = require('sharp');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
@@ -239,6 +240,7 @@ async function inspectSocialPreviewImages() {
       item.height = metadata.height;
       item.format = metadata.format;
       item.size = fs.statSync(filename).size;
+      item.hash = crypto.createHash('sha256').update(fs.readFileSync(filename)).digest('hex');
       item.ready =
         item.sourceExists &&
         item.width === SOCIAL_IMAGE_WIDTH &&
@@ -253,6 +255,24 @@ async function inspectSocialPreviewImages() {
   }
 
   return images;
+}
+
+function duplicateSocialPreviewImageGroups(images) {
+  const groups = new Map();
+
+  for (const image of images.filter((item) => item.exists && item.hash)) {
+    const group = groups.get(image.hash) || [];
+    group.push(image);
+    groups.set(image.hash, group);
+  }
+
+  return [...groups.entries()]
+    .filter(([, group]) => group.length > 1)
+    .map(([hash, group]) => ({
+      hash,
+      routes: group.map((image) => image.path),
+      socialImages: group.map((image) => image.socialImage)
+    }));
 }
 
 const canonicalUrls = [
@@ -291,6 +311,7 @@ async function main() {
   const marketingEventFunctionProbe = await probeProductionMarketingEventFunction();
   const marketingPlatformEnv = evaluateMarketingPlatformEnv(process.env);
   const socialPreviewImages = await inspectSocialPreviewImages();
+  const duplicateSocialPreviewImages = duplicateSocialPreviewImageGroups(socialPreviewImages);
 
   addCheck('search_discovery', 'canonical landing pages defined', canonicalUrls.length >= 17, {
     count: canonicalUrls.length
@@ -321,6 +342,9 @@ async function main() {
   addCheck('social_preview', 'social preview images stay under 5 MB platform limit', socialPreviewImages.every((image) => image.size < SOCIAL_IMAGE_MAX_BYTES), {
     invalid: socialPreviewImages.filter((image) => image.size >= SOCIAL_IMAGE_MAX_BYTES),
     maxBytes: SOCIAL_IMAGE_MAX_BYTES
+  });
+  addCheck('social_preview', 'social preview images are route-differentiated', duplicateSocialPreviewImages.length === 0, {
+    duplicateGroups: duplicateSocialPreviewImages
   });
   addCheck('social_preview', 'image sitemap uses generated social preview images', socialPreviewImages.every((image) => imageSitemap.includes(image.socialImageUrl)), {
     missing: socialPreviewImages.filter((image) => !imageSitemap.includes(image.socialImageUrl))
