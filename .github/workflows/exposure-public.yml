@@ -107,6 +107,12 @@ jobs:
           set -o pipefail
           npm run verify:scheduled-exposure | tee reports/verify-scheduled-exposure.log
 
+      - name: Verify original prompt preservation
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run verify:original-prompts | tee reports/verify-original-prompts.log
+
       - name: Audit public assets
         shell: bash
         run: |

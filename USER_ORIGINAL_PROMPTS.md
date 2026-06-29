@@ -8,3 +8,4 @@ This file preserves the user's original prompts for the configurator exposure ta
 2. 關鍵字最佳化之類？
 3. 你懂我所謂曝光的意思嗎
 4. 對
+5. 導入一切曝光configurator對策

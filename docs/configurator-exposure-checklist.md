@@ -99,11 +99,12 @@
 76. `npm run clean:public-assets:safe-duplicates` removes only exact duplicate public files with zero detected references while keeping a same-hash canonical file.
 77. `npm run audit:public-assets:safe-duplicates` fails when unreferenced exact duplicate public files return.
 78. Netlify `_headers` gives `/build-meta.json` no-cache revalidation, discovery files hourly revalidation, social preview images one-day cache with stale revalidation, and immutable cache for hashed `/assets/*`; `verify:discovery` and `verify:live-exposure` both check the relevant rules.
-79. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, static SEO HTML, social images, promotion assets, strict configurator route coverage, public asset audit, safe-duplicate audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
+79. `npm run exposure:public:readonly` runs the no-credential, no-write public exposure loop: discovery, static SEO HTML, social images, promotion assets, strict read-only configurator route coverage, public asset audit, safe-duplicate audit, live exposure, IndexNow dry-run payload, and marketing-event health check.
 80. `npm run inspect:search-console` uses a per-URL request timeout and low concurrency for the Google URL Inspection API, so post-deploy checks fail with an actionable timeout instead of hanging indefinitely on one route or waiting on every URL serially.
 81. `npm run verify:scheduled-exposure` statically verifies that the Netlify scheduled exposure function exists, uses the expected weekly schedule, reads the sitemap, submits to IndexNow, and matches the public IndexNow key file.
 82. `feed.xml` is now included in `sitemap-index.xml`, declared in `robots.txt` with a `Sitemap:` line, submitted by `npm run submit:search-console`, and monitored by `npm run monitor:sitemaps`, so feed-based discovery is part of the same deploy verification path as XML sitemaps.
 83. React runtime metadata now uses the same `/social/configurator/*.jpg` social preview image path convention as the generated static SEO HTML, including `og:image:secure_url`, so hydration does not replace crawlable social metadata with raw product images.
+84. `npm run verify:original-prompts` confirms that the root and docs prompt archives preserve the configurator migration and exposure prompts without secret-like values, and `exposure:public:readonly` plus GitHub Actions run it as part of the public exposure gate.
 
 ## External Promotion Queue
 
