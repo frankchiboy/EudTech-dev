@@ -170,6 +170,8 @@ function applyNetlify(values) {
         tmpEnvPath,
         '--site',
         site,
+        ...(allowPartial ? ['--allow-partial'] : []),
+        ...(failOnMissing ? ['--fail-on-missing'] : []),
         ...(dryRun ? ['--dry-run'] : [])
       ],
       {

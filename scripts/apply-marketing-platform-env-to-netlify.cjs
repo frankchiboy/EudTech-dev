@@ -19,7 +19,7 @@ const scopeIndex = args.indexOf('--scope');
 const site = siteIndex >= 0 ? args[siteIndex + 1] : process.env.NETLIFY_SITE_ID || '325fdd3d-ba57-4a86-987f-4f0267a2b8ed';
 const authToken = process.env.NETLIFY_AUTH_TOKEN;
 const context = contextIndex >= 0 ? args[contextIndex + 1] : 'production';
-const scope = scopeIndex >= 0 ? args[scopeIndex + 1] : 'builds';
+const scope = scopeIndex >= 0 ? args[scopeIndex + 1] : null;
 
 if (envFileIndex < 0 || !args[envFileIndex + 1]) {
   throw new Error('Usage: npm run apply:marketing-platform-env:netlify -- --env-file <path> [--dry-run]');
@@ -122,8 +122,7 @@ for (const variable of variablesToApply) {
     site,
     '--context',
     context,
-    '--scope',
-    scope,
+    ...(scope ? ['--scope', scope] : []),
     '--force'
   ];
 
