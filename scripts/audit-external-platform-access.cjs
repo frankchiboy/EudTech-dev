@@ -203,6 +203,37 @@ function parseJson(text, fallback) {
   }
 }
 
+function getAdcCredentialPath() {
+  return path.join(process.env.HOME || '', '.config', 'gcloud', 'application_default_credentials.json');
+}
+
+function readAdcQuotaProject() {
+  const credentialPath = getAdcCredentialPath();
+  if (!credentialPath || !fs.existsSync(credentialPath)) {
+    return null;
+  }
+
+  const credentials = parseJson(fs.readFileSync(credentialPath, 'utf8'), {});
+  return credentials.quota_project_id || null;
+}
+
+function getGoogleQuotaProject(configProject = null) {
+  return process.env.GOOGLE_CLOUD_QUOTA_PROJECT
+    || process.env.GOOGLE_QUOTA_PROJECT
+    || readAdcQuotaProject()
+    || configProject
+    || null;
+}
+
+function withGoogleQuotaProject(headers = {}, quotaProject = getGoogleQuotaProject()) {
+  return quotaProject
+    ? {
+        ...headers,
+        'x-goog-user-project': quotaProject
+      }
+    : headers;
+}
+
 function redactPath(filePath) {
   if (!filePath) {
     return null;
@@ -336,12 +367,11 @@ function checkGoogleAdcScopes() {
   const activeAccount = run('gcloud', ['auth', 'list', '--filter=status:ACTIVE', '--format=value(account)'], {
     env: googleEnv
   });
-  const quotaProject = run('gcloud', ['auth', 'application-default', 'get-quota-project'], {
-    env: googleEnv
-  });
   const configProject = run('gcloud', ['config', 'get-value', 'project'], {
     env: googleEnv
   });
+  const configProjectValue = configProject.ok ? configProject.stdout.trim() || null : null;
+  const quotaProject = getGoogleQuotaProject(configProjectValue);
 
   const scopeChecks = googleScopes.map((scope) => {
     const result = run('gcloud', [
@@ -370,8 +400,8 @@ function checkGoogleAdcScopes() {
     adcTokenMintable: (adcBaseToken.ok && Boolean(adcBaseToken.stdout.trim())) || scopedTokenMintable,
     scopedTokenMintable,
     activeAccount: activeAccount.ok ? activeAccount.stdout.trim() || null : null,
-    quotaProject: quotaProject.ok ? quotaProject.stdout.trim() || null : null,
-    configProject: configProject.ok ? configProject.stdout.trim() || null : null,
+    quotaProject,
+    configProject: configProjectValue,
     requiredScopes: googleScopes,
     missingScopes,
     tokeninfoScopes: [],
@@ -440,7 +470,9 @@ async function checkGoogleAnalyticsAccess() {
   const propertyProbe = propertyName && accessToken.ok
     ? await fetchJsonProbe(`https://analyticsadmin.googleapis.com/v1beta/${encodeURIComponent(propertyName).replace('%2F', '/')}`, {
         headers: {
-          Authorization: `Bearer ${accessToken.token}`
+          ...withGoogleQuotaProject({
+            Authorization: `Bearer ${accessToken.token}`
+          })
         },
         inspect: (json) => ({
           propertyReadable: json?.name === propertyName,
@@ -485,7 +517,9 @@ async function checkGoogleTagManagerAccess() {
   const containerProbe = endpoint && accessToken.ok
     ? await fetchJsonProbe(endpoint, {
         headers: {
-          Authorization: `Bearer ${accessToken.token}`
+          ...withGoogleQuotaProject({
+            Authorization: `Bearer ${accessToken.token}`
+          })
         },
         inspect: (json) => {
           const containers = Array.isArray(json?.container) ? json.container : (json?.publicId ? [json] : []);
@@ -535,8 +569,10 @@ async function checkGoogleAdsDeveloperToken() {
   const apiProbe = developerTokenPresent && accessToken.ok
     ? await fetchJsonProbe(`https://googleads.googleapis.com/${apiVersion}/customers:listAccessibleCustomers`, {
         headers: {
-          Authorization: `Bearer ${accessToken.token}`,
-          'developer-token': process.env.GOOGLE_ADS_DEVELOPER_TOKEN
+          ...withGoogleQuotaProject({
+            Authorization: `Bearer ${accessToken.token}`,
+            'developer-token': process.env.GOOGLE_ADS_DEVELOPER_TOKEN
+          })
         },
         inspect: (json) => ({
           resourceNameCount: Array.isArray(json?.resourceNames) ? json.resourceNames.length : 0
@@ -553,10 +589,12 @@ async function checkGoogleAdsDeveloperToken() {
     ? await fetchJsonProbe(`https://googleads.googleapis.com/${apiVersion}/customers/${encodeURIComponent(customerId)}/googleAds:searchStream`, {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${accessToken.token}`,
-          'developer-token': process.env.GOOGLE_ADS_DEVELOPER_TOKEN,
-          ...(process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID ? { 'login-customer-id': process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID } : {}),
-          'Content-Type': 'application/json'
+          ...withGoogleQuotaProject({
+            Authorization: `Bearer ${accessToken.token}`,
+            'developer-token': process.env.GOOGLE_ADS_DEVELOPER_TOKEN,
+            ...(process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID ? { 'login-customer-id': process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID } : {}),
+            'Content-Type': 'application/json'
+          })
         },
         body: JSON.stringify({
           query: 'SELECT customer.id FROM customer LIMIT 1'
