@@ -82,10 +82,12 @@ const buildStructuredData = (isEnglish: boolean) => {
 const ConfiguratorSolutionsHubPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
 
-  const title = isEnglish ? 'Configurator Solutions and GPU Server Quote Guide' : '配置器解決方案與 GPU 伺服器報價指南';
+  const title = isEnglish
+    ? 'GPU Server Quote and Configurator Solutions'
+    : 'GPU 伺服器報價與配置器解決方案';
   const description = isEnglish
-    ? 'Browse EudTech configurator entry points for GPU server quote requests, NVIDIA H200 servers, RTX PRO 6000 workstations, AI workstation planning, RFQ checklists, and liquid-cooling AI server procurement.'
-    : '瀏覽 EudTech 配置器入口，包含 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、AI 工作站規劃、RFQ 檢核表與液冷 AI 伺服器採購。';
+    ? 'Open EudTech quote-ready configurator paths for NVIDIA H200 GPU servers, RTX PRO 6000 workstations, AI inference servers, RFQ checklists, and liquid-cooling procurement.'
+    : '開啟 EudTech 可用於報價的配置器入口，包含 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購。';
   const keywords = isEnglish
     ? 'GPU server quote, AI server quote, configurator solutions, NVIDIA H200 server, RTX PRO 6000 workstation, GPU server RFQ, liquid cooling AI server'
     : 'GPU 伺服器報價, AI 伺服器報價, 配置器解決方案, NVIDIA H200 伺服器, RTX PRO 6000 工作站, GPU 伺服器 RFQ, 液冷 AI 伺服器';
@@ -128,12 +130,12 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
           <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
             <div className="max-w-4xl">
               <h1 className="text-4xl font-bold leading-tight tracking-normal sm:text-5xl lg:text-6xl">
-                {isEnglish ? 'Configurator solutions for GPU server procurement' : 'GPU 伺服器採購的配置器解決方案'}
+                {isEnglish ? 'GPU server quote paths by workload' : '依工作負載選擇 GPU 伺服器報價入口'}
               </h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-200">
                 {isEnglish
-                  ? 'Start from the buyer intent that matches your workload, then move into the configurator with the right quote context.'
-                  : '從符合工作負載的採購意圖開始，再進入配置器保留正確的報價脈絡。'}
+                  ? 'Choose the buying intent first, then enter the matching configurator with GPU, CPU, memory, storage, power, and network context ready for quote follow-up.'
+                  : '先依採購意圖選擇入口，再進入對應配置器，保留 GPU、CPU、記憶體、儲存、電源與網路脈絡供報價追蹤。'}
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Link

@@ -43,10 +43,10 @@ const landingPages = [
     type: 'configurator',
     slug: 'configurator',
     path: '/configurator',
-    title: { en: 'Comino Grando GPU Server Configurator', zh: 'Comino Grando GPU 伺服器配置器' },
+    title: { en: 'Comino Grando GPU Server Quote Configurator', zh: 'Comino Grando GPU 伺服器報價配置器' },
     description: {
-      en: 'Main configurator entry for GPU server and workstation quote requests.',
-      zh: 'GPU 伺服器與工作站報價需求的主要配置器入口。'
+      en: 'Quote-ready configurator entry for GPU server and workstation RFQ requests.',
+      zh: 'GPU 伺服器與工作站 RFQ 報價需求的主要配置器入口。'
     },
     keywords: {
       en: 'Comino Grando configurator, GPU server configurator, GPU server quote',

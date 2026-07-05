@@ -65,14 +65,14 @@ const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
 }));
 const solutionHubUrl = {
   loc: pageUrl('/solutions'),
-  title: '配置器解決方案與 GPU 伺服器報價指南',
-  description: 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。',
+  title: 'GPU 伺服器報價與配置器解決方案',
+  description: 'EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。',
   priority: '0.93'
 };
 const configuratorUrl = {
   loc: pageUrl('/configurator'),
-  title: 'Comino Grando GPU 伺服器配置器',
-  description: '配置 Comino Grando GPU 伺服器、RTX PRO 工作站、NVIDIA H200 系統、儲存、電源與網路，並向 EudTech 取得報價。',
+  title: 'Comino Grando GPU 伺服器報價配置器',
+  description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。',
   priority: '0.95'
 };
 const configuratorLinkIndexUrl = {

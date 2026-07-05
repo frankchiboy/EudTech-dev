@@ -8,18 +8,18 @@
     <lastBuildDate>Mon, 06 Jul 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://eudaemonia.tech/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Comino Grando GPU 伺服器配置器</title>
+      <title>Comino Grando GPU 伺服器報價配置器</title>
       <link>https://eudaemonia.tech/configurator/</link>
       <guid>https://eudaemonia.tech/configurator/</guid>
       <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
-      <description>配置 Comino Grando GPU 伺服器、RTX PRO 工作站、NVIDIA H200 系統、儲存、電源與網路，並向 EudTech 取得報價。</description>
+      <description>配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。</description>
     </item>
     <item>
-      <title>配置器解決方案與 GPU 伺服器報價指南</title>
+      <title>GPU 伺服器報價與配置器解決方案</title>
       <link>https://eudaemonia.tech/solutions/</link>
       <guid>https://eudaemonia.tech/solutions/</guid>
       <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
-      <description>EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。</description>
+      <description>EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。</description>
     </item>
     <item>
       <title>EudTech 配置器公開連結索引</title>
@@ -106,18 +106,18 @@
       <description>配置 RACKABLE WS 6x5090，保留 NVIDIA GeForce RTX 5090 GPU 與 AMD EPYC 平台假設，供 AI 工作站報價審查。</description>
     </item>
     <item>
-      <title>NVIDIA H200 GPU 伺服器配置器</title>
+      <title>NVIDIA H200 GPU 伺服器報價配置器</title>
       <link>https://eudaemonia.tech/solutions/nvidia-h200-server/</link>
       <guid>https://eudaemonia.tech/solutions/nvidia-h200-server/</guid>
       <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
-      <description>配置液冷 NVIDIA H200 GPU 伺服器，適用於 AI 訓練、推論與 HPC 工作負載，並可直接送出配置需求取得正式報價。</description>
+      <description>比較並配置液冷 NVIDIA H200 GPU 伺服器，面向 AI 訓練、HPC 與下一代推論需求，並可將配置送交 EudTech 追蹤報價。</description>
     </item>
     <item>
-      <title>RTX PRO 6000 AI 工作站配置器</title>
+      <title>RTX PRO 6000 AI 工作站報價配置器</title>
       <link>https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/</link>
       <guid>https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/</guid>
       <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
-      <description>配置 RTX PRO 6000 工作站，適用於 AI 開發、渲染、模擬與本地推論，並可直接送出需求給 EudTech 追蹤報價。</description>
+      <description>配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。</description>
     </item>
     <item>
       <title>台灣 AI 工作站配置器</title>
@@ -134,18 +134,18 @@
       <description>探索適合長時間 AI 與 HPC 工作負載的液冷 GPU 伺服器配置，並可配置 Grando 系統後向 EudTech 取得正式報價。</description>
     </item>
     <item>
-      <title>GPU 伺服器報價配置器</title>
+      <title>GPU 伺服器報價與 RFQ 配置入口</title>
       <link>https://eudaemonia.tech/solutions/gpu-server-quote/</link>
       <guid>https://eudaemonia.tech/solutions/gpu-server-quote/</guid>
       <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
-      <description>建立 GPU 伺服器報價需求，包含 GPU、CPU、RAM、儲存、電源與網路選項，並由 EudTech 接收配置後追蹤。</description>
+      <description>建立可供 RFQ 使用的 GPU 伺服器報價需求，將 H200 或 RTX PRO 6000 系統的 GPU、CPU、RAM、電力、儲存與網路一次整理成摘要。</description>
     </item>
     <item>
-      <title>NVIDIA H200 與 RTX PRO 6000 GPU 伺服器比較</title>
+      <title>H200 vs RTX PRO 6000：AI GPU 伺服器採購比較</title>
       <link>https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/</link>
       <guid>https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/</guid>
       <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
-      <description>比較 NVIDIA H200 GPU 伺服器與 RTX PRO 6000 工作站在 AI 訓練、本地推論、視覺化與採購規劃上的差異。</description>
+      <description>比較何時選 NVIDIA H200 做高密度 AI 訓練或 HPC，何時選 RTX PRO 6000 做本地推論、渲染、視覺化與工作站採購。</description>
     </item>
     <item>
       <title>AI 採購 GPU 伺服器 RFQ 檢核表</title>
@@ -190,11 +190,11 @@
       <description>比較評估 Supermicro 類 GPU 伺服器 RFQ 與 Comino Grando 配置器導向 AI 伺服器報價時的採購路徑。</description>
     </item>
     <item>
-      <title>台灣 AI 推論伺服器配置器</title>
+      <title>台灣 AI 推論伺服器報價配置器</title>
       <link>https://eudaemonia.tech/solutions/ai-inference-server-taiwan/</link>
       <guid>https://eudaemonia.tech/solutions/ai-inference-server-taiwan/</guid>
       <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
-      <description>為台灣團隊配置 AI 推論伺服器，支援 GPU 加速、本地模型服務、記憶體規劃、儲存、網路與報價追蹤。</description>
+      <description>為台灣 LLM 與私有模型服務配置 AI 推論伺服器，保留 GPU 記憶體、系統記憶體、NVMe、網路、部署與報價追蹤脈絡。</description>
     </item>
   </channel>
 </rss>

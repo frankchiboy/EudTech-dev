@@ -60,24 +60,24 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'nvidia-h200-server',
     title: {
-      en: 'NVIDIA H200 GPU Server Configurator',
-      zh: 'NVIDIA H200 GPU 伺服器配置器'
+      en: 'NVIDIA H200 GPU Server Quote Configurator',
+      zh: 'NVIDIA H200 GPU 伺服器報價配置器'
     },
     description: {
-      en: 'Configure liquid-cooled NVIDIA H200 GPU servers for AI training, inference, and HPC workloads. Send your selected configuration to EudTech for a formal quote.',
-      zh: '配置液冷 NVIDIA H200 GPU 伺服器，適用於 AI 訓練、推論與 HPC 工作負載，並可直接送出配置需求取得正式報價。'
+      en: 'Compare and configure liquid-cooled NVIDIA H200 GPU servers for AI training, HPC, and next-generation inference, then send the build to EudTech for quote follow-up.',
+      zh: '比較並配置液冷 NVIDIA H200 GPU 伺服器，面向 AI 訓練、HPC 與下一代推論需求，並可將配置送交 EudTech 追蹤報價。'
     },
     keywords: {
       en: 'NVIDIA H200 server, H200 GPU server, AI training server, HPC GPU server, GPU server quote, liquid cooled GPU server, Taiwan AI server',
       zh: 'NVIDIA H200 伺服器, H200 GPU 伺服器, AI 訓練伺服器, HPC GPU 伺服器, GPU 伺服器報價, 液冷 GPU 伺服器, 台灣 AI 伺服器'
     },
     hero: {
-      en: 'NVIDIA H200 GPU servers for dense AI workloads',
-      zh: '面向高密度 AI 工作負載的 NVIDIA H200 GPU 伺服器'
+      en: 'NVIDIA H200 AI GPU server quote and configuration',
+      zh: 'NVIDIA H200 AI GPU 伺服器報價與配置'
     },
     lead: {
-      en: 'Start from a Grando rackable workstation configuration, adjust GPU count, CPU, memory, storage, power, and networking, then submit the exact build to EudTech.',
-      zh: '從 Grando 機架式工作站配置開始，調整 GPU 數量、CPU、記憶體、儲存、電源與網路後，將完整配置送交 EudTech。'
+      en: 'Start with H200 server assumptions for Taiwan procurement, adjust GPU count, CPU, memory, storage, power, and networking, then submit the exact build to EudTech.',
+      zh: '先以台灣採購可審查的 H200 伺服器假設為基礎，調整 GPU 數量、CPU、記憶體、儲存、電源與網路後，將完整配置送交 EudTech。'
     },
     image: '/grando-8gpu-server.jpg',
     imageAlt: {
@@ -119,32 +119,32 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'rtx-pro-6000-workstation',
     title: {
-      en: 'RTX PRO 6000 AI Workstation Configurator',
-      zh: 'RTX PRO 6000 AI 工作站配置器'
+      en: 'RTX PRO 6000 AI Workstation Quote Configurator',
+      zh: 'RTX PRO 6000 AI 工作站報價配置器'
     },
     description: {
-      en: 'Configure RTX PRO 6000 workstation builds for AI development, rendering, simulation, and local inference. Send the configuration to EudTech for quote follow-up.',
-      zh: '配置 RTX PRO 6000 工作站，適用於 AI 開發、渲染、模擬與本地推論，並可直接送出需求給 EudTech 追蹤報價。'
+      en: 'Configure RTX PRO 6000 workstations for local AI inference, rendering, visualization, and simulation, then send the build to EudTech for Taiwan quote follow-up.',
+      zh: '配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。'
     },
     keywords: {
       en: 'RTX PRO 6000 workstation, AI workstation, GPU workstation quote, NVIDIA workstation Taiwan, local AI inference workstation',
       zh: 'RTX PRO 6000 工作站, AI 工作站, GPU 工作站報價, NVIDIA 工作站 台灣, 本地 AI 推論工作站'
     },
     hero: {
-      en: 'RTX PRO 6000 workstations for local AI and visualization',
-      zh: '面向本地 AI 與視覺化工作的 RTX PRO 6000 工作站'
+      en: 'RTX PRO 6000 AI workstation quote and configuration',
+      zh: 'RTX PRO 6000 AI 工作站報價與配置'
     },
     lead: {
-      en: 'Use the configurator to align GPU, CPU, memory, NVMe storage, and networking before sending a quote request.',
-      zh: '使用配置器先對齊 GPU、CPU、記憶體、NVMe 儲存與網路，再送出報價需求。'
+      en: 'Use the workstation configurator to align GPU, CPU, memory, NVMe storage, and networking before sending a quote request for local AI and visualization workloads.',
+      zh: '使用工作站配置器先對齊 GPU、CPU、記憶體、NVMe 儲存與網路，再針對本地 AI 與視覺化工作負載送出報價需求。'
     },
     image: '/comino-workstation-front.png',
     imageAlt: {
       en: 'Comino Grando workstation for RTX PRO 6000 configurations',
       zh: '可配置 RTX PRO 6000 的 Comino Grando 工作站'
     },
-    configuratorHref: '/configurator/28',
-    quoteHref: '/configurator/28?request=true',
+    configuratorHref: '/configurator/34',
+    quoteHref: '/configurator/34?request=true',
     highlights: [
       {
         en: 'Built for AI development, visualization, rendering, and simulation teams.',
@@ -296,24 +296,24 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'gpu-server-quote',
     title: {
-      en: 'GPU Server Quote Configurator',
-      zh: 'GPU 伺服器報價配置器'
+      en: 'GPU Server Quote and RFQ Configurator',
+      zh: 'GPU 伺服器報價與 RFQ 配置入口'
     },
     description: {
-      en: 'Create a GPU server quote request with selected GPU, CPU, RAM, storage, power, and networking options. EudTech receives the configuration for follow-up.',
-      zh: '建立 GPU 伺服器報價需求，包含 GPU、CPU、RAM、儲存、電源與網路選項，並由 EudTech 接收配置後追蹤。'
+      en: 'Create an RFQ-ready GPU server quote request for H200 or RTX PRO 6000 systems with GPU, CPU, RAM, power, storage, and network choices in one summary.',
+      zh: '建立可供 RFQ 使用的 GPU 伺服器報價需求，將 H200 或 RTX PRO 6000 系統的 GPU、CPU、RAM、電力、儲存與網路一次整理成摘要。'
     },
     keywords: {
       en: 'GPU server quote, AI server quote, GPU workstation quote, server configurator, EudTech configurator',
       zh: 'GPU 伺服器報價, AI 伺服器報價, GPU 工作站報價, 伺服器配置器, EudTech 配置器'
     },
     hero: {
-      en: 'GPU server quote requests with configuration context',
-      zh: '帶有完整配置脈絡的 GPU 伺服器報價需求'
+      en: 'GPU server quote and RFQ entry point',
+      zh: 'GPU 伺服器報價與 RFQ 入口'
     },
     lead: {
-      en: 'Replace ambiguous RFQ notes with a configuration URL that records the selected system, components, and quote request details.',
-      zh: '用配置連結取代模糊 RFQ 備註，保留系統、零組件與詢價需求細節。'
+      en: 'Replace ambiguous RFQ notes with a configuration URL that records the selected system, GPU, CPU, RAM, storage, power, network, and quote request details.',
+      zh: '用配置連結取代模糊 RFQ 備註，保留系統、GPU、CPU、RAM、儲存、電源、網路與詢價需求細節。'
     },
     image: '/grando-rackable-01.jpg',
     imageAlt: {
@@ -356,24 +356,24 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     slug: 'h200-vs-rtx-pro-6000',
     kind: 'comparison',
     title: {
-      en: 'NVIDIA H200 vs RTX PRO 6000 GPU Server Comparison',
-      zh: 'NVIDIA H200 與 RTX PRO 6000 GPU 伺服器比較'
+      en: 'H200 vs RTX PRO 6000: AI GPU Server Buying Guide',
+      zh: 'H200 vs RTX PRO 6000：AI GPU 伺服器採購比較'
     },
     description: {
-      en: 'Compare NVIDIA H200 GPU servers and RTX PRO 6000 workstations for AI training, local inference, visualization, and procurement planning.',
-      zh: '比較 NVIDIA H200 GPU 伺服器與 RTX PRO 6000 工作站在 AI 訓練、本地推論、視覺化與採購規劃上的差異。'
+      en: 'Compare when to choose NVIDIA H200 for dense AI training or HPC and when RTX PRO 6000 fits local inference, rendering, visualization, and workstation procurement.',
+      zh: '比較何時選 NVIDIA H200 做高密度 AI 訓練或 HPC，何時選 RTX PRO 6000 做本地推論、渲染、視覺化與工作站採購。'
     },
     keywords: {
       en: 'H200 vs RTX PRO 6000, NVIDIA H200 server comparison, RTX PRO 6000 workstation comparison, AI GPU comparison, GPU server procurement',
       zh: 'H200 vs RTX PRO 6000, NVIDIA H200 伺服器比較, RTX PRO 6000 工作站比較, AI GPU 比較, GPU 伺服器採購'
     },
     hero: {
-      en: 'H200 or RTX PRO 6000: choose by workload and deployment model',
-      zh: 'H200 或 RTX PRO 6000：依工作負載與部署型態選擇'
+      en: 'H200 vs RTX PRO 6000 for AI training, inference, and buying decisions',
+      zh: 'H200 vs RTX PRO 6000：AI 訓練、推論與採購比較'
     },
     lead: {
-      en: 'Use this comparison as a procurement entry point, then open the matching configurator path to preserve the exact GPU, CPU, memory, storage, and power assumptions.',
-      zh: '以此比較作為採購入口，再進入對應配置器，保留 GPU、CPU、記憶體、儲存與電源假設。'
+      en: 'Use this comparison to decide whether H200 server density or RTX PRO 6000 workstation flexibility fits the project, then open the matching configurator path to preserve the exact assumptions.',
+      zh: '用此比較判斷專案較適合 H200 伺服器密度或 RTX PRO 6000 工作站彈性，再進入對應配置器保留完整假設。'
     },
     image: '/grando-8gpu-server.jpg',
     imageAlt: {
@@ -775,24 +775,24 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'ai-inference-server-taiwan',
     title: {
-      en: 'AI Inference Server Taiwan Configurator',
-      zh: '台灣 AI 推論伺服器配置器'
+      en: 'AI Inference Server Taiwan Quote Configurator',
+      zh: '台灣 AI 推論伺服器報價配置器'
     },
     description: {
-      en: 'Configure AI inference servers for Taiwan teams that need GPU acceleration, local model serving, memory planning, storage, networking, and quote follow-up.',
-      zh: '為台灣團隊配置 AI 推論伺服器，支援 GPU 加速、本地模型服務、記憶體規劃、儲存、網路與報價追蹤。'
+      en: 'Configure Taiwan AI inference servers for LLM and private model serving with GPU memory, system RAM, NVMe storage, networking, deployment, and quote follow-up context.',
+      zh: '為台灣 LLM 與私有模型服務配置 AI 推論伺服器，保留 GPU 記憶體、系統記憶體、NVMe、網路、部署與報價追蹤脈絡。'
     },
     keywords: {
       en: 'AI inference server Taiwan, GPU inference server, local AI server quote, LLM inference server, AI server configurator Taiwan',
       zh: 'AI 推論伺服器 台灣, GPU 推論伺服器, 本地 AI 伺服器報價, LLM 推論伺服器, AI 伺服器配置器 台灣'
     },
     hero: {
-      en: 'AI inference server configurations for Taiwan deployment',
-      zh: '面向台灣部署的 AI 推論伺服器配置'
+      en: 'Taiwan LLM and AI inference server quote configuration',
+      zh: '台灣 LLM 與 AI 推論伺服器報價配置'
     },
     lead: {
-      en: 'Start from GPU server or workstation configurations, then record GPU, CPU, memory, NVMe storage, and networking assumptions for inference workloads.',
-      zh: '從 GPU 伺服器或工作站配置開始，記錄推論工作負載需要的 GPU、CPU、記憶體、NVMe 儲存與網路假設。'
+      en: 'Start from GPU server or workstation configurations, then record concurrency, GPU memory, system RAM, NVMe storage, networking, and operations assumptions for inference workloads.',
+      zh: '從 GPU 伺服器或工作站配置開始，記錄推論工作負載的併發量、GPU 記憶體、系統記憶體、NVMe、網路與維運假設。'
     },
     image: '/grando-desktop-01.jpg',
     imageAlt: {

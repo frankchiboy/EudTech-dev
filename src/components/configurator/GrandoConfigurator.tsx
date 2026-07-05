@@ -164,8 +164,8 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
   const name = device
     ? `${translateConfiguratorModelName(device.name, language)} ${isEnglish ? 'Configurator' : '配置器'}`
     : isEnglish
-      ? 'Comino Grando GPU Server Configurator'
-      : 'Comino Grando GPU 伺服器配置器';
+      ? 'Comino Grando GPU Server Quote Configurator'
+      : 'Comino Grando GPU 伺服器報價配置器';
   const description = isEnglish
     ? 'Configure Comino Grando GPU servers and AI workstations, then send the selected GPU, CPU, RAM, storage, power, and network options to EudTech for quote follow-up.'
     : '配置 Comino Grando GPU 伺服器與 AI 工作站，並將已選 GPU、CPU、RAM、儲存、電源與網路選項送交 EudTech 追蹤報價。';
@@ -695,11 +695,15 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
   return (
     <>
       <SEOHead
-        title={language === 'en' ? 'Comino Grando GPU Server Configurator' : 'Comino Grando GPU 伺服器配置器'}
+        title={
+          language === 'en'
+            ? 'Comino Grando GPU Server Quote Configurator'
+            : 'Comino Grando GPU 伺服器報價配置器'
+        }
         description={
           language === 'en'
-            ? 'Configure Comino Grando GPU servers, RTX PRO workstations, NVIDIA H200 systems, storage, power, and networking, then request a quote from EudTech.'
-            : '配置 Comino Grando GPU 伺服器、RTX PRO 工作站、NVIDIA H200 系統、儲存、電源與網路，並向 EudTech 取得報價。'
+            ? 'Configure Comino Grando GPU servers, RTX PRO 6000 workstations, NVIDIA H200 systems, storage, power, and networking, then send an RFQ-ready quote request to EudTech.'
+            : '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。'
         }
         keywords={
           language === 'en'
@@ -708,7 +712,11 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
         }
         url={CONFIGURATOR_CANONICAL_URL}
         image={getConfiguratorSocialPreviewPath('/configurator')}
-        imageAlt={language === 'en' ? 'Comino Grando GPU server configurator' : 'Comino Grando GPU 伺服器配置器'}
+        imageAlt={
+          language === 'en'
+            ? 'Comino Grando GPU server quote configurator'
+            : 'Comino Grando GPU 伺服器報價配置器'
+        }
         isEnglish={language === 'en'}
         structuredData={buildConfiguratorStructuredData(language)}
       />
@@ -1596,11 +1604,25 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
   };
 
   const modelName = device ? translateConfiguratorModelName(device.name, language) : undefined;
-  const detailTitle = modelName
-    ? `${modelName} ${language === 'en' ? 'GPU Server Configurator' : 'GPU 伺服器配置器'}`
+  const detailProductSeo = getConfiguratorProductSeo(pid);
+  const detailTitle = detailProductSeo
+    ? detailProductSeo.title[language]
+    : (modelName
+        ? `${modelName} ${language === 'en' ? 'GPU Server Configurator' : 'GPU 伺服器配置器'}`
+        : language === 'en'
+          ? 'GPU Server Configurator'
+          : 'GPU 伺服器配置器');
+  const detailDescription = detailProductSeo
+    ? detailProductSeo.description[language]
     : language === 'en'
-      ? 'GPU Server Configurator'
-      : 'GPU 伺服器配置器';
+      ? 'Customize GPU, CPU, RAM, NVMe storage, power supply, and network options, then send this Comino Grando configuration to EudTech for quote follow-up.'
+      : '自訂 GPU、CPU、RAM、NVMe 儲存、電源供應與網路選項，並將此 Comino Grando 配置送交 EudTech 追蹤報價。';
+  const detailKeywords = detailProductSeo
+    ? detailProductSeo.keywords[language]
+    : language === 'en'
+      ? 'GPU server quote, AI workstation configurator, Comino Grando, NVIDIA GPU server, liquid cooled GPU server, EudTech'
+      : 'GPU 伺服器報價, AI 工作站配置器, Comino Grando, NVIDIA GPU 伺服器, 液冷 GPU 伺服器, EudTech';
+  const detailImageAlt = detailProductSeo ? detailProductSeo.imageAlt[language] : detailTitle;
   const canonicalUrl = canonicalPageUrl(`${SITE_ORIGIN}/configurator/${pid}`);
 
   useEffect(() => {
@@ -1620,19 +1642,11 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
     <>
       <SEOHead
         title={detailTitle}
-        description={
-          language === 'en'
-            ? 'Customize GPU, CPU, RAM, NVMe storage, power supply, and network options, then send this Comino Grando configuration to EudTech for quote follow-up.'
-            : '自訂 GPU、CPU、RAM、NVMe 儲存、電源供應與網路選項，並將此 Comino Grando 配置送交 EudTech 追蹤報價。'
-        }
-        keywords={
-          language === 'en'
-            ? 'GPU server quote, AI workstation configurator, Comino Grando, NVIDIA GPU server, liquid cooled GPU server, EudTech'
-            : 'GPU 伺服器報價, AI 工作站配置器, Comino Grando, NVIDIA GPU 伺服器, 液冷 GPU 伺服器, EudTech'
-        }
+        description={detailDescription}
+        keywords={detailKeywords}
         url={canonicalUrl}
         image={getConfiguratorSocialPreviewPath(`/configurator/${pid}`)}
-        imageAlt={detailTitle}
+        imageAlt={detailImageAlt}
         isEnglish={language === 'en'}
         structuredData={buildConfiguratorStructuredData(language, pid, device || undefined)}
       />

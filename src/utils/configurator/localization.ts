@@ -6,7 +6,7 @@ export const getConfiguratorLocale = (isEnglish: boolean): ConfiguratorLocale =>
 
 export const CONFIGURATOR_COPY = {
   en: {
-    homeTitle: 'Welcome to Comino Grando Configurator',
+    homeTitle: 'Comino Grando GPU Server Quote Configurator',
     selectorLabel: 'Select based on your needs',
     productTypeNav: 'Configurator product types',
     usageFilters: 'Usage filters',
@@ -68,7 +68,7 @@ export const CONFIGURATOR_COPY = {
     loadErrorFallback: 'Something went wrong.'
   },
   zh: {
-    homeTitle: 'Comino Grando 配置器',
+    homeTitle: 'Comino Grando GPU 伺服器報價配置器',
     selectorLabel: '依需求選擇產品',
     productTypeNav: '配置器產品類型',
     usageFilters: '應用篩選',

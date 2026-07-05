@@ -150,10 +150,10 @@ function configuratorHubItemList() {
 
 const solutionHubRoute = {
   path: '/solutions',
-  title: '配置器解決方案與 GPU 伺服器報價指南',
-  description: 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。',
+  title: 'GPU 伺服器報價與配置器解決方案',
+  description: 'EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。',
   keywords: 'GPU 伺服器報價, AI 伺服器報價, 配置器解決方案, NVIDIA H200 伺服器, RTX PRO 6000 工作站, GPU 伺服器 RFQ, 液冷 AI 伺服器',
-  lead: '集中整理 EudTech 配置器、GPU 伺服器報價、AI 工作站與採購檢核內容，協助技術與採購團隊進入最符合需求的配置頁。',
+  lead: '先依採購意圖選擇入口，再進入對應配置器，保留 GPU、CPU、記憶體、儲存、電源與網路脈絡供報價追蹤。',
   image: defaultImage,
   imageAlt: 'EudTech GPU 伺服器報價配置器解決方案',
   kind: 'collection',
@@ -190,7 +190,7 @@ const solutionHubRoute = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: '配置器解決方案',
-      description: 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。',
+      description: 'EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。',
       url: pageUrl('/solutions'),
       publisher: eudTechOrganization,
       mainEntity: {
@@ -265,7 +265,7 @@ const routes = [
     configuratorHref: '/configurator',
     quoteHref: '/configurator?request=true',
     relatedLinks: [
-      routeLink('/configurator', 'Comino Grando GPU 伺服器配置器'),
+      routeLink('/configurator', 'Comino Grando GPU 伺服器報價配置器'),
       routeLink('/solutions', '配置器解決方案總覽'),
       routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
       routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置'),
@@ -278,7 +278,7 @@ const routes = [
     ],
     specs: [
       { label: '主力產品', value: 'AI GPU 伺服器與 AI 工作站' },
-      { label: '配置器', value: 'Comino Grando GPU 伺服器配置器' },
+      { label: '配置器', value: 'Comino Grando GPU 伺服器報價配置器' },
       { label: '聯絡信箱', value: 'info@eudaemonia.tech' }
     ],
     schema: [
@@ -296,11 +296,11 @@ const routes = [
   },
   {
     path: '/configurator',
-    title: 'Comino Grando GPU 伺服器配置器',
-    description: '配置 Comino Grando GPU 伺服器、RTX PRO 工作站、NVIDIA H200 系統、儲存、電源與網路，並向 EudTech 取得報價。',
+    title: 'Comino Grando GPU 伺服器報價配置器',
+    description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。',
     keywords: 'Comino Grando 配置器, GPU 伺服器配置器, NVIDIA H200 伺服器, RTX PRO 6000 工作站, AI 工作站 台灣, GPU 伺服器報價',
-    lead: '使用 EudTech 配置器建立 Comino Grando GPU 伺服器或 AI 工作站需求，確認硬體選項後送出報價。',
-    imageAlt: 'Comino Grando GPU 伺服器配置器',
+    lead: '使用 EudTech 配置器建立 Comino Grando GPU 伺服器或 AI 工作站需求，確認 GPU、CPU、記憶體、儲存、電源與網路後送出報價。',
+    imageAlt: 'Comino Grando GPU 伺服器報價配置器',
     configuratorHref: '/configurator',
     quoteHref: '/configurator?request=true',
     relatedLinks: [
@@ -322,7 +322,7 @@ const routes = [
       {
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
-        name: 'Comino Grando GPU 伺服器配置器',
+        name: 'Comino Grando GPU 伺服器報價配置器',
         description: '配置 Comino Grando GPU 伺服器與 AI 工作站，並將已選 GPU、CPU、RAM、儲存、電源與網路選項送交 EudTech 追蹤報價。',
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Web',
