@@ -17,6 +17,8 @@ export type ConfiguratorProductSeo = {
   productId: string;
   configuratorHref: string;
   quoteHref: string;
+  relatedProductIds: number[];
+  exposureNotes: LocalizedText[];
   properties: Array<{
     name: LocalizedText;
     value: LocalizedText;
@@ -36,6 +38,8 @@ type ProductSeoInput = {
   gpuFocus: LocalizedText;
   formFactor: LocalizedText;
   cpuPlatform: LocalizedText;
+  relatedProductIds?: number[];
+  exposureNotes?: LocalizedText[];
 };
 
 const buildProductSeo = ({
@@ -50,7 +54,9 @@ const buildProductSeo = ({
   productId,
   gpuFocus,
   formFactor,
-  cpuPlatform
+  cpuPlatform,
+  relatedProductIds = [],
+  exposureNotes = []
 }: ProductSeoInput): ConfiguratorProductSeo => ({
   id,
   title,
@@ -68,6 +74,8 @@ const buildProductSeo = ({
   productId,
   configuratorHref: `/configurator/${id}`,
   quoteHref: `/configurator/${id}?request=true`,
+  relatedProductIds,
+  exposureNotes,
   properties: [
     { name: { en: 'GPU focus', zh: 'GPU 重點' }, value: gpuFocus },
     { name: { en: 'Form factor', zh: '機構型態' }, value: formFactor },
@@ -147,7 +155,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD DUAL EPYC 9004 / 9005',
       zh: 'AMD DUAL EPYC 9004 / 9005'
-    }
+    },
+    relatedProductIds: [29, 28, 36, 23],
+    exposureNotes: [
+      {
+        en: 'Best suited for teams that already plan chassis, rack, cooling, and integration work around an 8-GPU H200 platform.',
+        zh: '適合已規劃機箱、機架、散熱與整合工作的團隊，以 8-GPU H200 平台作為核心。'
+      },
+      {
+        en: 'Use this route when procurement needs a component-level integration discussion rather than a finished server SKU.',
+        zh: '適用於採購需要討論整合套件與零組件條件，而不是直接採購完整伺服器 SKU 的情境。'
+      }
+    ]
   }),
   buildProductSeo({
     id: 36,
@@ -185,7 +204,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD DUAL EPYC 9004 / 9005',
       zh: 'AMD DUAL EPYC 9004 / 9005'
-    }
+    },
+    relatedProductIds: [23, 34, 5, 27],
+    exposureNotes: [
+      {
+        en: 'Targets RTX PRO 6000 integration projects that need workstation-class GPU memory in an 8-GPU build plan.',
+        zh: '面向需要工作站等級 GPU 記憶體、並以 8-GPU 架構規劃整合的 RTX PRO 6000 專案。'
+      },
+      {
+        en: 'Useful when the buyer is comparing integration kits against rackable workstation and finished server options.',
+        zh: '適合採購同時比較整合套件、可上架工作站與完整伺服器方案時使用。'
+      }
+    ]
   }),
   buildProductSeo({
     id: 29,
@@ -223,7 +253,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD EPYC 9004 / 9005',
       zh: 'AMD EPYC 9004 / 9005'
-    }
+    },
+    relatedProductIds: [28, 27, 30, 23],
+    exposureNotes: [
+      {
+        en: 'Positioned for H200 training or inference projects that need more GPU density than a 4-GPU server but less than a full 8-GPU plan.',
+        zh: '適合需要高於 4-GPU、但尚未到完整 8-GPU 規模的 H200 訓練或推論專案。'
+      },
+      {
+        en: 'Use this page to preserve 6x H200, EPYC, RAM, NVMe, power, and network assumptions for RFQ review.',
+        zh: '此頁可保留 6 張 H200、EPYC、RAM、NVMe、電源與網路假設，供 RFQ 審查。'
+      }
+    ]
   }),
   buildProductSeo({
     id: 28,
@@ -261,7 +302,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD EPYC 9004 / 9005',
       zh: 'AMD EPYC 9004 / 9005'
-    }
+    },
+    relatedProductIds: [29, 30, 27, 34],
+    exposureNotes: [
+      {
+        en: 'Designed for H200 buyers that need a focused 4-GPU server path before deciding whether to scale to 6 or 8 GPUs.',
+        zh: '適合 H200 採購先以 4-GPU 伺服器方案收斂需求，再評估是否擴充到 6 或 8 GPU。'
+      },
+      {
+        en: 'A practical starting point for smaller AI teams that still need HBM capacity, EPYC platform planning, and formal quote follow-up.',
+        zh: '適合作為較小型 AI 團隊的起始方案，同時保留 HBM 容量、EPYC 平台與正式報價脈絡。'
+      }
+    ]
   }),
   buildProductSeo({
     id: 23,
@@ -299,7 +351,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD EPYC 9004 / 9005',
       zh: 'AMD EPYC 9004 / 9005'
-    }
+    },
+    relatedProductIds: [36, 34, 5, 29],
+    exposureNotes: [
+      {
+        en: 'Targets dense RTX PRO 6000 inference, rendering, visualization, and simulation projects that need an 8-GPU server route.',
+        zh: '面向需要 8-GPU 伺服器路徑的 RTX PRO 6000 推論、渲染、視覺化與模擬專案。'
+      },
+      {
+        en: 'Useful when teams compare RTX PRO 6000 server density against H200 memory bandwidth and workstation alternatives.',
+        zh: '適合團隊比較 RTX PRO 6000 伺服器密度、H200 記憶體頻寬與工作站替代方案時使用。'
+      }
+    ]
   }),
   buildProductSeo({
     id: 34,
@@ -337,7 +400,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD Threadripper PRO 7000WX',
       zh: 'AMD Threadripper PRO 7000WX'
-    }
+    },
+    relatedProductIds: [5, 36, 23, 30],
+    exposureNotes: [
+      {
+        en: 'Suited to deskside AI development, rendering, and visualization teams that need two RTX PRO 6000 GPUs without a rack server footprint.',
+        zh: '適合需要兩張 RTX PRO 6000、但不需要機架伺服器佔用的桌邊 AI 開發、渲染與視覺化團隊。'
+      },
+      {
+        en: 'Use this route when procurement must compare desktop workstation convenience against rackable RTX PRO 6000 options.',
+        zh: '適用於採購需要比較桌面工作站便利性與可上架 RTX PRO 6000 方案時。'
+      }
+    ]
   }),
   buildProductSeo({
     id: 30,
@@ -375,7 +449,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD EPYC 9004 / 9005',
       zh: 'AMD EPYC 9004 / 9005'
-    }
+    },
+    relatedProductIds: [28, 29, 34, 13],
+    exposureNotes: [
+      {
+        en: 'Built for local H200 validation, research, and pilot workloads that need HBM capacity in a workstation-oriented path.',
+        zh: '面向需要在工作站型態中使用 HBM 容量的本地 H200 驗證、研究與試點工作負載。'
+      },
+      {
+        en: 'Useful before scaling from a two-GPU H200 workstation to 4x or 6x H200 server configurations.',
+        zh: '適合在從 2-GPU H200 工作站擴展到 4x 或 6x H200 伺服器前先行評估。'
+      }
+    ]
   }),
   buildProductSeo({
     id: 22,
@@ -413,7 +498,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD EPYC 9004 / 9005',
       zh: 'AMD EPYC 9004 / 9005'
-    }
+    },
+    relatedProductIds: [21, 5, 13, 34],
+    exposureNotes: [
+      {
+        en: 'Targets AMD Radeon AI PRO R9700 planning for teams evaluating non-NVIDIA GPU workstation routes.',
+        zh: '面向正在評估非 NVIDIA GPU 工作站路線的團隊，聚焦 AMD Radeon AI PRO R9700 規劃。'
+      },
+      {
+        en: 'Use this page when the buyer needs rackable workstation planning with AMD GPU, EPYC, power, and network assumptions.',
+        zh: '適用於採購需要以 AMD GPU、EPYC、電源與網路假設規劃可上架工作站時。'
+      }
+    ]
   }),
   buildProductSeo({
     id: 13,
@@ -451,7 +547,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD Threadripper PRO 7000WX',
       zh: 'AMD Threadripper PRO 7000WX'
-    }
+    },
+    relatedProductIds: [21, 30, 34, 5],
+    exposureNotes: [
+      {
+        en: 'A focused route for AI development, testing, and visualization teams comparing RTX 5090 workstation cost and capability.',
+        zh: '適合 AI 開發、測試與視覺化團隊比較 RTX 5090 工作站成本與能力時使用。'
+      },
+      {
+        en: 'Use this option before moving to rackable RTX 5090 or RTX PRO 6000 configurations for larger procurement needs.',
+        zh: '適合在擴大到可上架 RTX 5090 或 RTX PRO 6000 配置前，先確認較小型工作站需求。'
+      }
+    ]
   }),
   buildProductSeo({
     id: 5,
@@ -489,7 +596,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD DUAL EPYC 9004 / 9005',
       zh: 'AMD DUAL EPYC 9004 / 9005'
-    }
+    },
+    relatedProductIds: [34, 36, 23, 21],
+    exposureNotes: [
+      {
+        en: 'Targets rackable RTX PRO 6000 workstation projects where four GPUs and dual EPYC assumptions need RFQ review.',
+        zh: '面向需要四張 RTX PRO 6000 與雙 EPYC 假設進行 RFQ 審查的可上架工作站專案。'
+      },
+      {
+        en: 'Useful for buyers comparing rackable workstation deployment against desktop workstation and 8-GPU server choices.',
+        zh: '適合採購比較可上架工作站部署、桌面工作站與 8-GPU 伺服器選項時。'
+      }
+    ]
   }),
   buildProductSeo({
     id: 21,
@@ -527,7 +645,18 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     cpuPlatform: {
       en: 'AMD EPYC 9004 / 9005',
       zh: 'AMD EPYC 9004 / 9005'
-    }
+    },
+    relatedProductIds: [13, 22, 5, 30],
+    exposureNotes: [
+      {
+        en: 'Designed for teams that need more RTX 5090 GPU count than a desktop workstation while keeping a rackable workstation path.',
+        zh: '適合需要高於桌面工作站 RTX 5090 GPU 數量、但仍採可上架工作站路線的團隊。'
+      },
+      {
+        en: 'Use this page to compare six RTX 5090 GPUs against AMD R9700, H200 workstation, and rackable PRO 6000 alternatives.',
+        zh: '此頁可協助比較六張 RTX 5090、AMD R9700、H200 工作站與可上架 PRO 6000 替代方案。'
+      }
+    ]
   })
 ];
 

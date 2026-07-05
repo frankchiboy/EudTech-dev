@@ -55,6 +55,21 @@ requireAll('configurator-links.html', requiredPageUrls, (url) => configuratorLin
 requireAll('llms-full.txt product ids', CONFIGURATOR_PRODUCT_SEO.map((product) => product.productId), (productId) =>
   llmsFullText.includes(productId)
 );
+requireAll(
+  'llms-full.txt product exposure notes',
+  CONFIGURATOR_PRODUCT_SEO.flatMap((product) => (product.exposureNotes || []).map((note) => note.zh)),
+  (note) => llmsFullText.includes(note)
+);
+requireAll(
+  'llms-full.txt explicit related product urls',
+  CONFIGURATOR_PRODUCT_SEO.flatMap((product) =>
+    (product.relatedProductIds || [])
+      .map((id) => CONFIGURATOR_PRODUCT_SEO.find((candidate) => candidate.id === id))
+      .filter(Boolean)
+      .map((relatedProduct) => pageUrl(relatedProduct.configuratorHref))
+  ),
+  (url) => llmsFullText.includes(url)
+);
 requireAll('llms-full.txt solution slugs', CONFIGURATOR_SEO_PAGES.map((page) => page.slug), (slug) => llmsFullText.includes(slug));
 requireAll('sitemap-index.xml', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`, `${siteOrigin}/feed.xml`], (url) => sitemapIndexLocs.has(url));
 requireAll('robots.txt', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`, `${siteOrigin}/feed.xml`, `${siteOrigin}/sitemap-index.xml`], (url) =>

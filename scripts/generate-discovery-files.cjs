@@ -210,6 +210,12 @@ const localized = (value) => `${getZh(value)} / ${value.en}`;
 const formatSpecs = (specs) => specs.map((spec) => `  - ${localized(spec.label)}: ${localized(spec.value)}`).join('\n');
 const formatProperties = (properties) => properties.map((property) => `  - ${localized(property.name)}: ${localized(property.value)}`).join('\n');
 const formatHighlights = (highlights) => highlights.map((highlight) => `  - ${highlight.zh} / ${highlight.en}`).join('\n');
+const relatedProductUrls = (product) =>
+  (product.relatedProductIds || [])
+    .map((id) => CONFIGURATOR_PRODUCT_SEO.find((candidate) => candidate.id === id))
+    .filter(Boolean)
+    .map((candidate) => `  - ${localized(candidate.model)}: ${pageUrl(candidate.configuratorHref)}`)
+    .join('\n');
 const formatFaqs = (faqs) =>
   faqs
     .map(
@@ -277,6 +283,10 @@ ${CONFIGURATOR_PRODUCT_SEO.map(
 - Keywords: ${localized(product.keywords)}
 - Image: ${siteOrigin}${product.image}
 - Image alt: ${localized(product.imageAlt)}
+- Exposure notes:
+${formatHighlights(product.exposureNotes || [])}
+- Related configurator routes:
+${relatedProductUrls(product)}
 - Properties:
 ${formatProperties(product.properties)}`
 ).join('\n\n')}

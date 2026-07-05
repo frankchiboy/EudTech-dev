@@ -121,6 +121,16 @@ function productCanonicalUrls() {
   return expectedConfiguratorProductUrls();
 }
 
+function productRouteByProductId(productId) {
+  return CONFIGURATOR_PRODUCT_SEO.find((product) => product.productId === productId);
+}
+
+function productCanonicalUrlByNumericId(id) {
+  const product = CONFIGURATOR_PRODUCT_SEO.find((candidate) => candidate.id === id);
+  const route = product ? expectedRoutes.find((expectedRoute) => expectedRoute.path === product.configuratorHref) : undefined;
+  return route?.canonicalUrl || '';
+}
+
 function relatedConfiguratorProductLinks(routePath, links) {
   const productUrls = new Set(productCanonicalUrls());
   const route = expectedRoutes.find((expectedRoute) => expectedRoute.path === routePath);
@@ -307,6 +317,24 @@ function assertStaticSeoFallback(route, jsonLd) {
   if (route.productId) {
     const crossProductLinks = relatedConfiguratorProductLinks(route.path, links);
     requireAtLeast(route.path, 'related configurator product links', crossProductLinks.length, MIN_PRODUCT_CROSS_LINKS);
+
+    const product = productRouteByProductId(route.productId);
+    const expectedExplicitProductUrls = (product?.relatedProductIds || [])
+      .map(productCanonicalUrlByNumericId)
+      .filter(Boolean)
+      .slice(0, 4);
+    const missingExplicitLinks = expectedExplicitProductUrls.filter((url) => !links.some((link) => link.href === url));
+    if (missingExplicitLinks.length > 0) {
+      throw new Error(`${route.path} static SEO related links missing explicit related products: ${missingExplicitLinks.join(', ')}`);
+    }
+
+    const text = bodyText(html);
+    const missingExposureNotes = (product?.exposureNotes || [])
+      .map((note) => note.zh)
+      .filter((note) => note && !text.includes(note));
+    if (missingExposureNotes.length > 0) {
+      throw new Error(`${route.path} static SEO fallback missing product exposure notes.`);
+    }
   }
 
   if (route.path.startsWith('/solutions/') && route.path !== '/solutions') {

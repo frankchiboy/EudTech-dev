@@ -57,6 +57,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: INTEGRATION KIT 8x H200, H200 整合套件, NVIDIA H200 GPU 伺服器, 8x H200 報價, AI GPU 伺服器配置器 / INTEGRATION KIT 8x H200, H200 integration kit, NVIDIA H200 GPU server, 8x H200 quote, AI GPU server configurator
 - Image: https://eudaemonia.tech/grando-8gpu-server.jpg
 - Image alt: 八張 NVIDIA H200 GPU 的 Comino 整合套件配置 / Comino integration kit configuration for eight NVIDIA H200 GPUs
+- Exposure notes:
+  - 適合已規劃機箱、機架、散熱與整合工作的團隊，以 8-GPU H200 平台作為核心。 / Best suited for teams that already plan chassis, rack, cooling, and integration work around an 8-GPU H200 platform.
+  - 適用於採購需要討論整合套件與零組件條件，而不是直接採購完整伺服器 SKU 的情境。 / Use this route when procurement needs a component-level integration discussion rather than a finished server SKU.
+- Related configurator routes:
+  - SERVER 6xH200 / SERVER 6xH200: https://eudaemonia.tech/configurator/29/
+  - SERVER 4xH200 / SERVER 4xH200: https://eudaemonia.tech/configurator/28/
+  - INTEGRATION KIT 8x PRO 6000 / INTEGRATION KIT 8x PRO 6000: https://eudaemonia.tech/configurator/36/
+  - SERVER 8x PRO 6000 / SERVER 8x PRO 6000: https://eudaemonia.tech/configurator/23/
 - Properties:
   - GPU 重點 / GPU focus: 8 張 NVIDIA H200 141GB / 8x NVIDIA H200 141GB
   - 機構型態 / Form factor: 整合套件 / Integration kit
@@ -80,6 +88,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: INTEGRATION KIT 8x PRO 6000, RTX PRO 6000 整合套件, 8x PRO 6000 報價, AI GPU 整合套件 / INTEGRATION KIT 8x PRO 6000, RTX PRO 6000 integration kit, 8x PRO 6000 quote, AI GPU integration kit
 - Image: https://eudaemonia.tech/grando-8gpu-server.jpg
 - Image alt: 八張 RTX PRO 6000 GPU 的 Comino 整合套件配置 / Comino integration kit configuration for eight RTX PRO 6000 GPUs
+- Exposure notes:
+  - 面向需要工作站等級 GPU 記憶體、並以 8-GPU 架構規劃整合的 RTX PRO 6000 專案。 / Targets RTX PRO 6000 integration projects that need workstation-class GPU memory in an 8-GPU build plan.
+  - 適合採購同時比較整合套件、可上架工作站與完整伺服器方案時使用。 / Useful when the buyer is comparing integration kits against rackable workstation and finished server options.
+- Related configurator routes:
+  - SERVER 8x PRO 6000 / SERVER 8x PRO 6000: https://eudaemonia.tech/configurator/23/
+  - WORKSTATION 2x PRO 6000 / WORKSTATION 2x PRO 6000: https://eudaemonia.tech/configurator/34/
+  - RACKABLE WS 4x PRO 6000 / RACKABLE WS 4x PRO 6000: https://eudaemonia.tech/configurator/5/
+  - INTEGRATION KIT 8x H200 / INTEGRATION KIT 8x H200: https://eudaemonia.tech/configurator/27/
 - Properties:
   - GPU 重點 / GPU focus: 8 張 NVIDIA RTX PRO 6000 96GB / 8x NVIDIA RTX PRO 6000 96GB
   - 機構型態 / Form factor: 整合套件 / Integration kit
@@ -103,6 +119,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: SERVER 6xH200, NVIDIA H200 GPU 伺服器, H200 伺服器報價, 6x H200 伺服器, AI GPU 伺服器配置器 / SERVER 6xH200, NVIDIA H200 GPU server, H200 server quote, 6x H200 server, AI GPU server configurator
 - Image: https://eudaemonia.tech/grando-8gpu-server.jpg
 - Image alt: SERVER 6xH200 高密度 Comino GPU 伺服器配置 / SERVER 6xH200 high-density Comino GPU server configuration
+- Exposure notes:
+  - 適合需要高於 4-GPU、但尚未到完整 8-GPU 規模的 H200 訓練或推論專案。 / Positioned for H200 training or inference projects that need more GPU density than a 4-GPU server but less than a full 8-GPU plan.
+  - 此頁可保留 6 張 H200、EPYC、RAM、NVMe、電源與網路假設，供 RFQ 審查。 / Use this page to preserve 6x H200, EPYC, RAM, NVMe, power, and network assumptions for RFQ review.
+- Related configurator routes:
+  - SERVER 4xH200 / SERVER 4xH200: https://eudaemonia.tech/configurator/28/
+  - INTEGRATION KIT 8x H200 / INTEGRATION KIT 8x H200: https://eudaemonia.tech/configurator/27/
+  - WORKSTATION 2xH200 / WORKSTATION 2xH200: https://eudaemonia.tech/configurator/30/
+  - SERVER 8x PRO 6000 / SERVER 8x PRO 6000: https://eudaemonia.tech/configurator/23/
 - Properties:
   - GPU 重點 / GPU focus: 6 張 NVIDIA H200 141GB / 6x NVIDIA H200 141GB
   - 機構型態 / Form factor: AI GPU 伺服器 / AI GPU server
@@ -126,6 +150,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: SERVER 4xH200, NVIDIA H200 GPU 伺服器, 4x H200 伺服器報價, AI 訓練伺服器, GPU 伺服器配置器 / SERVER 4xH200, NVIDIA H200 GPU server, 4x H200 server quote, AI training server, GPU server configurator
 - Image: https://eudaemonia.tech/grando-8gpu-server.jpg
 - Image alt: SERVER 4xH200 Comino GPU 伺服器配置 / SERVER 4xH200 Comino GPU server configuration
+- Exposure notes:
+  - 適合 H200 採購先以 4-GPU 伺服器方案收斂需求，再評估是否擴充到 6 或 8 GPU。 / Designed for H200 buyers that need a focused 4-GPU server path before deciding whether to scale to 6 or 8 GPUs.
+  - 適合作為較小型 AI 團隊的起始方案，同時保留 HBM 容量、EPYC 平台與正式報價脈絡。 / A practical starting point for smaller AI teams that still need HBM capacity, EPYC platform planning, and formal quote follow-up.
+- Related configurator routes:
+  - SERVER 6xH200 / SERVER 6xH200: https://eudaemonia.tech/configurator/29/
+  - WORKSTATION 2xH200 / WORKSTATION 2xH200: https://eudaemonia.tech/configurator/30/
+  - INTEGRATION KIT 8x H200 / INTEGRATION KIT 8x H200: https://eudaemonia.tech/configurator/27/
+  - WORKSTATION 2x PRO 6000 / WORKSTATION 2x PRO 6000: https://eudaemonia.tech/configurator/34/
 - Properties:
   - GPU 重點 / GPU focus: 4 張 NVIDIA H200 141GB / 4x NVIDIA H200 141GB
   - 機構型態 / Form factor: AI GPU 伺服器 / AI GPU server
@@ -149,6 +181,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: SERVER 8x PRO 6000, RTX PRO 6000 GPU 伺服器, 8x PRO 6000 報價, AI 推論伺服器, GPU 渲染伺服器 / SERVER 8x PRO 6000, RTX PRO 6000 GPU server, 8x PRO 6000 quote, AI inference server, GPU rendering server
 - Image: https://eudaemonia.tech/grando-8gpu-server.jpg
 - Image alt: SERVER 8x PRO 6000 Comino GPU 伺服器配置 / SERVER 8x PRO 6000 Comino GPU server configuration
+- Exposure notes:
+  - 面向需要 8-GPU 伺服器路徑的 RTX PRO 6000 推論、渲染、視覺化與模擬專案。 / Targets dense RTX PRO 6000 inference, rendering, visualization, and simulation projects that need an 8-GPU server route.
+  - 適合團隊比較 RTX PRO 6000 伺服器密度、H200 記憶體頻寬與工作站替代方案時使用。 / Useful when teams compare RTX PRO 6000 server density against H200 memory bandwidth and workstation alternatives.
+- Related configurator routes:
+  - INTEGRATION KIT 8x PRO 6000 / INTEGRATION KIT 8x PRO 6000: https://eudaemonia.tech/configurator/36/
+  - WORKSTATION 2x PRO 6000 / WORKSTATION 2x PRO 6000: https://eudaemonia.tech/configurator/34/
+  - RACKABLE WS 4x PRO 6000 / RACKABLE WS 4x PRO 6000: https://eudaemonia.tech/configurator/5/
+  - SERVER 6xH200 / SERVER 6xH200: https://eudaemonia.tech/configurator/29/
 - Properties:
   - GPU 重點 / GPU focus: 8 張 NVIDIA RTX PRO 6000 96GB / 8x NVIDIA RTX PRO 6000 96GB
   - 機構型態 / Form factor: AI GPU 伺服器 / AI GPU server
@@ -172,6 +212,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: WORKSTATION 2x PRO 6000, RTX PRO 6000 工作站, AI 工作站報價, GPU 工作站配置器 / WORKSTATION 2x PRO 6000, RTX PRO 6000 workstation, AI workstation quote, GPU workstation configurator
 - Image: https://eudaemonia.tech/comino-workstation-front.png
 - Image alt: WORKSTATION 2x PRO 6000 Comino AI 工作站配置 / WORKSTATION 2x PRO 6000 Comino AI workstation configuration
+- Exposure notes:
+  - 適合需要兩張 RTX PRO 6000、但不需要機架伺服器佔用的桌邊 AI 開發、渲染與視覺化團隊。 / Suited to deskside AI development, rendering, and visualization teams that need two RTX PRO 6000 GPUs without a rack server footprint.
+  - 適用於採購需要比較桌面工作站便利性與可上架 RTX PRO 6000 方案時。 / Use this route when procurement must compare desktop workstation convenience against rackable RTX PRO 6000 options.
+- Related configurator routes:
+  - RACKABLE WS 4x PRO 6000 / RACKABLE WS 4x PRO 6000: https://eudaemonia.tech/configurator/5/
+  - INTEGRATION KIT 8x PRO 6000 / INTEGRATION KIT 8x PRO 6000: https://eudaemonia.tech/configurator/36/
+  - SERVER 8x PRO 6000 / SERVER 8x PRO 6000: https://eudaemonia.tech/configurator/23/
+  - WORKSTATION 2xH200 / WORKSTATION 2xH200: https://eudaemonia.tech/configurator/30/
 - Properties:
   - GPU 重點 / GPU focus: 2 張 NVIDIA RTX PRO 6000 96GB / 2x NVIDIA RTX PRO 6000 96GB
   - 機構型態 / Form factor: 桌面工作站 / Desktop workstation
@@ -195,6 +243,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: WORKSTATION 2xH200, H200 工作站, NVIDIA H200 工作站報價, AI 工作站配置器 / WORKSTATION 2xH200, H200 workstation, NVIDIA H200 workstation quote, AI workstation configurator
 - Image: https://eudaemonia.tech/comino-workstation-front.png
 - Image alt: WORKSTATION 2xH200 Comino AI 工作站配置 / WORKSTATION 2xH200 Comino AI workstation configuration
+- Exposure notes:
+  - 面向需要在工作站型態中使用 HBM 容量的本地 H200 驗證、研究與試點工作負載。 / Built for local H200 validation, research, and pilot workloads that need HBM capacity in a workstation-oriented path.
+  - 適合在從 2-GPU H200 工作站擴展到 4x 或 6x H200 伺服器前先行評估。 / Useful before scaling from a two-GPU H200 workstation to 4x or 6x H200 server configurations.
+- Related configurator routes:
+  - SERVER 4xH200 / SERVER 4xH200: https://eudaemonia.tech/configurator/28/
+  - SERVER 6xH200 / SERVER 6xH200: https://eudaemonia.tech/configurator/29/
+  - WORKSTATION 2x PRO 6000 / WORKSTATION 2x PRO 6000: https://eudaemonia.tech/configurator/34/
+  - WORKSTATION 2x5090 / WORKSTATION 2x5090: https://eudaemonia.tech/configurator/13/
 - Properties:
   - GPU 重點 / GPU focus: 2 張 NVIDIA H200 141GB / 2x NVIDIA H200 141GB
   - 機構型態 / Form factor: 桌面工作站 / Desktop workstation
@@ -218,6 +274,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: RACKABLE WS 6x R9700, AMD Radeon AI PRO R9700, 可上架工作站報價, AMD AI 工作站 / RACKABLE WS 6x R9700, AMD Radeon AI PRO R9700, rackable workstation quote, AMD AI workstation
 - Image: https://eudaemonia.tech/grando-rackable-01.jpg
 - Image alt: RACKABLE WS 6x R9700 Comino 可上架工作站配置 / RACKABLE WS 6x R9700 Comino rackable workstation configuration
+- Exposure notes:
+  - 面向正在評估非 NVIDIA GPU 工作站路線的團隊，聚焦 AMD Radeon AI PRO R9700 規劃。 / Targets AMD Radeon AI PRO R9700 planning for teams evaluating non-NVIDIA GPU workstation routes.
+  - 適用於採購需要以 AMD GPU、EPYC、電源與網路假設規劃可上架工作站時。 / Use this page when the buyer needs rackable workstation planning with AMD GPU, EPYC, power, and network assumptions.
+- Related configurator routes:
+  - RACKABLE WS 6x5090 / RACKABLE WS 6x5090: https://eudaemonia.tech/configurator/21/
+  - RACKABLE WS 4x PRO 6000 / RACKABLE WS 4x PRO 6000: https://eudaemonia.tech/configurator/5/
+  - WORKSTATION 2x5090 / WORKSTATION 2x5090: https://eudaemonia.tech/configurator/13/
+  - WORKSTATION 2x PRO 6000 / WORKSTATION 2x PRO 6000: https://eudaemonia.tech/configurator/34/
 - Properties:
   - GPU 重點 / GPU focus: 6 張 AMD Radeon AI PRO R9700 / 6x AMD Radeon AI PRO R9700
   - 機構型態 / Form factor: 可上架工作站 / Rackable workstation
@@ -241,6 +305,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: WORKSTATION 2x5090, RTX 5090 工作站, AI 工作站報價, GPU 工作站配置器 / WORKSTATION 2x5090, RTX 5090 workstation, AI workstation quote, GPU workstation configurator
 - Image: https://eudaemonia.tech/comino-workstation-front.png
 - Image alt: WORKSTATION 2x5090 Comino AI 工作站配置 / WORKSTATION 2x5090 Comino AI workstation configuration
+- Exposure notes:
+  - 適合 AI 開發、測試與視覺化團隊比較 RTX 5090 工作站成本與能力時使用。 / A focused route for AI development, testing, and visualization teams comparing RTX 5090 workstation cost and capability.
+  - 適合在擴大到可上架 RTX 5090 或 RTX PRO 6000 配置前，先確認較小型工作站需求。 / Use this option before moving to rackable RTX 5090 or RTX PRO 6000 configurations for larger procurement needs.
+- Related configurator routes:
+  - RACKABLE WS 6x5090 / RACKABLE WS 6x5090: https://eudaemonia.tech/configurator/21/
+  - WORKSTATION 2xH200 / WORKSTATION 2xH200: https://eudaemonia.tech/configurator/30/
+  - WORKSTATION 2x PRO 6000 / WORKSTATION 2x PRO 6000: https://eudaemonia.tech/configurator/34/
+  - RACKABLE WS 4x PRO 6000 / RACKABLE WS 4x PRO 6000: https://eudaemonia.tech/configurator/5/
 - Properties:
   - GPU 重點 / GPU focus: 2 張 NVIDIA GeForce RTX 5090 32GB / 2x NVIDIA GeForce RTX 5090 32GB
   - 機構型態 / Form factor: 桌面工作站 / Desktop workstation
@@ -264,6 +336,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: RACKABLE WS 4x PRO 6000, RTX PRO 6000 可上架工作站, 4x PRO 6000 報價, AI 工作站配置器 / RACKABLE WS 4x PRO 6000, RTX PRO 6000 rackable workstation, 4x PRO 6000 quote, AI workstation configurator
 - Image: https://eudaemonia.tech/grando-rackable-01.jpg
 - Image alt: RACKABLE WS 4x PRO 6000 Comino 可上架工作站配置 / RACKABLE WS 4x PRO 6000 Comino rackable workstation configuration
+- Exposure notes:
+  - 面向需要四張 RTX PRO 6000 與雙 EPYC 假設進行 RFQ 審查的可上架工作站專案。 / Targets rackable RTX PRO 6000 workstation projects where four GPUs and dual EPYC assumptions need RFQ review.
+  - 適合採購比較可上架工作站部署、桌面工作站與 8-GPU 伺服器選項時。 / Useful for buyers comparing rackable workstation deployment against desktop workstation and 8-GPU server choices.
+- Related configurator routes:
+  - WORKSTATION 2x PRO 6000 / WORKSTATION 2x PRO 6000: https://eudaemonia.tech/configurator/34/
+  - INTEGRATION KIT 8x PRO 6000 / INTEGRATION KIT 8x PRO 6000: https://eudaemonia.tech/configurator/36/
+  - SERVER 8x PRO 6000 / SERVER 8x PRO 6000: https://eudaemonia.tech/configurator/23/
+  - RACKABLE WS 6x5090 / RACKABLE WS 6x5090: https://eudaemonia.tech/configurator/21/
 - Properties:
   - GPU 重點 / GPU focus: 4 張 NVIDIA RTX PRO 6000 96GB / 4x NVIDIA RTX PRO 6000 96GB
   - 機構型態 / Form factor: 可上架工作站 / Rackable workstation
@@ -287,6 +367,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Keywords: RACKABLE WS 6x5090, RTX 5090 可上架工作站, 6x RTX 5090 報價, AI 工作站配置器 / RACKABLE WS 6x5090, RTX 5090 rackable workstation, 6x RTX 5090 quote, AI workstation configurator
 - Image: https://eudaemonia.tech/grando-rackable-01.jpg
 - Image alt: RACKABLE WS 6x5090 Comino 可上架工作站配置 / RACKABLE WS 6x5090 Comino rackable workstation configuration
+- Exposure notes:
+  - 適合需要高於桌面工作站 RTX 5090 GPU 數量、但仍採可上架工作站路線的團隊。 / Designed for teams that need more RTX 5090 GPU count than a desktop workstation while keeping a rackable workstation path.
+  - 此頁可協助比較六張 RTX 5090、AMD R9700、H200 工作站與可上架 PRO 6000 替代方案。 / Use this page to compare six RTX 5090 GPUs against AMD R9700, H200 workstation, and rackable PRO 6000 alternatives.
+- Related configurator routes:
+  - WORKSTATION 2x5090 / WORKSTATION 2x5090: https://eudaemonia.tech/configurator/13/
+  - RACKABLE WS 6x R9700 / RACKABLE WS 6x R9700: https://eudaemonia.tech/configurator/22/
+  - RACKABLE WS 4x PRO 6000 / RACKABLE WS 4x PRO 6000: https://eudaemonia.tech/configurator/5/
+  - WORKSTATION 2xH200 / WORKSTATION 2xH200: https://eudaemonia.tech/configurator/30/
 - Properties:
   - GPU 重點 / GPU focus: 6 張 NVIDIA GeForce RTX 5090 32GB / 6x NVIDIA GeForce RTX 5090 32GB
   - 機構型態 / Form factor: 可上架工作站 / Rackable workstation

@@ -222,7 +222,8 @@ const productRoutes = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
   highlights: [
     `${getZh(product.model)}：${getZh(product.category)}`,
     `GPU 重點：${getZh(product.properties.find((property) => getZh(property.name) === 'GPU 重點')?.value || product.category)}`,
-    '送出詢價時會保留配置連結，方便技術與採購團隊審查。'
+    '送出詢價時會保留配置連結，方便技術與採購團隊審查。',
+    ...(product.exposureNotes || []).map((note) => getZh(note))
   ],
   specs: product.properties.map((property) => ({
     label: getZh(property.name),
@@ -576,7 +577,7 @@ function productRelatedLinks(product) {
 
   links.push(...siblingProducts);
 
-  return dedupeLinks(links).slice(0, 10);
+  return dedupeLinks(links).slice(0, 12);
 }
 
 function productSearchText(product) {
@@ -613,6 +614,15 @@ function productMatchScore(candidate, searchText) {
 }
 
 function relatedConfiguratorProducts(product, searchText = productSearchText(product)) {
+  const explicitRelatedProducts = (product.relatedProductIds || [])
+    .map((id) => CONFIGURATOR_PRODUCT_SEO.find((candidate) => candidate.id === id))
+    .filter(Boolean)
+    .map((candidate) => routeLink(candidate.configuratorHref, `${getZh(candidate.model)} 同系列配置`));
+
+  if (explicitRelatedProducts.length > 0) {
+    return dedupeLinks(explicitRelatedProducts).slice(0, 4);
+  }
+
   return CONFIGURATOR_PRODUCT_SEO.filter((candidate) => candidate.id !== product.id)
     .map((candidate, index) => ({
       candidate,
