@@ -16,6 +16,8 @@ const MIN_STATIC_SEO_SPEC_ROWS = 3;
 const MIN_STATIC_SEO_CHECKLIST_ITEMS = 3;
 const MIN_STATIC_SEO_FAQ_ITEMS = 4;
 const MIN_STATIC_SEO_RELATED_LINKS = 4;
+const MIN_PRODUCT_CROSS_LINKS = 2;
+const MIN_SOLUTION_PRODUCT_LINKS = 1;
 
 function readRouteHtml(routePath) {
   const htmlPath = path.join(distDir, ...routePath.split('/').filter(Boolean), 'index.html');
@@ -113,6 +115,16 @@ function relatedInternalLinks(html) {
       href: match[1],
       text: match[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
     }));
+}
+
+function productCanonicalUrls() {
+  return expectedConfiguratorProductUrls();
+}
+
+function relatedConfiguratorProductLinks(routePath, links) {
+  const productUrls = new Set(productCanonicalUrls());
+  const route = expectedRoutes.find((expectedRoute) => expectedRoute.path === routePath);
+  return links.filter((link) => productUrls.has(link.href) && link.href !== route?.canonicalUrl);
 }
 
 function expectedConfiguratorProductUrls() {
@@ -290,6 +302,16 @@ function assertStaticSeoFallback(route, jsonLd) {
   const selfLinks = links.filter((link) => link.href === route.canonicalUrl);
   if (selfLinks.length > 0) {
     throw new Error(`${route.path} static SEO related links should not point to the same canonical URL.`);
+  }
+
+  if (route.productId) {
+    const crossProductLinks = relatedConfiguratorProductLinks(route.path, links);
+    requireAtLeast(route.path, 'related configurator product links', crossProductLinks.length, MIN_PRODUCT_CROSS_LINKS);
+  }
+
+  if (route.path.startsWith('/solutions/') && route.path !== '/solutions') {
+    const productLinks = relatedConfiguratorProductLinks(route.path, links);
+    requireAtLeast(route.path, 'related concrete configurator product links', productLinks.length, MIN_SOLUTION_PRODUCT_LINKS);
   }
 
   assertRelatedLinksItemList(route.path, links, jsonLd);

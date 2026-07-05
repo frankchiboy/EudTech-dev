@@ -558,6 +558,7 @@ function productRelatedLinks(product) {
     routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
     routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表')
   ];
+  const siblingProducts = relatedConfiguratorProducts(product, searchText);
 
   if (searchText.includes('h200')) {
     links.push(routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置指南'));
@@ -573,10 +574,70 @@ function productRelatedLinks(product) {
     links.push(routeLink('/solutions/rack-ai-server-deployment', '機架式 AI 伺服器部署'));
   }
 
-  return dedupeLinks(links).slice(0, 5);
+  links.push(...siblingProducts);
+
+  return dedupeLinks(links).slice(0, 10);
+}
+
+function productSearchText(product) {
+  return [
+    getZh(product.title),
+    product.title.en,
+    getZh(product.description),
+    product.description.en,
+    getZh(product.category),
+    product.category.en,
+    getZh(product.keywords),
+    product.keywords.en,
+    getZh(product.model),
+    product.model.en
+  ]
+    .join(' ')
+    .toLowerCase();
+}
+
+function productMatchScore(candidate, searchText) {
+  const candidateText = productSearchText(candidate);
+  let score = 0;
+  for (const token of ['h200', 'pro 6000', '5090', 'r9700', 'workstation', '工作站', 'server', '伺服器', 'rackable', 'integration kit', '整合套件']) {
+    if (searchText.includes(token) && candidateText.includes(token)) {
+      score += 3;
+    }
+  }
+  if (searchText.includes('server') && candidateText.includes('伺服器')) score += 2;
+  if (searchText.includes('伺服器') && candidateText.includes('server')) score += 2;
+  if (searchText.includes('workstation') && candidateText.includes('工作站')) score += 2;
+  if (searchText.includes('工作站') && candidateText.includes('workstation')) score += 2;
+
+  return score;
+}
+
+function relatedConfiguratorProducts(product, searchText = productSearchText(product)) {
+  return CONFIGURATOR_PRODUCT_SEO.filter((candidate) => candidate.id !== product.id)
+    .map((candidate, index) => ({
+      candidate,
+      index,
+      score: productMatchScore(candidate, searchText)
+    }))
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score || a.index - b.index)
+    .slice(0, 4)
+    .map(({ candidate }) => routeLink(candidate.configuratorHref, `${getZh(candidate.model)} 同系列配置`));
 }
 
 function solutionRelatedLinks(page) {
+  const searchText = [
+    getZh(page.title),
+    page.title.en,
+    getZh(page.description),
+    page.description.en,
+    getZh(page.keywords),
+    page.keywords.en,
+    getZh(page.lead),
+    page.lead.en
+  ]
+    .join(' ')
+    .toLowerCase();
   const links = [
     routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
     routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表'),
@@ -585,7 +646,17 @@ function solutionRelatedLinks(page) {
     routeLink('/solutions/liquid-cooling-ai-server-procurement', '液冷 AI 伺服器採購')
   ].filter((link) => link.href !== pageUrl(`/solutions/${page.slug}`));
 
-  return dedupeLinks(links).slice(0, 4);
+  const productLinks = CONFIGURATOR_PRODUCT_SEO.map((product, index) => ({
+    product,
+    index,
+    score: productMatchScore(product, searchText)
+  }))
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score || a.index - b.index)
+    .slice(0, 4)
+    .map(({ product }) => routeLink(product.configuratorHref, `${getZh(product.model)} 配置器`));
+
+  return dedupeLinks([...links, ...productLinks]).slice(0, 8);
 }
 
 function compactList(values) {
