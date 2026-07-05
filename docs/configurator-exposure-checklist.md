@@ -111,6 +111,7 @@
 88. Configurator solution landing pages use Netlify Image CDN responsive hero image URLs on production domains, keeping source images intact while reducing first-viewport transfer size for SEO entry pages.
 89. Production builds copy only the public assets required for crawler discovery, social previews, configurator mobile device cards, Cyabra content, and referenced product images; `npm run verify:deploy-public-assets` fails if the deployed `dist/` footprint regresses toward the full public asset library.
 90. `verify:live-exposure` checks both canonical trailing-slash redirects and double-slash aliases such as `/configurator//29/` and `/solutions//nvidia-h200-server/`, so old Search Console user-canonical URLs must normalize to the single-slash canonical route.
+91. Netlify must not use `_redirects` rules to add or remove trailing slashes; Netlify normalizes redirect matching before rules run, so trailing-slash redirects belong to Pretty URLs and canonical tags while `_redirects` stays as the SPA fallback.
 91. `/configurator-links.html` is generated from the same route inventory as `sitemap.xml`, `feed.xml`, `llms.txt`, and `llms-full.txt`, then linked from the footer and submitted in the sitemap so crawlers and AI search tools can reach every configurator product page and solution page through a single HTML link index.
 92. Search Console URL Inspection defaults include `/configurator-links.html`, so post-deploy indexing summaries cover the crawler-facing link index in addition to configurator product pages and solution pages.
 
