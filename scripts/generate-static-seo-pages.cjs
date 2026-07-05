@@ -161,6 +161,7 @@ const solutionHubRoute = {
   quoteHref: '/configurator?request=true',
   relatedLinks: [
     routeLink('/configurator', '開啟 Comino Grando 配置器'),
+    ...configuratorProductLinks(),
     routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
     routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置'),
     routeLink('/solutions/rtx-pro-6000-workstation', 'RTX PRO 6000 工作站配置'),
@@ -520,6 +521,26 @@ function routeLink(pathname, label) {
   };
 }
 
+function relatedLinksItemListSchema(route) {
+  const links = dedupeLinks(route.relatedLinks || []);
+  if (!links.length) {
+    return undefined;
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${pageUrl(route.path)}#related-links`,
+    name: `${route.title} 相關配置器與採購頁面`,
+    itemListElement: links.map((link, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: link.label,
+      url: link.href
+    }))
+  };
+}
+
 function productRelatedLinks(product) {
   const searchText = [
     getZh(product.title),
@@ -810,7 +831,7 @@ function webPageSchema(route, { title, url, image, imageAlt }) {
 
 function routeSchema(route) {
   if (route.schema) {
-    return [...route.schema, faqSchema(route)].filter(Boolean);
+    return [...route.schema, relatedLinksItemListSchema(route), faqSchema(route)].filter(Boolean);
   }
 
   const url = pageUrl(route.path);
@@ -856,6 +877,7 @@ function routeSchema(route) {
               }
             : undefined
         },
+    relatedLinksItemListSchema(route),
     faqSchema(route)
   ].filter(Boolean);
 }

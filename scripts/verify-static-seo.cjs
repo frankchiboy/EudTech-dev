@@ -125,33 +125,63 @@ function expectedConfiguratorProductUrls() {
   });
 }
 
-function itemListUrls(items) {
-  const urls = [];
+function itemListEntries(items) {
+  const entries = [];
   for (const itemList of items.filter((item) => item?.['@type'] === 'ItemList')) {
     for (const listItem of itemList.itemListElement || []) {
       if (typeof listItem === 'string') {
-        urls.push(listItem);
+        entries.push({ url: listItem, name: '' });
         continue;
       }
       if (typeof listItem?.url === 'string') {
-        urls.push(listItem.url);
+        entries.push({ url: listItem.url, name: listItem.name || '' });
         continue;
       }
       if (typeof listItem?.item === 'string') {
-        urls.push(listItem.item);
+        entries.push({ url: listItem.item, name: listItem.name || '' });
         continue;
       }
       if (typeof listItem?.item?.['@id'] === 'string') {
-        urls.push(listItem.item['@id']);
+        entries.push({ url: listItem.item['@id'], name: listItem.name || listItem.item.name || '' });
         continue;
       }
       if (typeof listItem?.item?.url === 'string') {
-        urls.push(listItem.item.url);
+        entries.push({ url: listItem.item.url, name: listItem.name || listItem.item.name || '' });
       }
     }
   }
 
-  return new Set(urls.filter(Boolean));
+  return entries.filter((entry) => entry.url);
+}
+
+function itemListUrls(items) {
+  return new Set(itemListEntries(items).map((entry) => entry.url).filter(Boolean));
+}
+
+function assertRelatedLinksItemList(routePath, links, items) {
+  const itemUrls = itemListUrls(items);
+  const missingLinks = links.filter((link) => !itemUrls.has(link.href));
+
+  if (missingLinks.length > 0) {
+    throw new Error(
+      `${routePath} related link URLs should also appear in ItemList JSON-LD: ${missingLinks
+        .map((link) => link.href)
+        .join(', ')}`
+    );
+  }
+
+  const schemaEntries = itemListEntries(items).filter((entry) => itemUrls.has(entry.url));
+  const unnamedRelatedEntries = links.filter((link) =>
+    schemaEntries.some((entry) => entry.url === link.href && !entry.name)
+  );
+
+  if (unnamedRelatedEntries.length > 0) {
+    throw new Error(
+      `${routePath} related ItemList entries should include names: ${unnamedRelatedEntries
+        .map((link) => link.href)
+        .join(', ')}`
+    );
+  }
 }
 
 function assertConfiguratorHubProductLinks(routePath, html, items) {
@@ -261,6 +291,8 @@ function assertStaticSeoFallback(route, jsonLd) {
   if (selfLinks.length > 0) {
     throw new Error(`${route.path} static SEO related links should not point to the same canonical URL.`);
   }
+
+  assertRelatedLinksItemList(route.path, links, jsonLd);
 }
 
 function assertSocialMeta(route) {
@@ -370,7 +402,7 @@ function assertConfiguratorProduct(routePath, expectedProductId, items) {
 for (const route of expectedRoutes) {
   const { html, jsonLd } = assertSocialMeta(route);
   assertWebPageSchema(route.path, route.canonicalUrl, route.socialImageUrl, jsonLd);
-  if (route.path === '/configurator') {
+  if (route.path === '/configurator' || route.path === '/solutions') {
     assertConfiguratorHubProductLinks(route.path, html, jsonLd);
   }
   if (route.productId) {
@@ -400,7 +432,8 @@ console.log(
       solutionPages: CONFIGURATOR_SEO_PAGES.length,
       checkedStaticRoutes: expectedRoutes.length,
       checkedSocialPreviewTags: true,
-      checkedRelatedInternalLinks: true
+      checkedRelatedInternalLinks: true,
+      checkedRelatedItemLists: true
     },
     null,
     2
