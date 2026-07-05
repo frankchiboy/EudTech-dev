@@ -21,6 +21,32 @@ npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing
 npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target github-actions --dry-run --fail-on-missing
 ```
 
+## Current Verified State
+
+Verified on 2026-07-06 Asia/Taipei.
+
+| Area | Status | Evidence / next action |
+|---|---|---|
+| 1Password item | Readable | `EudTech Configurator Marketing Platforms` exists in the `Automation` vault with every required field name. |
+| Netlify production env | Partially synced | `VITE_GTM_ID`, `VITE_GA_MEASUREMENT_ID`, `VITE_MARKETING_EVENT_ENDPOINT`, `VITE_META_QUOTE_EVENT_NAME`, and `VITE_MICROSOFT_UET_QUOTE_EVENT` are present. |
+| GitHub Actions variables | Partially synced | The same five frontend variables are present in repository variables. |
+| GitHub Actions secrets | Partially synced | `NETLIFY_AUTH_TOKEN`, `GOOGLE_ANALYTICS_PROPERTY_ID`, `GOOGLE_TAG_MANAGER_ACCOUNT_ID`, and `GOOGLE_TAG_MANAGER_CONTAINER_ID` are present. |
+| Production browser tracking | Active for GA/GTM | The production bundle contains the configured GTM container and GA4 measurement ID. |
+| Paid conversion / retargeting | Blocked by empty platform values | Fill the Google Ads, LinkedIn, Meta, and Microsoft Ads fields listed below, then rerun the strict sync and audit commands. |
+
+Currently empty required platform values:
+
+| Platform | Empty fields |
+|---|---|
+| Google Ads browser conversion | `VITE_GOOGLE_ADS_ID`, `VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL` |
+| Google Ads API | `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_LOGIN_CUSTOMER_ID`, `GOOGLE_ADS_CUSTOMER_ID`, `GOOGLE_ADS_ACCESS_TOKEN` |
+| LinkedIn browser conversion | `VITE_LINKEDIN_PARTNER_ID`, `VITE_LINKEDIN_QUOTE_CONVERSION_ID` |
+| LinkedIn API | `LINKEDIN_ACCESS_TOKEN`, `LINKEDIN_ORGANIZATION_ID`, `LINKEDIN_AD_ACCOUNT_ID` |
+| Meta browser conversion | `VITE_META_PIXEL_ID` |
+| Meta API | `META_ACCESS_TOKEN`, `META_AD_ACCOUNT_ID`, `META_PIXEL_ID` |
+| Microsoft Ads browser conversion | `VITE_MICROSOFT_UET_TAG_ID` |
+| Microsoft Ads API | `MICROSOFT_ADS_DEVELOPER_TOKEN`, `MICROSOFT_ADS_CUSTOMER_ID`, `MICROSOFT_ADS_ACCOUNT_ID`, `MICROSOFT_ADS_REFRESH_TOKEN`, `MICROSOFT_ADS_ACCESS_TOKEN`, `MICROSOFT_UET_TAG_ID` |
+
 ## Required Fields
 
 | Platform | Field | Type | Format | Purpose |
@@ -68,14 +94,16 @@ GA4 and GTM are alternative analytics entry points. At least one of `VITE_GA_MEA
 | GA4 | Google Analytics Help: Measurement ID format is `G-...` and belongs to a web data stream. https://support.google.com/analytics/answer/12270356 | `VITE_GA_MEASUREMENT_ID` |
 | GTM | Google Tag Manager Help: create an account and container, then use the container/tag id. https://support.google.com/tagmanager/answer/14842164 | `VITE_GTM_ID` |
 | Google Ads conversion | Google Tag Manager Help: copy Conversion ID and Conversion label from the conversion action. https://support.google.com/tagmanager/answer/6105160 | `VITE_GOOGLE_ADS_ID`, `VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL` |
-| Google Ads API | Google Ads API docs: developer token is required for API calls and is obtained from the API Center of a Google Ads manager account. https://developers.google.com/google-ads/api/docs/api-policy/developer-token | `GOOGLE_ADS_DEVELOPER_TOKEN` |
+| Google Ads API | Google Ads API docs: API calls require a developer token and OAuth 2.0; manager-account calls also use `login-customer-id`. https://developers.google.com/google-ads/api/docs/get-started/make-first-call and https://developers.google.com/google-ads/api/rest/auth | `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_CUSTOMER_ID`, `GOOGLE_ADS_LOGIN_CUSTOMER_ID`, `GOOGLE_ADS_ACCESS_TOKEN` |
 | Netlify env | Netlify docs: env variables can be managed with UI, CLI, or API; build-scope env is required for build-time variables. https://docs.netlify.com/build/configure-builds/environment-variables/ | `NETLIFY_AUTH_TOKEN`, production build env |
-| Meta Pixel | Meta developer docs: Pixel implementation requires the Pixel base code or Pixel ID. https://developers.facebook.com/documentation/meta-pixel/get-started | `VITE_META_PIXEL_ID` |
-| Meta conversions | Meta developer docs: Pixel can track conversion events. https://developers.facebook.com/docs/meta-pixel/implementation/conversion-tracking/ | `VITE_META_QUOTE_EVENT_NAME=Lead` |
-| LinkedIn Insight Tag | LinkedIn Help: Insight Tag has a partner ID and is required for website audiences/conversion tracking. https://www.linkedin.com/help/lms/answer/a489169 | `VITE_LINKEDIN_PARTNER_ID` |
+| Meta Pixel | Meta developer docs: Pixel implementation initializes with a Pixel ID and uses standard events such as `Lead`. https://developers.facebook.com/docs/meta-pixel/advanced and https://developers.facebook.com/docs/meta-pixel/reference | `VITE_META_PIXEL_ID`, `VITE_META_QUOTE_EVENT_NAME=Lead` |
+| Meta API | Meta Marketing API / Graph API access requires an access token and readable ad account / Pixel objects. https://developers.facebook.com/docs/marketing-api | `META_ACCESS_TOKEN`, `META_AD_ACCOUNT_ID`, `META_PIXEL_ID` |
+| LinkedIn Insight Tag | LinkedIn Help: Insight Tag has a partner ID and is required for website audiences/conversion tracking. https://www.linkedin.com/help/lms/answer/a417869/access-the-partner-id-for-your-linkedin-insight-tag | `VITE_LINKEDIN_PARTNER_ID` |
+| LinkedIn conversion ID | LinkedIn Help: event-specific conversions expose a conversion ID for tag-manager based tracking. https://www.linkedin.com/help/lms/answer/a1437736 | `VITE_LINKEDIN_QUOTE_CONVERSION_ID` |
+| LinkedIn API | LinkedIn Marketing API conversion tracking documents Insight Tag access and sponsored account context. https://learn.microsoft.com/en-us/linkedin/marketing/integrations/ads-reporting/conversion-tracking | `LINKEDIN_ACCESS_TOKEN`, `LINKEDIN_ORGANIZATION_ID`, `LINKEDIN_AD_ACCOUNT_ID` |
 | LinkedIn partner ID access | LinkedIn Help: Campaign Manager Data > Signals manager > Insight Tag shows the partner ID. https://www.linkedin.com/help/lms/answer/a417869/access-the-partner-id-for-your-linkedin-insight-tag | `VITE_LINKEDIN_PARTNER_ID` |
 | Microsoft UET | Microsoft Advertising: UET records website actions for conversion goals and remarketing. https://about.ads.microsoft.com/en/tools/performance/conversion-tracking | `VITE_MICROSOFT_UET_TAG_ID` |
-| Microsoft Ads API | Microsoft Learn: Microsoft Advertising API uses developer token plus OAuth access/refresh tokens. https://learn.microsoft.com/en-us/advertising/guides/get-started?view=bingads-13 and https://learn.microsoft.com/en-us/advertising/guides/authentication-oauth?view=bingads-13 | `MICROSOFT_ADS_*` |
+| Microsoft Ads API | Microsoft Learn: Microsoft Advertising API uses a developer token and OAuth access/refresh tokens. https://learn.microsoft.com/en-us/advertising/guides/get-started?view=bingads-13, https://learn.microsoft.com/en-us/advertising/guides/authentication-oauth?view=bingads-13, and https://learn.microsoft.com/en-us/advertising/guides/authentication-oauth-get-tokens?view=bingads-13 | `MICROSOFT_ADS_*`, `MICROSOFT_UET_TAG_ID` |
 
 ## Deployment Loop
 
