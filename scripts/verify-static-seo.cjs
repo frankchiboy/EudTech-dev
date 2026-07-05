@@ -115,6 +115,61 @@ function relatedInternalLinks(html) {
     }));
 }
 
+function expectedConfiguratorProductUrls() {
+  return CONFIGURATOR_PRODUCT_SEO.map((product) => {
+    const route = expectedRoutes.find((expectedRoute) => expectedRoute.path === product.configuratorHref);
+    if (!route) {
+      throw new Error(`Missing social preview route for configurator product: ${product.configuratorHref}`);
+    }
+    return route.canonicalUrl;
+  });
+}
+
+function itemListUrls(items) {
+  const urls = [];
+  for (const itemList of items.filter((item) => item?.['@type'] === 'ItemList')) {
+    for (const listItem of itemList.itemListElement || []) {
+      if (typeof listItem === 'string') {
+        urls.push(listItem);
+        continue;
+      }
+      if (typeof listItem?.url === 'string') {
+        urls.push(listItem.url);
+        continue;
+      }
+      if (typeof listItem?.item === 'string') {
+        urls.push(listItem.item);
+        continue;
+      }
+      if (typeof listItem?.item?.['@id'] === 'string') {
+        urls.push(listItem.item['@id']);
+        continue;
+      }
+      if (typeof listItem?.item?.url === 'string') {
+        urls.push(listItem.item.url);
+      }
+    }
+  }
+
+  return new Set(urls.filter(Boolean));
+}
+
+function assertConfiguratorHubProductLinks(routePath, html, items) {
+  const expectedProductUrls = expectedConfiguratorProductUrls();
+  const relatedUrls = new Set(relatedInternalLinks(html).map((link) => link.href));
+  const itemUrls = itemListUrls(items);
+  const missingRelatedUrls = expectedProductUrls.filter((url) => !relatedUrls.has(url));
+  const missingItemUrls = expectedProductUrls.filter((url) => !itemUrls.has(url));
+
+  if (missingRelatedUrls.length > 0) {
+    throw new Error(`${routePath} related links missing configurator product URLs: ${missingRelatedUrls.join(', ')}`);
+  }
+
+  if (missingItemUrls.length > 0) {
+    throw new Error(`${routePath} ItemList JSON-LD missing configurator product URLs: ${missingItemUrls.join(', ')}`);
+  }
+}
+
 function staticSection(html, id) {
   return html.match(new RegExp(`<section[^>]+aria-labelledby=["']${id}["'][\\s\\S]*?<\\/section>`, 'i'))?.[0] || '';
 }
@@ -313,8 +368,11 @@ function assertConfiguratorProduct(routePath, expectedProductId, items) {
 }
 
 for (const route of expectedRoutes) {
-  const { jsonLd } = assertSocialMeta(route);
+  const { html, jsonLd } = assertSocialMeta(route);
   assertWebPageSchema(route.path, route.canonicalUrl, route.socialImageUrl, jsonLd);
+  if (route.path === '/configurator') {
+    assertConfiguratorHubProductLinks(route.path, html, jsonLd);
+  }
   if (route.productId) {
     assertConfiguratorProduct(route.path, route.productId, jsonLd);
   }

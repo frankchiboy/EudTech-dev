@@ -3,7 +3,8 @@ const path = require('path');
 const {
   evaluateMarketingPlatformEnv,
   marketingOnePasswordItemTitle,
-  requiredExternalCredentialKeys
+  requiredExternalCredentialKeys,
+  variableSpecs
 } = require('./marketing-platform-env.cjs');
 
 const args = new Set(process.argv.slice(2));
@@ -49,6 +50,30 @@ function addBlocker(blockers, condition, blocker) {
   });
 }
 
+function expandAlternativeFieldKeys(values) {
+  return (values || []).flatMap((value) => String(value || '')
+    .split(/\s+or\s+/i)
+    .map((item) => item.trim())
+    .filter(Boolean));
+}
+
+function buildMarketingEnvSnapshot(externalAccess) {
+  const env = { ...process.env };
+  const exampleByKey = Object.fromEntries(variableSpecs.map((spec) => [spec.key, spec.example]));
+  const externallyPresentKeys = compactList([
+    ...(externalAccess?.checks?.netlify?.presentEnvKeys || []),
+    ...(externalAccess?.checks?.github?.presentVariables || [])
+  ]);
+
+  for (const key of externallyPresentKeys) {
+    if (exampleByKey[key] && !env[key]) {
+      env[key] = exampleByKey[key];
+    }
+  }
+
+  return env;
+}
+
 function googleAccessMissing(check, explicitTokenKey, adcScope) {
   return check?.accessTokenSource
     ? []
@@ -80,7 +105,13 @@ function buildBlockers({ marketingEnv, externalAccess, searchConsole }) {
     });
   }
 
-  if (externalChecks.github && externalChecks.github.ready === false) {
+  const githubAccessReady = externalChecks.github
+    && externalChecks.github.authSourceEnvOnly
+    && externalChecks.github.variablesReadable
+    && externalChecks.github.secretsReadable
+    && (externalChecks.github.errors || []).length === 0;
+
+  if (externalChecks.github && !githubAccessReady) {
     blockers.push({
       area: 'github_actions',
       severity: 'blocking',
@@ -91,9 +122,19 @@ function buildBlockers({ marketingEnv, externalAccess, searchConsole }) {
   }
 
   if (externalChecks.onePassword && externalChecks.onePassword.ready === false) {
+    const missingTrackingFields = marketingEnv.missingPlatforms.flatMap((gap) => [
+      ...(gap.missing || []),
+      ...(gap.invalid || [])
+    ]);
     const emptyFields = compactList([
       ...(externalChecks.onePassword.emptyRequiredCredentialFieldKeys || []),
-      ...(externalChecks.onePassword.emptyTemplateFieldKeys || [])
+      ...missingTrackingFields,
+      ...(externalChecks.googleAdsDeveloperToken?.ready === false
+        ? ['GOOGLE_ADS_DEVELOPER_TOKEN', 'GOOGLE_ADS_CUSTOMER_ID']
+        : []),
+      ...expandAlternativeFieldKeys(externalChecks.linkedIn?.missingEnvKeys),
+      ...expandAlternativeFieldKeys(externalChecks.meta?.missingEnvKeys),
+      ...expandAlternativeFieldKeys(externalChecks.microsoftAds?.missingEnvKeys)
     ]);
     blockers.push({
       area: 'onepassword',
@@ -226,6 +267,22 @@ function buildReadySignals({ marketingEnv, externalAccess, searchConsole }) {
   if (externalChecks.googleAdcScopes?.searchConsoleProbe) {
     readySignals.push('Google Search Console API scope is usable for sitemap and inspection workflows.');
   }
+  if (externalChecks.netlify?.ready) {
+    readySignals.push('Netlify production environment is readable with the current automation token.');
+  }
+  if (
+    externalChecks.github?.authSourceEnvOnly &&
+    externalChecks.github?.variablesReadable &&
+    externalChecks.github?.secretsReadable
+  ) {
+    readySignals.push('GitHub Actions variables and secrets are readable with the current automation token.');
+  }
+  if (externalChecks.googleAnalytics?.ready) {
+    readySignals.push('Google Analytics Admin API property read probe is passing.');
+  }
+  if (externalChecks.googleTagManager?.ready) {
+    readySignals.push('Google Tag Manager API container read probe is passing.');
+  }
   if (typeof searchConsole?.totalRows === 'number') {
     readySignals.push(`Search Console performance report is readable; current rows: ${searchConsole.totalRows}.`);
   }
@@ -332,7 +389,7 @@ function buildMinimumFillOrder(blockers) {
       name: 'Repair Google ADC environment for generic probes',
       reason: googleCredentialEnvNeedsRepair
         ? 'The current shell can read Search Console, but the broken credential path and missing scopes block Analytics, GTM, and Ads ADC probes.'
-        : 'Search Console scope is usable after the audit unsets the stale credential path; Analytics, GTM, and Ads scopes are still missing.',
+        : 'Google ADC scopes for Search Console, Analytics, Tag Manager, and Google Ads are usable.',
       requiredFields: [
         ...(googleCredentialEnvNeedsRepair ? ['Unset or replace broken GOOGLE_APPLICATION_CREDENTIALS'] : []),
         'Analytics, Tag Manager, and Ads OAuth scopes, or explicit platform access tokens'
@@ -396,9 +453,9 @@ function renderMarkdown(result) {
   ].join('\n');
 }
 
-const marketingEnv = evaluateMarketingPlatformEnv(process.env);
 const externalAccess = readJsonReport('external-platform-access.json');
 const searchConsole = readJsonReport('search-console-latest.json');
+const marketingEnv = evaluateMarketingPlatformEnv(buildMarketingEnvSnapshot(externalAccess));
 const blockers = buildBlockers({ marketingEnv, externalAccess, searchConsole });
 const readySignals = buildReadySignals({ marketingEnv, externalAccess, searchConsole });
 const blockingItems = blockers.filter((blocker) => blocker.severity === 'blocking');

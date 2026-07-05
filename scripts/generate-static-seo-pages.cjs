@@ -119,6 +119,35 @@ const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
   })),
   faq: page.faqs.map((faq) => [getZh(faq.question), getZh(faq.answer)])
 }));
+
+function configuratorProductLinks() {
+  return CONFIGURATOR_PRODUCT_SEO.map((product) =>
+    routeLink(product.configuratorHref, `${getZh(product.model)} 配置器`)
+  );
+}
+
+function configuratorHubItemList() {
+  const productItems = CONFIGURATOR_PRODUCT_SEO.map((product, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: getZh(product.title),
+    url: pageUrl(product.configuratorHref)
+  }));
+  const solutionItems = [
+    ['配置器解決方案總入口', '/solutions'],
+    ['GPU 伺服器報價流程', '/solutions/gpu-server-quote'],
+    ['GPU 伺服器 RFQ 檢核表', '/solutions/gpu-server-rfq-checklist'],
+    ['液冷 GPU 伺服器採購', '/solutions/liquid-cooling-ai-server-procurement']
+  ].map(([name, pathname], index) => ({
+    '@type': 'ListItem',
+    position: productItems.length + index + 1,
+    name,
+    url: pageUrl(pathname)
+  }));
+
+  return productItems.concat(solutionItems);
+}
+
 const solutionHubRoute = {
   path: '/solutions',
   title: '配置器解決方案與 GPU 伺服器報價指南',
@@ -273,9 +302,7 @@ const routes = [
     configuratorHref: '/configurator',
     quoteHref: '/configurator?request=true',
     relatedLinks: [
-      routeLink('/configurator/29', 'SERVER 6xH200 配置器'),
-      routeLink('/configurator/28', 'SERVER 4xH200 配置器'),
-      routeLink('/configurator/23', 'SERVER 8x PRO 6000 配置器'),
+      ...configuratorProductLinks(),
       routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
       routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表')
     ],
@@ -308,13 +335,7 @@ const routes = [
         '@context': 'https://schema.org',
         '@type': 'ItemList',
         name: 'EudTech 配置器入口',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: '配置器解決方案總入口', url: pageUrl('/solutions') },
-          { '@type': 'ListItem', position: 2, name: 'GPU 伺服器報價配置器', url: pageUrl('/solutions/gpu-server-quote') },
-          { '@type': 'ListItem', position: 3, name: 'NVIDIA H200 GPU 伺服器配置器', url: pageUrl('/solutions/nvidia-h200-server') },
-          { '@type': 'ListItem', position: 4, name: 'RTX PRO 6000 工作站配置器', url: pageUrl('/solutions/rtx-pro-6000-workstation') },
-          { '@type': 'ListItem', position: 5, name: '液冷 GPU 伺服器採購', url: pageUrl('/solutions/liquid-cooling-ai-server-procurement') }
-        ]
+        itemListElement: configuratorHubItemList()
       },
       {
         '@context': 'https://schema.org',
