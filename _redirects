@@ -1,1 +1,5 @@
+/configurator /configurator/ 301!
+/configurator/:id /configurator/:id/ 301!
+/solutions /solutions/ 301!
+/solutions/:slug /solutions/:slug/ 301!
 /*    /index.html   200

@@ -3,6 +3,11 @@ export type LocalizedText = {
   zh: string;
 };
 
+export type ConfiguratorProductFaq = {
+  question: LocalizedText;
+  answer: LocalizedText;
+};
+
 export type ConfiguratorProductSeo = {
   id: number;
   title: LocalizedText;
@@ -19,6 +24,7 @@ export type ConfiguratorProductSeo = {
   quoteHref: string;
   relatedProductIds: number[];
   exposureNotes: LocalizedText[];
+  faqs: ConfiguratorProductFaq[];
   properties: Array<{
     name: LocalizedText;
     value: LocalizedText;
@@ -40,7 +46,61 @@ type ProductSeoInput = {
   cpuPlatform: LocalizedText;
   relatedProductIds?: number[];
   exposureNotes?: LocalizedText[];
+  faqs?: ConfiguratorProductFaq[];
 };
+
+const buildDefaultProductFaqs = ({
+  deviceName,
+  gpuFocus,
+  formFactor,
+  cpuPlatform
+}: {
+  deviceName: string;
+  gpuFocus: LocalizedText;
+  formFactor: LocalizedText;
+  cpuPlatform: LocalizedText;
+}): ConfiguratorProductFaq[] => [
+  {
+    question: {
+      en: `What does the ${deviceName} quote request include?`,
+      zh: `${deviceName} 詢價會包含哪些資訊？`
+    },
+    answer: {
+      en: `The quote request preserves the selected ${gpuFocus.en}, ${cpuPlatform.en}, memory, NVMe storage, power, networking, and configurator URL for EudTech follow-up.`,
+      zh: `詢價會保留已選的${gpuFocus.zh}、${cpuPlatform.zh}、記憶體、NVMe 儲存、電源、網路與配置器連結，供 EudTech 後續追蹤。`
+    }
+  },
+  {
+    question: {
+      en: `Is ${deviceName} a server, workstation, or integration-kit path?`,
+      zh: `${deviceName} 是伺服器、工作站還是整合套件路徑？`
+    },
+    answer: {
+      en: `${deviceName} is positioned as a ${formFactor.en.toLowerCase()} configuration path for quote and RFQ review.`,
+      zh: `${deviceName} 是${formFactor.zh}配置路徑，用於報價與 RFQ 審查。`
+    }
+  },
+  {
+    question: {
+      en: `Can I submit a ${deviceName} draft before every option is final?`,
+      zh: `${deviceName} 還沒選完所有選項也能送出詢價嗎？`
+    },
+    answer: {
+      en: 'Yes. The configurator sends the current hardware assumptions and URL, and EudTech can follow up on incomplete storage, power, networking, or deployment details.',
+      zh: '可以。配置器會送出目前硬體假設與連結，EudTech 可後續確認尚未完成的儲存、電源、網路或部署細節。'
+    }
+  },
+  {
+    question: {
+      en: `Is the ${deviceName} page suitable for Taiwan procurement review?`,
+      zh: `${deviceName} 頁面適合台灣採購審查嗎？`
+    },
+    answer: {
+      en: 'Yes. The page keeps Chinese quote context, EudTech contact details, and a shareable configuration URL for local technical and purchasing review.',
+      zh: '適合。此頁保留中文詢價脈絡、EudTech 聯絡資訊與可分享配置連結，方便本地技術與採購審查。'
+    }
+  }
+];
 
 const buildProductSeo = ({
   id,
@@ -56,7 +116,8 @@ const buildProductSeo = ({
   formFactor,
   cpuPlatform,
   relatedProductIds = [],
-  exposureNotes = []
+  exposureNotes = [],
+  faqs = []
 }: ProductSeoInput): ConfiguratorProductSeo => ({
   id,
   title,
@@ -76,6 +137,7 @@ const buildProductSeo = ({
   quoteHref: `/configurator/${id}?request=true`,
   relatedProductIds,
   exposureNotes,
+  faqs: [...faqs, ...buildDefaultProductFaqs({ deviceName, gpuFocus, formFactor, cpuPlatform })],
   properties: [
     { name: { en: 'GPU focus', zh: 'GPU 重點' }, value: gpuFocus },
     { name: { en: 'Form factor', zh: '機構型態' }, value: formFactor },
@@ -304,6 +366,28 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
       zh: 'AMD EPYC 9004 / 9005'
     },
     relatedProductIds: [29, 30, 27, 34],
+    faqs: [
+      {
+        question: {
+          en: 'When should I start with SERVER 4xH200 instead of 6xH200 or 8xH200?',
+          zh: '什麼情況應先看 SERVER 4xH200，而不是 6xH200 或 8xH200？'
+        },
+        answer: {
+          en: 'Start with SERVER 4xH200 when the project needs NVIDIA H200 memory capacity and formal GPU server planning, but the initial budget, rack, power, or workload assumptions do not yet require a 6-GPU or 8-GPU build.',
+          zh: '若專案需要 NVIDIA H200 記憶體容量與正式 GPU 伺服器規劃，但初期預算、機架、電力或工作負載尚未需要 6-GPU 或 8-GPU 配置，可先從 SERVER 4xH200 開始。'
+        }
+      },
+      {
+        question: {
+          en: 'Is SERVER 4xH200 suitable for AI training and inference quotes?',
+          zh: 'SERVER 4xH200 適合 AI 訓練與推論報價嗎？'
+        },
+        answer: {
+          en: 'Yes. The 4xH200 route is suitable for quote discussions that need H200 GPU memory, AMD EPYC platform planning, RAM, NVMe storage, power, and networking context in one configuration.',
+          zh: '適合。4xH200 路徑可在同一份配置中整理 H200 GPU 記憶體、AMD EPYC 平台、RAM、NVMe 儲存、電源與網路條件，供 AI 訓練與推論報價討論。'
+        }
+      }
+    ],
     exposureNotes: [
       {
         en: 'Designed for H200 buyers that need a focused 4-GPU server path before deciding whether to scale to 6 or 8 GPUs.',

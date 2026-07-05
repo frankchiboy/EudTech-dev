@@ -60,16 +60,16 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'nvidia-h200-server',
     title: {
-      en: 'NVIDIA H200 GPU Server Quote Configurator',
-      zh: 'NVIDIA H200 GPU 伺服器報價配置器'
+      en: 'NVIDIA H200 GPU Server Quote Configurator for AI Training and Inference',
+      zh: 'NVIDIA H200 GPU 伺服器報價配置器｜AI 訓練與推論'
     },
     description: {
       en: 'Compare and configure liquid-cooled NVIDIA H200 GPU servers for AI training, HPC, and next-generation inference, then send the build to EudTech for quote follow-up.',
       zh: '比較並配置液冷 NVIDIA H200 GPU 伺服器，面向 AI 訓練、HPC 與下一代推論需求，並可將配置送交 EudTech 追蹤報價。'
     },
     keywords: {
-      en: 'NVIDIA H200 server, H200 GPU server, AI training server, HPC GPU server, GPU server quote, liquid cooled GPU server, Taiwan AI server',
-      zh: 'NVIDIA H200 伺服器, H200 GPU 伺服器, AI 訓練伺服器, HPC GPU 伺服器, GPU 伺服器報價, 液冷 GPU 伺服器, 台灣 AI 伺服器'
+      en: 'NVIDIA H200 server, H200 GPU server, H200 AI inference server, NVIDIA H200 next generation AI inference, AI training server, HPC GPU server, GPU server quote, liquid cooled GPU server, Taiwan AI server',
+      zh: 'NVIDIA H200 伺服器, H200 GPU 伺服器, H200 AI 推論伺服器, NVIDIA H200 下一代 AI 推論, AI 訓練伺服器, HPC GPU 伺服器, GPU 伺服器報價, 液冷 GPU 伺服器, 台灣 AI 伺服器'
     },
     hero: {
       en: 'NVIDIA H200 AI GPU server quote and configuration',
@@ -90,6 +90,10 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       {
         en: 'Designed for AI training, inference, simulation, and research clusters.',
         zh: '適用於 AI 訓練、推論、模擬與研究叢集。'
+      },
+      {
+        en: 'Useful for next-generation inference planning where GPU memory, power, and deployment density must be reviewed together.',
+        zh: '適合下一代推論規劃，需要同時審查 GPU 記憶體、電力與部署密度。'
       },
       {
         en: 'Configurator keeps GPU, CPU, memory, storage, and power selections together.',
@@ -113,22 +117,26 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       {
         question: { en: 'Is this page for Taiwan procurement?', zh: '這個頁面適合台灣採購使用嗎？' },
         answer: { en: 'Yes. EudTech handles local consultation and quote follow-up for Taiwan buyers.', zh: '適合。EudTech 可協助台灣客戶進行本地諮詢與報價追蹤。' }
+      },
+      {
+        question: { en: 'Is H200 suitable for next-generation AI inference planning?', zh: 'H200 適合下一代 AI 推論規劃嗎？' },
+        answer: { en: 'Yes. H200 server configurations are useful when teams need to review GPU memory, CPU, RAM, storage, power, and networking assumptions for training, HPC, and inference in one quote path.', zh: '適合。H200 伺服器配置可協助團隊在同一個報價路徑中審查 GPU 記憶體、CPU、RAM、儲存、電源與網路假設，涵蓋訓練、HPC 與推論需求。' }
       }
     ]
   },
   {
     slug: 'rtx-pro-6000-workstation',
     title: {
-      en: 'RTX PRO 6000 AI Workstation Quote Configurator',
-      zh: 'RTX PRO 6000 AI 工作站報價配置器'
+      en: 'RTX PRO 6000 AI Workstation Quote Configurator for Local Inference',
+      zh: 'RTX PRO 6000 本地 AI 推論工作站報價配置器'
     },
     description: {
       en: 'Configure RTX PRO 6000 workstations for local AI inference, rendering, visualization, and simulation, then send the build to EudTech for Taiwan quote follow-up.',
       zh: '配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。'
     },
     keywords: {
-      en: 'RTX PRO 6000 workstation, AI workstation, GPU workstation quote, NVIDIA workstation Taiwan, local AI inference workstation',
-      zh: 'RTX PRO 6000 工作站, AI 工作站, GPU 工作站報價, NVIDIA 工作站 台灣, 本地 AI 推論工作站'
+      en: 'RTX PRO 6000 workstation, RTX PRO 6000 quote, AI workstation, GPU workstation quote, NVIDIA workstation Taiwan, local AI inference workstation',
+      zh: 'RTX PRO 6000 工作站, RTX PRO 6000 報價, AI 工作站, GPU 工作站報價, NVIDIA 工作站 台灣, 本地 AI 推論工作站'
     },
     hero: {
       en: 'RTX PRO 6000 AI workstation quote and configuration',
@@ -237,20 +245,20 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'liquid-cooled-gpu-server',
     title: {
-      en: 'Liquid-Cooled GPU Server Configurator',
-      zh: '液冷 GPU 伺服器配置器'
+      en: 'Liquid-Cooled GPU Server Cooling and Quote Configurator',
+      zh: '液冷 GPU 伺服器散熱與報價配置器'
     },
     description: {
-      en: 'Explore liquid-cooled GPU server configurations for sustained AI and HPC workloads. Configure Grando systems and request a formal quote from EudTech.',
-      zh: '探索適合長時間 AI 與 HPC 工作負載的液冷 GPU 伺服器配置，並可配置 Grando 系統後向 EudTech 取得正式報價。'
+      en: 'Explore GPU server cooling and liquid-cooled GPU server configurations for sustained AI and HPC workloads, then request a formal quote from EudTech.',
+      zh: '探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。'
     },
     keywords: {
-      en: 'liquid cooled GPU server, liquid cooling AI server, Comino Grando, GPU server configurator, AI server quote Taiwan',
-      zh: '液冷 GPU 伺服器, 液冷 AI 伺服器, Comino Grando, GPU 伺服器配置器, AI 伺服器報價 台灣'
+      en: 'GPU server cooling, liquid cooled GPU server, liquid cooling AI server, Comino Grando, GPU server configurator, AI server quote Taiwan',
+      zh: 'GPU 伺服器散熱, 液冷 GPU 伺服器, 液冷 AI 伺服器, Comino Grando, GPU 伺服器配置器, AI 伺服器報價 台灣'
     },
     hero: {
-      en: 'Liquid-cooled GPU systems for sustained compute density',
-      zh: '面向持續高密度運算的液冷 GPU 系統'
+      en: 'GPU server cooling and liquid-cooled systems for sustained compute density',
+      zh: '面向持續高密度運算的 GPU 伺服器散熱與液冷系統'
     },
     lead: {
       en: 'Use the configurator to document GPU density, cooling-sensitive hardware choices, storage, and power needs before the quote discussion.',
@@ -265,8 +273,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     quoteHref: '/configurator/29?request=true',
     highlights: [
       {
-        en: 'Useful for buyers comparing air-cooled and liquid-cooled GPU density.',
-        zh: '適合正在比較氣冷與液冷 GPU 密度的採購者。'
+        en: 'Useful for buyers comparing air-cooled GPU server cooling and liquid-cooled GPU density.',
+        zh: '適合正在比較氣冷 GPU 伺服器散熱與液冷 GPU 密度的採購者。'
       },
       {
         en: 'Configuration link keeps technical assumptions visible.',
@@ -279,6 +287,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     specs: [
       { label: { en: 'Cooling', zh: '冷卻方向' }, value: { en: 'Liquid-cooled multi-GPU systems', zh: '液冷多 GPU 系統' } },
+      { label: { en: 'Planning focus', zh: '規劃重點' }, value: { en: 'GPU server cooling, power, and deployment density', zh: 'GPU 伺服器散熱、電力與部署密度' } },
       { label: { en: 'Workload', zh: '工作負載' }, value: { en: 'AI training, inference, HPC, simulation', zh: 'AI 訓練、推論、HPC、模擬' } },
       { label: { en: 'Next action', zh: '下一步' }, value: { en: 'Configure and request quote', zh: '配置並送出報價需求' } }
     ],
@@ -286,6 +295,10 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       {
         question: { en: 'Why start with a configurator for liquid cooling?', zh: '為什麼液冷需求要先用配置器？' },
         answer: { en: 'Liquid-cooled systems depend on GPU count, power, storage, networking, and deployment constraints. A configuration link makes those assumptions explicit.', zh: '液冷系統會受 GPU 數量、電源、儲存、網路與部署條件影響。配置連結可讓這些假設清楚呈現。' }
+      },
+      {
+        question: { en: 'What should buyers check when planning GPU server cooling?', zh: '規劃 GPU 伺服器散熱時應先確認什麼？' },
+        answer: { en: 'Start with GPU count, power capacity, rack or workstation form factor, storage density, networking, and room deployment assumptions before asking for a quote.', zh: '先確認 GPU 數量、電源容量、機架或工作站型態、儲存密度、網路與機房部署假設，再進入報價討論。' }
       },
       {
         question: { en: 'Can I share the configuration internally before sending it?', zh: '可以先在內部分享配置再送出嗎？' },
@@ -296,16 +309,16 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'gpu-server-quote',
     title: {
-      en: 'GPU Server Quote and RFQ Configurator',
-      zh: 'GPU 伺服器報價與 RFQ 配置入口'
+      en: 'GPU Server Quote Configurator for AI RFQ',
+      zh: 'AI RFQ 用 GPU 伺服器報價配置器'
     },
     description: {
       en: 'Create an RFQ-ready GPU server quote request for H200 or RTX PRO 6000 systems with GPU, CPU, RAM, power, storage, and network choices in one summary.',
       zh: '建立可供 RFQ 使用的 GPU 伺服器報價需求，將 H200 或 RTX PRO 6000 系統的 GPU、CPU、RAM、電力、儲存與網路一次整理成摘要。'
     },
     keywords: {
-      en: 'GPU server quote, AI server quote, GPU workstation quote, server configurator, EudTech configurator',
-      zh: 'GPU 伺服器報價, AI 伺服器報價, GPU 工作站報價, 伺服器配置器, EudTech 配置器'
+      en: 'GPU server quote, GPU server quote configurator, AI server quote, AI server RFQ quote, GPU workstation quote, server configurator, EudTech configurator',
+      zh: 'GPU 伺服器報價, GPU 伺服器報價配置器, AI 伺服器報價, AI 伺服器 RFQ 報價, GPU 工作站報價, 伺服器配置器, EudTech 配置器'
     },
     hero: {
       en: 'GPU server quote and RFQ entry point',
@@ -356,16 +369,16 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     slug: 'h200-vs-rtx-pro-6000',
     kind: 'comparison',
     title: {
-      en: 'H200 vs RTX PRO 6000: AI GPU Server Buying Guide',
-      zh: 'H200 vs RTX PRO 6000：AI GPU 伺服器採購比較'
+      en: 'H200 vs RTX PRO 6000: AI Training, Inference, and GPU Server Quote Guide',
+      zh: 'H200 vs RTX PRO 6000：AI 訓練、推論與 GPU 伺服器報價比較'
     },
     description: {
-      en: 'Compare when to choose NVIDIA H200 for dense AI training or HPC and when RTX PRO 6000 fits local inference, rendering, visualization, and workstation procurement.',
-      zh: '比較何時選 NVIDIA H200 做高密度 AI 訓練或 HPC，何時選 RTX PRO 6000 做本地推論、渲染、視覺化與工作站採購。'
+      en: 'Compare NVIDIA H200 and RTX PRO 6000 for AI training, local inference, workstation use, and GPU server quote preparation before opening the configurator.',
+      zh: '比較 NVIDIA H200 與 RTX PRO 6000 在 AI 訓練、本地推論、工作站使用與 GPU 伺服器報價準備上的差異，再進入配置器。'
     },
     keywords: {
-      en: 'H200 vs RTX PRO 6000, NVIDIA H200 server comparison, RTX PRO 6000 workstation comparison, AI GPU comparison, GPU server procurement',
-      zh: 'H200 vs RTX PRO 6000, NVIDIA H200 伺服器比較, RTX PRO 6000 工作站比較, AI GPU 比較, GPU 伺服器採購'
+      en: 'H200 vs RTX PRO 6000, H200 vs RTX PRO 6000 quote, NVIDIA H200 server comparison, RTX PRO 6000 workstation comparison, AI training GPU vs inference workstation, AI GPU comparison, GPU server procurement',
+      zh: 'H200 vs RTX PRO 6000, H200 vs RTX PRO 6000 報價, NVIDIA H200 伺服器比較, RTX PRO 6000 工作站比較, AI 訓練 GPU 與推論工作站, AI GPU 比較, GPU 伺服器採購'
     },
     hero: {
       en: 'H200 vs RTX PRO 6000 for AI training, inference, and buying decisions',
@@ -409,6 +422,10 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       {
         question: { en: 'Can EudTech compare both configurations in one quote discussion?', zh: 'EudTech 可以在同一次報價討論比較兩種配置嗎？' },
         answer: { en: 'Yes. Share the H200 and RTX PRO 6000 configurator URLs so the same component assumptions can be compared.', zh: '可以。請分享 H200 與 RTX PRO 6000 的配置器連結，讓雙方依同一組零組件假設比較。' }
+      },
+      {
+        question: { en: 'Which option should I open first for quote review?', zh: '報價審查應該先開哪一種配置？' },
+        answer: { en: 'Start with H200 when the project is dense training, HPC, or shared server deployment. Start with RTX PRO 6000 when the project is local inference, workstation deployment, visualization, or simulation.', zh: '若專案是高密度訓練、HPC 或共用伺服器部署，先看 H200。若專案是本地推論、工作站部署、視覺化或模擬，先看 RTX PRO 6000。' }
       }
     ]
   },
@@ -775,16 +792,16 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'ai-inference-server-taiwan',
     title: {
-      en: 'AI Inference Server Taiwan Quote Configurator',
-      zh: '台灣 AI 推論伺服器報價配置器'
+      en: 'Taiwan AI Inference Server Quote Configurator for LLM Deployment',
+      zh: '台灣 LLM AI 推論伺服器報價配置器'
     },
     description: {
       en: 'Configure Taiwan AI inference servers for LLM and private model serving with GPU memory, system RAM, NVMe storage, networking, deployment, and quote follow-up context.',
       zh: '為台灣 LLM 與私有模型服務配置 AI 推論伺服器，保留 GPU 記憶體、系統記憶體、NVMe、網路、部署與報價追蹤脈絡。'
     },
     keywords: {
-      en: 'AI inference server Taiwan, GPU inference server, local AI server quote, LLM inference server, AI server configurator Taiwan',
-      zh: 'AI 推論伺服器 台灣, GPU 推論伺服器, 本地 AI 伺服器報價, LLM 推論伺服器, AI 伺服器配置器 台灣'
+      en: 'AI inference server Taiwan, LLM server Taiwan, private model serving server, GPU inference server, local AI server quote, LLM inference server, AI server configurator Taiwan',
+      zh: 'AI 推論伺服器 台灣, LLM 伺服器 台灣, 私有模型服務伺服器, GPU 推論伺服器, 本地 AI 伺服器報價, LLM 推論伺服器, AI 伺服器配置器 台灣'
     },
     hero: {
       en: 'Taiwan LLM and AI inference server quote configuration',

@@ -177,6 +177,12 @@ const solutionHubRoute = {
     { label: '服務區域', value: 'Taiwan' },
     { label: '聯絡信箱', value: 'info@eudaemonia.tech' }
   ],
+  faq: [
+    ['配置器解決方案總入口適合哪些搜尋需求？', '適合正在搜尋 GPU 伺服器報價、NVIDIA H200 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、液冷 GPU 伺服器與 RFQ 檢核表的採購或技術團隊。'],
+    ['這個頁面會直接顯示公開價格嗎？', '不會。EudTech 配置器保留硬體選項與詢價脈絡，正式價格、交期與供應條件需由 EudTech 依實際配置回覆。'],
+    ['為什麼要先從解決方案入口進入配置器？', '解決方案入口會依採購意圖分流，讓使用者先選擇 H200、RTX PRO 6000、液冷、RFQ 或推論伺服器等路徑，再進入可操作配置器。'],
+    ['這些頁面適合台灣採購流程使用嗎？', '適合。頁面保留中文搜尋內容、配置器連結、詢價入口與 EudTech 聯絡資訊，方便台灣企業、研究單位與採購團隊整理需求。']
+  ],
   schema: [
     {
       '@context': 'https://schema.org',
@@ -229,6 +235,7 @@ const productRoutes = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
     label: getZh(property.name),
     value: getZh(property.value)
   })),
+  faq: (product.faqs || []).map((faq) => [getZh(faq.question), getZh(faq.answer)]),
   schema: [
     {
       '@context': 'https://schema.org',
@@ -317,6 +324,12 @@ const routes = [
       { label: '可配置項目', value: 'GPU、CPU、RAM、儲存、電源、網路' },
       { label: '報價流程', value: '配置器送出至 info@eudaemonia.tech' },
       { label: '服務區域', value: 'Taiwan' }
+    ],
+    faq: [
+      ['Comino Grando 配置器可以配置哪些項目？', '可以配置 Comino Grando GPU 伺服器與 AI 工作站，包含 GPU、CPU、RAM、OS Drive、Data Drive、Power Supply 與 Network 選項。'],
+      ['配置器可以送出 GPU 伺服器報價需求嗎？', '可以。取得報價流程會送出目前配置、配置連結與聯絡資料，讓 EudTech 後續追蹤正式報價。'],
+      ['配置器有涵蓋 NVIDIA H200 與 RTX PRO 6000 嗎？', '有。配置器包含 NVIDIA H200 伺服器、RTX PRO 6000 工作站與伺服器，以及相關 Comino Grando 配置入口。'],
+      ['這個配置器適合 RFQ 前置準備嗎？', '適合。配置器可把 GPU、CPU、記憶體、儲存、電源與網路選項整理成可分享連結，供技術與採購團隊審查。']
     ],
     schema: [
       {
@@ -725,7 +738,9 @@ function routeQuoteChecklist(route, specs) {
 }
 
 function routeFaqs(route, specs = []) {
-  const configuredFaqs = (route.faq || []).filter(([question, answer]) => question && answer);
+  const configuredFaqs = [...(route.faq || []), ...(route.faqs || [])]
+    .map((faq) => (Array.isArray(faq) ? faq : [faq.question, faq.answer]))
+    .filter(([question, answer]) => question && answer);
   const specLabels = specs.slice(0, 4).map((spec) => spec.label).join('、');
   const generatedFaqs = [
     [

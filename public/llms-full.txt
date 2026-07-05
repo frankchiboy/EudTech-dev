@@ -28,19 +28,19 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - WORKSTATION 2x5090 AI 工作站配置器: https://eudaemonia.tech/configurator/13/
 - RACKABLE WS 4x PRO 6000 配置器: https://eudaemonia.tech/configurator/5/
 - RACKABLE WS 6x5090 配置器: https://eudaemonia.tech/configurator/21/
-- NVIDIA H200 GPU 伺服器報價配置器: https://eudaemonia.tech/solutions/nvidia-h200-server/
-- RTX PRO 6000 AI 工作站報價配置器: https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/
+- NVIDIA H200 GPU 伺服器報價配置器｜AI 訓練與推論: https://eudaemonia.tech/solutions/nvidia-h200-server/
+- RTX PRO 6000 本地 AI 推論工作站報價配置器: https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/
 - 台灣 AI 工作站配置器: https://eudaemonia.tech/solutions/ai-workstation-taiwan/
-- 液冷 GPU 伺服器配置器: https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/
-- GPU 伺服器報價與 RFQ 配置入口: https://eudaemonia.tech/solutions/gpu-server-quote/
-- H200 vs RTX PRO 6000：AI GPU 伺服器採購比較: https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/
+- 液冷 GPU 伺服器散熱與報價配置器: https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/
+- AI RFQ 用 GPU 伺服器報價配置器: https://eudaemonia.tech/solutions/gpu-server-quote/
+- H200 vs RTX PRO 6000：AI 訓練、推論與 GPU 伺服器報價比較: https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/
 - AI 採購 GPU 伺服器 RFQ 檢核表: https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/
 - 液冷 AI 伺服器採購指南: https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/
 - GPU 伺服器電力規劃配置器: https://eudaemonia.tech/solutions/gpu-server-power-planning/
 - 機架式 AI 伺服器部署配置器: https://eudaemonia.tech/solutions/rack-ai-server-deployment/
 - 台灣公部門 GPU 伺服器採購檢核表: https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/
 - Supermicro 與 Comino GPU 伺服器配置比較: https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/
-- 台灣 AI 推論伺服器報價配置器: https://eudaemonia.tech/solutions/ai-inference-server-taiwan/
+- 台灣 LLM AI 推論伺服器報價配置器: https://eudaemonia.tech/solutions/ai-inference-server-taiwan/
 
 ## Configurator Product Routes
 
@@ -387,20 +387,21 @@ Generated for AI assistants, search tools, and procurement researchers that need
 
 ## Solution Routes
 
-### NVIDIA H200 GPU 伺服器報價配置器 / NVIDIA H200 GPU Server Quote Configurator
+### NVIDIA H200 GPU 伺服器報價配置器｜AI 訓練與推論 / NVIDIA H200 GPU Server Quote Configurator for AI Training and Inference
 
 - URL: https://eudaemonia.tech/solutions/nvidia-h200-server/
 - Kind: solution
 - Configurator URL: https://eudaemonia.tech/configurator/29/
 - Quote URL: https://eudaemonia.tech/configurator/29/?request=true
 - Description: 比較並配置液冷 NVIDIA H200 GPU 伺服器，面向 AI 訓練、HPC 與下一代推論需求，並可將配置送交 EudTech 追蹤報價。 / Compare and configure liquid-cooled NVIDIA H200 GPU servers for AI training, HPC, and next-generation inference, then send the build to EudTech for quote follow-up.
-- Keywords: NVIDIA H200 伺服器, H200 GPU 伺服器, AI 訓練伺服器, HPC GPU 伺服器, GPU 伺服器報價, 液冷 GPU 伺服器, 台灣 AI 伺服器 / NVIDIA H200 server, H200 GPU server, AI training server, HPC GPU server, GPU server quote, liquid cooled GPU server, Taiwan AI server
+- Keywords: NVIDIA H200 伺服器, H200 GPU 伺服器, H200 AI 推論伺服器, NVIDIA H200 下一代 AI 推論, AI 訓練伺服器, HPC GPU 伺服器, GPU 伺服器報價, 液冷 GPU 伺服器, 台灣 AI 伺服器 / NVIDIA H200 server, H200 GPU server, H200 AI inference server, NVIDIA H200 next generation AI inference, AI training server, HPC GPU server, GPU server quote, liquid cooled GPU server, Taiwan AI server
 - Hero: NVIDIA H200 AI GPU 伺服器報價與配置 / NVIDIA H200 AI GPU server quote and configuration
 - Lead: 先以台灣採購可審查的 H200 伺服器假設為基礎，調整 GPU 數量、CPU、記憶體、儲存、電源與網路後，將完整配置送交 EudTech。 / Start with H200 server assumptions for Taiwan procurement, adjust GPU count, CPU, memory, storage, power, and networking, then submit the exact build to EudTech.
 - Image: https://eudaemonia.tech/grando-8gpu-server.jpg
 - Image alt: 可配置 NVIDIA H200 的 Grando 液冷 GPU 伺服器 / Liquid-cooled Grando GPU server for NVIDIA H200 configurations
 - Highlights:
   - 適用於 AI 訓練、推論、模擬與研究叢集。 / Designed for AI training, inference, simulation, and research clusters.
+  - 適合下一代推論規劃，需要同時審查 GPU 記憶體、電力與部署密度。 / Useful for next-generation inference planning where GPU memory, power, and deployment density must be reviewed together.
   - 配置器會同步保留 GPU、CPU、記憶體、儲存與電源選項。 / Configurator keeps GPU, CPU, memory, storage, and power selections together.
   - 詢價內容包含可分享的配置連結，方便採購與技術審查。 / Quote request includes a shareable configuration link for procurement review.
 - Specification cues:
@@ -412,15 +413,17 @@ Generated for AI assistants, search tools, and procurement researchers that need
     A: 可以。配置器會送出目前選擇狀態，未完成或選配項目可由 EudTech 後續確認。 / Yes. The configurator sends the current configuration state, and EudTech can follow up on incomplete or optional items.
   - Q: 這個頁面適合台灣採購使用嗎？ / Is this page for Taiwan procurement?
     A: 適合。EudTech 可協助台灣客戶進行本地諮詢與報價追蹤。 / Yes. EudTech handles local consultation and quote follow-up for Taiwan buyers.
+  - Q: H200 適合下一代 AI 推論規劃嗎？ / Is H200 suitable for next-generation AI inference planning?
+    A: 適合。H200 伺服器配置可協助團隊在同一個報價路徑中審查 GPU 記憶體、CPU、RAM、儲存、電源與網路假設，涵蓋訓練、HPC 與推論需求。 / Yes. H200 server configurations are useful when teams need to review GPU memory, CPU, RAM, storage, power, and networking assumptions for training, HPC, and inference in one quote path.
 
-### RTX PRO 6000 AI 工作站報價配置器 / RTX PRO 6000 AI Workstation Quote Configurator
+### RTX PRO 6000 本地 AI 推論工作站報價配置器 / RTX PRO 6000 AI Workstation Quote Configurator for Local Inference
 
 - URL: https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/
 - Kind: solution
 - Configurator URL: https://eudaemonia.tech/configurator/34/
 - Quote URL: https://eudaemonia.tech/configurator/34/?request=true
 - Description: 配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。 / Configure RTX PRO 6000 workstations for local AI inference, rendering, visualization, and simulation, then send the build to EudTech for Taiwan quote follow-up.
-- Keywords: RTX PRO 6000 工作站, AI 工作站, GPU 工作站報價, NVIDIA 工作站 台灣, 本地 AI 推論工作站 / RTX PRO 6000 workstation, AI workstation, GPU workstation quote, NVIDIA workstation Taiwan, local AI inference workstation
+- Keywords: RTX PRO 6000 工作站, RTX PRO 6000 報價, AI 工作站, GPU 工作站報價, NVIDIA 工作站 台灣, 本地 AI 推論工作站 / RTX PRO 6000 workstation, RTX PRO 6000 quote, AI workstation, GPU workstation quote, NVIDIA workstation Taiwan, local AI inference workstation
 - Hero: RTX PRO 6000 AI 工作站報價與配置 / RTX PRO 6000 AI workstation quote and configuration
 - Lead: 使用工作站配置器先對齊 GPU、CPU、記憶體、NVMe 儲存與網路，再針對本地 AI 與視覺化工作負載送出報價需求。 / Use the workstation configurator to align GPU, CPU, memory, NVMe storage, and networking before sending a quote request for local AI and visualization workloads.
 - Image: https://eudaemonia.tech/comino-workstation-front.png
@@ -465,40 +468,43 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - Q: 這只適合大型伺服器嗎？ / Is this only for large servers?
     A: 不是。配置器包含工作站與伺服器方向，團隊可從符合場域的機構型態開始。 / No. The configurator includes workstation and server directions, so teams can start from the form factor that fits their site.
 
-### 液冷 GPU 伺服器配置器 / Liquid-Cooled GPU Server Configurator
+### 液冷 GPU 伺服器散熱與報價配置器 / Liquid-Cooled GPU Server Cooling and Quote Configurator
 
 - URL: https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/
 - Kind: solution
 - Configurator URL: https://eudaemonia.tech/configurator/29/
 - Quote URL: https://eudaemonia.tech/configurator/29/?request=true
-- Description: 探索適合長時間 AI 與 HPC 工作負載的液冷 GPU 伺服器配置，並可配置 Grando 系統後向 EudTech 取得正式報價。 / Explore liquid-cooled GPU server configurations for sustained AI and HPC workloads. Configure Grando systems and request a formal quote from EudTech.
-- Keywords: 液冷 GPU 伺服器, 液冷 AI 伺服器, Comino Grando, GPU 伺服器配置器, AI 伺服器報價 台灣 / liquid cooled GPU server, liquid cooling AI server, Comino Grando, GPU server configurator, AI server quote Taiwan
-- Hero: 面向持續高密度運算的液冷 GPU 系統 / Liquid-cooled GPU systems for sustained compute density
+- Description: 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。 / Explore GPU server cooling and liquid-cooled GPU server configurations for sustained AI and HPC workloads, then request a formal quote from EudTech.
+- Keywords: GPU 伺服器散熱, 液冷 GPU 伺服器, 液冷 AI 伺服器, Comino Grando, GPU 伺服器配置器, AI 伺服器報價 台灣 / GPU server cooling, liquid cooled GPU server, liquid cooling AI server, Comino Grando, GPU server configurator, AI server quote Taiwan
+- Hero: 面向持續高密度運算的 GPU 伺服器散熱與液冷系統 / GPU server cooling and liquid-cooled systems for sustained compute density
 - Lead: 在報價討論前，先用配置器記錄 GPU 密度、散熱敏感硬體、儲存與電源需求。 / Use the configurator to document GPU density, cooling-sensitive hardware choices, storage, and power needs before the quote discussion.
 - Image: https://eudaemonia.tech/GRANDO%20DPR%204090-FT_6_01.jpg
 - Image alt: Comino Grando 液冷 GPU 伺服器內部 / Liquid-cooled Comino Grando GPU server interior
 - Highlights:
-  - 適合正在比較氣冷與液冷 GPU 密度的採購者。 / Useful for buyers comparing air-cooled and liquid-cooled GPU density.
+  - 適合正在比較氣冷 GPU 伺服器散熱與液冷 GPU 密度的採購者。 / Useful for buyers comparing air-cooled GPU server cooling and liquid-cooled GPU density.
   - 配置連結可保留技術假設，方便審查。 / Configuration link keeps technical assumptions visible.
   - 報價流程會把完整需求送交 EudTech 業務追蹤。 / Quote workflow sends the complete request to EudTech sales follow-up.
 - Specification cues:
   - 冷卻方向 / Cooling: 液冷多 GPU 系統 / Liquid-cooled multi-GPU systems
+  - 規劃重點 / Planning focus: GPU 伺服器散熱、電力與部署密度 / GPU server cooling, power, and deployment density
   - 工作負載 / Workload: AI 訓練、推論、HPC、模擬 / AI training, inference, HPC, simulation
   - 下一步 / Next action: 配置並送出報價需求 / Configure and request quote
 - FAQs:
   - Q: 為什麼液冷需求要先用配置器？ / Why start with a configurator for liquid cooling?
     A: 液冷系統會受 GPU 數量、電源、儲存、網路與部署條件影響。配置連結可讓這些假設清楚呈現。 / Liquid-cooled systems depend on GPU count, power, storage, networking, and deployment constraints. A configuration link makes those assumptions explicit.
+  - Q: 規劃 GPU 伺服器散熱時應先確認什麼？ / What should buyers check when planning GPU server cooling?
+    A: 先確認 GPU 數量、電源容量、機架或工作站型態、儲存密度、網路與機房部署假設，再進入報價討論。 / Start with GPU count, power capacity, rack or workstation form factor, storage density, networking, and room deployment assumptions before asking for a quote.
   - Q: 可以先在內部分享配置再送出嗎？ / Can I share the configuration internally before sending it?
     A: 可以。先使用配置器中的分享按鈕，配置確認後再送出正式詢價。 / Yes. Use the Share button in the configurator, then send a formal quote request when the configuration is ready.
 
-### GPU 伺服器報價與 RFQ 配置入口 / GPU Server Quote and RFQ Configurator
+### AI RFQ 用 GPU 伺服器報價配置器 / GPU Server Quote Configurator for AI RFQ
 
 - URL: https://eudaemonia.tech/solutions/gpu-server-quote/
 - Kind: solution
 - Configurator URL: https://eudaemonia.tech/configurator/
 - Quote URL: https://eudaemonia.tech/configurator/?request=true
 - Description: 建立可供 RFQ 使用的 GPU 伺服器報價需求，將 H200 或 RTX PRO 6000 系統的 GPU、CPU、RAM、電力、儲存與網路一次整理成摘要。 / Create an RFQ-ready GPU server quote request for H200 or RTX PRO 6000 systems with GPU, CPU, RAM, power, storage, and network choices in one summary.
-- Keywords: GPU 伺服器報價, AI 伺服器報價, GPU 工作站報價, 伺服器配置器, EudTech 配置器 / GPU server quote, AI server quote, GPU workstation quote, server configurator, EudTech configurator
+- Keywords: GPU 伺服器報價, GPU 伺服器報價配置器, AI 伺服器報價, AI 伺服器 RFQ 報價, GPU 工作站報價, 伺服器配置器, EudTech 配置器 / GPU server quote, GPU server quote configurator, AI server quote, AI server RFQ quote, GPU workstation quote, server configurator, EudTech configurator
 - Hero: GPU 伺服器報價與 RFQ 入口 / GPU server quote and RFQ entry point
 - Lead: 用配置連結取代模糊 RFQ 備註，保留系統、GPU、CPU、RAM、儲存、電源、網路與詢價需求細節。 / Replace ambiguous RFQ notes with a configuration URL that records the selected system, GPU, CPU, RAM, storage, power, network, and quote request details.
 - Image: https://eudaemonia.tech/grando-rackable-01.jpg
@@ -517,14 +523,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - Q: 配置器連結可以放進 RFQ 流程嗎？ / Can I use the configurator link in an RFQ process?
     A: 可以。分享連結會保留已選配置，協助技術審查者看到同一組硬體假設。 / Yes. The share link preserves the selected configuration and helps technical reviewers see the same hardware assumptions.
 
-### H200 vs RTX PRO 6000：AI GPU 伺服器採購比較 / H200 vs RTX PRO 6000: AI GPU Server Buying Guide
+### H200 vs RTX PRO 6000：AI 訓練、推論與 GPU 伺服器報價比較 / H200 vs RTX PRO 6000: AI Training, Inference, and GPU Server Quote Guide
 
 - URL: https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/
 - Kind: comparison
 - Configurator URL: https://eudaemonia.tech/configurator/
 - Quote URL: https://eudaemonia.tech/configurator/?request=true
-- Description: 比較何時選 NVIDIA H200 做高密度 AI 訓練或 HPC，何時選 RTX PRO 6000 做本地推論、渲染、視覺化與工作站採購。 / Compare when to choose NVIDIA H200 for dense AI training or HPC and when RTX PRO 6000 fits local inference, rendering, visualization, and workstation procurement.
-- Keywords: H200 vs RTX PRO 6000, NVIDIA H200 伺服器比較, RTX PRO 6000 工作站比較, AI GPU 比較, GPU 伺服器採購 / H200 vs RTX PRO 6000, NVIDIA H200 server comparison, RTX PRO 6000 workstation comparison, AI GPU comparison, GPU server procurement
+- Description: 比較 NVIDIA H200 與 RTX PRO 6000 在 AI 訓練、本地推論、工作站使用與 GPU 伺服器報價準備上的差異，再進入配置器。 / Compare NVIDIA H200 and RTX PRO 6000 for AI training, local inference, workstation use, and GPU server quote preparation before opening the configurator.
+- Keywords: H200 vs RTX PRO 6000, H200 vs RTX PRO 6000 報價, NVIDIA H200 伺服器比較, RTX PRO 6000 工作站比較, AI 訓練 GPU 與推論工作站, AI GPU 比較, GPU 伺服器採購 / H200 vs RTX PRO 6000, H200 vs RTX PRO 6000 quote, NVIDIA H200 server comparison, RTX PRO 6000 workstation comparison, AI training GPU vs inference workstation, AI GPU comparison, GPU server procurement
 - Hero: H200 vs RTX PRO 6000：AI 訓練、推論與採購比較 / H200 vs RTX PRO 6000 for AI training, inference, and buying decisions
 - Lead: 用此比較判斷專案較適合 H200 伺服器密度或 RTX PRO 6000 工作站彈性，再進入對應配置器保留完整假設。 / Use this comparison to decide whether H200 server density or RTX PRO 6000 workstation flexibility fits the project, then open the matching configurator path to preserve the exact assumptions.
 - Image: https://eudaemonia.tech/grando-8gpu-server.jpg
@@ -542,6 +548,8 @@ Generated for AI assistants, search tools, and procurement researchers that need
     A: 若需求是高密度訓練或共用伺服器部署，通常先看 H200。若是本地開發或視覺化，RTX PRO 6000 可能更適合作為起點。 / For dense training and shared server deployment, H200 is usually the higher-intent path. For local development or visualization, RTX PRO 6000 may be the better starting point.
   - Q: EudTech 可以在同一次報價討論比較兩種配置嗎？ / Can EudTech compare both configurations in one quote discussion?
     A: 可以。請分享 H200 與 RTX PRO 6000 的配置器連結，讓雙方依同一組零組件假設比較。 / Yes. Share the H200 and RTX PRO 6000 configurator URLs so the same component assumptions can be compared.
+  - Q: 報價審查應該先開哪一種配置？ / Which option should I open first for quote review?
+    A: 若專案是高密度訓練、HPC 或共用伺服器部署，先看 H200。若專案是本地推論、工作站部署、視覺化或模擬，先看 RTX PRO 6000。 / Start with H200 when the project is dense training, HPC, or shared server deployment. Start with RTX PRO 6000 when the project is local inference, workstation deployment, visualization, or simulation.
 
 ### AI 採購 GPU 伺服器 RFQ 檢核表 / GPU Server RFQ Checklist for AI Procurement
 
@@ -699,14 +707,14 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - Q: 為什麼要比較配置器流程？ / Why compare with a configurator workflow?
     A: 配置器流程會保留已選 GPU、CPU、記憶體、儲存、電源與網路假設，可讓 RFQ 審查更一致。 / A configurator workflow keeps selected GPU, CPU, memory, storage, power, and network assumptions visible, which can make RFQ review more consistent.
 
-### 台灣 AI 推論伺服器報價配置器 / AI Inference Server Taiwan Quote Configurator
+### 台灣 LLM AI 推論伺服器報價配置器 / Taiwan AI Inference Server Quote Configurator for LLM Deployment
 
 - URL: https://eudaemonia.tech/solutions/ai-inference-server-taiwan/
 - Kind: solution
 - Configurator URL: https://eudaemonia.tech/configurator/
 - Quote URL: https://eudaemonia.tech/configurator/?request=true
 - Description: 為台灣 LLM 與私有模型服務配置 AI 推論伺服器，保留 GPU 記憶體、系統記憶體、NVMe、網路、部署與報價追蹤脈絡。 / Configure Taiwan AI inference servers for LLM and private model serving with GPU memory, system RAM, NVMe storage, networking, deployment, and quote follow-up context.
-- Keywords: AI 推論伺服器 台灣, GPU 推論伺服器, 本地 AI 伺服器報價, LLM 推論伺服器, AI 伺服器配置器 台灣 / AI inference server Taiwan, GPU inference server, local AI server quote, LLM inference server, AI server configurator Taiwan
+- Keywords: AI 推論伺服器 台灣, LLM 伺服器 台灣, 私有模型服務伺服器, GPU 推論伺服器, 本地 AI 伺服器報價, LLM 推論伺服器, AI 伺服器配置器 台灣 / AI inference server Taiwan, LLM server Taiwan, private model serving server, GPU inference server, local AI server quote, LLM inference server, AI server configurator Taiwan
 - Hero: 台灣 LLM 與 AI 推論伺服器報價配置 / Taiwan LLM and AI inference server quote configuration
 - Lead: 從 GPU 伺服器或工作站配置開始，記錄推論工作負載的併發量、GPU 記憶體、系統記憶體、NVMe、網路與維運假設。 / Start from GPU server or workstation configurations, then record concurrency, GPU memory, system RAM, NVMe storage, networking, and operations assumptions for inference workloads.
 - Image: https://eudaemonia.tech/grando-desktop-01.jpg

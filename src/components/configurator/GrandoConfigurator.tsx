@@ -157,6 +157,71 @@ interface OptionSectionProps {
 
 const typeOrder = ['Server', 'Rackable Workstation', 'Desktop Workstation', 'Integration Kit'];
 
+type StructuredFaqItem = {
+  question: string;
+  answer: string;
+};
+
+const getConfiguratorHomeFaqs = (language: ConfiguratorLocale): StructuredFaqItem[] =>
+  language === 'en'
+    ? [
+        {
+          question: 'What can I configure in the Comino Grando configurator?',
+          answer:
+            'You can configure Comino Grando GPU servers and AI workstations, including GPU, CPU, RAM, storage, power supply, networking, and a quote request URL.'
+        },
+        {
+          question: 'Can I request a GPU server quote from the configurator?',
+          answer:
+            'Yes. The quote form sends the selected configuration, contact details, and shareable configurator URL to EudTech for follow-up.'
+        },
+        {
+          question: 'Does the configurator cover NVIDIA H200 and RTX PRO 6000 systems?',
+          answer:
+            'Yes. It includes NVIDIA H200 server paths, RTX PRO 6000 workstation and server paths, and related Comino Grando configurations.'
+        },
+        {
+          question: 'Is the configurator suitable for Taiwan RFQ preparation?',
+          answer:
+            'Yes. It helps Taiwan buyers preserve hardware assumptions and submit a clear RFQ-ready quote request to EudTech.'
+        }
+      ]
+    : [
+        {
+          question: 'Comino Grando 配置器可以配置哪些項目？',
+          answer: '可以配置 Comino Grando GPU 伺服器與 AI 工作站，包含 GPU、CPU、RAM、儲存、電源供應、網路與詢價連結。'
+        },
+        {
+          question: '可以直接從配置器取得 GPU 伺服器報價嗎？',
+          answer: '可以。詢價表單會把已選配置、聯絡資料與可分享配置連結送交 EudTech 後續追蹤。'
+        },
+        {
+          question: '配置器有涵蓋 NVIDIA H200 與 RTX PRO 6000 系統嗎？',
+          answer: '有。配置器包含 NVIDIA H200 伺服器路徑、RTX PRO 6000 工作站與伺服器路徑，以及相關 Comino Grando 配置。'
+        },
+        {
+          question: '這個配置器適合台灣 RFQ 準備使用嗎？',
+          answer: '適合。它可協助台灣採購者保留硬體假設，並向 EudTech 送出可供 RFQ 使用的清楚報價需求。'
+        }
+      ];
+
+const buildFaqStructuredData = (url: string, faqs: StructuredFaqItem[]) =>
+  faqs.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        mainEntity: faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer
+          }
+        }))
+      }
+    : undefined;
+
 const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: string, device?: ConfiguratorDevice) => {
   const isEnglish = language === 'en';
   const canonicalUrl = pid ? canonicalPageUrl(`${SITE_ORIGIN}/configurator/${pid}`) : CONFIGURATOR_CANONICAL_URL;
@@ -215,6 +280,12 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
           }
         }
       : undefined;
+  const faqItems = productSeo?.faqs?.length
+    ? productSeo.faqs.map((faq) => ({
+        question: faq.question[language],
+        answer: faq.answer[language]
+      }))
+    : getConfiguratorHomeFaqs(language);
 
   return [
     {
@@ -298,7 +369,8 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
           : [])
       ]
     },
-    serviceStructuredData
+    serviceStructuredData,
+    buildFaqStructuredData(canonicalUrl, faqItems)
   ].filter(Boolean);
 };
 
