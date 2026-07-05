@@ -291,6 +291,7 @@ async function main() {
   const sitemap = read('public/sitemap.xml');
   const imageSitemap = read('public/image-sitemap.xml');
   const feed = read('public/feed.xml');
+  const feedJson = JSON.parse(read('public/feed.json'));
   const llms = read('public/llms.txt');
   const llmsFull = read('public/llms-full.txt');
   const robots = read('public/robots.txt');
@@ -324,6 +325,10 @@ async function main() {
   });
   addCheck('search_discovery', 'RSS feed contains solution pages', CONFIGURATOR_SEO_PAGES.every((page) => feed.includes(pageUrl(`/solutions/${page.slug}`))), {
     solutionPages: CONFIGURATOR_SEO_PAGES.length
+  });
+  const jsonFeedUrls = new Set((feedJson.items || []).map((item) => item.url).filter(Boolean));
+  addCheck('search_discovery', 'JSON feed contains all landing pages', canonicalUrls.every((url) => jsonFeedUrls.has(url)), {
+    missing: canonicalUrls.filter((url) => !jsonFeedUrls.has(url))
   });
   addCheck('search_discovery', 'llms.txt contains configurator topics', canonicalUrls.every((url) => llms.includes(url)), {
     missing: canonicalUrls.filter((url) => !llms.includes(url))

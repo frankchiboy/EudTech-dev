@@ -20,11 +20,13 @@ const readPublicFile = (filename) => fs.readFileSync(path.join(publicDir, filena
 const collectXmlLocs = (xml) => [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1].trim());
 const collectImageLocs = (xml) => [...xml.matchAll(/<image:loc>(.*?)<\/image:loc>/g)].map((match) => match[1].trim());
 const collectFeedLinks = (xml) => [...xml.matchAll(/<link>(.*?)<\/link>/g)].map((match) => match[1].trim());
+const collectJsonFeedLinks = (jsonFeed) => (jsonFeed.items || []).map((item) => item.url).filter(Boolean);
 
 const sitemapXml = readPublicFile('sitemap.xml');
 const imageSitemapXml = readPublicFile('image-sitemap.xml');
 const sitemapIndexXml = readPublicFile('sitemap-index.xml');
 const feedXml = readPublicFile('feed.xml');
+const feedJsonText = readPublicFile('feed.json');
 const llmsText = readPublicFile('llms.txt');
 const llmsFullText = readPublicFile('llms-full.txt');
 const robotsText = readPublicFile('robots.txt');
@@ -36,6 +38,13 @@ const imageSitemapPageLocs = new Set(collectXmlLocs(imageSitemapXml).filter((loc
 const imageSitemapImageLocs = new Set(collectImageLocs(imageSitemapXml));
 const sitemapIndexLocs = new Set(collectXmlLocs(sitemapIndexXml));
 const feedLinks = new Set(collectFeedLinks(feedXml));
+let feedJson;
+try {
+  feedJson = JSON.parse(feedJsonText);
+} catch (error) {
+  feedJson = undefined;
+}
+const feedJsonLinks = new Set(feedJson ? collectJsonFeedLinks(feedJson) : []);
 const errors = [];
 
 const requireAll = (label, values, predicate) => {
@@ -49,6 +58,7 @@ const requireAll = (label, values, predicate) => {
 requireAll('sitemap.xml', requiredIndexUrls, (url) => sitemapLocs.has(url));
 requireAll('image-sitemap.xml', requiredPageUrls, (url) => imageSitemapPageLocs.has(url));
 requireAll('feed.xml', requiredIndexUrls, (url) => feedLinks.has(url));
+requireAll('feed.json', requiredIndexUrls, (url) => feedJsonLinks.has(url));
 requireAll('llms.txt', requiredIndexUrls, (url) => llmsText.includes(url));
 requireAll('llms-full.txt', requiredIndexUrls, (url) => llmsFullText.includes(url));
 requireAll('configurator-links.html', requiredPageUrls, (url) => configuratorLinksHtml.includes(`href="${url}"`));
@@ -96,6 +106,7 @@ const requiredHeaderRules = [
   '/sitemap-index.xml',
   '/image-sitemap.xml',
   '/feed.xml',
+  '/feed.json',
   '/configurator-links.html',
   '/llms*.txt',
   '/social/configurator/*',
@@ -116,8 +127,16 @@ if (!/\/sitemap-index\.xml[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(heade
   errors.push('public/_headers missing sitemap index cache-control rule.');
 }
 
+if (!/\/feed\.json[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
+  errors.push('public/_headers missing JSON feed cache-control rule.');
+}
+
 if (!/\/configurator-links\.html[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
   errors.push('public/_headers missing configurator link index cache-control rule.');
+}
+
+if (!feedJson || feedJson.version !== 'https://jsonfeed.org/version/1.1') {
+  errors.push('feed.json missing valid JSON Feed version.');
 }
 
 if (!/\/build-meta\.json[\s\S]*max-age=0[\s\S]*must-revalidate/i.test(headersText)) {
@@ -158,6 +177,7 @@ console.log(
       configuratorLinkIndex: true,
       socialPreviewImages: socialPreviewRoutes.length,
       sitemapIndexCount: sitemapIndexLocs.size,
+      jsonFeed: true,
       llmsFull: true
     },
     null,

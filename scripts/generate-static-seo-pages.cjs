@@ -1013,6 +1013,7 @@ function injectHead(baseHtml, route) {
     `<meta data-rh="true" name="twitter:url" content="${escapeHtml(url)}">`,
     `<link data-rh="true" rel="canonical" href="${escapeHtml(url)}">`,
     `<link data-rh="true" rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href="${siteOrigin}/feed.xml">`,
+    `<link data-rh="true" rel="alternate" type="application/feed+json" title="EudTech Configurator Updates" href="${siteOrigin}/feed.json">`,
     staticSeoFallbackStyle(),
     ...verificationTags(),
     ...schemaItems
@@ -1026,6 +1027,7 @@ function injectHead(baseHtml, route) {
     .replace(/\s*<meta[^>]+(?:name|property)="(?:description|keywords|author|robots|og:title|og:description|og:image|og:image:secure_url|og:image:alt|og:image:width|og:image:height|og:url|og:type|og:site_name|og:locale|article:published_time|article:modified_time|twitter:card|twitter:title|twitter:description|twitter:image|twitter:image:alt|twitter:url)"[^>]*>/g, '')
     .replace(/\s*<link[^>]+rel="canonical"[^>]*>/g, '')
     .replace(/\s*<link[^>]+rel="alternate"[^>]+type="application\/rss\+xml"[^>]*>/g, '')
+    .replace(/\s*<link[^>]+rel="alternate"[^>]+type="application\/feed\+json"[^>]*>/g, '')
     .replace(/\s*<script[^>]+type="application\/ld\+json"[\s\S]*?<\/script>/g, '')
     .replace('</head>', `    ${managedHead}\n  </head>`)
     .replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">\n    ${staticSeoFallback(route)}\n    </div>`);

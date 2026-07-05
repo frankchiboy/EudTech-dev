@@ -63,6 +63,16 @@ function getRssAlternateHref(html) {
   return rssLink?.match(/href=["']([^"']+)["']/i)?.[1] || '';
 }
 
+function getJsonFeedAlternateHref(html) {
+  const links = [...html.matchAll(/<link\b[^>]*>/gi)].map((match) => match[0]);
+  const jsonFeedLink = links.find(
+    (tag) =>
+      /rel=["'][^"']*\balternate\b[^"']*["']/i.test(tag) &&
+      /type=["']application\/feed\+json["']/i.test(tag)
+  );
+  return jsonFeedLink?.match(/href=["']([^"']+)["']/i)?.[1] || '';
+}
+
 function hasType(items, type) {
   return items.some((item) => item && item['@type'] === type);
 }
@@ -350,6 +360,7 @@ function assertSocialMeta(route) {
   const jsonLd = collectJsonLd(route.path, html);
   const canonical = getCanonicalHref(html);
   const rssAlternate = getRssAlternateHref(html);
+  const jsonFeedAlternate = getJsonFeedAlternateHref(html);
   const description = getMetaContent(html, 'name', 'description');
   const robots = getMetaContent(html, 'name', 'robots');
   const ogTitle = getMetaContent(html, 'property', 'og:title');
@@ -375,6 +386,7 @@ function assertSocialMeta(route) {
 
   requireEqual(route.path, 'canonical', canonical, expectedUrl);
   requireEqual(route.path, 'RSS alternate link', rssAlternate, `${new URL(expectedUrl).origin}/feed.xml`);
+  requireEqual(route.path, 'JSON feed alternate link', jsonFeedAlternate, `${new URL(expectedUrl).origin}/feed.json`);
   requireEqual(route.path, 'og:url', ogUrl, expectedUrl);
   requireEqual(route.path, 'twitter:url', twitterUrl, expectedUrl);
   requireEqual(route.path, 'og:image', ogImage, route.socialImageUrl);

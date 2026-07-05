@@ -27,6 +27,7 @@ const requiredDiscoveryUrls = [
   `${siteOrigin}/sitemap.xml`,
   `${siteOrigin}/image-sitemap.xml`,
   `${siteOrigin}/feed.xml`,
+  `${siteOrigin}/feed.json`,
   configuratorLinkIndexUrl,
   `${siteOrigin}/llms.txt`,
   `${siteOrigin}/llms-full.txt`
@@ -340,12 +341,20 @@ function checkDiscoveryFiles(discovery, errors) {
   const sitemap = discovery.find((item) => item.url.endsWith('/sitemap.xml'))?.text || '';
   const imageSitemap = discovery.find((item) => item.url.endsWith('/image-sitemap.xml'))?.text || '';
   const feed = discovery.find((item) => item.url.endsWith('/feed.xml'))?.text || '';
+  const feedJsonText = discovery.find((item) => item.url.endsWith('/feed.json'))?.text || '';
   const configuratorLinksHtml = discovery.find((item) => item.url === configuratorLinkIndexUrl)?.text || '';
   const llms = discovery.find((item) => item.url.endsWith('/llms.txt'))?.text || '';
   const llmsFull = discovery.find((item) => item.url.endsWith('/llms-full.txt'))?.text || '';
   const sitemapLocs = new Set(collectXmlLocs(sitemap));
   const imageSitemapLocs = new Set(collectXmlLocs(imageSitemap).filter((loc) => loc.startsWith(siteOrigin) && !/\.(jpg|jpeg|png|webp|svg)$/i.test(loc)));
   const sitemapIndexLocs = new Set(collectXmlLocs(sitemapIndex));
+  let feedJson;
+  try {
+    feedJson = JSON.parse(feedJsonText);
+  } catch {
+    feedJson = undefined;
+  }
+  const feedJsonLinks = new Set((feedJson?.items || []).map((item) => item.url).filter(Boolean));
 
   for (const url of requiredDiscoveryUrls) {
     const item = discovery.find((entry) => entry.url === url);
@@ -366,6 +375,7 @@ function checkDiscoveryFiles(discovery, errors) {
     assert(sitemapLocs.has(url), errors, `sitemap.xml missing ${url}.`);
     assert(imageSitemapLocs.has(url), errors, `image-sitemap.xml missing ${url}.`);
     assert(feed.includes(url), errors, `feed.xml missing ${url}.`);
+    assert(feedJsonLinks.has(url), errors, `feed.json missing ${url}.`);
     assert(llms.includes(url), errors, `llms.txt missing ${url}.`);
     assert(llmsFull.includes(url), errors, `llms-full.txt missing ${url}.`);
     assert(configuratorLinksHtml.includes(`href="${url}"`), errors, `configurator-links.html missing ${url}.`);
@@ -373,11 +383,13 @@ function checkDiscoveryFiles(discovery, errors) {
 
   assert(sitemapLocs.has(configuratorLinkIndexUrl), errors, `sitemap.xml missing ${configuratorLinkIndexUrl}.`);
   assert(feed.includes(configuratorLinkIndexUrl), errors, `feed.xml missing ${configuratorLinkIndexUrl}.`);
+  assert(feedJsonLinks.has(configuratorLinkIndexUrl), errors, `feed.json missing ${configuratorLinkIndexUrl}.`);
   assert(llms.includes(configuratorLinkIndexUrl), errors, `llms.txt missing ${configuratorLinkIndexUrl}.`);
   assert(llmsFull.includes(configuratorLinkIndexUrl), errors, `llms-full.txt missing ${configuratorLinkIndexUrl}.`);
   assert(configuratorLinksHtml.includes(`<link rel="canonical" href="${configuratorLinkIndexUrl}">`), errors, 'configurator-links.html missing canonical link.');
   assert(/<meta name="robots" content="index, follow">/i.test(configuratorLinksHtml), errors, 'configurator-links.html should be index, follow.');
   assert(configuratorLinksHtml.includes('application/ld+json'), errors, 'configurator-links.html missing JSON-LD.');
+  assert(feedJson?.version === 'https://jsonfeed.org/version/1.1', errors, 'feed.json missing valid JSON Feed version.');
 
   for (const product of CONFIGURATOR_PRODUCT_SEO) {
     assert(llmsFull.includes(product.productId), errors, `llms-full.txt missing ${product.productId}.`);

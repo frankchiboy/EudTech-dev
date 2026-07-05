@@ -158,7 +158,8 @@ ${entry.images
 </urlset>
 `;
 
-const feedItems = [configuratorUrl, solutionHubUrl, configuratorLinkIndexUrl, ...productUrls, ...solutionUrls]
+const feedEntries = [configuratorUrl, solutionHubUrl, configuratorLinkIndexUrl, ...productUrls, ...solutionUrls];
+const feedItems = feedEntries
   .map(
     (entry) => `    <item>
       <title>${escapeXml(entry.title)}</title>
@@ -183,6 +184,34 @@ ${feedItems}
   </channel>
 </rss>
 `;
+
+const jsonFeed = JSON.stringify(
+  {
+    version: 'https://jsonfeed.org/version/1.1',
+    title: 'EudTech Configurator Updates',
+    home_page_url: pageUrl('/solutions'),
+    feed_url: `${siteOrigin}/feed.json`,
+    description: 'AI GPU server, Comino Grando configurator, workstation quote, and procurement solution entry points from EudTech.',
+    language: 'zh-TW',
+    authors: [
+      {
+        name: 'EudTech',
+        url: siteOrigin
+      }
+    ],
+    items: feedEntries.map((entry) => ({
+      id: entry.loc,
+      url: entry.loc,
+      title: entry.title,
+      summary: entry.description,
+      content_text: `${entry.title}\n\n${entry.description}\n\n${entry.loc}`,
+      date_published: `${lastmod}T00:00:00+08:00`,
+      date_modified: `${lastmod}T00:00:00+08:00`
+    }))
+  },
+  null,
+  2
+);
 
 const llmsPrimaryUrls = [
   ['Homepage', `${siteOrigin}/`],
@@ -506,6 +535,7 @@ fs.writeFileSync(path.join(publicDir, 'sitemap-index.xml'), sitemapIndex);
 fs.writeFileSync(path.join(publicDir, 'image-sitemap.xml'), imageSitemap);
 fs.writeFileSync(path.join(publicDir, 'robots.txt'), robots);
 fs.writeFileSync(path.join(publicDir, 'feed.xml'), feed);
+fs.writeFileSync(path.join(publicDir, 'feed.json'), `${jsonFeed}\n`);
 fs.writeFileSync(path.join(publicDir, 'llms.txt'), llms);
 fs.writeFileSync(path.join(publicDir, 'llms-full.txt'), llmsFull);
 fs.writeFileSync(path.join(publicDir, 'configurator-links.html'), configuratorLinksHtml);
