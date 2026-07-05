@@ -946,20 +946,30 @@ const BackgroundSlider = ({
   language: ConfiguratorLocale;
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [previousIndex, setPreviousIndex] = useState<number | null>(null);
   const isMobile = useMobileConfiguratorViewport();
   const copy = CONFIGURATOR_COPY[language];
   const renderedImages = useMemo(() => {
-    if (!isMobile) {
-      return images.map((image, index) => ({ image, index }));
+    if (!images.length) {
+      return [];
     }
 
-    const activeImage = images[activeIndex] || images[0];
-    return activeImage ? [{ image: activeImage, index: activeIndex }] : [];
-  }, [activeIndex, images, isMobile]);
+    const safeActiveIndex = images[activeIndex] ? activeIndex : 0;
+    const indexes =
+      isMobile || previousIndex === null || previousIndex === safeActiveIndex || !images[previousIndex]
+        ? [safeActiveIndex]
+        : [previousIndex, safeActiveIndex];
+
+    return indexes.map((index) => ({ image: images[index], index }));
+  }, [activeIndex, images, isMobile, previousIndex]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % Math.max(images.length, 1));
+      setActiveIndex((current) => {
+        const nextIndex = (current + 1) % Math.max(images.length, 1);
+        setPreviousIndex(current === nextIndex ? null : current);
+        return nextIndex;
+      });
     }, 5200);
 
     return () => window.clearInterval(timer);
@@ -967,13 +977,37 @@ const BackgroundSlider = ({
 
   useEffect(() => {
     setActiveIndex(0);
+    setPreviousIndex(null);
   }, [images]);
+
+  useEffect(() => {
+    if (!images.length || typeof window === 'undefined') {
+      return;
+    }
+
+    const nextIndex = (activeIndex + 1) % images.length;
+    if (nextIndex === activeIndex) {
+      return;
+    }
+
+    const nextImage = images[nextIndex];
+    const preloadImage = new Image();
+    preloadImage.decoding = 'async';
+    preloadImage.src = getConfiguratorBackgroundUrl(nextImage.url, isMobile);
+    if (!isMobile) {
+      const srcSet = getConfiguratorBackgroundSrcSet(nextImage.url);
+      if (srcSet) {
+        preloadImage.srcset = srcSet;
+        preloadImage.sizes = '100vw';
+      }
+    }
+  }, [activeIndex, images, isMobile]);
 
   return (
     <div className="grando-background-slider">
       {renderedImages.map(({ image, index }) => (
         <div
-          key={isMobile ? `${image.url}-mobile-${index}` : image.url}
+          key={`${image.url}-${index}`}
           className={`grando-background-slide ${activeIndex === index ? 'active' : ''}`}
         >
           <img
@@ -1009,7 +1043,10 @@ const BackgroundSlider = ({
             key={image.url}
             type="button"
             className={activeIndex === index ? 'active' : ''}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => {
+              setPreviousIndex(activeIndex === index ? null : activeIndex);
+              setActiveIndex(index);
+            }}
             aria-label={`${copy.showImage} ${index + 1}`}
           />
         ))}
