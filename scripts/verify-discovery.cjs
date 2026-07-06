@@ -147,6 +147,30 @@ if (!configuratorLinksHtml.includes(`<link rel="canonical" href="${configuratorL
   errors.push('configurator-links.html missing canonical link.');
 }
 
+if (!configuratorLinksHtml.includes(`<link rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href="${siteOrigin}/feed.xml">`)) {
+  errors.push('configurator-links.html missing RSS alternate link.');
+}
+
+if (!configuratorLinksHtml.includes(`<link rel="alternate" type="application/feed+json" title="EudTech Configurator Updates" href="${siteOrigin}/feed.json">`)) {
+  errors.push('configurator-links.html missing JSON feed alternate link.');
+}
+
+if (!configuratorLinksHtml.includes(`<link rel="alternate" type="text/markdown" title="EudTech LLM Summary" href="${siteOrigin}/llms.txt">`)) {
+  errors.push('configurator-links.html missing llms.txt alternate link.');
+}
+
+if (!configuratorLinksHtml.includes(`<link rel="alternate" type="text/markdown" title="EudTech Full LLM Context" href="${siteOrigin}/llms-full.txt">`)) {
+  errors.push('configurator-links.html missing llms-full.txt alternate link.');
+}
+
+if (!headersText.includes('Link: </llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt"')) {
+  errors.push('public/_headers missing LLM discovery Link header.');
+}
+
+if (!headersText.includes('X-Llms-Txt: /llms.txt')) {
+  errors.push('public/_headers missing X-Llms-Txt header.');
+}
+
 if (!/<meta name="robots" content="index, follow">/i.test(configuratorLinksHtml)) {
   errors.push('configurator-links.html should be index, follow.');
 }

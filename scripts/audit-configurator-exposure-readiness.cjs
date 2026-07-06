@@ -297,6 +297,11 @@ async function main() {
   const llms = read('public/llms.txt');
   const llmsFull = read('public/llms-full.txt');
   const robots = read('public/robots.txt');
+  const headers = read('public/_headers');
+  const baseHtml = read('index.html');
+  const seoHeadSource = read('src/components/common/SEOHead.tsx');
+  const staticSeoGenerator = read('scripts/generate-static-seo-pages.cjs');
+  const discoveryGenerator = read('scripts/generate-discovery-files.cjs');
   const workflow = read('.github/workflows/exposure-public.yml');
   const packageJson = JSON.parse(read('package.json'));
   const configuratorSource = read('src/components/configurator/GrandoConfigurator.tsx');
@@ -338,6 +343,23 @@ async function main() {
   addCheck('search_discovery', 'llms-full.txt contains every landing page and product id', canonicalUrls.every((url) => llmsFull.includes(url)) && CONFIGURATOR_PRODUCT_SEO.every((product) => llmsFull.includes(product.productId)), {
     missingUrls: canonicalUrls.filter((url) => !llmsFull.includes(url)),
     missingProductIds: CONFIGURATOR_PRODUCT_SEO.map((product) => product.productId).filter((productId) => !llmsFull.includes(productId))
+  });
+  const llmsHtmlHeadReady = [
+    'EudTech LLM Summary',
+    `${siteOrigin}/llms.txt`,
+    'EudTech Full LLM Context',
+    `${siteOrigin}/llms-full.txt`
+  ].every((token) => baseHtml.includes(token));
+  const llmsSourceReady = [seoHeadSource, staticSeoGenerator, discoveryGenerator].every((source) =>
+    ['EudTech LLM Summary', 'llms.txt', 'EudTech Full LLM Context', 'llms-full.txt'].every((token) => source.includes(token))
+  );
+  const llmsHeadersReady =
+    headers.includes('Link: </llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt"') &&
+    headers.includes('X-Llms-Txt: /llms.txt');
+  addCheck('search_discovery', 'llms.txt is advertised in HTML heads and response headers', llmsHtmlHeadReady && llmsSourceReady && llmsHeadersReady, {
+    htmlHead: llmsHtmlHeadReady,
+    sourceGenerators: llmsSourceReady,
+    responseHeaders: llmsHeadersReady
   });
   addCheck('search_discovery', 'robots points to sitemap index and sitemaps', ['sitemap.xml', 'image-sitemap.xml', 'sitemap-index.xml'].every((file) => robots.includes(`${siteOrigin}/${file}`)));
   addCheck('social_preview', 'social preview images exist for every landing page', socialPreviewImages.every((image) => image.exists && image.sourceExists), {

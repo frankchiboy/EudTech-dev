@@ -89,6 +89,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <link rel="canonical" href={canonicalUrl} />
       <link rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href={`${SITE_ORIGIN}/feed.xml`} />
       <link rel="alternate" type="application/feed+json" title="EudTech Configurator Updates" href={`${SITE_ORIGIN}/feed.json`} />
+      <link rel="alternate" type="text/markdown" title="EudTech LLM Summary" href={`${SITE_ORIGIN}/llms.txt`} />
+      <link rel="alternate" type="text/markdown" title="EudTech Full LLM Context" href={`${SITE_ORIGIN}/llms-full.txt`} />
       {googleSiteVerification ? <meta name="google-site-verification" content={googleSiteVerification} /> : null}
       {bingSiteVerification ? <meta name="msvalidate.01" content={bingSiteVerification} /> : null}
       

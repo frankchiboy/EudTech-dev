@@ -390,6 +390,10 @@ const configuratorLinksHtml = `<!doctype html>
     <meta name="description" content="${escapeHtml(configuratorLinkIndexUrl.description)}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="${escapeHtml(configuratorLinkIndexUrl.loc)}">
+    <link rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href="${siteOrigin}/feed.xml">
+    <link rel="alternate" type="application/feed+json" title="EudTech Configurator Updates" href="${siteOrigin}/feed.json">
+    <link rel="alternate" type="text/markdown" title="EudTech LLM Summary" href="${siteOrigin}/llms.txt">
+    <link rel="alternate" type="text/markdown" title="EudTech Full LLM Context" href="${siteOrigin}/llms-full.txt">
     <style>
       :root {
         color-scheme: light dark;

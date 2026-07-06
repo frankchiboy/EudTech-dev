@@ -73,6 +73,18 @@ function getJsonFeedAlternateHref(html) {
   return jsonFeedLink?.match(/href=["']([^"']+)["']/i)?.[1] || '';
 }
 
+function getAlternateHrefByTitle(html, title) {
+  const escapedTitle = title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const links = [...html.matchAll(/<link\b[^>]*>/gi)].map((match) => match[0]);
+  const alternateLink = links.find(
+    (tag) =>
+      /rel=["'][^"']*\balternate\b[^"']*["']/i.test(tag) &&
+      /type=["']text\/markdown["']/i.test(tag) &&
+      new RegExp(`title=["']${escapedTitle}["']`, 'i').test(tag)
+  );
+  return alternateLink?.match(/href=["']([^"']+)["']/i)?.[1] || '';
+}
+
 function hasType(items, type) {
   return items.some((item) => item && item['@type'] === type);
 }
@@ -361,6 +373,8 @@ function assertSocialMeta(route) {
   const canonical = getCanonicalHref(html);
   const rssAlternate = getRssAlternateHref(html);
   const jsonFeedAlternate = getJsonFeedAlternateHref(html);
+  const llmsAlternate = getAlternateHrefByTitle(html, 'EudTech LLM Summary');
+  const llmsFullAlternate = getAlternateHrefByTitle(html, 'EudTech Full LLM Context');
   const description = getMetaContent(html, 'name', 'description');
   const robots = getMetaContent(html, 'name', 'robots');
   const ogTitle = getMetaContent(html, 'property', 'og:title');
@@ -387,6 +401,8 @@ function assertSocialMeta(route) {
   requireEqual(route.path, 'canonical', canonical, expectedUrl);
   requireEqual(route.path, 'RSS alternate link', rssAlternate, `${new URL(expectedUrl).origin}/feed.xml`);
   requireEqual(route.path, 'JSON feed alternate link', jsonFeedAlternate, `${new URL(expectedUrl).origin}/feed.json`);
+  requireEqual(route.path, 'llms.txt alternate link', llmsAlternate, `${new URL(expectedUrl).origin}/llms.txt`);
+  requireEqual(route.path, 'llms-full.txt alternate link', llmsFullAlternate, `${new URL(expectedUrl).origin}/llms-full.txt`);
   requireEqual(route.path, 'og:url', ogUrl, expectedUrl);
   requireEqual(route.path, 'twitter:url', twitterUrl, expectedUrl);
   requireEqual(route.path, 'og:image', ogImage, route.socialImageUrl);

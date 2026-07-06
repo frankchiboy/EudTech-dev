@@ -1,5 +1,7 @@
 /*
   Cache-Control: public, max-age=0, must-revalidate
+  Link: </llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt"
+  X-Llms-Txt: /llms.txt
 
 /build-meta.json
   Cache-Control: public, max-age=0, must-revalidate

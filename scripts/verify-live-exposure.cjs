@@ -68,6 +68,8 @@ async function fetchText(url, options = {}) {
         contentType: response.headers.get('content-type') || '',
         cacheControl: response.headers.get('cache-control') || '',
         xContentTypeOptions: response.headers.get('x-content-type-options') || '',
+        linkHeader: response.headers.get('link') || '',
+        xLlmsTxt: response.headers.get('x-llms-txt') || '',
         redirected: response.redirected,
         finalUrl: response.url.replace(/[?&]t=\d+$/, ''),
         location: response.headers.get('location'),
@@ -198,6 +200,18 @@ function visibleFaqQuestions(html) {
 
 function getMetaContent(html, selector) {
   return html.match(selector)?.[1] || '';
+}
+
+function getAlternateHrefByTitle(html, title) {
+  const escapedTitle = title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const links = [...html.matchAll(/<link\b[^>]*>/gi)].map((match) => match[0]);
+  const alternateLink = links.find(
+    (tag) =>
+      /rel=["'][^"']*\balternate\b[^"']*["']/i.test(tag) &&
+      /type=["']text\/markdown["']/i.test(tag) &&
+      new RegExp(`title=["']${escapedTitle}["']`, 'i').test(tag)
+  );
+  return alternateLink?.match(/href=["']([^"']+)["']/i)?.[1] || '';
 }
 
 function assert(condition, errors, message) {
@@ -421,6 +435,8 @@ async function checkPages(errors) {
     const twitterUrl = getMetaContent(html, /<meta[^>]+name=["']twitter:url["'][^>]+content=["']([^"']+)/i);
     const description = getMetaContent(html, /<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)/i);
     const robots = getMetaContent(html, /<meta[^>]+name=["']robots["'][^>]+content=["']([^"']+)/i);
+    const llmsAlternate = getAlternateHrefByTitle(html, 'EudTech LLM Summary');
+    const llmsFullAlternate = getAlternateHrefByTitle(html, 'EudTech Full LLM Context');
     const articlePublishedTime = getMetaContent(html, /<meta[^>]+property=["']article:published_time["'][^>]+content=["']([^"']+)/i);
     const articleModifiedTime = getMetaContent(html, /<meta[^>]+property=["']article:modified_time["'][^>]+content=["']([^"']+)/i);
     const jsonLd = collectJsonLd(html);
@@ -444,6 +460,10 @@ async function checkPages(errors) {
       ogImage,
       ogImageSecureUrl,
       twitterImage,
+      llmsAlternate,
+      llmsFullAlternate,
+      linkHeader: result.linkHeader,
+      xLlmsTxt: result.xLlmsTxt,
       jsonLdTypes: jsonLd.map((item) => item['@type']).filter(Boolean),
       pageSchemaType: pageSchema?.['@type'] || null,
       staticSeoBodyTextLength: staticBodyText.length,
@@ -458,6 +478,11 @@ async function checkPages(errors) {
     assert(canonical === url, errors, `${url} canonical is ${canonical || 'missing'}.`);
     assert(ogUrl === url, errors, `${url} og:url is ${ogUrl || 'missing'}.`);
     assert(twitterUrl === url, errors, `${url} twitter:url is ${twitterUrl || 'missing'}.`);
+    assert(llmsAlternate === `${siteOrigin}/llms.txt`, errors, `${url} llms.txt alternate link is ${llmsAlternate || 'missing'}.`);
+    assert(llmsFullAlternate === `${siteOrigin}/llms-full.txt`, errors, `${url} llms-full.txt alternate link is ${llmsFullAlternate || 'missing'}.`);
+    assert(/<\s*\/llms\.txt\s*>\s*;\s*rel=["']llms-txt["']/i.test(result.linkHeader), errors, `${url} missing llms.txt Link response header.`);
+    assert(/<\s*\/llms-full\.txt\s*>\s*;\s*rel=["']llms-full-txt["']/i.test(result.linkHeader), errors, `${url} missing llms-full.txt Link response header.`);
+    assert(result.xLlmsTxt === '/llms.txt', errors, `${url} X-Llms-Txt is ${result.xLlmsTxt || 'missing'}.`);
     assert(Boolean(socialPreview), errors, `${url} missing local social preview route definition.`);
     assert(ogImage === socialPreview?.socialImageUrl, errors, `${url} og:image is ${ogImage || 'missing'}.`);
     assert(ogImageSecureUrl === socialPreview?.socialImageUrl, errors, `${url} og:image:secure_url is ${ogImageSecureUrl || 'missing'}.`);

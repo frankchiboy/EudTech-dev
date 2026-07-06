@@ -1029,6 +1029,8 @@ function injectHead(baseHtml, route) {
     `<link data-rh="true" rel="canonical" href="${escapeHtml(url)}">`,
     `<link data-rh="true" rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href="${siteOrigin}/feed.xml">`,
     `<link data-rh="true" rel="alternate" type="application/feed+json" title="EudTech Configurator Updates" href="${siteOrigin}/feed.json">`,
+    `<link data-rh="true" rel="alternate" type="text/markdown" title="EudTech LLM Summary" href="${siteOrigin}/llms.txt">`,
+    `<link data-rh="true" rel="alternate" type="text/markdown" title="EudTech Full LLM Context" href="${siteOrigin}/llms-full.txt">`,
     staticSeoFallbackStyle(),
     ...verificationTags(),
     ...schemaItems
@@ -1043,6 +1045,7 @@ function injectHead(baseHtml, route) {
     .replace(/\s*<link[^>]+rel="canonical"[^>]*>/g, '')
     .replace(/\s*<link[^>]+rel="alternate"[^>]+type="application\/rss\+xml"[^>]*>/g, '')
     .replace(/\s*<link[^>]+rel="alternate"[^>]+type="application\/feed\+json"[^>]*>/g, '')
+    .replace(/\s*<link[^>]+rel="alternate"[^>]+type="text\/markdown"[^>]*>/g, '')
     .replace(/\s*<script[^>]+type="application\/ld\+json"[\s\S]*?<\/script>/g, '')
     .replace('</head>', `    ${managedHead}\n  </head>`)
     .replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">\n    ${staticSeoFallback(route)}\n    </div>`);
