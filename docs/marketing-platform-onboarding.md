@@ -16,6 +16,7 @@ npm run verify:marketing-1password-item -- --structure-only --fail-on-missing --
 5. Validate filled values before syncing:
 
 ```bash
+npm run verify:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms"
 npm run verify:marketing-1password-item:strict -- --op-item "EudTech Configurator Marketing Platforms"
 npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target netlify --dry-run --fail-on-missing
 npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing Platforms" --target github-actions --dry-run --fail-on-missing
@@ -33,6 +34,8 @@ Verified on 2026-07-06 Asia/Taipei.
 | GitHub Actions secrets | Partially synced | `NETLIFY_AUTH_TOKEN`, `GOOGLE_ANALYTICS_PROPERTY_ID`, `GOOGLE_TAG_MANAGER_ACCOUNT_ID`, and `GOOGLE_TAG_MANAGER_CONTAINER_ID` are present. |
 | Production browser tracking | Active for GA/GTM | The production bundle contains the configured GTM container and GA4 measurement ID. |
 | Paid conversion / retargeting | Blocked by empty platform values | Fill the Google Ads, LinkedIn, Meta, and Microsoft Ads fields listed below, then rerun the strict sync and audit commands. |
+
+The external audit reports separate `accessReady` from `configComplete`. `accessReady=true` means the automation token can read the service; `configComplete=false` means paid-platform IDs or API credentials are still empty.
 
 Currently empty required platform values:
 

@@ -5,6 +5,7 @@ const sharp = require('sharp');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const { evaluateMarketingPlatformEnv } = require('./marketing-platform-env.cjs');
+const { hydrateProcessEnvFromOnePassword } = require('./onepassword-marketing-env.cjs');
 const {
   SOCIAL_IMAGE_WIDTH,
   SOCIAL_IMAGE_HEIGHT,
@@ -283,6 +284,7 @@ const canonicalUrls = [
 ];
 
 async function main() {
+  const onePasswordHydration = hydrateProcessEnvFromOnePassword();
   const checks = [];
   const addCheck = (category, name, ready, detail = {}) => {
     checks.push({ category, name, ...detail, ready: Boolean(ready) });
@@ -492,6 +494,7 @@ async function main() {
   const localQuoteEmailEnv = envGroupStatus(requiredEnv.quoteEmail);
   const externalReadiness = {
     analytics: marketingPlatformEnv.groups.analytics,
+    firstParty: marketingPlatformEnv.groups.firstParty,
     googleAds: marketingPlatformEnv.groups.googleAds,
     linkedIn: marketingPlatformEnv.groups.linkedIn,
     meta: marketingPlatformEnv.groups.meta,
@@ -523,6 +526,9 @@ async function main() {
     failedChecks,
     externalReadiness,
     externalGaps,
+    valueSources: {
+      onePasswordHydration
+    },
     marketingPlatformEnv
   };
 

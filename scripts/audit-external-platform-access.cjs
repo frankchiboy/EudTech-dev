@@ -9,6 +9,7 @@ const {
   marketingOnePasswordItemTitle,
   requiredExternalCredentialKeys
 } = require('./marketing-platform-env.cjs');
+const { hydrateProcessEnvFromOnePassword } = require('./onepassword-marketing-env.cjs');
 
 const args = new Set(process.argv.slice(2));
 const writeReport = args.has('--write-report');
@@ -840,6 +841,8 @@ function checkGithubMarketingConfig() {
   if (!ghToken) {
     return {
       ready: false,
+      accessReady: false,
+      configComplete: false,
       repo,
       ghCliInstalled: ghCli.ok,
       authSourceEnvOnly: false,
@@ -867,6 +870,8 @@ function checkGithubMarketingConfig() {
   const secretNames = secretItems.map((item) => item.name);
   const missingVariables = expectedVariables.filter((key) => !variableNames.includes(key));
   const missingSecrets = expectedSecrets.filter((key) => !secretNames.includes(key));
+  const accessReady = variables.ok && secrets.ok;
+  const configComplete = missingVariables.length === 0 && missingSecrets.length === 0;
   const updatedAtByName = {};
 
   for (const item of [...variableItems, ...secretItems]) {
@@ -876,7 +881,9 @@ function checkGithubMarketingConfig() {
   }
 
   return {
-    ready: missingVariables.length === 0 && missingSecrets.length === 0,
+    ready: configComplete,
+    accessReady,
+    configComplete,
     repo,
     ghCliInstalled: ghCli.ok,
     authSourceEnvOnly: true,
@@ -925,6 +932,8 @@ function checkOnePasswordMarketingItems() {
   if (!serviceToken.available) {
     return {
       ready: false,
+      accessReady: false,
+      configComplete: false,
       opInstalled: opVersion.ok,
       serviceTokenAvailable: false,
       automationVaultReadable: false,
@@ -946,6 +955,8 @@ function checkOnePasswordMarketingItems() {
   if (!result.ok) {
     return {
       ready: false,
+      accessReady: false,
+      configComplete: false,
       opInstalled: opVersion.ok,
       serviceTokenAvailable: true,
       serviceTokenSource: serviceToken.source,
@@ -1028,9 +1039,15 @@ function checkOnePasswordMarketingItems() {
   const marketingEnvReady = platformReadiness.ok && platformReadiness.missingPlatforms.length === 0;
   const requiredCredentialReady = missingRequiredCredentialFieldKeys.length === 0 && emptyRequiredCredentialFieldKeys.length === 0;
   const githubAuthFieldPresent = authOnlyKeys.some((key) => nonEmptyFieldNamesPresent.includes(key));
+  const accessReady = matchingSourceItems.length > 0
+    && unreadableItemCount === 0
+    && result.ok;
+  const configComplete = marketingEnvReady && requiredCredentialReady;
 
   return {
-    ready: matchingSourceItems.length > 0 && marketingEnvReady && requiredCredentialReady,
+    ready: accessReady && configComplete,
+    accessReady,
+    configComplete,
     opInstalled: opVersion.ok,
     serviceTokenAvailable: true,
     serviceTokenSource: serviceToken.source,
@@ -1102,21 +1119,30 @@ function buildMissingList(checks) {
 function buildOptionalMissingList(checks) {
   const optionalMissing = [];
 
-  if (!checks.github.ready) {
+  if (checks.github.accessReady && !checks.github.configComplete) {
     const missingGithubKeys = [
       ...(checks.github.missingVariables || []),
       ...(checks.github.missingSecrets || [])
     ];
-    optionalMissing.push(`GitHub marketing variables/secrets: ${missingGithubKeys.join(', ')}`);
+    optionalMissing.push(`GitHub configured marketing variables/secrets still incomplete: ${missingGithubKeys.join(', ')}`);
+  } else if (!checks.github.accessReady) {
+    optionalMissing.push('GitHub Actions variables/secrets are not readable with GH_TOKEN or GITHUB_TOKEN');
   }
-  if (!checks.onePassword.ready) {
-    optionalMissing.push('1Password Netlify or ad platform token/items');
+  if (checks.onePassword.accessReady && !checks.onePassword.configComplete) {
+    const emptyOnePasswordKeys = [
+      ...(checks.onePassword.emptyTemplateFieldKeys || []),
+      ...(checks.onePassword.missingTemplateFieldKeys || [])
+    ];
+    optionalMissing.push(`1Password marketing item still has empty or missing platform fields: ${emptyOnePasswordKeys.join(', ')}`);
+  } else if (!checks.onePassword.accessReady) {
+    optionalMissing.push('1Password marketing item is not readable through the Automation vault');
   }
 
   return optionalMissing;
 }
 
 async function createReport() {
+  const onePasswordHydration = hydrateProcessEnvFromOnePassword();
   const checks = {
     netlify: checkNetlifyAccess(),
     googleCredentialEnv: checkGoogleCredentialEnv(),
@@ -1148,6 +1174,9 @@ async function createReport() {
       keychainUsed: false
     },
     checks,
+    valueSources: {
+      onePasswordHydration
+    },
     missing: buildMissingList(checks),
     optionalMissing: buildOptionalMissingList(checks)
   };

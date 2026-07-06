@@ -105,11 +105,13 @@ function buildBlockers({ marketingEnv, externalAccess, searchConsole }) {
     });
   }
 
-  const githubAccessReady = externalChecks.github
+  const githubAccessReady = externalChecks.github?.accessReady ?? (
+    externalChecks.github
     && externalChecks.github.authSourceEnvOnly
     && externalChecks.github.variablesReadable
     && externalChecks.github.secretsReadable
-    && (externalChecks.github.errors || []).length === 0;
+    && (externalChecks.github.errors || []).length === 0
+  );
 
   if (externalChecks.github && !githubAccessReady) {
     blockers.push({
@@ -271,9 +273,11 @@ function buildReadySignals({ marketingEnv, externalAccess, searchConsole }) {
     readySignals.push('Netlify production environment is readable with the current automation token.');
   }
   if (
-    externalChecks.github?.authSourceEnvOnly &&
-    externalChecks.github?.variablesReadable &&
-    externalChecks.github?.secretsReadable
+    externalChecks.github?.accessReady ?? (
+      externalChecks.github?.authSourceEnvOnly &&
+      externalChecks.github?.variablesReadable &&
+      externalChecks.github?.secretsReadable
+    )
   ) {
     readySignals.push('GitHub Actions variables and secrets are readable with the current automation token.');
   }
