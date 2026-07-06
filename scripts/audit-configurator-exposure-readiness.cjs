@@ -297,11 +297,12 @@ async function main() {
   const llms = read('public/llms.txt');
   const llmsFull = read('public/llms-full.txt');
   const robots = read('public/robots.txt');
-  const headers = read('public/_headers');
   const baseHtml = read('index.html');
   const seoHeadSource = read('src/components/common/SEOHead.tsx');
   const staticSeoGenerator = read('scripts/generate-static-seo-pages.cjs');
   const discoveryGenerator = read('scripts/generate-discovery-files.cjs');
+  const netlifyConfig = read('netlify.toml');
+  const llmsDiscoveryEdgeFunction = read('netlify/edge-functions/llms-discovery-headers.js');
   const workflow = read('.github/workflows/exposure-public.yml');
   const packageJson = JSON.parse(read('package.json'));
   const configuratorSource = read('src/components/configurator/GrandoConfigurator.tsx');
@@ -354,8 +355,10 @@ async function main() {
     ['EudTech LLM Summary', 'llms.txt', 'EudTech Full LLM Context', 'llms-full.txt'].every((token) => source.includes(token))
   );
   const llmsHeadersReady =
-    headers.includes('Link: </llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt"') &&
-    headers.includes('X-Llms-Txt: /llms.txt');
+    netlifyConfig.includes('function = "llms-discovery-headers"') &&
+    llmsDiscoveryEdgeFunction.includes('rel="llms-txt"') &&
+    llmsDiscoveryEdgeFunction.includes('rel="llms-full-txt"') &&
+    llmsDiscoveryEdgeFunction.includes('X-Llms-Txt');
   addCheck('search_discovery', 'llms.txt is advertised in HTML heads and response headers', llmsHtmlHeadReady && llmsSourceReady && llmsHeadersReady, {
     htmlHead: llmsHtmlHeadReady,
     sourceGenerators: llmsSourceReady,

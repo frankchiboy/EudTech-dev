@@ -32,6 +32,9 @@ const llmsFullText = readPublicFile('llms-full.txt');
 const robotsText = readPublicFile('robots.txt');
 const headersText = readPublicFile('_headers');
 const configuratorLinksHtml = readPublicFile('configurator-links.html');
+const rootDir = path.resolve(__dirname, '..');
+const netlifyToml = fs.readFileSync(path.join(rootDir, 'netlify.toml'), 'utf8');
+const llmsDiscoveryEdgeFunction = fs.readFileSync(path.join(rootDir, 'netlify', 'edge-functions', 'llms-discovery-headers.js'), 'utf8');
 
 const sitemapLocs = new Set(collectXmlLocs(sitemapXml));
 const imageSitemapPageLocs = new Set(collectXmlLocs(imageSitemapXml).filter((loc) => loc.startsWith(`${siteOrigin}/solutions`) || loc === `${siteOrigin}/` || loc.startsWith(`${siteOrigin}/configurator`)));
@@ -163,12 +166,16 @@ if (!configuratorLinksHtml.includes(`<link rel="alternate" type="text/markdown" 
   errors.push('configurator-links.html missing llms-full.txt alternate link.');
 }
 
-if (!headersText.includes('Link: </llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt"')) {
-  errors.push('public/_headers missing LLM discovery Link header.');
+if (!netlifyToml.includes('function = "llms-discovery-headers"')) {
+  errors.push('netlify.toml missing llms discovery edge function.');
 }
 
-if (!headersText.includes('X-Llms-Txt: /llms.txt')) {
-  errors.push('public/_headers missing X-Llms-Txt header.');
+if (!llmsDiscoveryEdgeFunction.includes('rel="llms-txt"') || !llmsDiscoveryEdgeFunction.includes('rel="llms-full-txt"')) {
+  errors.push('llms discovery edge function missing Link header values.');
+}
+
+if (!llmsDiscoveryEdgeFunction.includes('X-Llms-Txt')) {
+  errors.push('llms discovery edge function missing X-Llms-Txt header.');
 }
 
 if (!/<meta name="robots" content="index, follow">/i.test(configuratorLinksHtml)) {

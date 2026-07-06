@@ -15,3 +15,7 @@
     "https://configurator\\.grando\\.ai/image/.*",
     "https://cdn\\.prod\\.website-files\\.com/.*"
   ]
+
+[[edge_functions]]
+  path = "/*"
+  function = "llms-discovery-headers"
