@@ -148,7 +148,11 @@ const shortEnglishHeadlines = {
   'rack-ai-server-deployment': 'Rack AI Server Deploy',
   'taiwan-public-procurement-gpu-server': 'Public GPU Procurement',
   'supermicro-comino-gpu-server-comparison': 'Supermicro vs Comino',
-  'ai-inference-server-taiwan': 'AI Inference Server TW'
+  'ai-inference-server-taiwan': 'AI Inference Server TW',
+  'comino-grando-configurator-taiwan': 'Comino Grando Taiwan',
+  'h200-gpu-server-rfq-taiwan': 'H200 Server RFQ TW',
+  'rtx-pro-6000-local-ai-inference': 'RTX PRO Local AI',
+  'ai-server-procurement-case-taiwan': 'AI Server Case TW'
 };
 
 const shortChineseHeadlines = {
@@ -177,7 +181,11 @@ const shortChineseHeadlines = {
   'rack-ai-server-deployment': '機架AI伺服器',
   'taiwan-public-procurement-gpu-server': '公部門GPU採購',
   'supermicro-comino-gpu-server-comparison': 'GPU伺服器比較',
-  'ai-inference-server-taiwan': 'AI推論伺服器'
+  'ai-inference-server-taiwan': 'AI推論伺服器',
+  'comino-grando-configurator-taiwan': 'Grando台灣報價',
+  'h200-gpu-server-rfq-taiwan': 'H200採購RFQ',
+  'rtx-pro-6000-local-ai-inference': 'RTX本地推論',
+  'ai-server-procurement-case-taiwan': 'AI採購案例'
 };
 
 const searchAdCopyByLanguage = {

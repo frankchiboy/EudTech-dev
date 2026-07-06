@@ -41,6 +41,10 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - 台灣公部門 GPU 伺服器採購檢核表: https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/
 - Supermicro 與 Comino GPU 伺服器配置比較: https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/
 - 台灣 LLM AI 推論伺服器報價配置器: https://eudaemonia.tech/solutions/ai-inference-server-taiwan/
+- Comino Grando 台灣報價配置器指南: https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/
+- NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表: https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/
+- RTX PRO 6000 本地 AI 推論工作站報價指南: https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/
+- 台灣 AI 伺服器採購案例指南與配置器詢價流程: https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/
 
 ## Configurator Product Routes
 
@@ -732,6 +736,110 @@ Generated for AI assistants, search tools, and procurement researchers that need
     A: 取決於併發量、可用性、GPU 密度、機架條件與管理需求。配置器可保留兩種方向供審查。 / It depends on concurrency, uptime, GPU density, rack availability, and management needs. The configurator helps preserve both options for review.
   - Q: EudTech 可以依初稿配置協助估推論伺服器規格嗎？ / Can EudTech help size an inference server from a draft configuration?
     A: 可以。送出初稿配置與工作負載備註後，EudTech 可協助追蹤 GPU 記憶體、系統記憶體、儲存與網路假設。 / Yes. Send the draft configuration with workload notes so EudTech can follow up on GPU memory, system RAM, storage, and networking assumptions.
+
+### Comino Grando 台灣報價配置器指南 / Comino Grando Configurator Taiwan Quote Guide
+
+- URL: https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/
+- Kind: guide
+- Configurator URL: https://eudaemonia.tech/configurator/
+- Quote URL: https://eudaemonia.tech/configurator/?request=true
+- Description: 使用 Comino Grando 配置器準備台灣 GPU 伺服器與 AI 工作站詢價，保留 GPU、CPU、記憶體、儲存、電源與網路脈絡。 / Use the Comino Grando configurator to prepare Taiwan GPU server and AI workstation quote requests with GPU, CPU, memory, storage, power, and networking context.
+- Keywords: Comino Grando, Comino Grando 配置器, Grando GPU 伺服器, Grando 台灣報價, GPU 伺服器配置器 台灣, EudTech Comino / Comino Grando, Comino Grando configurator, Grando GPU server, Grando quote Taiwan, GPU server configurator Taiwan, EudTech Comino
+- Hero: 面向台灣採購者的 Comino Grando 報價配置入口 / Comino Grando quote configuration for Taiwan buyers
+- Lead: 從 Grando 配置器開始，選擇系統方向，並以可分享連結保留硬體假設，供 EudTech 後續追蹤正式報價。 / Start from the Grando configurator, choose the system direction, and keep the selected hardware assumptions in a shareable URL for EudTech quote follow-up.
+- Image: https://eudaemonia.tech/grando-8gpu-server.jpg
+- Image alt: 用於台灣詢價的 Comino Grando GPU 伺服器配置器 / Comino Grando GPU server configurator for Taiwan quote requests
+- Highlights:
+  - 對應 Comino Grando、Grando 配置器與台灣 GPU 伺服器報價搜尋意圖。 / Targets search intent around Comino Grando, Grando configurator, and Taiwan GPU server quotes.
+  - 以單一可抓取指南串接工作站、可上架伺服器與整合套件路徑。 / Keeps workstation, rackable server, and integration-kit paths connected through one crawler-readable guide.
+  - 詢價會保留配置狀態、來源追蹤與聯絡脈絡，方便後續追蹤。 / Quote requests preserve configuration state, marketing attribution, and contact context for follow-up.
+- Specification cues:
+  - 搜尋重點 / Search focus: Comino Grando 配置器與報價 / Comino Grando configurator and quote
+  - 產品範圍 / Product scope: GPU 伺服器、AI 工作站、整合套件 / GPU servers, AI workstations, integration kits
+  - 服務區域 / Region: 台灣銷售與採購追蹤 / Taiwan sales and procurement follow-up
+- FAQs:
+  - Q: 這是 Comino Grando 配置器的主要入口嗎？ / Is this the main Comino Grando configurator entry?
+    A: 是。此指南會引導採購者進入 Grando 配置器與相關產品路徑，以準備詢價。 / Yes. This guide points buyers to the Grando configurator and related product routes for quote preparation.
+  - Q: EudTech 會追蹤 Comino Grando 的台灣報價嗎？ / Does EudTech handle Taiwan quote follow-up for Comino Grando?
+    A: 會。EudTech 可接收送出的配置，並透過 info@eudaemonia.tech 追蹤後續報價。 / Yes. EudTech can receive the submitted configuration and follow up through info@eudaemonia.tech.
+
+### NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表 / NVIDIA H200 GPU Server RFQ Checklist for Taiwan Procurement
+
+- URL: https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/
+- Kind: checklist
+- Configurator URL: https://eudaemonia.tech/configurator/29/
+- Quote URL: https://eudaemonia.tech/configurator/29/?request=true
+- Description: 為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU 平台、RAM、NVMe、電源、網路、機架、散熱與報價追蹤需求。 / Prepare NVIDIA H200 GPU server RFQs for Taiwan procurement by aligning GPU count, CPU platform, RAM, NVMe, power, networking, rack, cooling, and quote follow-up requirements.
+- Keywords: H200 GPU 伺服器 RFQ, NVIDIA H200 伺服器 台灣, H200 伺服器報價, H200 AI 訓練伺服器, GPU 伺服器採購檢核表, H200 液冷伺服器 / H200 GPU server RFQ, NVIDIA H200 server Taiwan, H200 server quote, H200 AI training server, GPU server procurement checklist, H200 liquid cooled server
+- Hero: 正式詢價前的 H200 GPU 伺服器 RFQ 準備 / H200 GPU server RFQ preparation before formal quote
+- Lead: 使用 H200 配置器路徑，在送出詢價前保留已選 GPU、CPU、RAM、儲存、電源與網路假設。 / Use the H200 configurator path to preserve the selected GPU, CPU, RAM, storage, power, and network assumptions before sending the quote request.
+- Image: https://eudaemonia.tech/grando-8gpu-server.jpg
+- Image alt: NVIDIA H200 GPU 伺服器 RFQ 配置 / NVIDIA H200 GPU server RFQ configuration
+- Highlights:
+  - 對應 Search Console 已出現的 H200 伺服器、H200 與 RTX PRO 6000 比較、GPU 伺服器報價查詢。 / Matches Search Console intent for H200 server, H200 versus RTX PRO 6000, and GPU server quote queries.
+  - 協助技術與採購團隊在正式 RFQ 前審查部署假設。 / Helps technical and procurement teams review deployment assumptions before a formal RFQ.
+  - 直接連至 SERVER 6xH200 與相關 H200 產品配置頁。 / Connects directly to SERVER 6xH200 and related H200 product configuration pages.
+- Specification cues:
+  - GPU 重點 / GPU focus: NVIDIA H200 141GB 伺服器路徑 / NVIDIA H200 141GB server paths
+  - RFQ 範圍 / RFQ scope: GPU、CPU、RAM、NVMe、電源、網路、機架、散熱 / GPU, CPU, RAM, NVMe, power, networking, rack, cooling
+  - 採購階段 / Buyer stage: 正式報價前規格審查 / Specification review before formal quote
+- FAQs:
+  - Q: H200 需求應該從哪個路徑開始？ / Which H200 route should I start from?
+    A: 若團隊正在比較高密度 H200 伺服器假設，建議先從 SERVER 6xH200 開始，再調整配置並送出詢價。 / Start from SERVER 6xH200 when the team is comparing high-density H200 server assumptions, then adjust the configuration before requesting a quote.
+  - Q: 這份檢核表可以取代正式 RFQ 文件嗎？ / Can this checklist replace a formal RFQ document?
+    A: 不可以。它用於準備配置脈絡；正式 RFQ 與報價仍需依最終專案需求確認。 / No. It helps prepare the configuration context; the formal RFQ and quote still depend on the final project requirement.
+
+### RTX PRO 6000 本地 AI 推論工作站報價指南 / RTX PRO 6000 Local AI Inference Workstation Quote Guide
+
+- URL: https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/
+- Kind: guide
+- Configurator URL: https://eudaemonia.tech/configurator/34/
+- Quote URL: https://eudaemonia.tech/configurator/34/?request=true
+- Description: 規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe 與網路脈絡。 / Plan RTX PRO 6000 workstation quotes for local AI inference, visualization, simulation, and model development with GPU, CPU, RAM, NVMe, and networking context.
+- Keywords: RTX PRO 6000 本地推論, RTX PRO 6000 工作站報價, 本地 AI 推論工作站, AI 工作站 台灣, GPU 工作站報價, RTX PRO 6000 LLM / RTX PRO 6000 local inference, RTX PRO 6000 workstation quote, local AI inference workstation, AI workstation Taiwan, GPU workstation quote, RTX PRO 6000 LLM
+- Hero: 面向本地 AI 的 RTX PRO 6000 工作站報價脈絡 / RTX PRO 6000 workstation quote context for local AI
+- Lead: 使用工作站配置器比較 RTX PRO 6000、H200 或可上架系統方向，再送出詢價需求。 / Use the workstation configurator to compare RTX PRO 6000 options with H200 or rackable systems before sending a quote request.
+- Image: https://eudaemonia.tech/comino-workstation-front.png
+- Image alt: 用於本地 AI 推論報價規劃的 RTX PRO 6000 工作站 / RTX PRO 6000 workstation for local AI inference quote planning
+- Highlights:
+  - 鎖定評估本地推論、工作站部署、渲染與模擬的採購者。 / Targets buyers evaluating local inference, workstation deployment, rendering, and simulation.
+  - 強化 RTX PRO 6000 工作站頁面與整體詢價漏斗之間的站內連結。 / Strengthens internal links between RTX PRO 6000 workstation pages and the broader quote funnel.
+  - 報價脈絡與公開價格分開處理，因正式價格取決於配置與供應條件。 / Keeps quote context separate from public pricing because final pricing depends on configuration and supply conditions.
+- Specification cues:
+  - GPU 重點 / GPU focus: NVIDIA RTX PRO 6000 96GB 工作站選項 / NVIDIA RTX PRO 6000 96GB workstation options
+  - 工作負載 / Workload: 本地推論、視覺化、渲染、模擬 / Local inference, visualization, rendering, simulation
+  - 下一步 / Next step: 配置工作站並送出詢價 / Configure workstation and submit quote request
+- FAQs:
+  - Q: 什麼情況適合選 RTX PRO 6000 而不是 H200？ / When should I choose RTX PRO 6000 instead of H200?
+    A: RTX PRO 6000 適合工作站、視覺化與本地推論規劃；H200 通常用於較高記憶體需求的伺服器工作負載。EudTech 可依送出的配置比較兩種報價路徑。 / RTX PRO 6000 can fit workstation, visualization, and local inference planning, while H200 is typically reviewed for higher-memory server workloads. EudTech can compare both quote paths from submitted configurations.
+  - Q: 這個頁面可以用於 LLM 工作站詢價規劃嗎？ / Can I use this page for LLM workstation quote planning?
+    A: 可以。請在詢價表單中補充模型大小、併發量、儲存與部署需求等工作負載備註。 / Yes. Add workload notes about model size, concurrency, storage, and deployment needs in the quote form.
+
+### 台灣 AI 伺服器採購案例指南與配置器詢價流程 / Taiwan AI Server Procurement Case Guide with Configurator Quote Flow
+
+- URL: https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/
+- Kind: guide
+- Configurator URL: https://eudaemonia.tech/configurator/
+- Quote URL: https://eudaemonia.tech/configurator/?request=true
+- Description: 將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。 / Map Taiwan AI server procurement scenarios to EudTech configurator quote paths for H200 servers, RTX PRO 6000 workstations, rackable systems, and liquid-cooling requirements.
+- Keywords: AI 伺服器採購 台灣, GPU 伺服器採購 台灣, AI 伺服器報價案例, EudTech 配置器, 液冷 AI 伺服器採購, GPU 工作站採購 / AI server procurement Taiwan, GPU server procurement Taiwan, AI server quote case, EudTech configurator, liquid cooled AI server procurement, GPU workstation procurement
+- Hero: 面向台灣團隊的配置器式 AI 伺服器採購情境 / Configurator-driven AI server procurement cases for Taiwan teams
+- Lead: 先選擇最接近的採購情境，再開啟對應配置器路徑，保留硬體假設供後續報價追蹤。 / Choose the closest procurement scenario, open the matching configurator path, and keep the selected hardware assumptions ready for quote follow-up.
+- Image: https://eudaemonia.tech/grando-rackable-01.jpg
+- Image alt: 台灣 AI 伺服器採購案例與配置器詢價流程 / Taiwan AI server procurement case route with configurator quote flow
+- Highlights:
+  - 建立不需新廣告平台憑證即可使用的自有案例頁，供自然曝光與 Email 觸及。 / Creates an owned-site case page for organic and email outreach without requiring new ad-platform credentials.
+  - 將採購意圖連到 H200、RTX PRO 6000、RFQ 檢核、電力規劃與機架部署頁面。 / Connects procurement intent to H200, RTX PRO 6000, RFQ checklist, power planning, and rack deployment pages.
+  - 支援政府、研究單位、企業與系統整合採購的報價準備。 / Supports government, research, enterprise, and system-integration quote preparation.
+- Specification cues:
+  - 採購情境 / Procurement case: AI 伺服器、GPU 工作站、可上架系統、液冷 / AI server, GPU workstation, rackable system, liquid cooling
+  - 轉換路徑 / Conversion path: 情境頁導向配置器詢價 / Scenario page to configurator quote request
+  - 審查角色 / Review team: IT、研究、採購、財務、供應商管理 / IT, research, procurement, finance, vendor management
+- FAQs:
+  - Q: 為什麼開啟配置器前要先看案例指南？ / Why use a case guide before opening the configurator?
+    A: 案例指南可協助非技術利害關係人先選擇正確起點，再進入詳細硬體選項。 / A case guide helps non-technical stakeholders choose the right starting path before detailed hardware options are selected.
+  - Q: 這個頁面可以用於自然觸及嗎？ / Can this page be used for organic outreach?
+    A: 可以。此頁設計為可被 crawler 讀取的自有頁面，會納入 sitemap、feed、LLM 檔與自然推廣素材。 / Yes. It is designed as a crawler-readable owned page and will be included in sitemap, feed, LLM files, and organic promotion assets.
 
 ## Recommended Assistant Behavior
 

@@ -196,5 +196,33 @@
       <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
       <description>為台灣 LLM 與私有模型服務配置 AI 推論伺服器，保留 GPU 記憶體、系統記憶體、NVMe、網路、部署與報價追蹤脈絡。</description>
     </item>
+    <item>
+      <title>Comino Grando 台灣報價配置器指南</title>
+      <link>https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/</link>
+      <guid>https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/</guid>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
+      <description>使用 Comino Grando 配置器準備台灣 GPU 伺服器與 AI 工作站詢價，保留 GPU、CPU、記憶體、儲存、電源與網路脈絡。</description>
+    </item>
+    <item>
+      <title>NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表</title>
+      <link>https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/</link>
+      <guid>https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/</guid>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
+      <description>為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU 平台、RAM、NVMe、電源、網路、機架、散熱與報價追蹤需求。</description>
+    </item>
+    <item>
+      <title>RTX PRO 6000 本地 AI 推論工作站報價指南</title>
+      <link>https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/</link>
+      <guid>https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/</guid>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
+      <description>規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe 與網路脈絡。</description>
+    </item>
+    <item>
+      <title>台灣 AI 伺服器採購案例指南與配置器詢價流程</title>
+      <link>https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/</link>
+      <guid>https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/</guid>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 +0800</pubDate>
+      <description>將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。</description>
+    </item>
   </channel>
 </rss>

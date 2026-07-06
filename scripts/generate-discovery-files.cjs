@@ -49,7 +49,11 @@ const priorityBySlug = {
   'rtx-pro-6000-workstation': '0.9',
   'gpu-server-quote': '0.9',
   'h200-vs-rtx-pro-6000': '0.88',
-  'gpu-server-rfq-checklist': '0.88'
+  'gpu-server-rfq-checklist': '0.88',
+  'comino-grando-configurator-taiwan': '0.9',
+  'h200-gpu-server-rfq-taiwan': '0.9',
+  'rtx-pro-6000-local-ai-inference': '0.88',
+  'ai-server-procurement-case-taiwan': '0.88'
 };
 const solutionUrls = CONFIGURATOR_SEO_PAGES.map((page) => ({
   loc: pageUrl(`/solutions/${page.slug}`),
@@ -232,7 +236,11 @@ const llmsTopics = [
   'AI workstation Taiwan',
   'H200 vs RTX PRO 6000',
   'GPU server RFQ checklist',
-  'Liquid-cooling AI server procurement'
+  'Liquid-cooling AI server procurement',
+  'Comino Grando Taiwan quote',
+  'H200 GPU server RFQ Taiwan',
+  'RTX PRO 6000 local AI inference',
+  'AI server procurement case Taiwan'
 ];
 
 const localized = (value) => `${getZh(value)} / ${value.en}`;

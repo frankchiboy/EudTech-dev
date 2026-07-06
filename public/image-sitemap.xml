@@ -162,4 +162,28 @@
       <image:loc>https://eudaemonia.tech/social/configurator/solutions-ai-inference-server-taiwan.jpg</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/solutions-comino-grando-configurator-taiwan.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/solutions-h200-gpu-server-rfq-taiwan.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/solutions-rtx-pro-6000-local-ai-inference.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/</loc>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/solutions-ai-server-procurement-case-taiwan.jpg</image:loc>
+    </image:image>
+  </url>
 </urlset>

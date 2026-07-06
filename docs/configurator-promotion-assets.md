@@ -42,6 +42,10 @@
 | checklist | 台灣公部門 GPU 伺服器採購檢核表 | 台灣公部門 GPU 伺服器採購, 政府 GPU 伺服器報價, AI 伺服器採購 台灣, GPU 伺服器規格檢核表 | https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/ |
 | comparison | Supermicro 與 Comino GPU 伺服器配置比較 | Supermicro GPU 伺服器比較, Comino GPU 伺服器, GPU 伺服器替代方案, AI 伺服器報價比較, GPU 伺服器配置器 | https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/ |
 | solution | 台灣 LLM AI 推論伺服器報價配置器 | AI 推論伺服器 台灣, LLM 伺服器 台灣, 私有模型服務伺服器, GPU 推論伺服器, 本地 AI 伺服器報價, LLM 推論伺服器, AI 伺服器配置器 台灣 | https://eudaemonia.tech/solutions/ai-inference-server-taiwan/ |
+| guide | Comino Grando 台灣報價配置器指南 | Comino Grando, Comino Grando 配置器, Grando GPU 伺服器, Grando 台灣報價, GPU 伺服器配置器 台灣, EudTech Comino | https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/ |
+| checklist | NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表 | H200 GPU 伺服器 RFQ, NVIDIA H200 伺服器 台灣, H200 伺服器報價, H200 AI 訓練伺服器, GPU 伺服器採購檢核表, H200 液冷伺服器 | https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/ |
+| guide | RTX PRO 6000 本地 AI 推論工作站報價指南 | RTX PRO 6000 本地推論, RTX PRO 6000 工作站報價, 本地 AI 推論工作站, AI 工作站 台灣, GPU 工作站報價, RTX PRO 6000 LLM | https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/ |
+| guide | 台灣 AI 伺服器採購案例指南與配置器詢價流程 | AI 伺服器採購 台灣, GPU 伺服器採購 台灣, AI 伺服器報價案例, EudTech 配置器, 液冷 AI 伺服器採購, GPU 工作站採購 | https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/ |
 
 ## Google Ads Search Groups
 

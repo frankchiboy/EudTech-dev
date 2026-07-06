@@ -32,6 +32,10 @@ EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled 
 - 台灣公部門 GPU 伺服器採購檢核表: https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/
 - Supermicro 與 Comino GPU 伺服器配置比較: https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/
 - 台灣 LLM AI 推論伺服器報價配置器: https://eudaemonia.tech/solutions/ai-inference-server-taiwan/
+- Comino Grando 台灣報價配置器指南: https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/
+- NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表: https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/
+- RTX PRO 6000 本地 AI 推論工作站報價指南: https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/
+- 台灣 AI 伺服器採購案例指南與配置器詢價流程: https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/
 
 ## High-Intent Topics
 
@@ -45,6 +49,10 @@ EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled 
 - H200 vs RTX PRO 6000
 - GPU server RFQ checklist
 - Liquid-cooling AI server procurement
+- Comino Grando Taiwan quote
+- H200 GPU server RFQ Taiwan
+- RTX PRO 6000 local AI inference
+- AI server procurement case Taiwan
 
 ## Full Context
 

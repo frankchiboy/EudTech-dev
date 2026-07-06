@@ -847,6 +847,246 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
         answer: { en: 'Yes. Send the draft configuration with workload notes so EudTech can follow up on GPU memory, system RAM, storage, and networking assumptions.', zh: '可以。送出初稿配置與工作負載備註後，EudTech 可協助追蹤 GPU 記憶體、系統記憶體、儲存與網路假設。' }
       }
     ]
+  },
+  {
+    slug: 'comino-grando-configurator-taiwan',
+    kind: 'guide',
+    title: {
+      en: 'Comino Grando Configurator Taiwan Quote Guide',
+      zh: 'Comino Grando 台灣報價配置器指南'
+    },
+    description: {
+      en: 'Use the Comino Grando configurator to prepare Taiwan GPU server and AI workstation quote requests with GPU, CPU, memory, storage, power, and networking context.',
+      zh: '使用 Comino Grando 配置器準備台灣 GPU 伺服器與 AI 工作站詢價，保留 GPU、CPU、記憶體、儲存、電源與網路脈絡。'
+    },
+    keywords: {
+      en: 'Comino Grando, Comino Grando configurator, Grando GPU server, Grando quote Taiwan, GPU server configurator Taiwan, EudTech Comino',
+      zh: 'Comino Grando, Comino Grando 配置器, Grando GPU 伺服器, Grando 台灣報價, GPU 伺服器配置器 台灣, EudTech Comino'
+    },
+    hero: {
+      en: 'Comino Grando quote configuration for Taiwan buyers',
+      zh: '面向台灣採購者的 Comino Grando 報價配置入口'
+    },
+    lead: {
+      en: 'Start from the Grando configurator, choose the system direction, and keep the selected hardware assumptions in a shareable URL for EudTech quote follow-up.',
+      zh: '從 Grando 配置器開始，選擇系統方向，並以可分享連結保留硬體假設，供 EudTech 後續追蹤正式報價。'
+    },
+    image: '/grando-8gpu-server.jpg',
+    imageAlt: {
+      en: 'Comino Grando GPU server configurator for Taiwan quote requests',
+      zh: '用於台灣詢價的 Comino Grando GPU 伺服器配置器'
+    },
+    configuratorHref: '/configurator',
+    quoteHref: '/configurator?request=true',
+    highlights: [
+      {
+        en: 'Targets search intent around Comino Grando, Grando configurator, and Taiwan GPU server quotes.',
+        zh: '對應 Comino Grando、Grando 配置器與台灣 GPU 伺服器報價搜尋意圖。'
+      },
+      {
+        en: 'Keeps workstation, rackable server, and integration-kit paths connected through one crawler-readable guide.',
+        zh: '以單一可抓取指南串接工作站、可上架伺服器與整合套件路徑。'
+      },
+      {
+        en: 'Quote requests preserve configuration state, marketing attribution, and contact context for follow-up.',
+        zh: '詢價會保留配置狀態、來源追蹤與聯絡脈絡，方便後續追蹤。'
+      }
+    ],
+    specs: [
+      { label: { en: 'Search focus', zh: '搜尋重點' }, value: { en: 'Comino Grando configurator and quote', zh: 'Comino Grando 配置器與報價' } },
+      { label: { en: 'Product scope', zh: '產品範圍' }, value: { en: 'GPU servers, AI workstations, integration kits', zh: 'GPU 伺服器、AI 工作站、整合套件' } },
+      { label: { en: 'Region', zh: '服務區域' }, value: { en: 'Taiwan sales and procurement follow-up', zh: '台灣銷售與採購追蹤' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'Is this the main Comino Grando configurator entry?', zh: '這是 Comino Grando 配置器的主要入口嗎？' },
+        answer: { en: 'Yes. This guide points buyers to the Grando configurator and related product routes for quote preparation.', zh: '是。此指南會引導採購者進入 Grando 配置器與相關產品路徑，以準備詢價。' }
+      },
+      {
+        question: { en: 'Does EudTech handle Taiwan quote follow-up for Comino Grando?', zh: 'EudTech 會追蹤 Comino Grando 的台灣報價嗎？' },
+        answer: { en: 'Yes. EudTech can receive the submitted configuration and follow up through info@eudaemonia.tech.', zh: '會。EudTech 可接收送出的配置，並透過 info@eudaemonia.tech 追蹤後續報價。' }
+      }
+    ]
+  },
+  {
+    slug: 'h200-gpu-server-rfq-taiwan',
+    kind: 'checklist',
+    title: {
+      en: 'NVIDIA H200 GPU Server RFQ Checklist for Taiwan Procurement',
+      zh: 'NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表'
+    },
+    description: {
+      en: 'Prepare NVIDIA H200 GPU server RFQs for Taiwan procurement by aligning GPU count, CPU platform, RAM, NVMe, power, networking, rack, cooling, and quote follow-up requirements.',
+      zh: '為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU 平台、RAM、NVMe、電源、網路、機架、散熱與報價追蹤需求。'
+    },
+    keywords: {
+      en: 'H200 GPU server RFQ, NVIDIA H200 server Taiwan, H200 server quote, H200 AI training server, GPU server procurement checklist, H200 liquid cooled server',
+      zh: 'H200 GPU 伺服器 RFQ, NVIDIA H200 伺服器 台灣, H200 伺服器報價, H200 AI 訓練伺服器, GPU 伺服器採購檢核表, H200 液冷伺服器'
+    },
+    hero: {
+      en: 'H200 GPU server RFQ preparation before formal quote',
+      zh: '正式詢價前的 H200 GPU 伺服器 RFQ 準備'
+    },
+    lead: {
+      en: 'Use the H200 configurator path to preserve the selected GPU, CPU, RAM, storage, power, and network assumptions before sending the quote request.',
+      zh: '使用 H200 配置器路徑，在送出詢價前保留已選 GPU、CPU、RAM、儲存、電源與網路假設。'
+    },
+    image: '/grando-8gpu-server.jpg',
+    imageAlt: {
+      en: 'NVIDIA H200 GPU server RFQ configuration',
+      zh: 'NVIDIA H200 GPU 伺服器 RFQ 配置'
+    },
+    configuratorHref: '/configurator/29',
+    quoteHref: '/configurator/29?request=true',
+    highlights: [
+      {
+        en: 'Matches Search Console intent for H200 server, H200 versus RTX PRO 6000, and GPU server quote queries.',
+        zh: '對應 Search Console 已出現的 H200 伺服器、H200 與 RTX PRO 6000 比較、GPU 伺服器報價查詢。'
+      },
+      {
+        en: 'Helps technical and procurement teams review deployment assumptions before a formal RFQ.',
+        zh: '協助技術與採購團隊在正式 RFQ 前審查部署假設。'
+      },
+      {
+        en: 'Connects directly to SERVER 6xH200 and related H200 product configuration pages.',
+        zh: '直接連至 SERVER 6xH200 與相關 H200 產品配置頁。'
+      }
+    ],
+    specs: [
+      { label: { en: 'GPU focus', zh: 'GPU 重點' }, value: { en: 'NVIDIA H200 141GB server paths', zh: 'NVIDIA H200 141GB 伺服器路徑' } },
+      { label: { en: 'RFQ scope', zh: 'RFQ 範圍' }, value: { en: 'GPU, CPU, RAM, NVMe, power, networking, rack, cooling', zh: 'GPU、CPU、RAM、NVMe、電源、網路、機架、散熱' } },
+      { label: { en: 'Buyer stage', zh: '採購階段' }, value: { en: 'Specification review before formal quote', zh: '正式報價前規格審查' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'Which H200 route should I start from?', zh: 'H200 需求應該從哪個路徑開始？' },
+        answer: { en: 'Start from SERVER 6xH200 when the team is comparing high-density H200 server assumptions, then adjust the configuration before requesting a quote.', zh: '若團隊正在比較高密度 H200 伺服器假設，建議先從 SERVER 6xH200 開始，再調整配置並送出詢價。' }
+      },
+      {
+        question: { en: 'Can this checklist replace a formal RFQ document?', zh: '這份檢核表可以取代正式 RFQ 文件嗎？' },
+        answer: { en: 'No. It helps prepare the configuration context; the formal RFQ and quote still depend on the final project requirement.', zh: '不可以。它用於準備配置脈絡；正式 RFQ 與報價仍需依最終專案需求確認。' }
+      }
+    ]
+  },
+  {
+    slug: 'rtx-pro-6000-local-ai-inference',
+    kind: 'guide',
+    title: {
+      en: 'RTX PRO 6000 Local AI Inference Workstation Quote Guide',
+      zh: 'RTX PRO 6000 本地 AI 推論工作站報價指南'
+    },
+    description: {
+      en: 'Plan RTX PRO 6000 workstation quotes for local AI inference, visualization, simulation, and model development with GPU, CPU, RAM, NVMe, and networking context.',
+      zh: '規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe 與網路脈絡。'
+    },
+    keywords: {
+      en: 'RTX PRO 6000 local inference, RTX PRO 6000 workstation quote, local AI inference workstation, AI workstation Taiwan, GPU workstation quote, RTX PRO 6000 LLM',
+      zh: 'RTX PRO 6000 本地推論, RTX PRO 6000 工作站報價, 本地 AI 推論工作站, AI 工作站 台灣, GPU 工作站報價, RTX PRO 6000 LLM'
+    },
+    hero: {
+      en: 'RTX PRO 6000 workstation quote context for local AI',
+      zh: '面向本地 AI 的 RTX PRO 6000 工作站報價脈絡'
+    },
+    lead: {
+      en: 'Use the workstation configurator to compare RTX PRO 6000 options with H200 or rackable systems before sending a quote request.',
+      zh: '使用工作站配置器比較 RTX PRO 6000、H200 或可上架系統方向，再送出詢價需求。'
+    },
+    image: '/comino-workstation-front.png',
+    imageAlt: {
+      en: 'RTX PRO 6000 workstation for local AI inference quote planning',
+      zh: '用於本地 AI 推論報價規劃的 RTX PRO 6000 工作站'
+    },
+    configuratorHref: '/configurator/34',
+    quoteHref: '/configurator/34?request=true',
+    highlights: [
+      {
+        en: 'Targets buyers evaluating local inference, workstation deployment, rendering, and simulation.',
+        zh: '鎖定評估本地推論、工作站部署、渲染與模擬的採購者。'
+      },
+      {
+        en: 'Strengthens internal links between RTX PRO 6000 workstation pages and the broader quote funnel.',
+        zh: '強化 RTX PRO 6000 工作站頁面與整體詢價漏斗之間的站內連結。'
+      },
+      {
+        en: 'Keeps quote context separate from public pricing because final pricing depends on configuration and supply conditions.',
+        zh: '報價脈絡與公開價格分開處理，因正式價格取決於配置與供應條件。'
+      }
+    ],
+    specs: [
+      { label: { en: 'GPU focus', zh: 'GPU 重點' }, value: { en: 'NVIDIA RTX PRO 6000 96GB workstation options', zh: 'NVIDIA RTX PRO 6000 96GB 工作站選項' } },
+      { label: { en: 'Workload', zh: '工作負載' }, value: { en: 'Local inference, visualization, rendering, simulation', zh: '本地推論、視覺化、渲染、模擬' } },
+      { label: { en: 'Next step', zh: '下一步' }, value: { en: 'Configure workstation and submit quote request', zh: '配置工作站並送出詢價' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'When should I choose RTX PRO 6000 instead of H200?', zh: '什麼情況適合選 RTX PRO 6000 而不是 H200？' },
+        answer: { en: 'RTX PRO 6000 can fit workstation, visualization, and local inference planning, while H200 is typically reviewed for higher-memory server workloads. EudTech can compare both quote paths from submitted configurations.', zh: 'RTX PRO 6000 適合工作站、視覺化與本地推論規劃；H200 通常用於較高記憶體需求的伺服器工作負載。EudTech 可依送出的配置比較兩種報價路徑。' }
+      },
+      {
+        question: { en: 'Can I use this page for LLM workstation quote planning?', zh: '這個頁面可以用於 LLM 工作站詢價規劃嗎？' },
+        answer: { en: 'Yes. Add workload notes about model size, concurrency, storage, and deployment needs in the quote form.', zh: '可以。請在詢價表單中補充模型大小、併發量、儲存與部署需求等工作負載備註。' }
+      }
+    ]
+  },
+  {
+    slug: 'ai-server-procurement-case-taiwan',
+    kind: 'guide',
+    title: {
+      en: 'Taiwan AI Server Procurement Case Guide with Configurator Quote Flow',
+      zh: '台灣 AI 伺服器採購案例指南與配置器詢價流程'
+    },
+    description: {
+      en: 'Map Taiwan AI server procurement scenarios to EudTech configurator quote paths for H200 servers, RTX PRO 6000 workstations, rackable systems, and liquid-cooling requirements.',
+      zh: '將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。'
+    },
+    keywords: {
+      en: 'AI server procurement Taiwan, GPU server procurement Taiwan, AI server quote case, EudTech configurator, liquid cooled AI server procurement, GPU workstation procurement',
+      zh: 'AI 伺服器採購 台灣, GPU 伺服器採購 台灣, AI 伺服器報價案例, EudTech 配置器, 液冷 AI 伺服器採購, GPU 工作站採購'
+    },
+    hero: {
+      en: 'Configurator-driven AI server procurement cases for Taiwan teams',
+      zh: '面向台灣團隊的配置器式 AI 伺服器採購情境'
+    },
+    lead: {
+      en: 'Choose the closest procurement scenario, open the matching configurator path, and keep the selected hardware assumptions ready for quote follow-up.',
+      zh: '先選擇最接近的採購情境，再開啟對應配置器路徑，保留硬體假設供後續報價追蹤。'
+    },
+    image: '/grando-rackable-01.jpg',
+    imageAlt: {
+      en: 'Taiwan AI server procurement case route with configurator quote flow',
+      zh: '台灣 AI 伺服器採購案例與配置器詢價流程'
+    },
+    configuratorHref: '/configurator',
+    quoteHref: '/configurator?request=true',
+    highlights: [
+      {
+        en: 'Creates an owned-site case page for organic and email outreach without requiring new ad-platform credentials.',
+        zh: '建立不需新廣告平台憑證即可使用的自有案例頁，供自然曝光與 Email 觸及。'
+      },
+      {
+        en: 'Connects procurement intent to H200, RTX PRO 6000, RFQ checklist, power planning, and rack deployment pages.',
+        zh: '將採購意圖連到 H200、RTX PRO 6000、RFQ 檢核、電力規劃與機架部署頁面。'
+      },
+      {
+        en: 'Supports government, research, enterprise, and system-integration quote preparation.',
+        zh: '支援政府、研究單位、企業與系統整合採購的報價準備。'
+      }
+    ],
+    specs: [
+      { label: { en: 'Procurement case', zh: '採購情境' }, value: { en: 'AI server, GPU workstation, rackable system, liquid cooling', zh: 'AI 伺服器、GPU 工作站、可上架系統、液冷' } },
+      { label: { en: 'Conversion path', zh: '轉換路徑' }, value: { en: 'Scenario page to configurator quote request', zh: '情境頁導向配置器詢價' } },
+      { label: { en: 'Review team', zh: '審查角色' }, value: { en: 'IT, research, procurement, finance, vendor management', zh: 'IT、研究、採購、財務、供應商管理' } }
+    ],
+    faqs: [
+      {
+        question: { en: 'Why use a case guide before opening the configurator?', zh: '為什麼開啟配置器前要先看案例指南？' },
+        answer: { en: 'A case guide helps non-technical stakeholders choose the right starting path before detailed hardware options are selected.', zh: '案例指南可協助非技術利害關係人先選擇正確起點，再進入詳細硬體選項。' }
+      },
+      {
+        question: { en: 'Can this page be used for organic outreach?', zh: '這個頁面可以用於自然觸及嗎？' },
+        answer: { en: 'Yes. It is designed as a crawler-readable owned page and will be included in sitemap, feed, LLM files, and organic promotion assets.', zh: '可以。此頁設計為可被 crawler 讀取的自有頁面，會納入 sitemap、feed、LLM 檔與自然推廣素材。' }
+      }
+    ]
   }
 ];
 
