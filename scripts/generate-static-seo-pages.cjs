@@ -161,6 +161,7 @@ const solutionHubRoute = {
   quoteHref: '/configurator?request=true',
   relatedLinks: [
     routeLink('/configurator', '開啟 Comino Grando 配置器'),
+    routeLink('/configurator-links.html', '完整配置器產品連結索引'),
     ...configuratorProductLinks(),
     routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
     routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置'),
@@ -213,53 +214,63 @@ const solutionHubRoute = {
   ]
 };
 
-const productRoutes = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
-  path: product.configuratorHref,
-  title: getZh(product.title),
-  description: getZh(product.description),
-  keywords: getZh(product.keywords),
-  lead: getZh(product.description),
-  image: `${siteOrigin}${product.image}`,
-  imageAlt: getZh(product.imageAlt),
-  kind: 'configurator-product',
-  configuratorHref: product.configuratorHref,
-  quoteHref: product.quoteHref,
-  relatedLinks: productRelatedLinks(product),
-  highlights: [
-    `${getZh(product.model)}：${getZh(product.category)}`,
-    `GPU 重點：${getZh(product.properties.find((property) => getZh(property.name) === 'GPU 重點')?.value || product.category)}`,
-    '送出詢價時會保留配置連結，方便技術與採購團隊審查。',
-    ...(product.exposureNotes || []).map((note) => getZh(note))
-  ],
-  specs: product.properties.map((property) => ({
-    label: getZh(property.name),
-    value: getZh(property.value)
-  })),
-  faq: (product.faqs || []).map((faq) => [getZh(faq.question), getZh(faq.answer)]),
-  schema: [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebApplication',
-      name: getZh(product.title),
-      description: getZh(product.description),
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Web',
-      url: pageUrl(product.configuratorHref),
-      provider: eudTechOrganization,
-      potentialAction: { '@type': 'QuoteAction', target: pageUrl(product.quoteHref) }
-    },
-    configuratorServiceSchemaFor(product.id),
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
-        { '@type': 'ListItem', position: 2, name: '配置器', item: pageUrl('/configurator') },
-        { '@type': 'ListItem', position: 3, name: getZh(product.model), item: pageUrl(product.configuratorHref) }
-      ]
-    }
-  ]
-}));
+const productRoutes = CONFIGURATOR_PRODUCT_SEO.map((product) => {
+  const model = getZh(product.model);
+  const selectionNotes = (product.exposureNotes || []).map((note) => getZh(note));
+
+  return {
+    path: product.configuratorHref,
+    title: getZh(product.title),
+    description: getZh(product.description),
+    keywords: getZh(product.keywords),
+    lead: getZh(product.description),
+    image: `${siteOrigin}${product.image}`,
+    imageAlt: getZh(product.imageAlt),
+    kind: 'configurator-product',
+    configuratorHref: product.configuratorHref,
+    quoteHref: product.quoteHref,
+    relatedLinks: productRelatedLinks(product),
+    highlights: [
+      ...selectionNotes,
+      `${model}：${getZh(product.category)}`,
+      `GPU 重點：${getZh(product.properties.find((property) => getZh(property.name) === 'GPU 重點')?.value || product.category)}`,
+      '送出詢價時會保留配置連結，方便技術與採購團隊審查。'
+    ],
+    specs: product.properties.map((property) => ({
+      label: getZh(property.name),
+      value: getZh(property.value)
+    })),
+    faq: [
+      ...(selectionNotes.length
+        ? [[`${model} 適合哪一類採購與部署評估？`, selectionNotes.join(' ')]]
+        : []),
+      ...(product.faqs || []).map((faq) => [getZh(faq.question), getZh(faq.answer)])
+    ],
+    schema: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: getZh(product.title),
+        description: getZh(product.description),
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web',
+        url: pageUrl(product.configuratorHref),
+        provider: eudTechOrganization,
+        potentialAction: { '@type': 'QuoteAction', target: pageUrl(product.quoteHref) }
+      },
+      configuratorServiceSchemaFor(product.id),
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
+          { '@type': 'ListItem', position: 2, name: '配置器', item: pageUrl('/configurator') },
+          { '@type': 'ListItem', position: 3, name: model, item: pageUrl(product.configuratorHref) }
+        ]
+      }
+    ]
+  };
+});
 
 const routes = [
   {
@@ -273,6 +284,7 @@ const routes = [
     quoteHref: '/configurator?request=true',
     relatedLinks: [
       routeLink('/configurator', 'Comino Grando GPU 伺服器報價配置器'),
+      routeLink('/configurator-links.html', '完整配置器產品連結索引'),
       routeLink('/solutions', '配置器解決方案總覽'),
       routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
       routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置'),
@@ -312,6 +324,7 @@ const routes = [
     quoteHref: '/configurator?request=true',
     relatedLinks: [
       ...configuratorProductLinks(),
+      routeLink('/configurator-links.html', '完整配置器產品連結索引'),
       routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
       routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表')
     ],

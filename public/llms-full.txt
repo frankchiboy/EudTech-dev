@@ -452,25 +452,31 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Kind: solution
 - Configurator URL: https://eudaemonia.tech/configurator/
 - Quote URL: https://eudaemonia.tech/configurator/?request=true
-- Description: 為台灣團隊配置 AI 工作站，支援 GPU 加速、本地推論、模型開發、渲染與模擬工作負載。 / Configure AI workstations for Taiwan teams that need GPU acceleration, local inference, model development, rendering, or simulation workloads.
+- Description: 為台灣團隊在桌邊 AI 工作站、可上架 GPU 系統與整合套件之間進行選型，支援 GPU 加速、本地推論、模型開發、渲染與模擬工作負載。 / Choose between deskside AI workstations, rackable GPU systems, and integration-kit paths for Taiwan teams that need GPU acceleration, local inference, model development, rendering, or simulation workloads.
 - Keywords: AI 工作站 台灣, GPU 工作站 台灣, AI 電腦報價, NVIDIA 工作站報價, 本地 AI 工作站 / AI workstation Taiwan, GPU workstation Taiwan, AI PC quote, NVIDIA workstation quote, local AI workstation
-- Hero: 為台灣採購者設計的 AI 工作站配置入口 / AI workstation configurations for Taiwan buyers
-- Lead: 選擇工作站、調整硬體選項，並送出可供技術與採購團隊審查的配置連結。 / Select a workstation, adjust hardware choices, and send a quote request with a configuration URL that technical and procurement teams can review.
+- Hero: 台灣 AI 工作站與 GPU 部署選型入口 / Taiwan AI workstation and GPU deployment selection
+- Lead: 先依部署場域與作業限制選擇桌邊工作站、可上架 GPU 系統或整合套件路徑，再調整硬體選項並送出可分享的詢價需求。 / Start by matching the deployment site and operating constraints to a deskside workstation, a rackable GPU system, or an integration-kit path; then adjust hardware choices and send a shareable quote request.
 - Image: https://eudaemonia.tech/grando-desktop-01.jpg
 - Image alt: 台灣團隊使用的 AI 工作站配置 / AI workstation configuration for Taiwan teams
 - Highlights:
-  - 鎖定本地 AI 開發、推論與視覺化團隊。 / Targets local AI development, inference, and visualization teams.
-  - 協助工程與採購之間更清楚交接需求。 / Supports a clearer handoff between engineering and purchasing.
-  - EudTech 可在台灣協助產品與報價諮詢。 / EudTech can follow up in Taiwan with product and quote consultation.
+  - 適用於先決定部署型態，而不是先鎖定單一 GPU SKU 的情境：桌邊工作站、可上架系統或整合套件。 / Use this page when the first decision is deployment form, not a single GPU SKU: deskside workstation, rackable system, or integration kit.
+  - 辦公室或實驗室沒有機架限制時，可先選桌邊路徑；當機架、供電、網路與散熱已納入部署範圍時，改看可上架系統。 / Choose a deskside path when the team works in an office or lab without rack constraints; move to rackable systems when rack, power, network, and cooling are part of the deployment scope.
+  - 採購方已掌握機箱、機架、散熱或整合作業，且需要零組件層級報價討論時，可選整合套件路徑。 / Choose an integration-kit path when the buyer already owns the chassis, rack, cooling, or integration work and needs a component-level quote discussion.
+  - EudTech 可在台灣協助產品選型與報價諮詢。 / EudTech can follow up in Taiwan with product selection and quote consultation.
 - Specification cues:
   - 服務區域 / Region: 台灣報價追蹤 / Taiwan quote follow-up
-  - 產品方向 / Products: GPU 工作站與可上架系統 / GPU workstations and rackable systems
-  - 採購階段 / Buyer stage: 規格對齊與 RFQ 準備 / Specification alignment and RFQ preparation
+  - 選型順序 / Selection order: 部署場域、機架限制、供電、網路、散熱，再進入硬體配置 / Deployment site, rack constraints, power, network, cooling, then hardware configuration
+  - 產品方向 / Products: 桌邊 GPU 工作站、可上架 GPU 系統與整合套件 / Deskside GPU workstations, rackable GPU systems, and integration kits
+  - 採購階段 / Buyer stage: 初步部署選型、規格對齊與 RFQ 準備 / Initial deployment selection, specification alignment, and RFQ preparation
 - FAQs:
   - Q: 配置只是初稿也可以請 EudTech 協助嗎？ / Can EudTech help if the configuration is only a first draft?
     A: 可以。送出初稿配置後，EudTech 可依工作負載、預算與部署需求協助調整。 / Yes. Send the draft configuration and EudTech can help refine it around workload, budget, and deployment needs.
   - Q: 這只適合大型伺服器嗎？ / Is this only for large servers?
-    A: 不是。配置器包含工作站與伺服器方向，團隊可從符合場域的機構型態開始。 / No. The configurator includes workstation and server directions, so teams can start from the form factor that fits their site.
+    A: 不是。配置器包含桌邊工作站、可上架系統與整合套件方向，團隊可從符合部署場域的型態開始。 / No. The configurator includes deskside workstations, rackable systems, and integration-kit directions, so teams can start from the deployment form that fits their site.
+  - Q: 台灣 AI 工作站專案何時應改看可上架路徑？ / When should a Taiwan AI workstation project use a rackable path?
+    A: 交付場域已需要機架配置、電力規劃、網路整合或散熱協調時，應改看可上架路徑；這些限制尚未納入專案時，可先從桌邊路徑開始。 / Use a rackable path when the delivery site already requires rack placement, power planning, network integration, or cooling coordination. Start with a deskside path when those constraints are not part of the project.
+  - Q: 什麼情況適合先看整合套件？ / When is an integration kit a better starting point?
+    A: 採購方已規劃機箱、機架、散熱或整合作業，且需要進行零組件層級配置與報價討論時，適合先看整合套件。 / Start from an integration kit when the buyer already plans the chassis, rack, cooling, or integration work and needs a component-level configuration and quote discussion.
 
 ### 液冷 GPU 伺服器散熱與報價配置器 / Liquid-Cooled GPU Server Cooling and Quote Configurator
 

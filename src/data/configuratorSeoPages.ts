@@ -190,20 +190,20 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       zh: '台灣 AI 工作站配置器'
     },
     description: {
-      en: 'Configure AI workstations for Taiwan teams that need GPU acceleration, local inference, model development, rendering, or simulation workloads.',
-      zh: '為台灣團隊配置 AI 工作站，支援 GPU 加速、本地推論、模型開發、渲染與模擬工作負載。'
+      en: 'Choose between deskside AI workstations, rackable GPU systems, and integration-kit paths for Taiwan teams that need GPU acceleration, local inference, model development, rendering, or simulation workloads.',
+      zh: '為台灣團隊在桌邊 AI 工作站、可上架 GPU 系統與整合套件之間進行選型，支援 GPU 加速、本地推論、模型開發、渲染與模擬工作負載。'
     },
     keywords: {
       en: 'AI workstation Taiwan, GPU workstation Taiwan, AI PC quote, NVIDIA workstation quote, local AI workstation',
       zh: 'AI 工作站 台灣, GPU 工作站 台灣, AI 電腦報價, NVIDIA 工作站報價, 本地 AI 工作站'
     },
     hero: {
-      en: 'AI workstation configurations for Taiwan buyers',
-      zh: '為台灣採購者設計的 AI 工作站配置入口'
+      en: 'Taiwan AI workstation and GPU deployment selection',
+      zh: '台灣 AI 工作站與 GPU 部署選型入口'
     },
     lead: {
-      en: 'Select a workstation, adjust hardware choices, and send a quote request with a configuration URL that technical and procurement teams can review.',
-      zh: '選擇工作站、調整硬體選項，並送出可供技術與採購團隊審查的配置連結。'
+      en: 'Start by matching the deployment site and operating constraints to a deskside workstation, a rackable GPU system, or an integration-kit path; then adjust hardware choices and send a shareable quote request.',
+      zh: '先依部署場域與作業限制選擇桌邊工作站、可上架 GPU 系統或整合套件路徑，再調整硬體選項並送出可分享的詢價需求。'
     },
     image: '/grando-desktop-01.jpg',
     imageAlt: {
@@ -214,22 +214,27 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     quoteHref: '/configurator?request=true',
     highlights: [
       {
-        en: 'Targets local AI development, inference, and visualization teams.',
-        zh: '鎖定本地 AI 開發、推論與視覺化團隊。'
+        en: 'Use this page when the first decision is deployment form, not a single GPU SKU: deskside workstation, rackable system, or integration kit.',
+        zh: '適用於先決定部署型態，而不是先鎖定單一 GPU SKU 的情境：桌邊工作站、可上架系統或整合套件。'
       },
       {
-        en: 'Supports a clearer handoff between engineering and purchasing.',
-        zh: '協助工程與採購之間更清楚交接需求。'
+        en: 'Choose a deskside path when the team works in an office or lab without rack constraints; move to rackable systems when rack, power, network, and cooling are part of the deployment scope.',
+        zh: '辦公室或實驗室沒有機架限制時，可先選桌邊路徑；當機架、供電、網路與散熱已納入部署範圍時，改看可上架系統。'
       },
       {
-        en: 'EudTech can follow up in Taiwan with product and quote consultation.',
-        zh: 'EudTech 可在台灣協助產品與報價諮詢。'
+        en: 'Choose an integration-kit path when the buyer already owns the chassis, rack, cooling, or integration work and needs a component-level quote discussion.',
+        zh: '採購方已掌握機箱、機架、散熱或整合作業，且需要零組件層級報價討論時，可選整合套件路徑。'
+      },
+      {
+        en: 'EudTech can follow up in Taiwan with product selection and quote consultation.',
+        zh: 'EudTech 可在台灣協助產品選型與報價諮詢。'
       }
     ],
     specs: [
       { label: { en: 'Region', zh: '服務區域' }, value: { en: 'Taiwan quote follow-up', zh: '台灣報價追蹤' } },
-      { label: { en: 'Products', zh: '產品方向' }, value: { en: 'GPU workstations and rackable systems', zh: 'GPU 工作站與可上架系統' } },
-      { label: { en: 'Buyer stage', zh: '採購階段' }, value: { en: 'Specification alignment and RFQ preparation', zh: '規格對齊與 RFQ 準備' } }
+      { label: { en: 'Selection order', zh: '選型順序' }, value: { en: 'Deployment site, rack constraints, power, network, cooling, then hardware configuration', zh: '部署場域、機架限制、供電、網路、散熱，再進入硬體配置' } },
+      { label: { en: 'Products', zh: '產品方向' }, value: { en: 'Deskside GPU workstations, rackable GPU systems, and integration kits', zh: '桌邊 GPU 工作站、可上架 GPU 系統與整合套件' } },
+      { label: { en: 'Buyer stage', zh: '採購階段' }, value: { en: 'Initial deployment selection, specification alignment, and RFQ preparation', zh: '初步部署選型、規格對齊與 RFQ 準備' } }
     ],
     faqs: [
       {
@@ -238,7 +243,15 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       },
       {
         question: { en: 'Is this only for large servers?', zh: '這只適合大型伺服器嗎？' },
-        answer: { en: 'No. The configurator includes workstation and server directions, so teams can start from the form factor that fits their site.', zh: '不是。配置器包含工作站與伺服器方向，團隊可從符合場域的機構型態開始。' }
+        answer: { en: 'No. The configurator includes deskside workstations, rackable systems, and integration-kit directions, so teams can start from the deployment form that fits their site.', zh: '不是。配置器包含桌邊工作站、可上架系統與整合套件方向，團隊可從符合部署場域的型態開始。' }
+      },
+      {
+        question: { en: 'When should a Taiwan AI workstation project use a rackable path?', zh: '台灣 AI 工作站專案何時應改看可上架路徑？' },
+        answer: { en: 'Use a rackable path when the delivery site already requires rack placement, power planning, network integration, or cooling coordination. Start with a deskside path when those constraints are not part of the project.', zh: '交付場域已需要機架配置、電力規劃、網路整合或散熱協調時，應改看可上架路徑；這些限制尚未納入專案時，可先從桌邊路徑開始。' }
+      },
+      {
+        question: { en: 'When is an integration kit a better starting point?', zh: '什麼情況適合先看整合套件？' },
+        answer: { en: 'Start from an integration kit when the buyer already plans the chassis, rack, cooling, or integration work and needs a component-level configuration and quote discussion.', zh: '採購方已規劃機箱、機架、散熱或整合作業，且需要進行零組件層級配置與報價討論時，適合先看整合套件。' }
       }
     ]
   },
