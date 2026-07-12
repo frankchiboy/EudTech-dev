@@ -117,6 +117,7 @@ const requiredHeaderRules = [
   '/image-sitemap.xml',
   '/feed.xml',
   '/feed.json',
+  '/discovery-lastmod.json',
   '/configurator-links.html',
   '/llms*.txt',
   '/social/configurator/*',
@@ -139,6 +140,10 @@ if (!/\/sitemap-index\.xml[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(heade
 
 if (!/\/feed\.json[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
   errors.push('public/_headers missing JSON feed cache-control rule.');
+}
+
+if (!/\/discovery-lastmod\.json[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
+  errors.push('public/_headers missing discovery manifest cache-control rule.');
 }
 
 if (!/\/configurator-links\.html[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {

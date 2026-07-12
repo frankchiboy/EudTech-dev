@@ -42,8 +42,14 @@ if (functionSource && !/schedule\s*:\s*['"]@weekly['"]/.test(functionSource)) {
 if (functionSource && !functionSource.includes('https://api.indexnow.org/indexnow')) {
   errors.push(`${functionRelativePath} does not target the IndexNow endpoint`);
 }
-if (functionSource && !functionSource.includes('sitemap.xml')) {
-  errors.push(`${functionRelativePath} does not read sitemap.xml`);
+if (functionSource && !functionSource.includes('discovery-lastmod.json')) {
+  errors.push(`${functionRelativePath} does not read the discovery content manifest`);
+}
+if (functionSource && (!functionSource.includes('@netlify/blobs') || !functionSource.includes('getStore'))) {
+  errors.push(`${functionRelativePath} does not persist IndexNow state in Netlify Blobs`);
+}
+if (functionSource && !functionSource.includes('resolveIndexNowDelta')) {
+  errors.push(`${functionRelativePath} does not submit an IndexNow delta`);
 }
 if (functionSource && !functionSource.includes(indexNowKey)) {
   errors.push(`${functionRelativePath} does not include the configured IndexNow key`);
@@ -64,7 +70,9 @@ const result = {
     exportsConfig: /export\s+const\s+config\s*=/.test(functionSource),
     weeklySchedule: /schedule\s*:\s*['"]@weekly['"]/.test(functionSource),
     indexNowEndpoint: functionSource.includes('https://api.indexnow.org/indexnow'),
-    sitemapSource: functionSource.includes('sitemap.xml'),
+    discoveryManifestSource: functionSource.includes('discovery-lastmod.json'),
+    persistentDeltaState: functionSource.includes('@netlify/blobs') && functionSource.includes('getStore'),
+    deltaSubmission: functionSource.includes('resolveIndexNowDelta'),
     keyFileMatches: keyFileValue === indexNowKey
   },
   errors

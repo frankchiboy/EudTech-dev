@@ -77,6 +77,12 @@ jobs:
           set -o pipefail
           npm run verify:discovery | tee reports/verify-discovery.log
 
+      - name: Verify canonical URL normalization
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run verify:canonical-url | tee reports/verify-canonical-url.log
+
       - name: Audit configurator route coverage
         shell: bash
         run: |
@@ -165,11 +171,11 @@ jobs:
           set -o pipefail
           npm run verify:live-exposure -- --expect-commit "$GITHUB_SHA" --wait-for-commit-ms 600000 | tee reports/verify-live-exposure.log
 
-      - name: Submit IndexNow URLs
+      - name: Verify IndexNow delta input
         shell: bash
         run: |
           set -o pipefail
-          npm run submit:indexnow | tee reports/submit-indexnow.log
+          npm run verify:indexnow-delta | tee reports/verify-indexnow-delta.log
 
       - name: Upload exposure reports
         if: always()

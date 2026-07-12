@@ -30,6 +30,7 @@ const PUBLIC_FILE_ALLOWLIST = [
   'image-sitemap.xml',
   'feed.xml',
   'feed.json',
+  'discovery-lastmod.json',
   'configurator-links.html',
   'llms.txt',
   'llms-full.txt',

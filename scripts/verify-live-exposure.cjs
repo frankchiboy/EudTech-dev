@@ -28,6 +28,7 @@ const requiredDiscoveryUrls = [
   `${siteOrigin}/image-sitemap.xml`,
   `${siteOrigin}/feed.xml`,
   `${siteOrigin}/feed.json`,
+  `${siteOrigin}/discovery-lastmod.json`,
   configuratorLinkIndexUrl,
   `${siteOrigin}/llms.txt`,
   `${siteOrigin}/llms-full.txt`
@@ -356,6 +357,7 @@ function checkDiscoveryFiles(discovery, errors) {
   const imageSitemap = discovery.find((item) => item.url.endsWith('/image-sitemap.xml'))?.text || '';
   const feed = discovery.find((item) => item.url.endsWith('/feed.xml'))?.text || '';
   const feedJsonText = discovery.find((item) => item.url.endsWith('/feed.json'))?.text || '';
+  const lastmodManifestText = discovery.find((item) => item.url.endsWith('/discovery-lastmod.json'))?.text || '';
   const configuratorLinksHtml = discovery.find((item) => item.url === configuratorLinkIndexUrl)?.text || '';
   const llms = discovery.find((item) => item.url.endsWith('/llms.txt'))?.text || '';
   const llmsFull = discovery.find((item) => item.url.endsWith('/llms-full.txt'))?.text || '';
@@ -363,10 +365,16 @@ function checkDiscoveryFiles(discovery, errors) {
   const imageSitemapLocs = new Set(collectXmlLocs(imageSitemap).filter((loc) => loc.startsWith(siteOrigin) && !/\.(jpg|jpeg|png|webp|svg)$/i.test(loc)));
   const sitemapIndexLocs = new Set(collectXmlLocs(sitemapIndex));
   let feedJson;
+  let lastmodManifest;
   try {
     feedJson = JSON.parse(feedJsonText);
   } catch {
     feedJson = undefined;
+  }
+  try {
+    lastmodManifest = JSON.parse(lastmodManifestText);
+  } catch {
+    lastmodManifest = undefined;
   }
   const feedJsonLinks = new Set((feedJson?.items || []).map((item) => item.url).filter(Boolean));
 
@@ -404,6 +412,10 @@ function checkDiscoveryFiles(discovery, errors) {
   assert(/<meta name="robots" content="index, follow">/i.test(configuratorLinksHtml), errors, 'configurator-links.html should be index, follow.');
   assert(configuratorLinksHtml.includes('application/ld+json'), errors, 'configurator-links.html missing JSON-LD.');
   assert(feedJson?.version === 'https://jsonfeed.org/version/1.1', errors, 'feed.json missing valid JSON Feed version.');
+  assert(lastmodManifest?.version === 1 && lastmodManifest?.entries, errors, 'discovery-lastmod.json missing a valid manifest.');
+  for (const url of requiredPageUrls) {
+    assert(/^[a-f0-9]{64}$/i.test(lastmodManifest?.entries?.[url]?.hash || ''), errors, `discovery-lastmod.json missing ${url}.`);
+  }
 
   for (const product of CONFIGURATOR_PRODUCT_SEO) {
     assert(llmsFull.includes(product.productId), errors, `llms-full.txt missing ${product.productId}.`);
