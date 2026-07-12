@@ -106,11 +106,11 @@
       <description>配置 RACKABLE WS 6x5090，保留 NVIDIA GeForce RTX 5090 GPU 與 AMD EPYC 平台假設，供 AI 工作站報價審查。</description>
     </item>
     <item>
-      <title>NVIDIA H200 GPU 伺服器報價配置器｜AI 訓練與推論</title>
+      <title>NVIDIA H200 伺服器報價與價格規劃｜AI 訓練與推論</title>
       <link>https://eudaemonia.tech/solutions/nvidia-h200-server/</link>
       <guid>https://eudaemonia.tech/solutions/nvidia-h200-server/</guid>
       <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
-      <description>比較並配置液冷 NVIDIA H200 GPU 伺服器，面向 AI 訓練、HPC 與下一代推論需求，並可將配置送交 EudTech 追蹤報價。</description>
+      <description>規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，再由 EudTech 依實際配置確認價格與交期。</description>
     </item>
     <item>
       <title>RTX PRO 6000 本地 AI 推論工作站報價配置器</title>
@@ -134,18 +134,18 @@
       <description>探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。</description>
     </item>
     <item>
-      <title>AI RFQ 用 GPU 伺服器報價配置器</title>
+      <title>GPU 伺服器報價與價格規劃｜AI RFQ 配置器</title>
       <link>https://eudaemonia.tech/solutions/gpu-server-quote/</link>
       <guid>https://eudaemonia.tech/solutions/gpu-server-quote/</guid>
       <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
-      <description>建立可供 RFQ 使用的 GPU 伺服器報價需求，將 H200 或 RTX PRO 6000 系統的 GPU、CPU、RAM、電力、儲存與網路一次整理成摘要。</description>
+      <description>建立可供 RFQ 使用的 GPU 伺服器報價需求，將 H200 或 RTX PRO 6000 系統的硬體與部署價格影響因素一次整理成摘要。</description>
     </item>
     <item>
-      <title>H200 vs RTX PRO 6000：AI 訓練、推論與 GPU 伺服器報價比較</title>
+      <title>H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？</title>
       <link>https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/</link>
       <guid>https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/</guid>
       <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
-      <description>比較 NVIDIA H200 與 RTX PRO 6000 在 AI 訓練、本地推論、工作站使用與 GPU 伺服器報價準備上的差異，再進入配置器。</description>
+      <description>依工作負載、部署型態、GPU 密度與採購審查需求比較 NVIDIA H200 與 RTX PRO 6000，再進入對應配置器準備可詢價的配置。</description>
     </item>
     <item>
       <title>AI 採購 GPU 伺服器 RFQ 檢核表</title>
@@ -190,11 +190,11 @@
       <description>比較評估 Supermicro 類 GPU 伺服器 RFQ 與 Comino Grando 配置器導向 AI 伺服器報價時的採購路徑。</description>
     </item>
     <item>
-      <title>台灣 LLM AI 推論伺服器報價配置器</title>
+      <title>AI 推論伺服器報價配置器｜台灣 LLM 與私有模型部署</title>
       <link>https://eudaemonia.tech/solutions/ai-inference-server-taiwan/</link>
       <guid>https://eudaemonia.tech/solutions/ai-inference-server-taiwan/</guid>
       <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
-      <description>為台灣 LLM 與私有模型服務配置 AI 推論伺服器，保留 GPU 記憶體、系統記憶體、NVMe、網路、部署與報價追蹤脈絡。</description>
+      <description>為台灣 LLM 與私有模型服務配置 AI 推論伺服器，保留併發量、GPU 記憶體、系統記憶體、NVMe、網路、部署與報價追蹤脈絡。</description>
     </item>
     <item>
       <title>Comino Grando 台灣報價配置器指南</title>
