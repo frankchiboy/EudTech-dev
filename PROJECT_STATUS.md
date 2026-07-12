@@ -1,6 +1,6 @@
 # Configurator Exposure Project Status
 
-更新時間：2026-07-13 03:49 Asia/Taipei
+更新時間：2026-07-13 04:00 Asia/Taipei
 
 這是 Configurator 曝光、詢價追蹤與正式部署的唯一接續入口。系統邊界、導入決策與操作
 準則見 `CONFIGURATOR_KNOWLEDGE.md`；歷史細節仍保留在
@@ -15,11 +15,11 @@
 | 項目 | 狀態 |
 |---|---|
 | Git branch | `main`；接續前以 `git status --short --branch` 與 `git log -1 --oneline` 回讀 |
-| Latest Configurator behavior change | `c2aba2b3d2d5d1bf08ae6a0a474a2d822e982919` - `Persist configurator conversion history` |
+| Latest Configurator behavior change | `62960aa2cd1f6e7424d2bf1c663744f8b1d60004` - `Optimize configurator SEO from Search Console data` |
 | Production | `https://eudaemonia.tech` |
 | Netlify site | `website-eudtech`，site ID `325fdd3d-ba57-4a86-987f-4f0267a2b8ed` |
-| Latest functional production verification | `c2aba2b` 已通過完整 production verification；文件-only commit 會更新 `build-meta.json`，但不改變 Configurator 行為 |
-| Latest resume verification | 2026-07-13：production `build-meta.json`、Netlify production deploy、`marketing-event` 持久寫入及 Blob 彙總報表皆回讀為 `c2aba2b` 行為 |
+| Latest functional production verification | `62960aa` 已通過 production commit 回讀、IndexNow 與 Search Console sitemap submission；文件-only commit 會更新 `build-meta.json`，但不改變 Configurator 行為 |
+| Latest resume verification | 2026-07-13：production `build-meta.json` 與 Netlify production deploy 回讀為 `62960aa`；四個 discovery 檔均由 Search Console 接受（HTTP 204），IndexNow 回應 HTTP 200 |
 | Main Configurator | `https://eudaemonia.tech/configurator/` |
 | Primary quote route | `https://eudaemonia.tech/configurator/29/` |
 
@@ -30,6 +30,7 @@
      sitemap/image sitemap/RSS/JSON Feed/LLM discovery files、route-specific social previews 均已上線。
    - 目前 production 驗證涵蓋 30 個頁面與 31 張 social preview images。
    - CTA 會使用帶尾斜線的 canonical Configurator URL。
+   - 2026-07-13 已依 Search Console 90 天實際資料更新 H200、H200 vs RTX PRO 6000 與 GPU server RFQ 頁的 title、description、lead 與 FAQ；不新增 landing page，完整判斷記錄見 `docs/configurator-search-console-decision-20260713.md`。
 
 2. First-party conversion measurement
    - `quote_request_id` 在開啟詢價表單時建立，重送同一張表單時維持不變。
@@ -65,7 +66,10 @@
 | `node scripts/audit-configurator-exposure-readiness.cjs` | On-site checks 通過；外部廣告平台 ID 仍未齊備 |
 | `npm run verify:marketing-event-health` | Production 通過，`quoteRequestIdAccepted: true`、`durableStorageStored: true` |
 | `npm run report:configurator-conversions -- --days=1` | Production Blob 讀取通過；回傳僅聚合欄位 |
-| `npm run verify:live-exposure -- --expect-commit c2aba2b3d2d5d1bf08ae6a0a474a2d822e982919 --wait-for-commit-ms 600000` | Production 通過，`build-meta.json` 為同一 commit |
+| `npm run report:search-console -- --days=90 --row-limit=250` | 通過；回傳 37 個 Configurator/solution rows，已作為本輪內容決策依據 |
+| `npm run submit:indexnow:current` | HTTP 200；已提交最新 URL 集合 |
+| `npm run submit:search-console` | 四個 discovery 檔均 HTTP 204；Search Console 回讀 errors/warnings 為 0 |
+| production `build-meta.json` | 回讀 commit `62960aa2cd1f6e7424d2bf1c663744f8b1d60004` |
 
 ## Pending Authorization And External State
 
@@ -142,6 +146,7 @@
 | Production event verification and aggregate reporting | `scripts/check-marketing-event-health.cjs`、`scripts/report-configurator-conversion-history.cjs` |
 | SEO/exposure readiness audit | `scripts/audit-configurator-exposure-readiness.cjs` |
 | Configurator system and decision knowledge | `CONFIGURATOR_KNOWLEDGE.md` |
+| Latest Search Console content decision | `docs/configurator-search-console-decision-20260713.md` |
 | Historical exposure implementation | `docs/configurator-exposure-checklist.md` |
 | Original prompt archives | `USER_ORIGINAL_PROMPTS.md`, `docs/USER_ORIGINAL_PROMPTS.md` |
 

@@ -121,6 +121,8 @@ flowchart LR
 
 自然曝光優先順序必須以可重複資料決定：固定讀取 Search Console 的 query、page、click、impression、CTR、average position，以及未來 GA4 的 Configurator engagement 與 quote funnel。每次決策應把資料區間、篩選條件、候選頁面與採用理由寫入新的 tracked 決策紀錄；未取得這些資料前，不可用主觀流量預測新增頁面或投入廣告。
 
+2026-07-13 的第一份實際資料決策記錄為 `docs/configurator-search-console-decision-20260713.md`：以 90 天的 37 個 Search Console rows 優化既有 H200、H200 vs RTX PRO 6000 與通用 RFQ 頁，不新增 landing page；下一個 Search Console reporting cycle 必須以相同區間重新比較 CTR、impressions 與 average position。
+
 ## 9. 部署與驗證基準
 
 1. 儲存庫：`frankchiboy/EudTech-dev`；production Netlify site：`website-eudtech`。
