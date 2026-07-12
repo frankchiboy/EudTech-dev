@@ -1,6 +1,6 @@
 # Configurator Exposure Project Status
 
-更新時間：2026-07-12 Asia/Taipei
+更新時間：2026-07-13 03:25 Asia/Taipei
 
 這是 Configurator 曝光、詢價追蹤與正式部署的唯一接續入口。歷史細節仍保留在
 `docs/configurator-exposure-checklist.md`，但其中的舊版部署 commit 與舊統計數字不應
@@ -18,6 +18,7 @@
 | Production | `https://eudaemonia.tech` |
 | Netlify site | `website-eudtech`，site ID `325fdd3d-ba57-4a86-987f-4f0267a2b8ed` |
 | Latest functional production verification | `e80d468` 已通過完整 production verification；文件-only commit 會更新 `build-meta.json`，但不改變 Configurator 行為 |
+| Latest resume verification | 2026-07-13：`main` 與 `origin/main` 已同步；production `build-meta.json` 為文件-only commit `3d380dc3aa12bef932e9d2750ea913364e8b1af6` |
 | Main Configurator | `https://eudaemonia.tech/configurator/` |
 | Primary quote route | `https://eudaemonia.tech/configurator/29/` |
 
