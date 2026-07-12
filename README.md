@@ -9,7 +9,7 @@
 - **建置**: Vite 5.4
 - **狀態管理**: Context API + Custom Hooks
 - **路由**: React Router Dom
-- **郵件服務**: EmailJS
+- **郵件服務**: Netlify `send-email` Function + Nodemailer/Gmail OAuth；舊 EmailJS 路徑僅保留相容層
 
 ### 設計系統層級
 
@@ -157,6 +157,8 @@ npm run lint     # 代碼檢查
 
 ## 🔎 Configurator 曝光與 SEO
 
+目前可接續的專案狀態與外部授權待辦請先讀取 [PROJECT_STATUS.md](PROJECT_STATUS.md)。
+
 Configurator 曝光主線集中在以下入口：
 
 | 類型 | 路徑 |
@@ -244,7 +246,7 @@ GitHub Actions 內的 `Public Exposure Checks` 會每週一自動執行，也可
 
 `audit:public-assets` 會只讀檢查 `public/` 的資產數量、總大小、超大檔、完全重複檔、`.DS_Store` 與誤產生的 `.png.png` 檔。預設不刪檔、不改圖、不壓縮；`:strict` 會把這些治理問題視為失敗。
 
-`verify:marketing-event-health` 只對正式站第一方曝光事件端點做 GET 健康檢查，不送出測試事件。`exposure:public:readonly` 會串接 discovery、社群圖、推廣素材、public 資產、正式站 live exposure、IndexNow dry-run 與 marketing endpoint health，是目前不需要外部平台憑證的公開曝光閉環。
+`verify:marketing-event-health` 會先對正式站第一方曝光事件端點做 GET 健康檢查，再 POST 一筆不含個資的 `configurator_lead_intent` probe，驗證 `quote_request_id` 能被保留與回傳；此命令不寄送詢價信，但會新增一筆測試行銷事件。`exposure:public:readonly` 會串接 discovery、社群圖、推廣素材、public 資產、正式站 live exposure、IndexNow dry-run 與 marketing endpoint health，是目前不需要外部平台憑證的公開曝光閉環。
 
 Netlify 內的 `exposure-scheduled` Scheduled Function 會每週從正式站讀取 `sitemap.xml`，並把 URL 清單提交到 IndexNow。這條流程在已發布的 Netlify deploy 上執行，不依賴 Google Search Console 憑證。
 

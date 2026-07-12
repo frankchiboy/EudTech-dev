@@ -24,7 +24,8 @@ npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing
 
 ## Current Verified State
 
-Verified on 2026-07-06 Asia/Taipei.
+Verified on 2026-07-12 Asia/Taipei. The authoritative resume state is also recorded in
+[`PROJECT_STATUS.md`](../PROJECT_STATUS.md).
 
 | Area | Status | Evidence / next action |
 |---|---|---|
@@ -33,6 +34,8 @@ Verified on 2026-07-06 Asia/Taipei.
 | GitHub Actions variables | Partially synced | The same five frontend variables are present in repository variables. |
 | GitHub Actions secrets | Partially synced | `NETLIFY_AUTH_TOKEN`, `GOOGLE_ANALYTICS_PROPERTY_ID`, `GOOGLE_TAG_MANAGER_ACCOUNT_ID`, and `GOOGLE_TAG_MANAGER_CONTAINER_ID` are present. |
 | Production browser tracking | Active for GA/GTM | The production bundle contains the configured GTM container and GA4 measurement ID. |
+| GA4 reporting API | Pending explicit Terms approval | A property-scoped Viewer service account is ready, but Google Analytics Data API (`analyticsdata.googleapis.com`) is not enabled in `eudaemonia-vault-20260203`. Do not click Enable or accept Google APIs Terms without explicit user approval. |
+| Quote journey measurement | Active | Anonymous `quote_request_id` joins the quote form, first-party conversion event, quote email, and `quote_email_sent` log. |
 | Paid conversion / retargeting | Blocked by empty platform values | Fill the Google Ads, LinkedIn, Meta, and Microsoft Ads fields listed below, then rerun the strict sync and audit commands. |
 
 The external audit reports separate `accessReady` from `configComplete`. `accessReady=true` means the automation token can read the service; `configComplete=false` means paid-platform IDs or API credentials are still empty.

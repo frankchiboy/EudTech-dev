@@ -1,5 +1,8 @@
 # Configurator Exposure Checklist
 
+> 目前接續狀態以 [PROJECT_STATUS.md](../PROJECT_STATUS.md) 為準。
+> 本文件保留完整歷史實作細節；其中較早的 deploy commit、Search Console 統計與外部權限描述可能已過時。
+
 ## Priority Keywords
 
 | Intent | English keywords | Traditional Chinese keywords | Target URL |
@@ -160,9 +163,15 @@
 
 ## Current External Permission Gap
 
+Current authoritative state is in [`PROJECT_STATUS.md`](../PROJECT_STATUS.md). As of
+2026-07-12, production commit `e80d468b2038f140808fa5f1a8165c9985020933` is verified live.
+The quote funnel now uses an anonymous `quote_request_id` across the frontend event,
+first-party event function, quote email, and `quote_email_sent` log. Google Analytics
+Data API still requires explicit approval to accept Google APIs Terms before it can be enabled.
+
 Google Search Console API submission is currently usable in this shell through local ADC when the scripts request the explicit `https://www.googleapis.com/auth/webmasters` scope. `npm run submit:search-console` has successfully submitted `sitemap-index.xml`, `sitemap.xml`, `image-sitemap.xml`, and `feed.xml`; `npm run monitor:sitemaps`, `npm run inspect:search-console`, and `npm run report:search-console` also complete without printing tokens. On 2026-07-10 Asia/Taipei, Search Console accepted all four sitemap/feed submissions with HTTP 204 and `monitor:sitemaps` reported `errors: 0`, `warnings: 0`. Google downloaded the same four discovery files at 2026-07-10T08:42:45Z through 2026-07-10T08:42:47Z UTC.
 
-Production verification in this workspace has confirmed `/build-meta.json` can be matched against an expected deployed commit with `npm run verify:live-exposure -- --expect-commit <sha>`, and live exposure verification currently passes against production commit `b8584c2a046c12b95011d2fa5efe3a0460f5ce13`. The production site exposes sitemap, image sitemap, RSS feed, JSON Feed, LLM discovery files, static SEO HTML, social preview images, and the first-party marketing event endpoint. `npm run submit:indexnow:current` also successfully submitted the current URL set to IndexNow with HTTP 200 on 2026-07-10 Asia/Taipei.
+Production verification in this workspace has confirmed `/build-meta.json` can be matched against an expected deployed commit with `npm run verify:live-exposure -- --expect-commit <sha>`, and live exposure verification currently passes against production commit `e80d468b2038f140808fa5f1a8165c9985020933`. The production site exposes sitemap, image sitemap, RSS feed, JSON Feed, LLM discovery files, static SEO HTML, social preview images, and the first-party marketing event endpoint. `npm run submit:indexnow:current` also successfully submitted the current URL set to IndexNow with HTTP 200 on 2026-07-10 Asia/Taipei.
 
 Search Console URL Inspection on 2026-07-10T08:44:59Z inspected 73 URLs: 31 canonical URLs and 42 aliases. Google reported 21 indexed canonical URLs, 10 unindexed canonical URLs, 7 discovered-but-not-indexed canonical URLs, 1 stale double-slash user-canonical record from the 2026-06-27 crawl, and 0 inspection errors. The five URLs that Search Console reported without sitemap signal are present in the current discovery file set; the current action is to keep sitemap monitoring active and wait for Google to refresh those URL-level signals.
 
