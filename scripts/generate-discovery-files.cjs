@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const { getConfiguratorSocialPreviewRoutes } = require('./configurator-social-preview-routes.cjs');
@@ -22,10 +23,8 @@ const taipeiDateParts = Object.fromEntries(
     .filter((part) => part.type !== 'literal')
     .map((part) => [part.type, part.value])
 );
-const lastmod = `${taipeiDateParts.year}-${taipeiDateParts.month}-${taipeiDateParts.day}`;
-const pubDateWeekday = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Taipei', weekday: 'short' }).format(now);
-const pubDateMonth = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Taipei', month: 'short' }).format(now);
-const pubDate = `${pubDateWeekday}, ${taipeiDateParts.day} ${pubDateMonth} ${taipeiDateParts.year} 00:00:00 +0800`;
+const buildDate = `${taipeiDateParts.year}-${taipeiDateParts.month}-${taipeiDateParts.day}`;
+const lastmodManifestPath = path.join(publicDir, 'discovery-lastmod.json');
 
 const escapeXml = (value) =>
   String(value)
@@ -44,6 +43,38 @@ const escapeHtml = (value) =>
     .replace(/'/g, '&#39;');
 
 const getZh = (value) => value.zh;
+const contentHash = (value) => crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
+const readLastmodManifest = () => {
+  if (!fs.existsSync(lastmodManifestPath)) {
+    return { entries: {} };
+  }
+
+  try {
+    const parsed = JSON.parse(fs.readFileSync(lastmodManifestPath, 'utf8'));
+    return parsed && typeof parsed === 'object' && parsed.entries && typeof parsed.entries === 'object'
+      ? parsed
+      : { entries: {} };
+  } catch {
+    return { entries: {} };
+  }
+};
+const formatRfc822Date = (dateValue) => {
+  const date = new Date(`${dateValue}T00:00:00+08:00`);
+  const weekday = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Taipei', weekday: 'short' }).format(date);
+  const month = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Taipei', month: 'short' }).format(date);
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Asia/Taipei',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
+      .formatToParts(date)
+      .filter((part) => part.type !== 'literal')
+      .map((part) => [part.type, part.value])
+  );
+  return `${weekday}, ${parts.day} ${month} ${parts.year} 00:00:00 +0800`;
+};
 const priorityBySlug = {
   'nvidia-h200-server': '0.9',
   'rtx-pro-6000-workstation': '0.9',
@@ -59,42 +90,95 @@ const solutionUrls = CONFIGURATOR_SEO_PAGES.map((page) => ({
   loc: pageUrl(`/solutions/${page.slug}`),
   title: getZh(page.title),
   description: getZh(page.description),
-  priority: priorityBySlug[page.slug] || '0.85'
+  priority: priorityBySlug[page.slug] || '0.85',
+  source: page
 }));
 const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
   loc: pageUrl(product.configuratorHref),
   title: getZh(product.title),
   description: getZh(product.description),
-  priority: product.id === 28 || product.id === 29 ? '0.9' : '0.86'
+  priority: product.id === 28 || product.id === 29 ? '0.9' : '0.86',
+  source: product
 }));
+const homepageUrl = {
+  loc: `${siteOrigin}/`,
+  title: 'AI GPU 伺服器與 Comino 配置器',
+  description: 'EudTech 提供 AI GPU 伺服器、Comino Grando 液冷系統，以及可送出 GPU 伺服器與工作站報價需求的配置器。',
+  priority: '1.0',
+  source: {
+    title: 'AI GPU 伺服器與 Comino 配置器',
+    description: 'EudTech 提供 AI GPU 伺服器、Comino Grando 液冷系統，以及可送出 GPU 伺服器與工作站報價需求的配置器。'
+  }
+};
 const solutionHubUrl = {
   loc: pageUrl('/solutions'),
   title: 'GPU 伺服器報價與配置器解決方案',
   description: 'EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。',
-  priority: '0.93'
+  priority: '0.93',
+  source: {
+    title: 'GPU 伺服器報價與配置器解決方案',
+    description: 'EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。',
+    solutionSlugs: CONFIGURATOR_SEO_PAGES.map((page) => page.slug)
+  }
 };
 const configuratorUrl = {
   loc: pageUrl('/configurator'),
   title: 'Comino Grando GPU 伺服器報價配置器',
   description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。',
-  priority: '0.95'
+  priority: '0.95',
+  source: {
+    title: 'Comino Grando GPU 伺服器報價配置器',
+    description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。',
+    productIds: CONFIGURATOR_PRODUCT_SEO.map((product) => product.id)
+  }
 };
 const configuratorLinkIndexUrl = {
   loc: pageUrl(CONFIGURATOR_LINK_INDEX_PATH),
   title: 'EudTech 配置器公開連結索引',
   description: 'EudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。',
-  priority: '0.82'
+  priority: '0.82',
+  source: {
+    title: 'EudTech 配置器公開連結索引',
+    description: 'EudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。',
+    products: CONFIGURATOR_PRODUCT_SEO.map((product) => ({ id: product.id, title: product.title, description: product.description })),
+    solutions: CONFIGURATOR_SEO_PAGES.map((page) => ({ slug: page.slug, title: page.title, description: page.description }))
+  }
 };
 
 const sitemapEntries = [
-  { loc: `${siteOrigin}/`, changefreq: 'weekly', priority: '1.0' },
-  { loc: configuratorUrl.loc, changefreq: 'weekly', priority: configuratorUrl.priority },
-  { loc: solutionHubUrl.loc, changefreq: 'weekly', priority: solutionHubUrl.priority },
-  { loc: configuratorLinkIndexUrl.loc, changefreq: 'weekly', priority: configuratorLinkIndexUrl.priority },
-  ...productUrls.map((entry) => ({ loc: entry.loc, changefreq: 'weekly', priority: entry.priority })),
-  ...solutionUrls.map((entry) => ({ loc: entry.loc, changefreq: 'weekly', priority: entry.priority })),
-  { loc: `${siteOrigin}/careers`, changefreq: 'monthly', priority: '0.45' }
+  { ...homepageUrl, changefreq: 'weekly' },
+  { ...configuratorUrl, changefreq: 'weekly' },
+  { ...solutionHubUrl, changefreq: 'weekly' },
+  { ...configuratorLinkIndexUrl, changefreq: 'weekly' },
+  ...productUrls.map((entry) => ({ ...entry, changefreq: 'weekly' })),
+  ...solutionUrls.map((entry) => ({ ...entry, changefreq: 'weekly' })),
+  { loc: `${siteOrigin}/careers`, changefreq: 'monthly', priority: '0.45', source: { path: '/careers' } }
 ];
+const previousLastmodManifest = readLastmodManifest();
+const lastmodEntries = Object.fromEntries(sitemapEntries.map((entry) => {
+  const hash = contentHash({
+    loc: entry.loc,
+    changefreq: entry.changefreq,
+    priority: entry.priority,
+    source: entry.source
+  });
+  const previous = previousLastmodManifest.entries?.[entry.loc];
+  const unchanged = previous?.hash === hash && /^\d{4}-\d{2}-\d{2}$/.test(previous.modifiedAt || '');
+  const publishedAt = unchanged && /^\d{4}-\d{2}-\d{2}$/.test(previous.publishedAt || '')
+    ? previous.publishedAt
+    : buildDate;
+  return [entry.loc, {
+    hash,
+    publishedAt,
+    modifiedAt: unchanged ? previous.modifiedAt : buildDate
+  }];
+}));
+const lastmodFor = (loc) => lastmodEntries[loc]?.modifiedAt || buildDate;
+const publishedAtFor = (loc) => lastmodEntries[loc]?.publishedAt || buildDate;
+const latestModifiedAt = Object.values(lastmodEntries)
+  .map((entry) => entry.modifiedAt)
+  .sort()
+  .at(-1) || buildDate;
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -102,7 +186,7 @@ ${sitemapEntries
   .map(
     (entry) => `  <url>
     <loc>${escapeXml(entry.loc)}</loc>
-    <lastmod>${lastmod}</lastmod>
+    <lastmod>${lastmodFor(entry.loc)}</lastmod>
     <changefreq>${entry.changefreq}</changefreq>
     <priority>${entry.priority}</priority>
   </url>`
@@ -122,7 +206,7 @@ ${sitemapIndexEntries
   .map(
     (loc) => `  <sitemap>
     <loc>${escapeXml(loc)}</loc>
-    <lastmod>${lastmod}</lastmod>
+    <lastmod>${latestModifiedAt}</lastmod>
   </sitemap>`
   )
   .join('\n')}
@@ -149,6 +233,7 @@ ${pageImageEntries
   .map(
     (entry) => `  <url>
     <loc>${escapeXml(entry.loc)}</loc>
+    <lastmod>${lastmodFor(entry.loc)}</lastmod>
 ${entry.images
   .map(
     (image) => `    <image:image>
@@ -169,7 +254,7 @@ const feedItems = feedEntries
       <title>${escapeXml(entry.title)}</title>
       <link>${escapeXml(entry.loc)}</link>
       <guid>${escapeXml(entry.loc)}</guid>
-      <pubDate>${pubDate}</pubDate>
+      <pubDate>${formatRfc822Date(lastmodFor(entry.loc))}</pubDate>
       <description>${escapeXml(entry.description)}</description>
     </item>`
   )
@@ -182,7 +267,7 @@ const feed = `<?xml version="1.0" encoding="UTF-8"?>
     <link>${pageUrl('/solutions')}</link>
     <description>AI GPU server, Comino Grando configurator, workstation quote, and procurement solution entry points from EudTech.</description>
     <language>zh-TW</language>
-    <lastBuildDate>${pubDate}</lastBuildDate>
+    <lastBuildDate>${formatRfc822Date(latestModifiedAt)}</lastBuildDate>
     <atom:link href="${siteOrigin}/feed.xml" rel="self" type="application/rss+xml" />
 ${feedItems}
   </channel>
@@ -209,8 +294,8 @@ const jsonFeed = JSON.stringify(
       title: entry.title,
       summary: entry.description,
       content_text: `${entry.title}\n\n${entry.description}\n\n${entry.loc}`,
-      date_published: `${lastmod}T00:00:00+08:00`,
-      date_modified: `${lastmod}T00:00:00+08:00`
+      date_published: `${publishedAtFor(entry.loc)}T00:00:00+08:00`,
+      date_modified: `${lastmodFor(entry.loc)}T00:00:00+08:00`
     }))
   },
   null,
@@ -551,6 +636,10 @@ fs.writeFileSync(path.join(publicDir, 'feed.json'), `${jsonFeed}\n`);
 fs.writeFileSync(path.join(publicDir, 'llms.txt'), llms);
 fs.writeFileSync(path.join(publicDir, 'llms-full.txt'), llmsFull);
 fs.writeFileSync(path.join(publicDir, 'configurator-links.html'), configuratorLinksHtml);
+fs.writeFileSync(
+  lastmodManifestPath,
+  `${JSON.stringify({ version: 1, entries: lastmodEntries }, null, 2)}\n`
+);
 
 console.log(`✓ Generated discovery files for ${solutionUrls.length + 1} configurator solution pages`);
 console.log(`✓ Generated discovery files for ${productUrls.length} configurator product pages`);

@@ -32,6 +32,7 @@ const llmsFullText = readPublicFile('llms-full.txt');
 const robotsText = readPublicFile('robots.txt');
 const headersText = readPublicFile('_headers');
 const configuratorLinksHtml = readPublicFile('configurator-links.html');
+const lastmodManifestText = readPublicFile('discovery-lastmod.json');
 const rootDir = path.resolve(__dirname, '..');
 const netlifyToml = fs.readFileSync(path.join(rootDir, 'netlify.toml'), 'utf8');
 const llmsDiscoveryEdgeFunction = fs.readFileSync(path.join(rootDir, 'netlify', 'edge-functions', 'llms-discovery-headers.js'), 'utf8');
@@ -42,10 +43,16 @@ const imageSitemapImageLocs = new Set(collectImageLocs(imageSitemapXml));
 const sitemapIndexLocs = new Set(collectXmlLocs(sitemapIndexXml));
 const feedLinks = new Set(collectFeedLinks(feedXml));
 let feedJson;
+let lastmodManifest;
 try {
   feedJson = JSON.parse(feedJsonText);
 } catch (error) {
   feedJson = undefined;
+}
+try {
+  lastmodManifest = JSON.parse(lastmodManifestText);
+} catch (error) {
+  lastmodManifest = undefined;
 }
 const feedJsonLinks = new Set(feedJson ? collectJsonFeedLinks(feedJson) : []);
 const errors = [];
@@ -140,6 +147,26 @@ if (!/\/configurator-links\.html[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test
 
 if (!feedJson || feedJson.version !== 'https://jsonfeed.org/version/1.1') {
   errors.push('feed.json missing valid JSON Feed version.');
+}
+
+if (!lastmodManifest || lastmodManifest.version !== 1 || !lastmodManifest.entries) {
+  errors.push('discovery-lastmod.json missing a valid manifest.');
+} else {
+  requiredIndexUrls.forEach((url) => {
+    const metadata = lastmodManifest.entries[url];
+    const sitemapEntry = sitemapXml.match(new RegExp(`<url>\\s*<loc>${url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}</loc>\\s*<lastmod>([^<]+)</lastmod>`, 'i'));
+    if (!metadata || !/^\d{4}-\d{2}-\d{2}$/.test(metadata.modifiedAt || '') || !/^[a-f0-9]{64}$/i.test(metadata.hash || '')) {
+      errors.push(`discovery-lastmod.json missing valid metadata for ${url}`);
+    } else if (!sitemapEntry || sitemapEntry[1] !== metadata.modifiedAt) {
+      errors.push(`sitemap.xml lastmod does not match manifest for ${url}`);
+    }
+  });
+  (feedJson?.items || []).forEach((item) => {
+    const metadata = lastmodManifest.entries[item.url];
+    if (metadata && item.date_modified !== `${metadata.modifiedAt}T00:00:00+08:00`) {
+      errors.push(`feed.json date_modified does not match manifest for ${item.url}`);
+    }
+  });
 }
 
 if (!/\/build-meta\.json[\s\S]*max-age=0[\s\S]*must-revalidate/i.test(headersText)) {

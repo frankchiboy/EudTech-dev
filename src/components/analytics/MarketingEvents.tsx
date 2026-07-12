@@ -31,6 +31,9 @@ type FbqFunction = ((...args: unknown[]) => void) & {
 type UetQueue = {
   push: (...args: unknown[]) => unknown;
 };
+type LinkedInTracker = ((...args: unknown[]) => void) & {
+  q?: unknown[][];
+};
 
 declare global {
   interface Window {
@@ -38,7 +41,7 @@ declare global {
     gtag?: (...args: GtagArguments) => void;
     fbq?: FbqFunction;
     _fbq?: FbqFunction;
-    lintrk?: (...args: unknown[]) => void;
+    lintrk?: LinkedInTracker;
     _linkedin_partner_id?: string;
     _linkedin_data_partner_ids?: string[];
     UET?: new (options: Record<string, unknown>) => UetQueue;
@@ -212,6 +215,16 @@ const initializeLinkedInInsight = () => {
     return;
   }
 
+  // Match LinkedIn's queue snippet so an early quote conversion is not dropped
+  // while the asynchronous Insight Tag is still loading.
+  if (!window.lintrk) {
+    const tracker = ((...args: unknown[]) => {
+      tracker.q?.push(args);
+    }) as LinkedInTracker;
+    tracker.q = [];
+    window.lintrk = tracker;
+  }
+
   window._linkedin_partner_id = marketingConfig.linkedInPartnerId;
   window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
   window._linkedin_data_partner_ids.push(marketingConfig.linkedInPartnerId);
@@ -287,6 +300,19 @@ const sendMicrosoftPageView = (pagePath: string, pageTitle: string) => {
   });
 };
 
+const sendGoogleAdsPageView = (pageLocation: string, pagePath: string, pageTitle: string) => {
+  if (!marketingConfig.googleAdsId) {
+    return;
+  }
+
+  // Google Ads uses this route-level config call for SPA remarketing page views.
+  window.gtag?.('config', marketingConfig.googleAdsId, {
+    page_location: pageLocation,
+    page_path: pagePath,
+    page_title: pageTitle
+  });
+};
+
 const sendPageView = (attribution: MarketingAttribution) => {
   const pageLocation = window.location.href;
   const pagePath = `${window.location.pathname}${window.location.search}`;
@@ -314,6 +340,7 @@ const sendPageView = (attribution: MarketingAttribution) => {
     });
   }
 
+  sendGoogleAdsPageView(pageLocation, pagePath, pageTitle);
   sendMetaPageView();
   sendMicrosoftPageView(pagePath, pageTitle);
 };

@@ -192,6 +192,8 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   server: {
+    // Permit the containerized browser test runtime to reach this local Vite server.
+    allowedHosts: ['host.docker.internal'],
     // 啟用 HMR 但使用預設配置，避免頻繁重新載入
     hmr: {
       overlay: true,
