@@ -31,6 +31,15 @@ const trackLeadIntent = (slug: string, action: string) => {
   );
 };
 
+const canonicalConfiguratorPath = (value: string) => {
+  const url = new URL(value, SITE_ORIGIN);
+  const search = url.search;
+  const hash = url.hash;
+  const canonical = new URL(canonicalPageUrl(url.toString()));
+
+  return `${canonical.pathname}${search}${hash}`;
+};
+
 const buildStructuredData = (slug: string, isEnglish: boolean) => {
   const page = getConfiguratorSeoPage(slug);
   if (!page) return [];
@@ -132,10 +141,12 @@ const ConfiguratorSolutionPage: React.FC = () => {
   const page = getConfiguratorSeoPage(slug);
 
   if (!page) {
-    return <Navigate to="/configurator" replace />;
+    return <Navigate to="/configurator/" replace />;
   }
 
   const pageUrl = canonicalPageUrl(`${SITE_ORIGIN}/solutions/${page.slug}`);
+  const configuratorHref = canonicalConfiguratorPath(page.configuratorHref);
+  const quoteHref = canonicalConfiguratorPath(page.quoteHref);
   const relatedPages = CONFIGURATOR_SEO_PAGES.filter((item) => item.slug !== page.slug).slice(0, 4);
   const heroImage = getResponsiveNetlifyImageProps(page.image, {
     widths: HERO_IMAGE_WIDTHS,
@@ -184,7 +195,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  to={page.configuratorHref}
+                  to={configuratorHref}
                   onClick={() => trackLeadIntent(page.slug, 'configure')}
                   className="inline-flex items-center justify-center rounded-md bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-950/30 transition hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-300"
                 >
@@ -192,7 +203,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
                   {isEnglish ? 'Open Configurator' : '開啟配置器'}
                 </Link>
                 <Link
-                  to={page.quoteHref}
+                  to={quoteHref}
                   onClick={() => trackLeadIntent(page.slug, 'quote')}
                   className="inline-flex items-center justify-center rounded-md border border-white/35 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/70"
                 >

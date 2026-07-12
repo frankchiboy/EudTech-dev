@@ -139,7 +139,7 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  to="/configurator"
+                  to="/configurator/"
                   className="inline-flex items-center justify-center rounded-md bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-950/30 transition hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-300"
                 >
                   <Cpu className="mr-2 h-4 w-4" />
