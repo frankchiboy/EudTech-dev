@@ -30,10 +30,10 @@ const feedJsonText = readPublicFile('feed.json');
 const llmsText = readPublicFile('llms.txt');
 const llmsFullText = readPublicFile('llms-full.txt');
 const robotsText = readPublicFile('robots.txt');
-const headersText = readPublicFile('_headers');
 const configuratorLinksHtml = readPublicFile('configurator-links.html');
 const lastmodManifestText = readPublicFile('discovery-lastmod.json');
 const rootDir = path.resolve(__dirname, '..');
+const headersText = fs.readFileSync(path.join(rootDir, '_headers'), 'utf8');
 const netlifyToml = fs.readFileSync(path.join(rootDir, 'netlify.toml'), 'utf8');
 const llmsDiscoveryEdgeFunction = fs.readFileSync(path.join(rootDir, 'netlify', 'edge-functions', 'llms-discovery-headers.js'), 'utf8');
 
@@ -124,30 +124,30 @@ const requiredHeaderRules = [
   '/assets/*'
 ];
 
-requireAll('public/_headers', requiredHeaderRules, (rule) => headersText.includes(rule));
+requireAll('root _headers', requiredHeaderRules, (rule) => headersText.includes(rule));
 
 if (!/\/social\/configurator\/\*[\s\S]*max-age=86400[\s\S]*stale-while-revalidate=604800/i.test(headersText)) {
-  errors.push('public/_headers missing social preview cache-control rule.');
+  errors.push('root _headers missing social preview cache-control rule.');
 }
 
 if (!/\/sitemap\.xml[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
-  errors.push('public/_headers missing sitemap cache-control rule.');
+  errors.push('root _headers missing sitemap cache-control rule.');
 }
 
 if (!/\/sitemap-index\.xml[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
-  errors.push('public/_headers missing sitemap index cache-control rule.');
+  errors.push('root _headers missing sitemap index cache-control rule.');
 }
 
 if (!/\/feed\.json[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
-  errors.push('public/_headers missing JSON feed cache-control rule.');
+  errors.push('root _headers missing JSON feed cache-control rule.');
 }
 
 if (!/\/discovery-lastmod\.json[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
-  errors.push('public/_headers missing discovery manifest cache-control rule.');
+  errors.push('root _headers missing discovery manifest cache-control rule.');
 }
 
 if (!/\/configurator-links\.html[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
-  errors.push('public/_headers missing configurator link index cache-control rule.');
+  errors.push('root _headers missing configurator link index cache-control rule.');
 }
 
 if (!feedJson || feedJson.version !== 'https://jsonfeed.org/version/1.1') {
@@ -175,7 +175,7 @@ if (!lastmodManifest || lastmodManifest.version !== 1 || !lastmodManifest.entrie
 }
 
 if (!/\/build-meta\.json[\s\S]*max-age=0[\s\S]*must-revalidate/i.test(headersText)) {
-  errors.push('public/_headers missing build metadata cache-control rule.');
+  errors.push('root _headers missing build metadata cache-control rule.');
 }
 
 if (!configuratorLinksHtml.includes(`<link rel="canonical" href="${configuratorLinkIndexUrl}">`)) {
