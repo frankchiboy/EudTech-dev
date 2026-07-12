@@ -1,3 +1,5 @@
+import { persistMarketingEvent } from './marketing-event-persistence.mjs';
+
 const allowedEvents = new Set([
   'page_view',
   'marketing_attribution',
@@ -170,7 +172,8 @@ const sanitizeObject = (value, allowedKeys) => {
   );
 };
 
-async function collectMarketingEvent(request) {
+export function createMarketingEventCollector({ persistEvent = persistMarketingEvent } = {}) {
+  return async function collectMarketingEvent(request) {
   if (request.method === 'GET') {
     return json(200, {
       ok: true,
@@ -217,14 +220,34 @@ async function collectMarketingEvent(request) {
     referer: sanitizeUrl(request.headers.get('referer'))
   };
 
-  console.log('Marketing event received:', JSON.stringify(eventRecord));
+  let durableStorage = 'not_applicable';
+  try {
+    const persistence = await persistEvent(eventRecord);
+    durableStorage = persistence.persisted ? 'stored' : 'not_applicable';
+  } catch (error) {
+    durableStorage = 'unavailable';
+    console.error('Marketing event durable storage failed:', error instanceof Error ? error.message : 'unknown error');
+  }
+
+  console.log('Marketing event received:', JSON.stringify({
+    event: eventRecord.event,
+    receivedAt: eventRecord.receivedAt,
+    source: eventRecord.source,
+    pagePath: eventRecord.pagePath,
+    quoteRequestId: eventRecord.configurator.quote_request_id,
+    durableStorage
+  }));
 
   return json(202, {
     ok: true,
     event,
     receivedAt: eventRecord.receivedAt,
-    quoteRequestId: configurator.quote_request_id
+    quoteRequestId: configurator.quote_request_id,
+    durableStorage
   });
+  };
 }
+
+const collectMarketingEvent = createMarketingEventCollector();
 
 export default collectMarketingEvent;

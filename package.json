@@ -62,6 +62,8 @@
     "report:search-console": "node scripts/report-google-search-console.cjs",
     "verify:live-exposure": "node scripts/verify-live-exposure.cjs",
     "verify:marketing-event-health": "node scripts/check-marketing-event-health.cjs",
+    "verify:marketing-event-persistence": "node scripts/verify-marketing-event-persistence.cjs",
+    "report:configurator-conversions": "node scripts/report-configurator-conversion-history.cjs",
     "verify:marketing-events-browser": "node scripts/verify-marketing-events-browser.cjs",
     "verify:canonical-url": "node scripts/verify-canonical-url.cjs",
     "verify:indexnow-delta": "node scripts/verify-indexnow-delta.cjs",

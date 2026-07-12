@@ -101,7 +101,9 @@ flowchart LR
    `marketing-event`、詢價信文字/HTML 與 `quote_email_sent` log。此 ID 為 UUID，不含個資。
 3. 第一方事件也保存 UTM、click ID、landing page 與 referrer；不必等待外部廣告 tag 才能記錄基本漏斗。
 4. `netlify/functions/marketing-event.mjs` 對 `quote_request_id` 使用專屬格式清理；不可將它交給電話遮罩邏輯處理。
-5. 目前識別碼可在事件與信件中追蹤，但沒有永久分析資料庫。啟用 GA4 Data API 後，需先定義保留期間、查詢方式與詢價漏斗報表，再擴大資料使用。
+5. 轉換、歸因、產品檢視與表單事件會另外寫入 Netlify Blobs 的 site-scoped `configurator-marketing-events-v1`，可跨 deploy 保留。只保存已清理的事件資料；不保存 user agent，且 page view 不寫入原始持久事件，以限制資料量與識別風險。
+6. `npm run report:configurator-conversions -- --days=30` 使用既有 Automation vault 的 Netlify token 讀取 Blob，僅輸出每日、事件、來源與 campaign 匯總；不輸出 UUID、raw URL、referer 或 user agent。
+7. 啟用 GA4 Data API 後，需以同一資料期間比對 GA4 漏斗與第一方彙總，再擴大資料使用。
 
 ## 8. SEO 與曝光內容操作模型
 
