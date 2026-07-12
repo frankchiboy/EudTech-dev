@@ -49,6 +49,7 @@ const allowedConfiguratorKeys = new Set([
   'filter_value',
   'validation_errors',
   'share_method',
+  'quote_request_id',
   'url',
   'conversion_id'
 ]);
@@ -83,6 +84,17 @@ const redactSensitiveText = (value) =>
 
 const normalize = (value, maxLength = 500) =>
   typeof value === 'string' ? redactSensitiveText(value.trim()).slice(0, maxLength) : undefined;
+
+const normalizeQuoteRequestId = (value) => {
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+
+  const normalized = value.trim();
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(normalized)
+    ? normalized
+    : undefined;
+};
 
 const sanitizeUrl = (value, maxLength = 500) => {
   const normalized = normalize(value, maxLength);
@@ -150,7 +162,10 @@ const sanitizeObject = (value, allowedKeys) => {
   return Object.fromEntries(
     Object.entries(value)
       .filter(([key, item]) => allowedKeys.has(key) && item !== undefined && item !== null && item !== '')
-      .map(([key, item]) => [key, sanitizeFieldValue(item)])
+      .map(([key, item]) => [
+        key,
+        key === 'quote_request_id' ? normalizeQuoteRequestId(item) : sanitizeFieldValue(item)
+      ])
       .filter(([, item]) => item !== undefined)
   );
 };
@@ -207,7 +222,8 @@ async function collectMarketingEvent(request) {
   return json(202, {
     ok: true,
     event,
-    receivedAt: eventRecord.receivedAt
+    receivedAt: eventRecord.receivedAt,
+    quoteRequestId: configurator.quote_request_id
   });
 }
 

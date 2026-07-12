@@ -18,6 +18,7 @@ const json = (status, body) =>
 const normalize = (value) => (typeof value === 'string' ? value.trim() : '');
 
 const validEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+const validQuoteRequestId = (value) => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
 
 const uniqueEmails = (values) =>
   [...new Set(values.map(normalize).filter(Boolean))];
@@ -42,6 +43,7 @@ const buildHtml = (payload) => {
     ['Phone', payload.phone || 'Not provided'],
     ['Company', payload.company || 'Not provided'],
     ['Country', payload.country || 'Not provided'],
+    ...(payload.quoteRequestId ? [['Quote request ID', payload.quoteRequestId]] : []),
     ['Message', payload.message]
   ];
 
@@ -88,12 +90,16 @@ async function sendQuoteEmail(request) {
   const lastName = normalize(payload.lastName);
   const email = normalize(payload.email);
   const message = normalize(payload.message);
+  const quoteRequestId = normalize(payload.quoteRequestId || payload.quote_request_id);
 
   if (!firstName || !lastName || !email || !message) {
     return json(400, { error: 'Missing required quote fields' });
   }
   if (!validEmail(email)) {
     return json(400, { error: 'Invalid sender email' });
+  }
+  if (quoteRequestId && !validQuoteRequestId(quoteRequestId)) {
+    return json(400, { error: 'Invalid quote request ID' });
   }
 
   const recipient = normalize(payload.toEmail) || getEnv('QUOTE_RECIPIENT_EMAIL') || 'info@eudaemonia.tech';
@@ -108,6 +114,7 @@ async function sendQuoteEmail(request) {
   }
 
   const subject = normalize(payload.subject) || `Grando Configurator Request - ${new Date().toISOString()}`;
+  const text = quoteRequestId ? `${message}\n\nQuote request ID: ${quoteRequestId}` : message;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -127,8 +134,8 @@ async function sendQuoteEmail(request) {
       bcc: inboxCopies.length ? inboxCopies : undefined,
       replyTo: email,
       subject,
-      text: message,
-      html: buildHtml({ ...payload, firstName, lastName, email, message })
+      text,
+      html: buildHtml({ ...payload, firstName, lastName, email, message, quoteRequestId })
     });
 
     console.log('Configurator quote conversion sent:', JSON.stringify({
@@ -138,6 +145,7 @@ async function sendQuoteEmail(request) {
       acceptedCount: result.accepted?.length || 0,
       rejectedCount: result.rejected?.length || 0,
       subject,
+      quoteRequestId: quoteRequestId || undefined,
       hasMarketingAttribution: message.includes('Marketing attribution')
     }));
 
@@ -146,7 +154,8 @@ async function sendQuoteEmail(request) {
       messageId: result.messageId,
       accepted: result.accepted,
       rejected: result.rejected,
-      inboxCopies
+      inboxCopies,
+      quoteRequestId: quoteRequestId || undefined
     });
   } catch (error) {
     console.error('Quote email send failed:', error);

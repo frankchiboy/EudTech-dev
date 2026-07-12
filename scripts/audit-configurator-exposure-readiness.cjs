@@ -308,6 +308,7 @@ async function main() {
   const configuratorSource = read('src/components/configurator/GrandoConfigurator.tsx');
   const marketingEventsSource = read('src/components/analytics/MarketingEvents.tsx');
   const marketingEventFunctionSource = read('netlify/functions/marketing-event.mjs');
+  const quoteEmailFunctionSource = read('netlify/functions/send-email.mjs');
   const verifyLiveExposureSource = read('scripts/verify-live-exposure.cjs');
   const promotionKeywordsPath = 'docs/configurator-promotion-keywords.csv';
   const promotionLinksPath = 'docs/configurator-promotion-links.csv';
@@ -459,6 +460,11 @@ async function main() {
   addCheck('conversion_path', 'quote missing mail config event exists', configuratorSource.includes('quote_submit_not_configured'));
   addCheck('conversion_path', 'quote form abandon or close events exist', configuratorSource.includes('quote_form_abandon') && configuratorSource.includes('quote_form_close'));
   addCheck('conversion_path', 'quote form open event exists', configuratorSource.includes('quote_form_open'));
+  addCheck(
+    'conversion_path',
+    'quote request ID joins form submit and email delivery',
+    configuratorSource.includes('quoteRequestId') && quoteEmailFunctionSource.includes('quoteRequestId')
+  );
   addCheck('conversion_path', 'share event exists', configuratorSource.includes("'share'"));
   addCheck('conversion_path', 'share button uses Web Share API with clipboard fallback', configuratorSource.includes('navigator.share') && configuratorSource.includes('copyToClipboard(shareUrl || currentUrl)'));
   addCheck('conversion_path', 'share URL uses first-party UTM tracking', ['utm_source', "'share'", 'utm_medium', "'referral'", 'utm_campaign', 'utm_content'].every((token) => configuratorSource.includes(token)));
@@ -489,6 +495,11 @@ async function main() {
   addCheck('first_party_measurement', 'frontend sends page views to first-party endpoint', marketingEventsSource.includes("event: 'page_view'"));
   addCheck('first_party_measurement', 'frontend sends attribution to first-party endpoint', marketingEventsSource.includes("event: 'marketing_attribution'"));
   addCheck('first_party_measurement', 'frontend sends configurator lead events to first-party endpoint', marketingEventsSource.includes("event: 'configurator_lead_intent'"));
+  addCheck(
+    'first_party_measurement',
+    'first-party event retains the quote request ID',
+    marketingEventsSource.includes('quote_request_id: detail.quoteRequestId') && marketingEventFunctionSource.includes("'quote_request_id'")
+  );
   addCheck('first_party_measurement', 'frontend sends share method with configurator lead events', marketingEventsSource.includes('share_method: detail.shareMethod'));
   addCheck('first_party_measurement', 'frontend sends quote conversion to first-party endpoint', marketingEventsSource.includes("event: 'linkedin_quote_conversion'"));
   addCheck('first_party_measurement', 'frontend sends Meta quote conversion to first-party endpoint', marketingEventsSource.includes("event: 'meta_quote_conversion'"));

@@ -38,6 +38,7 @@ export interface EmailFormData {
   country?: string;
   subject?: string;
   toEmail?: string;
+  quoteRequestId?: string;
   message: string;
   privacy: boolean;
 }

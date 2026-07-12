@@ -76,6 +76,14 @@ import './Configurator.css';
 type DeviceSummary = ConfiguratorDevice & { options: ConfiguratorOption[] };
 
 const QUOTE_RECIPIENT_EMAIL = 'info@eudaemonia.tech';
+const createQuoteRequestId = () => {
+  if (globalThis.crypto?.randomUUID) {
+    return globalThis.crypto.randomUUID();
+  }
+
+  const fallback = `${Date.now().toString(16)}${Math.random().toString(16).slice(2)}${'0'.repeat(32)}`.slice(0, 32);
+  return `${fallback.slice(0, 8)}-${fallback.slice(8, 12)}-4${fallback.slice(13, 16)}-8${fallback.slice(17, 20)}-${fallback.slice(20, 32)}`;
+};
 const MOBILE_CONFIGURATOR_MEDIA_QUERY = '(max-width: 767px)';
 const MOBILE_CONFIGURATOR_IMAGE_WIDTH = 750;
 const CONFIGURATOR_BACKGROUND_WIDTHS = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
@@ -1179,6 +1187,7 @@ const QuotePanel = ({
   language: ConfiguratorLocale;
 }) => {
   const quotePanelRef = useRef<HTMLDivElement>(null);
+  const quoteRequestIdRef = useRef<string | null>(null);
   const { copyToClipboard, hasCopied, error: copyError } = useClipboard();
   const [formOpen, setFormOpen] = useState(false);
   const [formData, setFormData] = useState<QuoteFormData>(initialQuoteFormData);
@@ -1209,15 +1218,23 @@ const QuotePanel = ({
     }),
     [modelName, spec.device?.id, spec.device?.name, spec.device?.type]
   );
+  const beginQuoteRequest = useCallback(() => {
+    if (!quoteRequestIdRef.current) {
+      quoteRequestIdRef.current = createQuoteRequestId();
+    }
+    return quoteRequestIdRef.current;
+  }, []);
 
   useEffect(() => {
     if (requestMode) {
       quotePanelRef.current?.scrollIntoView({ block: 'center' });
       if (!validation.button) {
+        const quoteRequestId = beginQuoteRequest();
         setFormOpen(true);
         if (!requestModeTrackedRef.current) {
           dispatchConfiguratorLeadIntent('quote_form_open', {
             ...quoteTrackingDetail,
+            quoteRequestId,
             filterValue: 'request_mode'
           });
           requestModeTrackedRef.current = true;
@@ -1230,7 +1247,7 @@ const QuotePanel = ({
         requestModeTrackedRef.current = true;
       }
     }
-  }, [requestMode, quoteTrackingDetail, validation.button]);
+  }, [beginQuoteRequest, requestMode, quoteTrackingDetail, validation.button]);
 
   useEffect(() => {
     if (!formOpen) {
@@ -1263,11 +1280,13 @@ const QuotePanel = ({
   };
 
   const handleOpenQuoteForm = () => {
+    const quoteRequestId = beginQuoteRequest();
     setFormOpen(true);
     setSubmitStatus('idle');
     setSubmitError('');
     dispatchConfiguratorLeadIntent('quote_form_open', {
-      ...quoteTrackingDetail
+      ...quoteTrackingDetail,
+      quoteRequestId
     });
   };
 
@@ -1331,16 +1350,21 @@ const QuotePanel = ({
 
   const handleQuoteSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const quoteRequestId = beginQuoteRequest();
+    const quoteSubmissionTrackingDetail = {
+      ...quoteTrackingDetail,
+      quoteRequestId
+    };
 
     dispatchConfiguratorLeadIntent('quote_submit_attempt', {
-      ...quoteTrackingDetail
+      ...quoteSubmissionTrackingDetail
     });
 
     const nextErrors = validateQuoteForm();
     const validationErrors = Object.keys(nextErrors);
     if (validationErrors.length > 0) {
       dispatchConfiguratorLeadIntent('quote_validation_error', {
-        ...quoteTrackingDetail,
+        ...quoteSubmissionTrackingDetail,
         validationErrors
       });
       return;
@@ -1353,7 +1377,7 @@ const QuotePanel = ({
       setSubmitStatus('error');
       setSubmitError(copy.emailServiceMissingConfig);
       dispatchConfiguratorLeadIntent('quote_submit_not_configured', {
-        ...quoteTrackingDetail
+        ...quoteSubmissionTrackingDetail
       });
       return;
     }
@@ -1381,6 +1405,7 @@ const QuotePanel = ({
         country: formData.country.trim(),
         subject: quoteSubject,
         toEmail: QUOTE_RECIPIENT_EMAIL,
+        quoteRequestId,
         message,
         privacy: true
       });
@@ -1388,13 +1413,13 @@ const QuotePanel = ({
       setFormData(initialQuoteFormData);
       setFormErrors({});
       dispatchConfiguratorLeadIntent('quote_submit_success', {
-        ...quoteTrackingDetail
+        ...quoteSubmissionTrackingDetail
       });
     } catch (error) {
       setSubmitStatus('error');
       setSubmitError(error instanceof Error ? error.message : copy.quoteErrorFallback);
       dispatchConfiguratorLeadIntent('quote_submit_error', {
-        ...quoteTrackingDetail
+        ...quoteSubmissionTrackingDetail
       });
     }
   };
@@ -1407,10 +1432,12 @@ const QuotePanel = ({
     dispatchConfiguratorLeadIntent(
       submitStatus === 'success' ? 'quote_form_done' : hasInput ? 'quote_form_abandon' : 'quote_form_close',
       {
-        ...quoteTrackingDetail
+        ...quoteTrackingDetail,
+        quoteRequestId: quoteRequestIdRef.current || undefined
       }
     );
     setFormOpen(false);
+    quoteRequestIdRef.current = null;
   };
 
   return (

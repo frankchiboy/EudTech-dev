@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { spawn } = require('child_process');
+const { spawn, execFileSync } = require('child_process');
 const http = require('http');
 const { chromium } = require('playwright-core');
 
@@ -19,6 +19,19 @@ const fixture = {
   VITE_MICROSOFT_UET_TAG_ID: '987654321',
   VITE_MARKETING_EVENT_ENDPOINT: ''
 };
+const quoteRequestId = '11111111-1111-4111-8111-111111111111';
+const leaseAgentId = 'eudtech-marketing-events-browser-verification';
+
+function manageTabLease(targetId, action) {
+  const code = [
+    'import sys',
+    'sys.path.insert(0, "/Users/serverc/WorkSpace-AI")',
+    'from scripts.docker_real_browser.agent_lease import TabLease',
+    `lease=TabLease(agent_id=sys.argv[1], tab_id=sys.argv[2], cdp_url="http://127.0.0.1:9222")`,
+    action === 'register' ? 'lease.register()' : 'lease.release()'
+  ].join('; ');
+  execFileSync('python3', ['-c', code, leaseAgentId, targetId], { stdio: 'ignore' });
+}
 
 function waitForServer(url, timeoutMs = 30000) {
   const deadline = Date.now() + timeoutMs;
@@ -73,27 +86,38 @@ async function main() {
   );
   let browser;
   let page;
+  let leaseTargetId;
 
   try {
     await waitForServer(localOrigin);
     browser = await chromium.connectOverCDP(browserUrl);
     const context = browser.contexts()[0];
-    page = await context.newPage();
+    const cdp = await browser.newBrowserCDPSession();
+    const pageReady = context.waitForEvent('page', { timeout: 15000 });
+    const target = await cdp.send('Target.createTarget', {
+      url: 'about:blank',
+      newWindow: true,
+      background: true
+    });
+    leaseTargetId = target.targetId;
+    manageTabLease(leaseTargetId, 'register');
+    page = await pageReady;
     await page.route(
       /googletagmanager\.com|snap\.licdn\.com|connect\.facebook\.net|bat\.bing\.com/,
       (route) => route.abort()
     );
     await page.goto(`${browserOrigin}/configurator/28`, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await page.waitForTimeout(1200);
-    await page.evaluate(() => {
+    await page.evaluate((fixtureQuoteRequestId) => {
       window.dispatchEvent(new CustomEvent('configurator-lead-intent', {
         detail: {
           action: 'quote_submit_success',
           deviceId: 28,
-          modelName: 'Browser contract fixture'
+          modelName: 'Browser contract fixture',
+          quoteRequestId: fixtureQuoteRequestId
         }
       }));
-    });
+    }, quoteRequestId);
     await page.waitForTimeout(100);
 
     const observed = await page.evaluate(() => ({
@@ -107,6 +131,12 @@ async function main() {
       microsoftQueue: Array.isArray(window.uetq) ? window.uetq : []
     }));
     const gtagCalls = observed.dataLayer.filter(Array.isArray);
+    const configuratorLeadIntent = observed.dataLayer.find(
+      (entry) =>
+        !Array.isArray(entry) &&
+        entry?.event === 'configurator_lead_intent' &&
+        entry?.configurator_action === 'quote_submit_success'
+    );
 
     try {
       assert(observed.scripts.some((src) => src.includes('gtm.js?id=GTM-TEST123')), 'GTM script was not requested.');
@@ -133,6 +163,10 @@ async function main() {
       );
       assert(hasMicrosoftUetEvent(observed.microsoftQueue, 'page_view'), 'Microsoft UET SPA page view was not queued.');
       assert(hasMicrosoftUetEvent(observed.microsoftQueue, 'quote_submit_success'), 'Microsoft UET quote conversion was not queued.');
+      assert(
+        configuratorLeadIntent?.configurator_quote_request_id === quoteRequestId,
+        'Configurator lead event did not preserve quote_request_id.'
+      );
     } catch (error) {
       error.message = `${error.message}\nObserved state: ${JSON.stringify({
         url: observed.url,
@@ -156,11 +190,15 @@ async function main() {
         'Google Ads SPA page view and quote conversion',
         'LinkedIn queued quote conversion',
         'Meta PageView and Lead',
-        'Microsoft UET page view and quote conversion'
+        'Microsoft UET page view and quote conversion',
+        'Quote request ID in the configurator conversion event'
       ]
     }, null, 2));
   } finally {
     await page?.close().catch(() => {});
+    if (leaseTargetId) {
+      manageTabLease(leaseTargetId, 'release');
+    }
     await browser?.close().catch(() => {});
     vite.kill('SIGTERM');
   }

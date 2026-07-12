@@ -18,6 +18,7 @@ type LeadIntentDetail = {
   validationErrors?: string[];
   configurationUrl?: string;
   shareMethod?: string;
+  quoteRequestId?: string;
 };
 
 type GtagArguments = [command: string, target: string | Date, params?: Record<string, unknown>];
@@ -365,6 +366,7 @@ const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
     configurator_filter_value: detail.filterValue,
     configurator_validation_errors: detail.validationErrors,
     configurator_share_method: detail.shareMethod,
+    configurator_quote_request_id: detail.quoteRequestId,
     configurator_url: detail.configurationUrl || window.location.href
   };
 
@@ -390,6 +392,7 @@ const sendConfiguratorLeadIntent = (detail: LeadIntentDetail) => {
       filter_value: detail.filterValue,
       validation_errors: detail.validationErrors,
       share_method: detail.shareMethod,
+      quote_request_id: detail.quoteRequestId,
       url: detail.configurationUrl || window.location.href
     }
   });
