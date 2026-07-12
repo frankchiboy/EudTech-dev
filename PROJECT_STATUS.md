@@ -13,11 +13,11 @@
 
 | 項目 | 狀態 |
 |---|---|
-| Git branch | `main`，工作目錄乾淨，已同步 `origin/main` |
-| 最新 commit | `e80d468b2038f140808fa5f1a8165c9985020933` - `Track configurator quote request journey` |
+| Git branch | `main`；接續前以 `git status --short --branch` 與 `git log -1 --oneline` 回讀 |
+| Latest Configurator behavior change | `e80d468b2038f140808fa5f1a8165c9985020933` - `Track configurator quote request journey` |
 | Production | `https://eudaemonia.tech` |
 | Netlify site | `website-eudtech`，site ID `325fdd3d-ba57-4a86-987f-4f0267a2b8ed` |
-| Latest production deploy | `e80d468`，2026-07-12T11:42:01.364Z |
+| Latest functional production verification | `e80d468` 已通過完整 production verification；文件-only commit 會更新 `build-meta.json`，但不改變 Configurator 行為 |
 | Main Configurator | `https://eudaemonia.tech/configurator/` |
 | Primary quote route | `https://eudaemonia.tech/configurator/29/` |
 
