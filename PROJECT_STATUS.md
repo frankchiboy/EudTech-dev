@@ -106,7 +106,7 @@
 
 | Platform | Missing browser tracking values |
 |---|---|
-| Google Ads | `VITE_GOOGLE_ADS_ID`、`VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL` |
+| Google Ads | 已確認有一般 Google 登入候選，但容器化瀏覽器沒有既有 Google Ads session，僅到達登入／立即開始入口；未發現可接管的 Ads 客戶帳戶，仍缺 `VITE_GOOGLE_ADS_ID`、`VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL` 與 API 身分 |
 | LinkedIn | 已確認既有登入可進入 Campaign Manager 的新廣告帳戶建立頁；協議未接受、帳戶未建立，故仍缺 `VITE_LINKEDIN_PARTNER_ID`、`VITE_LINKEDIN_QUOTE_CONVERSION_ID` 與 API 身分 |
 | Meta | `VITE_META_PIXEL_ID` |
 | Microsoft Ads | `VITE_MICROSOFT_UET_TAG_ID` |
@@ -114,7 +114,7 @@
 1Password 的 `EudTech Configurator Marketing Platforms` 項目已存在，欄位名稱正確；
 不可在 repo、終端輸出或狀態檔寫入任何值。
 
-2026-07-13 的容器化瀏覽器檢查確認：LinkedIn 既有登入可存取 EudTech 的廣告帳戶建立流程，但該流程要求接受 LinkedIn 廣告協議後才會建立帳戶。此輪未勾選協議、未建立帳戶、未新增付款資料，也未取得任何 tracking 或 API 值。
+2026-07-13 的容器化瀏覽器檢查確認：LinkedIn 既有登入可存取 EudTech 的廣告帳戶建立流程，但該流程要求接受 LinkedIn 廣告協議後才會建立帳戶。Google Ads 僅有一般 Google 登入候選，未存在已登入 Ads session，頁面仍顯示登入／立即開始入口。此輪未勾選協議、未建立帳戶、未新增付款資料，也未取得任何 tracking 或 API 值。Meta Business、Microsoft Advertising 均無 Automation vault 候選登入或憑證。
 
 ## Resume Order
 
