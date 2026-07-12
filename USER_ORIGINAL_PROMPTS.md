@@ -17,3 +17,7 @@ This file preserves the user's original prompts for the configurator exposure ta
 ## 2026-07-13 Configurator Knowledge Continuity
 
 1. 更新專案一切導入configurator對策的資訊、知識、進度等等在repo中讓下一個session能夠接續實作
+
+## 2026-07-13 Website Quote Event Folder
+
+1. 還有那個 我們官網的詢價信 也用事件驅動自動放到一個資料夾中 要溯及既往

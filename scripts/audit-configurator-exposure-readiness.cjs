@@ -30,7 +30,7 @@ const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, sit
 const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
 
 const requiredEnv = {
-  quoteEmail: ['QUOTE_SENDER_EMAIL', 'GMAIL_OAUTH_CLIENT_ID', 'GMAIL_OAUTH_CLIENT_SECRET', 'GMAIL_OAUTH_REFRESH_TOKEN']
+  quoteEmail: ['QUOTE_SENDER_EMAIL', 'GRAPH_TENANT_ID', 'GRAPH_CLIENT_ID', 'GRAPH_CLIENT_SECRET']
 };
 
 const read = (filename) => fs.readFileSync(path.join(rootDir, filename), 'utf8');

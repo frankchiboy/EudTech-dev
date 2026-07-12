@@ -80,12 +80,13 @@ flowchart LR
 | 表單開啟 | 建立 UUID `quote_request_id`；同一張表單重送沿用同一 ID。 |
 | 表單欄位 | 必填：名字、姓氏、Email、留言；電話為前端表單既有必填欄位。 |
 | 相容性 | 發送前先執行 Configurator validation；不可將不相容硬體設定送出為詢價。 |
-| 郵件送出 | `src/services/emailService.ts` 呼叫 `/.netlify/functions/send-email`。Function 以 Gmail OAuth/Nodemailer 寄送。 |
-| 收件人 | 前端傳送 `info@eudaemonia.tech`；Function 優先採 payload `toEmail`，其次 `QUOTE_RECIPIENT_EMAIL`，最後預設同一地址。不可在程式碼或文件寫入 OAuth secret。 |
+| 郵件送出 | `src/services/emailService.ts` 呼叫 `/.netlify/functions/send-email`。Function 以既有 Entra 應用程式的 Microsoft Graph app-only 建立並寄出 draft；不使用 Gmail OAuth。 |
+| 收件人 | 前端傳送 `info@eudaemonia.tech`；Function 優先採 payload `toEmail`，其次 `QUOTE_RECIPIENT_EMAIL`，最後預設同一地址。不可在程式碼或文件寫入 Graph client secret。 |
 | 成功條件 | 只有寄信 Function 回傳成功，UI 才能宣告詢價成功；Function 同時產生 sanitized `quote_email_sent` log。 |
 | 回覆地址 | 寄件以客戶 Email 為 `replyTo`，便於業務直接回覆詢價。 |
+| 事件路由 | 每封正式詢價都必須帶 `x-eudtech-source: website-configurator` 與 `x-eudtech-quote-request-id`。`info@` 收件後由 Graph change notifications 事件服務複製至一般資料夾 `Inbox/官網詢價`；原信保留。 |
 
-正式端不應以真實客戶資料進行測試。寄信合約可用無效 UUID 的 POST probe 驗證 HTTP 400，確保沒有寄出測試信；完整信件投遞測試僅在取得明確授權後進行，並以實際收件匣與 Function 結果雙重確認。
+正式端不應以真實客戶資料進行測試。寄信合約可用無效 UUID 的 POST probe 驗證 HTTP 400，確保沒有寄出測試信；完整信件投遞測試僅在取得明確授權後進行，並以實際收件匣、`Inbox/官網詢價` 副本、Function 結果與 `quote_request_id` 四者確認。
 
 ### 6.1 詢價資料生命週期的已知界線
 

@@ -12,7 +12,7 @@ Configurator 的目前狀態與接續順序見 [PROJECT_STATUS.md](PROJECT_STATU
 - **建置**: Vite 5.4
 - **狀態管理**: Context API + Custom Hooks
 - **路由**: React Router Dom
-- **郵件服務**: Netlify `send-email` Function + Nodemailer/Gmail OAuth；舊 EmailJS 路徑僅保留相容層
+- **郵件服務**: Netlify `send-email` Function + Microsoft Graph app-only；舊 EmailJS 路徑僅保留相容層
 
 ### 設計系統層級
 

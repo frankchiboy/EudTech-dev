@@ -1,11 +1,12 @@
-import nodemailer from 'nodemailer';
-
 const requiredEnv = [
   'QUOTE_SENDER_EMAIL',
-  'GMAIL_OAUTH_CLIENT_ID',
-  'GMAIL_OAUTH_CLIENT_SECRET',
-  'GMAIL_OAUTH_REFRESH_TOKEN'
+  'GRAPH_TENANT_ID',
+  'GRAPH_CLIENT_ID',
+  'GRAPH_CLIENT_SECRET'
 ];
+
+const GRAPH_ROOT = 'https://graph.microsoft.com/v1.0';
+const WEBSITE_SOURCE_HEADER = 'website-configurator';
 
 const json = (status, body) =>
   Response.json(body, {
@@ -60,6 +61,49 @@ const buildHtml = (payload) => {
   `;
 };
 
+const graphRecipient = (address) => ({ emailAddress: { address } });
+
+async function getGraphToken(env) {
+  const response = await fetch(
+    `https://login.microsoftonline.com/${encodeURIComponent(env.GRAPH_TENANT_ID)}/oauth2/v2.0/token`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        client_id: env.GRAPH_CLIENT_ID,
+        client_secret: env.GRAPH_CLIENT_SECRET,
+        scope: 'https://graph.microsoft.com/.default',
+        grant_type: 'client_credentials'
+      })
+    }
+  );
+  if (!response.ok) {
+    throw new Error(`Graph token request failed (${response.status})`);
+  }
+  const payload = await response.json();
+  if (!payload.access_token) {
+    throw new Error('Graph token response did not include an access token');
+  }
+  return payload.access_token;
+}
+
+async function graphRequest(token, method, path, body) {
+  const response = await fetch(`${GRAPH_ROOT}${path}`, {
+    method,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: body === undefined ? undefined : JSON.stringify(body)
+  });
+  if (!response.ok) {
+    throw new Error(`Graph ${method} request failed (${response.status})`);
+  }
+  const text = await response.text();
+  return text ? JSON.parse(text) : {};
+}
+
 async function sendQuoteEmail(request) {
   if (request.method === 'GET') {
     return json(200, {
@@ -98,7 +142,7 @@ async function sendQuoteEmail(request) {
   if (!validEmail(email)) {
     return json(400, { error: 'Invalid sender email' });
   }
-  if (quoteRequestId && !validQuoteRequestId(quoteRequestId)) {
+  if (!validQuoteRequestId(quoteRequestId)) {
     return json(400, { error: 'Invalid quote request ID' });
   }
 
@@ -114,36 +158,33 @@ async function sendQuoteEmail(request) {
   }
 
   const subject = normalize(payload.subject) || `Grando Configurator Request - ${new Date().toISOString()}`;
-  const text = quoteRequestId ? `${message}\n\nQuote request ID: ${quoteRequestId}` : message;
-
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      type: 'OAuth2',
-      user: env.QUOTE_SENDER_EMAIL,
-      clientId: env.GMAIL_OAUTH_CLIENT_ID,
-      clientSecret: env.GMAIL_OAUTH_CLIENT_SECRET,
-      refreshToken: env.GMAIL_OAUTH_REFRESH_TOKEN
-    }
-  });
+  const text = `${message}\n\nQuote request ID: ${quoteRequestId}`;
 
   try {
-    const result = await transporter.sendMail({
-      from: `"EudTech Configurator" <${env.QUOTE_SENDER_EMAIL}>`,
-      to: recipient,
-      bcc: inboxCopies.length ? inboxCopies : undefined,
-      replyTo: email,
+    const token = await getGraphToken(env);
+    const mailboxPath = `/users/${encodeURIComponent(env.QUOTE_SENDER_EMAIL)}`;
+    const draft = await graphRequest(token, 'POST', `${mailboxPath}/messages`, {
       subject,
-      text,
-      html: buildHtml({ ...payload, firstName, lastName, email, message, quoteRequestId })
+      body: {
+        contentType: 'HTML',
+        content: `${buildHtml({ ...payload, firstName, lastName, email, message, quoteRequestId })}<p style="white-space:pre-wrap">${escapeHtml(text)}</p>`
+      },
+      toRecipients: [graphRecipient(recipient)],
+      bccRecipients: inboxCopies.map(graphRecipient),
+      replyTo: [graphRecipient(email)],
+      internetMessageHeaders: [
+        { name: 'x-eudtech-source', value: WEBSITE_SOURCE_HEADER },
+        { name: 'x-eudtech-quote-request-id', value: quoteRequestId }
+      ]
     });
+    await graphRequest(token, 'POST', `${mailboxPath}/messages/${encodeURIComponent(draft.id)}/send`);
 
     console.log('Configurator quote conversion sent:', JSON.stringify({
       event: 'quote_email_sent',
       receivedAt: new Date().toISOString(),
-      messageId: result.messageId,
-      acceptedCount: result.accepted?.length || 0,
-      rejectedCount: result.rejected?.length || 0,
+      messageId: draft.id,
+      acceptedCount: 1 + inboxCopies.length,
+      rejectedCount: 0,
       subject,
       quoteRequestId: quoteRequestId || undefined,
       hasMarketingAttribution: message.includes('Marketing attribution')
@@ -151,9 +192,9 @@ async function sendQuoteEmail(request) {
 
     return json(200, {
       ok: true,
-      messageId: result.messageId,
-      accepted: result.accepted,
-      rejected: result.rejected,
+      messageId: draft.id,
+      accepted: [recipient, ...inboxCopies],
+      rejected: [],
       inboxCopies,
       quoteRequestId: quoteRequestId || undefined
     });
