@@ -19,11 +19,11 @@ EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled 
 - WORKSTATION 2x5090 AI 工作站配置器: https://eudaemonia.tech/configurator/13/
 - RACKABLE WS 4x PRO 6000 配置器: https://eudaemonia.tech/configurator/5/
 - RACKABLE WS 6x5090 配置器: https://eudaemonia.tech/configurator/21/
-- NVIDIA H200 伺服器報價與價格規劃｜AI 訓練與推論: https://eudaemonia.tech/solutions/nvidia-h200-server/
+- NVIDIA H200 伺服器報價、供貨與價格規劃｜AI 訓練與推論: https://eudaemonia.tech/solutions/nvidia-h200-server/
 - RTX PRO 6000 本地 AI 推論工作站報價配置器: https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/
 - 台灣 AI 工作站配置器: https://eudaemonia.tech/solutions/ai-workstation-taiwan/
 - 液冷 GPU 伺服器散熱與報價配置器: https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/
-- GPU 伺服器報價與價格規劃｜AI RFQ 配置器: https://eudaemonia.tech/solutions/gpu-server-quote/
+- GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000: https://eudaemonia.tech/solutions/gpu-server-quote/
 - H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？: https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/
 - AI 採購 GPU 伺服器 RFQ 檢核表: https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/
 - 液冷 AI 伺服器採購指南: https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/

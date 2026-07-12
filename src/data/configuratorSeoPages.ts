@@ -60,12 +60,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'nvidia-h200-server',
     title: {
-      en: 'NVIDIA H200 Server Quote and Pricing Planning for AI Training and Inference',
-      zh: 'NVIDIA H200 伺服器報價與價格規劃｜AI 訓練與推論'
+      en: 'NVIDIA H200 Server Quote, Availability, and Price Planning',
+      zh: 'NVIDIA H200 伺服器報價、供貨與價格規劃｜AI 訓練與推論'
     },
     description: {
-      en: 'Plan an NVIDIA H200 server quote by aligning GPU count, CPU, memory, storage, power, cooling, and networking for AI training, HPC, and inference before EudTech confirms price and delivery.',
-      zh: '規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，再由 EudTech 依實際配置確認價格與交期。'
+      en: 'Plan an NVIDIA H200 server quote for AI training, HPC, or inference. EudTech confirms current availability, price, and delivery only after GPU count, CPU, memory, storage, power, cooling, and networking are defined.',
+      zh: '規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路；EudTech 會依實際配置確認目前供貨、價格與交期。'
     },
     keywords: {
       en: 'NVIDIA H200 server, H200 server price, H200 GPU server quote, H200 AI inference server, NVIDIA H200 next generation AI inference, AI training server, HPC GPU server, liquid cooled GPU server, Taiwan AI server',
@@ -76,8 +76,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       zh: 'NVIDIA H200 AI GPU 伺服器報價與價格規劃'
     },
     lead: {
-      en: 'Start with Taiwan procurement assumptions for an H200 server, adjust GPU count, CPU, memory, storage, power, cooling, and networking, then send the exact build to EudTech for a configuration-specific price and delivery review.',
-      zh: '先以台灣採購可審查的 H200 伺服器需求為基礎，調整 GPU 數量、CPU、記憶體、儲存、電源、散熱與網路，再將完整配置交由 EudTech 進行依配置的價格與交期確認。'
+      en: 'Start with Taiwan procurement assumptions for an H200 server, adjust GPU count, CPU, memory, storage, power, cooling, and networking, then send the exact build to EudTech for a configuration-specific availability, price, and delivery review.',
+      zh: '先以台灣採購可審查的 H200 伺服器需求為基礎，調整 GPU 數量、CPU、記憶體、儲存、電源、散熱與網路，再將完整配置交由 EudTech 進行依配置的供貨、價格與交期確認。'
     },
     image: '/grando-8gpu-server.jpg',
     imageAlt: {
@@ -129,6 +129,10 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       {
         question: { en: 'How is H200 server pricing determined?', zh: 'H200 伺服器價格如何確認？' },
         answer: { en: 'EudTech confirms price from the submitted configuration rather than publishing one fixed amount, because GPU count, CPU platform, memory, NVMe storage, power, cooling, networking, delivery, and supply conditions affect the final quote.', zh: 'EudTech 會依送出的配置確認價格，而非公布單一固定金額，因為 GPU 數量、CPU 平台、記憶體、NVMe 儲存、電力、散熱、網路、交期與供應條件都會影響最終報價。' }
+      },
+      {
+        question: { en: 'How is NVIDIA H200 server availability confirmed?', zh: 'NVIDIA H200 伺服器供貨狀態如何確認？' },
+        answer: { en: 'EudTech confirms availability and delivery only after reviewing the submitted GPU count, platform, and delivery requirements. This page does not represent a fixed in-stock commitment.', zh: 'EudTech 會在審查送出的 GPU 數量、平台與交付需求後確認供貨與交期；本頁不代表固定現貨承諾。' }
       }
     ]
   },
@@ -330,12 +334,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'gpu-server-quote',
     title: {
-      en: 'GPU Server Quote and Pricing Planning Configurator for AI RFQ',
-      zh: 'GPU 伺服器報價與價格規劃｜AI RFQ 配置器'
+      en: 'GPU Server Quote and AI RFQ Configurator for H200 or RTX PRO 6000',
+      zh: 'GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000'
     },
     description: {
-      en: 'Create an RFQ-ready GPU server quote request for H200 or RTX PRO 6000 systems, with the hardware and deployment factors that determine pricing captured in one summary.',
-      zh: '建立可供 RFQ 使用的 GPU 伺服器報價需求，將 H200 或 RTX PRO 6000 系統的硬體與部署價格影響因素一次整理成摘要。'
+      en: 'Create an RFQ-ready GPU server quote request for an H200 server or RTX PRO 6000 workstation. Capture the hardware and deployment factors EudTech needs to confirm configuration-specific price and delivery.',
+      zh: '建立可供 RFQ 使用的 GPU 伺服器報價需求，選擇 H200 伺服器或 RTX PRO 6000 工作站，並整理 EudTech 確認依配置價格與交期所需的硬體及部署因素。'
     },
     keywords: {
       en: 'GPU server quote, GPU server price, GPU server pricing, GPU server quote configurator, AI server quote, AI server RFQ quote, GPU workstation quote, server configurator, EudTech configurator',
@@ -346,8 +350,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       zh: 'GPU 伺服器報價、價格規劃與 RFQ 入口'
     },
     lead: {
-      en: 'Replace ambiguous RFQ notes with a configuration URL that records the selected system, GPU, CPU, RAM, storage, power, cooling, network, and the details EudTech needs to confirm price and delivery.',
-      zh: '用配置連結取代模糊 RFQ 備註，保留系統、GPU、CPU、RAM、儲存、電源、散熱、網路與 EudTech 確認價格及交期所需的需求細節。'
+      en: 'Choose an H200 server or RTX PRO 6000 workstation, then replace ambiguous RFQ notes with a configuration URL that records the selected GPU, CPU, RAM, storage, power, cooling, network, and the details EudTech needs to confirm price and delivery.',
+      zh: '先選擇 H200 伺服器或 RTX PRO 6000 工作站，再用配置連結取代模糊 RFQ 備註，保留 GPU、CPU、RAM、儲存、電源、散熱、網路與 EudTech 確認價格及交期所需的需求細節。'
     },
     image: '/grando-rackable-01.jpg',
     imageAlt: {
@@ -402,8 +406,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       zh: 'H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？'
     },
     description: {
-      en: 'Compare NVIDIA H200 and RTX PRO 6000 by workload, deployment form, GPU density, and purchasing review needs, then open the matching configurator for a quote-ready configuration.',
-      zh: '依工作負載、部署型態、GPU 密度與採購審查需求比較 NVIDIA H200 與 RTX PRO 6000，再進入對應配置器準備可詢價的配置。'
+      en: 'H200 vs RTX PRO 6000: compare dense AI training and HPC server deployment with local AI inference and workstation deployment, then open the matching configurator for a Taiwan quote-ready configuration.',
+      zh: 'H200 vs RTX PRO 6000：比較高密度 AI 訓練與 HPC 伺服器部署，以及本地 AI 推論與工作站部署，再進入對應配置器準備台灣可詢價的配置。'
     },
     keywords: {
       en: 'H200 vs RTX PRO 6000, H200 RTX PRO 6000 difference, H200 vs RTX PRO 6000 quote, NVIDIA H200 server comparison, RTX PRO 6000 workstation comparison, AI training GPU vs inference workstation, AI GPU comparison, GPU server procurement',
@@ -414,8 +418,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       zh: 'H200 vs RTX PRO 6000：依 AI 工作負載與部署型態選擇'
     },
     lead: {
-      en: 'Use this comparison to decide whether dense H200 server deployment or RTX PRO 6000 workstation flexibility fits the project, then preserve the exact hardware assumptions in the matching configurator.',
-      zh: '用此比較判斷專案較適合高密度 H200 伺服器部署或 RTX PRO 6000 工作站彈性，再以對應配置器保留完整硬體假設。'
+      en: 'Use this H200 vs RTX PRO 6000 comparison to decide whether dense AI training or HPC server deployment, or local inference and workstation flexibility, fits the project. Then preserve the exact hardware assumptions in the matching configurator for quote review.',
+      zh: '使用此 H200 vs RTX PRO 6000 比較，判斷專案較適合高密度 AI 訓練或 HPC 伺服器部署，或本地推論與工作站彈性；再以對應配置器保留完整硬體假設供報價審查。'
     },
     image: '/grando-8gpu-server.jpg',
     imageAlt: {

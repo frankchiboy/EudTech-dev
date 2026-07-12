@@ -36,8 +36,8 @@
       "title": "EudTech 配置器公開連結索引",
       "summary": "EudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。",
       "content_text": "EudTech 配置器公開連結索引\n\nEudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。\n\nhttps://eudaemonia.tech/configurator-links.html",
-      "date_published": "2026-07-12T00:00:00+08:00",
-      "date_modified": "2026-07-12T00:00:00+08:00"
+      "date_published": "2026-07-13T00:00:00+08:00",
+      "date_modified": "2026-07-13T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/configurator/27/",
@@ -141,11 +141,11 @@
     {
       "id": "https://eudaemonia.tech/solutions/nvidia-h200-server/",
       "url": "https://eudaemonia.tech/solutions/nvidia-h200-server/",
-      "title": "NVIDIA H200 伺服器報價與價格規劃｜AI 訓練與推論",
-      "summary": "規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，再由 EudTech 依實際配置確認價格與交期。",
-      "content_text": "NVIDIA H200 伺服器報價與價格規劃｜AI 訓練與推論\n\n規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，再由 EudTech 依實際配置確認價格與交期。\n\nhttps://eudaemonia.tech/solutions/nvidia-h200-server/",
-      "date_published": "2026-07-12T00:00:00+08:00",
-      "date_modified": "2026-07-12T00:00:00+08:00"
+      "title": "NVIDIA H200 伺服器報價、供貨與價格規劃｜AI 訓練與推論",
+      "summary": "規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路；EudTech 會依實際配置確認目前供貨、價格與交期。",
+      "content_text": "NVIDIA H200 伺服器報價、供貨與價格規劃｜AI 訓練與推論\n\n規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路；EudTech 會依實際配置確認目前供貨、價格與交期。\n\nhttps://eudaemonia.tech/solutions/nvidia-h200-server/",
+      "date_published": "2026-07-13T00:00:00+08:00",
+      "date_modified": "2026-07-13T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/",
@@ -177,20 +177,20 @@
     {
       "id": "https://eudaemonia.tech/solutions/gpu-server-quote/",
       "url": "https://eudaemonia.tech/solutions/gpu-server-quote/",
-      "title": "GPU 伺服器報價與價格規劃｜AI RFQ 配置器",
-      "summary": "建立可供 RFQ 使用的 GPU 伺服器報價需求，將 H200 或 RTX PRO 6000 系統的硬體與部署價格影響因素一次整理成摘要。",
-      "content_text": "GPU 伺服器報價與價格規劃｜AI RFQ 配置器\n\n建立可供 RFQ 使用的 GPU 伺服器報價需求，將 H200 或 RTX PRO 6000 系統的硬體與部署價格影響因素一次整理成摘要。\n\nhttps://eudaemonia.tech/solutions/gpu-server-quote/",
-      "date_published": "2026-07-12T00:00:00+08:00",
-      "date_modified": "2026-07-12T00:00:00+08:00"
+      "title": "GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000",
+      "summary": "建立可供 RFQ 使用的 GPU 伺服器報價需求，選擇 H200 伺服器或 RTX PRO 6000 工作站，並整理 EudTech 確認依配置價格與交期所需的硬體及部署因素。",
+      "content_text": "GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000\n\n建立可供 RFQ 使用的 GPU 伺服器報價需求，選擇 H200 伺服器或 RTX PRO 6000 工作站，並整理 EudTech 確認依配置價格與交期所需的硬體及部署因素。\n\nhttps://eudaemonia.tech/solutions/gpu-server-quote/",
+      "date_published": "2026-07-13T00:00:00+08:00",
+      "date_modified": "2026-07-13T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/",
       "url": "https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/",
       "title": "H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？",
-      "summary": "依工作負載、部署型態、GPU 密度與採購審查需求比較 NVIDIA H200 與 RTX PRO 6000，再進入對應配置器準備可詢價的配置。",
-      "content_text": "H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？\n\n依工作負載、部署型態、GPU 密度與採購審查需求比較 NVIDIA H200 與 RTX PRO 6000，再進入對應配置器準備可詢價的配置。\n\nhttps://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/",
-      "date_published": "2026-07-12T00:00:00+08:00",
-      "date_modified": "2026-07-12T00:00:00+08:00"
+      "summary": "H200 vs RTX PRO 6000：比較高密度 AI 訓練與 HPC 伺服器部署，以及本地 AI 推論與工作站部署，再進入對應配置器準備台灣可詢價的配置。",
+      "content_text": "H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？\n\nH200 vs RTX PRO 6000：比較高密度 AI 訓練與 HPC 伺服器部署，以及本地 AI 推論與工作站部署，再進入對應配置器準備台灣可詢價的配置。\n\nhttps://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/",
+      "date_published": "2026-07-13T00:00:00+08:00",
+      "date_modified": "2026-07-13T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/",

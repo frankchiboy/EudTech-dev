@@ -5,7 +5,7 @@
     <link>https://eudaemonia.tech/solutions/</link>
     <description>AI GPU server, Comino Grando configurator, workstation quote, and procurement solution entry points from EudTech.</description>
     <language>zh-TW</language>
-    <lastBuildDate>Sun, 12 Jul 2026 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://eudaemonia.tech/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Comino Grando GPU 伺服器報價配置器</title>
@@ -25,7 +25,7 @@
       <title>EudTech 配置器公開連結索引</title>
       <link>https://eudaemonia.tech/configurator-links.html</link>
       <guid>https://eudaemonia.tech/configurator-links.html</guid>
-      <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0800</pubDate>
       <description>EudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。</description>
     </item>
     <item>
@@ -106,11 +106,11 @@
       <description>配置 RACKABLE WS 6x5090，保留 NVIDIA GeForce RTX 5090 GPU 與 AMD EPYC 平台假設，供 AI 工作站報價審查。</description>
     </item>
     <item>
-      <title>NVIDIA H200 伺服器報價與價格規劃｜AI 訓練與推論</title>
+      <title>NVIDIA H200 伺服器報價、供貨與價格規劃｜AI 訓練與推論</title>
       <link>https://eudaemonia.tech/solutions/nvidia-h200-server/</link>
       <guid>https://eudaemonia.tech/solutions/nvidia-h200-server/</guid>
-      <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
-      <description>規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，再由 EudTech 依實際配置確認價格與交期。</description>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0800</pubDate>
+      <description>規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路；EudTech 會依實際配置確認目前供貨、價格與交期。</description>
     </item>
     <item>
       <title>RTX PRO 6000 本地 AI 推論工作站報價配置器</title>
@@ -134,18 +134,18 @@
       <description>探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。</description>
     </item>
     <item>
-      <title>GPU 伺服器報價與價格規劃｜AI RFQ 配置器</title>
+      <title>GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000</title>
       <link>https://eudaemonia.tech/solutions/gpu-server-quote/</link>
       <guid>https://eudaemonia.tech/solutions/gpu-server-quote/</guid>
-      <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
-      <description>建立可供 RFQ 使用的 GPU 伺服器報價需求，將 H200 或 RTX PRO 6000 系統的硬體與部署價格影響因素一次整理成摘要。</description>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0800</pubDate>
+      <description>建立可供 RFQ 使用的 GPU 伺服器報價需求，選擇 H200 伺服器或 RTX PRO 6000 工作站，並整理 EudTech 確認依配置價格與交期所需的硬體及部署因素。</description>
     </item>
     <item>
       <title>H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？</title>
       <link>https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/</link>
       <guid>https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/</guid>
-      <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
-      <description>依工作負載、部署型態、GPU 密度與採購審查需求比較 NVIDIA H200 與 RTX PRO 6000，再進入對應配置器準備可詢價的配置。</description>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0800</pubDate>
+      <description>H200 vs RTX PRO 6000：比較高密度 AI 訓練與 HPC 伺服器部署，以及本地 AI 推論與工作站部署，再進入對應配置器準備台灣可詢價的配置。</description>
     </item>
     <item>
       <title>AI 採購 GPU 伺服器 RFQ 檢核表</title>
