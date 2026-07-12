@@ -2,6 +2,9 @@
 
 一個基於 React + TypeScript 的現代化企業網站，採用原子化設計系統和模組化架構。
 
+Configurator 的目前狀態與接續順序見 [PROJECT_STATUS.md](PROJECT_STATUS.md)；系統邊界、設定規則、
+詢價流程、效能決策與曝光操作準則見 [CONFIGURATOR_KNOWLEDGE.md](CONFIGURATOR_KNOWLEDGE.md)。
+
 ## 🏗️ 架構概覽
 
 ### 技術棧

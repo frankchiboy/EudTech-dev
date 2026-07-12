@@ -1,6 +1,7 @@
 # Configurator Exposure Checklist
 
-> 目前接續狀態以 [PROJECT_STATUS.md](../PROJECT_STATUS.md) 為準。
+> 目前接續狀態以 [PROJECT_STATUS.md](../PROJECT_STATUS.md) 為準；系統邊界與導入決策以
+> [CONFIGURATOR_KNOWLEDGE.md](../CONFIGURATOR_KNOWLEDGE.md) 為準。
 > 本文件保留完整歷史實作細節；其中較早的 deploy commit、Search Console 統計與外部權限描述可能已過時。
 
 ## Priority Keywords

@@ -1,8 +1,9 @@
 # Configurator Exposure Project Status
 
-更新時間：2026-07-13 03:25 Asia/Taipei
+更新時間：2026-07-13 03:33 Asia/Taipei
 
-這是 Configurator 曝光、詢價追蹤與正式部署的唯一接續入口。歷史細節仍保留在
+這是 Configurator 曝光、詢價追蹤與正式部署的唯一接續入口。系統邊界、導入決策與操作
+準則見 `CONFIGURATOR_KNOWLEDGE.md`；歷史細節仍保留在
 `docs/configurator-exposure-checklist.md`，但其中的舊版部署 commit 與舊統計數字不應
 視為目前狀態。
 
@@ -133,6 +134,7 @@
 | Browser event verification | `scripts/verify-marketing-events-browser.cjs` |
 | Production event verification | `scripts/check-marketing-event-health.cjs` |
 | SEO/exposure readiness audit | `scripts/audit-configurator-exposure-readiness.cjs` |
+| Configurator system and decision knowledge | `CONFIGURATOR_KNOWLEDGE.md` |
 | Historical exposure implementation | `docs/configurator-exposure-checklist.md` |
 | Original prompt archives | `USER_ORIGINAL_PROMPTS.md`, `docs/USER_ORIGINAL_PROMPTS.md` |
 
