@@ -36,7 +36,7 @@ Verified on 2026-07-12 Asia/Taipei. The authoritative resume state is also recor
 | Production browser tracking | Active for GA/GTM | The production bundle contains the configured GTM container and GA4 measurement ID. |
 | GA4 reporting API | Pending explicit Terms approval | A property-scoped Viewer service account is ready, but Google Analytics Data API (`analyticsdata.googleapis.com`) is not enabled in `eudaemonia-vault-20260203`. Do not click Enable or accept Google APIs Terms without explicit user approval. |
 | Quote journey measurement | Active | Anonymous `quote_request_id` joins the quote form, first-party conversion event, quote email, and `quote_email_sent` log. |
-| Durable first-party funnel history | Active after the next production deploy | Selected sanitized conversion/attribution events are stored in the site-scoped Netlify Blobs store `configurator-marketing-events-v1`; `npm run report:configurator-conversions -- --days=30` emits aggregate-only reporting. |
+| Durable first-party funnel history | Active | Selected sanitized conversion/attribution events are stored in the site-scoped Netlify Blobs store `configurator-marketing-events-v1`; `npm run report:configurator-conversions -- --days=30` emits aggregate-only reporting. |
 | Paid conversion / retargeting | Blocked by empty platform values | Fill the Google Ads, LinkedIn, Meta, and Microsoft Ads fields listed below, then rerun the strict sync and audit commands. |
 
 The external audit reports separate `accessReady` from `configComplete`. `accessReady=true` means the automation token can read the service; `configComplete=false` means paid-platform IDs or API credentials are still empty.

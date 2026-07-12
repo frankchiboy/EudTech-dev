@@ -1,6 +1,6 @@
 # Configurator Exposure Project Status
 
-更新時間：2026-07-13 03:33 Asia/Taipei
+更新時間：2026-07-13 03:49 Asia/Taipei
 
 這是 Configurator 曝光、詢價追蹤與正式部署的唯一接續入口。系統邊界、導入決策與操作
 準則見 `CONFIGURATOR_KNOWLEDGE.md`；歷史細節仍保留在
@@ -15,11 +15,11 @@
 | 項目 | 狀態 |
 |---|---|
 | Git branch | `main`；接續前以 `git status --short --branch` 與 `git log -1 --oneline` 回讀 |
-| Latest Configurator behavior change | `e80d468b2038f140808fa5f1a8165c9985020933` - `Track configurator quote request journey` |
+| Latest Configurator behavior change | `c2aba2b3d2d5d1bf08ae6a0a474a2d822e982919` - `Persist configurator conversion history` |
 | Production | `https://eudaemonia.tech` |
 | Netlify site | `website-eudtech`，site ID `325fdd3d-ba57-4a86-987f-4f0267a2b8ed` |
-| Latest functional production verification | `e80d468` 已通過完整 production verification；文件-only commit 會更新 `build-meta.json`，但不改變 Configurator 行為 |
-| Latest resume verification | 2026-07-13：`main` 與 `origin/main` 已同步；production `build-meta.json` 為文件-only commit `3d380dc3aa12bef932e9d2750ea913364e8b1af6` |
+| Latest functional production verification | `c2aba2b` 已通過完整 production verification；文件-only commit 會更新 `build-meta.json`，但不改變 Configurator 行為 |
+| Latest resume verification | 2026-07-13：production `build-meta.json`、Netlify production deploy、`marketing-event` 持久寫入及 Blob 彙總報表皆回讀為 `c2aba2b` 行為 |
 | Main Configurator | `https://eudaemonia.tech/configurator/` |
 | Primary quote route | `https://eudaemonia.tech/configurator/29/` |
 
@@ -39,6 +39,11 @@
    - 識別碼為 UUID，不含姓名、電話或 Email。
    - `marketing-event` 對該 UUID 使用專屬白名單清理，避免既有電話遮罩規則誤將 UUID
      遮罩。
+   - `marketing_attribution`、Configurator lead、外部平台 conversion、表單與產品檢視會寫入
+     site-scoped Netlify Blobs store `configurator-marketing-events-v1`，可跨 deploy 保存；不保存
+     user agent，且 page view 不寫入原始持久事件。
+   - `npm run report:configurator-conversions -- --days=30` 只輸出每日、事件、來源與 campaign
+     彙總，不輸出 UUID、raw URL、referer 或 user agent。
 
 3. Quote email
    - `/.netlify/functions/send-email` 保持既有收件流程，實際收件地址仍由
@@ -47,18 +52,20 @@
 
 ## Verified Evidence
 
-下列驗證均在 commit `e80d468` 後完成：
+下列驗證均在 commit `c2aba2b` 後完成：
 
 | 驗證 | 結果 |
 |---|---|
 | `npm run build` | 通過 |
 | `npm run verify:original-prompts` | 通過 |
 | `npm run verify:marketing-events-browser` | 通過，確認 Configurator success event 保留 `quote_request_id` |
+| `npm run verify:marketing-event-persistence` | 通過，確認持久事件清理、UUID 保留、排除 user agent 與 page view 原始資料 |
 | 直接呼叫 `marketing-event.mjs` | 通過，UUID 不會被個資遮罩 |
 | 直接呼叫 `send-email.mjs` 無效 UUID probe | 通過，回傳 HTTP 400，未寄信 |
 | `node scripts/audit-configurator-exposure-readiness.cjs` | On-site checks 通過；外部廣告平台 ID 仍未齊備 |
-| `npm run verify:marketing-event-health` | Production 通過，`quoteRequestIdAccepted: true` |
-| `npm run verify:live-exposure -- --expect-commit e80d468b2038f140808fa5f1a8165c9985020933 --wait-for-commit-ms 60000` | Production 通過，`build-meta.json` 為同一 commit |
+| `npm run verify:marketing-event-health` | Production 通過，`quoteRequestIdAccepted: true`、`durableStorageStored: true` |
+| `npm run report:configurator-conversions -- --days=1` | Production Blob 讀取通過；回傳僅聚合欄位 |
+| `npm run verify:live-exposure -- --expect-commit c2aba2b3d2d5d1bf08ae6a0a474a2d822e982919 --wait-for-commit-ms 600000` | Production 通過，`build-meta.json` 為同一 commit |
 
 ## Pending Authorization And External State
 
@@ -130,9 +137,9 @@
 | Browser and first-party event mapping | `src/components/analytics/MarketingEvents.tsx` |
 | Quote payload type | `src/types/index.ts` |
 | Quote email delivery | `netlify/functions/send-email.mjs` |
-| First-party event collector | `netlify/functions/marketing-event.mjs` |
+| First-party event collector and persistence | `netlify/functions/marketing-event.mjs`、`netlify/functions/marketing-event-persistence.mjs` |
 | Browser event verification | `scripts/verify-marketing-events-browser.cjs` |
-| Production event verification | `scripts/check-marketing-event-health.cjs` |
+| Production event verification and aggregate reporting | `scripts/check-marketing-event-health.cjs`、`scripts/report-configurator-conversion-history.cjs` |
 | SEO/exposure readiness audit | `scripts/audit-configurator-exposure-readiness.cjs` |
 | Configurator system and decision knowledge | `CONFIGURATOR_KNOWLEDGE.md` |
 | Historical exposure implementation | `docs/configurator-exposure-checklist.md` |

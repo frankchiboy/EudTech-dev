@@ -44,12 +44,14 @@ async function main() {
       payload.ok === true &&
       missingEvents.length === 0 &&
       eventResponse.status === 202 &&
-      eventPayload.quoteRequestId === quoteRequestId,
+      eventPayload.quoteRequestId === quoteRequestId &&
+      eventPayload.durableStorage === 'stored',
     endpoint,
     status: response.status,
     acceptedEvents,
     missingEvents,
-    quoteRequestIdAccepted: eventPayload.quoteRequestId === quoteRequestId
+    quoteRequestIdAccepted: eventPayload.quoteRequestId === quoteRequestId,
+    durableStorageStored: eventPayload.durableStorage === 'stored'
   };
 
   console.log(JSON.stringify(result, null, 2));
