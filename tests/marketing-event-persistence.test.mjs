@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { persistMarketingEvent } from './marketing-event-persistence.mjs';
+import { persistMarketingEvent } from '../netlify/functions/marketing-event-persistence.mjs';
 
 test('uses the frontend event UUID as the durable idempotency key', async () => {
   const writes = [];
