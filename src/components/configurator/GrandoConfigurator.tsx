@@ -1217,7 +1217,7 @@ const QuotePanel = ({
     `${copy.model}: ${modelName}`,
     `GPU: ${spec.gpu?.total_quantity || 1}x ${spec.gpu?.name || ''}`,
     `CPU: ${formatLocalizedSpecValue('cpu', spec.cpu, language)}`,
-    `RAM: ${formatLocalizedSpecValue('ram', spec.ram, language)}`,
+    ...(spec.ram ? [`RAM: ${formatLocalizedSpecValue('ram', spec.ram, language)}`] : []),
     `${copy.configurationLink}: ${currentUrl}`
   ].join('\n');
   const quoteSubject = `${copy.quoteSubject} - ${modelName}`;
