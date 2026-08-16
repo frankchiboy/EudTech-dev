@@ -19,6 +19,7 @@ function storageDate(receivedAt) {
 
 export function durableMarketingRecord(eventRecord) {
   return {
+    eventId: eventRecord.eventId,
     event: eventRecord.event,
     receivedAt: eventRecord.receivedAt,
     pageLocation: eventRecord.pageLocation,
@@ -36,7 +37,9 @@ export async function persistMarketingEvent(eventRecord, { store = getStore({ na
     return { persisted: false, reason: 'event_not_selected_for_durable_storage' };
   }
 
-  const eventId = crypto.randomUUID();
+  const eventId = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(eventRecord.eventId || '')
+    ? eventRecord.eventId.toLowerCase()
+    : crypto.randomUUID();
   const key = `events/${storageDate(eventRecord.receivedAt)}/${eventId}.json`;
   await store.setJSON(key, durableMarketingRecord(eventRecord));
 
