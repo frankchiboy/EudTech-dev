@@ -75,7 +75,9 @@ export const CONFIGURATOR_COPY = {
     configurationLink: 'Configuration link',
     model: 'Model',
     systemFallback: 'Grando system',
-    loadErrorFallback: 'Something went wrong.'
+    loadErrorFallback: 'Something went wrong.',
+    fallbackNotice:
+      'The vendor live configurator is temporarily unavailable. This page is using EudTech\'s product configuration baseline; final options, pricing, and delivery lead time require a formal quote.'
   },
   zh: {
     homeTitle: 'Comino Grando GPU 伺服器報價配置器',
@@ -147,7 +149,9 @@ export const CONFIGURATOR_COPY = {
     configurationLink: '配置連結',
     model: '機型',
     systemFallback: 'Grando 系統',
-    loadErrorFallback: '發生錯誤，請稍後再試。'
+    loadErrorFallback: '發生錯誤，請稍後再試。',
+    fallbackNotice:
+      '原廠即時配置服務目前未連線。本頁使用優達盟產品配置基準；最終選項、價格與供期由正式報價確認。'
   }
 } as const;
 
