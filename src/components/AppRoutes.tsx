@@ -1,13 +1,11 @@
 import React, { Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Navigate, Routes, Route } from 'react-router-dom';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useLanguageContext } from '../contexts/LanguageContext';
 import NavBar from './navigation/NavBar';
 import HeroSection from './hero/HeroSection';
-import EudTechProductsSection from './EudTechProductsSection';
-import ComimoBrandIntro from './ComimoBrandIntro';
-import CyabraBrandIntro from './CyabraBrandIntro';
 import HomeSolutionsSection from './HomeSolutionsSection';
+import HomeBrandPartnersSection from './HomeBrandPartnersSection';
 import Footer from './Footer';
 import ScrollToTop from './common/ScrollToTop';
 import SkipToContent from './common/SkipToContent';
@@ -19,7 +17,7 @@ import SEOHead from './common/SEOHead';
 import ConfiguratorSolutionPage from './pages/ConfiguratorSolutionPage';
 import AiAgentSolutionPage from './pages/AiAgentSolutionPage';
 import MarketingEvents from './analytics/MarketingEvents';
-import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
+import { LazyProductDetails } from '../utils/performance/codesplitting';
 import { canonicalPageUrl } from '../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath } from '../utils/seo/socialPreview';
 import SolutionsOverviewPage from './pages/SolutionsOverviewPage';
@@ -93,15 +91,7 @@ const AppRoutes: React.FC = () => {
                 />
                 <HeroSection isEnglish={isEnglish} />
                 <HomeSolutionsSection isEnglish={isEnglish} />
-                <EudTechProductsSection isEnglish={isEnglish} />
-                <ComimoBrandIntro isEnglish={isEnglish} />
-                <CyabraBrandIntro isEnglish={isEnglish} />
-                <Suspense fallback={<LoadingSpinner />}>
-                  <LazyAboutSection isEnglish={isEnglish} />
-                </Suspense>
-                <Suspense fallback={<LoadingSpinner />}>
-                  <LazyContactSection />
-                </Suspense>
+                <HomeBrandPartnersSection isEnglish={isEnglish} />
                 <Footer isEnglish={isEnglish} />
               </>
             } />
@@ -118,7 +108,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
-            <Route path="/components-demo" element={<AtomicComponentsDemo />} />
+            <Route path="/components-demo" element={import.meta.env.DEV ? <AtomicComponentsDemo /> : <Navigate replace to="/" />} />
             <Route path="/products/:id" element={
               <Suspense fallback={
                 <div className="flex items-center justify-center min-h-screen">

@@ -461,6 +461,14 @@ export const getConfiguratorValidation = (spec: ConfiguratorSpec): ConfiguratorV
 };
 
 export const getConfiguratorModelName = (spec: ConfiguratorSpec) => {
+  // The selected device is the authoritative public model name. The previous
+  // GPU-count heuristic changed distinct server and workstation pages into a
+  // generic GRANDO label (for example SERVER 6xH200 became a rackable
+  // workstation). Keep the device name stable while options are adjusted.
+  if (spec.device?.name) {
+    return spec.device.name;
+  }
+
   const gpuQuantity = spec.gpu?.total_quantity || 0;
 
   if (gpuQuantity <= 6) {
@@ -485,7 +493,7 @@ export const formatSpecValue = (moduleKey: ConfiguratorModule, item?: Configurat
     case 'ram':
       return `${Number(item.volume * item.total_quantity)} GB`;
     case 'cpu':
-      return `${item.name}${item.total_quantity > 1 ? `, ${item.total_quantity} cores` : ''}`;
+      return `${item.name}${item.total_quantity > 1 ? `, ${item.total_quantity} CPUs` : ''}`;
     case 'psu':
       return item.unique_id === '1'
         ? '4x Redundant (3+1, 2+2) Power Supplies. Power capacity up to 8000W'

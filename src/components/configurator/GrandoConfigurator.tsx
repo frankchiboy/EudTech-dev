@@ -1014,7 +1014,7 @@ const OptionSection = ({
                   </button>
                 ))}
               </div>
-              <span>{copy.cores}</span>
+              <span>{copy.cpuQuantity}</span>
             </div>
           ) : null}
 

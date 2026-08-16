@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { CheckCircle2, Cpu, ExternalLink, Mail, Server } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Cpu, ExternalLink, Mail, Server } from 'lucide-react';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import SEOHead from '../common/SEOHead';
 import Footer from '../Footer';
@@ -239,20 +239,20 @@ const ConfiguratorSolutionPage: React.FC = () => {
               <h2 className="text-3xl font-bold tracking-normal text-gray-950 dark:text-white">
                 {page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist'
                   ? isEnglish
-                    ? 'How this supports procurement decisions'
-                    : '這如何支援採購決策'
+                    ? 'How teams can use this guide'
+                    : '團隊可以如何使用這份指南'
                   : isEnglish
-                    ? 'Why this page matches buyer intent'
-                    : '為什麼這頁符合採購意圖'}
+                    ? 'What this page helps you prepare'
+                    : '這份內容可以協助準備什麼'}
               </h2>
               <p className="mt-5 text-base leading-8 text-gray-600 dark:text-gray-300">
                 {page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist'
                   ? isEnglish
-                    ? 'This content gives technical and purchasing teams a structured entry point before they open the configurator or send a quote request.'
-                    : '這些內容提供技術與採購團隊在開啟配置器或送出報價前的結構化入口。'
+                    ? 'Use the structured information here to choose a starting configuration, confirm the required assumptions, and prepare a quote request.'
+                    : '使用這些結構化資訊選擇起始配置、確認必要假設，並準備報價需求。'
                   : isEnglish
-                    ? 'These pages are built for high-intent searches where the buyer is already comparing GPU servers, AI workstations, liquid cooling, and quote workflows.'
-                    : '這些頁面針對高意圖搜尋建立，使用者通常已在比較 GPU 伺服器、AI 工作站、液冷系統與報價流程。'}
+                    ? 'Use the page to clarify the workload, deployment constraints, and next step before requesting a quote.'
+                    : '使用這份內容釐清工作負載、部署限制與提出報價需求前的下一步。'}
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
@@ -287,6 +287,35 @@ const ConfiguratorSolutionPage: React.FC = () => {
 
         <section className="bg-white py-16 dark:bg-gray-950">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
+                {isEnglish ? 'Decision worksheet' : '專屬決策工作表'}
+              </p>
+              <h2 className="mt-4 text-3xl font-bold text-gray-950 dark:text-white">
+                {getText(page.title, isEnglish)}
+              </h2>
+              <p className="mt-4 leading-7 text-gray-600 dark:text-gray-300">
+                {isEnglish ? 'Record these three decisions before opening the configurator or requesting a quote.' : '先記錄以下三項決策，再開啟配置器或提出正式報價需求。'}
+              </p>
+            </div>
+            <div className="mt-10 grid gap-4 lg:grid-cols-3">
+              {page.specs.slice(0, 3).map((spec, index) => (
+                <article key={getText(spec.label, isEnglish)} className="relative rounded-2xl border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-gray-900">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">{String(index + 1).padStart(2, '0')}</span>
+                    {index < 2 ? <ArrowRight className="hidden h-4 w-4 text-gray-400 lg:block" /> : null}
+                  </div>
+                  <h3 className="mt-5 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">{getText(spec.label, isEnglish)}</h3>
+                  <p className="mt-3 text-base font-semibold leading-7 text-gray-950 dark:text-white">{getText(spec.value, isEnglish)}</p>
+                  <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">{page.highlights[index] ? getText(page.highlights[index], isEnglish) : getText(page.description, isEnglish)}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white py-16 dark:bg-gray-950">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex flex-col justify-between gap-6 border-b border-gray-200 pb-8 dark:border-gray-800 lg:flex-row lg:items-end">
               <div>
                 <h2 className="text-2xl font-bold text-gray-950 dark:text-white">
@@ -294,8 +323,8 @@ const ConfiguratorSolutionPage: React.FC = () => {
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
                   {isEnglish
-                    ? 'Internal links help search engines and buyers move from keyword pages into the product configurator.'
-                    : '內部連結可協助搜尋引擎與採購者從關鍵字頁進入產品配置器。'}
+                    ? 'Continue to a related guide or open the configurator when the required assumptions are ready.'
+                    : '確認必要假設後，繼續閱讀相關指南或開啟配置器。'}
                 </p>
               </div>
               <Link

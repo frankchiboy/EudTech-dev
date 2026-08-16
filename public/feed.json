@@ -108,8 +108,8 @@
       "title": "EudTech 配置器公開連結索引",
       "summary": "EudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。",
       "content_text": "EudTech 配置器公開連結索引\n\nEudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。\n\nhttps://eudaemonia.tech/configurator-links.html",
-      "date_published": "2026-07-13T00:00:00+08:00",
-      "date_modified": "2026-07-13T00:00:00+08:00"
+      "date_published": "2026-08-16T00:00:00+08:00",
+      "date_modified": "2026-08-16T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/configurator/27/",
@@ -312,11 +312,11 @@
     {
       "id": "https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/",
       "url": "https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/",
-      "title": "Supermicro 與 Comino GPU 伺服器配置比較",
-      "summary": "比較評估 Supermicro 類 GPU 伺服器 RFQ 與 Comino Grando 配置器導向 AI 伺服器報價時的採購路徑。",
-      "content_text": "Supermicro 與 Comino GPU 伺服器配置比較\n\n比較評估 Supermicro 類 GPU 伺服器 RFQ 與 Comino Grando 配置器導向 AI 伺服器報價時的採購路徑。\n\nhttps://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/",
-      "date_published": "2026-07-12T00:00:00+08:00",
-      "date_modified": "2026-07-12T00:00:00+08:00"
+      "title": "Supermicro 與 Comino GPU 伺服器採購流程比較",
+      "summary": "比較傳統 Supermicro RFQ 與 Comino Grando 配置器詢價的採購流程、配置可追蹤性與報價交接；本頁不宣稱硬體效能基準測試結果。",
+      "content_text": "Supermicro 與 Comino GPU 伺服器採購流程比較\n\n比較傳統 Supermicro RFQ 與 Comino Grando 配置器詢價的採購流程、配置可追蹤性與報價交接；本頁不宣稱硬體效能基準測試結果。\n\nhttps://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/",
+      "date_published": "2026-08-16T00:00:00+08:00",
+      "date_modified": "2026-08-16T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/ai-inference-server-taiwan/",
@@ -360,8 +360,8 @@
       "title": "台灣 AI 伺服器採購案例指南與配置器詢價流程",
       "summary": "將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。",
       "content_text": "台灣 AI 伺服器採購案例指南與配置器詢價流程\n\n將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。\n\nhttps://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/",
-      "date_published": "2026-07-12T00:00:00+08:00",
-      "date_modified": "2026-07-12T00:00:00+08:00"
+      "date_published": "2026-08-16T00:00:00+08:00",
+      "date_modified": "2026-08-16T00:00:00+08:00"
     }
   ]
 }

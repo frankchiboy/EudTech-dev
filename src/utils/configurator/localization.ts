@@ -60,7 +60,7 @@ export const CONFIGURATOR_COPY = {
     retry: 'Retry',
     emptyMessage: 'Hmm, we could not find any device matching your filter.',
     clearFilter: 'Clear filter',
-    cores: '# of cores',
+    cpuQuantity: '# of CPUs',
     warning: 'warning',
     toggle: 'Toggle',
     showImage: 'Show configurator image',
@@ -134,7 +134,7 @@ export const CONFIGURATOR_COPY = {
     retry: '重試',
     emptyMessage: '找不到符合目前篩選條件的裝置。',
     clearFilter: '清除篩選',
-    cores: '核心數',
+    cpuQuantity: 'CPU 數量',
     warning: '警告',
     toggle: '切換',
     showImage: '顯示配置圖片',
@@ -329,7 +329,7 @@ export const formatLocalizedSpecValue = (
       return `${Number(item.volume * item.total_quantity).toLocaleString(getConfiguratorNumberLocale(locale))} GB`;
     case 'cpu':
       return item.total_quantity > 1
-        ? `${item.name}${locale === 'zh' ? '，' : ', '}${item.total_quantity} ${locale === 'zh' ? '核心' : 'cores'}`
+        ? `${item.name}${locale === 'zh' ? '，' : ', '}${item.total_quantity} ${locale === 'zh' ? '顆 CPU' : 'CPUs'}`
         : item.name;
     case 'psu':
       if (item.unique_id === '1') {

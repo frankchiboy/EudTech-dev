@@ -403,15 +403,9 @@ const CareersPage: React.FC = () => {
 
       <div className="min-h-screen bg-white dark:bg-gray-900">
         <main className="pt-16">
-          <section className="relative h-96 flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0">
-              <img
-                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
-                alt="Team collaboration"
-                className="w-full h-full object-cover transform scale-105"
-              />
-              <div className="absolute inset-0 bg-black/60 dark:bg-black/70"></div>
-            </div>
+          <section className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-slate-950">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_25%,rgba(34,211,238,0.22),transparent_32%),radial-gradient(circle_at_82%_18%,rgba(16,185,129,0.16),transparent_28%)]" />
+            <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(148,163,184,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.18)_1px,transparent_1px)] [background-size:48px_48px]" />
             <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 {isEnglish ? 'Join Our Team' : '加入我們的團隊'}
@@ -434,21 +428,9 @@ const CareersPage: React.FC = () => {
                     <div className="flex items-center mb-4">
                       <Briefcase className="h-8 w-8 text-blue-600 dark:text-blue-400 mr-3" />
                       <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-                        {isEnglish ? 'Position' : '職缺'}
+                        {isEnglish ? job.title.en : job.title.zh}
                       </h2>
                     </div>
-                    <h3 className="text-2xl font-semibold text-blue-800 dark:text-blue-300">
-                      {isEnglish ? job.title.en : job.title.zh}
-                    </h3>
-                  </div>
-
-                  <div className="mb-8 bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4">
-                    <p className="text-blue-800 dark:text-blue-300 font-medium text-center">
-                      {isEnglish
-                        ? 'Internal applications welcome. This position can also be taken as a concurrent role with additional compensation.'
-                        : '本職缺歡迎內部同仁申請，亦可採加給方式兼任。'
-                      }
-                    </p>
                   </div>
 
                   <div className="mb-8">

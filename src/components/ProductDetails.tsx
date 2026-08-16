@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import React from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Server, Cpu, Shield } from 'lucide-react';
 import { useLanguageContext } from '../contexts/LanguageContext';
 import { handleNavClick } from '../utils/helpers/navigation';
@@ -9,38 +9,20 @@ import { technicalSpecsTranslations } from './productUtils';
 import ProductAdditionalFeatures from './ProductAdditionalFeatures';
 import ProductImageGallery from './ProductImageGallery';
 import ProductSpecifications from './ProductSpecifications';
-import FinSightPayPalSection from './FinSightPayPalSection';
+import FinSightEnterpriseCta from './FinSightEnterpriseCta';
 import ProductTechnicalSpecs from './ProductTechnicalSpecs';
 import LazyImage from './common/LazyImage';
 
 const ProductDetails: React.FC = () => {
-  const { isEnglish, setLanguage } = useLanguageContext();
+  const { isEnglish } = useLanguageContext();
 
   const { id } = useParams();
-  const location = useLocation();
   const productId = parseInt(id || '0');
   // 取得產品資料
   const eudTechProducts = getEudTechProducts(isEnglish);
   const cominoProducts = getCominoProducts(isEnglish);
   const allProducts = [...eudTechProducts, ...cominoProducts];
   const product = allProducts.find(p => p.id === productId);
-
-  // FinSight 產品語言控制邏輯
-  const hasSetLanguage = useRef(false);
-  useEffect(() => {
-    // 只在組件首次掛載且尚未設定語言時執行
-    if (!hasSetLanguage.current && productId === 3) {
-      const fromHome = location.state?.fromHome;
-      
-      // 如果不是從首頁進入（直接進入或外部連結），設定為英文
-      if (!fromHome) {
-        setLanguage('en');
-      }
-      // 如果是從首頁進入，保持當前語言設定
-      
-      hasSetLanguage.current = true;
-    }
-  }, [productId, location.state, setLanguage]);
 
   if (!product) {
     console.log("Product not found!");
@@ -238,9 +220,9 @@ const ProductDetails: React.FC = () => {
         </div>
       </div>
 
-      {/* PayPal Support Section - Only for FinSight (模組化) */}
+      {/* Enterprise evaluation CTA - Only for FinSight */}
       {product.id === 3 && (
-        <FinSightPayPalSection isEnglish={isEnglish} />
+        <FinSightEnterpriseCta isEnglish={isEnglish} />
       )}
 
       {/* Specifications (模組化) */}
