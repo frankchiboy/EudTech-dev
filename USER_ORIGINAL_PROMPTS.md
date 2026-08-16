@@ -1,5 +1,9 @@
 # User Original Prompts
 
+## 2026-08-16 AI Agent Website Solution Page
+
+1. 類似這幾家，幫做出最優化的版本在我們網站上：`/Users/serverc/_軟體專案/EudTech-dev`
+
 This file preserves the user's original prompts for the configurator exposure task in this repo. It must not contain secrets, credentials, or tokens.
 
 ## 2026-06-29 Configurator Exposure

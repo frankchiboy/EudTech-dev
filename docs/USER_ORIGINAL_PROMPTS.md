@@ -1,5 +1,9 @@
 # User Original Prompts
 
+## 2026-08-16 AI Agent Website Solution Page
+
+1. 類似這幾家，幫做出最優化的版本在我們網站上：`/Users/serverc/_軟體專案/EudTech-dev`
+
 ## 2026-06-25 - Grando Configurator
 
 1. `https://configurator.grando.ai/`
