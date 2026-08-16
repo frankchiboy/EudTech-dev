@@ -1,12 +1,20 @@
-# EudTech Configurator
+# EudTech Solutions
 
-EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled system configuration services for Taiwan buyers.
+EudTech provides enterprise AI Agent implementation, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
 
 ## Primary URLs
 
 - Homepage: https://eudaemonia.tech/
 - Comino Grando Configurator: https://eudaemonia.tech/configurator/
-- Configurator Solutions Hub: https://eudaemonia.tech/solutions/
+- AI Solutions Overview: https://eudaemonia.tech/solutions/
+- AI Agent Implementation: https://eudaemonia.tech/solutions/ai-agent/
+- 產品與品牌｜EudTech: https://eudaemonia.tech/products/
+- AI 伺服器採購資源｜EudTech: https://eudaemonia.tech/resources/
+- AI 運算基礎設施｜EudTech: https://eudaemonia.tech/solutions/ai-infrastructure/
+- 社群情報與品牌保護｜EudTech: https://eudaemonia.tech/solutions/social-intelligence/
+- 關於 EudTech｜優達盟資訊科技: https://eudaemonia.tech/about/
+- 聯絡 EudTech｜開始諮詢: https://eudaemonia.tech/contact/
+- 隱私與資料使用｜EudTech: https://eudaemonia.tech/privacy/
 - Configurator Link Index: https://eudaemonia.tech/configurator-links.html
 - INTEGRATION KIT 8x H200 配置器: https://eudaemonia.tech/configurator/27/
 - INTEGRATION KIT 8x PRO 6000 配置器: https://eudaemonia.tech/configurator/36/
@@ -39,6 +47,9 @@ EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled 
 
 ## High-Intent Topics
 
+- Enterprise AI Agent implementation
+- AI infrastructure planning
+- Cyabra social intelligence
 - GPU server quote
 - AI server quote
 - NVIDIA H200 server

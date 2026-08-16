@@ -7,6 +7,7 @@ const {
   SOCIAL_IMAGE_HEIGHT,
   getConfiguratorSocialPreviewRoutes
 } = require('./configurator-social-preview-routes.cjs');
+const { SITE_INFORMATION_ROUTES } = require('./site-information-routes.cjs');
 
 const distDir = path.resolve(__dirname, '..', 'dist');
 const indexPath = path.join(distDir, 'index.html');
@@ -207,39 +208,38 @@ function configuratorHubItemList() {
 
 const solutionHubRoute = {
   path: '/solutions',
-  title: 'GPU 伺服器報價與配置器解決方案',
-  description: 'EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。',
-  keywords: 'GPU 伺服器報價, AI 伺服器報價, 配置器解決方案, NVIDIA H200 伺服器, RTX PRO 6000 工作站, GPU 伺服器 RFQ, 液冷 AI 伺服器',
-  lead: '先依採購意圖選擇入口，再進入對應配置器，保留 GPU、CPU、記憶體、儲存、電源與網路脈絡供報價追蹤。',
+  title: 'AI 解決方案總覽｜EudTech',
+  description: '依企業流程、AI 運算工作負載與社群情報需求，選擇 EudTech AI Agent、AI 基礎設施或 Cyabra 導入路徑。',
+  keywords: 'AI 解決方案, AI Agent 導入, AI 運算基礎設施, Cyabra 社群情報, EudTech',
+  lead: '從需要改善的營運流程、運算工作負載或社群風險開始，進入有明確內容、下一步及可追蹤交付的方案。',
   image: defaultImage,
-  imageAlt: 'EudTech GPU 伺服器報價配置器解決方案',
+  imageAlt: 'EudTech AI 解決方案總覽',
   kind: 'collection',
   configuratorHref: '/configurator',
   quoteHref: '/configurator?request=true',
   relatedLinks: [
-    routeLink('/configurator', '開啟 Comino Grando 配置器'),
-    routeLink('/configurator-links.html', '完整配置器產品連結索引'),
-    ...configuratorProductLinks(),
-    routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
-    routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置'),
-    routeLink('/solutions/rtx-pro-6000-workstation', 'RTX PRO 6000 工作站配置'),
-    routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表')
+    routeLink('/solutions/ai-agent', 'AI Agent 導入'),
+    routeLink('/solutions/ai-infrastructure', 'AI 運算基礎設施'),
+    routeLink('/solutions/social-intelligence', '社群情報與品牌保護'),
+    routeLink('/products', '產品與品牌'),
+    routeLink('/resources', '採購資源'),
+    routeLink('/contact', '聯絡與諮詢')
   ],
   highlights: [
-    '高意圖搜尋入口：GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、液冷 AI 伺服器。',
-    '每個頁面都連回可操作的配置器與詢價流程。',
-    '適合台灣企業、研究單位與採購團隊進行規格初步對齊。'
+    'AI Agent：串接既有系統、追蹤工作並保留人工核准。',
+    'AI 運算基礎設施：從工作負載到可採購配置。',
+    '社群情報：分析假帳號、敘事、擴散與品牌風險。'
   ],
   specs: [
-    { label: '主要轉換', value: '送出配置器詢價需求' },
-    { label: '服務區域', value: 'Taiwan' },
-    { label: '聯絡信箱', value: 'info@eudaemonia.tech' }
+    { label: '方案一', value: '企業 AI Agent 導入' },
+    { label: '方案二', value: 'AI 運算基礎設施' },
+    { label: '方案三', value: 'Cyabra 社群情報' }
   ],
   faq: [
-    ['配置器解決方案總入口適合哪些搜尋需求？', '適合正在搜尋 GPU 伺服器報價、NVIDIA H200 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、液冷 GPU 伺服器與 RFQ 檢核表的採購或技術團隊。'],
-    ['這個頁面會直接顯示公開價格嗎？', '不會。EudTech 配置器保留硬體選項與詢價脈絡，正式價格、交期與供應條件需由 EudTech 依實際配置回覆。'],
-    ['為什麼要先從解決方案入口進入配置器？', '解決方案入口會依採購意圖分流，讓使用者先選擇 H200、RTX PRO 6000、液冷、RFQ 或推論伺服器等路徑，再進入可操作配置器。'],
-    ['這些頁面適合台灣採購流程使用嗎？', '適合。頁面保留中文搜尋內容、配置器連結、詢價入口與 EudTech 聯絡資訊，方便台灣企業、研究單位與採購團隊整理需求。']
+    ['如何選擇 EudTech 解決方案？', '需要改善企業流程時選擇 AI Agent；需要 GPU 伺服器或工作站時選擇 AI 運算基礎設施；需要分析社群風險時選擇社群情報。'],
+    ['方案是否可以先做小範圍驗證？', '可以。EudTech 會先定義問題、資料、負責人、證據與成功指標，再以可操作範圍開始。'],
+    ['AI 運算方案可以直接配置嗎？', '可以。AI 運算基礎設施頁會連到 Comino 配置器，保留可分享配置並送出詢價。'],
+    ['如何開始諮詢？', '使用聯絡頁選擇需求類型，再透過 Microsoft Bookings 或 info@eudaemonia.tech 安排下一步。']
   ],
   schema: [
     {
@@ -247,24 +247,28 @@ const solutionHubRoute = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
-        { '@type': 'ListItem', position: 2, name: '配置器解決方案', item: pageUrl('/solutions') }
+        { '@type': 'ListItem', position: 2, name: 'AI 解決方案', item: pageUrl('/solutions') }
       ]
     },
     {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: '配置器解決方案',
-      description: 'EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。',
+      name: 'AI 解決方案',
+      description: 'EudTech 的 AI Agent、AI 運算基礎設施與 Cyabra 社群情報三大方案。',
       url: pageUrl('/solutions'),
       publisher: eudTechOrganization,
       mainEntity: {
         '@type': 'ItemList',
-        name: '配置器解決方案頁面',
-        itemListElement: CONFIGURATOR_SEO_PAGES.map((page, index) => ({
+        name: 'EudTech 三大解決方案',
+        itemListElement: [
+          ['AI Agent 導入', '/solutions/ai-agent'],
+          ['AI 運算基礎設施', '/solutions/ai-infrastructure'],
+          ['社群情報與品牌保護', '/solutions/social-intelligence']
+        ].map(([name, pathname], index) => ({
           '@type': 'ListItem',
           position: index + 1,
-          name: getZh(page.title),
-          url: pageUrl(`/solutions/${page.slug}`)
+          name,
+          url: pageUrl(pathname)
         }))
       }
     }
@@ -329,33 +333,43 @@ const productRoutes = CONFIGURATOR_PRODUCT_SEO.map((product) => {
   };
 });
 
+const informationRouteTitleByPath = new Map(SITE_INFORMATION_ROUTES.map((route) => [route.path, route.title]));
+const siteInformationRoutes = SITE_INFORMATION_ROUTES.map((route) => ({
+  ...route,
+  contentType: 'information',
+  image: `${siteOrigin}${route.sourceImage}`,
+  configuratorHref: route.path === '/solutions/ai-infrastructure' || route.path === '/resources' ? '/configurator' : undefined,
+  quoteHref: route.path === '/solutions/ai-infrastructure' ? '/configurator?request=true' : undefined,
+  relatedLinks: route.relatedLinks.map((pathname) => routeLink(pathname, informationRouteTitleByPath.get(pathname) || pathname))
+}));
+
 const routes = [
   {
     path: '/',
-    title: 'AI GPU 伺服器與 Comino 配置器',
-    description: 'EudTech 提供 AI GPU 伺服器、Comino Grando 液冷系統，以及可送出 GPU 伺服器與工作站報價需求的配置器。',
-    keywords: 'AI GPU 伺服器, GPU 伺服器報價, Comino Grando, NVIDIA H200 伺服器, RTX PRO 6000 工作站, 液冷 GPU 伺服器, 台灣 AI 工作站',
-    lead: 'EudTech 協助台灣團隊規劃 AI GPU 伺服器、AI 工作站與 Comino Grando 液冷系統，並提供可送出正式報價需求的配置器入口。',
-    imageAlt: 'EudTech AI GPU 伺服器與 Comino 配置器',
+    title: 'AI Agent、GPU 運算與社群情報｜EudTech',
+    description: 'EudTech 提供企業 AI Agent 導入、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。',
+    keywords: 'AI Agent 導入, AI GPU 伺服器, Comino Grando, Cyabra 社群情報, EudTech',
+    lead: 'EudTech 將 AI Agent、液冷 GPU 運算基礎設施與社群情報，連接到企業、研究單位與公部門的實際工作與決策流程。',
+    imageAlt: 'EudTech AI Agent、GPU 運算與社群情報解決方案',
     configuratorHref: '/configurator',
     quoteHref: '/configurator?request=true',
     relatedLinks: [
-      routeLink('/configurator', 'Comino Grando GPU 伺服器報價配置器'),
-      routeLink('/configurator-links.html', '完整配置器產品連結索引'),
-      routeLink('/solutions', '配置器解決方案總覽'),
-      routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
-      routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置'),
-      routeLink('/solutions/rtx-pro-6000-workstation', 'RTX PRO 6000 工作站配置')
+      routeLink('/solutions', 'AI 解決方案總覽'),
+      routeLink('/solutions/ai-agent', 'AI Agent 導入'),
+      routeLink('/solutions/ai-infrastructure', 'AI 運算基礎設施'),
+      routeLink('/solutions/social-intelligence', '社群情報與品牌保護'),
+      routeLink('/products', '產品與品牌'),
+      routeLink('/contact', '聯絡與諮詢')
     ],
     highlights: [
-      '可配置 GPU、CPU、記憶體、儲存、電源與網路選項。',
-      '配置完成後可送出詢價，並保留可分享的配置連結。',
-      '面向台灣 AI、HPC、研究與企業採購需求。'
+      'AI Agent 串接企業既有郵件、專案、ERP 與財務流程。',
+      'AI 運算基礎設施從工作負載連到配置、詢價與部署。',
+      'Cyabra 社群情報協助辨識假帳號、敘事與品牌風險。'
     ],
     specs: [
-      { label: '主力產品', value: 'AI GPU 伺服器與 AI 工作站' },
-      { label: '配置器', value: 'Comino Grando GPU 伺服器報價配置器' },
-      { label: '聯絡信箱', value: 'info@eudaemonia.tech' }
+      { label: '方案一', value: '企業 AI Agent 導入' },
+      { label: '方案二', value: 'AI GPU 運算基礎設施' },
+      { label: '方案三', value: 'Cyabra 社群情報' }
     ],
     schema: [
       {
@@ -434,7 +448,8 @@ const routes = [
   },
   ...productRoutes,
   solutionHubRoute,
-  aiAgentRoute
+  aiAgentRoute,
+  ...siteInformationRoutes
 ].concat(solutionRoutes);
 
 function escapeHtml(value) {
@@ -802,6 +817,7 @@ function routeQuoteChecklist(route, specs) {
 
   return compactList([
     specLabels ? `確認 ${specLabels} 是否已符合採購或專案需求。` : '確認 GPU、CPU、記憶體、儲存、電源與網路需求是否已整理完成。',
+    route.contentType === 'information' ? '依本頁提供的分類與內容選擇最符合需求的下一步，並保留需要進一步確認的問題。' : '',
     route.configuratorHref ? '開啟配置器後保留目前選項與可分享連結，避免規格溝通時版本不一致。' : '',
     route.quoteHref ? '使用取得報價流程送出聯絡資料、公司資訊、備註與配置連結。' : '',
     '送出後由 EudTech 透過 info@eudaemonia.tech 追蹤正式報價，不以此靜態頁面上的文字取代正式報價單。'
@@ -1004,6 +1020,20 @@ function routeSchema(route) {
   const url = pageUrl(route.path);
   const pageImage = route.image || defaultImage;
   const isArticlePage = route.kind === 'comparison' || route.kind === 'guide' || route.kind === 'checklist';
+  if (route.contentType === 'information') {
+    return [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
+          { '@type': 'ListItem', position: 2, name: route.title, item: url }
+        ]
+      },
+      relatedLinksItemListSchema(route),
+      faqSchema(route)
+    ].filter(Boolean);
+  }
   return [
     {
       '@context': 'https://schema.org',

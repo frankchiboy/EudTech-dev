@@ -96,6 +96,9 @@ flowchart LR
 
 ## 7. 分享與成效追蹤
 
+客戶來源的證據層級、欄位契約、事件流程、人工更正與下一階段驗收標準，以
+[客戶來源追蹤辦法](docs/客戶來源追蹤辦法.md) 為唯一完整規範。任何姓名、學校、職稱、論文、研究領域或公開 Email 都只能協助身分比對；沒有活動、寄件、click ID、UTM 或 referrer 證據時，來源必須維持「直接流量／來源不明」。
+
 1. Share 優先使用 Web Share API，否則複製網址；網址保留當前設定並附加
    `utm_source=share`、`utm_medium=referral`、`utm_campaign=configurator_{deviceId}`、`utm_content=share_button`。
 2. `quote_request_id` 進入前端 `quote_submit_*` 事件、dataLayer、GA/GTM payload、第一方

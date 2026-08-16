@@ -1,7 +1,5 @@
 import React from 'react';
 import { useLanguageContext } from '../../contexts/LanguageContext';
-import { useThemeContext } from '../../contexts/ThemeContext';
-import NavBar from '../navigation/NavBar';
 import ProgressiveImage from '../media/ProgressiveImage';
 import Footer from '../Footer';
 import SEOHead from '../common/SEOHead';
@@ -11,8 +9,7 @@ import ProductGrid from '../products/ProductGrid';
 import ComimoBrandIntro from '../ComimoBrandIntro';
 
 const CominoPage: React.FC = () => {
-  const { isEnglish, toggleLanguage } = useLanguageContext();
-  const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
+  const { isEnglish } = useLanguageContext();
   
   const products = getCominoProducts(isEnglish);
 
@@ -32,14 +29,6 @@ const CominoPage: React.FC = () => {
       />
       
       <div className="min-h-screen bg-white dark:bg-gray-900">
-        <NavBar 
-          isEnglish={isEnglish}
-          toggleLanguage={toggleLanguage}
-          themeMode={themeMode}
-          isDarkMode={isDarkModeActive}
-          toggleDarkMode={toggleDarkMode}
-        />
-        
         <main className="pt-16">
           {/* Hero Section */}
           <section className="relative h-96 flex items-center justify-center overflow-hidden">

@@ -2,9 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, Server, Cpu, Shield } from 'lucide-react';
 import { useLanguageContext } from '../contexts/LanguageContext';
-import { useThemeContext } from '../contexts/ThemeContext';
 import { handleNavClick } from '../utils/helpers/navigation';
-import NavBar from './navigation/NavBar';
 import Footer from './Footer';
 import { getEudTechProducts, getCominoProducts } from '../data/productData';
 import { technicalSpecsTranslations } from './productUtils';
@@ -17,8 +15,6 @@ import LazyImage from './common/LazyImage';
 
 const ProductDetails: React.FC = () => {
   const { isEnglish, setLanguage } = useLanguageContext();
-  const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
-  const { toggleLanguage } = useLanguageContext();
 
   const { id } = useParams();
   const location = useLocation();
@@ -74,13 +70,6 @@ const ProductDetails: React.FC = () => {
 
   return (
     <>
-      <NavBar 
-        isEnglish={isEnglish}
-        toggleLanguage={toggleLanguage}
-        themeMode={themeMode}
-        isDarkMode={isDarkModeActive}
-        toggleDarkMode={toggleDarkMode}
-      />
       <div className="min-h-screen bg-neutral-50 dark:bg-gray-900 overflow-x-hidden pt-16">
       {/* Product Header */}
       <div className="bg-white dark:bg-gray-800">

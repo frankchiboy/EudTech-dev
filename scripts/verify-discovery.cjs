@@ -3,6 +3,7 @@ const path = require('path');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const { getConfiguratorSocialPreviewRoutes } = require('./configurator-social-preview-routes.cjs');
+const { SITE_INFORMATION_ROUTES } = require('./site-information-routes.cjs');
 
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
@@ -12,7 +13,7 @@ const configuratorLinkIndexUrl = pageUrl('/configurator-links.html');
 const solutionHubUrl = pageUrl('/solutions');
 const solutionUrls = CONFIGURATOR_SEO_PAGES.map((page) => pageUrl(`/solutions/${page.slug}`));
 const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => pageUrl(product.configuratorHref));
-const requiredPageUrls = [pageUrl('/configurator'), ...productUrls, solutionHubUrl, ...solutionUrls];
+const requiredPageUrls = [pageUrl('/configurator'), ...productUrls, solutionHubUrl, ...SITE_INFORMATION_ROUTES.map((route) => pageUrl(route.path)), ...solutionUrls];
 const requiredIndexUrls = [...requiredPageUrls, configuratorLinkIndexUrl];
 const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
 
@@ -38,7 +39,7 @@ const netlifyToml = fs.readFileSync(path.join(rootDir, 'netlify.toml'), 'utf8');
 const llmsDiscoveryEdgeFunction = fs.readFileSync(path.join(rootDir, 'netlify', 'edge-functions', 'llms-discovery-headers.js'), 'utf8');
 
 const sitemapLocs = new Set(collectXmlLocs(sitemapXml));
-const imageSitemapPageLocs = new Set(collectXmlLocs(imageSitemapXml).filter((loc) => loc.startsWith(`${siteOrigin}/solutions`) || loc === `${siteOrigin}/` || loc.startsWith(`${siteOrigin}/configurator`)));
+const imageSitemapPageLocs = new Set(collectXmlLocs(imageSitemapXml).filter((loc) => loc.startsWith(`${siteOrigin}/`) || loc === siteOrigin));
 const imageSitemapImageLocs = new Set(collectImageLocs(imageSitemapXml));
 const sitemapIndexLocs = new Set(collectXmlLocs(sitemapIndexXml));
 const feedLinks = new Set(collectFeedLinks(feedXml));

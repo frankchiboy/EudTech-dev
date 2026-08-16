@@ -2,9 +2,9 @@
   "version": 1,
   "entries": {
     "https://eudaemonia.tech/": {
-      "hash": "294a06e370aa1eccd522061f252c73d3a808f88e4cc7f0155e1ae853cce5420a",
-      "publishedAt": "2026-07-12",
-      "modifiedAt": "2026-07-12"
+      "hash": "401e95cc103247937d562823ca3d60c96a2518ef685415861817d16a47e738a7",
+      "publishedAt": "2026-08-16",
+      "modifiedAt": "2026-08-16"
     },
     "https://eudaemonia.tech/configurator/": {
       "hash": "56c8af727b7bd572d4aa0fe8f19e8370eaf2ec7b745058371cb07ff948e84d3a",
@@ -12,9 +12,49 @@
       "modifiedAt": "2026-07-12"
     },
     "https://eudaemonia.tech/solutions/": {
-      "hash": "e6e7058a4010b4bfac43077ce8e758fdfcce587c84a3932b99f1aca5ea550e5d",
-      "publishedAt": "2026-07-12",
-      "modifiedAt": "2026-07-12"
+      "hash": "cfe79bcb9cfaa209528b0ebf46991513e2d7ef5d9b84674cc2259864ea9d9e91",
+      "publishedAt": "2026-08-16",
+      "modifiedAt": "2026-08-16"
+    },
+    "https://eudaemonia.tech/solutions/ai-agent/": {
+      "hash": "657e777d860b712ea5795579a0d82e99fea25ded88e77ddd27469ec551a440cd",
+      "publishedAt": "2026-08-16",
+      "modifiedAt": "2026-08-16"
+    },
+    "https://eudaemonia.tech/products/": {
+      "hash": "4d1dab69ea43c4e6519b0f8a02d979a2df45fd50d43243c94bc17e316c9351ae",
+      "publishedAt": "2026-08-16",
+      "modifiedAt": "2026-08-16"
+    },
+    "https://eudaemonia.tech/resources/": {
+      "hash": "565f9b7966dce4dcd7412df62b0990912801fee56cd78ceb50ee5e7b6514ebfe",
+      "publishedAt": "2026-08-16",
+      "modifiedAt": "2026-08-16"
+    },
+    "https://eudaemonia.tech/solutions/ai-infrastructure/": {
+      "hash": "2900b955e8e1f0f680a525b9e13df22be8add79584f88c79a3bf3ca583499015",
+      "publishedAt": "2026-08-16",
+      "modifiedAt": "2026-08-16"
+    },
+    "https://eudaemonia.tech/solutions/social-intelligence/": {
+      "hash": "34d9a3bac79a9a3965937c5618182c5c5523668c90eb7a720f2707b1f43d6111",
+      "publishedAt": "2026-08-16",
+      "modifiedAt": "2026-08-16"
+    },
+    "https://eudaemonia.tech/about/": {
+      "hash": "74446dc119dfdee449bc7b40e4ee177a512a458fde165983081598559b38d704",
+      "publishedAt": "2026-08-16",
+      "modifiedAt": "2026-08-16"
+    },
+    "https://eudaemonia.tech/contact/": {
+      "hash": "b199049ffaf41c77838a4221e466ae3de18883ad23aab904d46b937a90f72075",
+      "publishedAt": "2026-08-16",
+      "modifiedAt": "2026-08-16"
+    },
+    "https://eudaemonia.tech/privacy/": {
+      "hash": "a9c2276a1a065e2af0dc1495e40189ab0dc210c4d87675ee01b4e1e82038e504",
+      "publishedAt": "2026-08-16",
+      "modifiedAt": "2026-08-16"
     },
     "https://eudaemonia.tech/configurator-links.html": {
       "hash": "64fdb0d6258cef63ab40db704e2f910824a8a010c3ce4acdfe81dc71114060f1",

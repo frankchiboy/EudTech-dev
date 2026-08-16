@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Logo: React.FC = () => {
   return (
-    <div className="flex items-center">
+    <Link to="/" aria-label="EudTech 首頁" className="flex items-center rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
       <div className="relative mt-1">
         <svg 
           width="56" 
@@ -43,7 +44,7 @@ const Logo: React.FC = () => {
         </span>
         <span className="text-xs tracking-wide opacity-80 dark:text-gray-300">Eudaemonia Technology</span>
       </div>
-    </div>
+    </Link>
   );
 };
 

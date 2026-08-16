@@ -1,8 +1,6 @@
 import React from 'react';
 import { Mail, MapPin, Clock, Briefcase, CheckCircle } from 'lucide-react';
 import { useLanguageContext } from '../contexts/LanguageContext';
-import { useThemeContext } from '../contexts/ThemeContext';
-import NavBar from './navigation/NavBar';
 import Footer from './Footer';
 import Section from './layout/Section';
 import Card from './ui/Card';
@@ -12,8 +10,7 @@ import SEOHead from './common/SEOHead';
 const applicationEmail = 'info@eudaemonia.tech';
 
 const CareersPage: React.FC = () => {
-  const { isEnglish, toggleLanguage } = useLanguageContext();
-  const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
+  const { isEnglish } = useLanguageContext();
   const careersUrl = 'https://eudaemonia.tech/careers';
   const organizationName = 'EudTech';
   const applyEmail = 'frank.hsu@eudaemonia.tech';
@@ -405,14 +402,6 @@ const CareersPage: React.FC = () => {
       />
 
       <div className="min-h-screen bg-white dark:bg-gray-900">
-        <NavBar
-          isEnglish={isEnglish}
-          toggleLanguage={toggleLanguage}
-          themeMode={themeMode}
-          isDarkMode={isDarkModeActive}
-          toggleDarkMode={toggleDarkMode}
-        />
-
         <main className="pt-16">
           <section className="relative h-96 flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">

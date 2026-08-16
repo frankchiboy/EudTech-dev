@@ -4,6 +4,9 @@
 
 Configurator 的目前狀態與接續順序見 [PROJECT_STATUS.md](PROJECT_STATUS.md)；系統邊界、設定規則、
 詢價流程、效能決策與曝光操作準則見 [CONFIGURATOR_KNOWLEDGE.md](CONFIGURATOR_KNOWLEDGE.md)。
+所有官網更新的分支、預覽、核准、正式發布與回復規則，見 [開發中版本管理辦法](docs/開發中版本管理辦法.md)。
+客戶從開發信、廣告、搜尋、轉介到詢價及 Dataverse 的歸因規則，見 [客戶來源追蹤辦法](docs/客戶來源追蹤辦法.md)。
+主導航、頁面階層、Footer、搜尋索引與第一版驗收規則，見 [網站資訊架構](docs/網站資訊架構.md)。
 
 ## 🏗️ 架構概覽
 

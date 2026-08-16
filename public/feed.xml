@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>EudTech Configurator Updates</title>
+    <title>EudTech Solutions and Resources</title>
     <link>https://eudaemonia.tech/solutions/</link>
-    <description>AI GPU server, Comino Grando configurator, workstation quote, and procurement solution entry points from EudTech.</description>
+    <description>EudTech AI Agent, AI infrastructure, social intelligence, products, resources, and consultation entry points.</description>
     <language>zh-TW</language>
-    <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://eudaemonia.tech/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Comino Grando GPU 伺服器報價配置器</title>
@@ -15,11 +15,67 @@
       <description>配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。</description>
     </item>
     <item>
-      <title>GPU 伺服器報價與配置器解決方案</title>
+      <title>AI 解決方案總覽｜EudTech</title>
       <link>https://eudaemonia.tech/solutions/</link>
       <guid>https://eudaemonia.tech/solutions/</guid>
-      <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
-      <description>EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。</description>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>依企業流程、AI 運算工作負載與社群情報需求，選擇 EudTech AI Agent、AI 基礎設施或 Cyabra 導入路徑。</description>
+    </item>
+    <item>
+      <title>企業 AI Agent 導入</title>
+      <link>https://eudaemonia.tech/solutions/ai-agent/</link>
+      <guid>https://eudaemonia.tech/solutions/ai-agent/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>串接 Outlook、Teams、SharePoint、Dataverse、ERP 與財務證據，建立可執行、可追溯、可人工核准的 AI Agent 工作流程。</description>
+    </item>
+    <item>
+      <title>產品與品牌｜EudTech</title>
+      <link>https://eudaemonia.tech/products/</link>
+      <guid>https://eudaemonia.tech/products/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>瀏覽 EudTech 軟體與導入服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。</description>
+    </item>
+    <item>
+      <title>AI 伺服器採購資源｜EudTech</title>
+      <link>https://eudaemonia.tech/resources/</link>
+      <guid>https://eudaemonia.tech/resources/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>依選型與報價、部署與散熱、產品比較、RFQ 與公部門採購，瀏覽 EudTech 的實際採購內容與配置入口。</description>
+    </item>
+    <item>
+      <title>AI 運算基礎設施｜EudTech</title>
+      <link>https://eudaemonia.tech/solutions/ai-infrastructure/</link>
+      <guid>https://eudaemonia.tech/solutions/ai-infrastructure/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>從工作負載、GPU 與記憶體選型、電力散熱、配置器到正式報價，建立可採購的 AI 伺服器與工作站方案。</description>
+    </item>
+    <item>
+      <title>社群情報與品牌保護｜EudTech</title>
+      <link>https://eudaemonia.tech/solutions/social-intelligence/</link>
+      <guid>https://eudaemonia.tech/solutions/social-intelligence/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>EudTech 以 Cyabra 協助企業與公部門分析假帳號、協調式社群行為、敘事擴散及品牌風險。</description>
+    </item>
+    <item>
+      <title>關於 EudTech｜優達盟資訊科技</title>
+      <link>https://eudaemonia.tech/about/</link>
+      <guid>https://eudaemonia.tech/about/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>了解優達盟資訊科技在企業 AI 導入、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。</description>
+    </item>
+    <item>
+      <title>聯絡 EudTech｜開始諮詢</title>
+      <link>https://eudaemonia.tech/contact/</link>
+      <guid>https://eudaemonia.tech/contact/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>選擇 AI Agent、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。</description>
+    </item>
+    <item>
+      <title>隱私與資料使用｜EudTech</title>
+      <link>https://eudaemonia.tech/privacy/</link>
+      <guid>https://eudaemonia.tech/privacy/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>EudTech 說明詢價與聯絡資料、客戶來源追蹤、必要識別碼、資料保存及資料請求方式。</description>
     </item>
     <item>
       <title>EudTech 配置器公開連結索引</title>

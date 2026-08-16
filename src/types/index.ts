@@ -5,6 +5,7 @@ export type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 export interface NavLinkChild {
   name: string;
   href: string;
+  description?: string;
 }
 
 export interface NavLink {

@@ -1,5 +1,6 @@
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
+const { SITE_INFORMATION_ROUTES } = require('./site-information-routes.cjs');
 
 const SOCIAL_IMAGE_WIDTH = 1200;
 const SOCIAL_IMAGE_HEIGHT = 630;
@@ -77,10 +78,10 @@ function getConfiguratorSocialPreviewRoutes() {
   const routes = [
     {
       path: '/',
-      title: 'AI GPU 伺服器與 Comino 配置器',
-      description: 'EudTech 提供 AI GPU 伺服器、Comino Grando 液冷系統，以及可送出 GPU 伺服器與工作站報價需求的配置器。',
+      title: 'AI Agent、GPU 運算與社群情報｜EudTech',
+      description: 'EudTech 提供企業 AI Agent 導入、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。',
       sourceImage: DEFAULT_SOURCE_IMAGE,
-      imageAlt: 'EudTech AI GPU 伺服器與 Comino 配置器'
+      imageAlt: 'EudTech AI Agent、GPU 運算與社群情報解決方案'
     },
     {
       path: '/configurator',
@@ -92,18 +93,25 @@ function getConfiguratorSocialPreviewRoutes() {
     ...productRoutes,
     {
       path: '/solutions',
-      title: 'GPU 伺服器報價與配置器解決方案',
-      description: 'EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。',
+      title: 'AI 解決方案總覽｜EudTech',
+      description: '依企業流程、AI 運算工作負載與社群情報需求，選擇 EudTech AI Agent、AI 基礎設施或 Cyabra 導入路徑。',
       sourceImage: DEFAULT_SOURCE_IMAGE,
-      imageAlt: 'EudTech GPU 伺服器報價配置器解決方案'
+      imageAlt: 'EudTech AI 解決方案總覽'
     },
     {
       path: '/solutions/ai-agent',
       title: '企業 AI Agent 導入｜串接 Outlook、Teams、Dataverse 與 ERP',
       description: '串接 Outlook、Teams、SharePoint、Dataverse、ERP 與財務證據，建立可執行、可追溯、可人工核准的 AI Agent 工作流程。',
-      sourceImage: '/logo.svg',
+      sourceImage: '/comino-facility-1.jpg',
       imageAlt: 'EudTech 企業 AI Agent 導入服務'
     },
+    ...SITE_INFORMATION_ROUTES.map((route) => ({
+      path: route.path,
+      title: route.title,
+      description: route.description,
+      sourceImage: route.sourceImage,
+      imageAlt: route.imageAlt
+    })),
     ...solutionRoutes
   ];
 
