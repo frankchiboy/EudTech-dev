@@ -221,77 +221,47 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
   },
   {
     id: 6,
-    title: isEnglish ? 'Comino Grando Desktop Workstation' : 'Comino Grando 桌面工作站',
+    title: isEnglish ? 'Comino GRANDO Silent Workstation' : 'Comino GRANDO 靜音工作站',
     description: isEnglish
-      ? 'Desktop workstation with up to 6 GPUs & 2 CPUs, advanced liquid cooling, quick-disconnect couplings, remote management, and monitoring system.'
-      : '桌面型工作站，支援最高6顆GPU與2顆CPU，具備先進液冷、快速接頭、遠端管理與監控系統。',
+      ? 'Liquid-cooled workstation for AI development and simulation. Current popular Blackwell configurations use 2× RTX 5090 with Threadripper PRO, 256GB or 512GB RAM, and dual NVMe storage.'
+      : '適合 AI 開發與模擬的液冷工作站；目前原廠熱門 Blackwell 配置採 2 張 RTX 5090、Threadripper PRO、256GB 或 512GB RAM 與雙 NVMe。',
     icon: React.createElement(Monitor, { className: "h-8 w-8 text-indigo-700" }),
-    image: "/GRANDO WS TRP_4xA100_01.jpg",
+    image: "/vendor/comino/grando-blackwell-official.jpg",
     features: isEnglish ? [
-      'Up to 6 GPUs & 2 CPUs',
-      'Designed to be used as a desktop or can be put in a rack',
-      '3x 140mm fans 3000 RPM (low noise level) or 3x 140mm 5000RPM (medium noise level)',
-      'Cooling Capacity up to 2.5kW',
-      'Quick Disconnect Couplings (Comino TheQ) on each GPU and CPU',
-      'Remote management: BMC chip, IPMI architecture',
-      'Comino monitoring system: cooling log, failure events, temperature statistics, web GUI'
+      'Current popular configuration: 2× GeForce RTX 5090',
+      'AMD Threadripper PRO platform',
+      '256GB or 512GB system memory',
+      'Dual NVMe storage',
+      'Comino liquid cooling for GPU and CPU',
+      'Workstation operation with rack deployment options depending on configuration'
     ] : [
-      '最高6顆GPU與2顆CPU',
-      '桌面或機架安裝',
-      '3顆140mm風扇3000RPM（低噪音）或3顆140mm 5000RPM（中噪音）',
-      '散熱能力最高2.5kW',
-      '快速接頭（Comino TheQ）於每顆GPU與CPU',
-      '遠端管理：BMC晶片、IPMI架構',
-      'Comino監控系統：冷卻日誌、故障事件、溫度統計、Web介面'
+      '目前原廠熱門配置：2 張 GeForce RTX 5090',
+      'AMD Threadripper PRO 平台',
+      '256GB 或 512GB 系統記憶體',
+      '雙 NVMe 儲存',
+      'Comino GPU 與 CPU 液冷',
+      '工作站使用，並可依配置評估機架部署'
     ],
     specs: isEnglish ? {
-      'Maximum Cooling Capacity': '2500 W @ 20°C intake air, performance mode',
-      'Motherboard': 'Up to EATX & EBB',
-      'GPUs': 'Up to 6; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, A40, L40, L40S, A100, H100; AMD: W7800, W7900',
-      'Processors': 'Up to 2; Intel: Core i9, Xeon-W 2400, 3400, Xeon Scalable 4th & 5th Gen; AMD: Ryzen 7000, Threadripper PRO 5000WX, 7000WX, EPYC 7003, 9004',
-      'RAM': 'Up to 2TB *',
-      'Storage': 'Up to 2x 3.5’’ HDD, up to 6x 2.5’’ SSD',
-      'Power Supply System': 'Up to 3x SFX-L 1000W, up to 3kW',
-      'Noise Level': '39dB - 50dB',
-      'Lan': 'Up to 2x 10GbE on motherboard, up to 400GbE in PCIe',
-      'OS': 'Ubuntu / Win10 (Pro/Home) / Windows Server',
-      'Liquid Cooling': 'CPU with VRM, GPU with GDDR and VRM',
-      'Reservoir': 'Comino custom 450ml with integrated pumps',
-      'Pumps': '2x Laing DDC 20W',
-      'Radiators': '1x 120x360mm core',
-      'Fans': '3x Low Noise 140mm 3000RPM (low noise) or 3x High Flow 140mm 5000RPM (medium noise)',
-      'Installation': 'Desktop as a Workstation or 19’’ rack-mountable',
-      'Required rack space': '4U',
-      'Size': '439 x 681 x 177mm (without handles and protruding parts)',
-      'Weight': '4 GPUs: 45kg (net), 72kg (gross)',
-      'Operating & storage temperature range': 'Storage: -5.5°C / 23.1°F; Operating: 3.4°C / 38.1°C *'
+      'Popular GPU configuration': '2× GeForce RTX 5090',
+      'Processor platform': 'AMD Threadripper PRO',
+      'Popular system memory': '256GB or 512GB',
+      'Popular storage': 'Dual NVMe',
+      'Cooling': 'Comino liquid cooling',
+      'Final configuration': 'Confirmed after workload and compatibility review'
     } : {
-      '最大冷卻能力': '2500 W @ 20°C進氣，性能模式',
-      '主機板': '支援EATX & EBB',
-      'GPU': '最高6顆；NVIDIA: 5090, RTX A6000, RTX 6000 ADA, A40, L40, L40S, A100, H100；AMD: W7800, W7900',
-      '處理器': '最高2顆；Intel: Core i9, Xeon-W 2400, 3400, Xeon Scalable 4/5代；AMD: Ryzen 7000, Threadripper PRO 5000WX, 7000WX, EPYC 7003, 9004',
-      '記憶體': '最高2TB *',
-      '儲存': '最高2顆3.5吋HDD，最高6顆2.5吋SSD',
-      '電源系統': '最高3顆SFX-L 1000W，最高3kW',
-      '噪音': '39dB - 50dB',
-      '網路': '主機板最高2x 10GbE，PCIe最高400GbE',
-      '作業系統': 'Ubuntu / Win10 (Pro/Home) / Windows Server',
-      '液冷': 'CPU含VRM，GPU含GDDR與VRM',
-      '水箱': 'Comino客製450ml含整合式幫浦',
-      '幫浦': '2x Laing DDC 20W',
-      '散熱排': '1x 120x360mm核心',
-      '風扇': '3顆低噪音140mm 3000RPM或3顆高流量140mm 5000RPM',
-      '安裝方式': '桌面型工作站或19吋機架',
-      '機架空間': '4U',
-      '尺寸': '439 x 681 x 177mm（不含把手及突出部件）',
-      '重量': '4顆GPU時45kg（淨重），72kg（毛重）',
-      '操作與儲存溫度範圍': '儲存：-5.5°C / 23.1°F；操作：3.4°C / 38.1°C *'
+      '熱門 GPU 配置': '2 張 GeForce RTX 5090',
+      '處理器平台': 'AMD Threadripper PRO',
+      '熱門系統記憶體': '256GB 或 512GB',
+      '熱門儲存': '雙 NVMe',
+      '冷卻': 'Comino 液冷',
+      '最終配置': '完成工作負載與相容性審查後確認'
     },
     comingSoon: false,
     detailedDescription: {
-      title: isEnglish ? 'Comino Grando Desktop Workstation' : 'Comino Grando 桌面工作站',
-      formFactor: isEnglish ? 'Desktop / Rack Convertible' : '桌面 / 機架可轉換',
-      introduction: isEnglish ? 'Liquid-cooled desktop workstation with up to 6 GPUs designed for quiet high-performance AI and simulation workloads.' : '液冷桌面工作站，支援最多6顆GPU，為安靜高效能AI與模擬工作負載而設計。',
+      title: isEnglish ? 'Comino GRANDO Silent Workstation' : 'Comino GRANDO 靜音工作站',
+      formFactor: isEnglish ? 'Liquid-cooled Workstation' : '液冷工作站',
+      introduction: isEnglish ? 'A liquid-cooled workstation for high-performance AI development and simulation. Current popular Blackwell configurations use 2× RTX 5090 with Threadripper PRO, 256GB or 512GB RAM, and dual NVMe storage.' : '適合高效能 AI 開發與模擬的液冷工作站。目前原廠熱門 Blackwell 配置採 2 張 RTX 5090、Threadripper PRO、256GB 或 512GB RAM 與雙 NVMe。',
       keyFeatures: [],
       technicalSpecs: {},
     }
@@ -464,86 +434,78 @@ export const getCyabraProducts = (isEnglish: boolean): Product[] => [
     id: 10,
     title: isEnglish ? 'Cyabra Platform' : 'Cyabra 平台',
     description: isEnglish
-      ? 'Advanced AI-driven disinformation detection platform to protect brands, organizations, and campaigns from fake profiles and harmful narratives.'
-      : '先進的AI驅動假資訊偵測平台，保護品牌、組織和活動免受假帳號和有害敘事的影響。',
+      ? 'Social intelligence platform for profile authenticity, harmful narratives, coordinated activity, sentiment, and real-time risk alerts.'
+      : '用於帳號真實性、有害敘事、協調式活動、情緒與即時風險警示的社群情報平台。',
     icon: React.createElement(Shield, { className: "h-8 w-8 text-[#003daa]" }),
-    image: "/cyabra-dashboard.jpg",
+    image: "/vendor/cyabra/inauthentic-profile-analysis.svg",
     features: isEnglish
       ? [
-          'AI-powered fake profile detection',
-          'Harmful narrative identification',
-          'Brand reputation monitoring',
-          'Cross-platform social media analysis',
-          'Real-time alerts and notifications',
-          'Custom dashboard and reports'
+          'Profile authenticity and behaviour analysis',
+          'Harmful narrative and sentiment analysis',
+          'Coordinated campaign detection',
+          'Real-time narrative alerts',
+          'Brand impersonation and AI-content risk analysis',
+          'Evidence for analyst review and response planning'
         ]
       : [
-          'AI驅動的假帳號檢測',
-          '有害敘事識別',
-          '品牌聲譽監控',
-          '跨平台社交媒體分析',
-          '實時警報和通知',
-          '自定義儀表板和報告'
+          '帳號真實性與行為分析',
+          '有害敘事與情緒分析',
+          '協調式活動偵測',
+          '即時敘事警示',
+          '品牌冒名與 AI 內容風險分析',
+          '提供分析人員檢視與回應規劃所需證據'
         ],
     specs: isEnglish ? {
-      'Platforms Covered': 'Twitter/X, Facebook, Instagram, TikTok, YouTube, Reddit, Telegram',
-      'Detection Accuracy': '89% for fake profiles',
-      'Alert Response Time': 'Under 5 minutes for critical threats',
-      'API Integration': 'REST API, Webhook support',
-      'Report Formats': 'PDF, CSV, API endpoint',
-      'Deployment': 'SaaS / Private Cloud'
+      'Analysis': 'Authenticity, behaviour, narratives, sentiment, and coordination',
+      'Monitoring': 'Real-time narrative monitoring and alerts',
+      'Access': 'SaaS, Managed Services, Real-time Alerts, On-Prem, API',
+      'Use cases': 'Brand protection, corporate communications, security, and public sector',
+      'Delivery scope': 'Confirmed by licensed edition and agreed data scope'
     } : {
-      '覆蓋平台': 'Twitter/X, Facebook, Instagram, TikTok, YouTube, Reddit, Telegram',
-      '檢測準確率': '假帳號檢測89%',
-      '警報響應時間': '重大威脅不到5分鐘',
-      'API整合': 'REST API, Webhook支援',
-      '報告格式': 'PDF, CSV, API端點',
-      '部署方式': 'SaaS / 私有雲'
+      '分析能力': '真實性、行為、敘事、情緒與協調關係',
+      '監測': '即時敘事監測與警示',
+      '使用方式': 'SaaS、Managed Services、即時警示、On-Prem、API',
+      '應用': '品牌保護、企業溝通、資安與公部門',
+      '交付範圍': '依授權版本與約定資料範圍確認'
     },
     comingSoon: false,
     detailedDescription: {
       title: isEnglish ? 'Cyabra Platform' : 'Cyabra 平台',
       formFactor: isEnglish ? 'Software as a Service' : '軟體即服務',
       introduction: isEnglish
-        ? 'Cyabra is an advanced disinformation detection platform that uses artificial intelligence to identify fake accounts, harmful narratives, and coordinated inauthentic behavior across social media. The platform provides organizations with real-time monitoring and alerts to protect brand reputation and ensure authentic online conversations.'
-        : 'Cyabra是一個先進的虛假信息檢測平台，使用人工智能來識別社交媒體上的假帳號、有害敘事和協調不真實行為。該平台為組織提供實時監控和警報，以保護品牌聲譽並確保在線對話的真實性。',
+        ? 'Cyabra analyses social profiles, content, narratives, sentiment, and coordinated activity. It supports real-time monitoring and alerts while keeping evidence available for analyst review and response decisions.'
+        : 'Cyabra 分析社群帳號、內容、敘事、情緒與協調式活動，支援即時監測與警示，並保留供分析人員檢視與決定回應方式的證據。',
       keyFeatures: isEnglish ? [
-        'Fake Profile Detection: AI algorithms identify inauthentic accounts with 89% accuracy',
-        'Narrative Analysis: Track and analyze harmful narratives targeting your brand',
-        'Cross-Platform Monitoring: Cover all major social networks in a single dashboard',
-        'Real-time Alerts: Receive notifications about potential reputation threats',
-        'Coordination Detection: Identify coordinated inauthentic behavior campaigns',
-        'Trend Analysis: Separate authentic trends from artificial manipulation',
-        'Customizable Reporting: Generate detailed reports for stakeholders',
-        'API Integration: Connect with existing communication monitoring tools'
+        'Profile authenticity and behaviour analysis',
+        'Narrative and sentiment monitoring',
+        'Coordinated campaign detection',
+        'Real-time narrative alerts',
+        'Brand impersonation and AI-content risk analysis',
+        'Evidence-supported analyst review',
+        'Corporate communications and public-sector applications',
+        'SaaS, managed, on-premises, and API access directions'
       ] : [
-        '假帳號檢測：AI算法以89%的準確率識別不真實帳號',
-        '敘事分析：追蹤和分析針對您品牌的有害敘事',
-        '跨平台監控：在單一儀表板上涵蓋所有主要社交網絡',
-        '實時警報：接收有關潛在聲譽威脅的通知',
-        '協調檢測：識別協調不真實行為活動',
-        '趨勢分析：將真實趨勢與人工操縱區分開來',
-        '自定義報告：為利益相關者生成詳細報告',
-        'API整合：與現有通訊監控工具連接'
+        '帳號真實性與行為分析',
+        '敘事與情緒監測',
+        '協調式活動偵測',
+        '即時敘事警示',
+        '品牌冒名與 AI 內容風險分析',
+        '以證據支援分析人員檢視',
+        '企業溝通與公部門應用',
+        'SaaS、Managed Service、On-Prem 與 API 使用方向'
       ],
       technicalSpecs: isEnglish ? {
-        'Supported Platforms': 'Twitter/X, Facebook, Instagram, TikTok, YouTube, Reddit, Telegram, LinkedIn',
-        'API Access': 'RESTful API with OAuth 2.0',
-        'Data Processing': 'Real-time and historical data analysis',
-        'AI Models': 'Proprietary ML models for authenticity scoring',
-        'Deployment Options': 'Cloud SaaS or private cloud installation',
-        'Security': 'SOC 2 Type II compliant, GDPR ready',
-        'Data Retention': 'Configurable from 30 days to 2 years',
-        'Alert Delivery': 'Email, SMS, webhook, in-app notifications'
+        'Core analysis': 'Authenticity, behaviour, narratives, sentiment, coordination',
+        'Monitoring': 'Real-time monitoring and narrative alerts',
+        'Access models': 'SaaS, Managed Services, Real-time Alerts, On-Prem, API',
+        'Review boundary': 'Analysts review evidence and decide escalation or response',
+        'Final scope': 'Depends on licensed edition, supported sources, and contracted data scope'
       } : {
-        '支援平台': 'Twitter/X, Facebook, Instagram, TikTok, YouTube, Reddit, Telegram, LinkedIn',
-        'API存取': 'RESTful API與OAuth 2.0',
-        '數據處理': '實時和歷史數據分析',
-        'AI模型': '專有ML模型進行真實性評分',
-        '部署選項': '雲SaaS或私有雲安裝',
-        '安全性': 'SOC 2 Type II合規，GDPR就緒',
-        '數據保留': '可配置從30天到2年',
-        '警報傳送': '電子郵件，簡訊，webhook，應用內通知'
+        '核心分析': '真實性、行為、敘事、情緒與協調關係',
+        '監測': '即時監測與敘事警示',
+        '使用方式': 'SaaS、Managed Services、即時警示、On-Prem、API',
+        '人工邊界': '由分析人員檢視證據並決定升級或回應',
+        '最終範圍': '依授權版本、支援來源與契約資料範圍確認'
       },
       applications: isEnglish ? [
         'Brand Protection: Monitor and respond to disinformation campaigns targeting your brand',
@@ -564,53 +526,47 @@ export const getCyabraProducts = (isEnglish: boolean): Product[] => [
   },
   {
     id: 11,
-    title: isEnglish ? 'Cyabra Enterprise' : 'Cyabra 企業版',
+    title: isEnglish ? 'Cyabra Enterprise Access' : 'Cyabra 企業導入',
     description: isEnglish
-      ? 'Complete disinformation protection suite with dedicated analyst support, custom integration, and 24/7 monitoring for large organizations and government agencies.'
-      : '完整的虛假信息保護套件，具有專業分析師支援、客製化整合和24/7監控，適合大型組織和政府機構。',
+      ? 'Enterprise delivery options across SaaS, Managed Services, real-time alerts, on-premises deployment, and API access, scoped to the organisation’s monitoring and integration needs.'
+      : '依組織監測與整合需求，規劃 SaaS、Managed Services、即時警示、On-Prem 與 API 等企業導入方式。',
     icon: React.createElement(Shield, { className: "h-8 w-8 text-[#003daa]" }),
-    image: "/cyabra-dashboard.svg",
+    image: "/vendor/cyabra/topic-proliferation.svg",
     features: isEnglish
       ? [
-          'Dedicated security analysts',
-          'Custom AI model training',
-          'Private cloud deployment option',
-          'Advanced threat intelligence',
-          'Crisis management support',
-          'Executive-level reporting',
-          'API integration with security systems'
+          'SaaS platform access',
+          'Managed Services for analyst-supported delivery',
+          'Real-time narrative alerts',
+          'On-premises deployment direction',
+          'API access for approved integrations',
+          'Corporate communications and public-sector use cases'
         ]
       : [
-          '專屬安全分析師',
-          '客製化AI模型訓練',
-          '私有雲部署選項',
-          '進階威脅情報',
-          '危機管理支援',
-          '執行層級報告',
-          '與安全系統的API整合'
+          'SaaS 平台使用',
+          'Managed Services 分析支援',
+          '即時敘事警示',
+          'On-Prem 部署方向',
+          '核定整合範圍內的 API 存取',
+          '企業溝通與公部門應用'
         ],
     specs: isEnglish ? {
-      'Service Level': '99.9% uptime guarantee',
-      'Support Response': '15-minute critical response time',
-      'Analyst Hours': '40 hours per month included',
-      'Custom Integration': 'Full API access and custom development',
-      'Security Clearance': 'Available for government contracts',
-      'Training Sessions': '4 sessions per quarter included',
-      'Threat Reports': 'Weekly executive summaries'
+      'Access models': 'SaaS / Managed Services / Real-time Alerts / On-Prem / API',
+      'Scope design': 'Topics, languages, sources, users, alerts, and reporting',
+      'Integration': 'API scope confirmed by licensing and technical review',
+      'Delivery': 'Platform use, analyst-supported monitoring, or combined model',
+      'Commercial terms': 'Confirmed in the formal proposal and vendor quotation'
     } : {
-      '服務水平': '99.9%運行時間保證',
-      '支援響應': '15分鐘關鍵響應時間',
-      '分析師時數': '每月包含40小時',
-      '客製整合': '完整API訪問和定制開發',
-      '安全許可': '可用於政府合約',
-      '培訓課程': '每季度包含4次課程',
-      '威脅報告': '每週執行摘要'
+      '使用方式': 'SaaS／Managed Services／即時警示／On-Prem／API',
+      '範圍設計': '議題、語言、來源、使用者、警示與報告',
+      '系統整合': 'API 範圍依授權與技術審查確認',
+      '交付模式': '平台使用、分析支援監測或混合模式',
+      '商務條件': '以正式提案與原廠報價確認'
     },
     comingSoon: false,
     detailedDescription: {
-      title: isEnglish ? 'Cyabra Enterprise' : 'Cyabra 企業版',
-      formFactor: isEnglish ? 'Enterprise SaaS Suite' : '企業級SaaS套件',
-      introduction: isEnglish ? 'Enterprise disinformation defense suite with analyst support and private deployment options.' : '企業級虛假資訊防護套件，含分析師支援與私有部署選項。',
+      title: isEnglish ? 'Cyabra Enterprise Access' : 'Cyabra 企業導入',
+      formFactor: isEnglish ? 'Enterprise Platform and Service' : '企業平台與服務',
+      introduction: isEnglish ? 'Enterprise access can combine SaaS, Managed Services, real-time alerts, on-premises deployment, and API access. The final model is confirmed from users, data scope, workflow, and integration requirements.' : '企業導入可組合 SaaS、Managed Services、即時警示、On-Prem 與 API。最終模式依使用者、資料範圍、工作流程與整合需求確認。',
       keyFeatures: [],
       technicalSpecs: {},
     }

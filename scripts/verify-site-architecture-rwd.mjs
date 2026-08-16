@@ -3,7 +3,7 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 
 const baseUrl = process.env.SITE_BASE_URL || 'http://host.docker.internal:4174';
-const outputDir = process.env.SITE_RWD_OUTPUT_DIR || '/Users/serverc/WorkSpace-AI/deliverables/website-information-architecture-20260816';
+const outputDir = process.env.SITE_RWD_OUTPUT_DIR || '/Users/serverc/WorkSpace-AI/deliverables/website-content-completion-20260816';
 const skipScreenshots = process.env.SITE_RWD_SKIP_SCREENSHOTS === 'true';
 
 const viewports = [
@@ -13,7 +13,7 @@ const viewports = [
   { name: 'mobile', width: 390, height: 844 },
 ];
 
-const routes = ['/', '/solutions', '/products', '/resources', '/contact', '/solutions/ai-agent'];
+const routes = ['/', '/solutions', '/solutions/ai-agent', '/solutions/ai-infrastructure', '/solutions/social-intelligence', '/products', '/resources', '/about', '/contact'];
 
 await fs.mkdir(outputDir, { recursive: true });
 
@@ -37,6 +37,10 @@ try {
           complete: image.complete,
           naturalWidth: image.naturalWidth,
         }));
+        const vendorImages = images.filter((image) => image.src.includes('/vendor/'));
+        const vendorSourceLinks = [...document.querySelectorAll('a[href]')]
+          .map((link) => link.href)
+          .filter((href) => /microsoft\.com|learn\.microsoft\.com|comino\.com|nvidia\.com|amd\.com|cyabra\.com/.test(href));
 
         const visibleControls = [...document.querySelectorAll('a, button')]
           .filter((element) => {
@@ -54,6 +58,8 @@ try {
           bodyScrollWidth: document.documentElement.scrollWidth,
           horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 2,
           brokenImages: images.filter((image) => image.naturalWidth <= 0),
+          vendorImageCount: vendorImages.length,
+          vendorSourceLinkCount: vendorSourceLinks.length,
           visibleControls,
         };
       });

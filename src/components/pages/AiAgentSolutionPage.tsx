@@ -39,7 +39,9 @@ import type { LucideIcon } from 'lucide-react';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import SEOHead from '../common/SEOHead';
 import Footer from '../Footer';
+import { VENDOR_EVIDENCE } from '../../data/vendorEvidence';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
+import { SourceLink, VendorMedia } from './SitePagePrimitives';
 
 type Bilingual = { zh: string; en: string };
 const BOOKING_URL = 'https://outlook.office.com/book/EudTechOnlineMeeting@EudaemoniaTechnologLtd.onmicrosoft.com/';
@@ -380,6 +382,35 @@ const AiAgentSolutionPage: React.FC = () => {
                     <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p>
                   </article>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/60">
+          <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+            <VendorMedia
+              src={VENDOR_EVIDENCE.microsoft.image}
+              alt={VENDOR_EVIDENCE.microsoft.imageAlt}
+              caption={{ zh: 'Microsoft Copilot Studio 原廠產品導覽畫面；實際介面與功能依授權及版本更新。', en: 'Official Microsoft Copilot Studio product-tour screen; actual interface and capabilities depend on licensing and version.' }}
+              sourceHref={VENDOR_EVIDENCE.microsoft.sources.product.href}
+              sourceLabel={VENDOR_EVIDENCE.microsoft.sources.product.label}
+              isEnglish={isEnglish}
+              contain
+            />
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">Microsoft Copilot Studio</p>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Use official controls for connections, flows, and governance.' : '使用原廠連線、流程與治理控制'}</h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'When Microsoft technologies fit the customer environment, EudTech can use Copilot Studio, Dataverse, SharePoint, Microsoft 365, connectors, and APIs to build governed agents. The final architecture depends on licences, permissions, data boundaries, and acceptance requirements.' : '當 Microsoft 技術符合客戶環境時，EudTech 可採用 Copilot Studio、Dataverse、SharePoint、Microsoft 365、連接器與 API 建立受治理的 Agent。最終架構依授權、權限、資料邊界與驗收需求確認。'}</p>
+              <ul className="mt-7 space-y-3 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                <li className="flex gap-3"><Check className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-300" />{isEnglish ? 'Connect tools and knowledge through authenticated connections.' : '透過驗證連線接取工具與知識來源。'}</li>
+                <li className="flex gap-3"><Check className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-300" />{isEnglish ? 'Use agent flows for event-driven tasks and human intervention.' : '使用 Agent flows 執行事件驅動任務與人員介入。'}</li>
+                <li className="flex gap-3"><Check className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-300" />{isEnglish ? 'Apply security, data-loss prevention, access, and environment governance.' : '套用安全性、資料外洩防護、存取與環境治理。'}</li>
+              </ul>
+              <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3">
+                <SourceLink href={VENDOR_EVIDENCE.microsoft.sources.connections.href} label={VENDOR_EVIDENCE.microsoft.sources.connections.label} isEnglish={isEnglish} />
+                <SourceLink href={VENDOR_EVIDENCE.microsoft.sources.flows.href} label={VENDOR_EVIDENCE.microsoft.sources.flows.label} isEnglish={isEnglish} />
+                <SourceLink href={VENDOR_EVIDENCE.microsoft.sources.governance.href} label={VENDOR_EVIDENCE.microsoft.sources.governance.label} isEnglish={isEnglish} />
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ Configurator 的目前狀態與接續順序見 [PROJECT_STATUS.md](PROJECT_STATU
 所有官網更新的分支、預覽、核准、正式發布與回復規則，見 [開發中版本管理辦法](docs/開發中版本管理辦法.md)。
 客戶從開發信、廣告、搜尋、轉介到詢價及 Dataverse 的歸因規則，見 [客戶來源追蹤辦法](docs/客戶來源追蹤辦法.md)。
 主導航、頁面階層、Footer、搜尋索引與第一版驗收規則，見 [網站資訊架構](docs/網站資訊架構.md)。
+Microsoft、Comino、NVIDIA、AMD 與 Cyabra 的原廠資料、圖片網址、檔案雜湊及引用規則，見 [原廠內容與圖片來源](docs/原廠內容與圖片來源.md)。
 
 ## 🏗️ 架構概覽
 

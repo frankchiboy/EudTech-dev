@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import SEOHead from '../common/SEOHead';
@@ -54,3 +54,41 @@ export const CardGrid: React.FC<{ items: Array<{ title: Bilingual; body: Bilingu
 );
 
 export const CheckList: React.FC<{ items: Bilingual[]; isEnglish: boolean }> = ({ items, isEnglish }) => <ul className="space-y-3">{items.map((item) => <li key={tx(item, isEnglish)} className="flex gap-3 text-sm leading-7 text-slate-600 dark:text-slate-300"><span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-500" />{tx(item, isEnglish)}</li>)}</ul>;
+
+export const SourceLink: React.FC<{ href: string; label: Bilingual; isEnglish: boolean; inverse?: boolean }> = ({ href, label, isEnglish, inverse }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noreferrer"
+    className={`inline-flex items-center gap-1.5 text-xs font-semibold underline decoration-current/30 underline-offset-4 transition hover:decoration-current ${inverse ? 'text-cyan-200' : 'text-cyan-700 dark:text-cyan-300'}`}
+  >
+    {tx(label, isEnglish)}
+    <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+  </a>
+);
+
+export const VendorMedia: React.FC<{
+  src: string;
+  alt: Bilingual;
+  caption: Bilingual;
+  sourceHref: string;
+  sourceLabel: Bilingual;
+  isEnglish: boolean;
+  contain?: boolean;
+}> = ({ src, alt, caption, sourceHref, sourceLabel, isEnglish, contain }) => (
+  <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <div className={`relative aspect-[16/10] overflow-hidden ${contain ? 'bg-white p-4 sm:p-6' : 'bg-slate-100 dark:bg-slate-900'}`}>
+      <img
+        src={src}
+        alt={tx(alt, isEnglish)}
+        loading="lazy"
+        decoding="async"
+        className={`h-full w-full ${contain ? 'object-contain' : 'object-cover'}`}
+      />
+    </div>
+    <figcaption className="flex flex-col gap-2 border-t border-slate-200 px-5 py-4 text-sm leading-6 text-slate-600 dark:border-slate-800 dark:text-slate-300 sm:flex-row sm:items-center sm:justify-between">
+      <span>{tx(caption, isEnglish)}</span>
+      <SourceLink href={sourceHref} label={sourceLabel} isEnglish={isEnglish} />
+    </figcaption>
+  </figure>
+);

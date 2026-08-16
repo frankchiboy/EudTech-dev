@@ -100,7 +100,8 @@ const PUBLIC_FILE_ALLOWLIST = [
 const PUBLIC_DIRECTORY_ALLOWLIST = [
   'cyabra-images',
   'images/configurator/devices',
-  'social'
+  'social',
+  'vendor'
 ];
 
 function copyPublicAsset(publicDir: string, distDir: string, relativePath: string) {
