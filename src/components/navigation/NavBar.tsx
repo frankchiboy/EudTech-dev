@@ -165,7 +165,7 @@ const NavBar: React.FC<NavBarProps> = ({
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Logo />
+              <Logo inverse={textColorClass.includes('text-white') || textColorClass.includes('text-gray-100')} />
             </div>
           </div>
 

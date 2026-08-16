@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Logo: React.FC = () => {
+interface LogoProps {
+  inverse?: boolean;
+}
+
+const Logo: React.FC<LogoProps> = ({ inverse = false }) => {
   return (
     <Link to="/" aria-label="EudTech 首頁" className="flex items-center rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
       <div className="relative mt-1">
@@ -39,10 +43,10 @@ const Logo: React.FC = () => {
         </svg>
       </div>
       <div className="-ml-1 flex flex-col leading-none">
-        <span className="text-base sm:text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-teal-600 dark:from-blue-500 dark:to-teal-400">
+        <span className={`text-base font-bold tracking-tight sm:text-lg bg-clip-text text-transparent bg-gradient-to-r ${inverse ? 'from-blue-400 to-teal-300' : 'from-blue-800 to-teal-600 dark:from-blue-500 dark:to-teal-400'}`}>
           EudTech
         </span>
-        <span className="text-xs tracking-wide opacity-80 dark:text-gray-300">Eudaemonia Technology</span>
+        <span className={`text-xs tracking-wide ${inverse ? 'text-slate-300' : 'text-slate-700 dark:text-slate-300'}`}>Eudaemonia Technology</span>
       </div>
     </Link>
   );

@@ -30,6 +30,33 @@ try {
       const url = new URL(route, baseUrl).toString();
       const response = await page.goto(url, { waitUntil: 'networkidle', timeout: 45_000 });
       await page.waitForTimeout(300);
+      await page.evaluate(async () => {
+        const sleep = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+        const pageHeight = document.documentElement.scrollHeight;
+        const step = Math.max(window.innerHeight * 0.8, 480);
+
+        for (let y = 0; y < pageHeight; y += step) {
+          window.scrollTo(0, y);
+          await sleep(35);
+        }
+        window.scrollTo(0, pageHeight);
+        await sleep(100);
+
+        await Promise.all([...document.images].map((image) => {
+          if (image.complete) return Promise.resolve();
+          return new Promise((resolve) => {
+            const timer = window.setTimeout(resolve, 8_000);
+            const finish = () => {
+              window.clearTimeout(timer);
+              resolve();
+            };
+            image.addEventListener('load', finish, { once: true });
+            image.addEventListener('error', finish, { once: true });
+          });
+        }));
+        window.scrollTo(0, 0);
+        await sleep(100);
+      });
 
       const metrics = await page.evaluate(() => {
         const images = [...document.images].map((image) => ({

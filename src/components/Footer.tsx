@@ -18,7 +18,7 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_2fr]">
           <div className="space-y-6">
-            <Logo />
+            <Logo inverse />
             <p className="text-sm leading-6 text-gray-300">
               {isEnglish ? 'EudTech connects AI operations, infrastructure, and intelligence to accountable business outcomes.' : 'EudTech 將 AI 營運、運算基礎設施與社群情報連接到可負責的業務成果。'}
             </p>
