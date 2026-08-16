@@ -21,6 +21,7 @@ import {
 import {
   GRANDO_API_BASE_URL,
   GRANDO_CONFIGURATOR_BASE_URL,
+  ConfiguratorDataSource,
   getConfiguratorAssetUrl,
   getConfiguratorDevice,
   getConfiguratorDevices
@@ -719,6 +720,7 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
   const [devices, setDevices] = useState<DeviceSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [dataSource, setDataSource] = useState<ConfiguratorDataSource>('live');
   const [selectedUsage, setSelectedUsage] = useState<string | null>(null);
   const copy = CONFIGURATOR_COPY[language];
 
@@ -726,8 +728,9 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
     setLoading(true);
     setError(null);
     try {
-      const data = await getConfiguratorDevices();
-      setDevices(data);
+      const result = await getConfiguratorDevices();
+      setDevices(result.data);
+      setDataSource(result.source);
     } catch {
       setError('load');
     } finally {
@@ -832,6 +835,12 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
             ))}
           </nav>
         </div>
+
+        {dataSource === 'fallback' ? (
+          <div className="grando-data-notice" role="status">
+            {copy.fallbackNotice}
+          </div>
+        ) : null}
 
         {loading ? <LoadingState /> : null}
         {error ? (
@@ -1605,6 +1614,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
   const [options, setOptions] = useState<ConfiguratorOption[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [dataSource, setDataSource] = useState<ConfiguratorDataSource>('live');
   const [openModule, setOpenModule] = useState<ConfiguratorModule>('gpu');
   const copy = CONFIGURATOR_COPY[language];
   const moduleLabels = CONFIGURATOR_MODULE_LABELS[language];
@@ -1613,9 +1623,10 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
     setLoading(true);
     setError(null);
     try {
-      const data = await getConfiguratorDevice(pid);
-      setDevice(data.device);
-      setOptions(data.options);
+      const result = await getConfiguratorDevice(pid);
+      setDevice(result.data.device);
+      setOptions(result.data.options);
+      setDataSource(result.source);
     } catch {
       setError('load');
     } finally {
@@ -1639,7 +1650,17 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
   }, [device, options, searchParams]);
 
   const validation = useMemo(() => getConfiguratorValidation(spec), [spec]);
-  const backgroundImages = useMemo(() => getConfiguratorBackgrounds(openModule, spec), [openModule, spec]);
+  const backgroundImages = useMemo(() => {
+    if (!device) {
+      return [];
+    }
+
+    if (dataSource === 'fallback' && device.photo) {
+      return [{ url: getConfiguratorAssetUrl(device.photo), points: [] }];
+    }
+
+    return getConfiguratorBackgrounds(openModule, spec);
+  }, [dataSource, device, openModule, spec]);
   const requestMode = searchParams.get('request') === 'true';
   const getTrackingDeviceDetail = () => ({
     modelName: device ? translateConfiguratorModelName(device.name, language) : undefined,
@@ -1768,6 +1789,12 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
       />
       <section className="grando-page grando-detail-page">
       <BackgroundSlider images={backgroundImages} language={language} />
+
+      {dataSource === 'fallback' ? (
+        <div className="grando-data-notice grando-data-notice-detail" role="status">
+          {copy.fallbackNotice}
+        </div>
+      ) : null}
 
       {loading ? <LoadingState fixed /> : null}
       {error ? (
