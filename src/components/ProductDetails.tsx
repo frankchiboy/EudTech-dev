@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Server, Cpu, Shield } from 'lucide-react';
+import { ArrowLeft, Bot, Braces, Cpu, Database, LineChart, Server, Shield } from 'lucide-react';
 import { useLanguageContext } from '../contexts/LanguageContext';
 import { handleNavClick } from '../utils/helpers/navigation';
 import Footer from './Footer';
@@ -12,6 +12,23 @@ import ProductSpecifications from './ProductSpecifications';
 import FinSightEnterpriseCta from './FinSightEnterpriseCta';
 import ProductTechnicalSpecs from './ProductTechnicalSpecs';
 import LazyImage from './common/LazyImage';
+
+const FinSightSystemVisual = ({ isEnglish }: { isEnglish: boolean }) => {
+  const stages = [
+    { icon: Database, title: isEnglish ? 'Authorised data' : '授權資料源', body: isEnglish ? 'Market, accounting, or internal operational data' : '市場、會計或企業內部營運資料' },
+    { icon: Braces, title: 'FinSight API', body: isEnglish ? 'Normalise, calculate, and return structured JSON' : '標準化、計算並回傳結構化 JSON' },
+    { icon: Bot, title: isEnglish ? 'LLM or rules' : 'LLM 或規則', body: isEnglish ? 'Explain or summarise within the approved scope' : '依核准範圍解釋或摘要' },
+    { icon: Shield, title: isEnglish ? 'Human decision' : '人員決策', body: isEnglish ? 'Review source, time, assumptions, and output' : '檢視來源、時間、假設與輸出' }
+  ];
+  return <div className="w-full rounded-2xl bg-slate-950 p-5 text-white shadow-xl sm:p-7">
+    <div className="flex items-center justify-between gap-4"><div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">FinSight data flow</p><h2 className="mt-2 text-xl font-bold">{isEnglish ? 'From source data to a reviewable answer' : '從來源資料到可審查回答'}</h2></div><LineChart className="h-8 w-8 text-cyan-300" /></div>
+    <div className="mt-6 grid gap-3 sm:grid-cols-2">{stages.map(({ icon: Icon, title, body }, index) => <div key={title} className="rounded-xl border border-white/10 bg-white/[0.05] p-4"><div className="flex items-center justify-between"><Icon className="h-5 w-5 text-cyan-300" /><span className="text-xs font-bold text-slate-500">{String(index + 1).padStart(2, '0')}</span></div><h3 className="mt-4 font-semibold">{title}</h3><p className="mt-2 text-xs leading-5 text-slate-300">{body}</p></div>)}</div>
+    <div className="mt-5 grid gap-4 sm:grid-cols-[0.9fr_1.1fr]">
+      <div className="rounded-xl bg-gradient-to-br from-cyan-400/15 to-emerald-400/10 p-4"><p className="text-xs font-semibold text-cyan-300">{isEnglish ? 'Example trend output' : '範例趨勢輸出'}</p><svg viewBox="0 0 240 92" role="img" aria-label={isEnglish ? 'Illustrative trend chart' : '示意趨勢圖'} className="mt-3 w-full"><path d="M6 75 L42 64 L76 68 L112 43 L146 50 L184 24 L234 31" fill="none" stroke="#22d3ee" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" /><path d="M6 83 H234" stroke="#475569" strokeWidth="1" /></svg><p className="mt-2 text-[11px] leading-5 text-slate-400">{isEnglish ? 'Illustrative data only; not an investment recommendation.' : '示意資料，不構成投資建議。'}</p></div>
+      <div className="rounded-xl bg-slate-900 p-4 font-mono text-[11px] leading-5 text-emerald-300"><p className="font-sans text-xs font-semibold text-slate-300">{isEnglish ? 'Example API response' : '範例 API 回應'}</p><pre className="mt-3 whitespace-pre-wrap">{`{\n  "source": "authorised_dataset",\n  "as_of": "2026-08-16T10:00:00+08:00",\n  "metrics": { "trend": "review_required" },\n  "evidence": ["source_id", "calculation_version"]\n}`}</pre></div>
+    </div>
+  </div>;
+};
 
 const ProductDetails: React.FC = () => {
   const { isEnglish } = useLanguageContext();
@@ -166,17 +183,7 @@ const ProductDetails: React.FC = () => {
             {/* CTA 行動按鈕 */}
             {product.id === 3 && (
               <div className="flex flex-col items-center mt-8">
-                {/* 產品圖片 */}
-                <div className="flex justify-center items-center overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group relative mb-6">
-                  <div className="w-full aspect-[16/9] overflow-hidden relative">
-                    <LazyImage 
-                      src={product.image} 
-                      alt={product.title}
-                      className="w-full h-full object-cover object-center bg-gray-50 dark:bg-gray-700 rounded-lg transform transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/20 to-transparent dark:from-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                  </div>
-                </div>
+                <FinSightSystemVisual isEnglish={isEnglish} />
                 <div className="mb-2 text-base text-gray-700 dark:text-gray-300 text-center">
                   {isEnglish
                     ? 'Experience the FinSightGTP demo (MVP) to see how LLMs interact with real financial data.'
