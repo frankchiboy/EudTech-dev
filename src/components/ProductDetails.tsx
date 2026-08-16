@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Bot, Braces, Cpu, Database, LineChart, Server, Shield } from 'lucide-react';
+import { ArrowLeft, Bot, Braces, CheckCircle2, Cpu, Database, LineChart, Server, Shield } from 'lucide-react';
 import { useLanguageContext } from '../contexts/LanguageContext';
 import { handleNavClick } from '../utils/helpers/navigation';
 import Footer from './Footer';
@@ -41,6 +41,12 @@ const ProductDetails: React.FC = () => {
   const allProducts = [...eudTechProducts, ...cominoProducts];
   const product = allProducts.find(p => p.id === productId);
 
+  const productCategory = productId === 3
+    ? (isEnglish ? 'Financial data and AI' : '金融資料與 AI')
+    : productId === 1
+      ? (isEnglish ? 'EudTech solution' : 'EudTech 解決方案')
+      : (isEnglish ? 'Comino GPU platform' : 'Comino GPU 平台');
+
   if (!product) {
     console.log("Product not found!");
     return (
@@ -74,19 +80,25 @@ const ProductDetails: React.FC = () => {
       <div className="bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-20">
           {/* Back Button */}
-          <button
-            onClick={() => {
-              // 返回到具體的產品卡片位置
-              window.location.href = `/#product-card-${productId}`;
-            }}
+          <Link
+            to="/products/"
             className="inline-flex items-center text-eudtech-600 hover:text-eudtech-700 dark:text-eudtech-400 dark:hover:text-eudtech-300 transition-colors mb-8 group cursor-pointer bg-transparent border-none"
           >
             <ArrowLeft className="h-5 w-5 mr-2 transform group-hover:-translate-x-1 transition-transform duration-300" />
             {isEnglish ? 'Back to Products' : '返回產品列表'}
-          </button>
+          </Link>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
+              <div className="mb-5 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-cyan-800 dark:bg-cyan-950/40 dark:text-cyan-300">
+                  {productCategory}
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600 dark:border-slate-700 dark:text-slate-300">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-300" />
+                  {isEnglish ? 'Scope confirmed before quote' : '報價前確認實際範圍'}
+                </span>
+              </div>
               <div className="flex items-center mb-6 group">
                 <div className="text-eudtech-600 dark:text-eudtech-400 transform group-hover:scale-110 transition-transform duration-300">
                   {product.icon}

@@ -433,12 +433,16 @@ const CareersPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="mb-8">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                  <details className="group mb-5 rounded-xl border border-gray-200 p-5 dark:border-gray-700">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
                       <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400 mr-2" />
                       {isEnglish ? 'Job Responsibilities' : '工作內容'}
                     </h3>
-                    <ul className="space-y-3">
+                    <span className="text-sm font-semibold text-blue-600 dark:text-blue-300 group-open:hidden">{isEnglish ? 'View' : '展開'}</span>
+                    <span className="hidden text-sm font-semibold text-blue-600 dark:text-blue-300 group-open:inline">{isEnglish ? 'Collapse' : '收合'}</span>
+                    </summary>
+                    <ul className="mt-5 space-y-3">
                       {(isEnglish ? job.responsibilities.en : job.responsibilities.zh).map((item, index) => (
                         <li key={index} className="flex items-start">
                           <div className="h-2 w-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
@@ -446,14 +450,18 @@ const CareersPage: React.FC = () => {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </details>
 
-                  <div className="mb-8">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                  <details className="group mb-8 rounded-xl border border-gray-200 p-5 dark:border-gray-700">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
                       <CheckCircle className="h-6 w-6 text-orange-600 dark:text-orange-400 mr-2" />
                       {isEnglish ? 'Requirements' : '條件需求'}
                     </h3>
-                    <ul className="space-y-3">
+                    <span className="text-sm font-semibold text-orange-600 dark:text-orange-300 group-open:hidden">{isEnglish ? 'View' : '展開'}</span>
+                    <span className="hidden text-sm font-semibold text-orange-600 dark:text-orange-300 group-open:inline">{isEnglish ? 'Collapse' : '收合'}</span>
+                    </summary>
+                    <ul className="mt-5 space-y-3">
                       {(isEnglish ? job.requirements.en : job.requirements.zh).map((item, index) => (
                         <li key={index} className="flex items-start">
                           <div className="h-2 w-2 bg-orange-600 dark:bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
@@ -461,7 +469,7 @@ const CareersPage: React.FC = () => {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </details>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">

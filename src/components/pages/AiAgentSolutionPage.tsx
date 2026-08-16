@@ -290,14 +290,14 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-slate-50 py-20 dark:bg-slate-900/60">
+        <section className="bg-slate-50 py-14 sm:py-20 dark:bg-slate-900/60">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">{isEnglish ? 'The operational gap' : '營運缺口'}</p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Your team should not be the integration layer.' : '團隊不應該成為系統之間的整合層。'}</h2>
               <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'AI agents create a shared operational rhythm across the systems where work already happens.' : 'AI Agent 讓既有系統之間形成共同的營運節奏，讓工作不再依賴個人記憶。'}</p>
             </div>
-            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-4 sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {painPoints.map((item) => (
                 <article key={text(item.title, isEnglish)} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
                   <item.icon className="h-7 w-7 text-cyan-600 dark:text-cyan-300" />
@@ -309,7 +309,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-white py-20 dark:bg-slate-950">
+        <section className="bg-white py-14 sm:py-20 dark:bg-slate-950">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
               <div>
@@ -318,7 +318,7 @@ const AiAgentSolutionPage: React.FC = () => {
               </div>
               <p className="text-base leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'Each role has a defined purpose, source, and hand-off. The system can automate preparation without hiding who approves the result.' : '每個角色都有明確目的、資料來源與交接點。系統可以自動準備工作，但不隱藏誰核准結果。'}</p>
             </div>
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 lg:grid-cols-3">
               {agentRoles.map((item, index) => (
                 <article key={text(item.title, isEnglish)} className="group rounded-xl border border-slate-200 p-6 transition hover:-translate-y-1 hover:border-emerald-400 hover:shadow-lg dark:border-slate-800 dark:hover:border-emerald-500">
                   <div className="flex items-center justify-between">
@@ -333,7 +333,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section id="workflow-demo" className="scroll-mt-20 border-y border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/60">
+        <section id="workflow-demo" className="scroll-mt-20 border-y border-slate-200 bg-slate-50 py-14 sm:py-20 dark:border-slate-800 dark:bg-slate-900/60">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">{isEnglish ? 'See it in context' : '看見實際流程'}</p>
@@ -366,7 +366,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-white py-20 dark:bg-slate-950">
+        <section className="bg-white py-14 sm:py-20 dark:bg-slate-950">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
               <div>
@@ -387,7 +387,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="border-y border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/60">
+        <section className="border-y border-slate-200 bg-slate-50 py-14 sm:py-20 dark:border-slate-800 dark:bg-slate-900/60">
           <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
             <VendorMedia
               src={VENDOR_EVIDENCE.microsoft.image}
@@ -416,14 +416,14 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section id="consultation" className="scroll-mt-20 bg-slate-950 py-20 text-white">
+        <section id="consultation" className="scroll-mt-20 bg-slate-950 py-14 sm:py-20 text-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">{isEnglish ? 'Governance by design' : '內建治理'}</p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Automation should make responsibility clearer.' : '自動化應該讓責任更清楚。'}</h2>
               <p className="mt-5 text-base leading-8 text-slate-300">{isEnglish ? 'Every implementation includes control points so the team can understand, approve, and audit what the agents do.' : '每次導入都包含控制點，讓團隊可以理解、核准並稽核 Agent 的工作。'}</p>
             </div>
-            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-5">
               {governance.map((item) => (
                 <article key={text(item.title, isEnglish)} className="rounded-xl border border-white/10 bg-white/[0.06] p-5">
                   <item.icon className="h-6 w-6 text-emerald-300" />
@@ -435,7 +435,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-slate-50 py-20 dark:bg-slate-900/60">
+        <section className="bg-slate-50 py-14 sm:py-20 dark:bg-slate-900/60">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
               <div>
@@ -455,13 +455,13 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-white py-20 dark:bg-slate-950">
+        <section className="bg-white py-14 sm:py-20 dark:bg-slate-950">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600 dark:text-emerald-300">{isEnglish ? 'Choose the right scope' : '選擇適合的導入範圍'}</p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Four ways to work with EudTech.' : 'EudTech 提供四種合作方案。'}</h2>
             </div>
-            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-4 sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {plans.map((item, index) => (
                 <article key={text(item.title, isEnglish)} className={`rounded-xl border p-6 ${index === 1 ? 'border-cyan-400 bg-cyan-50 dark:border-cyan-500 dark:bg-cyan-950/30' : 'border-slate-200 dark:border-slate-800'}`}>
                   <item.icon className="h-7 w-7 text-cyan-600 dark:text-cyan-300" />
@@ -476,13 +476,13 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="border-y border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/60">
+        <section className="border-y border-slate-200 bg-slate-50 py-14 sm:py-20 dark:border-slate-800 dark:bg-slate-900/60">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">{isEnglish ? 'Built for real operations' : '適合實際營運團隊'}</p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'For teams where a missed next step has a cost.' : '適合每一個漏掉下一步就會產生成本的團隊。'}</h2>
             </div>
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-3">
               {audiences.map((item) => (
                 <article key={text(item.title, isEnglish)} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
                   <item.icon className="mt-1 h-6 w-6 shrink-0 text-emerald-600 dark:text-emerald-300" />
@@ -493,7 +493,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-white py-20 dark:bg-slate-950">
+        <section className="bg-white py-14 sm:py-20 dark:bg-slate-950">
           <div className="mx-auto max-w-4xl px-6 lg:px-8">
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">FAQ</p>
@@ -513,7 +513,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-slate-950 py-20 text-white">
+        <section className="bg-slate-950 py-14 sm:py-20 text-white">
           <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 lg:flex-row lg:items-center lg:px-8">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">{isEnglish ? 'Ready for the first workflow?' : '準備好選擇第一條流程了嗎？'}</p>
