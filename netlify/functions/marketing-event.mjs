@@ -21,6 +21,10 @@ const json = (status, body) =>
   });
 
 const allowedAttributionKeys = new Set([
+  'first_captured_at',
+  'last_captured_at',
+  'first_source_category',
+  'source_category',
   'first_landing_page',
   'landing_page',
   'first_referrer',
@@ -30,6 +34,11 @@ const allowedAttributionKeys = new Set([
   'utm_campaign',
   'utm_term',
   'utm_content',
+  'first_utm_source',
+  'first_utm_medium',
+  'first_utm_campaign',
+  'eud_source_id',
+  'eud_campaign_id',
   'gclid',
   'fbclid',
   'li_fat_id',
@@ -76,7 +85,9 @@ const allowedUrlParams = new Set([
   'gclid',
   'fbclid',
   'li_fat_id',
-  'msclkid'
+  'msclkid',
+  'eud_source_id',
+  'eud_campaign_id'
 ]);
 
 const redactSensitiveText = (value) =>

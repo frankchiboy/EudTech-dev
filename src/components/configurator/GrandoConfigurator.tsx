@@ -103,7 +103,9 @@ const CONFIGURATOR_SHARE_TRACKING_KEYS = [
   'gclid',
   'fbclid',
   'li_fat_id',
-  'msclkid'
+  'msclkid',
+  'eud_source_id',
+  'eud_campaign_id'
 ];
 const LOCAL_PRODUCT_IMAGE_FILENAMES = new Set([
   '2x6000ADA_Ddd293j',
@@ -134,6 +136,7 @@ interface QuoteFormData {
   email: string;
   phone: string;
   country: string;
+  discoverySource: string;
   comment: string;
 }
 
@@ -145,6 +148,7 @@ const initialQuoteFormData: QuoteFormData = {
   email: '',
   phone: '',
   country: '',
+  discoverySource: '',
   comment: ''
 };
 
@@ -1390,6 +1394,7 @@ const QuotePanel = ({
       '',
       `${copy.quoteFields.phone}: ${formData.phone.trim()}`,
       `${copy.quoteFields.country}: ${formData.country.trim() || copy.notProvided}`,
+      `${copy.quoteFields.discoverySource}: ${formData.discoverySource.trim() || copy.notProvided}`,
       `${copy.quoteFields.comment}: ${formData.comment.trim() || copy.notProvided}`,
       ...(attributionEntries.length
         ? ['', 'Marketing attribution', ...attributionEntries.map(([label, value]) => `${label}: ${value}`)]
@@ -1540,6 +1545,18 @@ const QuotePanel = ({
                       onChange={(event) => updateQuoteField('country', event.target.value)}
                       autoComplete="country-name"
                     />
+                  </label>
+                  <label>
+                    <span>{copy.quoteFields.discoverySource} <em>{copy.optionalField}</em></span>
+                    <select
+                      value={formData.discoverySource}
+                      onChange={(event) => updateQuoteField('discoverySource', event.target.value)}
+                    >
+                      <option value="">{copy.discoverySourcePlaceholder}</option>
+                      {copy.discoverySourceOptions.map((option) => (
+                        <option key={option.value} value={option.label}>{option.label}</option>
+                      ))}
+                    </select>
                   </label>
                 </div>
                 <label className="grando-quote-form-message">

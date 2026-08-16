@@ -117,6 +117,10 @@ const pushDataLayer = (payload: Record<string, unknown>) => {
 };
 
 const attributionPayload = (attribution: MarketingAttribution) => ({
+  first_captured_at: attribution.firstCapturedAt,
+  last_captured_at: attribution.lastCapturedAt,
+  first_source_category: attribution.firstSourceCategory,
+  source_category: attribution.sourceCategory,
   first_landing_page: attribution.firstLandingPage,
   landing_page: attribution.landingPage,
   first_referrer: attribution.firstReferrer,
@@ -126,6 +130,11 @@ const attributionPayload = (attribution: MarketingAttribution) => ({
   utm_campaign: attribution.utmCampaign,
   utm_term: attribution.utmTerm,
   utm_content: attribution.utmContent,
+  first_utm_source: attribution.firstUtmSource,
+  first_utm_medium: attribution.firstUtmMedium,
+  first_utm_campaign: attribution.firstUtmCampaign,
+  eud_source_id: attribution.eudSourceId || attribution.firstEudSourceId,
+  eud_campaign_id: attribution.eudCampaignId || attribution.firstEudCampaignId,
   gclid: attribution.gclid,
   fbclid: attribution.fbclid,
   li_fat_id: attribution.liFatId,

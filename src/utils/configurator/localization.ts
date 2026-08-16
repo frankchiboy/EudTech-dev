@@ -39,12 +39,22 @@ export const CONFIGURATOR_COPY = {
     cancelQuote: 'Cancel',
     submittingQuote: 'Submitting...',
     submitQuote: 'Submit',
+    discoverySourcePlaceholder: 'Select a source',
+    discoverySourceOptions: [
+      { value: 'outreach_email', label: 'Email from EudTech' },
+      { value: 'search', label: 'Search engine' },
+      { value: 'advertising', label: 'Online advertisement' },
+      { value: 'referral', label: 'Colleague or partner referral' },
+      { value: 'social', label: 'Social media' },
+      { value: 'other', label: 'Other' }
+    ],
     quoteFields: {
       firstName: 'First name',
       lastName: 'Last name',
       email: 'Email',
       phone: 'Phone',
       country: 'Country',
+      discoverySource: 'How did you hear about us?',
       comment: 'Comment'
     },
     retry: 'Retry',
@@ -101,12 +111,22 @@ export const CONFIGURATOR_COPY = {
     cancelQuote: '取消',
     submittingQuote: '送出中...',
     submitQuote: '送出',
+    discoverySourcePlaceholder: '請選擇來源',
+    discoverySourceOptions: [
+      { value: 'outreach_email', label: '收到優達盟開發信' },
+      { value: 'search', label: '搜尋引擎' },
+      { value: 'advertising', label: '網路廣告' },
+      { value: 'referral', label: '同事或合作夥伴轉介' },
+      { value: 'social', label: '社群媒體' },
+      { value: 'other', label: '其他' }
+    ],
     quoteFields: {
       firstName: '名字',
       lastName: '姓氏',
       email: 'Email',
       phone: '電話',
       country: '國家',
+      discoverySource: '如何得知我們',
       comment: '留言'
     },
     retry: '重試',

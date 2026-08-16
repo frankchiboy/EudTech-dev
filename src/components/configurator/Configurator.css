@@ -851,6 +851,7 @@
 }
 
 .grando-quote-form input,
+.grando-quote-form select,
 .grando-quote-form textarea {
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -863,6 +864,7 @@
 }
 
 .grando-quote-form input:focus,
+.grando-quote-form select:focus,
 .grando-quote-form textarea:focus {
   border-color: #00be5f;
   outline: none;
