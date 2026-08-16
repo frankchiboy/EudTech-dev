@@ -97,6 +97,13 @@ function getConfiguratorSocialPreviewRoutes() {
       sourceImage: DEFAULT_SOURCE_IMAGE,
       imageAlt: 'EudTech GPU 伺服器報價配置器解決方案'
     },
+    {
+      path: '/solutions/ai-agent',
+      title: '企業 AI Agent 導入｜串接 Outlook、Teams、Dataverse 與 ERP',
+      description: '串接 Outlook、Teams、SharePoint、Dataverse、ERP 與財務證據，建立可執行、可追溯、可人工核准的 AI Agent 工作流程。',
+      sourceImage: '/logo.svg',
+      imageAlt: 'EudTech 企業 AI Agent 導入服務'
+    },
     ...solutionRoutes
   ];
 

@@ -120,6 +120,63 @@ const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
   faq: page.faqs.map((faq) => [getZh(faq.question), getZh(faq.answer)])
 }));
 
+const aiAgentRoute = {
+  path: '/solutions/ai-agent',
+  title: '企業 AI Agent 導入｜串接 Outlook、Teams、Dataverse 與 ERP',
+  description: 'EudTech 協助企業把 Outlook、Teams、SharePoint、Dataverse、ERP 與財務資料接成可執行、可追溯、可人工核准的 AI Agent 工作流程。',
+  keywords: '企業 AI Agent 導入, AI 流程自動化, AI ERP, AI 會計系統, AI 專案管理, AI 任務追蹤, Microsoft 365 AI, Dataverse 顧問',
+  lead: '讓 AI 接手追蹤、核對與催辦，重要決策仍由人員核准。EudTech 從一條具明確輸入、動作、輸出、權限與驗收條件的流程開始，逐步串接企業既有系統。',
+  imageAlt: 'EudTech 企業 AI Agent 導入服務',
+  configuratorHref: '/solutions/ai-agent#workflow-demo',
+  quoteHref: '/solutions/ai-agent#consultation',
+  relatedLinks: [
+    routeLink('/', 'EudTech 首頁'),
+    routeLink('/solutions', 'EudTech 解決方案'),
+    routeLink('/configurator/29', 'Comino Grando GPU 伺服器配置器'),
+    routeLink('/solutions/ai-agent#workflow-demo', 'AI Agent 工作流程示範'),
+    routeLink('/solutions/ai-agent#consultation', '預約流程診斷')
+  ],
+  highlights: [
+    '以 Outlook、Teams、SharePoint 與 Dataverse 串接郵件、任務、專案、文件與核准事件。',
+    '以 EudTech Kinetic 保存採購、進貨、出貨、庫存、客戶與供應商的營運事實。',
+    '以 Accounting Hub 核對公司銀行正式交易、發票、憑證、付款準備與對帳紀錄。',
+    '候選、確認、送出、放行、付款與完成分開記錄，關鍵動作保留人工核准。'
+  ],
+  specs: [
+    { label: '適用企業', value: '已使用 Microsoft 365、工作仍散落於郵件、試算表與個人記事的企業' },
+    { label: '導入方法', value: '流程診斷、可驗證試點、上線驗收、擴充維運' },
+    { label: '驗收依據', value: '來源、權限、人工核准、輸出、去重、操作紀錄與實際案例重跑' },
+    { label: '聯絡方式', value: 'info@eudaemonia.tech' }
+  ],
+  faq: [
+    ['AI Agent 和一般聊天機器人有什麼差別？', '一般聊天機器人主要回答問題；EudTech AI Agent 會在授權範圍內讀取企業資料、判斷流程狀態、建立待辦、提出動作建議並保存執行紀錄。'],
+    ['可以使用現有 Microsoft 365 嗎？', '可以。實際串接範圍依客戶既有授權、API 權限及資料品質，在流程診斷後確認。'],
+    ['AI 會直接寄信、付款或登帳嗎？', '每個動作依權限與流程設定；對外通知、付款、正式會計與驗收可以保留人工核准，並保存核准人、時間、來源與結果。'],
+    ['導入前要先更換 ERP 嗎？', '不必。試點可以先串接一條現有流程，再依 API、資料品質與維運成本決定後續整合或移轉範圍。'],
+    ['如何驗收 AI Agent？', '使用真實或去識別案例重跑完整流程，核對輸入、來源、判讀、權限、人工核准、輸出、重送去重及操作紀錄。'],
+    ['可以協助申請政府補助嗎？', 'EudTech 可依當年度公告協助盤點適用計畫與導入範圍；資格、金額及核定結果以主管機關審查為準。']
+  ],
+  schema: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: '企業 AI Agent 導入服務',
+      description: '串接 Microsoft 365、Dataverse、ERP 與財務證據的可追溯 AI Agent 工作流程。',
+      url: pageUrl('/solutions/ai-agent'),
+      provider: eudTechOrganization,
+      areaServed: { '@type': 'Country', name: 'Taiwan' }
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
+        { '@type': 'ListItem', position: 2, name: 'AI Agent 導入', item: pageUrl('/solutions/ai-agent') }
+      ]
+    }
+  ]
+};
+
 function configuratorProductLinks() {
   return CONFIGURATOR_PRODUCT_SEO.map((product) =>
     routeLink(product.configuratorHref, `${getZh(product.model)} 配置器`)
@@ -376,7 +433,8 @@ const routes = [
     ]
   },
   ...productRoutes,
-  solutionHubRoute
+  solutionHubRoute,
+  aiAgentRoute
 ].concat(solutionRoutes);
 
 function escapeHtml(value) {

@@ -121,6 +121,16 @@ const solutionHubUrl = {
     solutionSlugs: CONFIGURATOR_SEO_PAGES.map((page) => page.slug)
   }
 };
+const aiAgentUrl = {
+  loc: pageUrl('/solutions/ai-agent'),
+  title: '企業 AI Agent 導入',
+  description: '串接 Outlook、Teams、SharePoint、Dataverse、ERP 與財務證據，建立可執行、可追溯、可人工核准的 AI Agent 工作流程。',
+  priority: '0.92',
+  source: {
+    title: '企業 AI Agent 導入',
+    description: 'EudTech Kinetic、Dataverse 與 Accounting Hub 的企業 AI Agent 導入服務。'
+  }
+};
 const configuratorUrl = {
   loc: pageUrl('/configurator'),
   title: 'Comino Grando GPU 伺服器報價配置器',
@@ -149,6 +159,7 @@ const sitemapEntries = [
   { ...homepageUrl, changefreq: 'weekly' },
   { ...configuratorUrl, changefreq: 'weekly' },
   { ...solutionHubUrl, changefreq: 'weekly' },
+  { ...aiAgentUrl, changefreq: 'weekly' },
   { ...configuratorLinkIndexUrl, changefreq: 'weekly' },
   ...productUrls.map((entry) => ({ ...entry, changefreq: 'weekly' })),
   ...solutionUrls.map((entry) => ({ ...entry, changefreq: 'weekly' })),

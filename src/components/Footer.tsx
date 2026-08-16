@@ -35,6 +35,7 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
     company: {
       title: isEnglish ? 'Solutions' : '解決方案',
       links: [
+        { name: isEnglish ? 'AI Agent Services' : 'AI Agent 導入', href: '/solutions/ai-agent', active: true },
         { name: isEnglish ? 'Configurator Solutions' : '配置器解決方案', href: '/solutions', active: true },
         { name: isEnglish ? 'AI Servers' : 'AI 伺服器', href: '#eudtech-products', active: true },
         { name: isEnglish ? 'GPU Server Quote' : 'GPU 伺服器報價', href: '/solutions/gpu-server-quote', active: true },

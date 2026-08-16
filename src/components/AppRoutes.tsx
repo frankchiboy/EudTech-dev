@@ -17,6 +17,7 @@ import GrandoConfigurator from './configurator/GrandoConfigurator';
 import SEOHead from './common/SEOHead';
 import ConfiguratorSolutionPage from './pages/ConfiguratorSolutionPage';
 import ConfiguratorSolutionsHubPage from './pages/ConfiguratorSolutionsHubPage';
+import AiAgentSolutionPage from './pages/AiAgentSolutionPage';
 import MarketingEvents from './analytics/MarketingEvents';
 import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
 import { canonicalPageUrl } from '../utils/seo/canonicalUrl';
@@ -99,6 +100,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/configurator" element={<GrandoConfigurator />} />
             <Route path="/configurator/:pid" element={<GrandoConfigurator />} />
             <Route path="/solutions" element={<ConfiguratorSolutionsHubPage />} />
+            <Route path="/solutions/ai-agent" element={<AiAgentSolutionPage />} />
             <Route path="/solutions/:slug" element={<ConfiguratorSolutionPage />} />
             <Route path="/components-demo" element={<AtomicComponentsDemo />} />
             <Route path="/products/:id" element={

@@ -20,6 +20,11 @@ export const getNavLinks = (isEnglish: boolean): NavLink[] => {
       href: '/solutions'
     },
     {
+      name: isEnglish ? 'AI Agent Services' : 'AI Agent 導入',
+      labelLines: ['AI Agent', isEnglish ? 'Services' : '導入'],
+      href: '/solutions/ai-agent'
+    },
+    {
       name: isEnglish ? 'Partner Brands' : '代理品牌',
       href: '#',
       isDropdown: true,
