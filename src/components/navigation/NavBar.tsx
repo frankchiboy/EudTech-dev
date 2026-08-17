@@ -30,7 +30,7 @@ const NavBar: React.FC<NavBarProps> = ({
   const [scrollY, setScrollY] = useState(0);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const isProductDetailPage = location.pathname.startsWith('/products/');
+  const isProductDetailPage = /^\/products\/[^/]+\/?$/.test(location.pathname);
   const navLinks = getNavLinks(isEnglish);
   const ctaLabel = (value: { zh: string; en: string }) => (isEnglish ? value.en : value.zh);
 

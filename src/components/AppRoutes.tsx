@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useLanguageContext } from '../contexts/LanguageContext';
@@ -9,7 +9,6 @@ import HomeBrandPartnersSection from './HomeBrandPartnersSection';
 import Footer from './Footer';
 import ScrollToTop from './common/ScrollToTop';
 import SkipToContent from './common/SkipToContent';
-import LoadingSpinner from './ui/LoadingSpinner';
 import CareersPage from './CareersPage';
 import AtomicComponentsDemo from './demo/AtomicComponentsDemo';
 import GrandoConfigurator from './configurator/GrandoConfigurator';
@@ -17,7 +16,7 @@ import SEOHead from './common/SEOHead';
 import ConfiguratorSolutionPage from './pages/ConfiguratorSolutionPage';
 import AiAgentSolutionPage from './pages/AiAgentSolutionPage';
 import MarketingEvents from './analytics/MarketingEvents';
-import { LazyProductDetails } from '../utils/performance/codesplitting';
+import ProductDetails from './ProductDetails';
 import { canonicalPageUrl } from '../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath } from '../utils/seo/socialPreview';
 import SolutionsOverviewPage from './pages/SolutionsOverviewPage';
@@ -63,12 +62,7 @@ const AppRoutes: React.FC = () => {
       />
       <MarketingEvents />
       <main id="main-content" role="main">
-        <Suspense fallback={
-          <div className="flex items-center justify-center min-h-screen">
-            <LoadingSpinner size="lg" />
-          </div>
-        }>
-          <Routes>
+        <Routes>
             <Route path="/" element={
               <>
                 <SEOHead
@@ -109,17 +103,8 @@ const AppRoutes: React.FC = () => {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/components-demo" element={import.meta.env.DEV ? <AtomicComponentsDemo /> : <Navigate replace to="/" />} />
-            <Route path="/products/:id" element={
-              <Suspense fallback={
-                <div className="flex items-center justify-center min-h-screen">
-                  <LoadingSpinner size="lg" />
-                </div>
-              }>
-                <LazyProductDetails />
-              </Suspense>
-            } />
+            <Route path="/products/:id" element={<ProductDetails />} />
           </Routes>
-        </Suspense>
       </main>
     </>
   );

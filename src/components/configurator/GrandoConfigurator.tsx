@@ -587,9 +587,10 @@ const getOptionFilterValue = (moduleKey: ConfiguratorModule, option: Configurato
   return '';
 };
 
-const LoadingState = ({ fixed = false }: { fixed?: boolean }) => (
+const LoadingState = ({ fixed = false, message }: { fixed?: boolean; message: string }) => (
   <div className={fixed ? 'grando-loader grando-loader-fixed' : 'grando-loader'}>
     <Loader2 className="h-10 w-10 animate-spin text-[#00be5f]" />
+    <p role="status">{message}</p>
   </div>
 );
 
@@ -842,7 +843,7 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
           </div>
         ) : null}
 
-        {loading ? <LoadingState /> : null}
+        {loading ? <LoadingState message={copy.loadingBaseline} /> : null}
         {error ? (
           <ErrorState
             message={error === 'load' ? copy.loadErrorFallback : error}
@@ -1796,7 +1797,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
         </div>
       ) : null}
 
-      {loading ? <LoadingState fixed /> : null}
+      {loading ? <LoadingState fixed message={copy.loadingBaseline} /> : null}
       {error ? (
         <ErrorState
           message={error === 'load' ? copy.loadErrorFallback : error}

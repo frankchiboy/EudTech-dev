@@ -346,6 +346,16 @@
   backdrop-filter: blur(3px);
 }
 
+.grando-loader p {
+  max-width: 34rem;
+  margin: 0;
+  padding: 0 24px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
 .grando-detail-page {
   position: relative;
   overflow: hidden;

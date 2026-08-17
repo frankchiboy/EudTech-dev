@@ -58,6 +58,7 @@ export const CONFIGURATOR_COPY = {
       comment: 'Comment'
     },
     retry: 'Retry',
+    loadingBaseline: 'Loading current configuration data. A local EudTech configuration baseline will load automatically if the vendor service is unavailable.',
     emptyMessage: 'Hmm, we could not find any device matching your filter.',
     clearFilter: 'Clear filter',
     cpuQuantity: '# of CPUs',
@@ -132,6 +133,7 @@ export const CONFIGURATOR_COPY = {
       comment: '留言'
     },
     retry: '重試',
+    loadingBaseline: '正在載入目前配置資料。原廠服務未連線時，系統將自動載入優達盟產品配置基準。',
     emptyMessage: '找不到符合目前篩選條件的裝置。',
     clearFilter: '清除篩選',
     cpuQuantity: 'CPU 數量',

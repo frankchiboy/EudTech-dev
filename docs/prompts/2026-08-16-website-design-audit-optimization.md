@@ -6,6 +6,8 @@
 
 後實作 再度全部截圖檢討實作做到閉環
 
+包含電腦板 手機版 中英文版 dark/light mode
+
 第三點縮短首頁，將完整 Comino、Cyabra 與產品內容移到專頁，保留原本的視覺設計 eudtech x 品牌, 和品牌廠商partner list的連結等。
 
 參考簡報的文案和素材：
