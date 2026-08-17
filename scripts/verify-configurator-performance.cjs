@@ -3,6 +3,7 @@ const path = require('path');
 
 const rootDir = path.resolve(__dirname, '..');
 const sourcePath = path.join(rootDir, 'src/components/configurator/GrandoConfigurator.tsx');
+const imageFunctionPath = path.join(rootDir, 'netlify/functions/comino-configurator.mjs');
 
 function check(name, ready, details = {}) {
   return {
@@ -18,6 +19,7 @@ function main() {
   }
 
   const source = fs.readFileSync(sourcePath, 'utf8');
+  const imageFunction = fs.readFileSync(imageFunctionPath, 'utf8');
   const checks = [
     check(
       'desktop background slider does not render every background image at once',
@@ -46,6 +48,19 @@ function main() {
     check(
       'background slider still renders only the active image',
       source.includes('src={fallbackImages[image.url]?.url || getConfiguratorBackgroundUrl(image.url)}')
+    ),
+    check(
+      'Comino image proxy retries transient upstream failures within a bounded deadline',
+      imageFunction.includes('const REQUEST_MAX_ATTEMPTS = 3;') &&
+        imageFunction.includes('const REQUEST_DEADLINE_MS = 25_000;') &&
+        imageFunction.includes('isRetryableStatus') &&
+        imageFunction.includes('fetchWithRetry')
+    ),
+    check(
+      'CPU 2566 image proxy uses only the official sibling asset as an alternate',
+      imageFunction.includes('/image/background/cpu/amd/2566/7007_52_WCB_MoBo_BUNDLE_INSTALL_02.jpg') &&
+        imageFunction.includes('/image/background/cpu/amd/2566/7007_52_WCB_MoBo_BUNDLE_INSTALL_03.jpg') &&
+        imageFunction.includes('official_live_alternate')
     )
   ];
 

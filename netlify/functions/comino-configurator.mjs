@@ -6,7 +6,22 @@ const COMINO_CONFIGURATOR_ORIGIN = 'https://configurator.grando.ai';
 const CACHE_STORE_NAME = 'comino-configurator-cache-v1';
 const CACHE_VERSION = 1;
 const REQUIRED_MODULES = ['gpu', 'cpu', 'ram', 'storage', 'storage_1', 'storage_2', 'storage_3', 'storage_4', 'psu', 'network'];
-const REQUEST_TIMEOUT_MS = 12_000;
+const REQUEST_TIMEOUT_MS = 9_000;
+const REQUEST_DEADLINE_MS = 25_000;
+const REQUEST_MAX_ATTEMPTS = 3;
+const RETRY_DELAYS_MS = [250, 750];
+
+// These are both official Comino CPU-2566 assets.  The upstream image service
+// has intermittently returned 503 for one of the pair, so the sibling asset is
+// a safe same-CPU fallback.  No other CPU family is substituted.
+const OFFICIAL_IMAGE_ALTERNATES = Object.freeze({
+  '/image/background/cpu/amd/2566/7007_52_WCB_MoBo_BUNDLE_INSTALL_02.jpg': [
+    '/image/background/cpu/amd/2566/7007_52_WCB_MoBo_BUNDLE_INSTALL_03.jpg'
+  ],
+  '/image/background/cpu/amd/2566/7007_52_WCB_MoBo_BUNDLE_INSTALL_03.jpg': [
+    '/image/background/cpu/amd/2566/7007_52_WCB_MoBo_BUNDLE_INSTALL_02.jpg'
+  ]
+});
 
 const json = (status, body, headers = {}) => Response.json(body, {
   status,
@@ -37,46 +52,66 @@ const hasCompleteDeviceOptions = (payload) => {
 const hasCompleteDeviceList = (payload) => Array.isArray(payload?.devices) && payload.devices.length > 0;
 
 async function fetchComino(path) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-  try {
-    const response = await fetch(`${COMINO_API_ORIGIN}${path}`, {
+  const response = await fetchWithRetry(`${COMINO_API_ORIGIN}${path}`, {
       method: 'GET',
-      signal: controller.signal,
       headers: { Accept: 'application/json' },
       cache: 'no-store'
-    });
-    if (!response.ok) throw new Error(`Comino API responded with ${response.status}`);
-    return await response.json();
-  } finally {
-    clearTimeout(timeout);
-  }
+  }, 'Comino API');
+  if (!response.ok) throw new Error(`Comino API responded with ${response.status}`);
+  return response.json();
 }
 
-async function fetchCominoConfiguratorImage(assetPath) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-  try {
-    const response = await fetch(`${COMINO_CONFIGURATOR_ORIGIN}${assetPath}`, {
+async function fetchCominoConfiguratorImage(assetPath, requestDeadline) {
+  const response = await fetchWithRetry(`${COMINO_CONFIGURATOR_ORIGIN}${assetPath}`, {
       method: 'GET',
-      signal: controller.signal,
       headers: { Accept: 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8' },
       cache: 'no-store'
-    });
-    const contentType = response.headers.get('content-type') || '';
-    if (!response.ok || !contentType.startsWith('image/')) {
-      throw new Error(`Comino configurator image responded with ${response.status}`);
-    }
-    const original = Buffer.from(await response.arrayBuffer());
-    const optimized = await sharp(original, { failOn: 'none' })
-      .rotate()
-      .resize({ width: 1600, withoutEnlargement: true })
-      .webp({ quality: 84, smartSubsample: true })
-      .toBuffer();
-    return { body: optimized, contentType: 'image/webp' };
-  } finally {
-    clearTimeout(timeout);
+  }, 'Comino configurator image', requestDeadline);
+  const contentType = response.headers.get('content-type') || '';
+  if (!response.ok || !contentType.startsWith('image/')) {
+    throw new Error(`Comino configurator image responded with ${response.status}`);
   }
+  const original = Buffer.from(await response.arrayBuffer());
+  const optimized = await sharp(original, { failOn: 'none' })
+    .rotate()
+    .resize({ width: 1600, withoutEnlargement: true })
+    .webp({ quality: 84, smartSubsample: true })
+    .toBuffer();
+  return { body: optimized, contentType: 'image/webp' };
+}
+
+const isRetryableStatus = (status) => status === 408 || status === 425 || status === 429 || status >= 500;
+
+const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+
+async function fetchWithRetry(url, init, label, requestDeadline = Date.now() + REQUEST_DEADLINE_MS) {
+  const deadline = requestDeadline;
+  let lastError;
+
+  for (let attempt = 0; attempt < REQUEST_MAX_ATTEMPTS; attempt += 1) {
+    const remaining = deadline - Date.now();
+    if (remaining <= 0) break;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), Math.min(REQUEST_TIMEOUT_MS, remaining));
+    try {
+      const response = await fetch(url, { ...init, signal: controller.signal });
+      if (response.ok || !isRetryableStatus(response.status) || attempt === REQUEST_MAX_ATTEMPTS - 1) {
+        return response;
+      }
+      await response.body?.cancel();
+      lastError = new Error(`${label} responded with ${response.status}`);
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    const delay = RETRY_DELAYS_MS[attempt] || RETRY_DELAYS_MS.at(-1) || 0;
+    if (Date.now() + delay >= deadline) break;
+    await wait(delay);
+  }
+
+  throw lastError || new Error(`${label} request timed out`);
 }
 
 const imageResponse = (body, contentType, source) => new Response(body, {
@@ -90,25 +125,39 @@ const imageResponse = (body, contentType, source) => new Response(body, {
 
 async function getConfiguratorImage(store, assetPath) {
   const key = imageCacheKey(assetPath);
-  try {
-    const fetched = await fetchCominoConfiguratorImage(assetPath);
-    await store.set(key, fetched.body, {
-      metadata: {
-        contentType: fetched.contentType,
-        obtainedAt: new Date().toISOString(),
-        origin: COMINO_CONFIGURATOR_ORIGIN,
-        assetPath
-      }
-    });
-    return imageResponse(fetched.body, fetched.contentType, 'official_live');
-  } catch (error) {
-    const cached = await store.getWithMetadata(key, { type: 'arrayBuffer' });
-    if (cached?.data) {
-      return imageResponse(cached.data, cached.metadata?.contentType, 'official_cache');
+  const candidates = [assetPath, ...(OFFICIAL_IMAGE_ALTERNATES[assetPath] || [])];
+  const errors = [];
+  const requestDeadline = Date.now() + REQUEST_DEADLINE_MS;
+
+  for (const candidate of candidates) {
+    try {
+      const fetched = await fetchCominoConfiguratorImage(candidate, requestDeadline);
+      await store.set(key, fetched.body, {
+        metadata: {
+          contentType: fetched.contentType,
+          obtainedAt: new Date().toISOString(),
+          origin: COMINO_CONFIGURATOR_ORIGIN,
+          assetPath,
+          sourceAssetPath: candidate
+        }
+      });
+      return imageResponse(
+        fetched.body,
+        fetched.contentType,
+        candidate === assetPath ? 'official_live' : 'official_live_alternate'
+      );
+    } catch (error) {
+      errors.push(`${candidate}: ${error instanceof Error ? error.message : 'unknown error'}`);
     }
-    console.error('Comino configurator image unavailable:', error instanceof Error ? error.message : 'unknown error');
-    return json(503, { ok: false, error: 'The requested Comino configurator image is unavailable and no verified cache exists.' });
   }
+
+  const cached = await store.getWithMetadata(key, { type: 'arrayBuffer' });
+  if (cached?.data) {
+    return imageResponse(cached.data, cached.metadata?.contentType, 'official_cache');
+  }
+
+  console.error('Comino configurator image unavailable:', errors.join('; '));
+  return json(503, { ok: false, error: 'The requested Comino configurator image is unavailable and no verified cache exists.' });
 }
 
 async function readVerifiedCache(store, deviceId) {
