@@ -916,13 +916,17 @@ const OptionSection = ({
   onSelect,
   onQuantityChange
 }: OptionSectionProps) => {
+  const validOptions = useMemo(
+    () => options.filter((option) => typeof option.name === 'string' && option.name.trim().length > 0),
+    [options]
+  );
   const copy = CONFIGURATOR_COPY[language];
   const filterValues = useMemo(() => {
-    const values = options
+    const values = validOptions
       .map((option) => getOptionFilterValue(moduleKey, option))
       .filter((value): value is string => Boolean(value));
     return Array.from(new Set(values));
-  }, [moduleKey, options]);
+  }, [moduleKey, validOptions]);
 
   const selectedFilter = selected ? getOptionFilterValue(moduleKey, selected) : '';
   const [activeFilter, setActiveFilter] = useState(selectedFilter);
@@ -930,6 +934,15 @@ const OptionSection = ({
   useEffect(() => {
     setActiveFilter(selectedFilter);
   }, [selectedFilter]);
+
+  useEffect(() => {
+    if (
+      activeFilter &&
+      !filterValues.some((value) => value.toLowerCase() === activeFilter.toLowerCase())
+    ) {
+      setActiveFilter('');
+    }
+  }, [activeFilter, filterValues]);
 
   const handleFilterSelect = (value: string) => {
     setActiveFilter(value);
@@ -940,15 +953,18 @@ const OptionSection = ({
   };
 
   const visibleOptions = useMemo(() => {
-    const list = activeFilter
-      ? options.filter((option) => getOptionFilterValue(moduleKey, option).toLowerCase() === activeFilter.toLowerCase())
-      : options;
+    const filteredOptions = activeFilter
+      ? validOptions.filter(
+          (option) => getOptionFilterValue(moduleKey, option).toLowerCase() === activeFilter.toLowerCase()
+        )
+      : validOptions;
+    const list = filteredOptions.length || !activeFilter ? filteredOptions : validOptions;
     return [...list].sort((first, second) => first.volume - second.volume);
-  }, [activeFilter, moduleKey, options]);
+  }, [activeFilter, moduleKey, validOptions]);
 
   const quantities = selected?.custom_values || [];
 
-  if (!options.length) {
+  if (!validOptions.length) {
     return null;
   }
 
@@ -1757,7 +1773,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
     options.forEach((option) => {
       const moduleKey = option.module_type as ConfiguratorModule;
       const moduleOptions = next.get(moduleKey);
-      if (moduleOptions) {
+      if (moduleOptions && typeof option.name === 'string' && option.name.trim().length > 0) {
         moduleOptions.push(option);
       }
     });
