@@ -332,8 +332,8 @@ const getQueryOption = (
   options: ConfiguratorOption[]
 ) => {
   return (
-    options.find((option) => option.unique_id === uniqueId) ||
-    options.find((option) => option.module_type === moduleKey && option.unique_id === uniqueId)
+    options.find((option) => option.module_type === moduleKey && option.unique_id === uniqueId) ||
+    options.find((option) => option.unique_id === uniqueId)
   );
 };
 
