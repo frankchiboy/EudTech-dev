@@ -30,6 +30,46 @@ const SITE_INFORMATION_ROUTES = [
     relatedLinks: ['/solutions/ai-infrastructure', '/configurator', '/solutions/gpu-server-rfq-checklist', '/solutions/gpu-server-quote', '/contact']
   },
   {
+    path: '/solutions/headless-saas',
+    title: 'Headless SaaS 與 Notion 整合｜EudTech',
+    description: '保留 Notion 與既有 SaaS 作為資料及協作層，由 EudTech 建立品牌化入口、事件流程、AI Agent、權限與稽核。',
+    keywords: 'Headless SaaS, Notion 整合, Notion API, Notion Webhook, 客戶 Portal, AI Agent',
+    lead: '保留團隊熟悉的 Notion 與 SaaS 工作方式，建立客戶真正需要的品牌入口、事件自動化、權限與治理。',
+    sourceImage: '/headless-saas-architecture.svg',
+    imageAlt: 'EudTech Headless SaaS 與 Notion 整合架構',
+    priority: '0.90',
+    changefreq: 'monthly',
+    highlights: ['品牌化網站、客戶 Portal 與 AI Agent。', '已授權 API、Webhook 事件與人工核准。', '來源、版本、權限、執行與稽核證據。'],
+    specs: [{ label: '工作層', value: 'Notion 與既有 SaaS' }, { label: '整合層', value: 'API、Webhook、事件、權限與稽核' }, { label: '客戶體驗', value: '品牌網站、Portal 與 AI Agent' }],
+    faq: [
+      ['Headless SaaS 是什麼？', '團隊繼續在 Notion 或既有 SaaS 維護內容與工作，客戶則透過企業品牌的網站、Portal 或 AI Agent 使用服務；中間由已授權 API、事件、權限與稽核機制連接。'],
+      ['需要搬離 Notion 嗎？', '不需要。第一階段會盤點現有資料庫、頁面、權限與流程，保留適合留在 Notion 的工作，再建立必要的前台與事件整合。'],
+      ['AI 會直接修改正式資料嗎？', '每一類動作都會設定工具與權限。對外發布、正式狀態、付款或其他敏感寫回可設定為必須經人員核准，並保存核准者、時間、來源與執行結果。'],
+      ['可以做成多租戶 SaaS 嗎？', '可以分階段產品化。EudTech 先以單一企業專屬服務驗證資料、權限、事件與維運，再依商業模式評估租戶隔離、計費、方案管理與自助開通。']
+    ],
+    schema: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Headless SaaS 與 Notion 整合',
+        serviceType: 'Headless SaaS 整合與產品化服務',
+        areaServed: 'TW',
+        url: 'https://eudaemonia.tech/solutions/headless-saas/',
+        provider: { '@type': 'Organization', name: 'EudTech', url: 'https://eudaemonia.tech/' }
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: '首頁', item: 'https://eudaemonia.tech/' },
+          { '@type': 'ListItem', position: 2, name: '解決方案', item: 'https://eudaemonia.tech/solutions/' },
+          { '@type': 'ListItem', position: 3, name: 'Headless SaaS 與 Notion 整合', item: 'https://eudaemonia.tech/solutions/headless-saas/' }
+        ]
+      }
+    ],
+    relatedLinks: ['/solutions', '/solutions/ai-agent', '/contact', '/about']
+  },
+  {
     path: '/solutions/ai-infrastructure',
     title: 'AI 運算基礎設施｜EudTech',
     description: '從工作負載、GPU 與記憶體選型、電力散熱、配置器到正式報價，建立可採購的 AI 伺服器與工作站方案。',

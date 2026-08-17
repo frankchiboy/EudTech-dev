@@ -24,11 +24,11 @@
     {
       "id": "https://eudaemonia.tech/solutions/",
       "url": "https://eudaemonia.tech/solutions/",
-      "title": "AI 解決方案總覽｜EudTech",
-      "summary": "依企業流程、AI 運算工作負載與社群情報需求，選擇 EudTech AI Agent、AI 基礎設施或 Cyabra 導入路徑。",
-      "content_text": "AI 解決方案總覽｜EudTech\n\n依企業流程、AI 運算工作負載與社群情報需求，選擇 EudTech AI Agent、AI 基礎設施或 Cyabra 導入路徑。\n\nhttps://eudaemonia.tech/solutions/",
-      "date_published": "2026-08-16T00:00:00+08:00",
-      "date_modified": "2026-08-16T00:00:00+08:00"
+      "title": "AI 與數位服務解決方案總覽｜EudTech",
+      "summary": "依企業流程、Headless SaaS、AI 運算工作負載與社群情報需求，選擇 EudTech 導入路徑。",
+      "content_text": "AI 與數位服務解決方案總覽｜EudTech\n\n依企業流程、Headless SaaS、AI 運算工作負載與社群情報需求，選擇 EudTech 導入路徑。\n\nhttps://eudaemonia.tech/solutions/",
+      "date_published": "2026-08-17T00:00:00+08:00",
+      "date_modified": "2026-08-17T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/ai-agent/",
@@ -56,6 +56,15 @@
       "content_text": "AI 伺服器採購資源｜EudTech\n\n依選型與報價、部署與散熱、產品比較、RFQ 與公部門採購，瀏覽 EudTech 的實際採購內容與配置入口。\n\nhttps://eudaemonia.tech/resources/",
       "date_published": "2026-08-16T00:00:00+08:00",
       "date_modified": "2026-08-16T00:00:00+08:00"
+    },
+    {
+      "id": "https://eudaemonia.tech/solutions/headless-saas/",
+      "url": "https://eudaemonia.tech/solutions/headless-saas/",
+      "title": "Headless SaaS 與 Notion 整合｜EudTech",
+      "summary": "保留 Notion 與既有 SaaS 作為資料及協作層，由 EudTech 建立品牌化入口、事件流程、AI Agent、權限與稽核。",
+      "content_text": "Headless SaaS 與 Notion 整合｜EudTech\n\n保留 Notion 與既有 SaaS 作為資料及協作層，由 EudTech 建立品牌化入口、事件流程、AI Agent、權限與稽核。\n\nhttps://eudaemonia.tech/solutions/headless-saas/",
+      "date_published": "2026-08-17T00:00:00+08:00",
+      "date_modified": "2026-08-17T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/ai-infrastructure/",

@@ -37,6 +37,7 @@ const PUBLIC_FILE_ALLOWLIST = [
   'd6fd206f713cd936d87b58a6010aa751.txt',
   'sw.js',
   'logo.svg',
+  'headless-saas-architecture.svg',
   'icon.svg',
   'amd-logo.png',
   'amd-partner-badge.jpg',

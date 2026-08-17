@@ -10,6 +10,7 @@ EudTech provides enterprise AI Agent implementation, AI GPU infrastructure, Comi
 - AI Agent Implementation: https://eudaemonia.tech/solutions/ai-agent/
 - 產品與品牌｜EudTech: https://eudaemonia.tech/products/
 - AI 伺服器採購資源｜EudTech: https://eudaemonia.tech/resources/
+- Headless SaaS 與 Notion 整合｜EudTech: https://eudaemonia.tech/solutions/headless-saas/
 - AI 運算基礎設施｜EudTech: https://eudaemonia.tech/solutions/ai-infrastructure/
 - 社群情報與品牌保護｜EudTech: https://eudaemonia.tech/solutions/social-intelligence/
 - 關於 EudTech｜優達盟資訊科技: https://eudaemonia.tech/about/

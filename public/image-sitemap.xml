@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://eudaemonia.tech/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/home.jpg</image:loc>
     </image:image>
@@ -93,7 +93,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/solutions.jpg</image:loc>
     </image:image>
@@ -117,6 +117,13 @@
     <lastmod>2026-08-16</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/resources.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/headless-saas/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/solutions-headless-saas.jpg</image:loc>
     </image:image>
   </url>
   <url>

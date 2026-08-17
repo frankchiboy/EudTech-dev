@@ -103,22 +103,22 @@ const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
 }));
 const homepageUrl = {
   loc: `${siteOrigin}/`,
-  title: 'AI Agent、GPU 運算與社群情報｜EudTech',
-  description: 'EudTech 提供企業 AI Agent 導入、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。',
+  title: 'AI Agent、Headless SaaS、GPU 運算與社群情報｜EudTech',
+  description: 'EudTech 提供企業 AI Agent 導入、Headless SaaS 整合、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。',
   priority: '1.0',
   source: {
-    title: 'AI Agent、GPU 運算與社群情報｜EudTech',
-    description: 'EudTech 提供企業 AI Agent 導入、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。'
+    title: 'AI Agent、Headless SaaS、GPU 運算與社群情報｜EudTech',
+    description: 'EudTech 提供企業 AI Agent 導入、Headless SaaS 整合、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。'
   }
 };
 const solutionHubUrl = {
   loc: pageUrl('/solutions'),
-  title: 'AI 解決方案總覽｜EudTech',
-  description: '依企業流程、AI 運算工作負載與社群情報需求，選擇 EudTech AI Agent、AI 基礎設施或 Cyabra 導入路徑。',
+  title: 'AI 與數位服務解決方案總覽｜EudTech',
+  description: '依企業流程、Headless SaaS、AI 運算工作負載與社群情報需求，選擇 EudTech 導入路徑。',
   priority: '0.93',
   source: {
-    title: 'AI 解決方案總覽｜EudTech',
-    description: 'EudTech 的 AI Agent、AI 運算基礎設施與 Cyabra 社群情報三大方案。',
+    title: 'AI 與數位服務解決方案總覽｜EudTech',
+    description: 'EudTech 的 AI Agent、Headless SaaS、AI 運算基礎設施與 Cyabra 社群情報四大方案。',
     solutionSlugs: CONFIGURATOR_SEO_PAGES.map((page) => page.slug)
   }
 };

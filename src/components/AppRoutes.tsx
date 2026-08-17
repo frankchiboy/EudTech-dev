@@ -27,6 +27,7 @@ import ResourcesOverviewPage from './pages/ResourcesOverviewPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
+import HeadlessSaasSolutionPage from './pages/HeadlessSaasSolutionPage';
 
 const AppRoutes: React.FC = () => {
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
@@ -66,11 +67,11 @@ const AppRoutes: React.FC = () => {
             <Route path="/" element={
               <>
                 <SEOHead
-                  title={isEnglish ? 'AI Agents, GPU Infrastructure, and Social Intelligence' : 'AI Agent、GPU 運算與社群情報'}
+                  title={isEnglish ? 'AI Agents, Headless SaaS, GPU Infrastructure, and Social Intelligence' : 'AI Agent、Headless SaaS、GPU 運算與社群情報'}
                   description={
                     isEnglish
-                      ? 'EudTech provides enterprise AI Agent implementation, AI GPU infrastructure, and Cyabra social intelligence solutions.'
-                      : 'EudTech 提供企業 AI Agent 導入、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。'
+                      ? 'EudTech provides enterprise AI Agent implementation, headless SaaS integration, AI GPU infrastructure, and Cyabra social intelligence solutions.'
+                      : 'EudTech 提供企業 AI Agent 導入、Headless SaaS 整合、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。'
                   }
                   keywords={
                     isEnglish
@@ -94,6 +95,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/configurator/:pid" element={<GrandoConfigurator />} />
             <Route path="/solutions" element={<SolutionsOverviewPage />} />
             <Route path="/solutions/ai-agent" element={<AiAgentSolutionPage />} />
+            <Route path="/solutions/headless-saas" element={<HeadlessSaasSolutionPage />} />
             <Route path="/solutions/ai-infrastructure" element={<AiInfrastructureSolutionPage />} />
             <Route path="/solutions/social-intelligence" element={<SocialIntelligenceSolutionPage />} />
             <Route path="/solutions/:slug" element={<ConfiguratorSolutionPage />} />

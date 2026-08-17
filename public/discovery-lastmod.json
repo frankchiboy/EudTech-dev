@@ -2,9 +2,9 @@
   "version": 1,
   "entries": {
     "https://eudaemonia.tech/": {
-      "hash": "401e95cc103247937d562823ca3d60c96a2518ef685415861817d16a47e738a7",
-      "publishedAt": "2026-08-16",
-      "modifiedAt": "2026-08-16"
+      "hash": "f484b2c0ad9e11eec824dc0e42db6a0769e14831ac2a7ee74e00ff05df3d4c3b",
+      "publishedAt": "2026-08-17",
+      "modifiedAt": "2026-08-17"
     },
     "https://eudaemonia.tech/configurator/": {
       "hash": "56c8af727b7bd572d4aa0fe8f19e8370eaf2ec7b745058371cb07ff948e84d3a",
@@ -12,9 +12,9 @@
       "modifiedAt": "2026-07-12"
     },
     "https://eudaemonia.tech/solutions/": {
-      "hash": "cfe79bcb9cfaa209528b0ebf46991513e2d7ef5d9b84674cc2259864ea9d9e91",
-      "publishedAt": "2026-08-16",
-      "modifiedAt": "2026-08-16"
+      "hash": "43085122a1e51d337a3f0c3cacfd9cecf2699f1924f93ae9ede265daeb081e31",
+      "publishedAt": "2026-08-17",
+      "modifiedAt": "2026-08-17"
     },
     "https://eudaemonia.tech/solutions/ai-agent/": {
       "hash": "657e777d860b712ea5795579a0d82e99fea25ded88e77ddd27469ec551a440cd",
@@ -30,6 +30,11 @@
       "hash": "565f9b7966dce4dcd7412df62b0990912801fee56cd78ceb50ee5e7b6514ebfe",
       "publishedAt": "2026-08-16",
       "modifiedAt": "2026-08-16"
+    },
+    "https://eudaemonia.tech/solutions/headless-saas/": {
+      "hash": "712bd8d7b17e49c119089f575b61fc7a8edebc5f082ba1cd04be0da9dddc4e73",
+      "publishedAt": "2026-08-17",
+      "modifiedAt": "2026-08-17"
     },
     "https://eudaemonia.tech/solutions/ai-infrastructure/": {
       "hash": "2900b955e8e1f0f680a525b9e13df22be8add79584f88c79a3bf3ca583499015",

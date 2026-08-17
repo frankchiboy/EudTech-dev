@@ -38,7 +38,7 @@ const classify = (pathname) => {
   if (pathname === '/configurator/') return 'configurator-index';
   if (/^\/configurator\/\d+\/$/.test(pathname)) return 'configurator-detail';
   if (pathname === '/solutions/') return 'solutions-index';
-  if (['/solutions/ai-agent/', '/solutions/ai-infrastructure/', '/solutions/social-intelligence/'].includes(pathname)) return 'solution-pillar';
+  if (['/solutions/ai-agent/', '/solutions/headless-saas/', '/solutions/ai-infrastructure/', '/solutions/social-intelligence/'].includes(pathname)) return 'solution-pillar';
   if (pathname.startsWith('/solutions/')) return 'seo-resource';
   if (pathname === '/products/') return 'products-index';
   if (/^\/products\/\d+\/$/.test(pathname)) return 'product-detail';

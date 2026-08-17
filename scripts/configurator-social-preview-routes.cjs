@@ -78,10 +78,10 @@ function getConfiguratorSocialPreviewRoutes() {
   const routes = [
     {
       path: '/',
-      title: 'AI Agent、GPU 運算與社群情報｜EudTech',
-      description: 'EudTech 提供企業 AI Agent 導入、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。',
+      title: 'AI Agent、Headless SaaS、GPU 運算與社群情報｜EudTech',
+      description: 'EudTech 提供企業 AI Agent 導入、Headless SaaS 整合、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。',
       sourceImage: DEFAULT_SOURCE_IMAGE,
-      imageAlt: 'EudTech AI Agent、GPU 運算與社群情報解決方案'
+      imageAlt: 'EudTech AI Agent、Headless SaaS、GPU 運算與社群情報解決方案'
     },
     {
       path: '/configurator',
@@ -93,8 +93,8 @@ function getConfiguratorSocialPreviewRoutes() {
     ...productRoutes,
     {
       path: '/solutions',
-      title: 'AI 解決方案總覽｜EudTech',
-      description: '依企業流程、AI 運算工作負載與社群情報需求，選擇 EudTech AI Agent、AI 基礎設施或 Cyabra 導入路徑。',
+      title: 'AI 與數位服務解決方案總覽｜EudTech',
+      description: '依企業流程、Headless SaaS、AI 運算工作負載與社群情報需求，選擇 EudTech 導入路徑。',
       sourceImage: DEFAULT_SOURCE_IMAGE,
       imageAlt: 'EudTech AI 解決方案總覽'
     },
