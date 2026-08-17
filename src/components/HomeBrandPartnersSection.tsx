@@ -24,7 +24,7 @@ const HomeBrandPartnersSection: React.FC<HomeBrandPartnersSectionProps> = ({ isE
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
             <article className="rounded-2xl border border-slate-200 bg-slate-50 p-7 dark:border-slate-800 dark:bg-slate-900">
-              <img src="/vendor/comino/sales-kit-0911/comino-x-eudtech.webp" alt={isEnglish ? 'COMINO × EudTech partnership visual from Sales Kit 0911' : 'Sales Kit 0911 的 COMINO × EudTech 合作視覺'} className="mb-6 aspect-video w-full rounded-xl object-cover" loading="lazy" decoding="async" />
+              <img src="/vendor/comino/sales-kit-0911/comino-x-eudtech.webp" alt={isEnglish ? 'COMINO × EudTech partnership visual from Sales Kit 0911' : 'Sales Kit 0911 的 COMINO × EudTech 合作視覺'} className="mb-6 aspect-video w-full rounded-xl object-cover" loading="eager" decoding="async" fetchPriority="high" />
               <div className="flex items-center gap-4"><img src="/logo.svg" alt="EudTech" className="h-9 w-auto" /><span className="text-2xl font-light text-slate-400">×</span><img src="/comino-grando-logo.png" alt="Comino GRANDO" className="h-11 w-auto rounded bg-slate-900 p-2" /></div>
               <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-emerald-700 dark:text-emerald-300"><BadgeCheck className="h-5 w-5" />{isEnglish ? 'Authorised Comino distribution' : 'Comino 授權經銷'}</div>
               <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{isEnglish ? 'Liquid-cooled multi-GPU workstations and servers, configured for Taiwan procurement and acceptance.' : '液冷多 GPU 工作站與伺服器，依台灣採購、安裝與驗收需求完成配置。'}</p>
@@ -40,7 +40,7 @@ const HomeBrandPartnersSection: React.FC<HomeBrandPartnersSectionProps> = ({ isE
         </div>
         <div className="mt-14 rounded-2xl border border-slate-200 px-6 py-8 dark:border-slate-800">
           <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{isEnglish ? 'Compatible technology ecosystem' : '相容技術生態'}</p>
-          <div className="mt-7 grid grid-cols-2 items-center gap-8 sm:grid-cols-3 lg:grid-cols-5">{technologies.map((item) => <div key={item.name} className="flex h-14 items-center justify-center"><img src={item.logo} alt={item.name} loading="lazy" className="max-h-11 max-w-[130px] object-contain opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0 dark:brightness-125" /></div>)}</div>
+          <div className="mt-7 grid grid-cols-2 items-center gap-8 sm:grid-cols-3 lg:grid-cols-5">{technologies.map((item) => <div key={item.name} className="flex h-14 items-center justify-center"><img src={item.logo} alt={item.name} loading="eager" decoding="async" className="max-h-11 max-w-[130px] object-contain opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0 dark:brightness-0 dark:invert" /></div>)}</div>
         </div>
       </div>
     </section>
