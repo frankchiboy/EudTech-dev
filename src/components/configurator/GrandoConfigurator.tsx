@@ -522,7 +522,7 @@ const getNetlifyImageUrl = (url: string, width: number, quality: number) => {
 // Keep the original background definitions for their feature annotations, but
 // render an official Comino image that is shipped with this site so every
 // configurator module remains visually usable without a third-party request.
-const LOCAL_COMINO_CONFIGURATOR_BACKGROUND = '/GRANDO DPR 4090-FT_6_03.jpg';
+const LOCAL_COMINO_CONFIGURATOR_BACKGROUND = '/grando-8gpu-server.jpg';
 
 const canUseNetlifyImageCdn = () => {
   if (typeof window === 'undefined') {
