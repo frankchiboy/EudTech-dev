@@ -1043,6 +1043,7 @@ const BackgroundSlider = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState<number | null>(null);
+  const [failedImages, setFailedImages] = useState<Set<string>>(() => new Set());
   const isMobile = useMobileConfiguratorViewport();
   const copy = CONFIGURATOR_COPY[language];
   const renderedImages = useMemo(() => {
@@ -1074,6 +1075,7 @@ const BackgroundSlider = ({
   useEffect(() => {
     setActiveIndex(0);
     setPreviousIndex(null);
+    setFailedImages(new Set());
   }, [images]);
 
   useEffect(() => {
@@ -1106,15 +1108,18 @@ const BackgroundSlider = ({
           key={`${image.url}-${index}`}
           className={`grando-background-slide ${activeIndex === index ? 'active' : ''}`}
         >
-          <img
-            src={getConfiguratorBackgroundUrl(image.url, isMobile)}
-            srcSet={isMobile ? undefined : getConfiguratorBackgroundSrcSet(image.url)}
-            sizes={isMobile ? undefined : '100vw'}
-            alt=""
-            loading={activeIndex === index ? 'eager' : 'lazy'}
-            decoding="async"
-            fetchPriority={activeIndex === index ? 'high' : 'auto'}
-          />
+          {!failedImages.has(image.url) && (
+            <img
+              src={getConfiguratorBackgroundUrl(image.url, isMobile)}
+              srcSet={isMobile ? undefined : getConfiguratorBackgroundSrcSet(image.url)}
+              sizes={isMobile ? undefined : '100vw'}
+              alt=""
+              loading={activeIndex === index ? 'eager' : 'lazy'}
+              decoding="async"
+              fetchPriority={activeIndex === index ? 'high' : 'auto'}
+              onError={() => setFailedImages((current) => new Set(current).add(image.url))}
+            />
+          )}
           {image.points.map((point, pointIndex) => (
             <span
               key={`${image.url}-${point.top}-${point.left}`}
