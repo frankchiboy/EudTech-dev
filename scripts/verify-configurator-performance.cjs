@@ -34,7 +34,7 @@ function main() {
     ),
     check(
       'configurator background uses the site-hosted Comino image',
-      source.includes("const LOCAL_COMINO_CONFIGURATOR_BACKGROUND = '/GRANDO_RM-M-CRPS_9004_8xGPU_23.jpg';")
+      source.includes("const LOCAL_COMINO_CONFIGURATOR_BACKGROUND = '/GRANDO DPR 4090-FT_6_03.jpg';")
     ),
     check(
       'configurator background does not depend on the unavailable Grando image CDN',
