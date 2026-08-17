@@ -167,3 +167,9 @@
 
 1. `真正完成 EudTech 全站視覺最佳化：逐頁檢視並改善首頁、解決方案、產品與品牌、採購資源、公司介紹、聯絡、GPU 配置器、全部 GPU 專題頁與頁尾導覽的一致性；逐頁判斷現有幾何小圖示，將適合承擔品牌敘事或情境說明的圖示改為 Imagegen 統一風格品牌情境圖，功能操作與細節辨識圖示維持簡潔圖示；完成全站桌面、平板、手機、深淺色、雙語、互動、效能與正式預覽驗證，正式站僅在使用者確認後部署。`
 2. `2`
+
+## 2026-08-17 - Homepage Hero Lock and Imagegen Micro-illustrations
+
+1. `hero 首頁section不能變 而且幾何小圖示你也沒用 [$imagegen](/Users/serverc/WorkSpace-AI/skills/.system/imagegen/SKILL.md) 改 : 設定成目標`
+
+> 首頁 Hero 恢復並固定為視覺最佳化前版本；Imagegen 僅用於首頁 Hero 下方及 AI Agent 頁面的品牌敘事型小圖，功能、狀態、導覽與無障礙圖示維持可辨識。正式網站等待使用者確認後才部署。
