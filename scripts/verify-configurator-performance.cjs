@@ -40,11 +40,12 @@ function main() {
     check(
       'configurator background has a site-hosted Comino image fallback',
       source.includes('getLocalConfiguratorBackgroundFallback') &&
-        source.includes('return LOCAL_COMINO_CONFIGURATOR_BACKGROUND;')
+        source.includes('LOCAL_COMINO_CONFIGURATOR_BACKGROUND') &&
+        source.includes('exact: false')
     ),
     check(
       'background slider still renders only the active image',
-      source.includes('src={fallbackImages[image.url] || getConfiguratorBackgroundUrl(image.url)}')
+      source.includes('src={fallbackImages[image.url]?.url || getConfiguratorBackgroundUrl(image.url)}')
     )
   ];
 

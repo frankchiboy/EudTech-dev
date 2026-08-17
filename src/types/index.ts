@@ -40,6 +40,19 @@ export interface EmailFormData {
   subject?: string;
   toEmail?: string;
   quoteRequestId?: string;
+  configurationSummary?: {
+    device: string;
+    gpu: string;
+    cpu: string;
+    ram: string;
+    storage: string;
+    storage_1: string;
+    storage_2: string;
+    storage_3: string;
+    storage_4: string;
+    psu: string;
+    network: string;
+  };
   message: string;
   privacy: boolean;
 }

@@ -24,12 +24,14 @@ import {
   ConfiguratorDataSource,
   getConfiguratorAssetUrl,
   getConfiguratorDevice,
-  getConfiguratorDevices
+  getConfiguratorDevices,
+  hasCompleteConfiguratorSnapshot
 } from '../../services/api/grandoConfiguratorService';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import Footer from '../Footer';
 import {
   CONFIGURATOR_MODULES,
+  CONFIGURATOR_REQUIRED_MODULES,
   ConfiguratorDevice,
   ConfiguratorBackgroundImage,
   ConfiguratorModule,
@@ -105,6 +107,7 @@ const CONFIGURATOR_SHARE_TRACKING_KEYS = [
   'eud_source_id',
   'eud_campaign_id'
 ];
+const CONFIGURATOR_SHARE_MODULE_KEYS = [...CONFIGURATOR_REQUIRED_MODULES];
 const LOCAL_PRODUCT_IMAGE_FILENAMES = new Set([
   '2x6000ADA_Ddd293j',
   '2x6000ADA_ver',
@@ -396,18 +399,7 @@ const buildConfiguratorStructuredData = (language: ConfiguratorLocale, pid?: str
   ].filter(Boolean);
 };
 
-const moduleOrder: ConfiguratorModule[] = [
-  'gpu',
-  'cpu',
-  'ram',
-  'storage',
-  'storage_1',
-  'storage_2',
-  'storage_3',
-  'storage_4',
-  'psu',
-  'network'
-];
+const moduleOrder: ConfiguratorModule[] = [...CONFIGURATOR_REQUIRED_MODULES];
 
 const iconClassName = 'h-5 w-5';
 
@@ -479,6 +471,26 @@ const buildConfiguratorShareUrl = (currentUrl: string, spec: ConfiguratorSpec) =
     CONFIGURATOR_SHARE_TRACKING_KEYS.forEach((key) => {
       shareUrl.searchParams.delete(key);
     });
+    shareUrl.searchParams.delete('request');
+    CONFIGURATOR_SHARE_MODULE_KEYS.forEach((moduleKey) => {
+      shareUrl.searchParams.delete(moduleKey);
+    });
+    shareUrl.searchParams.delete('gpu_value');
+    shareUrl.searchParams.delete('cpu_value');
+    CONFIGURATOR_SHARE_MODULE_KEYS.forEach((moduleKey) => {
+      const item = spec[moduleKey] as ConfiguratorSpecItem | undefined;
+      if (item?.unique_id) {
+        shareUrl.searchParams.set(moduleKey, item.unique_id);
+      }
+    });
+    const gpuQuantity = (spec.gpu as ConfiguratorSpecItem | undefined)?.total_quantity ?? 0;
+    const cpuQuantity = (spec.cpu as ConfiguratorSpecItem | undefined)?.total_quantity ?? 0;
+    if (Number.isInteger(gpuQuantity) && gpuQuantity > 0) {
+      shareUrl.searchParams.set('gpu_value', String(gpuQuantity));
+    }
+    if (Number.isInteger(cpuQuantity) && cpuQuantity > 0) {
+      shareUrl.searchParams.set('cpu_value', String(cpuQuantity));
+    }
     const deviceId = spec.device?.id ? String(spec.device.id) : 'index';
     shareUrl.searchParams.set('utm_source', 'share');
     shareUrl.searchParams.set('utm_medium', 'referral');
@@ -564,11 +576,20 @@ const getConfiguratorBackgroundUrl = (url: string) => {
 };
 
 const getLocalConfiguratorBackgroundFallback = (url: string) => {
+  const fallbackUrl = (() => {
+    try {
+      const filename = new URL(url).pathname.split('/').pop() || '';
+      return LOCAL_BACKGROUND_FALLBACKS[filename] || LOCAL_COMINO_CONFIGURATOR_BACKGROUND;
+    } catch {
+      return LOCAL_COMINO_CONFIGURATOR_BACKGROUND;
+    }
+  })();
+
+  const isExactFallback = Object.values(LOCAL_BACKGROUND_FALLBACKS).includes(fallbackUrl);
   try {
-    const filename = new URL(url).pathname.split('/').pop() || '';
-    return LOCAL_BACKGROUND_FALLBACKS[filename] || LOCAL_COMINO_CONFIGURATOR_BACKGROUND;
+    return { url: fallbackUrl, exact: isExactFallback };
   } catch {
-    return LOCAL_COMINO_CONFIGURATOR_BACKGROUND;
+    return { url: LOCAL_COMINO_CONFIGURATOR_BACKGROUND, exact: false };
   }
 };
 
@@ -978,7 +999,7 @@ const OptionSection = ({
   }
 
   return (
-    <section className={`grando-config-section ${isOpen ? 'open' : ''}`}>
+    <section className={`grando-config-section ${isOpen ? 'open' : ''}`} data-module={moduleKey}>
       <header>
         <button
           type="button"
@@ -1089,7 +1110,7 @@ const BackgroundSlider = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState<number | null>(null);
   const [failedImages, setFailedImages] = useState<Set<string>>(() => new Set());
-  const [fallbackImages, setFallbackImages] = useState<Record<string, string>>({});
+  const [fallbackImages, setFallbackImages] = useState<Record<string, { url: string; exact: boolean }>>({});
   const isMobile = useMobileConfiguratorViewport();
   const copy = CONFIGURATOR_COPY[language];
   const renderedImages = useMemo(() => {
@@ -1150,14 +1171,14 @@ const BackgroundSlider = ({
         >
           {!failedImages.has(image.url) && (
             <img
-              src={fallbackImages[image.url] || getConfiguratorBackgroundUrl(image.url)}
+              src={fallbackImages[image.url]?.url || getConfiguratorBackgroundUrl(image.url)}
               alt=""
               loading={activeIndex === index ? 'eager' : 'lazy'}
               decoding="async"
               fetchPriority={activeIndex === index ? 'high' : 'auto'}
               onError={() => {
                 const fallback = getLocalConfiguratorBackgroundFallback(image.url);
-                if (!fallbackImages[image.url] && fallback !== getConfiguratorBackgroundUrl(image.url)) {
+                if (!fallbackImages[image.url] && fallback.url !== getConfiguratorBackgroundUrl(image.url)) {
                   setFallbackImages((current) => ({ ...current, [image.url]: fallback }));
                   return;
                 }
@@ -1165,7 +1186,12 @@ const BackgroundSlider = ({
               }}
             />
           )}
-          {image.points.map((point, pointIndex) => (
+          {(failedImages.has(image.url)
+            ? []
+            : fallbackImages[image.url]
+              ? fallbackImages[image.url].exact ? image.points : []
+              : image.points
+          ).map((point, pointIndex) => (
             <span
               key={`${image.url}-${point.top}-${point.left}`}
               className="grando-hotspot"
@@ -1257,13 +1283,34 @@ const QuotePanel = ({
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareUrl = buildConfiguratorShareUrl(currentUrl, spec);
   const shareTitle = `${modelName} | ${copy.shareTitleSuffix}`;
+  const moduleLabels = CONFIGURATOR_MODULE_LABELS[language];
+  const configurationSummary = {
+    device: spec.device?.name || copy.systemFallback,
+    gpu: `${spec.gpu?.total_quantity || 1}x ${formatLocalizedSpecValue('gpu', spec.gpu, language) || copy.notProvided}`,
+    cpu: formatLocalizedSpecValue('cpu', spec.cpu, language) || copy.notProvided,
+    ram: formatLocalizedSpecValue('ram', spec.ram, language) || copy.notProvided,
+    storage: formatLocalizedSpecValue('storage', spec.storage, language) || copy.notProvided,
+    storage_1: formatLocalizedSpecValue('storage_1', spec.storage_1, language) || copy.notProvided,
+    storage_2: formatLocalizedSpecValue('storage_2', spec.storage_2, language) || copy.notProvided,
+    storage_3: formatLocalizedSpecValue('storage_3', spec.storage_3, language) || copy.notProvided,
+    storage_4: formatLocalizedSpecValue('storage_4', spec.storage_4, language) || copy.notProvided,
+    psu: formatLocalizedSpecValue('psu', spec.psu, language) || copy.notProvided,
+    network: formatLocalizedSpecValue('network', spec.network, language) || copy.notProvided
+  };
   const quoteSummary = [
-    `${copy.quoteRequest}: ${spec.device?.name || copy.systemFallback}`,
+    `${copy.device}: ${configurationSummary.device}`,
     `${copy.model}: ${modelName}`,
-    `GPU: ${spec.gpu?.total_quantity || 1}x ${spec.gpu?.name || ''}`,
-    `CPU: ${formatLocalizedSpecValue('cpu', spec.cpu, language)}`,
-    ...(spec.ram ? [`RAM: ${formatLocalizedSpecValue('ram', spec.ram, language)}`] : []),
-    `${copy.configurationLink}: ${currentUrl}`
+    `${moduleLabels.gpu}: ${configurationSummary.gpu}`,
+    `${moduleLabels.cpu}: ${configurationSummary.cpu}`,
+    `${moduleLabels.ram}: ${configurationSummary.ram}`,
+    `${moduleLabels.storage}: ${configurationSummary.storage}`,
+    `${moduleLabels.storage_1}: ${configurationSummary.storage_1}`,
+    `${moduleLabels.storage_2}: ${configurationSummary.storage_2}`,
+    `${moduleLabels.storage_3}: ${configurationSummary.storage_3}`,
+    `${moduleLabels.storage_4}: ${configurationSummary.storage_4}`,
+    `${moduleLabels.psu}: ${configurationSummary.psu}`,
+    `${moduleLabels.network}: ${configurationSummary.network}`,
+    `${copy.configurationLink}: ${shareUrl || currentUrl}`
   ].join('\n');
   const quoteSubject = `${copy.quoteSubject} - ${modelName}`;
   const requestModeTrackedRef = useRef(false);
@@ -1465,6 +1512,7 @@ const QuotePanel = ({
         subject: quoteSubject,
         toEmail: QUOTE_RECIPIENT_EMAIL,
         quoteRequestId,
+        configurationSummary,
         message,
         privacy: true
       });
@@ -1706,6 +1754,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
 
     return getConfiguratorBackgrounds(openModule, spec);
   }, [dataSource, device, openModule, spec]);
+  const completeSnapshot = hasCompleteConfiguratorSnapshot(device || undefined, options);
   const requestMode = searchParams.get('request') === 'true';
   const getTrackingDeviceDetail = () => ({
     modelName: device ? translateConfiguratorModelName(device.name, language) : undefined,
@@ -1874,7 +1923,15 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
         />
       ) : null}
 
-      {!loading && !error && device ? (
+      {!loading && !error && device && !completeSnapshot ? (
+        <ErrorState
+          message={copy.incompleteSnapshot}
+          actionLabel={copy.retry}
+          onRetry={loadDevice}
+        />
+      ) : null}
+
+      {!loading && !error && device && completeSnapshot ? (
         <div className="grando-configurator-shell">
           <aside className="grando-sidebar" aria-label={copy.configurationControls}>
             {availableModules.map((moduleKey) => (

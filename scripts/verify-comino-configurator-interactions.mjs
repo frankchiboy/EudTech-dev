@@ -11,6 +11,14 @@ const withTimeout = (promise, milliseconds, operation) => Promise.race([
   promise,
   new Promise((_, reject) => setTimeout(() => reject(new Error(`${operation} timed out after ${milliseconds}ms`)), milliseconds))
 ]);
+const waitFor = async (predicate, timeoutMs, operation) => {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    if (await evaluate(predicate)) return true;
+    await sleep(120);
+  }
+  throw new Error(`${operation} timed out after ${timeoutMs}ms`);
+};
 
 const response = await fetch(`${cdpUrl}/json/new?about:blank`, { method: 'PUT' });
 if (!response.ok) throw new Error(`Unable to create a browser verification target (${response.status}).`);
@@ -59,13 +67,11 @@ const check = (name, passed, evidence) => results.push({ name, passed: Boolean(p
 const load = async (route) => {
   events.length = 0;
   await send('Page.navigate', { url: `${baseUrl}${route}` });
-  const deadline = Date.now() + 30_000;
-  while (Date.now() < deadline) {
-    const ready = await evaluate("document.readyState !== 'loading' && document.querySelectorAll('.grando-config-section').length === 10 && document.querySelectorAll('.grando-option').length > 0");
-    if (ready) return;
-    await sleep(120);
-  }
-  throw new Error(`Configurator data timeout for ${route}`);
+  await waitFor(
+    "document.readyState !== 'loading' && document.querySelectorAll('[data-module]').length === 10 && document.querySelectorAll('.grando-option').length > 0",
+    30_000,
+    `Configurator data for ${route}`
+  );
 };
 
 try {
@@ -77,7 +83,7 @@ try {
 
   await load('/configurator/28/?gpu_value=2&gpu=h200-141gb');
   const sections = await evaluate(`(() => [...document.querySelectorAll('.grando-config-section')].map(section => ({
-    module: section.querySelector('.grando-config-section-body')?.id.replace('grando-module-', ''),
+    module: section.getAttribute('data-module'),
     title: section.querySelector('.grando-config-section-title')?.textContent.trim(),
     expanded: section.querySelector('.grando-config-section-title')?.getAttribute('aria-expanded'),
     options: section.querySelectorAll('.grando-option').length
@@ -88,17 +94,17 @@ try {
     const modules = ${JSON.stringify(requiredModules)};
     const records = [];
     for (const module of modules) {
-      const section = document.querySelector('#grando-module-' + module)?.closest('.grando-config-section');
+      const section = document.querySelector('[data-module="' + module + '"]');
       const button = section?.querySelector('.grando-config-section-title');
       if (button?.getAttribute('aria-expanded') !== 'true') {
         button?.click();
-        await new Promise(resolve => setTimeout(resolve, 140));
+        await new Promise(resolve => setTimeout(resolve, 220));
       }
       const options = [...(section?.querySelectorAll('.grando-option') || [])];
       const inactive = options.find(option => !option.classList.contains('active'));
       const before = location.search;
       inactive?.click();
-      await new Promise(resolve => setTimeout(resolve, 180));
+      await new Promise(resolve => setTimeout(resolve, 260));
       records.push({ module, open: button?.getAttribute('aria-expanded') === 'true', options: options.length, queryChanged: inactive ? location.search !== before : true });
     }
     return records;
@@ -122,9 +128,17 @@ try {
     const button = [...document.querySelectorAll('.grando-share-button')].find(Boolean);
     button?.click();
     await new Promise(resolve => setTimeout(resolve, 120));
-    return { found: Boolean(button), copied, status: document.querySelector('.grando-share-status')?.textContent.trim() };
+    const parsed = copied ? new URL(copied) : null;
+    const modules = ['gpu', 'cpu', 'ram', 'storage', 'storage_1', 'storage_2', 'storage_3', 'storage_4', 'psu', 'network'];
+    return {
+      found: Boolean(button),
+      copied,
+      status: document.querySelector('.grando-share-status')?.textContent.trim(),
+      hasAllModules: Boolean(parsed) && modules.every(module => parsed.searchParams.has(module)),
+      hasQuantities: Boolean(parsed?.searchParams.has('gpu_value') && parsed?.searchParams.has('cpu_value'))
+    };
   })()`);
-  check('分享會產生可還原配置網址', share.found && /\/configurator\/28\?/.test(share.copied) && /gpu=|gpu_value=/.test(share.copied) && Boolean(share.status), share);
+  check('分享會產生包含十模組與數量的可還原配置網址', share.found && /\/configurator\/28\?/.test(share.copied) && share.hasAllModules && share.hasQuantities && Boolean(share.status), share);
 
   const quote = await evaluate(`(async () => {
     const trigger = [...document.querySelectorAll('.grando-quote-button')].find(button => !button.classList.contains('grando-quote-button-error'));
@@ -136,19 +150,47 @@ try {
     await new Promise(resolve => setTimeout(resolve, 120));
     const labels = [...(dialog?.querySelectorAll('label > span') || [])].map(label => label.textContent.trim());
     const errors = dialog?.querySelectorAll('small').length || 0;
-    return { found: Boolean(dialog), recipient: dialog?.textContent.includes('info@eudaemonia.tech'), labels, errors };
+    const summary = dialog?.querySelector('.grando-quote-summary')?.textContent || '';
+    return { found: Boolean(dialog), recipient: dialog?.textContent.includes('info@eudaemonia.tech'), labels, errors, summary };
   })()`);
-  check('取得報價表單、必填驗證與收件地址完整', quote.found && quote.recipient && quote.labels.length >= 7 && quote.errors >= 4, quote);
+  check('取得報價表單、必填驗證、十模組摘要與固定收件地址完整', quote.found && quote.recipient && quote.labels.length >= 7 && quote.errors >= 4 && ['GPU', 'CPU', 'RAM'].every(label => quote.summary.includes(label)) && (quote.summary.includes('資料碟 4') || quote.summary.includes('Data Drive 4')) && (quote.summary.includes('網路') || quote.summary.includes('Network')), quote);
+
+  await load('/configurator/28/?gpu_value=2&gpu=h200-141gb&request=true');
+  await waitFor("document.querySelector('.grando-quote-modal') !== null", 10_000, 'request=true quote form');
+  const requestMode = await evaluate(`(() => ({
+    found: Boolean(document.querySelector('.grando-quote-modal')),
+    recipient: document.querySelector('.grando-quote-modal')?.textContent.includes('info@eudaemonia.tech')
+  }))()`);
+  check('request=true 會等待資料完成後自動開啟詢價表單', requestMode.found && requestMode.recipient, requestMode);
+
+  await load('/configurator/28/?gpu=6910&gpu_value=999&cpu=90988&cpu_value=999');
+  const invalidQuantities = await evaluate(`(() => {
+    const rows = [...document.querySelectorAll('.grando-spec-row')].map(row => ({
+      label: row.querySelector('.grando-spec-label')?.textContent.trim(),
+      value: row.querySelector('.grando-spec-value')?.textContent.trim()
+    }));
+    return {
+      gpu: rows.find(row => row.label === 'GPU')?.value || '',
+      cpu: rows.find(row => row.label === 'CPU')?.value || '',
+      hasInvalidQuantity: rows.some(row => row.value?.includes('999'))
+    };
+  })()`);
+  check('非法 GPU／CPU 數量會回復合法預設且舊 H200 slug 可還原', !invalidQuantities.hasInvalidQuantity && invalidQuantities.gpu.includes('H200') && !invalidQuantities.cpu.includes('999'), invalidQuantities);
 
   await load('/configurator/29/?storage_3=7205');
   const deepLink = await evaluate(`(() => {
-    const section = document.querySelector('#grando-module-storage_3')?.closest('.grando-config-section');
+    const section = document.querySelector('[data-module="storage_3"]');
     const title = section?.querySelector('.grando-config-section-title');
     title?.click();
     const active = section?.querySelector('.grando-option.active');
     return { active: active?.textContent.trim(), query: location.search, activeCount: section?.querySelectorAll('.grando-option.active').length || 0 };
   })()`);
-  check('原廠 Storage 3 深連結可還原', deepLink.activeCount === 1 && deepLink.query.includes('storage_3=7205'), deepLink);
+  await waitFor("document.querySelector('[data-module=\"storage_3\"] .grando-option.active') !== null", 10_000, 'Storage 3 deep link selection');
+  const deepLinkAfterWait = await evaluate(`(() => {
+    const section = document.querySelector('[data-module="storage_3"]');
+    return { active: section?.querySelector('.grando-option.active')?.textContent.trim(), query: location.search, activeCount: section?.querySelectorAll('.grando-option.active').length || 0 };
+  })()`);
+  check('原廠 Storage 3 深連結可還原', deepLinkAfterWait.activeCount === 1 && deepLinkAfterWait.query.includes('storage_3=7205'), deepLinkAfterWait);
 
   const mobile = await evaluate(`(() => ({ width: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth }))()`);
   check('桌面版沒有水平溢位', mobile.scrollWidth <= mobile.width + 2, mobile);

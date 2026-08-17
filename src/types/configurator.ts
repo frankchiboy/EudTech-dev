@@ -15,6 +15,20 @@ export const CONFIGURATOR_MODULES = [
   'nvlink'
 ] as const;
 
+/** The ten hardware modules that must be present for a usable Comino snapshot. */
+export const CONFIGURATOR_REQUIRED_MODULES = [
+  'gpu',
+  'cpu',
+  'ram',
+  'storage',
+  'storage_1',
+  'storage_2',
+  'storage_3',
+  'storage_4',
+  'psu',
+  'network'
+] as const;
+
 export type ConfiguratorModule = typeof CONFIGURATOR_MODULES[number];
 
 export interface ConfiguratorDefaults {

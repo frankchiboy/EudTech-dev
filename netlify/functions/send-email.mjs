@@ -7,6 +7,20 @@ const requiredEnv = [
 
 const GRAPH_ROOT = 'https://graph.microsoft.com/v1.0';
 const WEBSITE_SOURCE_HEADER = 'website-configurator';
+const QUOTE_RECIPIENT_EMAIL = 'info@eudaemonia.tech';
+const REQUIRED_CONFIGURATION_FIELDS = [
+  'device',
+  'gpu',
+  'cpu',
+  'ram',
+  'storage',
+  'storage_1',
+  'storage_2',
+  'storage_3',
+  'storage_4',
+  'psu',
+  'network'
+];
 
 const json = (status, body) =>
   Response.json(body, {
@@ -20,6 +34,12 @@ const normalize = (value) => (typeof value === 'string' ? value.trim() : '');
 
 const validEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 const validQuoteRequestId = (value) => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+const validText = (value, maximum) => typeof value === 'string' && value.trim().length > 0 && value.trim().length <= maximum;
+const hasCompleteConfigurationSummary = (value) => Boolean(
+  value &&
+  typeof value === 'object' &&
+  REQUIRED_CONFIGURATION_FIELDS.every((field) => validText(value[field], 500))
+);
 
 const uniqueEmails = (values) =>
   [...new Set(values.map(normalize).filter(Boolean))];
@@ -45,6 +65,9 @@ const buildHtml = (payload) => {
     ['Company', payload.company || 'Not provided'],
     ['Country', payload.country || 'Not provided'],
     ...(payload.quoteRequestId ? [['Quote request ID', payload.quoteRequestId]] : []),
+    ...(hasCompleteConfigurationSummary(payload.configurationSummary)
+      ? REQUIRED_CONFIGURATION_FIELDS.map((field) => [`Configuration ${field}`, payload.configurationSummary[field]])
+      : []),
     ['Message', payload.message]
   ];
 
@@ -130,26 +153,44 @@ async function sendQuoteEmail(request) {
     return json(400, { error: 'Invalid JSON payload' });
   }
 
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    return json(400, { error: 'Invalid quote payload' });
+  }
+
   const firstName = normalize(payload.firstName);
   const lastName = normalize(payload.lastName);
   const email = normalize(payload.email);
   const message = normalize(payload.message);
   const quoteRequestId = normalize(payload.quoteRequestId || payload.quote_request_id);
+  const optionalTextFields = ['phone', 'company', 'country', 'subject'];
+  if (optionalTextFields.some((field) => payload[field] !== undefined && typeof payload[field] !== 'string')) {
+    return json(400, { error: 'Quote text fields must be strings' });
+  }
 
-  if (!firstName || !lastName || !email || !message) {
+  if (!validText(firstName, 120) || !validText(lastName, 120) || !validText(email, 320) || !validText(message, 20_000)) {
     return json(400, { error: 'Missing required quote fields' });
   }
   if (!validEmail(email)) {
     return json(400, { error: 'Invalid sender email' });
   }
-  if (!validQuoteRequestId(quoteRequestId)) {
+  if (quoteRequestId && !validQuoteRequestId(quoteRequestId)) {
     return json(400, { error: 'Invalid quote request ID' });
   }
 
-  const recipient = normalize(payload.toEmail) || getEnv('QUOTE_RECIPIENT_EMAIL') || 'info@eudaemonia.tech';
-  if (!validEmail(recipient)) {
-    return json(500, { error: 'Invalid quote recipient email' });
+  const requestedRecipient = normalize(payload.toEmail);
+  if (requestedRecipient && requestedRecipient.toLowerCase() !== QUOTE_RECIPIENT_EMAIL) {
+    return json(400, { error: 'Quote recipient is fixed to info@eudaemonia.tech' });
   }
+
+  if (quoteRequestId && !hasCompleteConfigurationSummary(payload.configurationSummary)) {
+    return json(400, { error: 'Complete ten-module configuration summary is required' });
+  }
+
+  const normalizedConfigurationSummary = quoteRequestId
+    ? Object.fromEntries(REQUIRED_CONFIGURATION_FIELDS.map((field) => [field, normalize(payload.configurationSummary[field])]))
+    : undefined;
+
+  const recipient = QUOTE_RECIPIENT_EMAIL;
 
   const inboxCopies = uniqueEmails(getEnv('QUOTE_INBOX_COPY_EMAIL').split(','));
   const invalidInboxCopies = inboxCopies.filter((copyEmail) => !validEmail(copyEmail));
@@ -157,7 +198,7 @@ async function sendQuoteEmail(request) {
     return json(500, { error: 'Invalid quote inbox copy email' });
   }
 
-  const subject = normalize(payload.subject) || `Grando Configurator Request - ${new Date().toISOString()}`;
+  const subject = normalize(payload.subject).slice(0, 500) || `Grando Configurator Request - ${new Date().toISOString()}`;
   const text = `${message}\n\nQuote request ID: ${quoteRequestId}`;
 
   try {
@@ -167,7 +208,19 @@ async function sendQuoteEmail(request) {
       subject,
       body: {
         contentType: 'HTML',
-        content: `${buildHtml({ ...payload, firstName, lastName, email, message, quoteRequestId })}<p style="white-space:pre-wrap">${escapeHtml(text)}</p>`
+        content: `${buildHtml({
+          ...payload,
+          firstName,
+          lastName,
+          email,
+          message,
+          phone: normalize(payload.phone),
+          company: normalize(payload.company),
+          country: normalize(payload.country),
+          subject,
+          quoteRequestId,
+          configurationSummary: normalizedConfigurationSummary
+        })}<p style="white-space:pre-wrap">${escapeHtml(text)}</p>`
       },
       toRecipients: [graphRecipient(recipient)],
       bccRecipients: inboxCopies.map(graphRecipient),

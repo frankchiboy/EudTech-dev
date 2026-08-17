@@ -6,7 +6,8 @@ import {
   ConfiguratorOption,
   ConfiguratorSpec,
   ConfiguratorSpecItem,
-  ConfiguratorValidation
+  ConfiguratorValidation,
+  CONFIGURATOR_REQUIRED_MODULES
 } from '../../types/configurator';
 import { GRANDO_CONFIGURATOR_BASE_URL } from '../../services/api/grandoConfiguratorService';
 
@@ -331,10 +332,23 @@ const getQueryOption = (
   uniqueId: string,
   options: ConfiguratorOption[]
 ) => {
-  return (
-    options.find((option) => option.module_type === moduleKey && option.unique_id === uniqueId) ||
-    options.find((option) => option.unique_id === uniqueId)
-  );
+  const moduleOptions = options.filter((option) => option.module_type === moduleKey);
+  const exact = moduleOptions.find((option) => option.unique_id === uniqueId);
+  if (exact) {
+    return exact;
+  }
+
+  // Older public links used product slugs while Comino's current API uses
+  // numeric/opaque unique IDs. Keep those links readable without accepting an
+  // ID from a different module.
+  const alias = uniqueId.toLowerCase();
+  return moduleOptions.find((option) => {
+    const name = option.name.toLowerCase();
+    if (alias === 'h200-141gb') return name.includes('h200') && name.includes('141gb');
+    if (alias === 'rtx-pro-6000-96gb') return name.includes('rtx') && name.includes('pro') && name.includes('6000') && name.includes('96gb');
+    if (alias === '5090') return name.includes('5090');
+    return false;
+  });
 };
 
 export const applyQueryToSpec = (
@@ -351,12 +365,32 @@ export const applyQueryToSpec = (
     }
   });
 
-  const gpuValue = Number(searchParams.get('gpu_value'));
-  const cpuValue = Number(searchParams.get('cpu_value'));
+  const requestedGpuValue = Number(searchParams.get('gpu_value'));
+  const requestedCpuValue = Number(searchParams.get('cpu_value'));
+  const baseGpuQuantity = spec.gpu?.total_quantity;
+  const baseCpuQuantity = spec.cpu?.total_quantity;
 
-  if (gpuValue && spec.gpu) {
-    spec.gpu = { ...spec.gpu, total_quantity: gpuValue };
-  }
+  const validQuantity = (moduleKey: ConfiguratorModule, option: ConfiguratorOption, value: number) => {
+    if (!Number.isInteger(value) || value <= 0 || !option.custom_values.includes(value)) {
+      return false;
+    }
+    return moduleKey !== 'gpu' || !baseSpec.device || value <= baseSpec.device.gpu_slots;
+  };
+
+  const getQuantity = (
+    moduleKey: ConfiguratorModule,
+    option: ConfiguratorOption,
+    requestedValue: number,
+    fallbackValue: number | undefined
+  ) => {
+    if (validQuantity(moduleKey, option, requestedValue)) {
+      return requestedValue;
+    }
+    if (validQuantity(moduleKey, option, fallbackValue || 0)) {
+      return fallbackValue as number;
+    }
+    return option.custom_values.find((value) => validQuantity(moduleKey, option, value)) || 1;
+  };
 
   CONFIGURATOR_MODULES.forEach((moduleKey) => {
     const uniqueId = searchParams.get(moduleKey);
@@ -372,26 +406,24 @@ export const applyQueryToSpec = (
 
     const quantity =
       moduleKey === 'gpu'
-        ? gpuValue || option.custom_values[0] || 1
+        ? getQuantity(moduleKey, option, requestedGpuValue, baseGpuQuantity)
         : moduleKey === 'cpu'
-          ? cpuValue || option.custom_values[0] || 1
+          ? getQuantity(moduleKey, option, requestedCpuValue, baseCpuQuantity)
           : option.custom_values[0] || 1;
 
     spec[moduleKey] = cloneSpecItem(option, quantity);
   });
 
-  if (cpuValue) {
-    if (spec.cpu) {
-      spec.cpu = { ...spec.cpu, total_quantity: cpuValue };
-    } else {
-      const cpu = baseSpec.cpu;
-      if (cpu) {
-        spec.cpu = { ...cpu, total_quantity: cpuValue };
-      }
-    }
-  }
-
   return spec;
+};
+
+export const hasCompleteConfiguratorModules = (options: ConfiguratorOption[]) => {
+  const modules = new Set(
+    options
+      .filter((option) => typeof option?.name === 'string' && option.name.trim())
+      .map((option) => String(option.module_type || '').toLowerCase())
+  );
+  return CONFIGURATOR_REQUIRED_MODULES.every((moduleKey) => modules.has(moduleKey));
 };
 
 export const calculateConfiguratorPrice = (spec: ConfiguratorSpec) => {
