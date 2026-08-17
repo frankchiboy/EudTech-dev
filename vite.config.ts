@@ -92,6 +92,7 @@ const PUBLIC_FILE_ALLOWLIST = [
   'keras-logo.png',
   'linus-review.jpg',
   'nvidia-logo.png',
+  'nvidia-logo-modified.png',
   'pytorch-logo.png',
   'sentdex-review.jpg',
   'tensorflow-logo.png'
