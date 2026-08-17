@@ -404,8 +404,8 @@ const CareersPage: React.FC = () => {
       <div className="min-h-screen bg-white dark:bg-gray-900">
         <main className="pt-16">
           <section className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-slate-950">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_25%,rgba(34,211,238,0.22),transparent_32%),radial-gradient(circle_at_82%_18%,rgba(16,185,129,0.16),transparent_28%)]" />
-            <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(148,163,184,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.18)_1px,transparent_1px)] [background-size:48px_48px]" />
+            <img src="/brand-provenance/eudtech-brand-careers.webp" alt={isEnglish ? 'EudTech team collaboration and careers' : 'EudTech 團隊協作與職涯發展'} className="absolute inset-0 h-full w-full object-cover object-center" loading="eager" fetchPriority="high" decoding="async" />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-slate-950/40" aria-hidden="true" />
             <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 {isEnglish ? 'Join Our Team' : '加入我們的團隊'}

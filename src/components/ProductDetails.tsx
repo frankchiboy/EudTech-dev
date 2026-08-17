@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Bot, Braces, CheckCircle2, Cpu, Database, LineChart, Server, Shield } from 'lucide-react';
+import { ArrowLeft, Bot, Braces, CheckCircle2, Database, LineChart, Shield } from 'lucide-react';
 import { useLanguageContext } from '../contexts/LanguageContext';
 import { handleNavClick } from '../utils/helpers/navigation';
 import Footer from './Footer';
-import { getEudTechProducts, getCominoProducts } from '../data/productData';
+import { getEudTechProducts, getCominoProducts, getCyabraProducts } from '../data/productData';
 import { technicalSpecsTranslations } from './productUtils';
 import ProductAdditionalFeatures from './ProductAdditionalFeatures';
 import ProductImageGallery from './ProductImageGallery';
@@ -38,14 +38,17 @@ const ProductDetails: React.FC = () => {
   // 取得產品資料
   const eudTechProducts = getEudTechProducts(isEnglish);
   const cominoProducts = getCominoProducts(isEnglish);
-  const allProducts = [...eudTechProducts, ...cominoProducts];
+  const cyabraProducts = getCyabraProducts(isEnglish);
+  const allProducts = [...eudTechProducts, ...cominoProducts, ...cyabraProducts];
   const product = allProducts.find(p => p.id === productId);
 
   const productCategory = productId === 3
     ? (isEnglish ? 'Financial data and AI' : '金融資料與 AI')
     : productId === 1
       ? (isEnglish ? 'EudTech solution' : 'EudTech 解決方案')
-      : (isEnglish ? 'Comino GPU platform' : 'Comino GPU 平台');
+      : productId === 10 || productId === 11
+        ? (isEnglish ? 'Cyabra social intelligence' : 'Cyabra 社群情報')
+        : (isEnglish ? 'Comino GPU platform' : 'Comino GPU 平台');
 
   if (!product) {
     console.log("Product not found!");
@@ -62,16 +65,6 @@ const ProductDetails: React.FC = () => {
       </div>
     );
   }
-
-  // 在渲染時動態生成 JSX 元件
-  const renderIcon = (icon: string) => {
-    switch (icon) {
-      case 'server': return <Server className="h-8 w-8 text-blue-800" />;
-      case 'cpu': return <Cpu className="h-8 w-8 text-orange-700" />;
-      case 'shield': return <Shield className="h-8 w-8 text-green-700" />;
-      default: return null;
-    }
-  };
 
   return (
     <>

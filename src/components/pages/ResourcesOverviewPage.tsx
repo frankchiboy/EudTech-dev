@@ -114,6 +114,9 @@ const ResourcesOverviewPage: React.FC = () => {
           en: 'EudTech helps labs, enterprises, and public-sector teams define workload, system type, GPU, power, cooling, and procurement requirements before producing a reviewable configuration and quote request.'
         }}
         isEnglish={isEnglish}
+        image="/brand-provenance/eudtech-brand-procurement.webp"
+        imageAlt={{ zh: 'GPU 伺服器選型、配置與採購審查的品牌情境圖', en: 'Brand scene for GPU server selection, configuration, and procurement review' }}
+        imagePosition="center"
         actions={
           <>
             <ActionLink href="/contact">{isEnglish ? 'Ask EudTech to help choose' : '請 EudTech 協助選型'}</ActionLink>

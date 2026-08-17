@@ -59,8 +59,10 @@ const HomeSolutionsSection: React.FC<HomeSolutionsSectionProps> = ({ isEnglish }
           </div>
         </div>
         <article className="mt-16 grid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] lg:grid-cols-[0.42fr_1fr]">
-          <div className="flex min-h-52 items-center justify-center bg-gradient-to-br from-cyan-400/20 via-slate-900 to-emerald-400/10 p-10">
-            <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-cyan-300/30 bg-cyan-300/10"><FlaskConical className="h-11 w-11 text-cyan-300" /></div>
+          <div className="relative min-h-52 overflow-hidden bg-slate-900">
+            <img src="/brand-provenance/eudtech-brand-procurement.webp" alt={isEnglish ? 'GPU procurement review and acceptance planning' : 'GPU 採購審查與驗收規劃'} className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-slate-950/85 via-slate-950/30 to-cyan-900/20" aria-hidden="true" />
+            <div className="relative flex min-h-52 items-end p-8"><div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-300/40 bg-slate-950/60 backdrop-blur-sm"><FlaskConical className="h-7 w-7 text-cyan-300" /></div></div>
           </div>
           <div className="p-7 sm:p-9">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">{isEnglish ? 'Anonymised procurement example' : '匿名採購需求案例'}</p>

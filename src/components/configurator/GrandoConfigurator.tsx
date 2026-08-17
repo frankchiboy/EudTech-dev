@@ -27,6 +27,7 @@ import {
   getConfiguratorDevices
 } from '../../services/api/grandoConfiguratorService';
 import { useLanguageContext } from '../../contexts/LanguageContext';
+import Footer from '../Footer';
 import {
   CONFIGURATOR_MODULES,
   ConfiguratorDevice,
@@ -1863,7 +1864,12 @@ const GrandoConfigurator = () => {
   const { isEnglish } = useLanguageContext();
   const language = getConfiguratorLocale(isEnglish);
 
-  return pid ? <ConfiguratorDetail pid={pid} language={language} /> : <ConfiguratorHome language={language} />;
+  return (
+    <>
+      {pid ? <ConfiguratorDetail pid={pid} language={language} /> : <ConfiguratorHome language={language} />}
+      <Footer isEnglish={isEnglish} />
+    </>
+  );
 };
 
 export default GrandoConfigurator;

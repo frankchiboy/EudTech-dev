@@ -537,6 +537,37 @@ const configuratorLinksHtml = `<!doctype html>
         background: #f8fafc;
         color: #111827;
       }
+      header {
+        background: #0f172a;
+        color: #ffffff;
+      }
+      nav {
+        box-sizing: border-box;
+        display: flex;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 18px 20px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      nav > a {
+        color: #67e8f9;
+        font-size: 1.15rem;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 16px;
+      }
+      .nav-links a {
+        color: #e2e8f0;
+        font-size: .9rem;
+        font-weight: 700;
+      }
       main {
         box-sizing: border-box;
         max-width: 1080px;
@@ -633,10 +664,30 @@ const configuratorLinksHtml = `<!doctype html>
           color: #ffffff;
         }
       }
+      @media (max-width: 640px) {
+        nav {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .nav-links {
+          justify-content: flex-start;
+        }
+      }
     </style>
     <script type="application/ld+json">${JSON.stringify(configuratorLinkListJsonLd).replace(/</g, '\\u003c')}</script>
   </head>
   <body>
+    <header>
+      <nav aria-label="網站主要導覽">
+        <a href="https://eudaemonia.tech/">EudTech</a>
+        <div class="nav-links">
+          <a href="https://eudaemonia.tech/solutions/">解決方案</a>
+          <a href="https://eudaemonia.tech/products/">產品與品牌</a>
+          <a href="https://eudaemonia.tech/resources/">採購資源</a>
+          <a href="https://eudaemonia.tech/contact/">預約諮詢</a>
+        </div>
+      </nav>
+    </header>
     <main>
       <h1>${escapeHtml(configuratorLinkIndexUrl.title)}</h1>
       <p class="lead">${escapeHtml(configuratorLinkIndexUrl.description)} 此頁集中提供可爬取的正式 URL，方便採購者、搜尋引擎與 AI 搜尋工具進入正確配置頁。</p>
@@ -668,6 +719,7 @@ ${solutionUrls.map(linkCard).join('\n')}
 
       <footer>
         <p>正式報價與供應條件以 EudTech 後續回覆為準。聯絡信箱：<a href="mailto:info@eudaemonia.tech">info@eudaemonia.tech</a></p>
+        <p><a href="https://eudaemonia.tech/about/">關於 EudTech</a> · <a href="https://eudaemonia.tech/privacy/">隱私與資料使用</a></p>
       </footer>
     </main>
   </body>

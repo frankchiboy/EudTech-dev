@@ -20,8 +20,24 @@ export const PageShell: React.FC<{ children: React.ReactNode; title: Bilingual; 
   );
 };
 
-export const PageHero: React.FC<{ eyebrow: Bilingual; title: Bilingual; lead: Bilingual; isEnglish: boolean; actions?: React.ReactNode }> = ({ eyebrow, title, lead, isEnglish, actions }) => (
-  <section className="bg-slate-950 pb-20 pt-32 text-white sm:pb-24">
+export const PageHero: React.FC<{
+  eyebrow: Bilingual;
+  title: Bilingual;
+  lead: Bilingual;
+  isEnglish: boolean;
+  actions?: React.ReactNode;
+  image?: string;
+  imageAlt?: Bilingual;
+  imagePosition?: string;
+}> = ({ eyebrow, title, lead, isEnglish, actions, image, imageAlt, imagePosition = 'center' }) => (
+  <section className="relative isolate overflow-hidden bg-slate-950 pb-20 pt-32 text-white sm:pb-24">
+    {image && (
+      <>
+        <img src={image} alt={imageAlt ? tx(imageAlt, isEnglish) : ''} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: imagePosition }} loading="eager" fetchPriority="high" decoding="async" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/45" aria-hidden="true" />
+        <div className="absolute inset-0 -z-10 bg-slate-950/35" aria-hidden="true" />
+      </>
+    )}
     <div className="mx-auto max-w-7xl px-6 lg:px-8">
       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">{tx(eyebrow, isEnglish)}</p>
       <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">{tx(title, isEnglish)}</h1>

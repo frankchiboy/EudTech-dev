@@ -1,39 +1,48 @@
-# EudTech Product Design QA
+# EudTech Full-Site Product Design QA
 
-## Visual truth
+## Scope
 
-- Selected ImageGen source: `/Users/serverc/.codex/generated_images/01a0085d-7a9d-72d0-8af4-ee52c754779c/exec-ff6150bc-4933-4de4-aee3-7973c306f142.png`
-- Website asset: `public/ai-agent-evidence-chain-v1.webp`
-- Implemented page: `/solutions/ai-agent/`
-- Source dimensions: 1536 × 1024
-- Desktop verification viewport: 1440 × 1024
-- Mobile verification viewport: 390 × 844
-- Side-by-side comparison: `/Users/serverc/WorkSpace-AI/deliverables/eudtech-product-design-imagegen-20260817/design-qa-comparison-iteration-1.png`
+- Branch: `codex/website-next-update`
+- Production policy: production remains unchanged until explicit approval.
+- Public inventory: 41 sitemap routes, 11 configurator product routes, and 7 user-facing product detail routes.
+- Breakpoints: 1440 px desktop, 820 px tablet, and 390 px mobile.
+- Modes: Traditional Chinese / English and light / dark.
+
+## Image system
+
+- AI Agent evidence chain: `public/ai-agent-evidence-chain-v1.webp`.
+- Full-site brand scenes: `public/brand-provenance/eudtech-brand-{home,social,procurement,delivery,consultation,careers}.webp`.
+- Original generated PNG files are retained in `docs/assets/brand-provenance/`; the deployable site uses compressed WebP files only.
+- Imagegen scenes are used for brand narrative and business context. Product configuration, hardware selection, vendor evidence, and operational controls continue to use real product media or functional icons.
+- GPU infrastructure uses the real Comino product image instead of generated hardware; the evaluated GPU Imagegen source is retained only with the source records and is not deployed.
 
 ## Design review
 
-- Visual direction: The selected evidence-chain scene is preserved as a full-bleed operational image. Navy, cyan, and emerald match the existing EudTech system.
-- Typography: Existing bilingual type scale remains readable over a dedicated navy gradient; the generated image contains no embedded text.
-- Spacing: Hero copy, evidence labels, and calls to action stay within the existing `max-w-7xl` grid and collapse cleanly on mobile.
-- Image quality: The 1536 × 1024 source is exported as a 51 KB WebP for the website while the source PNG is retained for provenance.
-- Copy: The visual supports the existing message of source evidence, difference checking, and human approval without introducing unsupported claims.
-- Accessibility: The hero image is decorative because adjacent text communicates its meaning. The solution overview image has bilingual descriptive alternative text.
+- Visual direction: navy, cyan, and emerald form one consistent EudTech system across the homepage, solution pages, resources, company, contact, and careers.
+- Typography: generated images contain no embedded text; bilingual page copy remains native HTML.
+- Layout: hero copy remains inside the shared `max-w-7xl` grid with image focal points controlled per page.
+- Navigation: the GPU configurator now includes the shared EudTech footer; the crawler-facing configurator index now includes visible site navigation and footer links.
+- Product routes: `/products/10` and `/products/11` now load Cyabra product data instead of a product-not-found state.
+- Accessibility: narrative images use bilingual alternative text where the image carries meaning; decorative imagery remains excluded from assistive narration.
 
-## Iteration history
-
-1. Iteration 1: Integrated the selected source image. Production build rejected the new public asset because it was absent from the explicit allowlist.
-2. Iteration 2: Added the WebP asset to the public-file allowlist, rebuilt, and verified the desktop and mobile render.
-3. Full-site pass: Fixed duplicate SVG gradient identifiers caused by simultaneous desktop and mobile logo instances.
-
-## Verification
+## Verification evidence
 
 - Netlify production build: passed.
-- Static SEO verification: 39 routes passed.
+- Static SEO verification: 39 generated routes passed.
+- Discovery verification: 38 required URLs, 39 social preview images, sitemap index, feeds, and LLM files passed.
 - Original-prompt preservation verification: passed.
-- Changed-file lint: passed.
-- Core visual matrix: 10 routes × 4 modes passed after one transient lazy-image retry.
-- Sitemap visual matrix: all non-configurator content routes passed at desktop and mobile widths. Configurator image transformations require the Netlify preview environment and are checked after preview deployment.
-- Interaction verification: AI Agent tabs, FAQ, language switch, theme switch, primary calls to action, and mobile navigation passed.
-- Browser console: no severe errors during the interaction verification.
+- Changed-file lint: 0 errors; one pre-existing Fast Refresh warning in `SitePagePrimitives.tsx`.
+- Configurator performance checks: 6 of 6 passed.
+- Critical visual matrix: 10 routes × 4 modes = 40 screenshots passed.
+- Full local sitemap matrix: 41 routes × desktop/mobile = 82 screenshots. All 60 non-product-configurator checks passed. The remaining 22 local reviews are solely the 11 product background images in two viewports because the Netlify Image CDN endpoint is unavailable on localhost; navigation, footer, overflow, and controls passed on those routes.
+- Local interaction suite: AI Agent scenario tabs, FAQ, language, theme, calls to action, and mobile navigation passed with no severe browser console errors.
+- Contact sheet: `/Users/serverc/WorkSpace-AI/deliverables/eudtech-full-site-imagegen-20260817/design-qa/full-site-hero-contact-sheet.png`.
+- Full matrix report: `/Users/serverc/WorkSpace-AI/deliverables/eudtech-full-site-imagegen-20260817/full-sitemap-local-final/audit.json`.
 
-final result: passed
+## Preview acceptance gate
+
+- Verify all Netlify Image CDN product images on the branch preview.
+- Repeat the critical route matrix and interaction suite against the branch preview.
+- Record the preview deploy identifier and final public screenshots below before release approval.
+
+final result: pending public preview verification

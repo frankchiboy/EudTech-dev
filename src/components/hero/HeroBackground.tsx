@@ -5,8 +5,8 @@ const HeroBackground: React.FC = () => {
     <div className="absolute inset-0 w-full h-full">
       <div className="absolute inset-0 bg-black/60 dark:bg-black/70 z-10" />
       <img
-        src="/grando-8gpu-server.jpg"
-        alt="AI Server Background"
+        src="/brand-provenance/eudtech-brand-home.webp"
+        alt=""
         className="absolute inset-0 w-full h-full object-cover transform scale-105 animate-subtle-zoom"
       />
     </div>

@@ -72,3 +72,8 @@ This file preserves the user's original prompts for the configurator exposure ta
 2. `2`
 
 > 第 2 項選擇本次三個 Imagegen 視覺方向中第二個顯示結果，作為 AI Agent 來源證據、核對、人員核准與完成紀錄的全站視覺主軸。
+
+## 2026-08-17 Product Design and Imagegen Full-site Optimization — continuation
+
+1. `真正完成 EudTech 全站視覺最佳化：逐頁檢視並改善首頁、解決方案、產品與品牌、採購資源、公司介紹、聯絡、GPU 配置器、全部 GPU 專題頁與頁尾導覽的一致性；逐頁判斷現有幾何小圖示，將適合承擔品牌敘事或情境說明的圖示改為 Imagegen 統一風格品牌情境圖，功能操作與細節辨識圖示維持簡潔圖示；完成全站桌面、平板、手機、深淺色、雙語、互動、效能與正式預覽驗證，正式站僅在使用者確認後部署。`
+2. `2`
