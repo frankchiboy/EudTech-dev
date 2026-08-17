@@ -545,7 +545,11 @@ const LOCAL_BACKGROUND_FALLBACKS: Record<string, string> = {
   'GRANDO_DPR_4090-FT_6_15.jpg': '/images/configurator/backgrounds/grando-dpr-4090-15.webp',
   'GRANDO_DPR_4090-FT_6_16.jpg': '/images/configurator/backgrounds/grando-dpr-4090-16.webp',
   'GRANDO_DPR_4090-FT_6_26.jpg': '/images/configurator/backgrounds/grando-dpr-4090-26.webp',
-  'GRANDO_DPR_4090-FT_6_27.jpg': '/images/configurator/backgrounds/grando-dpr-4090-27.webp'
+  'GRANDO_DPR_4090-FT_6_27.jpg': '/images/configurator/backgrounds/grando-dpr-4090-27.webp',
+  // These two verified Comino originals intermittently return upstream 5xx;
+  // keep exact official image fallbacks so the configurator remains usable.
+  '7005_52_WCB_MoBo_BUNDLE_INSTALL_02.jpg': '/images/configurator/backgrounds/comino-7005-02.webp',
+  '7000_WCB_MoBo_BUNDLE_INSTALL_MACRO_03.jpg': '/images/configurator/backgrounds/comino-7000-macro-03.webp'
 };
 
 const canUseNetlifyImageCdn = () => {
