@@ -1,6 +1,7 @@
 # EudTech 首頁 Hero 固定與 Imagegen 視覺稽核
 
-日期：2026-08-17  
+日期：2026-08-17
+
 適用分支：`codex/website-next-update`
 
 ## 不可變更區
