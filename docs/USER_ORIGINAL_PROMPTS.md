@@ -177,3 +177,9 @@
 ## 2026-08-17 - Product Design Whole-site Optimization
 
 1. `使用 [@product-design](plugin://product-design@openai-curated-remote) 達到全網站最佳化了嗎？還沒就繼續。`
+
+## 2026-08-17 - Imagegen、Product Design 與 Visualize 全網站續作
+
+1. `幾何小圖示需要留的 還是需要用 [$imagegen](/Users/serverc/WorkSpace-AI/skills/.system/imagegen/SKILL.md) 最佳化的 都完成了嗎 還沒就繼續`
+2. `使用 [@product-design](plugin://product-design@openai-curated-remote) 達到全網站最佳化了嗎？還沒就繼續。`
+3. `使用 [@visualize](plugin://visualize@openai-bundled) 達到全網站最佳化了嗎？還沒就繼續。`
