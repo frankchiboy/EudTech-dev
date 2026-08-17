@@ -73,6 +73,10 @@ const waitForVisibleImages = async (page, timeout = 2_500) => {
   }, undefined, { timeout }).catch(() => undefined);
 };
 
+const waitForPageImages = async (page, timeout = 2_500) => {
+  await page.waitForFunction(() => [...document.images].every((image) => image.complete), undefined, { timeout }).catch(() => undefined);
+};
+
 const waitForPageReady = async (page, pathname) => {
   const readySelector = pathname === '/configurator/'
     ? '.grando-product-card, .grando-error'
@@ -192,9 +196,11 @@ for (const matrix of matrices) {
       await autoScroll(page).catch(() => undefined);
     });
     await page.waitForTimeout(pathname.startsWith('/configurator/') ? 900 : 240);
+    await waitForPageImages(page);
     await waitForVisibleImages(page);
     let metrics = await readMetrics(page);
     if (metrics.brokenImages.some((image) => !image.complete)) {
+      await waitForPageImages(page, 10_000);
       await waitForVisibleImages(page, 10_000);
       metrics = await readMetrics(page);
     }

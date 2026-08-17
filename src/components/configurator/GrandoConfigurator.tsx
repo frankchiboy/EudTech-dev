@@ -606,11 +606,13 @@ const ErrorState = ({ message, actionLabel, onRetry }: { message: string; action
 const ProductCard = ({
   device,
   language,
-  priority = false
+  priority = false,
+  eagerImages = false
 }: {
   device: DeviceSummary;
   language: ConfiguratorLocale;
   priority?: boolean;
+  eagerImages?: boolean;
 }) => {
   const navigate = useNavigate();
   const isMobile = useMobileConfiguratorViewport();
@@ -650,7 +652,7 @@ const ProductCard = ({
                 src={imageUrl}
                 alt={`Comino Grando ${device.name}`}
                 className={`grando-product-image ${imageLoaded ? 'loaded' : 'loading'}`}
-                loading={priority ? 'eager' : 'lazy'}
+                loading={eagerImages || priority ? 'eager' : 'lazy'}
                 decoding="async"
                 fetchPriority={priority ? 'high' : 'auto'}
                 onLoad={() => setImageLoaded(true)}
@@ -870,6 +872,7 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
                         device={device}
                         language={language}
                         priority={group.type === 'Server' && deviceIndex < 3}
+                        eagerImages={dataSource === 'fallback'}
                       />
                     ))}
                   </div>
