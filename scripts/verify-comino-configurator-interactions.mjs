@@ -212,11 +212,17 @@ try {
   await send('Emulation.clearDeviceMetricsOverride');
   check('手機、平板與桌面尺寸沒有水平溢位', responsiveChecks.every((record) => record.scrollWidth <= record.clientWidth + 2), responsiveChecks);
 
+  // Capture the canonical SERVER 4xH200 view after the responsive checks so
+  // the evidence image shows the actual hardware background, not the last
+  // deep-link slide used by the storage assertion.
+  await load('/configurator/28/?gpu_value=2&gpu=h200-141gb');
+  await sleep(1200);
+
   let screenshotPath;
   let screenshotError;
   try {
     const screenshot = await withTimeout(send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }), 12_000, 'Page capture');
-    screenshotPath = path.join(outputDir, 'configurator-mobile.png');
+    screenshotPath = path.join(outputDir, 'configurator-parity.png');
     await writeFile(screenshotPath, Buffer.from(screenshot.data, 'base64'));
   } catch (error) {
     screenshotError = error instanceof Error ? error.message : String(error);
