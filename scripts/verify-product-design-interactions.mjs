@@ -56,7 +56,7 @@ try {
     if (!target) return { found: false };
     target.click();
     await new Promise(resolve => setTimeout(resolve, 500));
-    return { found: true, selected: target.getAttribute('aria-selected'), text: /三方\s*核對|Three-way\s*match/i.test(document.body.innerText) };
+    return { found: true, selected: target.getAttribute('aria-selected'), text: /三方\\s*核對|Three-way\\s*match/i.test(document.body.innerText) };
   })()`);
   check('AI Agent 場景頁籤', scenario.found && scenario.selected === 'true' && scenario.text, scenario);
 
@@ -76,11 +76,24 @@ try {
     await new Promise(resolve => setTimeout(resolve, 300));
     const afterLanguage = localStorage.getItem('language');
     const theme = [...document.querySelectorAll('button')].find(button => /theme|主題|深色|淺色/i.test((button.getAttribute('aria-label') || '') + button.innerText));
-    const beforeTheme = document.documentElement.classList.contains('dark');
+    const beforeThemeMode = localStorage.getItem('theme') || 'system';
     theme?.click();
     await new Promise(resolve => setTimeout(resolve, 300));
-    const afterTheme = document.documentElement.classList.contains('dark');
-    return { languageFound: Boolean(language), languageChanged: beforeLanguage !== afterLanguage, themeFound: Boolean(theme), themeChanged: beforeTheme !== afterTheme };
+    const afterThemeMode = localStorage.getItem('theme') || 'system';
+    const afterThemeDark = document.documentElement.classList.contains('dark');
+    const expectedThemeDark = afterThemeMode === 'system'
+      ? matchMedia('(prefers-color-scheme: dark)').matches
+      : afterThemeMode === 'dark';
+    return {
+      languageFound: Boolean(language),
+      languageChanged: beforeLanguage !== afterLanguage,
+      themeFound: Boolean(theme),
+      themeChanged: beforeThemeMode !== afterThemeMode && afterThemeDark === expectedThemeDark,
+      beforeThemeMode,
+      afterThemeMode,
+      afterThemeDark,
+      expectedThemeDark
+    };
   })()`);
   check('語言切換', desktopToggles.languageFound && desktopToggles.languageChanged, desktopToggles);
   check('深淺色切換', desktopToggles.themeFound && desktopToggles.themeChanged, desktopToggles);
