@@ -53,6 +53,7 @@
     "clean:public-assets:safe-duplicates": "node scripts/audit-public-assets.cjs --write-report --delete-safe-duplicates --summary-only",
     "audit:public-assets:strict": "node scripts/audit-public-assets.cjs --write-report --fail-on-issues",
     "verify:configurator-performance": "node scripts/verify-configurator-performance.cjs",
+    "verify:comino-configurator": "node scripts/verify-comino-configurator.mjs",
     "audit:exposure-readiness": "node scripts/audit-configurator-exposure-readiness.cjs --write-report",
     "audit:exposure-summary": "node scripts/audit-configurator-exposure-readiness.cjs --write-report --write-summary --summary-only",
     "audit:exposure-readiness:strict": "node scripts/audit-configurator-exposure-readiness.cjs --write-report --fail-on-external-gaps",

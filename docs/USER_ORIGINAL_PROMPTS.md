@@ -63,6 +63,10 @@
 
 3. `改成跟原廠的一樣`
 
+## 2026-08-18 - Production Comino Configurator Parity Hotfix
+
+1. `配置器不對 要跟comino原廠的配置器一樣 做到熱修復驗證閉環`
+
 ## 2026-06-27 - Push EudTech Main
 
 1. `push到eudtech的main`

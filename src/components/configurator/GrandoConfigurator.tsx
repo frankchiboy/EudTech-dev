@@ -86,14 +86,10 @@ const createQuoteRequestId = () => {
   return `${fallback.slice(0, 8)}-${fallback.slice(8, 12)}-4${fallback.slice(13, 16)}-8${fallback.slice(17, 20)}-${fallback.slice(20, 32)}`;
 };
 const MOBILE_CONFIGURATOR_MEDIA_QUERY = '(max-width: 767px)';
-const MOBILE_CONFIGURATOR_IMAGE_WIDTH = 750;
-const CONFIGURATOR_BACKGROUND_WIDTHS = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
-const DESKTOP_CONFIGURATOR_IMAGE_WIDTH = 3840;
 const MOBILE_PRODUCT_IMAGE_WIDTH = 480;
 const DESKTOP_PRODUCT_IMAGE_WIDTH = 960;
 const MOBILE_PRODUCT_IMAGE_QUALITY = 68;
 const DESKTOP_PRODUCT_IMAGE_QUALITY = 80;
-const BACKGROUND_IMAGE_QUALITY = 75;
 const CONFIGURATOR_CANONICAL_URL = canonicalPageUrl(`${SITE_ORIGIN}/configurator`);
 const CONFIGURATOR_SHARE_TRACKING_KEYS = [
   'utm_source',
@@ -120,6 +116,18 @@ const LOCAL_PRODUCT_IMAGE_FILENAMES = new Set([
   'INT_SERVER_8xH100'
 ]);
 const PRODUCT_IMAGE_ALIASES: Record<string, { mobile: string; desktop: string }> = {
+  'grando-8gpu-server.jpg': {
+    mobile: '/images/configurator/devices/comino-grando-server-640.jpg',
+    desktop: '/grando-8gpu-server.jpg'
+  },
+  'grando-rackable-01.jpg': {
+    mobile: '/images/configurator/devices/comino-grando-rackable-640.jpg',
+    desktop: '/grando-rackable-01.jpg'
+  },
+  'comino-workstation-front.png': {
+    mobile: '/images/configurator/devices/comino-grando-workstation-640.jpg',
+    desktop: '/comino-workstation-front.png'
+  },
   INT_SERVER_8xH100_JbnnrGs: {
     mobile: '/images/configurator/devices/comino-integration-kit-8x-pro-6000.webp',
     desktop:
@@ -509,6 +517,8 @@ const getNetlifyImageUrl = (url: string, width: number, quality: number) => {
   return `/.netlify/images?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&fm=webp`;
 };
 
+const LOCAL_COMINO_CONFIGURATOR_BACKGROUND = '/grando-8gpu-server.jpg';
+
 const canUseNetlifyImageCdn = () => {
   if (typeof window === 'undefined') {
     return false;
@@ -528,40 +538,27 @@ const getOptimizedRemoteImageUrl = (url: string, width: number, quality: number)
   return canUseNetlifyImageCdn() ? getNetlifyImageUrl(url, width, quality) : url;
 };
 
-const getConfiguratorBackgroundUrl = (url: string, isMobile: boolean) => {
+const getConfiguratorBackgroundUrl = (url: string) => {
   if (!url.startsWith(`${GRANDO_CONFIGURATOR_BASE_URL}/image/`)) {
     return url;
   }
 
-  return getOptimizedRemoteImageUrl(
-    url,
-    isMobile ? MOBILE_CONFIGURATOR_IMAGE_WIDTH : DESKTOP_CONFIGURATOR_IMAGE_WIDTH,
-    BACKGROUND_IMAGE_QUALITY
-  );
-};
-
-const getConfiguratorBackgroundSrcSet = (url: string) => {
-  if (!url.startsWith(`${GRANDO_CONFIGURATOR_BASE_URL}/image/`) || !canUseNetlifyImageCdn()) {
-    return undefined;
-  }
-
-  return CONFIGURATOR_BACKGROUND_WIDTHS.map((width) => (
-    `${getNetlifyImageUrl(url, width, BACKGROUND_IMAGE_QUALITY)} ${width}w`
-  )).join(', ');
+  return LOCAL_COMINO_CONFIGURATOR_BACKGROUND;
 };
 
 const getProductImageUrl = (url: string, isMobile: boolean) => {
-  if (!url.startsWith(`${GRANDO_API_BASE_URL}/media/device/`)) {
-    return url;
-  }
-
-  const imageName = url.split('/').pop()?.replace(/\.[^.]+$/, '') || '';
-  const alias = PRODUCT_IMAGE_ALIASES[imageName];
+  const fileName = decodeURIComponent(url.split('/').pop()?.split('?')[0] || '');
+  const imageName = fileName.replace(/\.[^.]+$/, '');
+  const alias = PRODUCT_IMAGE_ALIASES[fileName] || PRODUCT_IMAGE_ALIASES[imageName];
 
   if (alias) {
     return isMobile
       ? alias.mobile
       : getOptimizedRemoteImageUrl(alias.desktop, DESKTOP_PRODUCT_IMAGE_WIDTH, DESKTOP_PRODUCT_IMAGE_QUALITY);
+  }
+
+  if (!url.startsWith(`${GRANDO_API_BASE_URL}/media/device/`)) {
+    return url;
   }
 
   if (!isMobile) {
@@ -720,7 +717,7 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
   const [devices, setDevices] = useState<DeviceSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [dataSource, setDataSource] = useState<ConfiguratorDataSource>('live');
+  const [dataSource, setDataSource] = useState<ConfiguratorDataSource>('official_live');
   const [selectedUsage, setSelectedUsage] = useState<string | null>(null);
   const copy = CONFIGURATOR_COPY[language];
 
@@ -911,13 +908,17 @@ const OptionSection = ({
   onSelect,
   onQuantityChange
 }: OptionSectionProps) => {
+  const validOptions = useMemo(
+    () => options.filter((option) => typeof option.name === 'string' && option.name.trim().length > 0),
+    [options]
+  );
   const copy = CONFIGURATOR_COPY[language];
   const filterValues = useMemo(() => {
-    const values = options
+    const values = validOptions
       .map((option) => getOptionFilterValue(moduleKey, option))
       .filter((value): value is string => Boolean(value));
     return Array.from(new Set(values));
-  }, [moduleKey, options]);
+  }, [moduleKey, validOptions]);
 
   const selectedFilter = selected ? getOptionFilterValue(moduleKey, selected) : '';
   const [activeFilter, setActiveFilter] = useState(selectedFilter);
@@ -925,6 +926,15 @@ const OptionSection = ({
   useEffect(() => {
     setActiveFilter(selectedFilter);
   }, [selectedFilter]);
+
+  useEffect(() => {
+    if (
+      activeFilter &&
+      !filterValues.some((value) => value.toLowerCase() === activeFilter.toLowerCase())
+    ) {
+      setActiveFilter('');
+    }
+  }, [activeFilter, filterValues]);
 
   const handleFilterSelect = (value: string) => {
     setActiveFilter(value);
@@ -935,15 +945,18 @@ const OptionSection = ({
   };
 
   const visibleOptions = useMemo(() => {
-    const list = activeFilter
-      ? options.filter((option) => getOptionFilterValue(moduleKey, option).toLowerCase() === activeFilter.toLowerCase())
-      : options;
+    const filteredOptions = activeFilter
+      ? validOptions.filter(
+          (option) => getOptionFilterValue(moduleKey, option).toLowerCase() === activeFilter.toLowerCase()
+        )
+      : validOptions;
+    const list = filteredOptions.length || !activeFilter ? filteredOptions : validOptions;
     return [...list].sort((first, second) => first.volume - second.volume);
-  }, [activeFilter, moduleKey, options]);
+  }, [activeFilter, moduleKey, validOptions]);
 
   const quantities = selected?.custom_values || [];
 
-  if (!options.length) {
+  if (!validOptions.length) {
     return null;
   }
 
@@ -1052,6 +1065,7 @@ const BackgroundSlider = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState<number | null>(null);
+  const [failedImages, setFailedImages] = useState<Set<string>>(() => new Set());
   const isMobile = useMobileConfiguratorViewport();
   const copy = CONFIGURATOR_COPY[language];
   const renderedImages = useMemo(() => {
@@ -1083,6 +1097,7 @@ const BackgroundSlider = ({
   useEffect(() => {
     setActiveIndex(0);
     setPreviousIndex(null);
+    setFailedImages(new Set());
   }, [images]);
 
   useEffect(() => {
@@ -1098,14 +1113,7 @@ const BackgroundSlider = ({
     const nextImage = images[nextIndex];
     const preloadImage = new Image();
     preloadImage.decoding = 'async';
-    preloadImage.src = getConfiguratorBackgroundUrl(nextImage.url, isMobile);
-    if (!isMobile) {
-      const srcSet = getConfiguratorBackgroundSrcSet(nextImage.url);
-      if (srcSet) {
-        preloadImage.srcset = srcSet;
-        preloadImage.sizes = '100vw';
-      }
-    }
+    preloadImage.src = getConfiguratorBackgroundUrl(nextImage.url);
   }, [activeIndex, images, isMobile]);
 
   return (
@@ -1115,15 +1123,16 @@ const BackgroundSlider = ({
           key={`${image.url}-${index}`}
           className={`grando-background-slide ${activeIndex === index ? 'active' : ''}`}
         >
-          <img
-            src={getConfiguratorBackgroundUrl(image.url, isMobile)}
-            srcSet={isMobile ? undefined : getConfiguratorBackgroundSrcSet(image.url)}
-            sizes={isMobile ? undefined : '100vw'}
-            alt=""
-            loading={activeIndex === index ? 'eager' : 'lazy'}
-            decoding="async"
-            fetchPriority={activeIndex === index ? 'high' : 'auto'}
-          />
+          {!failedImages.has(image.url) && (
+            <img
+              src={getConfiguratorBackgroundUrl(image.url)}
+              alt=""
+              loading={activeIndex === index ? 'eager' : 'lazy'}
+              decoding="async"
+              fetchPriority={activeIndex === index ? 'high' : 'auto'}
+              onError={() => setFailedImages((current) => new Set(current).add(image.url))}
+            />
+          )}
           {image.points.map((point, pointIndex) => (
             <span
               key={`${image.url}-${point.top}-${point.left}`}
@@ -1618,7 +1627,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
   const [options, setOptions] = useState<ConfiguratorOption[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [dataSource, setDataSource] = useState<ConfiguratorDataSource>('live');
+  const [dataSource, setDataSource] = useState<ConfiguratorDataSource>('official_live');
   const [openModule, setOpenModule] = useState<ConfiguratorModule>('gpu');
   const copy = CONFIGURATOR_COPY[language];
   const moduleLabels = CONFIGURATOR_MODULE_LABELS[language];
@@ -1747,7 +1756,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
     options.forEach((option) => {
       const moduleKey = option.module_type as ConfiguratorModule;
       const moduleOptions = next.get(moduleKey);
-      if (moduleOptions) {
+      if (moduleOptions && typeof option.name === 'string' && option.name.trim().length > 0) {
         moduleOptions.push(option);
       }
     });

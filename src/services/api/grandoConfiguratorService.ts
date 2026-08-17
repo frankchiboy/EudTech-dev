@@ -10,7 +10,7 @@ import {
 export const GRANDO_API_BASE_URL = 'https://prod.comino.com';
 export const GRANDO_CONFIGURATOR_BASE_URL = 'https://configurator.grando.ai';
 
-export type ConfiguratorDataSource = 'live' | 'fallback';
+export type ConfiguratorDataSource = 'official_live' | 'official_cache' | 'fallback';
 
 export type ConfiguratorDataResult<T> = {
   data: T;
@@ -18,6 +18,7 @@ export type ConfiguratorDataResult<T> = {
 };
 
 const CONFIGURATOR_REQUEST_TIMEOUT_MS = 4000;
+const CONFIGURATOR_PROXY_URL = '/api/comino-configurator';
 
 const fetchJson = async <T>(url: string): Promise<T> => {
   const controller = new AbortController();
@@ -37,13 +38,29 @@ const fetchJson = async <T>(url: string): Promise<T> => {
   return response.json() as Promise<T>;
 };
 
+const fetchOfficialConfiguratorData = async <T>(deviceId?: string | number): Promise<ConfiguratorDataResult<T>> => {
+  const search = deviceId === undefined ? '' : `?device=${encodeURIComponent(String(deviceId))}`;
+  const response = await fetchJson<{
+    ok: boolean;
+    source?: 'official_live' | 'official_cache';
+    payload?: T;
+  }>(`${CONFIGURATOR_PROXY_URL}${search}`);
+
+  if (!response.ok || !response.payload || !response.source) {
+    throw new Error('Verified Comino configurator data is unavailable.');
+  }
+
+  return { data: response.payload, source: response.source };
+};
+
 export const getConfiguratorDevices = async () => {
   try {
-    const data = await fetchJson<ConfiguratorDevicesResponse>(`${GRANDO_API_BASE_URL}/devices/`);
+    const result = await fetchOfficialConfiguratorData<ConfiguratorDevicesResponse>();
+    const data = result.data;
     if (!Array.isArray(data.devices)) {
       throw new Error('Grando API response did not include devices.');
     }
-    return { data: data.devices, source: 'live' as const } satisfies ConfiguratorDataResult<ConfiguratorDevicesResponse['devices']>;
+    return { data: data.devices, source: result.source } satisfies ConfiguratorDataResult<ConfiguratorDevicesResponse['devices']>;
   } catch (error) {
     const fallback = getFallbackDevicesResponse();
     if (!fallback.devices.length) {
@@ -58,11 +75,12 @@ export const getConfiguratorDevices = async () => {
 
 export const getConfiguratorDevice = async (deviceId: string | number) => {
   try {
-    const data = await fetchJson<ConfiguratorDeviceResponse>(`${GRANDO_API_BASE_URL}/devices/${deviceId}/`);
+    const result = await fetchOfficialConfiguratorData<ConfiguratorDeviceResponse>(deviceId);
+    const data = result.data;
     if (!data.device || !Array.isArray(data.options)) {
       throw new Error('Grando API response did not include a valid device.');
     }
-    return { data, source: 'live' as const } satisfies ConfiguratorDataResult<ConfiguratorDeviceResponse>;
+    return { data, source: result.source } satisfies ConfiguratorDataResult<ConfiguratorDeviceResponse>;
   } catch (error) {
     const fallback = getFallbackDeviceResponse(deviceId);
     if (!fallback) {

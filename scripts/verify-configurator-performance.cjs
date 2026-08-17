@@ -33,16 +33,16 @@ function main() {
         source.includes('const preloadImage = new Image()')
     ),
     check(
-      'desktop configurator background keeps high-resolution image width',
-      /const\s+DESKTOP_CONFIGURATOR_IMAGE_WIDTH\s*=\s*3840;/.test(source)
+      'configurator background uses the locally shipped official Comino image',
+      /const\s+LOCAL_COMINO_CONFIGURATOR_BACKGROUND\s*=\s*['"]\/grando-8gpu-server\.jpg['"]/.test(source)
     ),
     check(
-      'mobile configurator background keeps reduced image width',
-      /const\s+MOBILE_CONFIGURATOR_IMAGE_WIDTH\s*=\s*750;/.test(source)
+      'unavailable legacy Grando background URLs resolve to the local image',
+      source.includes('return LOCAL_COMINO_CONFIGURATOR_BACKGROUND;')
     ),
     check(
-      'desktop configurator background still exposes responsive srcSet',
-      source.includes('srcSet={isMobile ? undefined : getConfiguratorBackgroundSrcSet(image.url)}')
+      'background rendering contains an image failure guard',
+      source.includes('failedImages.has(image.url)') && source.includes('setFailedImages')
     )
   ];
 
