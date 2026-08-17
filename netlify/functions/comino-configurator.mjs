@@ -1,4 +1,5 @@
 import { getDeployStore, getStore } from '@netlify/blobs';
+import sharp from 'sharp';
 
 const COMINO_API_ORIGIN = 'https://prod.comino.com';
 const COMINO_CONFIGURATOR_ORIGIN = 'https://configurator.grando.ai';
@@ -20,7 +21,7 @@ const cacheStore = () =>
 
 const validDeviceId = (value) => /^\d+$/.test(value || '') && Number(value) > 0;
 const cacheKey = (deviceId) => (deviceId ? `devices/${deviceId}.json` : 'devices/index.json');
-const imageCacheKey = (assetPath) => `images/${assetPath.replace(/^\/+/, '')}`;
+const imageCacheKey = (assetPath) => `images-v2/${assetPath.replace(/^\/+/, '')}`;
 const validImagePath = (value) =>
   /^\/image\/background\/(?:default|psu|gpu|cpu)\/[A-Za-z0-9_./-]+\.jpg$/.test(value || '') &&
   !value.includes('..');
@@ -66,10 +67,13 @@ async function fetchCominoConfiguratorImage(assetPath) {
     if (!response.ok || !contentType.startsWith('image/')) {
       throw new Error(`Comino configurator image responded with ${response.status}`);
     }
-    return {
-      body: await response.arrayBuffer(),
-      contentType
-    };
+    const original = Buffer.from(await response.arrayBuffer());
+    const optimized = await sharp(original, { failOn: 'none' })
+      .rotate()
+      .resize({ width: 1600, withoutEnlargement: true })
+      .webp({ quality: 84, smartSubsample: true })
+      .toBuffer();
+    return { body: optimized, contentType: 'image/webp' };
   } finally {
     clearTimeout(timeout);
   }

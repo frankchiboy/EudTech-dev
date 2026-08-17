@@ -5,6 +5,10 @@ const baseUrl = (process.env.COMINO_CONFIGURATOR_ORIGIN || 'https://codex-websit
 const outputDir = path.resolve(process.env.COMINO_CONFIGURATOR_INTERACTION_OUTPUT_DIR || '/tmp/eudtech-comino-configurator-interactions');
 const requiredModules = ['gpu', 'cpu', 'ram', 'storage', 'storage_1', 'storage_2', 'storage_3', 'storage_4', 'psu', 'network'];
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+const withTimeout = (promise, milliseconds, operation) => Promise.race([
+  promise,
+  new Promise((_, reject) => setTimeout(() => reject(new Error(`${operation} timed out after ${milliseconds}ms`)), milliseconds))
+]);
 
 const response = await fetch('http://127.0.0.1:9222/json/new?about:blank', { method: 'PUT' });
 if (!response.ok) throw new Error(`Unable to create a browser verification target (${response.status}).`);
@@ -148,14 +152,20 @@ try {
   const mobileLayout = await evaluate(`(() => ({ width: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth, sections: document.querySelectorAll('.grando-config-section').length }))()`);
   check('行動版十個設定區塊沒有水平溢位', mobileLayout.sections === 10 && mobileLayout.scrollWidth <= mobileLayout.width + 2, mobileLayout);
 
-  const screenshot = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
-  const screenshotPath = path.join(outputDir, 'configurator-mobile.png');
-  await writeFile(screenshotPath, Buffer.from(screenshot.data, 'base64'));
+  let screenshotPath;
+  let screenshotError;
+  try {
+    const screenshot = await withTimeout(send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false }), 12_000, 'Page capture');
+    screenshotPath = path.join(outputDir, 'configurator-mobile.png');
+    await writeFile(screenshotPath, Buffer.from(screenshot.data, 'base64'));
+  } catch (error) {
+    screenshotError = error instanceof Error ? error.message : String(error);
+  }
 
   const severeConsole = events.filter((event) => event.method === 'Runtime.exceptionThrown' || (event.method === 'Log.entryAdded' && event.params?.entry?.level === 'error'));
   check('瀏覽器沒有重大錯誤', severeConsole.length === 0, severeConsole);
 
-  const report = { generatedAt: new Date().toISOString(), baseUrl, passed: results.every((result) => result.passed), screenshotPath, results };
+  const report = { generatedAt: new Date().toISOString(), baseUrl, passed: results.every((result) => result.passed), screenshotPath, screenshotError, results };
   await writeFile(path.join(outputDir, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
   process.exitCode = report.passed ? 0 : 1;

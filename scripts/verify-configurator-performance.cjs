@@ -33,16 +33,18 @@ function main() {
         source.includes('const preloadImage = new Image()')
     ),
     check(
-      'configurator background uses the site-hosted Comino image',
-      source.includes("const LOCAL_COMINO_CONFIGURATOR_BACKGROUND = '/grando-8gpu-server.jpg';")
+      'configurator background uses the site-hosted Comino image pipeline',
+      source.includes("const CONFIGURATOR_BACKGROUND_PROXY_URL = '/api/comino-configurator?asset=';") &&
+        source.includes("const LOCAL_COMINO_CONFIGURATOR_BACKGROUND = '/grando-8gpu-server.jpg';")
     ),
     check(
-      'configurator background does not depend on the unavailable Grando image CDN',
-      source.includes('return LOCAL_COMINO_CONFIGURATOR_BACKGROUND;')
+      'configurator background has a site-hosted Comino image fallback',
+      source.includes('getLocalConfiguratorBackgroundFallback') &&
+        source.includes('return LOCAL_COMINO_CONFIGURATOR_BACKGROUND;')
     ),
     check(
       'background slider still renders only the active image',
-      source.includes('src={getConfiguratorBackgroundUrl(image.url)}')
+      source.includes('src={fallbackImages[image.url] || getConfiguratorBackgroundUrl(image.url)}')
     )
   ];
 
