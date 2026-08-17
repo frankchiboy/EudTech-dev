@@ -105,6 +105,7 @@ const PUBLIC_DIRECTORY_ALLOWLIST = [
   'brand-provenance',
   'cyabra-images',
   'images/configurator/devices',
+  'images/configurator/backgrounds',
   'social',
   'vendor'
 ];

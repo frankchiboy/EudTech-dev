@@ -1,6 +1,7 @@
 import { getDeployStore, getStore } from '@netlify/blobs';
 
 const COMINO_API_ORIGIN = 'https://prod.comino.com';
+const COMINO_CONFIGURATOR_ORIGIN = 'https://configurator.grando.ai';
 const CACHE_STORE_NAME = 'comino-configurator-cache-v1';
 const CACHE_VERSION = 1;
 const REQUIRED_MODULES = ['gpu', 'cpu', 'ram', 'storage', 'storage_1', 'storage_2', 'storage_3', 'storage_4', 'psu', 'network'];
@@ -19,6 +20,10 @@ const cacheStore = () =>
 
 const validDeviceId = (value) => /^\d+$/.test(value || '') && Number(value) > 0;
 const cacheKey = (deviceId) => (deviceId ? `devices/${deviceId}.json` : 'devices/index.json');
+const imageCacheKey = (assetPath) => `images/${assetPath.replace(/^\/+/, '')}`;
+const validImagePath = (value) =>
+  /^\/image\/background\/(?:default|psu|gpu|cpu)\/[A-Za-z0-9_./-]+\.jpg$/.test(value || '') &&
+  !value.includes('..');
 
 const hasCompleteDeviceOptions = (payload) => {
   if (!payload?.device || !Array.isArray(payload.options)) return false;
@@ -47,6 +52,61 @@ async function fetchComino(path) {
   }
 }
 
+async function fetchCominoConfiguratorImage(assetPath) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  try {
+    const response = await fetch(`${COMINO_CONFIGURATOR_ORIGIN}${assetPath}`, {
+      method: 'GET',
+      signal: controller.signal,
+      headers: { Accept: 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8' },
+      cache: 'no-store'
+    });
+    const contentType = response.headers.get('content-type') || '';
+    if (!response.ok || !contentType.startsWith('image/')) {
+      throw new Error(`Comino configurator image responded with ${response.status}`);
+    }
+    return {
+      body: await response.arrayBuffer(),
+      contentType
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+const imageResponse = (body, contentType, source) => new Response(body, {
+  status: 200,
+  headers: {
+    'Content-Type': contentType || 'image/jpeg',
+    'Cache-Control': 'public, max-age=86400, stale-while-revalidate=604800',
+    'X-Eudtech-Configurator-Image-Source': source
+  }
+});
+
+async function getConfiguratorImage(store, assetPath) {
+  const key = imageCacheKey(assetPath);
+  try {
+    const fetched = await fetchCominoConfiguratorImage(assetPath);
+    await store.set(key, fetched.body, {
+      metadata: {
+        contentType: fetched.contentType,
+        obtainedAt: new Date().toISOString(),
+        origin: COMINO_CONFIGURATOR_ORIGIN,
+        assetPath
+      }
+    });
+    return imageResponse(fetched.body, fetched.contentType, 'official_live');
+  } catch (error) {
+    const cached = await store.getWithMetadata(key, { type: 'arrayBuffer' });
+    if (cached?.data) {
+      return imageResponse(cached.data, cached.metadata?.contentType, 'official_cache');
+    }
+    console.error('Comino configurator image unavailable:', error instanceof Error ? error.message : 'unknown error');
+    return json(503, { ok: false, error: 'The requested Comino configurator image is unavailable and no verified cache exists.' });
+  }
+}
+
 async function readVerifiedCache(store, deviceId) {
   const cached = await store.get(cacheKey(deviceId), { type: 'json' });
   if (!cached?.payload || cached.version !== CACHE_VERSION) return null;
@@ -57,7 +117,12 @@ async function readVerifiedCache(store, deviceId) {
 export default async (request) => {
   if (request.method !== 'GET') return json(405, { ok: false, error: 'Method not allowed' });
   const requestUrl = new URL(request.url);
+  const assetPath = requestUrl.searchParams.get('asset');
   const deviceId = requestUrl.searchParams.get('device');
+  if (assetPath) {
+    if (!validImagePath(assetPath)) return json(400, { ok: false, error: 'Invalid image asset path' });
+    return getConfiguratorImage(cacheStore(), assetPath);
+  }
   if (deviceId && !validDeviceId(deviceId)) return json(400, { ok: false, error: 'Invalid device id' });
 
   const store = cacheStore();

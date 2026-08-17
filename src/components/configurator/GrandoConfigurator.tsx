@@ -518,11 +518,22 @@ const getNetlifyImageUrl = (url: string, width: number, quality: number) => {
   return `/.netlify/images?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&fm=webp`;
 };
 
-// The former Grando image host no longer accepts public browser connections.
-// Keep the original background definitions for their feature annotations, but
-// render an official Comino image that is shipped with this site so every
-// configurator module remains visually usable without a third-party request.
 const LOCAL_COMINO_CONFIGURATOR_BACKGROUND = '/grando-8gpu-server.jpg';
+const CONFIGURATOR_BACKGROUND_PROXY_URL = '/api/comino-configurator?asset=';
+const LOCAL_BACKGROUND_FALLBACKS: Record<string, string> = {
+  'Default_GRANDO_DPR_4090-FT_6_38.jpg': '/images/configurator/backgrounds/grando-dpr-4090-38.webp',
+  'GRANDO_DPR_4090-FT_6_03.jpg': '/images/configurator/backgrounds/grando-dpr-4090-03.webp',
+  'GRANDO_DPR_4090-FT_6_04.jpg': '/images/configurator/backgrounds/grando-dpr-4090-04.webp',
+  'GRANDO_DPR_4090-FT_6_28.jpg': '/images/configurator/backgrounds/grando-dpr-4090-28.webp',
+  'GRANDO_DPR_4090-FT_6_29.jpg': '/images/configurator/backgrounds/grando-dpr-4090-29.webp',
+  'GRANDO_DPR_4090-FT_6_40.jpg': '/images/configurator/backgrounds/grando-dpr-4090-40.webp',
+  '24.jpg': '/images/configurator/backgrounds/grando-dpr-4090-24.webp',
+  'Default_GRANDO_DPR_4090-FT_6_17.jpg': '/images/configurator/backgrounds/grando-dpr-4090-17.webp',
+  'GRANDO_DPR_4090-FT_6_15.jpg': '/images/configurator/backgrounds/grando-dpr-4090-15.webp',
+  'GRANDO_DPR_4090-FT_6_16.jpg': '/images/configurator/backgrounds/grando-dpr-4090-16.webp',
+  'GRANDO_DPR_4090-FT_6_26.jpg': '/images/configurator/backgrounds/grando-dpr-4090-26.webp',
+  'GRANDO_DPR_4090-FT_6_27.jpg': '/images/configurator/backgrounds/grando-dpr-4090-27.webp'
+};
 
 const canUseNetlifyImageCdn = () => {
   if (typeof window === 'undefined') {
@@ -548,7 +559,17 @@ const getConfiguratorBackgroundUrl = (url: string) => {
     return url;
   }
 
-  return LOCAL_COMINO_CONFIGURATOR_BACKGROUND;
+  const assetPath = new URL(url).pathname;
+  return `${CONFIGURATOR_BACKGROUND_PROXY_URL}${encodeURIComponent(assetPath)}`;
+};
+
+const getLocalConfiguratorBackgroundFallback = (url: string) => {
+  try {
+    const filename = new URL(url).pathname.split('/').pop() || '';
+    return LOCAL_BACKGROUND_FALLBACKS[filename] || LOCAL_COMINO_CONFIGURATOR_BACKGROUND;
+  } catch {
+    return LOCAL_COMINO_CONFIGURATOR_BACKGROUND;
+  }
 };
 
 const getProductImageUrl = (url: string, isMobile: boolean) => {
@@ -959,7 +980,13 @@ const OptionSection = ({
   return (
     <section className={`grando-config-section ${isOpen ? 'open' : ''}`}>
       <header>
-        <button type="button" className="grando-config-section-title" onClick={onToggle}>
+        <button
+          type="button"
+          className="grando-config-section-title"
+          onClick={onToggle}
+          aria-expanded={isOpen}
+          aria-controls={`grando-module-${moduleKey}`}
+        >
           <span className="grando-config-section-icon">{icon}</span>
           <span>{label}</span>
         </button>
@@ -981,7 +1008,7 @@ const OptionSection = ({
       </header>
 
       {isOpen ? (
-        <div className="grando-config-section-body">
+        <div id={`grando-module-${moduleKey}`} className="grando-config-section-body">
           {filterValues.length ? (
             <div className="grando-chip-row">
               {filterValues.map((value) => (
@@ -1062,6 +1089,7 @@ const BackgroundSlider = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState<number | null>(null);
   const [failedImages, setFailedImages] = useState<Set<string>>(() => new Set());
+  const [fallbackImages, setFallbackImages] = useState<Record<string, string>>({});
   const isMobile = useMobileConfiguratorViewport();
   const copy = CONFIGURATOR_COPY[language];
   const renderedImages = useMemo(() => {
@@ -1094,6 +1122,7 @@ const BackgroundSlider = ({
     setActiveIndex(0);
     setPreviousIndex(null);
     setFailedImages(new Set());
+    setFallbackImages({});
   }, [images]);
 
   useEffect(() => {
@@ -1121,12 +1150,19 @@ const BackgroundSlider = ({
         >
           {!failedImages.has(image.url) && (
             <img
-              src={getConfiguratorBackgroundUrl(image.url)}
+              src={fallbackImages[image.url] || getConfiguratorBackgroundUrl(image.url)}
               alt=""
               loading={activeIndex === index ? 'eager' : 'lazy'}
               decoding="async"
               fetchPriority={activeIndex === index ? 'high' : 'auto'}
-              onError={() => setFailedImages((current) => new Set(current).add(image.url))}
+              onError={() => {
+                const fallback = getLocalConfiguratorBackgroundFallback(image.url);
+                if (!fallbackImages[image.url] && fallback !== getConfiguratorBackgroundUrl(image.url)) {
+                  setFallbackImages((current) => ({ ...current, [image.url]: fallback }));
+                  return;
+                }
+                setFailedImages((current) => new Set(current).add(image.url));
+              }}
             />
           )}
           {image.points.map((point, pointIndex) => (

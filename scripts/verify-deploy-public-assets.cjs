@@ -37,7 +37,7 @@ const requiredFiles = [
 const disallowedPatterns = [
   {
     name: 'mirrored public/images assets outside configurator devices',
-    pattern: /^images\/(?!configurator\/devices\/)/
+    pattern: /^images\/(?!configurator\/(?:devices|backgrounds)\/)/
   },
   {
     name: 'unused high-number GRANDO DPR root photos',
