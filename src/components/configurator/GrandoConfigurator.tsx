@@ -121,6 +121,18 @@ const LOCAL_PRODUCT_IMAGE_FILENAMES = new Set([
   'INT_SERVER_8xH100'
 ]);
 const PRODUCT_IMAGE_ALIASES: Record<string, { mobile: string; desktop: string }> = {
+  'grando-8gpu-server.jpg': {
+    mobile: '/images/configurator/devices/comino-grando-server-640.jpg',
+    desktop: '/grando-8gpu-server.jpg'
+  },
+  'grando-rackable-01.jpg': {
+    mobile: '/images/configurator/devices/comino-grando-rackable-640.jpg',
+    desktop: '/grando-rackable-01.jpg'
+  },
+  'comino-workstation-front.png': {
+    mobile: '/images/configurator/devices/comino-grando-workstation-640.jpg',
+    desktop: '/comino-workstation-front.png'
+  },
   INT_SERVER_8xH100_JbnnrGs: {
     mobile: '/images/configurator/devices/comino-integration-kit-8x-pro-6000.webp',
     desktop:
@@ -552,17 +564,18 @@ const getConfiguratorBackgroundSrcSet = (url: string) => {
 };
 
 const getProductImageUrl = (url: string, isMobile: boolean) => {
-  if (!url.startsWith(`${GRANDO_API_BASE_URL}/media/device/`)) {
-    return url;
-  }
-
-  const imageName = url.split('/').pop()?.replace(/\.[^.]+$/, '') || '';
-  const alias = PRODUCT_IMAGE_ALIASES[imageName];
+  const fileName = decodeURIComponent(url.split('/').pop()?.split('?')[0] || '');
+  const imageName = fileName.replace(/\.[^.]+$/, '');
+  const alias = PRODUCT_IMAGE_ALIASES[fileName] || PRODUCT_IMAGE_ALIASES[imageName];
 
   if (alias) {
     return isMobile
       ? alias.mobile
       : getOptimizedRemoteImageUrl(alias.desktop, DESKTOP_PRODUCT_IMAGE_WIDTH, DESKTOP_PRODUCT_IMAGE_QUALITY);
+  }
+
+  if (!url.startsWith(`${GRANDO_API_BASE_URL}/media/device/`)) {
+    return url;
   }
 
   if (!isMobile) {
@@ -607,13 +620,11 @@ const ErrorState = ({ message, actionLabel, onRetry }: { message: string; action
 const ProductCard = ({
   device,
   language,
-  priority = false,
-  eagerImages = false
+  priority = false
 }: {
   device: DeviceSummary;
   language: ConfiguratorLocale;
   priority?: boolean;
-  eagerImages?: boolean;
 }) => {
   const navigate = useNavigate();
   const isMobile = useMobileConfiguratorViewport();
@@ -645,7 +656,7 @@ const ProductCard = ({
               src={imageUrl}
               alt={`Comino Grando ${device.name}`}
               className="grando-product-image"
-              loading={eagerImages || priority ? 'eager' : 'lazy'}
+              loading={priority ? 'eager' : 'lazy'}
               decoding="async"
               fetchPriority={priority ? 'high' : 'auto'}
               onError={() => setImageFailed(true)}
@@ -863,7 +874,6 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
                         device={device}
                         language={language}
                         priority={group.type === 'Server' && deviceIndex < 3}
-                        eagerImages={dataSource === 'fallback'}
                       />
                     ))}
                   </div>

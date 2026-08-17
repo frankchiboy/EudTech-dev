@@ -173,3 +173,7 @@
 1. `hero 首頁section不能變 而且幾何小圖示你也沒用 [$imagegen](/Users/serverc/WorkSpace-AI/skills/.system/imagegen/SKILL.md) 改 : 設定成目標`
 
 > 首頁 Hero 恢復並固定為視覺最佳化前版本；Imagegen 僅用於首頁 Hero 下方及 AI Agent 頁面的品牌敘事型小圖，功能、狀態、導覽與無障礙圖示維持可辨識。正式網站等待使用者確認後才部署。
+
+## 2026-08-17 - Product Design Whole-site Optimization
+
+1. `使用 [@product-design](plugin://product-design@openai-curated-remote) 達到全網站最佳化了嗎？還沒就繼續。`
