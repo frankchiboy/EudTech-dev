@@ -49,9 +49,25 @@ const text = (value: Bilingual, isEnglish: boolean) => (isEnglish ? value.en : v
 
 interface IconItem {
   icon: LucideIcon;
+  visual: string;
   title: Bilingual;
   body: Bilingual;
 }
+
+const MICRO_VISUALS = {
+  intake: '/ai-agent/micro-illustrations/event-intake-v1.webp',
+  reconcile: '/ai-agent/micro-illustrations/reconciliation-v1.webp',
+  progress: '/ai-agent/micro-illustrations/task-progression-v1.webp',
+  approval: '/ai-agent/micro-illustrations/human-approval-v1.webp',
+  connect: '/ai-agent/micro-illustrations/connected-systems-v1.webp',
+  govern: '/ai-agent/micro-illustrations/governance-audit-v1.webp'
+} as const;
+
+const NarrativeVisual: React.FC<{ src: string; dark?: boolean }> = ({ src, dark = false }) => (
+  <div className={`flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl border ${dark ? 'border-white/10 bg-white/[0.07]' : 'border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-900'}`} aria-hidden="true">
+    <img src={src} alt="" className="h-14 w-14 object-contain" loading="lazy" decoding="async" />
+  </div>
+);
 
 interface SceneStep {
   stage: Bilingual;
@@ -63,33 +79,37 @@ interface SceneStep {
 const painPoints: IconItem[] = [
   {
     icon: Clock3,
+    visual: MICRO_VISUALS.progress,
     title: { zh: '追蹤靠人記，事情容易斷線', en: 'Human memory carries the follow-up load' },
     body: { zh: '信件、表單、試算表與聊天紀錄分散，團隊難以即時知道下一個責任人與期限。', en: 'Email, forms, spreadsheets, and chat records fragment ownership and deadlines.' }
   },
   {
     icon: SearchCheck,
+    visual: MICRO_VISUALS.reconcile,
     title: { zh: '核對資料耗時，錯誤難以提早發現', en: 'Manual reconciliation hides errors' },
     body: { zh: '人工比對報價、訂單、合約與附件，重複工作佔用熟手時間，也放大遺漏風險。', en: 'Manual comparison of quotes, orders, contracts, and attachments consumes expert time.' }
   },
   {
     icon: Bell,
+    visual: MICRO_VISUALS.progress,
     title: { zh: '催辦沒有節奏，客戶體驗不一致', en: 'Follow-ups lack a consistent rhythm' },
     body: { zh: '提醒常常依賴個人習慣，重要回覆可能延誤，客戶收到的服務品質也不一致。', en: 'Reminders depend on personal habits, so important replies can arrive late.' }
   },
   {
     icon: GitBranch,
+    visual: MICRO_VISUALS.connect,
     title: { zh: '系統各自運作，管理者看不到全貌', en: 'Disconnected systems obscure the full picture' },
     body: { zh: 'ERP、CRM、專案工具與郵件各自保存資料，管理者無法用同一套事件脈絡判斷進度。', en: 'ERP, CRM, project tools, and mail keep separate records without one shared event context.' }
   }
 ];
 
 const agentRoles: IconItem[] = [
-  { icon: SearchCheck, title: { zh: '資料整理 Agent', en: 'Intake Agent' }, body: { zh: '接收郵件、表單與檔案，擷取欄位並建立可追蹤事件。', en: 'Collects email, forms, and files, then turns them into traceable events.' } },
-  { icon: ClipboardCheck, title: { zh: '核對 Agent', en: 'Reconciliation Agent' }, body: { zh: '按照規則比對價格、數量、條款與附件，標示差異。', en: 'Compares prices, quantities, terms, and attachments against defined rules.' } },
-  { icon: Bell, title: { zh: '催辦 Agent', en: 'Follow-up Agent' }, body: { zh: '依期限、優先級與回覆狀態提出下一步提醒。', en: 'Suggests the next reminder from due dates, priority, and reply status.' } },
-  { icon: MessageSquare, title: { zh: '回覆草稿 Agent', en: 'Drafting Agent' }, body: { zh: '依既有脈絡產生可審核草稿，保留原始 thread 關聯。', en: 'Creates reviewable drafts while preserving the original thread context.' } },
-  { icon: BarChart3, title: { zh: '管理摘要 Agent', en: 'Briefing Agent' }, body: { zh: '把事件轉成管理者可讀的風險、進度與待決策摘要。', en: 'Turns events into decision-ready summaries of risk, progress, and open choices.' } },
-  { icon: ShieldCheck, title: { zh: '治理稽核 Agent', en: 'Governance Agent' }, body: { zh: '保留來源、版本、核准者與執行紀錄，支援稽核與復盤。', en: 'Preserves source, version, approver, and execution evidence for audit.' } }
+  { icon: SearchCheck, visual: MICRO_VISUALS.intake, title: { zh: '資料整理 Agent', en: 'Intake Agent' }, body: { zh: '接收郵件、表單與檔案，擷取欄位並建立可追蹤事件。', en: 'Collects email, forms, and files, then turns them into traceable events.' } },
+  { icon: ClipboardCheck, visual: MICRO_VISUALS.reconcile, title: { zh: '核對 Agent', en: 'Reconciliation Agent' }, body: { zh: '按照規則比對價格、數量、條款與附件，標示差異。', en: 'Compares prices, quantities, terms, and attachments against defined rules.' } },
+  { icon: Bell, visual: MICRO_VISUALS.progress, title: { zh: '催辦 Agent', en: 'Follow-up Agent' }, body: { zh: '依期限、優先級與回覆狀態提出下一步提醒。', en: 'Suggests the next reminder from due dates, priority, and reply status.' } },
+  { icon: MessageSquare, visual: MICRO_VISUALS.approval, title: { zh: '回覆草稿 Agent', en: 'Drafting Agent' }, body: { zh: '依既有脈絡產生可審核草稿，保留原始 thread 關聯。', en: 'Creates reviewable drafts while preserving the original thread context.' } },
+  { icon: BarChart3, visual: MICRO_VISUALS.reconcile, title: { zh: '管理摘要 Agent', en: 'Briefing Agent' }, body: { zh: '把事件轉成管理者可讀的風險、進度與待決策摘要。', en: 'Turns events into decision-ready summaries of risk, progress, and open choices.' } },
+  { icon: ShieldCheck, visual: MICRO_VISUALS.govern, title: { zh: '治理稽核 Agent', en: 'Governance Agent' }, body: { zh: '保留來源、版本、核准者與執行紀錄，支援稽核與復盤。', en: 'Preserves source, version, approver, and execution evidence for audit.' } }
 ];
 
 const scenes: { label: Bilingual; intro: Bilingual; steps: SceneStep[] }[] = [
@@ -123,43 +143,43 @@ const scenes: { label: Bilingual; intro: Bilingual; steps: SceneStep[] }[] = [
 ];
 
 const systems: IconItem[] = [
-  { icon: Mail, title: { zh: 'Email／Outlook', en: 'Email / Outlook' }, body: { zh: '保留 thread、寄件與回覆證據，觸發事件與提醒。', en: 'Preserve thread, sent, and reply evidence to trigger events and reminders.' } },
-  { icon: Database, title: { zh: 'ERP／會計', en: 'ERP / accounting' }, body: { zh: '對接訂單、發票、付款與庫存等營運資料。', en: 'Connect orders, invoices, payments, and operational inventory data.' } },
-  { icon: Users, title: { zh: 'CRM／客戶資料', en: 'CRM / customer data' }, body: { zh: '把客戶互動與商機狀態放進同一條追蹤脈絡。', en: 'Bring customer interactions and opportunity status into one trace.' } },
-  { icon: Workflow, title: { zh: '專案／任務系統', en: 'Project / task systems' }, body: { zh: '同步負責人、期限、阻礙與交付證據。', en: 'Synchronise owners, deadlines, blockers, and delivery evidence.' } },
-  { icon: MessageSquare, title: { zh: 'Teams／協作工具', en: 'Teams / collaboration' }, body: { zh: '把核准後的通知與摘要送到正確的團隊頻道。', en: 'Send approved notifications and briefs to the right team channels.' } },
-  { icon: Network, title: { zh: 'API／資料庫', en: 'APIs / databases' }, body: { zh: '以事件與權限邊界連接既有系統，不要求一次重建全部工具。', en: 'Connect existing systems through events and permission boundaries without rebuilding everything.' } }
+  { icon: Mail, visual: MICRO_VISUALS.intake, title: { zh: 'Email／Outlook', en: 'Email / Outlook' }, body: { zh: '保留 thread、寄件與回覆證據，觸發事件與提醒。', en: 'Preserve thread, sent, and reply evidence to trigger events and reminders.' } },
+  { icon: Database, visual: MICRO_VISUALS.reconcile, title: { zh: 'ERP／會計', en: 'ERP / accounting' }, body: { zh: '對接訂單、發票、付款與庫存等營運資料。', en: 'Connect orders, invoices, payments, and operational inventory data.' } },
+  { icon: Users, visual: MICRO_VISUALS.intake, title: { zh: 'CRM／客戶資料', en: 'CRM / customer data' }, body: { zh: '把客戶互動與商機狀態放進同一條追蹤脈絡。', en: 'Bring customer interactions and opportunity status into one trace.' } },
+  { icon: Workflow, visual: MICRO_VISUALS.progress, title: { zh: '專案／任務系統', en: 'Project / task systems' }, body: { zh: '同步負責人、期限、阻礙與交付證據。', en: 'Synchronise owners, deadlines, blockers, and delivery evidence.' } },
+  { icon: MessageSquare, visual: MICRO_VISUALS.approval, title: { zh: 'Teams／協作工具', en: 'Teams / collaboration' }, body: { zh: '把核准後的通知與摘要送到正確的團隊頻道。', en: 'Send approved notifications and briefs to the right team channels.' } },
+  { icon: Network, visual: MICRO_VISUALS.connect, title: { zh: 'API／資料庫', en: 'APIs / databases' }, body: { zh: '以事件與權限邊界連接既有系統，不要求一次重建全部工具。', en: 'Connect existing systems through events and permission boundaries without rebuilding everything.' } }
 ];
 
 const governance: IconItem[] = [
-  { icon: LockKeyhole, title: { zh: '權限最小化', en: 'Least privilege' }, body: { zh: '依角色、資料來源與動作授予最小必要權限。', en: 'Grant only the permissions required for each role, source, and action.' } },
-  { icon: ShieldCheck, title: { zh: '敏感動作人員核准', en: 'Human approval for sensitive actions' }, body: { zh: '付款、正式寄信、刪除與重大狀態變更由人員決定。', en: 'People decide on payments, formal sends, deletion, and material status changes.' } },
-  { icon: FileCheck2, title: { zh: '來源與版本可追溯', en: 'Traceable source and versions' }, body: { zh: '保存輸入、規則、輸出、核准者與時間，支援回溯。', en: 'Keep inputs, rules, outputs, approvers, and timestamps for review.' } },
-  { icon: Settings, title: { zh: '規則可調整', en: 'Adjustable rules' }, body: { zh: '以可讀規則設定升級門檻、提醒節奏與例外處理。', en: 'Configure escalation thresholds, reminder cadence, and exceptions with readable rules.' } },
-  { icon: BarChart3, title: { zh: '持續衡量', en: 'Continuous measurement' }, body: { zh: '追蹤準時率、回覆時間、人工介入與錯誤率，持續優化。', en: 'Measure on-time rate, response time, human intervention, and error rate.' } }
+  { icon: LockKeyhole, visual: MICRO_VISUALS.govern, title: { zh: '權限最小化', en: 'Least privilege' }, body: { zh: '依角色、資料來源與動作授予最小必要權限。', en: 'Grant only the permissions required for each role, source, and action.' } },
+  { icon: ShieldCheck, visual: MICRO_VISUALS.approval, title: { zh: '敏感動作人員核准', en: 'Human approval for sensitive actions' }, body: { zh: '付款、正式寄信、刪除與重大狀態變更由人員決定。', en: 'People decide on payments, formal sends, deletion, and material status changes.' } },
+  { icon: FileCheck2, visual: MICRO_VISUALS.govern, title: { zh: '來源與版本可追溯', en: 'Traceable source and versions' }, body: { zh: '保存輸入、規則、輸出、核准者與時間，支援回溯。', en: 'Keep inputs, rules, outputs, approvers, and timestamps for review.' } },
+  { icon: Settings, visual: MICRO_VISUALS.connect, title: { zh: '規則可調整', en: 'Adjustable rules' }, body: { zh: '以可讀規則設定升級門檻、提醒節奏與例外處理。', en: 'Configure escalation thresholds, reminder cadence, and exceptions with readable rules.' } },
+  { icon: BarChart3, visual: MICRO_VISUALS.reconcile, title: { zh: '持續衡量', en: 'Continuous measurement' }, body: { zh: '追蹤準時率、回覆時間、人工介入與錯誤率，持續優化。', en: 'Measure on-time rate, response time, human intervention, and error rate.' } }
 ];
 
 const onboardingSteps: IconItem[] = [
-  { icon: SearchCheck, title: { zh: '1. 找出高價值流程', en: '1. Find the highest-value flow' }, body: { zh: '盤點追蹤、核對與催辦工作，先選一條有明確輸入與結果的流程。', en: 'Map follow-up, reconciliation, and reminder work, then select one clear flow.' } },
-  { icon: GitBranch, title: { zh: '2. 設計事件與核准點', en: '2. Design events and approvals' }, body: { zh: '定義來源、狀態、負責人、期限、例外與必須由人員核准的動作。', en: 'Define sources, status, owners, deadlines, exceptions, and human approval points.' } },
-  { icon: Cpu, title: { zh: '3. 小範圍導入', en: '3. Launch a focused pilot' }, body: { zh: '接上既有系統，使用真實資料驗證事件、提醒與稽核紀錄。', en: 'Connect existing systems and validate events, reminders, and audit records with real data.' } },
-  { icon: BarChart3, title: { zh: '4. 量化後擴大', en: '4. Scale after measurement' }, body: { zh: '用可量化成果決定是否擴充角色、流程、部門與自動化範圍。', en: 'Use measurable outcomes to expand agents, workflows, teams, and automation.' } }
+  { icon: SearchCheck, visual: MICRO_VISUALS.intake, title: { zh: '1. 找出高價值流程', en: '1. Find the highest-value flow' }, body: { zh: '盤點追蹤、核對與催辦工作，先選一條有明確輸入與結果的流程。', en: 'Map follow-up, reconciliation, and reminder work, then select one clear flow.' } },
+  { icon: GitBranch, visual: MICRO_VISUALS.approval, title: { zh: '2. 設計事件與核准點', en: '2. Design events and approvals' }, body: { zh: '定義來源、狀態、負責人、期限、例外與必須由人員核准的動作。', en: 'Define sources, status, owners, deadlines, exceptions, and human approval points.' } },
+  { icon: Cpu, visual: MICRO_VISUALS.connect, title: { zh: '3. 小範圍導入', en: '3. Launch a focused pilot' }, body: { zh: '接上既有系統，使用真實資料驗證事件、提醒與稽核紀錄。', en: 'Connect existing systems and validate events, reminders, and audit records with real data.' } },
+  { icon: BarChart3, visual: MICRO_VISUALS.progress, title: { zh: '4. 量化後擴大', en: '4. Scale after measurement' }, body: { zh: '用可量化成果決定是否擴充角色、流程、部門與自動化範圍。', en: 'Use measurable outcomes to expand agents, workflows, teams, and automation.' } }
 ];
 
 const plans: IconItem[] = [
-  { icon: SearchCheck, title: { zh: '流程診斷', en: 'Process diagnostic' }, body: { zh: '釐清流程、資料來源、風險與第一個導入場景。', en: 'Clarify the process, sources, risks, and first implementation scene.' } },
-  { icon: Zap, title: { zh: '單流程試點', en: 'Single-flow pilot' }, body: { zh: '完成一條可操作、可觀察、可重複驗證的 Agent 流程。', en: 'Deliver one operable, observable, and repeatable agent workflow.' } },
-  { icon: Layers, title: { zh: '部門方案', en: 'Department solution' }, body: { zh: '整合多個角色與系統，建立部門級追蹤與治理。', en: 'Combine multiple agents and systems into department-level tracking and governance.' } },
-  { icon: Network, title: { zh: '企業營運方案', en: 'Enterprise operations' }, body: { zh: '以事件架構連接跨部門流程，建立可持續演進的營運系統。', en: 'Connect cross-functional flows with an event architecture built to evolve.' } }
+  { icon: SearchCheck, visual: MICRO_VISUALS.intake, title: { zh: '流程診斷', en: 'Process diagnostic' }, body: { zh: '釐清流程、資料來源、風險與第一個導入場景。', en: 'Clarify the process, sources, risks, and first implementation scene.' } },
+  { icon: Zap, visual: MICRO_VISUALS.progress, title: { zh: '單流程試點', en: 'Single-flow pilot' }, body: { zh: '完成一條可操作、可觀察、可重複驗證的 Agent 流程。', en: 'Deliver one operable, observable, and repeatable agent workflow.' } },
+  { icon: Layers, visual: MICRO_VISUALS.connect, title: { zh: '部門方案', en: 'Department solution' }, body: { zh: '整合多個角色與系統，建立部門級追蹤與治理。', en: 'Combine multiple agents and systems into department-level tracking and governance.' } },
+  { icon: Network, visual: MICRO_VISUALS.govern, title: { zh: '企業營運方案', en: 'Enterprise operations' }, body: { zh: '以事件架構連接跨部門流程，建立可持續演進的營運系統。', en: 'Connect cross-functional flows with an event architecture built to evolve.' } }
 ];
 
-const audiences: { icon: LucideIcon; title: Bilingual; body: Bilingual }[] = [
-  { icon: Building2, title: { zh: '成長中的企業', en: 'Growing companies' }, body: { zh: '流程已經變複雜，但還沒有足夠人力支撐追蹤。', en: 'Operations are complex but the team cannot scale manual follow-up.' } },
-  { icon: Briefcase, title: { zh: '專業服務團隊', en: 'Professional services' }, body: { zh: '需要保存客戶承諾、交付證據與專案節點。', en: 'Need reliable records of commitments, delivery evidence, and milestones.' } },
-  { icon: ShoppingCart, title: { zh: '採購與供應鏈團隊', en: 'Procurement & supply chain' }, body: { zh: '每天處理大量詢價、核對、交期與供應商回覆。', en: 'Handle high volumes of RFQs, checks, lead times, and supplier replies.' } },
-  { icon: Landmark, title: { zh: '重視合規的組織', en: 'Compliance-minded organisations' }, body: { zh: '要求重要決策有核准、有證據、可回溯。', en: 'Require approval, evidence, and traceability for important decisions.' } },
-  { icon: Stethoscope, title: { zh: '高敏感資料團隊', en: 'Sensitive-data teams' }, body: { zh: '需要嚴格的權限、資料邊界與人工介入。', en: 'Need strict access, data boundaries, and human intervention.' } },
-  { icon: Headphones, title: { zh: '客服與營運中心', en: 'Support & operations centres' }, body: { zh: '希望降低漏接、延誤與重複回覆。', en: 'Want to reduce missed requests, delays, and repeated replies.' } }
+const audiences: IconItem[] = [
+  { icon: Building2, visual: MICRO_VISUALS.progress, title: { zh: '成長中的企業', en: 'Growing companies' }, body: { zh: '流程已經變複雜，但還沒有足夠人力支撐追蹤。', en: 'Operations are complex but the team cannot scale manual follow-up.' } },
+  { icon: Briefcase, visual: MICRO_VISUALS.govern, title: { zh: '專業服務團隊', en: 'Professional services' }, body: { zh: '需要保存客戶承諾、交付證據與專案節點。', en: 'Need reliable records of commitments, delivery evidence, and milestones.' } },
+  { icon: ShoppingCart, visual: MICRO_VISUALS.reconcile, title: { zh: '採購與供應鏈團隊', en: 'Procurement & supply chain' }, body: { zh: '每天處理大量詢價、核對、交期與供應商回覆。', en: 'Handle high volumes of RFQs, checks, lead times, and supplier replies.' } },
+  { icon: Landmark, visual: MICRO_VISUALS.approval, title: { zh: '重視合規的組織', en: 'Compliance-minded organisations' }, body: { zh: '要求重要決策有核准、有證據、可回溯。', en: 'Require approval, evidence, and traceability for important decisions.' } },
+  { icon: Stethoscope, visual: MICRO_VISUALS.govern, title: { zh: '高敏感資料團隊', en: 'Sensitive-data teams' }, body: { zh: '需要嚴格的權限、資料邊界與人工介入。', en: 'Need strict access, data boundaries, and human intervention.' } },
+  { icon: Headphones, visual: MICRO_VISUALS.intake, title: { zh: '客服與營運中心', en: 'Support & operations centres' }, body: { zh: '希望降低漏接、延誤與重複回覆。', en: 'Want to reduce missed requests, delays, and repeated replies.' } }
 ];
 
 const faqs: { question: Bilingual; answer: Bilingual }[] = [
@@ -293,7 +313,7 @@ const AiAgentSolutionPage: React.FC = () => {
             <div className="mt-8 grid gap-4 sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {painPoints.map((item) => (
                 <article key={text(item.title, isEnglish)} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
-                  <item.icon className="h-7 w-7 text-cyan-600 dark:text-cyan-300" />
+                  <NarrativeVisual src={item.visual} />
                   <h3 className="mt-6 text-lg font-semibold">{text(item.title, isEnglish)}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p>
                 </article>
@@ -315,7 +335,7 @@ const AiAgentSolutionPage: React.FC = () => {
               {agentRoles.map((item, index) => (
                 <article key={text(item.title, isEnglish)} className="group rounded-xl border border-slate-200 p-6 transition hover:-translate-y-1 hover:border-emerald-400 hover:shadow-lg dark:border-slate-800 dark:hover:border-emerald-500">
                   <div className="flex items-center justify-between">
-                    <item.icon className="h-7 w-7 text-emerald-600 dark:text-emerald-300" />
+                    <NarrativeVisual src={item.visual} />
                     <span className="text-xs font-semibold text-slate-400">0{index + 1}</span>
                   </div>
                   <h3 className="mt-6 text-lg font-semibold">{text(item.title, isEnglish)}</h3>
@@ -370,7 +390,7 @@ const AiAgentSolutionPage: React.FC = () => {
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {systems.map((item) => (
                   <article key={text(item.title, isEnglish)} className="rounded-xl border border-slate-200 p-5 dark:border-slate-800">
-                    <item.icon className="h-6 w-6 text-cyan-600 dark:text-cyan-300" />
+                    <NarrativeVisual src={item.visual} />
                     <h3 className="mt-4 font-semibold">{text(item.title, isEnglish)}</h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p>
                   </article>
@@ -419,7 +439,7 @@ const AiAgentSolutionPage: React.FC = () => {
             <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-5">
               {governance.map((item) => (
                 <article key={text(item.title, isEnglish)} className="rounded-xl border border-white/10 bg-white/[0.06] p-5">
-                  <item.icon className="h-6 w-6 text-emerald-300" />
+                  <NarrativeVisual src={item.visual} dark />
                   <h3 className="mt-5 text-base font-semibold">{text(item.title, isEnglish)}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-300">{text(item.body, isEnglish)}</p>
                 </article>
@@ -438,7 +458,7 @@ const AiAgentSolutionPage: React.FC = () => {
               <div className="grid gap-5 sm:grid-cols-2">
                 {onboardingSteps.map((item) => (
                   <article key={text(item.title, isEnglish)} className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
-                    <item.icon className="h-7 w-7 text-cyan-600 dark:text-cyan-300" />
+                    <NarrativeVisual src={item.visual} />
                     <h3 className="mt-5 text-lg font-semibold">{text(item.title, isEnglish)}</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p>
                   </article>
@@ -457,7 +477,7 @@ const AiAgentSolutionPage: React.FC = () => {
             <div className="mt-8 grid gap-4 sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {plans.map((item, index) => (
                 <article key={text(item.title, isEnglish)} className={`rounded-xl border p-6 ${index === 1 ? 'border-cyan-400 bg-cyan-50 dark:border-cyan-500 dark:bg-cyan-950/30' : 'border-slate-200 dark:border-slate-800'}`}>
-                  <item.icon className="h-7 w-7 text-cyan-600 dark:text-cyan-300" />
+                  <NarrativeVisual src={item.visual} />
                   <h3 className="mt-6 text-lg font-semibold">{text(item.title, isEnglish)}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p>
                   <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E6%96%B9%E6%A1%88" className="mt-6 inline-flex items-center text-sm font-semibold text-cyan-700 hover:text-cyan-600 dark:text-cyan-300">
@@ -478,7 +498,7 @@ const AiAgentSolutionPage: React.FC = () => {
             <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-3">
               {audiences.map((item) => (
                 <article key={text(item.title, isEnglish)} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
-                  <item.icon className="mt-1 h-6 w-6 shrink-0 text-emerald-600 dark:text-emerald-300" />
+                  <NarrativeVisual src={item.visual} />
                   <div><h3 className="font-semibold">{text(item.title, isEnglish)}</h3><p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p></div>
                 </article>
               ))}

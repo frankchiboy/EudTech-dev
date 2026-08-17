@@ -101,6 +101,7 @@ const PUBLIC_FILE_ALLOWLIST = [
 ];
 
 const PUBLIC_DIRECTORY_ALLOWLIST = [
+  'ai-agent',
   'brand-provenance',
   'cyabra-images',
   'images/configurator/devices',

@@ -1,20 +1,20 @@
 import React from 'react';
-import { ArrowRight, Bot, CheckCircle2, ClipboardCheck, Cpu, FileSearch, FlaskConical, Radar, ShieldCheck, Workflow } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface HomeSolutionsSectionProps { isEnglish: boolean; }
 
 const HomeSolutionsSection: React.FC<HomeSolutionsSectionProps> = ({ isEnglish }) => {
   const items = [
-    { icon: Bot, href: '/solutions/ai-agent', title: isEnglish ? 'AI agents & headless SaaS' : 'AI Agent 與 Headless SaaS', body: isEnglish ? 'Connect ERP, CRM, Microsoft 365, databases, and APIs to branded portals, event workflows, controlled agents, and human approval.' : '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 Agent 與人員核准。', accent: 'cyan', color: 'bg-cyan-400/15 text-cyan-300 hover:border-cyan-300/60' },
-    { icon: Cpu, href: '/solutions/ai-infrastructure', title: isEnglish ? 'AI infrastructure' : 'AI 運算基礎設施', body: isEnglish ? 'Match workload, GPU, memory, cooling, and deployment requirements before a quote.' : '在詢價前對齊工作負載、GPU、記憶體、散熱與部署條件。', accent: 'emerald', color: 'bg-emerald-400/15 text-emerald-300 hover:border-emerald-300/60' },
-    { icon: Radar, href: '/solutions/social-intelligence', title: isEnglish ? 'Social intelligence' : '社群情報', body: isEnglish ? 'Use Cyabra to identify coordinated narratives, fake profiles, and reputation risk.' : '使用 Cyabra 辨識協調式敘事、假帳號與品牌聲譽風險。', accent: 'violet', color: 'bg-violet-400/15 text-violet-300 hover:border-violet-300/60' }
+    { visual: '/ai-agent/micro-illustrations/task-progression-v1.webp', href: '/solutions/ai-agent', title: isEnglish ? 'AI agents & headless SaaS' : 'AI Agent 與 Headless SaaS', body: isEnglish ? 'Connect ERP, CRM, Microsoft 365, databases, and APIs to branded portals, event workflows, controlled agents, and human approval.' : '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 Agent 與人員核准。', color: 'hover:border-cyan-300/60' },
+    { visual: '/ai-agent/micro-illustrations/connected-systems-v1.webp', href: '/solutions/ai-infrastructure', title: isEnglish ? 'AI infrastructure' : 'AI 運算基礎設施', body: isEnglish ? 'Match workload, GPU, memory, cooling, and deployment requirements before a quote.' : '在詢價前對齊工作負載、GPU、記憶體、散熱與部署條件。', color: 'hover:border-emerald-300/60' },
+    { visual: '/ai-agent/micro-illustrations/governance-audit-v1.webp', href: '/solutions/social-intelligence', title: isEnglish ? 'Social intelligence' : '社群情報', body: isEnglish ? 'Use Cyabra to identify coordinated narratives, fake profiles, and reputation risk.' : '使用 Cyabra 辨識協調式敘事、假帳號與品牌聲譽風險。', color: 'hover:border-violet-300/60' }
   ];
   const deliverySteps = [
-    { icon: FileSearch, n: '01', title: isEnglish ? 'Define the real problem' : '定義實際問題', body: isEnglish ? 'Confirm the users, workload, data, systems, site conditions, and decision owner.' : '確認使用者、工作負載、資料、系統、場地條件與決策負責人。' },
-    { icon: Workflow, n: '02', title: isEnglish ? 'Design a verifiable scope' : '設計可驗證範圍', body: isEnglish ? 'Write down sources, permissions, approval points, deliverables, and acceptance criteria.' : '寫清楚來源、權限、核准點、交付物與驗收條件。' },
-    { icon: ClipboardCheck, n: '03', title: isEnglish ? 'Pilot with real evidence' : '使用真實證據試點', body: isEnglish ? 'Run the complete path with real or de-identified cases and preserve every decision.' : '使用真實或去識別案例重跑完整流程，保存每一個決策。' },
-    { icon: CheckCircle2, n: '04', title: isEnglish ? 'Accept, operate, and expand' : '驗收、維運與擴充', body: isEnglish ? 'Expand only after the result, ownership, monitoring, and support boundary are confirmed.' : '確認成果、責任、監測與支援邊界後，再決定擴充範圍。' },
+    { visual: '/ai-agent/micro-illustrations/event-intake-v1.webp', n: '01', title: isEnglish ? 'Define the real problem' : '定義實際問題', body: isEnglish ? 'Confirm the users, workload, data, systems, site conditions, and decision owner.' : '確認使用者、工作負載、資料、系統、場地條件與決策負責人。' },
+    { visual: '/ai-agent/micro-illustrations/human-approval-v1.webp', n: '02', title: isEnglish ? 'Design a verifiable scope' : '設計可驗證範圍', body: isEnglish ? 'Write down sources, permissions, approval points, deliverables, and acceptance criteria.' : '寫清楚來源、權限、核准點、交付物與驗收條件。' },
+    { visual: '/ai-agent/micro-illustrations/connected-systems-v1.webp', n: '03', title: isEnglish ? 'Pilot with real evidence' : '使用真實證據試點', body: isEnglish ? 'Run the complete path with real or de-identified cases and preserve every decision.' : '使用真實或去識別案例重跑完整流程，保存每一個決策。' },
+    { visual: '/ai-agent/micro-illustrations/governance-audit-v1.webp', n: '04', title: isEnglish ? 'Accept, operate, and expand' : '驗收、維運與擴充', body: isEnglish ? 'Expand only after the result, ownership, monitoring, and support boundary are confirmed.' : '確認成果、責任、監測與支援邊界後，再決定擴充範圍。' },
   ];
 
   return (
@@ -26,9 +26,9 @@ const HomeSolutionsSection: React.FC<HomeSolutionsSectionProps> = ({ isEnglish }
           <p className="mt-5 text-lg leading-8 text-slate-300">{isEnglish ? 'Choose the problem you need to solve. EudTech then defines the data, systems, approvals, and measurable next step.' : '先選擇需要解決的問題，再由 EudTech 定義資料、系統、核准點與可量化的下一步。'}</p>
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {items.map(({ icon: Icon, href, title, body, color }) => (
+          {items.map(({ visual, href, title, body, color }) => (
             <Link key={href} to={href} className={`group rounded-2xl border border-white/10 bg-white/[0.04] p-7 transition hover:-translate-y-1 ${color} hover:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-cyan-300`}>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl"><Icon className="h-6 w-6" /></div>
+              <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.07]" aria-hidden="true"><img src={visual} alt="" className="h-14 w-14 object-contain" loading="lazy" decoding="async" /></div>
               <h3 className="mt-7 text-xl font-semibold">{title}</h3>
               <p className="mt-4 text-sm leading-7 text-slate-300 sm:min-h-[112px]">{body}</p>
               <span className="mt-5 inline-flex items-center text-sm font-semibold text-cyan-300">{isEnglish ? 'View solution' : '查看方案'}<ArrowRight className="ml-2 h-4 w-4 transition group-hover:translate-x-1" /></span>
@@ -48,9 +48,9 @@ const HomeSolutionsSection: React.FC<HomeSolutionsSectionProps> = ({ isEnglish }
               </div>
             </div>
             <ol className="grid gap-4 sm:grid-cols-2">
-              {deliverySteps.map(({ icon: Icon, n, title, body }) => (
+              {deliverySteps.map(({ visual, n, title, body }) => (
                 <li key={n} className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-                  <div className="flex items-center justify-between"><span className="text-xs font-bold tracking-[0.2em] text-cyan-300">{n}</span><Icon className="h-6 w-6 text-cyan-300" /></div>
+                  <div className="flex items-center justify-between"><span className="text-xs font-bold tracking-[0.2em] text-cyan-300">{n}</span><div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.07]" aria-hidden="true"><img src={visual} alt="" className="h-12 w-12 object-contain" loading="lazy" decoding="async" /></div></div>
                   <h3 className="mt-6 text-lg font-semibold">{title}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-300">{body}</p>
                 </li>
@@ -62,7 +62,6 @@ const HomeSolutionsSection: React.FC<HomeSolutionsSectionProps> = ({ isEnglish }
           <div className="relative min-h-52 overflow-hidden bg-slate-900">
             <img src="/brand-provenance/eudtech-brand-procurement.webp" alt={isEnglish ? 'GPU procurement review and acceptance planning' : 'GPU 採購審查與驗收規劃'} className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             <div className="absolute inset-0 bg-gradient-to-tr from-slate-950/85 via-slate-950/30 to-cyan-900/20" aria-hidden="true" />
-            <div className="relative flex min-h-52 items-end p-8"><div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-300/40 bg-slate-950/60 backdrop-blur-sm"><FlaskConical className="h-7 w-7 text-cyan-300" /></div></div>
           </div>
           <div className="p-7 sm:p-9">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">{isEnglish ? 'Anonymised procurement example' : '匿名採購需求案例'}</p>
