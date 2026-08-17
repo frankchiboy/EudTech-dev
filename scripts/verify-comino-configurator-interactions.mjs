@@ -111,6 +111,34 @@ try {
   })()`);
   check('十個設定區塊可展開並可選取選項', moduleInteractions.length === requiredModules.length && moduleInteractions.every((record) => record.open && record.options > 0 && record.queryChanged), moduleInteractions);
 
+  const officialDeviceIds = [27, 36, 29, 28, 23, 34, 30, 22, 13, 5, 21];
+  const allDeviceInteractions = [];
+  for (const deviceId of officialDeviceIds) {
+    await load(`/configurator/${deviceId}/`);
+    const deviceModules = await evaluate(`(async () => {
+      const modules = ${JSON.stringify(requiredModules)};
+      const records = [];
+      for (const module of modules) {
+        const section = document.querySelector('[data-module="' + module + '"]');
+        const button = section?.querySelector('.grando-config-section-title');
+        if (button?.getAttribute('aria-expanded') !== 'true') {
+          button?.click();
+          await new Promise(resolve => setTimeout(resolve, 160));
+        }
+        records.push({ module, open: button?.getAttribute('aria-expanded') === 'true', options: section?.querySelectorAll('.grando-option').length || 0 });
+      }
+      return records;
+    })()`);
+    allDeviceInteractions.push({ deviceId, modules: deviceModules });
+  }
+  check(
+    '十一個原廠機型全部具備可操作的十個設定區塊',
+    allDeviceInteractions.length === officialDeviceIds.length && allDeviceInteractions.every((device) => (
+      device.modules.length === requiredModules.length && device.modules.every((record) => record.open && record.options > 0)
+    )),
+    allDeviceInteractions
+  );
+
   await load('/configurator/28/?gpu_value=2&gpu=h200-141gb');
 
   const background = await evaluate(`(async () => {
