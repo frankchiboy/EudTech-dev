@@ -52,7 +52,9 @@ function main() {
     check(
       'Comino image proxy retries transient upstream failures within a bounded deadline',
       imageFunction.includes('const REQUEST_MAX_ATTEMPTS = 3;') &&
-        imageFunction.includes('const REQUEST_DEADLINE_MS = 25_000;') &&
+        imageFunction.includes('const REQUEST_TIMEOUT_MS = 16_000;') &&
+        imageFunction.includes('const REQUEST_DEADLINE_MS = 52_000;') &&
+        imageFunction.includes('const RETRY_DELAYS_MS = [500, 1_500];') &&
         imageFunction.includes('isRetryableStatus') &&
         imageFunction.includes('fetchWithRetry')
     ),

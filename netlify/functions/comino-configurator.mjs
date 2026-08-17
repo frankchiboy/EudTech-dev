@@ -6,10 +6,13 @@ const COMINO_CONFIGURATOR_ORIGIN = 'https://configurator.grando.ai';
 const CACHE_STORE_NAME = 'comino-configurator-cache-v1';
 const CACHE_VERSION = 1;
 const REQUIRED_MODULES = ['gpu', 'cpu', 'ram', 'storage', 'storage_1', 'storage_2', 'storage_3', 'storage_4', 'psu', 'network'];
-const REQUEST_TIMEOUT_MS = 9_000;
-const REQUEST_DEADLINE_MS = 25_000;
+// Netlify synchronous functions allow up to 60 seconds by default.  Keep the
+// upstream image window below that limit while allowing the two known slow
+// Comino assets enough time to complete across transient 5xx responses.
+const REQUEST_TIMEOUT_MS = 16_000;
+const REQUEST_DEADLINE_MS = 52_000;
 const REQUEST_MAX_ATTEMPTS = 3;
-const RETRY_DELAYS_MS = [250, 750];
+const RETRY_DELAYS_MS = [500, 1_500];
 
 // These are both official Comino CPU-2566 assets.  The upstream image service
 // has intermittently returned 503 for one of the pair, so the sibling asset is
