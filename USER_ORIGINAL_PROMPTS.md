@@ -102,3 +102,4 @@ This file preserves the user's original prompts for the configurator exposure ta
 
 1. `修復表單`
 2. `修復表單 全部不是只有這個`
+3. `不對 要跟comino原廠的配置器一樣 做到驗證修復閉環`

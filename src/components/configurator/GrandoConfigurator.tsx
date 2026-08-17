@@ -725,7 +725,7 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
   const [devices, setDevices] = useState<DeviceSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [dataSource, setDataSource] = useState<ConfiguratorDataSource>('live');
+  const [dataSource, setDataSource] = useState<ConfiguratorDataSource>('official_live');
   const [selectedUsage, setSelectedUsage] = useState<string | null>(null);
   const copy = CONFIGURATOR_COPY[language];
 
@@ -1644,7 +1644,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
   const [options, setOptions] = useState<ConfiguratorOption[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [dataSource, setDataSource] = useState<ConfiguratorDataSource>('live');
+  const [dataSource, setDataSource] = useState<ConfiguratorDataSource>('official_live');
   const [openModule, setOpenModule] = useState<ConfiguratorModule>('gpu');
   const copy = CONFIGURATOR_COPY[language];
   const moduleLabels = CONFIGURATOR_MODULE_LABELS[language];
