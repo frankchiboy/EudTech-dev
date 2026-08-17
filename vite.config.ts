@@ -38,6 +38,7 @@ const PUBLIC_FILE_ALLOWLIST = [
   'sw.js',
   'logo.svg',
   'headless-saas-architecture.svg',
+  'ai-agent-evidence-chain-v1.webp',
   'icon.svg',
   'amd-logo.png',
   'amd-partner-badge.jpg',

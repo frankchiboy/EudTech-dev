@@ -3,7 +3,6 @@ import {
   ArrowRight,
   BarChart3,
   Bell,
-  Bot,
   Briefcase,
   Building2,
   CalendarDays,
@@ -233,10 +232,18 @@ const AiAgentSolutionPage: React.FC = () => {
       />
 
       <div className="min-h-screen bg-white text-slate-950 dark:bg-slate-950 dark:text-white">
-        <section className="relative overflow-hidden bg-slate-950 pt-24 text-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(14,165,233,0.22),transparent_36%),radial-gradient(circle_at_80%_15%,rgba(16,185,129,0.18),transparent_30%)]" />
-          <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(148,163,184,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.18)_1px,transparent_1px)] [background-size:48px_48px]" />
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-28">
+        <section className="relative isolate overflow-hidden bg-slate-950 pt-24 text-white">
+          <img
+            src="/ai-agent-evidence-chain-v1.webp"
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 -z-20 h-full w-full object-cover object-[68%_center]"
+          />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/95 to-slate-950/35" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/25" />
+          <div className="relative mx-auto flex min-h-[680px] max-w-7xl items-center px-6 py-20 lg:min-h-[720px] lg:px-8 lg:py-28">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
                 <Sparkles className="h-4 w-4" />
@@ -260,32 +267,17 @@ const AiAgentSolutionPage: React.FC = () => {
                 </a>
               </div>
               <p className="mt-6 text-sm text-slate-400">{isEnglish ? 'Human approval remains the control point for sensitive actions.' : '付款、正式寄信與重大狀態變更等敏感動作，保留人員核准控制點。'}</p>
-            </div>
-            <div className="relative flex items-center justify-center">
-              <div className="w-full max-w-md rounded-2xl border border-white/15 bg-white/[0.07] p-6 shadow-2xl shadow-cyan-950/30 backdrop-blur-sm">
-                <div className="flex items-center justify-between border-b border-white/10 pb-5">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">{isEnglish ? 'Operating view' : '營運視圖'}</p>
-                    <p className="mt-2 text-xl font-semibold">{isEnglish ? 'One event. Clear next action.' : '一個事件，一個清楚的下一步。'}</p>
+              <div className="mt-9 grid max-w-2xl gap-3 text-sm text-slate-200 sm:grid-cols-3">
+                {[
+                  isEnglish ? 'Source evidence retained' : '保留來源證據',
+                  isEnglish ? 'Differences reconciled' : '完成差異核對',
+                  isEnglish ? 'A person approves action' : '人員核准執行'
+                ].map((label, index) => (
+                  <div key={label} className="flex items-center gap-2 rounded-lg border border-white/15 bg-slate-950/55 px-3 py-3 backdrop-blur-sm">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 text-xs font-bold text-cyan-200">{index + 1}</span>
+                    <span>{label}</span>
                   </div>
-                  <Bot className="h-9 w-9 text-cyan-300" />
-                </div>
-                <div className="mt-6 space-y-4">
-                  {[
-                    { icon: Mail, label: isEnglish ? 'New supplier reply detected' : '偵測到供應商新回覆', tone: 'text-cyan-300' },
-                    { icon: SearchCheck, label: isEnglish ? 'Quote terms reconciled' : '完成報價條件核對', tone: 'text-emerald-300' },
-                    { icon: Users, label: isEnglish ? 'Approval requested from owner' : '已向負責人提出核准請求', tone: 'text-amber-300' }
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-center gap-3 rounded-lg border border-white/10 bg-slate-900/70 p-4">
-                      <item.icon className={`h-5 w-5 ${item.tone}`} />
-                      <span className="text-sm text-slate-200">{item.label}</span>
-                      <Check className="ml-auto h-4 w-4 text-emerald-300" />
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 rounded-lg border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-6 text-cyan-100">
-                  {isEnglish ? 'AI prepares the next action. A person decides whether it happens.' : 'AI 準備下一步，人員決定是否執行。'}
-                </div>
+                ))}
               </div>
             </div>
           </div>
