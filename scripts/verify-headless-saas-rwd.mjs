@@ -127,7 +127,7 @@ for (const testCase of cases) {
           })
           .filter(item => item.scrollHeight > item.clientHeight + 3 && ['hidden', 'clip'].includes(item.overflowY) && item.lineClamp === 'none');
         const notionMentions = (bodyText.match(/Notion/g) || []).length;
-        const headlessMatches = (bodyText.match(/Headless SaaS/g) || []).length;
+        const headlessMatches = (bodyText.match(/headless[ ]+saas/gi) || []).length;
         return {
           url: location.href,
           title: document.title,
