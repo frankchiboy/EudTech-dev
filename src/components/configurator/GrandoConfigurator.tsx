@@ -87,14 +87,10 @@ const createQuoteRequestId = () => {
   return `${fallback.slice(0, 8)}-${fallback.slice(8, 12)}-4${fallback.slice(13, 16)}-8${fallback.slice(17, 20)}-${fallback.slice(20, 32)}`;
 };
 const MOBILE_CONFIGURATOR_MEDIA_QUERY = '(max-width: 767px)';
-const MOBILE_CONFIGURATOR_IMAGE_WIDTH = 750;
-const CONFIGURATOR_BACKGROUND_WIDTHS = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
-const DESKTOP_CONFIGURATOR_IMAGE_WIDTH = 3840;
 const MOBILE_PRODUCT_IMAGE_WIDTH = 480;
 const DESKTOP_PRODUCT_IMAGE_WIDTH = 960;
 const MOBILE_PRODUCT_IMAGE_QUALITY = 68;
 const DESKTOP_PRODUCT_IMAGE_QUALITY = 80;
-const BACKGROUND_IMAGE_QUALITY = 75;
 const CONFIGURATOR_CANONICAL_URL = canonicalPageUrl(`${SITE_ORIGIN}/configurator`);
 const CONFIGURATOR_SHARE_TRACKING_KEYS = [
   'utm_source',
@@ -522,6 +518,12 @@ const getNetlifyImageUrl = (url: string, width: number, quality: number) => {
   return `/.netlify/images?url=${encodeURIComponent(url)}&w=${width}&q=${quality}&fm=webp`;
 };
 
+// The former Grando image host no longer accepts public browser connections.
+// Keep the original background definitions for their feature annotations, but
+// render an official Comino image that is shipped with this site so every
+// configurator module remains visually usable without a third-party request.
+const LOCAL_COMINO_CONFIGURATOR_BACKGROUND = '/GRANDO_RM-M-CRPS_9004_8xGPU_23.jpg';
+
 const canUseNetlifyImageCdn = () => {
   if (typeof window === 'undefined') {
     return false;
@@ -541,26 +543,12 @@ const getOptimizedRemoteImageUrl = (url: string, width: number, quality: number)
   return canUseNetlifyImageCdn() ? getNetlifyImageUrl(url, width, quality) : url;
 };
 
-const getConfiguratorBackgroundUrl = (url: string, isMobile: boolean) => {
+const getConfiguratorBackgroundUrl = (url: string) => {
   if (!url.startsWith(`${GRANDO_CONFIGURATOR_BASE_URL}/image/`)) {
     return url;
   }
 
-  return getOptimizedRemoteImageUrl(
-    url,
-    isMobile ? MOBILE_CONFIGURATOR_IMAGE_WIDTH : DESKTOP_CONFIGURATOR_IMAGE_WIDTH,
-    BACKGROUND_IMAGE_QUALITY
-  );
-};
-
-const getConfiguratorBackgroundSrcSet = (url: string) => {
-  if (!url.startsWith(`${GRANDO_CONFIGURATOR_BASE_URL}/image/`) || !canUseNetlifyImageCdn()) {
-    return undefined;
-  }
-
-  return CONFIGURATOR_BACKGROUND_WIDTHS.map((width) => (
-    `${getNetlifyImageUrl(url, width, BACKGROUND_IMAGE_QUALITY)} ${width}w`
-  )).join(', ');
+  return LOCAL_COMINO_CONFIGURATOR_BACKGROUND;
 };
 
 const getProductImageUrl = (url: string, isMobile: boolean) => {
@@ -1121,14 +1109,7 @@ const BackgroundSlider = ({
     const nextImage = images[nextIndex];
     const preloadImage = new Image();
     preloadImage.decoding = 'async';
-    preloadImage.src = getConfiguratorBackgroundUrl(nextImage.url, isMobile);
-    if (!isMobile) {
-      const srcSet = getConfiguratorBackgroundSrcSet(nextImage.url);
-      if (srcSet) {
-        preloadImage.srcset = srcSet;
-        preloadImage.sizes = '100vw';
-      }
-    }
+    preloadImage.src = getConfiguratorBackgroundUrl(nextImage.url);
   }, [activeIndex, images, isMobile]);
 
   return (
@@ -1140,9 +1121,7 @@ const BackgroundSlider = ({
         >
           {!failedImages.has(image.url) && (
             <img
-              src={getConfiguratorBackgroundUrl(image.url, isMobile)}
-              srcSet={isMobile ? undefined : getConfiguratorBackgroundSrcSet(image.url)}
-              sizes={isMobile ? undefined : '100vw'}
+              src={getConfiguratorBackgroundUrl(image.url)}
               alt=""
               loading={activeIndex === index ? 'eager' : 'lazy'}
               decoding="async"
