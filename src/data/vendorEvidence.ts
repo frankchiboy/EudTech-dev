@@ -4,27 +4,6 @@ export interface VendorEvidenceSource {
 }
 
 export const VENDOR_EVIDENCE = {
-  notion: {
-    name: 'Notion',
-    sources: {
-      overview: {
-        label: { zh: 'Notion：API 整合與連線概覽', en: 'Notion: API integration and connection overview' },
-        href: 'https://developers.notion.com/guides/get-started/overview'
-      },
-      capabilities: {
-        label: { zh: 'Notion：整合連線能力與權限', en: 'Notion: integration capabilities and permissions' },
-        href: 'https://developers.notion.com/reference/capabilities'
-      },
-      webhooks: {
-        label: { zh: 'Notion：Webhook 事件', en: 'Notion: webhook events' },
-        href: 'https://developers.notion.com/reference/webhooks'
-      },
-      mcp: {
-        label: { zh: 'Notion：MCP 與 AI 工具整合', en: 'Notion: MCP and AI tool integration' },
-        href: 'https://developers.notion.com/guides/mcp/overview'
-      }
-    }
-  },
   microsoft: {
     name: 'Microsoft Copilot Studio',
     image: '/vendor/microsoft/copilot-studio-product-tour.png',

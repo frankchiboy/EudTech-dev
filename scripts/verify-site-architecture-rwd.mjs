@@ -67,7 +67,7 @@ try {
         const vendorImages = images.filter((image) => image.src.includes('/vendor/'));
         const vendorSourceLinks = [...document.querySelectorAll('a[href]')]
           .map((link) => link.href)
-          .filter((href) => /microsoft\.com|learn\.microsoft\.com|comino\.com|nvidia\.com|amd\.com|cyabra\.com|developers\.notion\.com/.test(href));
+          .filter((href) => /microsoft\.com|learn\.microsoft\.com|comino\.com|nvidia\.com|amd\.com|cyabra\.com/.test(href));
 
         const visibleControls = [...document.querySelectorAll('a, button')]
           .filter((element) => {

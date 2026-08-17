@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
-  <title id="title">EudTech Headless SaaS and Notion integration architecture</title>
-  <desc id="description">Notion and existing SaaS connect through events and APIs to EudTech policy controls, then to a branded portal, website, or AI agent.</desc>
+  <title id="title">EudTech enterprise Headless SaaS and AI Agent architecture</title>
+  <desc id="description">Existing business systems and data connect through events and APIs to EudTech policy controls, then to a branded portal, website, or AI agent.</desc>
   <defs>
     <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0" stop-color="#020617"/>
@@ -10,17 +10,17 @@
     <linearGradient id="line" x1="0" x2="1"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#34d399"/></linearGradient>
   </defs>
   <rect width="1600" height="900" fill="url(#background)"/>
-  <text x="110" y="135" fill="#67e8f9" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="6">HEADLESS SAAS × NOTION</text>
-  <text x="110" y="220" fill="#ffffff" font-family="Arial, sans-serif" font-size="55" font-weight="700">Keep the work layer. Build the right experience.</text>
+  <text x="110" y="135" fill="#67e8f9" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="6">HEADLESS SAAS × AI AGENT</text>
+  <text x="110" y="220" fill="#ffffff" font-family="Arial, sans-serif" font-size="55" font-weight="700">Keep your systems. Build the right experience.</text>
   <text x="110" y="270" fill="#94a3b8" font-family="Arial, sans-serif" font-size="25">Authorised APIs · Event-driven workflows · Human approval · Traceable actions</text>
   <g font-family="Arial, sans-serif">
     <g transform="translate(110 390)">
       <rect width="300" height="235" rx="28" fill="#ffffff"/>
       <rect x="28" y="28" width="58" height="58" rx="15" fill="#0f172a"/>
-      <text x="57" y="68" fill="#67e8f9" font-size="27" font-weight="700" text-anchor="middle">N</text>
-      <text x="28" y="125" fill="#64748b" font-size="18" font-weight="700" letter-spacing="2">CONTENT &amp; WORK</text>
-      <text x="28" y="167" fill="#0f172a" font-size="29" font-weight="700">Notion / SaaS</text>
-      <text x="28" y="204" fill="#475569" font-size="19">Pages, databases, tasks</text>
+      <text x="57" y="68" fill="#67e8f9" font-size="27" font-weight="700" text-anchor="middle">D</text>
+      <text x="28" y="125" fill="#64748b" font-size="18" font-weight="700" letter-spacing="2">SYSTEMS &amp; DATA</text>
+      <text x="28" y="167" fill="#0f172a" font-size="29" font-weight="700">ERP / CRM / APIs</text>
+      <text x="28" y="204" fill="#475569" font-size="19">M365, databases, records</text>
     </g>
     <path d="M430 508 H520" stroke="url(#line)" stroke-width="8" stroke-linecap="round"/>
     <path d="M505 493 L525 508 L505 523" fill="none" stroke="#67e8f9" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>

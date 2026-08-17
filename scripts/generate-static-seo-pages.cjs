@@ -210,7 +210,7 @@ const solutionHubRoute = {
   path: '/solutions',
   title: 'AI 與數位服務解決方案總覽｜EudTech',
   description: '依企業流程、Headless SaaS、AI 運算工作負載與社群情報需求，選擇 EudTech 導入路徑。',
-  keywords: 'AI 解決方案, AI Agent 導入, Headless SaaS, Notion 整合, AI 運算基礎設施, Cyabra 社群情報, EudTech',
+  keywords: 'AI 解決方案, AI Agent 導入, 企業 Headless SaaS, SaaS 整合, AI 運算基礎設施, Cyabra 社群情報, EudTech',
   lead: '從需要改善的營運流程、數位服務、運算工作負載或社群風險開始，進入有明確內容、下一步及可追蹤交付的方案。',
   image: defaultImage,
   imageAlt: 'EudTech AI 解決方案總覽',
@@ -219,7 +219,7 @@ const solutionHubRoute = {
   quoteHref: '/configurator?request=true',
   relatedLinks: [
     routeLink('/solutions/ai-agent', 'AI Agent 導入'),
-    routeLink('/solutions/headless-saas', 'Headless SaaS 與 Notion 整合'),
+    routeLink('/solutions/headless-saas', '企業 Headless SaaS 與 AI Agent'),
     routeLink('/solutions/ai-infrastructure', 'AI 運算基礎設施'),
     routeLink('/solutions/social-intelligence', '社群情報與品牌保護'),
     routeLink('/products', '產品與品牌'),
@@ -228,18 +228,18 @@ const solutionHubRoute = {
   ],
   highlights: [
     'AI Agent：串接既有系統、追蹤工作並保留人工核准。',
-    'Headless SaaS：保留 Notion 與既有 SaaS，建立品牌入口、事件與治理。',
+    'Headless SaaS：串接既有系統，建立品牌入口、事件、AI Agent 與治理。',
     'AI 運算基礎設施：從工作負載到可採購配置。',
     '社群情報：分析假帳號、敘事、擴散與品牌風險。'
   ],
   specs: [
     { label: '方案一', value: '企業 AI Agent 導入' },
-    { label: '方案二', value: 'Headless SaaS 與 Notion 整合' },
+    { label: '方案二', value: '企業 Headless SaaS 與 AI Agent' },
     { label: '方案三', value: 'AI 運算基礎設施' },
     { label: '方案四', value: 'Cyabra 社群情報' }
   ],
   faq: [
-    ['如何選擇 EudTech 解決方案？', '需要改善企業流程時選擇 AI Agent；需要保留 Notion 或既有 SaaS 並建立品牌入口時選擇 Headless SaaS；需要 GPU 伺服器或工作站時選擇 AI 運算基礎設施；需要分析社群風險時選擇社群情報。'],
+    ['如何選擇 EudTech 解決方案？', '需要改善企業流程時選擇 AI Agent；需要串接既有 ERP、CRM、Microsoft 365、資料庫或 API 並建立品牌入口時選擇 Headless SaaS；需要 GPU 伺服器或工作站時選擇 AI 運算基礎設施；需要分析社群風險時選擇社群情報。'],
     ['方案是否可以先做小範圍驗證？', '可以。EudTech 會先定義問題、資料、負責人、證據與成功指標，再以可操作範圍開始。'],
     ['AI 運算方案可以直接配置嗎？', '可以。AI 運算基礎設施頁會連到 Comino 配置器，保留可分享配置並送出詢價。'],
     ['如何開始諮詢？', '使用聯絡頁選擇需求類型，再透過 Microsoft Bookings 或 info@eudaemonia.tech 安排下一步。']
@@ -265,7 +265,7 @@ const solutionHubRoute = {
         name: 'EudTech 四大解決方案',
         itemListElement: [
           ['AI Agent 導入', '/solutions/ai-agent'],
-          ['Headless SaaS 與 Notion 整合', '/solutions/headless-saas'],
+          ['企業 Headless SaaS 與 AI Agent', '/solutions/headless-saas'],
           ['AI 運算基礎設施', '/solutions/ai-infrastructure'],
           ['社群情報與品牌保護', '/solutions/social-intelligence']
         ].map(([name, pathname], index) => ({
@@ -352,7 +352,7 @@ const routes = [
     path: '/',
     title: 'AI Agent、Headless SaaS、GPU 運算與社群情報｜EudTech',
     description: 'EudTech 提供企業 AI Agent 導入、Headless SaaS 整合、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。',
-    keywords: 'AI Agent 導入, Headless SaaS, Notion 整合, AI GPU 伺服器, Comino Grando, Cyabra 社群情報, EudTech',
+    keywords: 'AI Agent 導入, 企業 Headless SaaS, SaaS 整合, AI GPU 伺服器, Comino Grando, Cyabra 社群情報, EudTech',
     lead: 'EudTech 將 AI Agent、Headless SaaS、液冷 GPU 運算基礎設施與社群情報，連接到企業、研究單位與公部門的實際工作與決策流程。',
     imageAlt: 'EudTech AI Agent、Headless SaaS、GPU 運算與社群情報解決方案',
     configuratorHref: '/configurator',
@@ -360,7 +360,7 @@ const routes = [
     relatedLinks: [
       routeLink('/solutions', 'AI 解決方案總覽'),
       routeLink('/solutions/ai-agent', 'AI Agent 導入'),
-      routeLink('/solutions/headless-saas', 'Headless SaaS 與 Notion 整合'),
+      routeLink('/solutions/headless-saas', '企業 Headless SaaS 與 AI Agent'),
       routeLink('/solutions/ai-infrastructure', 'AI 運算基礎設施'),
       routeLink('/solutions/social-intelligence', '社群情報與品牌保護'),
       routeLink('/products', '產品與品牌'),
@@ -368,13 +368,13 @@ const routes = [
     ],
     highlights: [
       'AI Agent 串接企業既有郵件、專案、ERP 與財務流程。',
-      'Headless SaaS 保留 Notion 與既有 SaaS，建立品牌入口、事件與治理。',
+      'Headless SaaS 串接既有系統，建立品牌入口、事件、AI Agent 與治理。',
       'AI 運算基礎設施從工作負載連到配置、詢價與部署。',
       'Cyabra 社群情報協助辨識假帳號、敘事與品牌風險。'
     ],
     specs: [
       { label: '方案一', value: '企業 AI Agent 導入' },
-      { label: '方案二', value: 'Headless SaaS 與 Notion 整合' },
+      { label: '方案二', value: '企業 Headless SaaS 與 AI Agent' },
       { label: '方案三', value: 'AI GPU 運算基礎設施' },
       { label: '方案四', value: 'Cyabra 社群情報' }
     ],
@@ -794,6 +794,14 @@ function routeStaticCopy(route, specs, highlights) {
   const keywords = routeKeywords(route);
   const specSummary = routeSpecSummary(specs);
   const firstHighlight = highlights[0] || route.lead || route.description;
+  if (route.path === '/solutions/headless-saas') {
+    return compactList([
+      `${route.title} 是 EudTech 針對 ${keywords.join('、')} 提供的企業系統整合與產品化服務，重點是沿用既有系統，同時建立品牌入口、事件流程、受控 AI Agent 與治理。`,
+      specSummary ? `頁面目前可直接讀取的架構重點包含 ${specSummary}。這些內容可協助企業確認既有系統、資料來源、權限、核准點與第一個試點範圍。` : '',
+      `${firstHighlight} 正式導入前會先確認 API 能力、資料品質、身分權限、事件觸發、錯誤處理與驗收條件。`,
+      '實際串接範圍、授權、時程與費用，依客戶現有系統及流程診斷結果提供書面規劃。'
+    ]);
+  }
   const quoteText = route.quoteHref
     ? '送出詢價時會帶入目前配置連結與表單聯絡資料，方便 EudTech 後續確認正式規格與報價。'
     : '此頁提供進入配置器與相關採購頁面的路徑，便於後續整理詢價需求。';
@@ -807,6 +815,14 @@ function routeStaticCopy(route, specs, highlights) {
 }
 
 function routeUseCases(route, specs, highlights) {
+  if (route.path === '/solutions/headless-saas') {
+    return compactList([
+      '需要沿用既有 ERP、CRM、Microsoft 365、資料庫或 API，同時建立新的品牌網站或客戶 Portal。',
+      '需要把表單、郵件、系統及資料變更轉成可去重、可追蹤的事件流程。',
+      '需要讓 AI Agent 在工具白名單、最小權限與人工核准條件下執行工作。',
+      highlights[1] || ''
+    ]);
+  }
   const gpuSpec = specs.find((spec) => /GPU|顯示|圖形/i.test(spec.label)) || specs[0];
   const platformSpec = specs.find((spec) => /CPU|平台|機構|型態/i.test(spec.label)) || specs[1];
   const bestFitSpec = specs.find((spec) => /適合|Best fit|需求/i.test(spec.label)) || specs[2];

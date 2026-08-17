@@ -11,8 +11,8 @@ const HeadlessSaasVisual: React.FC<HeadlessSaasVisualProps> = ({ isEnglish, comp
     {
       icon: Blocks,
       eyebrow: isEnglish ? 'CONTENT & WORK' : '內容與協作',
-      title: isEnglish ? 'Notion / existing SaaS' : 'Notion／既有 SaaS',
-      body: isEnglish ? 'Pages, databases, tasks, and operating records' : '頁面、資料庫、任務與營運紀錄',
+      title: isEnglish ? 'Existing systems and data' : '既有系統與資料',
+      body: isEnglish ? 'ERP, CRM, Microsoft 365, databases, and APIs' : 'ERP、CRM、Microsoft 365、資料庫與 API',
       tone: 'border-slate-300 bg-white text-slate-950 dark:border-slate-700 dark:bg-slate-950 dark:text-white'
     },
     {

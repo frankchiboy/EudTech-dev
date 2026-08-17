@@ -8,7 +8,7 @@ const ContactPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
   const needs = [
     { icon: Bot, title: { zh: 'AI Agent 導入', en: 'AI Agent implementation' }, body: { zh: '流程、ERP、CRM、郵件或任務追蹤自動化。', en: 'Workflow, ERP, CRM, email, or task tracking automation.' } },
-    { icon: Blocks, title: { zh: 'Headless SaaS 與 Notion', en: 'Headless SaaS & Notion' }, body: { zh: '品牌化入口、Portal、事件整合、權限與產品化。', en: 'Branded portals, event integration, permissions, and productisation.' } },
+    { icon: Blocks, title: { zh: '企業 Headless SaaS', en: 'Enterprise headless SaaS' }, body: { zh: '既有系統串接、品牌化入口、Portal、事件流程、權限與產品化。', en: 'Existing-system integration, branded portals, event workflows, permissions, and productisation.' } },
     { icon: Cpu, title: { zh: 'AI 運算設備', en: 'AI infrastructure' }, body: { zh: 'GPU 伺服器、工作站、液冷系統與正式報價。', en: 'GPU servers, workstations, liquid cooling, and quote planning.' } },
     { icon: Radar, title: { zh: '社群情報', en: 'Social intelligence' }, body: { zh: 'Cyabra 品牌保護、假資訊與社群風險分析。', en: 'Cyabra brand protection, disinformation, and social risk analysis.' } }
   ];

@@ -19,7 +19,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - AI Agent Implementation: https://eudaemonia.tech/solutions/ai-agent/
 - 產品與品牌｜EudTech: https://eudaemonia.tech/products/
 - AI 伺服器採購資源｜EudTech: https://eudaemonia.tech/resources/
-- Headless SaaS 與 Notion 整合｜EudTech: https://eudaemonia.tech/solutions/headless-saas/
+- 企業 Headless SaaS 與 AI Agent 導入｜EudTech: https://eudaemonia.tech/solutions/headless-saas/
 - AI 運算基礎設施｜EudTech: https://eudaemonia.tech/solutions/ai-infrastructure/
 - 社群情報與品牌保護｜EudTech: https://eudaemonia.tech/solutions/social-intelligence/
 - 關於 EudTech｜優達盟資訊科技: https://eudaemonia.tech/about/
@@ -85,17 +85,17 @@ Generated for AI assistants, search tools, and researchers that need a structure
   - 主要階段: 選型、部署、比較、RFQ 與案例
   - 下一步: 開啟配置器或聯絡 EudTech
 
-### Headless SaaS 與 Notion 整合｜EudTech
+### 企業 Headless SaaS 與 AI Agent 導入｜EudTech
 
 - URL: https://eudaemonia.tech/solutions/headless-saas/
-- Description: 保留 Notion 與既有 SaaS 作為資料及協作層，由 EudTech 建立品牌化入口、事件流程、AI Agent、權限與稽核。
-- Lead: 保留團隊熟悉的 Notion 與 SaaS 工作方式，建立客戶真正需要的品牌入口、事件自動化、權限與治理。
+- Description: 串接企業既有 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌化入口、事件流程、受控 AI Agent、權限與稽核。
+- Lead: 沿用企業有效的既有系統，建立客戶真正需要的品牌入口、事件自動化、AI Agent、權限與治理。
 - Highlights:
   - 品牌化網站、客戶 Portal 與 AI Agent。
   - 已授權 API、Webhook 事件與人工核准。
   - 來源、版本、權限、執行與稽核證據。
 - Details:
-  - 工作層: Notion 與既有 SaaS
+  - 既有系統: ERP、CRM、Microsoft 365、資料庫與 API
   - 整合層: API、Webhook、事件、權限與稽核
   - 客戶體驗: 品牌網站、Portal 與 AI Agent
 

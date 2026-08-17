@@ -126,7 +126,7 @@ for (const testCase of cases) {
             return { text: clean(element.textContent).slice(0, 120), clientHeight: element.clientHeight, scrollHeight: element.scrollHeight, overflowY: style.overflowY, lineClamp: style.webkitLineClamp };
           })
           .filter(item => item.scrollHeight > item.clientHeight + 3 && ['hidden', 'clip'].includes(item.overflowY) && item.lineClamp === 'none');
-        const notionLinks = [...document.querySelectorAll('a[href*="developers.notion.com"]')].map(link => link.href);
+        const notionMentions = (bodyText.match(/Notion/g) || []).length;
         const headlessMatches = (bodyText.match(/Headless SaaS/g) || []).length;
         return {
           url: location.href,
@@ -140,7 +140,7 @@ for (const testCase of cases) {
           documentHeight: document.documentElement.scrollHeight,
           brokenImages: images.filter(image => !image.complete || image.naturalWidth === 0 || image.naturalHeight === 0),
           clippedText,
-          notionLinks,
+          notionMentions,
           headlessMatches,
           hasArchitecture: Boolean(document.querySelector('#architecture')),
           hasContactLink: Boolean(document.querySelector('a[href="/contact"]')),
@@ -162,7 +162,7 @@ for (const testCase of cases) {
       && metrics.darkClass === (testCase.theme === 'dark')
       && metrics.headlessMatches > 0
       && metrics.hasFooter
-      && (!isHeadlessPage || (metrics.documentHeight > 3000 && metrics.sectionCount >= 7 && metrics.notionLinks.length >= 4 && metrics.hasArchitecture && metrics.hasContactLink && metrics.hasFaq));
+      && (!isHeadlessPage || (metrics.documentHeight > 3000 && metrics.sectionCount >= 7 && metrics.notionMentions === 0 && metrics.hasArchitecture && metrics.hasContactLink && metrics.hasFaq));
     const contentSize = await send('Page.getLayoutMetrics');
     const width = Math.ceil(contentSize.cssContentSize?.width || testCase.width);
     const height = Math.ceil(contentSize.cssContentSize?.height || testCase.height);
