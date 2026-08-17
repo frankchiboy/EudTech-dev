@@ -39,6 +39,7 @@ export interface EmailFormData {
   country?: string;
   subject?: string;
   toEmail?: string;
+  comment?: string;
   quoteRequestId?: string;
   configurationSummary?: {
     device: string;

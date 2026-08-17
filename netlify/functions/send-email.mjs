@@ -64,6 +64,7 @@ const buildHtml = (payload) => {
     ['Phone', payload.phone || 'Not provided'],
     ['Company', payload.company || 'Not provided'],
     ['Country', payload.country || 'Not provided'],
+    ...(payload.comment ? [['Comment', payload.comment]] : []),
     ...(payload.quoteRequestId ? [['Quote request ID', payload.quoteRequestId]] : []),
     ...(hasCompleteConfigurationSummary(payload.configurationSummary)
       ? REQUIRED_CONFIGURATION_FIELDS.map((field) => [`Configuration ${field}`, payload.configurationSummary[field]])
@@ -161,8 +162,9 @@ async function sendQuoteEmail(request) {
   const lastName = normalize(payload.lastName);
   const email = normalize(payload.email);
   const message = normalize(payload.message);
+  const comment = normalize(payload.comment);
   const quoteRequestId = normalize(payload.quoteRequestId || payload.quote_request_id);
-  const optionalTextFields = ['phone', 'company', 'country', 'subject'];
+  const optionalTextFields = ['phone', 'company', 'country', 'subject', 'comment'];
   if (optionalTextFields.some((field) => payload[field] !== undefined && typeof payload[field] !== 'string')) {
     return json(400, { error: 'Quote text fields must be strings' });
   }
@@ -184,6 +186,9 @@ async function sendQuoteEmail(request) {
 
   if (quoteRequestId && !hasCompleteConfigurationSummary(payload.configurationSummary)) {
     return json(400, { error: 'Complete ten-module configuration summary is required' });
+  }
+  if (quoteRequestId && !validText(comment, 20_000)) {
+    return json(400, { error: 'Comment is required for configurator quote requests' });
   }
 
   const normalizedConfigurationSummary = quoteRequestId
@@ -214,6 +219,7 @@ async function sendQuoteEmail(request) {
           lastName,
           email,
           message,
+          comment,
           phone: normalize(payload.phone),
           company: normalize(payload.company),
           country: normalize(payload.country),

@@ -327,6 +327,11 @@ export const buildRecommendedSpec = (
   return spec;
 };
 
+export const hasCompleteConfiguratorSpec = (spec: ConfiguratorSpec) => CONFIGURATOR_REQUIRED_MODULES.every((moduleKey) => {
+  const item = spec[moduleKey];
+  return Boolean(item && typeof item === 'object' && typeof item.name === 'string' && item.name.trim());
+});
+
 const getQueryOption = (
   moduleKey: ConfiguratorModule,
   uniqueId: string,
@@ -471,6 +476,7 @@ export const getConfiguratorValidation = (spec: ConfiguratorSpec): ConfiguratorV
   }
 
   if (
+    (psu?.unique_id === '2' && totalPower >= 3000) ||
     ((cpu?.unique_id === '5770' || cpu?.unique_id === '90988') && gpuQuantity > 6) ||
     (cpu?.unique_id === '1288' && isGeForce && gpuQuantity > 6) ||
     (cpu?.unique_id === '2566' && isGeForce && gpuQuantity > 4) ||

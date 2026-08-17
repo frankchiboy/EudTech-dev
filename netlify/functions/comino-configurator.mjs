@@ -36,7 +36,7 @@ const cacheStore = () =>
 
 const validDeviceId = (value) => /^\d+$/.test(value || '') && Number(value) > 0;
 const cacheKey = (deviceId) => (deviceId ? `devices/${deviceId}.json` : 'devices/index.json');
-const imageCacheKey = (assetPath) => `images-v2/${assetPath.replace(/^\/+/, '')}`;
+const imageCacheKey = (assetPath, mobile) => `images-v3/${mobile ? 'mobile' : 'desktop'}/${assetPath.replace(/^\/+/, '')}`;
 const validImagePath = (value) =>
   /^\/image\/background\/(?:default|psu|gpu|cpu)\/[A-Za-z0-9_./-]+\.jpg$/.test(value || '') &&
   !value.includes('..');
@@ -61,7 +61,7 @@ async function fetchComino(path) {
   return response.json();
 }
 
-async function fetchCominoConfiguratorImage(assetPath, requestDeadline) {
+async function fetchCominoConfiguratorImage(assetPath, requestDeadline, mobile) {
   const response = await fetchWithRetry(`${COMINO_CONFIGURATOR_ORIGIN}${assetPath}`, {
       method: 'GET',
       headers: { Accept: 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8' },
@@ -72,11 +72,11 @@ async function fetchCominoConfiguratorImage(assetPath, requestDeadline) {
     throw new Error(`Comino configurator image responded with ${response.status}`);
   }
   const original = Buffer.from(await response.arrayBuffer());
-  const optimized = await sharp(original, { failOn: 'none' })
-    .rotate()
-    .resize({ width: 1600, withoutEnlargement: true })
-    .webp({ quality: 84, smartSubsample: true })
-    .toBuffer();
+  const transformer = sharp(original, { failOn: 'none' }).rotate();
+  if (mobile) {
+    transformer.resize({ width: 960, withoutEnlargement: true });
+  }
+  const optimized = await transformer.webp({ quality: 84, smartSubsample: true }).toBuffer();
   return { body: optimized, contentType: 'image/webp' };
 }
 
@@ -123,15 +123,15 @@ const imageResponse = (body, contentType, source) => new Response(body, {
   }
 });
 
-async function getConfiguratorImage(store, assetPath) {
-  const key = imageCacheKey(assetPath);
+async function getConfiguratorImage(store, assetPath, mobile) {
+  const key = imageCacheKey(assetPath, mobile);
   const candidates = [assetPath, ...(OFFICIAL_IMAGE_ALTERNATES[assetPath] || [])];
   const errors = [];
   const requestDeadline = Date.now() + REQUEST_DEADLINE_MS;
 
   for (const candidate of candidates) {
     try {
-      const fetched = await fetchCominoConfiguratorImage(candidate, requestDeadline);
+      const fetched = await fetchCominoConfiguratorImage(candidate, requestDeadline, mobile);
       await store.set(key, fetched.body, {
         metadata: {
           contentType: fetched.contentType,
@@ -171,10 +171,11 @@ export default async (request) => {
   if (request.method !== 'GET') return json(405, { ok: false, error: 'Method not allowed' });
   const requestUrl = new URL(request.url);
   const assetPath = requestUrl.searchParams.get('asset');
+  const mobile = requestUrl.searchParams.get('mobile') === '1';
   const deviceId = requestUrl.searchParams.get('device');
   if (assetPath) {
     if (!validImagePath(assetPath)) return json(400, { ok: false, error: 'Invalid image asset path' });
-    return getConfiguratorImage(cacheStore(), assetPath);
+    return getConfiguratorImage(cacheStore(), assetPath, mobile);
   }
   if (deviceId && !validDeviceId(deviceId)) return json(400, { ok: false, error: 'Invalid device id' });
 

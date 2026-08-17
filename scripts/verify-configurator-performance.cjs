@@ -47,7 +47,7 @@ function main() {
     ),
     check(
       'background slider still renders only the active image',
-      source.includes('src={fallbackImages[image.url]?.url || getConfiguratorBackgroundUrl(image.url)}')
+      source.includes('src={fallbackImages[image.url]?.url || getConfiguratorBackgroundUrl(image.url, isMobile)}')
     ),
     check(
       'Comino image proxy retries transient upstream failures within a bounded deadline',

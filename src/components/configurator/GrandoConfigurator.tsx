@@ -45,6 +45,7 @@ import {
   applyQueryToSpec,
   buildRecommendedSpec,
   calculateConfiguratorPrice,
+  hasCompleteConfiguratorSpec,
   getConfiguratorBackgrounds,
   getConfiguratorModelName,
   getConfiguratorValidation,
@@ -566,13 +567,13 @@ const getOptimizedRemoteImageUrl = (url: string, width: number, quality: number)
   return canUseNetlifyImageCdn() ? getNetlifyImageUrl(url, width, quality) : url;
 };
 
-const getConfiguratorBackgroundUrl = (url: string) => {
+const getConfiguratorBackgroundUrl = (url: string, isMobile = false) => {
   if (!url.startsWith(`${GRANDO_CONFIGURATOR_BASE_URL}/image/`)) {
     return url;
   }
 
   const assetPath = new URL(url).pathname;
-  return `${CONFIGURATOR_BACKGROUND_PROXY_URL}${encodeURIComponent(assetPath)}`;
+  return `${CONFIGURATOR_BACKGROUND_PROXY_URL}${encodeURIComponent(assetPath)}${isMobile ? '&mobile=1' : ''}`;
 };
 
 const getLocalConfiguratorBackgroundFallback = (url: string) => {
@@ -1159,7 +1160,7 @@ const BackgroundSlider = ({
     const nextImage = images[nextIndex];
     const preloadImage = new Image();
     preloadImage.decoding = 'async';
-    preloadImage.src = getConfiguratorBackgroundUrl(nextImage.url);
+    preloadImage.src = getConfiguratorBackgroundUrl(nextImage.url, isMobile);
   }, [activeIndex, images, isMobile]);
 
   return (
@@ -1171,14 +1172,14 @@ const BackgroundSlider = ({
         >
           {!failedImages.has(image.url) && (
             <img
-              src={fallbackImages[image.url]?.url || getConfiguratorBackgroundUrl(image.url)}
+              src={fallbackImages[image.url]?.url || getConfiguratorBackgroundUrl(image.url, isMobile)}
               alt=""
               loading={activeIndex === index ? 'eager' : 'lazy'}
               decoding="async"
               fetchPriority={activeIndex === index ? 'high' : 'auto'}
               onError={() => {
                 const fallback = getLocalConfiguratorBackgroundFallback(image.url);
-                if (!fallbackImages[image.url] && fallback.url !== getConfiguratorBackgroundUrl(image.url)) {
+                if (!fallbackImages[image.url] && fallback.url !== getConfiguratorBackgroundUrl(image.url, isMobile)) {
                   setFallbackImages((current) => ({ ...current, [image.url]: fallback }));
                   return;
                 }
@@ -1243,7 +1244,7 @@ const SpecRow = ({ label, moduleKey, item, count, language }: {
   const copy = CONFIGURATOR_COPY[language];
 
   return (
-    <section className="grando-spec-row">
+    <section className="grando-spec-row" data-module={moduleKey}>
       <div className="grando-spec-label">{label}</div>
       <div className="grando-spec-value">
         {count ? <span>{item.total_quantity}x&nbsp;</span> : null}
@@ -1263,12 +1264,14 @@ const QuotePanel = ({
   spec,
   validation,
   requestMode,
-  language
+  language,
+  configurationReady
 }: {
   spec: ConfiguratorSpec;
   validation: ConfiguratorValidation;
   requestMode: boolean;
   language: ConfiguratorLocale;
+  configurationReady: boolean;
 }) => {
   const quotePanelRef = useRef<HTMLDivElement>(null);
   const quoteRequestIdRef = useRef<string | null>(null);
@@ -1284,6 +1287,8 @@ const QuotePanel = ({
   const shareUrl = buildConfiguratorShareUrl(currentUrl, spec);
   const shareTitle = `${modelName} | ${copy.shareTitleSuffix}`;
   const moduleLabels = CONFIGURATOR_MODULE_LABELS[language];
+  const missingModules = CONFIGURATOR_REQUIRED_MODULES.filter((moduleKey) => !spec[moduleKey]);
+  const quoteReady = configurationReady && missingModules.length === 0;
   const configurationSummary = {
     device: spec.device?.name || copy.systemFallback,
     gpu: `${spec.gpu?.total_quantity || 1}x ${formatLocalizedSpecValue('gpu', spec.gpu, language) || copy.notProvided}`,
@@ -1333,7 +1338,7 @@ const QuotePanel = ({
   useEffect(() => {
     if (requestMode) {
       quotePanelRef.current?.scrollIntoView({ block: 'center' });
-      if (!validation.button) {
+      if (quoteReady && !validation.button) {
         const quoteRequestId = beginQuoteRequest();
         setFormOpen(true);
         if (!requestModeTrackedRef.current) {
@@ -1347,12 +1352,12 @@ const QuotePanel = ({
       } else if (!requestModeTrackedRef.current) {
         dispatchConfiguratorLeadIntent('quote_request_blocked', {
           ...quoteTrackingDetail,
-          validationErrors: ['configuration_not_feasible']
+          validationErrors: validation.button ? ['configuration_not_feasible'] : ['configuration_incomplete']
         });
         requestModeTrackedRef.current = true;
       }
     }
-  }, [beginQuoteRequest, requestMode, quoteTrackingDetail, validation.button]);
+  }, [beginQuoteRequest, quoteReady, requestMode, quoteTrackingDetail, validation.button]);
 
   useEffect(() => {
     if (!formOpen) {
@@ -1396,6 +1401,9 @@ const QuotePanel = ({
   };
 
   const handleShare = async () => {
+    if (!quoteReady) {
+      return;
+    }
     let shareMethod = 'copy';
     const shareData: ShareData = {
       title: shareTitle,
@@ -1447,6 +1455,9 @@ const QuotePanel = ({
     }
     if (!formData.phone.trim()) {
       nextErrors.phone = copy.requiredField;
+    }
+    if (!formData.comment.trim()) {
+      nextErrors.comment = copy.requiredField;
     }
 
     setFormErrors(nextErrors);
@@ -1511,6 +1522,7 @@ const QuotePanel = ({
         country: formData.country.trim(),
         subject: quoteSubject,
         toEmail: QUOTE_RECIPIENT_EMAIL,
+        comment: formData.comment.trim(),
         quoteRequestId,
         configurationSummary,
         message,
@@ -1549,6 +1561,11 @@ const QuotePanel = ({
 
   return (
     <div className="grando-quote-panel" ref={quotePanelRef}>
+      {!quoteReady ? (
+        <p className="grando-button-note" role="status">
+          {copy.incompleteSnapshot} {missingModules.map((moduleKey) => moduleLabels[moduleKey]).join(', ')}
+        </p>
+      ) : null}
       {validation.button ? (
         <button
           type="button"
@@ -1557,12 +1574,16 @@ const QuotePanel = ({
         >
           {copy.fixConfig}
         </button>
-      ) : (
+      ) : quoteReady ? (
         <button type="button" className="grando-button grando-quote-button" onClick={handleOpenQuoteForm}>
           {copy.getQuote}
         </button>
+      ) : (
+        <button type="button" className="grando-button grando-quote-button grando-quote-button-error" disabled>
+          {copy.fixConfig}
+        </button>
       )}
-      <button type="button" className="grando-button grando-share-button" onClick={handleShare}>
+      <button type="button" className="grando-button grando-share-button" onClick={handleShare} disabled={!quoteReady}>
         {copy.share}
       </button>
       {validation.button ? (
@@ -1662,12 +1683,13 @@ const QuotePanel = ({
                   </label>
                 </div>
                 <label className="grando-quote-form-message">
-                  <span>{copy.quoteFields.comment} <em>{copy.optionalField}</em></span>
+                  <span>{copy.quoteFields.comment}</span>
                   <textarea
                     rows={4}
                     value={formData.comment}
                     onChange={(event) => updateQuoteField('comment', event.target.value)}
                   />
+                  {formErrors.comment ? <small>{formErrors.comment}</small> : null}
                 </label>
                 <section className="grando-quote-summary" aria-label={copy.quoteSummaryTitle}>
                   <strong>{copy.quoteSummaryTitle}</strong>
@@ -1755,6 +1777,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
     return getConfiguratorBackgrounds(openModule, spec);
   }, [dataSource, device, openModule, spec]);
   const completeSnapshot = hasCompleteConfiguratorSnapshot(device || undefined, options);
+  const completeSpec = completeSnapshot && hasCompleteConfiguratorSpec(spec);
   const requestMode = searchParams.get('request') === 'true';
   const getTrackingDeviceDetail = () => ({
     modelName: device ? translateConfiguratorModelName(device.name, language) : undefined,
@@ -1981,7 +2004,13 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
               ))}
             </div>
 
-            <QuotePanel spec={spec} validation={validation} requestMode={requestMode} language={language} />
+            <QuotePanel
+              spec={spec}
+              validation={validation}
+              requestMode={requestMode}
+              language={language}
+              configurationReady={completeSpec}
+            />
           </aside>
         </div>
       ) : null}

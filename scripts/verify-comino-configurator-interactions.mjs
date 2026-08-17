@@ -140,15 +140,33 @@ try {
     await new Promise(resolve => setTimeout(resolve, 120));
     const parsed = copied ? new URL(copied) : null;
     const modules = ['gpu', 'cpu', 'ram', 'storage', 'storage_1', 'storage_2', 'storage_3', 'storage_4', 'psu', 'network'];
+    const snapshot = () => Object.fromEntries(modules.map(module => [
+      module,
+      document.querySelector('[data-module="' + module + '"].grando-spec-row .grando-spec-value')?.textContent.trim() || ''
+    ]));
     return {
       found: Boolean(button),
       copied,
       status: document.querySelector('.grando-share-status')?.textContent.trim(),
       hasAllModules: Boolean(parsed) && modules.every(module => parsed.searchParams.has(module)),
-      hasQuantities: Boolean(parsed?.searchParams.has('gpu_value') && parsed?.searchParams.has('cpu_value'))
+      hasQuantities: Boolean(parsed?.searchParams.has('gpu_value') && parsed?.searchParams.has('cpu_value')),
+      beforeSnapshot: snapshot()
     };
   })()`);
-  check('分享會產生包含十模組與數量的可還原配置網址', share.found && /\/configurator\/28\/?\?/.test(share.copied) && share.hasAllModules && share.hasQuantities && Boolean(share.status), share);
+  let shareAfterSnapshot = null;
+  if (share.copied) {
+    const sharedUrl = new URL(share.copied);
+    await load(`${sharedUrl.pathname}${sharedUrl.search}`);
+    shareAfterSnapshot = await evaluate(`(() => {
+      const modules = ['gpu', 'cpu', 'ram', 'storage', 'storage_1', 'storage_2', 'storage_3', 'storage_4', 'psu', 'network'];
+      return Object.fromEntries(modules.map(module => [
+        module,
+        document.querySelector('[data-module="' + module + '"].grando-spec-row .grando-spec-value')?.textContent.trim() || ''
+      ]));
+    })()`);
+  }
+  const shareSnapshotsMatch = Boolean(shareAfterSnapshot) && JSON.stringify(share.beforeSnapshot) === JSON.stringify(shareAfterSnapshot);
+  check('分享會真正開啟網址並讓十模組、GPU／CPU 數量與配置摘要前後一致', share.found && /\/configurator\/28\/?\?/.test(share.copied) && share.hasAllModules && share.hasQuantities && Boolean(share.status) && shareSnapshotsMatch, { ...share, afterSnapshot: shareAfterSnapshot, snapshotsMatch: shareSnapshotsMatch });
 
   const quote = await evaluate(`(async () => {
     const trigger = [...document.querySelectorAll('.grando-quote-button')].find(button => !button.classList.contains('grando-quote-button-error'));
@@ -180,6 +198,83 @@ try {
     errorText: document.querySelector('.grando-quote-button-error')?.textContent.trim() || ''
   }))()`);
   check('不相容配置的 request=true 不會開啟詢價表單', !blockedRequestMode.modal && blockedRequestMode.errorButton, blockedRequestMode);
+
+  await load('/configurator/28/?gpu=50090&gpu_value=6&cpu=50090&cpu_value=999&gpu=unknown&storage_99=unknown');
+  const querySafety = await evaluate(`(() => ({
+    query: location.search,
+    gpu: document.querySelector('[data-module="gpu"].grando-spec-row .grando-spec-value')?.textContent.trim() || '',
+    cpu: document.querySelector('[data-module="cpu"].grando-spec-row .grando-spec-value')?.textContent.trim() || '',
+    moduleCount: document.querySelectorAll('[data-module].grando-spec-row').length
+  }))()`);
+  check('重複、未知與跨模組 query 不會污染配置', querySafety.moduleCount === 10 && !querySafety.cpu.includes('50090') && !querySafety.cpu.includes('999'), querySafety);
+
+  const officialDeviceIds = [27, 36, 29, 28, 23, 34, 30, 22, 13, 5, 21];
+  const deviceParity = [];
+  for (const deviceId of officialDeviceIds) {
+    await load(`/configurator/${deviceId}/`);
+    deviceParity.push(await evaluate(`(() => ({
+      deviceId: ${deviceId},
+      moduleCount: document.querySelectorAll('[data-module].grando-spec-row').length,
+      optionSections: document.querySelectorAll('[data-module].grando-config-section').length,
+      quoteButton: Boolean(document.querySelector('.grando-quote-button:not(.grando-quote-button-error)')),
+      quoteBlocked: Boolean(document.querySelector('.grando-quote-button-error')),
+      storage2: document.querySelector('[data-module="storage_2"].grando-spec-value')?.textContent.trim() || ''
+    }))()`));
+  }
+  check(
+    '11 個原廠機型逐一載入十模組、可詢價並保留 storage_2 預設',
+    deviceParity.length === officialDeviceIds.length &&
+      deviceParity.every((record) => {
+        const incomplete = [22, 13, 21].includes(record.deviceId);
+        return record.optionSections === 10 && record.moduleCount === (incomplete ? 9 : 10) && (incomplete ? record.quoteBlocked && !record.quoteButton : record.quoteButton);
+      }) &&
+      [22, 13, 21].every((deviceId) => !deviceParity.find((record) => record.deviceId === deviceId)?.storage2),
+    deviceParity
+  );
+
+  const mobileParity = [];
+  for (const deviceId of [28, 22]) {
+    await send('Emulation.setDeviceMetricsOverride', {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 2,
+      mobile: true
+    });
+    await load(`/configurator/${deviceId}/`);
+    mobileParity.push(await evaluate(`(async () => {
+      const modules = ${JSON.stringify(requiredModules)};
+      const records = [];
+      for (const module of modules) {
+        const section = document.querySelector('[data-module="' + module + '"]');
+        const title = section?.querySelector('.grando-config-section-title');
+        if (title?.getAttribute('aria-expanded') !== 'true') {
+          title?.click();
+          await new Promise(resolve => setTimeout(resolve, 180));
+        }
+        if (module === 'storage_2' && !section?.querySelector('.grando-option.active')) {
+          section?.querySelector('.grando-option')?.click();
+          await new Promise(resolve => setTimeout(resolve, 180));
+        }
+        records.push({ module, open: title?.getAttribute('aria-expanded') === 'true', options: section?.querySelectorAll('.grando-option').length || 0 });
+      }
+      const quote = document.querySelector('.grando-quote-button:not(.grando-quote-button-error)');
+      quote?.click();
+      await new Promise(resolve => setTimeout(resolve, 180));
+      return {
+        deviceId: ${deviceId},
+        modules: records,
+        formReachable: Boolean(document.querySelector('.grando-quote-modal')),
+        width: document.documentElement.clientWidth,
+        scrollWidth: document.documentElement.scrollWidth
+      };
+    })()`));
+  }
+  await send('Emulation.clearDeviceMetricsOverride');
+  check(
+    '真實 mobile mode 下 28 與 22 可操作十模組且詢價表單可達',
+    mobileParity.every((record) => record.modules.length === 10 && record.modules.every((module) => module.open && module.options > 0) && record.formReachable && record.scrollWidth <= record.width + 2),
+    mobileParity
+  );
 
   await load('/configurator/28/?gpu=6910&gpu_value=999&cpu=90988&cpu_value=999');
   const invalidQuantities = await evaluate(`(() => {

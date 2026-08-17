@@ -50,10 +50,17 @@ const configurationSummary = {
   psu: '4x PSU REDUNDANT 8000W',
   network: '100 Gbit ETH / IB'
 };
-const valid = await sendQuoteEmail(new Request('https://example.test/send-email', {
+const missingComment = await sendQuoteEmail(new Request('https://example.test/send-email', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ firstName: 'Ada', lastName: 'Buyer', email: 'buyer@example.com', message: 'Production inquiry', quoteRequestId, configurationSummary })
+}));
+assert.equal(missingComment.status, 400);
+assert.equal(calls.length, 0);
+const valid = await sendQuoteEmail(new Request('https://example.test/send-email', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ firstName: 'Ada', lastName: 'Buyer', email: 'buyer@example.com', message: 'Production inquiry', comment: 'Need delivery and installation review.', quoteRequestId, configurationSummary })
 }));
 assert.equal(valid.status, 200);
 assert.equal(calls.length, 3);
@@ -73,7 +80,7 @@ assert.ok(String(calls[2].url).endsWith('/messages/draft-id/send'));
 const wrongRecipient = await sendQuoteEmail(new Request('https://example.test/send-email', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ firstName: 'Ada', lastName: 'Buyer', email: 'buyer@example.com', message: 'Production inquiry', quoteRequestId, configurationSummary, toEmail: 'other@example.com' })
+  body: JSON.stringify({ firstName: 'Ada', lastName: 'Buyer', email: 'buyer@example.com', message: 'Production inquiry', comment: 'Need delivery and installation review.', quoteRequestId, configurationSummary, toEmail: 'other@example.com' })
 }));
 assert.equal(wrongRecipient.status, 400);
 assert.equal(calls.length, 3);
