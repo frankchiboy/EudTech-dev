@@ -81,6 +81,19 @@ for (const testCase of cases) {
     while (!events.some((event) => event.method === 'Page.loadEventFired') && Date.now() < deadline) await sleep(100);
     if (!events.some((event) => event.method === 'Page.loadEventFired')) throw new Error('Page load timeout.');
     await sleep(1200);
+    await send('Runtime.evaluate', {
+      expression: `new Promise(resolve => {
+        const images = [...document.querySelectorAll('section[aria-labelledby="home-partners-heading"] img')];
+        const pending = images.filter(image => !image.complete || image.naturalWidth === 0);
+        if (pending.length === 0) return resolve();
+        let remaining = pending.length;
+        const settle = () => { remaining -= 1; if (remaining === 0) resolve(); };
+        pending.forEach(image => { image.addEventListener('load', settle, { once: true }); image.addEventListener('error', settle, { once: true }); });
+        setTimeout(resolve, 8000);
+      })`,
+      awaitPromise: true,
+      returnByValue: true,
+    });
 
     const evaluation = await send('Runtime.evaluate', {
       expression: `(() => {
