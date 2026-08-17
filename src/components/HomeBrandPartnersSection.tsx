@@ -6,11 +6,11 @@ interface HomeBrandPartnersSectionProps { isEnglish: boolean; }
 
 const HomeBrandPartnersSection: React.FC<HomeBrandPartnersSectionProps> = ({ isEnglish }) => {
   const technologies = [
-    { name: 'NVIDIA', logo: '/nvidia-logo.png', darkModeClass: 'dark:brightness-0 dark:invert' },
-    { name: 'AMD', logo: '/amd-logo.png', darkModeClass: 'dark:brightness-0 dark:invert' },
-    { name: 'PyTorch', logo: '/pytorch-logo.png', darkModeClass: 'dark:brightness-125' },
-    { name: 'TensorFlow', logo: '/tensorflow-logo.png', darkModeClass: 'dark:brightness-125' },
-    { name: 'Keras', logo: '/keras-logo.png', darkModeClass: 'dark:brightness-125' },
+    { name: 'NVIDIA', logo: '/nvidia-logo-modified.png' },
+    { name: 'AMD', logo: '/amd-logo.png' },
+    { name: 'PyTorch', logo: '/pytorch-logo.png' },
+    { name: 'TensorFlow', logo: '/tensorflow-logo.png' },
+    { name: 'Keras', logo: '/keras-logo.png' },
   ];
 
   return (
@@ -40,7 +40,13 @@ const HomeBrandPartnersSection: React.FC<HomeBrandPartnersSectionProps> = ({ isE
         </div>
         <div className="mt-14 rounded-2xl border border-slate-200 px-6 py-8 dark:border-slate-800">
           <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{isEnglish ? 'Compatible technology ecosystem' : '相容技術生態'}</p>
-          <div className="mt-7 grid grid-cols-2 items-center gap-8 sm:grid-cols-3 lg:grid-cols-5">{technologies.map((item) => <div key={item.name} className="flex h-14 items-center justify-center"><img src={item.logo} alt={item.name} loading="eager" decoding="async" className={`max-h-11 max-w-[130px] object-contain opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0 ${item.darkModeClass}`} /></div>)}</div>
+          <div className="mt-7 grid grid-cols-2 items-center gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {technologies.map((item) => (
+              <div key={item.name} className="group flex h-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 dark:border-slate-700 dark:bg-white dark:shadow-none">
+                <img src={item.logo} alt={item.name} loading="eager" decoding="async" className="max-h-11 max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

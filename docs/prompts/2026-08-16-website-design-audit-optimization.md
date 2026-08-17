@@ -10,6 +10,8 @@
 
 首頁合作夥伴區塊在 1052px 寬度出現 RWD 排版錯亂，修正後重新截圖驗證。
 
+首頁「相容技術生態」區塊的 NVIDIA、AMD、PyTorch、TensorFlow 與 Keras 商標保留原廠彩色識別，並且在淺色模式與深色模式都保持清楚可讀。
+
 第三點縮短首頁，將完整 Comino、Cyabra 與產品內容移到專頁，保留原本的視覺設計 eudtech x 品牌, 和品牌廠商partner list的連結等。
 
 參考簡報的文案和素材：
