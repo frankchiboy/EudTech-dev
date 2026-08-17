@@ -41,8 +41,11 @@
 
 ## Preview acceptance gate
 
-- Verify all Netlify Image CDN product images on the branch preview.
-- Repeat the critical route matrix and interaction suite against the branch preview.
-- Record the preview deploy identifier and final public screenshots below before release approval.
+- Netlify branch deploy: `6a82e07784a64b0008eb225d`, commit `0921566ba3cf229282f88aa01b62f091b7335b8f`, state `ready`.
+- Public preview: `https://codex-website-next-update--website-eudtech.netlify.app`.
+- Public visual verification: 41 routes × desktop/mobile = 82 unique checks passed on the latest website code. Evidence is split into stable batches under `public-major-final`, `public-configurator-retry-final`, `public-configurator-remaining-final`, `public-topics-a-final`, and `public-topics-b-final`.
+- Public interaction verification passed on the latest website code: `interactions-public-latest/interactions.json`.
+- Netlify Image CDN product images passed. An intermittent upstream background failure was converted into a controlled branded gradient fallback and the affected routes then passed on both desktop and mobile.
+- Production remains unchanged and requires explicit approval before release.
 
-final result: pending public preview verification
+final result: passed
