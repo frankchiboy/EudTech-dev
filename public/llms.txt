@@ -1,16 +1,15 @@
 # EudTech Solutions
 
-EudTech provides enterprise AI Agent implementation, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
+EudTech provides one integrated enterprise AI agent and headless SaaS service, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
 
 ## Primary URLs
 
 - Homepage: https://eudaemonia.tech/
 - Comino Grando Configurator: https://eudaemonia.tech/configurator/
 - AI Solutions Overview: https://eudaemonia.tech/solutions/
-- AI Agent Implementation: https://eudaemonia.tech/solutions/ai-agent/
+- AI Agent and Headless SaaS Implementation: https://eudaemonia.tech/solutions/ai-agent/
 - 產品與品牌｜EudTech: https://eudaemonia.tech/products/
 - AI 伺服器採購資源｜EudTech: https://eudaemonia.tech/resources/
-- 企業 Headless SaaS 與 AI Agent 導入｜EudTech: https://eudaemonia.tech/solutions/headless-saas/
 - AI 運算基礎設施｜EudTech: https://eudaemonia.tech/solutions/ai-infrastructure/
 - 社群情報與品牌保護｜EudTech: https://eudaemonia.tech/solutions/social-intelligence/
 - 關於 EudTech｜優達盟資訊科技: https://eudaemonia.tech/about/
@@ -48,7 +47,7 @@ EudTech provides enterprise AI Agent implementation, AI GPU infrastructure, Comi
 
 ## High-Intent Topics
 
-- Enterprise AI Agent implementation
+- Enterprise AI Agent and headless SaaS implementation
 - AI infrastructure planning
 - Cyabra social intelligence
 - GPU server quote

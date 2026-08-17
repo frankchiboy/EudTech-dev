@@ -139,6 +139,6 @@ const SITE_INFORMATION_ROUTES = [
     specs: [{ label: '資料聯絡', value: 'info@eudaemonia.tech' }, { label: '網站資料', value: '詢價、聯絡與來源歸因' }, { label: '資料請求', value: '查詢、更正或刪除請求' }],
     relatedLinks: ['/contact', '/about', '/solutions', '/products']
   }
-];
+].filter((route) => route.path !== '/solutions/headless-saas');
 
 module.exports = { SITE_INFORMATION_ROUTES };

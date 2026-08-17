@@ -164,6 +164,7 @@ const audiences: { icon: LucideIcon; title: Bilingual; body: Bilingual }[] = [
 ];
 
 const faqs: { question: Bilingual; answer: Bilingual }[] = [
+  { question: { zh: 'AI Agent 與 Headless SaaS 是兩項不同服務嗎？', en: 'Are AI agents and headless SaaS separate services?' }, answer: { zh: '不是。EudTech 將兩者視為同一項企業導入服務：Headless SaaS 負責連接既有系統並建立品牌入口與事件層，AI Agent 在相同權限、核准與稽核架構內處理追蹤、核對與催辦。', en: 'No. EudTech delivers them as one enterprise service: headless SaaS connects existing systems and provides branded access and events, while AI agents handle follow-up and reconciliation inside the same permission, approval, and audit model.' } },
   { question: { zh: 'AI Agent 導入會直接取代人員嗎？', en: 'Will AI agents replace our staff?' }, answer: { zh: '本方案讓 AI 接手追蹤、核對與催辦，重要決策仍由人員核准。導入目標是提高團隊處理量與可見性，不是取消責任歸屬。', en: 'The solution lets agents handle follow-up, reconciliation, and reminders while people approve important decisions. The goal is capacity and visibility, not removing accountability.' } },
   { question: { zh: '需要更換目前使用的 ERP 或 CRM 嗎？', en: 'Do we need to replace our ERP or CRM?' }, answer: { zh: '不需要一次更換。導入會先確認既有系統的 API、匯出或事件能力，再用最小範圍連接高價值流程。', en: 'No. We first assess APIs, exports, or events in existing systems and connect the highest-value flow with minimal change.' } },
   { question: { zh: '第一個導入流程應該選什麼？', en: 'Which process should we start with?' }, answer: { zh: '建議選擇輸入明確、重複頻率高、延誤成本可量化的追蹤或核對流程，例如詢價追蹤、發票核對或專案催辦。', en: 'Start with a clear, repetitive flow where delay costs are measurable, such as RFQ follow-up, invoice checks, or project reminders.' } },
@@ -176,10 +177,10 @@ const faqs: { question: Bilingual; answer: Bilingual }[] = [
 
 const buildStructuredData = (isEnglish: boolean) => {
   const pageUrl = canonicalPageUrl('https://eudaemonia.tech/solutions/ai-agent');
-  const pageName = isEnglish ? 'AI Agent Implementation' : 'AI Agent 導入';
+  const pageName = isEnglish ? 'AI Agent and Headless SaaS Implementation' : 'AI Agent 與 Headless SaaS 導入';
   const pageDescription = isEnglish
-    ? 'EudTech helps teams use AI agents to take over follow-up, reconciliation, and reminders while people approve important decisions.'
-    : 'EudTech 協助企業導入 AI Agent 接手追蹤、核對與催辦，重要決策仍由人員核准。';
+    ? 'EudTech connects existing systems to branded portals, event workflows, and controlled AI agents while people approve important decisions.'
+    : 'EudTech 串接企業既有系統，建立品牌入口、事件流程與受控 AI Agent，重要決策仍由人員核准。';
 
   return [
     {
@@ -187,7 +188,7 @@ const buildStructuredData = (isEnglish: boolean) => {
       '@type': 'Service',
       name: pageName,
       description: pageDescription,
-      serviceType: 'AI agent implementation and workflow automation',
+      serviceType: 'AI agent and headless SaaS implementation',
       areaServed: { '@type': 'Country', name: isEnglish ? 'Taiwan' : '台灣' },
       provider: { '@type': 'Organization', name: 'EudTech', url: canonicalPageUrl('https://eudaemonia.tech'), email: 'info@eudaemonia.tech' },
       url: pageUrl
@@ -222,9 +223,9 @@ const AiAgentSolutionPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title={isEnglish ? 'Enterprise AI Agent Implementation' : '企業 AI Agent 導入｜串接 Outlook、Teams、Dataverse 與 ERP'}
-        description={isEnglish ? 'EudTech helps teams use AI agents to take over follow-up, reconciliation, and reminders while people approve important decisions.' : 'EudTech 協助企業導入 AI Agent 接手追蹤、核對與催辦，重要決策仍由人員核准。'}
-        keywords={isEnglish ? 'AI agent implementation, workflow automation, AI operations, business process automation, Taiwan' : 'AI Agent 導入, AI 營運系統, 工作流程自動化, 企業 AI 導入, 台灣 AI 顧問'}
+        title={isEnglish ? 'Enterprise AI Agent and Headless SaaS Implementation' : '企業 AI Agent 與 Headless SaaS 導入'}
+        description={isEnglish ? 'Connect ERP, CRM, Microsoft 365, databases, and APIs to branded portals, event workflows, and controlled AI agents with human approval.' : '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程與受控 AI Agent，重要動作保留人員核准。'}
+        keywords={isEnglish ? 'AI agent implementation, headless SaaS, workflow automation, customer portal, business process automation, Taiwan' : 'AI Agent 導入, Headless SaaS, 工作流程自動化, 客戶 Portal, 企業 AI 導入, 台灣 AI 顧問'}
         url={pageUrl}
         type="website"
         isEnglish={isEnglish}
@@ -239,14 +240,14 @@ const AiAgentSolutionPage: React.FC = () => {
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
                 <Sparkles className="h-4 w-4" />
-                {isEnglish ? 'AI operations, designed for accountability' : '以責任歸屬為核心的 AI 營運'}
+                {isEnglish ? 'AI agents × headless SaaS' : 'AI Agent × Headless SaaS'}
               </div>
               <h1 className="mt-7 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
-                {isEnglish ? 'Let AI handle the follow-up.' : '讓 AI 接手追蹤。'}
-                <span className="block text-cyan-300">{isEnglish ? 'Keep decisions with people.' : '重要決策仍由人員核准。'}</span>
+                {isEnglish ? 'Connect every system.' : '串接既有系統。'}
+                <span className="block text-cyan-300">{isEnglish ? 'Let agents move work forward.' : '讓 Agent 推動工作。'}</span>
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-                {isEnglish ? 'EudTech connects the systems your team already uses and turns scattered work into a visible, event-driven operating flow.' : 'EudTech 連接團隊已經使用的系統，把分散的工作轉成可見、可追蹤、由事件驅動的營運流程。'}
+                {isEnglish ? 'EudTech connects ERP, CRM, Microsoft 365, databases, and APIs to branded portals, event workflows, and controlled AI agents. Sensitive actions remain subject to human approval.' : 'EudTech 串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程與受控 AI Agent；敏感動作仍由人員核准。'}
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-950/30 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-200">

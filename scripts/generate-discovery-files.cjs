@@ -103,33 +103,33 @@ const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
 }));
 const homepageUrl = {
   loc: `${siteOrigin}/`,
-  title: 'AI Agent、Headless SaaS、GPU 運算與社群情報｜EudTech',
-  description: 'EudTech 提供企業 AI Agent 導入、Headless SaaS 整合、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。',
+  title: 'AI Agent 與 Headless SaaS、GPU 運算與社群情報｜EudTech',
+  description: 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
   priority: '1.0',
   source: {
-    title: 'AI Agent、Headless SaaS、GPU 運算與社群情報｜EudTech',
-    description: 'EudTech 提供企業 AI Agent 導入、Headless SaaS 整合、AI GPU 運算基礎設施與 Cyabra 社群情報解決方案。'
+    title: 'AI Agent 與 Headless SaaS、GPU 運算與社群情報｜EudTech',
+    description: 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
   }
 };
 const solutionHubUrl = {
   loc: pageUrl('/solutions'),
   title: 'AI 與數位服務解決方案總覽｜EudTech',
-  description: '依企業流程、Headless SaaS、AI 運算工作負載與社群情報需求，選擇 EudTech 導入路徑。',
+  description: '從 AI Agent 與 Headless SaaS、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
   priority: '0.93',
   source: {
     title: 'AI 與數位服務解決方案總覽｜EudTech',
-    description: 'EudTech 的 AI Agent、Headless SaaS、AI 運算基礎設施與 Cyabra 社群情報四大方案。',
+    description: 'EudTech 的 AI Agent 與 Headless SaaS、AI 運算基礎設施及 Cyabra 社群情報三大方案。',
     solutionSlugs: CONFIGURATOR_SEO_PAGES.map((page) => page.slug)
   }
 };
 const aiAgentUrl = {
   loc: pageUrl('/solutions/ai-agent'),
-  title: '企業 AI Agent 導入',
-  description: '串接 Outlook、Teams、SharePoint、Dataverse、ERP 與財務證據，建立可執行、可追溯、可人工核准的 AI Agent 工作流程。',
+  title: '企業 AI Agent 與 Headless SaaS 導入',
+  description: '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。',
   priority: '0.92',
   source: {
-    title: '企業 AI Agent 導入',
-    description: 'EudTech Kinetic、Dataverse 與 Accounting Hub 的企業 AI Agent 導入服務。'
+    title: '企業 AI Agent 與 Headless SaaS 導入',
+    description: 'EudTech 將品牌入口、事件整合與受控 AI Agent 合併為同一項企業導入服務。'
   }
 };
 const configuratorUrl = {
@@ -329,7 +329,7 @@ const llmsPrimaryUrls = [
   ['Homepage', `${siteOrigin}/`],
   ['Comino Grando Configurator', pageUrl('/configurator')],
   ['AI Solutions Overview', pageUrl('/solutions')],
-  ['AI Agent Implementation', pageUrl('/solutions/ai-agent')],
+  ['AI Agent and Headless SaaS Implementation', pageUrl('/solutions/ai-agent')],
   ...siteInformationUrls.map((entry) => [entry.title, entry.loc]),
   ['Configurator Link Index', pageUrl(CONFIGURATOR_LINK_INDEX_PATH)],
   ...productUrls.map((entry) => [entry.title, entry.loc]),
@@ -337,7 +337,7 @@ const llmsPrimaryUrls = [
 ];
 
 const llmsTopics = [
-  'Enterprise AI Agent implementation',
+  'Enterprise AI Agent and headless SaaS implementation',
   'AI infrastructure planning',
   'Cyabra social intelligence',
   'GPU server quote',
@@ -376,7 +376,7 @@ const formatFaqs = (faqs) =>
 
 const llms = `# EudTech Solutions
 
-EudTech provides enterprise AI Agent implementation, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
+EudTech provides one integrated enterprise AI agent and headless SaaS service, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
 
 ## Primary URLs
 
