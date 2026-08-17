@@ -943,6 +943,10 @@ const OptionSection = ({
 
   const quantities = selected?.custom_values || [];
 
+  if (!options.length) {
+    return null;
+  }
+
   return (
     <section className={`grando-config-section ${isOpen ? 'open' : ''}`}>
       <header>
@@ -1736,9 +1740,33 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
     });
   };
 
-  const getOptions = (moduleKey: ConfiguratorModule) => {
-    return options.filter((option) => option.module_type === moduleKey);
-  };
+  const optionsByModule = useMemo(() => {
+    const next = new Map<ConfiguratorModule, ConfiguratorOption[]>();
+
+    moduleOrder.forEach((moduleKey) => next.set(moduleKey, []));
+    options.forEach((option) => {
+      const moduleKey = option.module_type as ConfiguratorModule;
+      const moduleOptions = next.get(moduleKey);
+      if (moduleOptions) {
+        moduleOptions.push(option);
+      }
+    });
+
+    return next;
+  }, [options]);
+
+  const availableModules = useMemo(
+    () => moduleOrder.filter((moduleKey) => (optionsByModule.get(moduleKey)?.length ?? 0) > 0),
+    [optionsByModule]
+  );
+
+  useEffect(() => {
+    if (!availableModules.length || availableModules.includes(openModule)) {
+      return;
+    }
+
+    setOpenModule(availableModules[0]);
+  }, [availableModules, openModule]);
 
   const modelName = device ? translateConfiguratorModelName(device.name, language) : undefined;
   const detailProductSeo = getConfiguratorProductSeo(pid);
@@ -1808,14 +1836,14 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
       {!loading && !error && device ? (
         <div className="grando-configurator-shell">
           <aside className="grando-sidebar" aria-label={copy.configurationControls}>
-            {moduleOrder.map((moduleKey) => (
+            {availableModules.map((moduleKey) => (
               <OptionSection
                 key={moduleKey}
                 label={moduleLabels[moduleKey]}
                 language={language}
                 moduleKey={moduleKey}
                 icon={getModuleIcon(moduleKey)}
-                options={getOptions(moduleKey)}
+                options={optionsByModule.get(moduleKey) || []}
                 selected={spec[moduleKey] as ConfiguratorSpecItem | undefined}
                 isOpen={openModule === moduleKey}
                 max={moduleKey === 'gpu' ? device.gpu_slots : 99}

@@ -1,5 +1,10 @@
 # User Original Prompts
 
+## 2026-08-17 Production Configurator Repair
+
+1. `現在正式站有這樣壞掉嗎`
+2. `修好`
+
 ## 2026-08-16 AI Agent Website Solution Page
 
 1. 類似這幾家，幫做出最優化的版本在我們網站上：`/Users/serverc/_軟體專案/EudTech-dev`
