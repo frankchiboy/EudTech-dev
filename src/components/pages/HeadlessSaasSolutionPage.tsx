@@ -100,7 +100,7 @@ const HeadlessSaasSolutionPage: React.FC = () => {
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">HEADLESS SAAS × NOTION</p>
-            <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-5xl">{isEnglish ? 'Keep Notion behind the work. Put your brand and workflow in front.' : '保留 Notion 工作方式，客戶看到的是您的品牌與流程'}</h1>
+            <h1 className="mt-5 text-balance text-4xl font-bold leading-tight tracking-tight sm:text-5xl">{isEnglish ? 'Keep Notion behind the work. Put your brand and workflow in front.' : '保留 Notion 工作方式，客戶看到的是您的品牌與流程'}</h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">{isEnglish ? 'EudTech connects Notion and existing SaaS to a branded portal, event workflows, and controlled AI agents—without forcing your team to rebuild how it works.' : 'EudTech 將 Notion 與既有 SaaS 接上品牌化入口、事件流程與受控 AI Agent，不要求團隊重建已經熟悉的工作方式。'}</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row"><ActionLink href="/contact">{isEnglish ? 'Discuss one workflow' : '討論一條流程'}</ActionLink><ActionLink href="#architecture" secondary>{isEnglish ? 'View the architecture' : '查看整合架構'}</ActionLink></div>
             <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-xs font-semibold text-slate-400"><span>{isEnglish ? 'Customer-owned workspace' : '客戶持有工作區'}</span><span>{isEnglish ? 'Event-driven updates' : '事件驅動更新'}</span><span>{isEnglish ? 'Human approval available' : '保留人工核准'}</span><span>{isEnglish ? 'Traceable operations' : '操作可以追溯'}</span></div>
