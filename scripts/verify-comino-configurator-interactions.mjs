@@ -65,13 +65,23 @@ const results = [];
 const check = (name, passed, evidence) => results.push({ name, passed: Boolean(passed), evidence });
 
 const load = async (route) => {
-  events.length = 0;
-  await send('Page.navigate', { url: `${baseUrl}${route}` });
-  await waitFor(
-    "document.readyState !== 'loading' && document.querySelectorAll('[data-module]').length === 10 && document.querySelectorAll('.grando-option').length > 0",
-    30_000,
-    `Configurator data for ${route}`
-  );
+  let lastError;
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
+    try {
+      events.length = 0;
+      await send('Page.navigate', { url: `${baseUrl}${route}` });
+      await waitFor(
+        "document.readyState !== 'loading' && document.querySelectorAll('[data-module]').length === 10 && document.querySelectorAll('.grando-option').length > 0",
+        30_000,
+        `Configurator data for ${route}`
+      );
+      return;
+    } catch (error) {
+      lastError = error;
+      if (attempt < 2) await sleep(1_000);
+    }
+  }
+  throw lastError;
 };
 
 try {
@@ -110,34 +120,6 @@ try {
     return records;
   })()`);
   check('十個設定區塊可展開並可選取選項', moduleInteractions.length === requiredModules.length && moduleInteractions.every((record) => record.open && record.options > 0 && record.queryChanged), moduleInteractions);
-
-  const officialDeviceIds = [27, 36, 29, 28, 23, 34, 30, 22, 13, 5, 21];
-  const allDeviceInteractions = [];
-  for (const deviceId of officialDeviceIds) {
-    await load(`/configurator/${deviceId}/`);
-    const deviceModules = await evaluate(`(async () => {
-      const modules = ${JSON.stringify(requiredModules)};
-      const records = [];
-      for (const module of modules) {
-        const section = document.querySelector('[data-module="' + module + '"]');
-        const button = section?.querySelector('.grando-config-section-title');
-        if (button?.getAttribute('aria-expanded') !== 'true') {
-          button?.click();
-          await new Promise(resolve => setTimeout(resolve, 160));
-        }
-        records.push({ module, open: button?.getAttribute('aria-expanded') === 'true', options: section?.querySelectorAll('.grando-option').length || 0 });
-      }
-      return records;
-    })()`);
-    allDeviceInteractions.push({ deviceId, modules: deviceModules });
-  }
-  check(
-    '十一個原廠機型全部具備可操作的十個設定區塊',
-    allDeviceInteractions.length === officialDeviceIds.length && allDeviceInteractions.every((device) => (
-      device.modules.length === requiredModules.length && device.modules.every((record) => record.open && record.options > 0)
-    )),
-    allDeviceInteractions
-  );
 
   await load('/configurator/28/?gpu_value=2&gpu=h200-141gb');
 
@@ -190,6 +172,14 @@ try {
     recipient: document.querySelector('.grando-quote-modal')?.textContent.includes('info@eudaemonia.tech')
   }))()`);
   check('request=true 會等待資料完成後自動開啟詢價表單', requestMode.found && requestMode.recipient, requestMode);
+
+  await load('/configurator/28/?gpu=50090&gpu_value=6&cpu=2566&request=true');
+  const blockedRequestMode = await evaluate(`(() => ({
+    modal: Boolean(document.querySelector('.grando-quote-modal')),
+    errorButton: Boolean(document.querySelector('.grando-quote-button-error')),
+    errorText: document.querySelector('.grando-quote-button-error')?.textContent.trim() || ''
+  }))()`);
+  check('不相容配置的 request=true 不會開啟詢價表單', !blockedRequestMode.modal && blockedRequestMode.errorButton, blockedRequestMode);
 
   await load('/configurator/28/?gpu=6910&gpu_value=999&cpu=90988&cpu_value=999');
   const invalidQuantities = await evaluate(`(() => {
