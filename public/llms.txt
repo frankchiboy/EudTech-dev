@@ -9,7 +9,7 @@ EudTech provides one integrated enterprise AI agent and headless SaaS service, A
 - AI Solutions Overview: https://eudaemonia.tech/solutions/
 - AI Agent and Headless SaaS Implementation: https://eudaemonia.tech/solutions/ai-agent/
 - 產品與品牌｜EudTech: https://eudaemonia.tech/products/
-- AI 伺服器採購資源｜EudTech: https://eudaemonia.tech/resources/
+- GPU 伺服器選型與採購｜EudTech: https://eudaemonia.tech/resources/
 - AI 運算基礎設施｜EudTech: https://eudaemonia.tech/solutions/ai-infrastructure/
 - 社群情報與品牌保護｜EudTech: https://eudaemonia.tech/solutions/social-intelligence/
 - 關於 EudTech｜優達盟資訊科技: https://eudaemonia.tech/about/

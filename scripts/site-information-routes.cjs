@@ -16,17 +16,17 @@ const SITE_INFORMATION_ROUTES = [
   },
   {
     path: '/resources',
-    title: 'AI 伺服器採購資源｜EudTech',
-    description: '依選型與報價、部署與散熱、產品比較、RFQ 與公部門採購，瀏覽 EudTech 的實際採購內容與配置入口。',
+    title: 'GPU 伺服器選型與採購｜EudTech',
+    description: '依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。',
     keywords: 'GPU 伺服器採購, AI 伺服器 RFQ, GPU 選型, 液冷部署, 公部門採購',
-    lead: '將現有 17 個 GPU 伺服器與工作站內容依採購任務分組，從研究一路連到配置及詢價。',
+    lead: '尚未確定規格時由 EudTech 協助選型；已有方向時直接建立配置；準備採購文件時使用 RFQ 與驗收檢核表。',
     sourceImage: '/grando-8gpu-server.jpg',
-    imageAlt: 'EudTech AI 伺服器採購資源',
+    imageAlt: 'EudTech GPU 伺服器選型與採購',
     kind: 'collection',
     priority: '0.88',
     changefreq: 'weekly',
-    highlights: ['選型與報價入口。', '部署、散熱與電力規劃。', '比較、RFQ、公部門與案例內容。'],
-    specs: [{ label: '內容數量', value: '17 個採購與配置入口' }, { label: '主要階段', value: '選型、部署、比較、RFQ 與案例' }, { label: '下一步', value: '開啟配置器或聯絡 EudTech' }],
+    highlights: ['請 EudTech 依工作負載協助選型。', '直接建立 GPU 伺服器或工作站配置。', '準備 RFQ、部署條件與驗收要求。'],
+    specs: [{ label: '第一步', value: '確認工作負載與部署條件' }, { label: '設備方向', value: 'GPU 伺服器、工作站或整合套件' }, { label: '下一步', value: '協助選型、建立配置或準備 RFQ' }],
     relatedLinks: ['/solutions/ai-infrastructure', '/configurator', '/solutions/gpu-server-rfq-checklist', '/solutions/gpu-server-quote', '/contact']
   },
   {

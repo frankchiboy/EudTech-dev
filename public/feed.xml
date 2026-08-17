@@ -36,11 +36,11 @@
       <description>瀏覽 EudTech 軟體與導入服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。</description>
     </item>
     <item>
-      <title>AI 伺服器採購資源｜EudTech</title>
+      <title>GPU 伺服器選型與採購｜EudTech</title>
       <link>https://eudaemonia.tech/resources/</link>
       <guid>https://eudaemonia.tech/resources/</guid>
-      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
-      <description>依選型與報價、部署與散熱、產品比較、RFQ 與公部門採購，瀏覽 EudTech 的實際採購內容與配置入口。</description>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 +0800</pubDate>
+      <description>依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。</description>
     </item>
     <item>
       <title>AI 運算基礎設施｜EudTech</title>

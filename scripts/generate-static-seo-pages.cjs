@@ -223,7 +223,7 @@ const solutionHubRoute = {
     routeLink('/solutions/ai-infrastructure', 'AI 運算基礎設施'),
     routeLink('/solutions/social-intelligence', '社群情報與品牌保護'),
     routeLink('/products', '產品與品牌'),
-    routeLink('/resources', '採購資源'),
+    routeLink('/resources', 'GPU 選購'),
     routeLink('/contact', '聯絡與諮詢')
   ],
   highlights: [

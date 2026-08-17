@@ -96,7 +96,7 @@ try {
       const navChecks = {
         solutions: desktopNavigationExpected ? metrics.visibleControls.includes('解決方案') : true,
         products: desktopNavigationExpected ? metrics.visibleControls.includes('產品與品牌') : true,
-        resources: desktopNavigationExpected ? metrics.visibleControls.includes('採購資源') : true,
+        resources: desktopNavigationExpected ? metrics.visibleControls.includes('GPU 選購') : true,
         about: desktopNavigationExpected ? metrics.visibleControls.includes('關於 EudTech') : true,
         configurator: fullDesktopCtaExpected ? metrics.visibleControls.includes('配置 GPU 伺服器') : true,
         consultation: desktopNavigationExpected ? metrics.visibleControls.includes('預約諮詢') : true,
@@ -127,7 +127,7 @@ try {
   const mobileMenuChecks = {
     solutions: mobileMenuText.includes('解決方案'),
     products: mobileMenuText.includes('產品與品牌'),
-    resources: mobileMenuText.includes('採購資源'),
+    resources: mobileMenuText.includes('GPU 選購'),
     about: mobileMenuText.includes('關於 EudTech'),
     configurator: mobileMenuText.includes('配置 GPU 伺服器'),
     consultation: mobileMenuText.includes('預約諮詢'),

@@ -18,7 +18,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - AI Solutions Overview: https://eudaemonia.tech/solutions/
 - AI Agent and Headless SaaS Implementation: https://eudaemonia.tech/solutions/ai-agent/
 - 產品與品牌｜EudTech: https://eudaemonia.tech/products/
-- AI 伺服器採購資源｜EudTech: https://eudaemonia.tech/resources/
+- GPU 伺服器選型與採購｜EudTech: https://eudaemonia.tech/resources/
 - AI 運算基礎設施｜EudTech: https://eudaemonia.tech/solutions/ai-infrastructure/
 - 社群情報與品牌保護｜EudTech: https://eudaemonia.tech/solutions/social-intelligence/
 - 關於 EudTech｜優達盟資訊科技: https://eudaemonia.tech/about/
@@ -70,19 +70,19 @@ Generated for AI assistants, search tools, and researchers that need a structure
   - AI 運算: Comino 液冷工作站與伺服器
   - 企業軟體: AI Agent 與可追溯流程導入
 
-### AI 伺服器採購資源｜EudTech
+### GPU 伺服器選型與採購｜EudTech
 
 - URL: https://eudaemonia.tech/resources/
-- Description: 依選型與報價、部署與散熱、產品比較、RFQ 與公部門採購，瀏覽 EudTech 的實際採購內容與配置入口。
-- Lead: 將現有 17 個 GPU 伺服器與工作站內容依採購任務分組，從研究一路連到配置及詢價。
+- Description: 依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。
+- Lead: 尚未確定規格時由 EudTech 協助選型；已有方向時直接建立配置；準備採購文件時使用 RFQ 與驗收檢核表。
 - Highlights:
-  - 選型與報價入口。
-  - 部署、散熱與電力規劃。
-  - 比較、RFQ、公部門與案例內容。
+  - 請 EudTech 依工作負載協助選型。
+  - 直接建立 GPU 伺服器或工作站配置。
+  - 準備 RFQ、部署條件與驗收要求。
 - Details:
-  - 內容數量: 17 個採購與配置入口
-  - 主要階段: 選型、部署、比較、RFQ 與案例
-  - 下一步: 開啟配置器或聯絡 EudTech
+  - 第一步: 確認工作負載與部署條件
+  - 設備方向: GPU 伺服器、工作站或整合套件
+  - 下一步: 協助選型、建立配置或準備 RFQ
 
 ### AI 運算基礎設施｜EudTech
 

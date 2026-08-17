@@ -35,11 +35,11 @@ export const SITE_NAVIGATION_GROUPS: SiteNavigationItem[] = [
   },
   {
     id: 'resources',
-    label: { zh: '採購資源', en: 'Resources' },
+    label: { zh: 'GPU 選購', en: 'GPU buying' },
     href: '/resources',
-    description: { zh: '依選型、部署、比較與 RFQ 需求取得資料。', en: 'Find selection, deployment, comparison, and RFQ resources.' },
+    description: { zh: '從工作負載、設備選型到配置、RFQ 與正式報價。', en: 'From workload and system selection to configuration, RFQ, and formal quoting.' },
     children: [
-      { id: 'resources-overview', label: { zh: '資源總覽', en: 'Resources overview' }, href: '/resources', description: { zh: '十七個實際採購入口。', en: 'Seventeen practical procurement entry points.' } },
+      { id: 'resources-overview', label: { zh: 'GPU 選型與採購', en: 'GPU selection and procurement' }, href: '/resources', description: { zh: '依目前採購階段選擇正確入口。', en: 'Choose the right route for the current buying stage.' } },
       { id: 'quote', label: { zh: '開始配置與詢價', en: 'Configure and request a quote' }, href: '/configurator?request=true', description: { zh: '直接建立配置並送出需求。', en: 'Build a configuration and submit a request.' } }
     ]
   },
