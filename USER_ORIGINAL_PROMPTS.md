@@ -93,3 +93,7 @@ This file preserves the user's original prompts for the configurator exposure ta
 1. `幾何小圖示需要留的 還是需要用 [$imagegen](/Users/serverc/WorkSpace-AI/skills/.system/imagegen/SKILL.md) 最佳化的 都完成了嗎 還沒就繼續`
 2. `使用 [@product-design](plugin://product-design@openai-curated-remote) 達到全網站最佳化了嗎？還沒就繼續。`
 3. `使用 [@visualize](plugin://visualize@openai-bundled) 達到全網站最佳化了嗎？還沒就繼續。`
+
+## 2026-08-17 Homepage Light Mode Repair
+
+1. `首頁light mode修好`
