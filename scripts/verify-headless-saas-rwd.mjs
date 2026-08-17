@@ -3,6 +3,11 @@ import path from 'node:path';
 
 const baseUrl = (process.env.EUDTECH_BASE_URL || 'https://codex-website-next-update--website-eudtech.netlify.app').replace(/\/$/, '');
 const outputDir = process.env.EUDTECH_RWD_OUTPUT_DIR || '/tmp/eudtech-headless-saas-rwd';
+const requestedCases = new Set(
+  (process.argv.find((argument) => argument.startsWith('--cases='))?.split('=')[1] || '')
+    .split(',')
+    .filter(Boolean),
+);
 const cases = [
   { name: 'headless-1280-zh-light', route: '/solutions/headless-saas/', width: 1280, height: 900, language: 'zh', theme: 'light' },
   { name: 'headless-1280-en-dark', route: '/solutions/headless-saas/', width: 1280, height: 900, language: 'en', theme: 'dark' },
@@ -16,7 +21,9 @@ const cases = [
   { name: 'solutions-390-zh-light', route: '/solutions/', width: 390, height: 844, language: 'zh', theme: 'light' },
   { name: 'contact-1280-zh-light', route: '/contact/', width: 1280, height: 900, language: 'zh', theme: 'light' },
   { name: 'contact-390-en-dark', route: '/contact/', width: 390, height: 844, language: 'en', theme: 'dark' },
-];
+].filter((testCase) => requestedCases.size === 0 || requestedCases.has(testCase.name));
+
+if (cases.length === 0) throw new Error('No RWD cases selected.');
 
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
@@ -78,6 +85,11 @@ for (const testCase of cases) {
     while (!events.some((event) => event.method === 'Page.loadEventFired') && Date.now() < loadDeadline) await sleep(100);
     if (!events.some((event) => event.method === 'Page.loadEventFired')) throw new Error('Page load timeout.');
     await waitFor(send, "document.querySelectorAll('h1').length === 1 && document.querySelector('h1').innerText.trim().length > 0");
+    if (testCase.route.includes('headless-saas')) {
+      await waitFor(send, "document.querySelector('#architecture') && document.querySelectorAll('details').length >= 4 && document.querySelector('footer') && document.documentElement.scrollHeight > 3000");
+    } else {
+      await waitFor(send, "document.querySelector('footer') && document.documentElement.scrollHeight > innerHeight");
+    }
     await send('Runtime.evaluate', {
       expression: `new Promise(async resolve => {
         const pause = ms => new Promise(done => setTimeout(done, ms));
@@ -133,6 +145,8 @@ for (const testCase of cases) {
           hasArchitecture: Boolean(document.querySelector('#architecture')),
           hasContactLink: Boolean(document.querySelector('a[href="/contact"]')),
           hasFaq: [...document.querySelectorAll('details')].length >= 4,
+          hasFooter: Boolean(document.querySelector('footer')),
+          sectionCount: document.querySelectorAll('main section').length,
         };
       })()`,
       returnByValue: true,
@@ -147,7 +161,8 @@ for (const testCase of cases) {
       && metrics.theme === testCase.theme
       && metrics.darkClass === (testCase.theme === 'dark')
       && metrics.headlessMatches > 0
-      && (!isHeadlessPage || (metrics.notionLinks.length >= 4 && metrics.hasArchitecture && metrics.hasContactLink && metrics.hasFaq));
+      && metrics.hasFooter
+      && (!isHeadlessPage || (metrics.documentHeight > 3000 && metrics.sectionCount >= 7 && metrics.notionLinks.length >= 4 && metrics.hasArchitecture && metrics.hasContactLink && metrics.hasFaq));
     const contentSize = await send('Page.getLayoutMetrics');
     const width = Math.ceil(contentSize.cssContentSize?.width || testCase.width);
     const height = Math.ceil(contentSize.cssContentSize?.height || testCase.height);
