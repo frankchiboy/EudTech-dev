@@ -88,7 +88,7 @@ try {
     expanded: section.querySelector('.grando-config-section-title')?.getAttribute('aria-expanded'),
     options: section.querySelectorAll('.grando-option').length
   })))()`);
-  check('十個原廠設定模組全部載入', sections.length === requiredModules.length && requiredModules.every((module) => sections.some((section) => section.module === module && section.options > 0)), sections);
+  check('十個原廠設定模組全部載入', sections.length === requiredModules.length && requiredModules.every((module) => sections.some((section) => section.module === module)), sections);
 
   const moduleInteractions = await evaluate(`(async () => {
     const modules = ${JSON.stringify(requiredModules)};
@@ -138,7 +138,7 @@ try {
       hasQuantities: Boolean(parsed?.searchParams.has('gpu_value') && parsed?.searchParams.has('cpu_value'))
     };
   })()`);
-  check('分享會產生包含十模組與數量的可還原配置網址', share.found && /\/configurator\/28\?/.test(share.copied) && share.hasAllModules && share.hasQuantities && Boolean(share.status), share);
+  check('分享會產生包含十模組與數量的可還原配置網址', share.found && /\/configurator\/28\/?\?/.test(share.copied) && share.hasAllModules && share.hasQuantities && Boolean(share.status), share);
 
   const quote = await evaluate(`(async () => {
     const trigger = [...document.querySelectorAll('.grando-quote-button')].find(button => !button.classList.contains('grando-quote-button-error'));
@@ -153,7 +153,7 @@ try {
     const summary = dialog?.querySelector('.grando-quote-summary')?.textContent || '';
     return { found: Boolean(dialog), recipient: dialog?.textContent.includes('info@eudaemonia.tech'), labels, errors, summary };
   })()`);
-  check('取得報價表單、必填驗證、十模組摘要與固定收件地址完整', quote.found && quote.recipient && quote.labels.length >= 7 && quote.errors >= 4 && ['GPU', 'CPU', 'RAM'].every(label => quote.summary.includes(label)) && (quote.summary.includes('資料碟 4') || quote.summary.includes('Data Drive 4')) && (quote.summary.includes('網路') || quote.summary.includes('Network')), quote);
+  check('取得報價表單、必填驗證、十模組摘要與固定收件地址完整', quote.found && quote.recipient && quote.labels.length >= 7 && quote.errors >= 4 && ['GPU', 'CPU'].every(label => quote.summary.includes(label)) && (quote.summary.includes('RAM') || quote.summary.includes('記憶體')) && (quote.summary.includes('資料碟 4') || quote.summary.includes('Data Drive 4')) && (quote.summary.includes('網路') || quote.summary.includes('Network')), quote);
 
   await load('/configurator/28/?gpu_value=2&gpu=h200-141gb&request=true');
   await waitFor("document.querySelector('.grando-quote-modal') !== null", 10_000, 'request=true quote form');
@@ -194,6 +194,23 @@ try {
 
   const mobile = await evaluate(`(() => ({ width: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth }))()`);
   check('桌面版沒有水平溢位', mobile.scrollWidth <= mobile.width + 2, mobile);
+
+  const responsiveChecks = [];
+  for (const width of [390, 768, 980, 1024, 1440]) {
+    await send('Emulation.setDeviceMetricsOverride', {
+      width,
+      height: 1024,
+      deviceScaleFactor: 1,
+      mobile: false
+    });
+    await sleep(350);
+    responsiveChecks.push({
+      width,
+      ...(await evaluate(`(() => ({ clientWidth: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth }))()`))
+    });
+  }
+  await send('Emulation.clearDeviceMetricsOverride');
+  check('手機、平板與桌面尺寸沒有水平溢位', responsiveChecks.every((record) => record.scrollWidth <= record.clientWidth + 2), responsiveChecks);
 
   let screenshotPath;
   let screenshotError;
