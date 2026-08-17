@@ -71,7 +71,7 @@ const load = async (route) => {
       events.length = 0;
       await send('Page.navigate', { url: `${baseUrl}${route}` });
       await waitFor(
-        "document.readyState !== 'loading' && document.querySelectorAll('[data-module]').length === 10 && document.querySelectorAll('.grando-option').length > 0",
+        "document.readyState !== 'loading' && document.querySelectorAll('.grando-config-section[data-module]').length === 10 && document.querySelectorAll('.grando-option').length > 0",
         30_000,
         `Configurator data for ${route}`
       );
