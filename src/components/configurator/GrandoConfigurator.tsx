@@ -617,7 +617,6 @@ const ProductCard = ({
   const navigate = useNavigate();
   const isMobile = useMobileConfiguratorViewport();
   const [imageFailed, setImageFailed] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const copy = CONFIGURATOR_COPY[language];
   const gpu = device.options.find((option) => option.module_type === 'gpu');
   const cpu = device.options.find((option) => option.module_type === 'cpu');
@@ -634,7 +633,6 @@ const ProductCard = ({
 
   useEffect(() => {
     setImageFailed(false);
-    setImageLoaded(false);
   }, [originalImageUrl, isMobile]);
 
   return (
@@ -642,23 +640,15 @@ const ProductCard = ({
       <header className="grando-product-media">
         <div className="grando-product-image-wrap">
           {imageUrl ? (
-            <>
-              {!imageLoaded ? (
-                <div className="grando-product-image-placeholder" aria-hidden="true">
-                  {getTypeIcon(device.type)}
-                </div>
-              ) : null}
-              <img
-                src={imageUrl}
-                alt={`Comino Grando ${device.name}`}
-                className={`grando-product-image ${imageLoaded ? 'loaded' : 'loading'}`}
-                loading={eagerImages || priority ? 'eager' : 'lazy'}
-                decoding="async"
-                fetchPriority={priority ? 'high' : 'auto'}
-                onLoad={() => setImageLoaded(true)}
-                onError={() => setImageFailed(true)}
-              />
-            </>
+            <img
+              src={imageUrl}
+              alt={`Comino Grando ${device.name}`}
+              className="grando-product-image"
+              loading={eagerImages || priority ? 'eager' : 'lazy'}
+              decoding="async"
+              fetchPriority={priority ? 'high' : 'auto'}
+              onError={() => setImageFailed(true)}
+            />
           ) : (
             <div className="grando-product-image-fallback" aria-label={`Comino Grando ${device.name}`}>
               {getTypeIcon(device.type)}
