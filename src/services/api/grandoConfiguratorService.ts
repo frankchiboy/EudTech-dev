@@ -17,7 +17,11 @@ export type ConfiguratorDataResult<T> = {
   source: ConfiguratorDataSource;
 };
 
-const CONFIGURATOR_REQUEST_TIMEOUT_MS = 4000;
+// The Comino proxy refreshes a verified upstream cache when it expires.  The
+// first request may therefore take longer than a browser-only API request;
+// keep the user on the authoritative dataset instead of prematurely switching
+// to a reduced local fallback.
+const CONFIGURATOR_REQUEST_TIMEOUT_MS = 15_000;
 const CONFIGURATOR_PROXY_URL = '/api/comino-configurator';
 
 const fetchJson = async <T>(url: string): Promise<T> => {

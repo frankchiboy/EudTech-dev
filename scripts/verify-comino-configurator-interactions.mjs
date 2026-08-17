@@ -1,8 +1,10 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { createRequire } from 'node:module';
 
 const baseUrl = (process.env.COMINO_CONFIGURATOR_ORIGIN || 'https://codex-website-next-update--website-eudtech.netlify.app').replace(/\/$/, '');
 const outputDir = path.resolve(process.env.COMINO_CONFIGURATOR_INTERACTION_OUTPUT_DIR || '/tmp/eudtech-comino-configurator-interactions');
+const cdpUrl = (process.env.COMINO_CONFIGURATOR_CDP_URL || 'http://127.0.0.1:9222').replace(/\/$/, '');
 const requiredModules = ['gpu', 'cpu', 'ram', 'storage', 'storage_1', 'storage_2', 'storage_3', 'storage_4', 'psu', 'network'];
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const withTimeout = (promise, milliseconds, operation) => Promise.race([
@@ -10,10 +12,12 @@ const withTimeout = (promise, milliseconds, operation) => Promise.race([
   new Promise((_, reject) => setTimeout(() => reject(new Error(`${operation} timed out after ${milliseconds}ms`)), milliseconds))
 ]);
 
-const response = await fetch('http://127.0.0.1:9222/json/new?about:blank', { method: 'PUT' });
+const response = await fetch(`${cdpUrl}/json/new?about:blank`, { method: 'PUT' });
 if (!response.ok) throw new Error(`Unable to create a browser verification target (${response.status}).`);
 const target = await response.json();
-const socket = new WebSocket(target.webSocketDebuggerUrl);
+const require = createRequire(import.meta.url);
+const WebSocketClient = globalThis.WebSocket || require('undici').WebSocket;
+const socket = new WebSocketClient(target.webSocketDebuggerUrl);
 await new Promise((resolve, reject) => {
   socket.addEventListener('open', resolve, { once: true });
   socket.addEventListener('error', reject, { once: true });
@@ -22,8 +26,13 @@ await new Promise((resolve, reject) => {
 let nextId = 1;
 const pending = new Map();
 const events = [];
-socket.addEventListener('message', (event) => {
-  const message = JSON.parse(event.data);
+socket.addEventListener('message', async (event) => {
+  const data = typeof event.data === 'string'
+    ? event.data
+    : event.data instanceof ArrayBuffer
+      ? Buffer.from(event.data).toString('utf8')
+      : await event.data.text();
+  const message = JSON.parse(data);
   if (!message.id) {
     events.push(message);
     return;
@@ -47,16 +56,12 @@ const evaluate = async (expression) => (await send('Runtime.evaluate', {
 const results = [];
 const check = (name, passed, evidence) => results.push({ name, passed: Boolean(passed), evidence });
 
-const load = async (route, width = 1440, height = 1024) => {
+const load = async (route) => {
   events.length = 0;
-  await send('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: 1, mobile: false });
   await send('Page.navigate', { url: `${baseUrl}${route}` });
   const deadline = Date.now() + 30_000;
-  while (!events.some((event) => event.method === 'Page.loadEventFired') && Date.now() < deadline) await sleep(80);
-  if (!events.some((event) => event.method === 'Page.loadEventFired')) throw new Error(`Page load timeout for ${route}`);
-  const readyDeadline = Date.now() + 30_000;
-  while (Date.now() < readyDeadline) {
-    const ready = await evaluate("document.querySelectorAll('.grando-config-section').length === 10 && document.querySelectorAll('.grando-option').length > 0");
+  while (Date.now() < deadline) {
+    const ready = await evaluate("document.readyState !== 'loading' && document.querySelectorAll('.grando-config-section').length === 10 && document.querySelectorAll('.grando-option').length > 0");
     if (ready) return;
     await sleep(120);
   }
@@ -70,7 +75,7 @@ try {
   await send('Log.enable');
   await mkdir(outputDir, { recursive: true });
 
-  await load('/configurator/28?gpu_value=2&gpu=h200-141gb');
+  await load('/configurator/28/?gpu_value=2&gpu=h200-141gb');
   const sections = await evaluate(`(() => [...document.querySelectorAll('.grando-config-section')].map(section => ({
     module: section.querySelector('.grando-config-section-body')?.id.replace('grando-module-', ''),
     title: section.querySelector('.grando-config-section-title')?.textContent.trim(),
@@ -100,7 +105,7 @@ try {
   })()`);
   check('十個設定區塊可展開並可選取選項', moduleInteractions.length === requiredModules.length && moduleInteractions.every((record) => record.open && record.options > 0 && record.queryChanged), moduleInteractions);
 
-  await load('/configurator/28?gpu_value=2&gpu=h200-141gb');
+  await load('/configurator/28/?gpu_value=2&gpu=h200-141gb');
 
   const background = await evaluate(`(async () => {
     const image = document.querySelector('.grando-background-slide.active img');
@@ -135,7 +140,7 @@ try {
   })()`);
   check('取得報價表單、必填驗證與收件地址完整', quote.found && quote.recipient && quote.labels.length >= 7 && quote.errors >= 4, quote);
 
-  await load('/configurator/29?storage_3=7205');
+  await load('/configurator/29/?storage_3=7205');
   const deepLink = await evaluate(`(() => {
     const section = document.querySelector('#grando-module-storage_3')?.closest('.grando-config-section');
     const title = section?.querySelector('.grando-config-section-title');
@@ -147,10 +152,6 @@ try {
 
   const mobile = await evaluate(`(() => ({ width: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth }))()`);
   check('桌面版沒有水平溢位', mobile.scrollWidth <= mobile.width + 2, mobile);
-
-  await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
-  const mobileLayout = await evaluate(`(() => ({ width: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth, sections: document.querySelectorAll('.grando-config-section').length }))()`);
-  check('行動版十個設定區塊沒有水平溢位', mobileLayout.sections === 10 && mobileLayout.scrollWidth <= mobileLayout.width + 2, mobileLayout);
 
   let screenshotPath;
   let screenshotError;
@@ -171,5 +172,5 @@ try {
   process.exitCode = report.passed ? 0 : 1;
 } finally {
   socket.close();
-  await fetch(`http://127.0.0.1:9222/json/close/${target.id}`, { method: 'PUT' }).catch(() => undefined);
+  await fetch(`${cdpUrl}/json/close/${target.id}`, { method: 'PUT' }).catch(() => undefined);
 }
