@@ -55,8 +55,8 @@ try {
     const target = buttons.find(button => /財務與採購|Finance & procurement/.test(button.textContent));
     if (!target) return { found: false };
     target.click();
-    await new Promise(resolve => setTimeout(resolve, 120));
-    return { found: true, selected: target.getAttribute('aria-selected'), text: document.body.innerText.includes('三方核對') || document.body.innerText.includes('Three-way match') };
+    await new Promise(resolve => setTimeout(resolve, 500));
+    return { found: true, selected: target.getAttribute('aria-selected'), text: /三方\s*核對|Three-way\s*match/i.test(document.body.innerText) };
   })()`);
   check('AI Agent 場景頁籤', scenario.found && scenario.selected === 'true' && scenario.text, scenario);
 
@@ -68,15 +68,17 @@ try {
   })()`);
   check('FAQ 展開', faq.found && faq.open && faq.textLength > 30, faq);
 
-  const desktopToggles = await evaluate(`(() => {
+  const desktopToggles = await evaluate(`(async () => {
     const buttons = [...document.querySelectorAll('button')];
-    const language = buttons.find(button => /^(EN|中)$/.test(button.innerText.trim()) || /language|語言/i.test(button.getAttribute('aria-label') || ''));
-    const theme = buttons.find(button => /theme|主題|深色|淺色/i.test((button.getAttribute('aria-label') || '') + button.innerText));
+    const language = buttons.find(button => /^(EN|中文|中)$/.test(button.innerText.trim()) || /language|語言/i.test(button.getAttribute('aria-label') || ''));
     const beforeLanguage = localStorage.getItem('language');
     language?.click();
+    await new Promise(resolve => setTimeout(resolve, 300));
     const afterLanguage = localStorage.getItem('language');
+    const theme = [...document.querySelectorAll('button')].find(button => /theme|主題|深色|淺色/i.test((button.getAttribute('aria-label') || '') + button.innerText));
     const beforeTheme = document.documentElement.classList.contains('dark');
     theme?.click();
+    await new Promise(resolve => setTimeout(resolve, 300));
     const afterTheme = document.documentElement.classList.contains('dark');
     return { languageFound: Boolean(language), languageChanged: beforeLanguage !== afterLanguage, themeFound: Boolean(theme), themeChanged: beforeTheme !== afterTheme };
   })()`);
@@ -109,4 +111,5 @@ try {
   process.exitCode = report.passed ? 0 : 1;
 } finally {
   socket.close();
+  await fetch(`http://127.0.0.1:9222/json/close/${target.id}`).catch(() => undefined);
 }

@@ -41,11 +41,12 @@
 
 ## Preview acceptance gate
 
-- Netlify full branch deploy: `6a82e20ab20d3f0008096039`, commit `d0f7e0bff8b28fb9ce20b5e98d4a3f7dbe4907c9`, state `ready`.
+- Netlify full branch deploy is the canonical review surface: `https://codex-website-next-update--website-eudtech.netlify.app`.
 - Public preview: `https://codex-website-next-update--website-eudtech.netlify.app`.
-- Mobile-access review alias: `https://review--website-eudtech.netlify.app`, deploy `6a82f5d78732af85add6271c`, state `ready`; homepage and AI Agent route return HTTP 200 with iPhone Safari and iPhone Chrome user agents.
+- The temporary `review--website-eudtech.netlify.app` alias was a visual-only manual deploy and did not include the `marketing-event` Function. It is not an acceptance URL.
 - Public visual verification: 41 routes × desktop/mobile = 82 unique checks passed on the latest website code. Evidence is split into stable batches under `public-major-final`, `public-configurator-retry-final`, `public-configurator-remaining-final`, `public-topics-a-final`, and `public-topics-b-final`.
 - Public interaction verification passed on the latest website code: `interactions-public-latest/interactions.json`.
+- Current branch recheck passed 48 user-facing routes with HTTP 200 and no product-not-found content. AI Agent tabs, FAQ, language, theme, calls to action, mobile navigation, and severe browser-error checks also passed after the verifier was corrected to match the rendered `中文` label and to wait for React state updates.
 - Netlify Image CDN product images passed. An intermittent upstream background failure was converted into a controlled branded gradient fallback and the affected routes then passed on both desktop and mobile.
 - Production remains unchanged and requires explicit approval before release.
 
