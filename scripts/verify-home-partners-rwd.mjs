@@ -99,14 +99,22 @@ for (const testCase of cases) {
       expression: `(() => {
         const section = document.querySelector('section[aria-labelledby="home-partners-heading"]');
         const grid = section?.querySelector('div.grid.gap-5');
+        const ecosystem = section?.querySelector('div.mt-14.rounded-2xl');
         const articles = [...(section?.querySelectorAll('article') ?? [])];
+        const technologyCards = [...(ecosystem?.querySelectorAll('div.group') ?? [])];
         const rect = node => { const value = node.getBoundingClientRect(); return { x:value.x, y:value.y, width:value.width, height:value.height, right:value.right, bottom:value.bottom }; };
-        section?.scrollIntoView({ block: 'center' });
+        ecosystem?.scrollIntoView({ block: 'center' });
         return {
           viewport: { width: innerWidth, height: innerHeight, scrollWidth: document.documentElement.scrollWidth },
           grid: grid ? { ...rect(grid), gridTemplateColumns: getComputedStyle(grid).gridTemplateColumns } : null,
           articles: articles.map(article => ({ rect: rect(article), clientWidth: article.clientWidth, scrollWidth: article.scrollWidth, clientHeight: article.clientHeight, scrollHeight: article.scrollHeight })),
+          technologyCards: technologyCards.map(card => ({ rect: rect(card), clientWidth: card.clientWidth, scrollWidth: card.scrollWidth })),
           images: [...(section?.querySelectorAll('img') ?? [])].map(image => ({ alt: image.alt, complete: image.complete, naturalWidth: image.naturalWidth })),
+          technologyLogos: technologyCards.map(card => {
+            const image = card.querySelector('img');
+            const style = image ? getComputedStyle(image) : null;
+            return image ? { alt: image.alt, complete: image.complete, naturalWidth: image.naturalWidth, filter: style.filter, opacity: style.opacity } : null;
+          }),
         };
       })()`,
       returnByValue: true,
@@ -118,7 +126,11 @@ for (const testCase of cases) {
       && metrics.articles.every((article) => article.scrollWidth <= article.clientWidth + 2
         && article.scrollHeight <= article.clientHeight + 2
         && article.rect.right <= testCase.width + 2)
-      && metrics.images.every((image) => image.complete && image.naturalWidth > 0);
+      && metrics.images.every((image) => image.complete && image.naturalWidth > 0)
+      && metrics.technologyCards.length === 5
+      && metrics.technologyCards.every((card) => card.scrollWidth <= card.clientWidth + 2 && card.rect.right <= testCase.width + 2)
+      && metrics.technologyLogos.length === 5
+      && metrics.technologyLogos.every((logo) => logo?.complete && logo.naturalWidth > 0 && logo.filter === 'none' && logo.opacity === '1');
     const screenshot = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
     await writeFile(path.join(outputDir, `${testCase.name}.png`), Buffer.from(screenshot.data, 'base64'));
     results.push({ ...testCase, ok, metrics });
