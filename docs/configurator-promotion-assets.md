@@ -40,7 +40,7 @@
 | guide | GPU 伺服器電力規劃配置器 | GPU 伺服器電力規劃, GPU 伺服器冗餘電源, AI 伺服器電力容量, GPU 伺服器報價, 資料中心 GPU 電力 | https://eudaemonia.tech/solutions/gpu-server-power-planning/ |
 | guide | 機架式 AI 伺服器部署配置器 | 機架式 AI 伺服器部署, 機架式 GPU 伺服器, AI 機架伺服器報價, GPU 伺服器機架規劃, AI 資料中心伺服器 | https://eudaemonia.tech/solutions/rack-ai-server-deployment/ |
 | checklist | 台灣公部門 GPU 伺服器採購檢核表 | 台灣公部門 GPU 伺服器採購, 政府 GPU 伺服器報價, AI 伺服器採購 台灣, GPU 伺服器規格檢核表 | https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/ |
-| comparison | Supermicro 與 Comino GPU 伺服器配置比較 | Supermicro GPU 伺服器比較, Comino GPU 伺服器, GPU 伺服器替代方案, AI 伺服器報價比較, GPU 伺服器配置器 | https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/ |
+| comparison | Supermicro 與 Comino GPU 伺服器採購流程比較 | Supermicro GPU 伺服器比較, Comino GPU 伺服器, GPU 伺服器替代方案, AI 伺服器報價比較, GPU 伺服器配置器 | https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/ |
 | solution | AI 推論伺服器報價配置器｜台灣 LLM 與私有模型部署 | AI 推論伺服器 台灣, LLM 伺服器 台灣, 私有模型服務伺服器, GPU 推論伺服器, 本地 AI 伺服器報價, LLM 推論伺服器, AI 伺服器配置器 台灣 | https://eudaemonia.tech/solutions/ai-inference-server-taiwan/ |
 | guide | Comino Grando 台灣報價配置器指南 | Comino Grando, Comino Grando 配置器, Grando GPU 伺服器, Grando 台灣報價, GPU 伺服器配置器 台灣, EudTech Comino | https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/ |
 | checklist | NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表 | H200 GPU 伺服器 RFQ, NVIDIA H200 伺服器 台灣, H200 伺服器報價, H200 AI 訓練伺服器, GPU 伺服器採購檢核表, H200 液冷伺服器 | https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/ |
