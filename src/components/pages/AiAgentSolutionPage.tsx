@@ -264,7 +264,7 @@ const AiAgentSolutionPage: React.FC = () => {
         structuredData={buildStructuredData(isEnglish)}
       />
 
-      <div className={`min-h-screen bg-white text-slate-950 dark:bg-slate-950 dark:text-white ${showMobileActions ? 'pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-0' : ''}`}>
+      <div className="min-h-screen bg-white pb-[calc(6rem+env(safe-area-inset-bottom))] text-slate-950 dark:bg-slate-950 dark:text-white md:pb-0">
         <section ref={heroRef} data-ai-agent-hero className="relative isolate overflow-hidden bg-slate-950 pt-24 text-white">
           <img
             src="/ai-agent-evidence-chain-v1.webp"

@@ -130,7 +130,10 @@ for (const mode of modes) {
             documentWidth: document.documentElement.scrollWidth,
             viewportWidth: document.documentElement.clientWidth,
             documentHeight: document.documentElement.scrollHeight,
-            brokenImages: images.filter(image => !image.complete || image.naturalWidth === 0 || image.naturalHeight === 0),
+            // A lazy-loaded image can still be decoding when this check runs while
+            // already having rendered pixels. Natural dimensions are the reliable
+            // browser signal that an image is unavailable.
+            brokenImages: images.filter(image => image.naturalWidth === 0 || image.naturalHeight === 0),
             missingImageAlt: images.filter(image => !clean(image.alt)).map(image => image.src),
             clippedText,
             unnamedControls,

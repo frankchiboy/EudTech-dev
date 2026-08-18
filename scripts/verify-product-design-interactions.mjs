@@ -101,6 +101,61 @@ try {
   const ctas = await evaluate(`[...document.querySelectorAll('a[href]')].filter(a => /預約|諮詢|Book|consult/i.test(a.innerText)).map(a => ({ text: a.innerText.trim(), href: a.href })).slice(0, 10)`);
   check('主要行動連結', ctas.length > 0 && ctas.every((item) => item.href.startsWith('http') || item.href.startsWith('mailto:')), ctas);
 
+  const officialDocumentExample = await evaluate(`(() => {
+    const section = document.querySelector('[data-ai-agent-example="official-document"]');
+    const image = section?.querySelector('img');
+    const text = section?.innerText || '';
+    return {
+      found: Boolean(section),
+      imageLoaded: Boolean(image?.complete && image?.naturalWidth && image?.naturalHeight),
+      hasUserOutcomes: /收到通知|辨識待辦|直接閱讀|Receive a notification|See what needs attention|Open and read directly/.test(text),
+      hasInternalImplementationDetail: /IMAP|Maildir|WebJAgent|HiCOS|Dataverse|worker/i.test(text)
+    };
+  })()`);
+  check(
+    'AI 公文系統使用案例',
+    officialDocumentExample.found
+      && officialDocumentExample.imageLoaded
+      && officialDocumentExample.hasUserOutcomes
+      && !officialDocumentExample.hasInternalImplementationDetail,
+    officialDocumentExample
+  );
+
+  await load('/solutions/ai-agent/', 390, 844);
+  const mobileHeroActions = await evaluate(`(() => ({
+    heroVisible: (() => {
+      const hero = document.querySelector('[data-ai-agent-hero]')?.getBoundingClientRect();
+      return Boolean(hero && hero.bottom > 0 && hero.top < innerHeight);
+    })(),
+    actionVisible: Boolean(document.querySelector('[data-ai-agent-mobile-actions]')),
+    overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 2
+  }))()`);
+  check(
+    'AI Agent 手機首屏操作列不遮擋 Hero',
+    mobileHeroActions.heroVisible && !mobileHeroActions.actionVisible && !mobileHeroActions.overflow,
+    mobileHeroActions
+  );
+
+  const mobileScrolledActions = await evaluate(`(async () => {
+    scrollTo(0, document.documentElement.scrollHeight);
+    await new Promise(resolve => setTimeout(resolve, 350));
+    const actions = document.querySelector('[data-ai-agent-mobile-actions]');
+    const actionRect = actions?.getBoundingClientRect();
+    const footerRect = document.querySelector('footer')?.getBoundingClientRect();
+    return {
+      actionVisible: Boolean(actions),
+      finalContentAboveAction: Boolean(actionRect && footerRect && footerRect.bottom <= actionRect.top + 1),
+      footerBottom: footerRect?.bottom || null,
+      actionTop: actionRect?.top || null,
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 2
+    };
+  })()`);
+  check(
+    'AI Agent 手機捲動後快速操作',
+    mobileScrolledActions.actionVisible && mobileScrolledActions.finalContentAboveAction && !mobileScrolledActions.overflow,
+    mobileScrolledActions
+  );
+
   await load('/', 390, 844);
   const mobileMenu = await evaluate(`(async () => {
     const button = [...document.querySelectorAll('button')].find(item => /menu|選單|導覽/i.test(item.getAttribute('aria-label') || ''));
@@ -110,6 +165,25 @@ try {
     return { found: true, expanded: button.getAttribute('aria-expanded'), solutionsVisible: [...document.querySelectorAll('a')].some(a => /解決方案|Solutions/.test(a.innerText) && a.getBoundingClientRect().height > 0) };
   })()`);
   check('行動版導覽', mobileMenu.found && mobileMenu.expanded === 'true' && mobileMenu.solutionsVisible, mobileMenu);
+
+  const mobileHeaderControls = await evaluate(`(() => {
+    const visible = element => {
+      const rect = element.getBoundingClientRect();
+      const style = getComputedStyle(element);
+      return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+    };
+    const buttons = [...document.querySelectorAll('button')].filter(visible);
+    return {
+      languageControls: buttons.filter(button => /^(EN|中文|中)$/.test(button.innerText.trim()) || /language|語言/i.test(button.getAttribute('aria-label') || '')).length,
+      themeControls: buttons.filter(button => /theme|主題|深色|淺色/i.test((button.getAttribute('aria-label') || '') + button.innerText)).length,
+      scrollLocked: document.body.style.overflow === 'hidden'
+    };
+  })()`);
+  check(
+    '行動版導覽只保留一組語言與主題控制',
+    mobileHeaderControls.languageControls === 1 && mobileHeaderControls.themeControls === 1 && mobileHeaderControls.scrollLocked,
+    mobileHeaderControls
+  );
 
   const severeConsole = events.filter((event) => ['Runtime.exceptionThrown', 'Log.entryAdded'].includes(event.method))
     .filter((event) => event.method === 'Runtime.exceptionThrown' || ['error', 'warning'].includes(event.params?.entry?.level));
