@@ -121,3 +121,7 @@ This file preserves the user's original prompts for the configurator exposure ta
 ## 2026-08-18 AI Agent Official-document Example
 
 1. `在ai agent x headless saas 增加一些具體實例 首先呈現 AI公文系統 [$收發公文](/Users/serverc/WorkSpace-AI/skills/收公文/SKILL.md) 不要講太多內部細節 要從使用角度呈現 做完再度 @product-design audit和修復做到閉環 我給你的截圖要上去`
+
+## 2026-08-18 Homepage Brand-partner Layout
+
+1. `跑版？`
