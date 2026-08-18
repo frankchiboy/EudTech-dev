@@ -1,50 +1,54 @@
-import React, { useEffect, useRef } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
-import { ArrowLeft, Server, Cpu, Shield } from 'lucide-react';
+import React from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { ArrowLeft, Bot, Braces, CheckCircle2, Database, LineChart, Shield } from 'lucide-react';
 import { useLanguageContext } from '../contexts/LanguageContext';
-import { useThemeContext } from '../contexts/ThemeContext';
 import { handleNavClick } from '../utils/helpers/navigation';
-import NavBar from './navigation/NavBar';
 import Footer from './Footer';
-import { getEudTechProducts, getCominoProducts } from '../data/productData';
+import { getEudTechProducts, getCominoProducts, getCyabraProducts } from '../data/productData';
 import { technicalSpecsTranslations } from './productUtils';
 import ProductAdditionalFeatures from './ProductAdditionalFeatures';
 import ProductImageGallery from './ProductImageGallery';
 import ProductSpecifications from './ProductSpecifications';
-import FinSightPayPalSection from './FinSightPayPalSection';
+import FinSightEnterpriseCta from './FinSightEnterpriseCta';
 import ProductTechnicalSpecs from './ProductTechnicalSpecs';
 import LazyImage from './common/LazyImage';
 
+const FinSightSystemVisual = ({ isEnglish }: { isEnglish: boolean }) => {
+  const stages = [
+    { icon: Database, title: isEnglish ? 'Authorised data' : '授權資料源', body: isEnglish ? 'Market, accounting, or internal operational data' : '市場、會計或企業內部營運資料' },
+    { icon: Braces, title: 'FinSight API', body: isEnglish ? 'Normalise, calculate, and return structured JSON' : '標準化、計算並回傳結構化 JSON' },
+    { icon: Bot, title: isEnglish ? 'LLM or rules' : 'LLM 或規則', body: isEnglish ? 'Explain or summarise within the approved scope' : '依核准範圍解釋或摘要' },
+    { icon: Shield, title: isEnglish ? 'Human decision' : '人員決策', body: isEnglish ? 'Review source, time, assumptions, and output' : '檢視來源、時間、假設與輸出' }
+  ];
+  return <div className="w-full rounded-2xl bg-slate-950 p-5 text-white shadow-xl sm:p-7">
+    <div className="flex items-center justify-between gap-4"><div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">FinSight data flow</p><h2 className="mt-2 text-xl font-bold">{isEnglish ? 'From source data to a reviewable answer' : '從來源資料到可審查回答'}</h2></div><LineChart className="h-8 w-8 text-cyan-300" /></div>
+    <div className="mt-6 grid gap-3 sm:grid-cols-2">{stages.map(({ icon: Icon, title, body }, index) => <div key={title} className="rounded-xl border border-white/10 bg-white/[0.05] p-4"><div className="flex items-center justify-between"><Icon className="h-5 w-5 text-cyan-300" /><span className="text-xs font-bold text-slate-500">{String(index + 1).padStart(2, '0')}</span></div><h3 className="mt-4 font-semibold">{title}</h3><p className="mt-2 text-xs leading-5 text-slate-300">{body}</p></div>)}</div>
+    <div className="mt-5 grid gap-4 sm:grid-cols-[0.9fr_1.1fr]">
+      <div className="rounded-xl bg-gradient-to-br from-cyan-400/15 to-emerald-400/10 p-4"><p className="text-xs font-semibold text-cyan-300">{isEnglish ? 'Example trend output' : '範例趨勢輸出'}</p><svg viewBox="0 0 240 92" role="img" aria-label={isEnglish ? 'Illustrative trend chart' : '示意趨勢圖'} className="mt-3 w-full"><path d="M6 75 L42 64 L76 68 L112 43 L146 50 L184 24 L234 31" fill="none" stroke="#22d3ee" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" /><path d="M6 83 H234" stroke="#475569" strokeWidth="1" /></svg><p className="mt-2 text-[11px] leading-5 text-slate-400">{isEnglish ? 'Illustrative data only; not an investment recommendation.' : '示意資料，不構成投資建議。'}</p></div>
+      <div className="rounded-xl bg-slate-900 p-4 font-mono text-[11px] leading-5 text-emerald-300"><p className="font-sans text-xs font-semibold text-slate-300">{isEnglish ? 'Example API response' : '範例 API 回應'}</p><pre className="mt-3 whitespace-pre-wrap">{`{\n  "source": "authorised_dataset",\n  "as_of": "2026-08-16T10:00:00+08:00",\n  "metrics": { "trend": "review_required" },\n  "evidence": ["source_id", "calculation_version"]\n}`}</pre></div>
+    </div>
+  </div>;
+};
+
 const ProductDetails: React.FC = () => {
-  const { isEnglish, setLanguage } = useLanguageContext();
-  const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
-  const { toggleLanguage } = useLanguageContext();
+  const { isEnglish } = useLanguageContext();
 
   const { id } = useParams();
-  const location = useLocation();
   const productId = parseInt(id || '0');
   // 取得產品資料
   const eudTechProducts = getEudTechProducts(isEnglish);
   const cominoProducts = getCominoProducts(isEnglish);
-  const allProducts = [...eudTechProducts, ...cominoProducts];
+  const cyabraProducts = getCyabraProducts(isEnglish);
+  const allProducts = [...eudTechProducts, ...cominoProducts, ...cyabraProducts];
   const product = allProducts.find(p => p.id === productId);
 
-  // FinSight 產品語言控制邏輯
-  const hasSetLanguage = useRef(false);
-  useEffect(() => {
-    // 只在組件首次掛載且尚未設定語言時執行
-    if (!hasSetLanguage.current && productId === 3) {
-      const fromHome = location.state?.fromHome;
-      
-      // 如果不是從首頁進入（直接進入或外部連結），設定為英文
-      if (!fromHome) {
-        setLanguage('en');
-      }
-      // 如果是從首頁進入，保持當前語言設定
-      
-      hasSetLanguage.current = true;
-    }
-  }, [productId, location.state, setLanguage]);
+  const productCategory = productId === 3
+    ? (isEnglish ? 'Financial data and AI' : '金融資料與 AI')
+    : productId === 1
+      ? (isEnglish ? 'EudTech solution' : 'EudTech 解決方案')
+      : productId === 10 || productId === 11
+        ? (isEnglish ? 'Cyabra social intelligence' : 'Cyabra 社群情報')
+        : (isEnglish ? 'Comino GPU platform' : 'Comino GPU 平台');
 
   if (!product) {
     console.log("Product not found!");
@@ -62,43 +66,32 @@ const ProductDetails: React.FC = () => {
     );
   }
 
-  // 在渲染時動態生成 JSX 元件
-  const renderIcon = (icon: string) => {
-    switch (icon) {
-      case 'server': return <Server className="h-8 w-8 text-blue-800" />;
-      case 'cpu': return <Cpu className="h-8 w-8 text-orange-700" />;
-      case 'shield': return <Shield className="h-8 w-8 text-green-700" />;
-      default: return null;
-    }
-  };
-
   return (
     <>
-      <NavBar 
-        isEnglish={isEnglish}
-        toggleLanguage={toggleLanguage}
-        themeMode={themeMode}
-        isDarkMode={isDarkModeActive}
-        toggleDarkMode={toggleDarkMode}
-      />
       <div className="min-h-screen bg-neutral-50 dark:bg-gray-900 overflow-x-hidden pt-16">
       {/* Product Header */}
       <div className="bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-20">
           {/* Back Button */}
-          <button
-            onClick={() => {
-              // 返回到具體的產品卡片位置
-              window.location.href = `/#product-card-${productId}`;
-            }}
+          <Link
+            to="/products/"
             className="inline-flex items-center text-eudtech-600 hover:text-eudtech-700 dark:text-eudtech-400 dark:hover:text-eudtech-300 transition-colors mb-8 group cursor-pointer bg-transparent border-none"
           >
             <ArrowLeft className="h-5 w-5 mr-2 transform group-hover:-translate-x-1 transition-transform duration-300" />
             {isEnglish ? 'Back to Products' : '返回產品列表'}
-          </button>
+          </Link>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
+              <div className="mb-5 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-cyan-800 dark:bg-cyan-950/40 dark:text-cyan-300">
+                  {productCategory}
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600 dark:border-slate-700 dark:text-slate-300">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-300" />
+                  {isEnglish ? 'Scope confirmed before quote' : '報價前確認實際範圍'}
+                </span>
+              </div>
               <div className="flex items-center mb-6 group">
                 <div className="text-eudtech-600 dark:text-eudtech-400 transform group-hover:scale-110 transition-transform duration-300">
                   {product.icon}
@@ -195,17 +188,7 @@ const ProductDetails: React.FC = () => {
             {/* CTA 行動按鈕 */}
             {product.id === 3 && (
               <div className="flex flex-col items-center mt-8">
-                {/* 產品圖片 */}
-                <div className="flex justify-center items-center overflow-hidden rounded-xl shadow-3d-light dark:shadow-3d-dark group relative mb-6">
-                  <div className="w-full aspect-[16/9] overflow-hidden relative">
-                    <LazyImage 
-                      src={product.image} 
-                      alt={product.title}
-                      className="w-full h-full object-cover object-center bg-gray-50 dark:bg-gray-700 rounded-lg transform transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/20 to-transparent dark:from-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                  </div>
-                </div>
+                <FinSightSystemVisual isEnglish={isEnglish} />
                 <div className="mb-2 text-base text-gray-700 dark:text-gray-300 text-center">
                   {isEnglish
                     ? 'Experience the FinSightGTP demo (MVP) to see how LLMs interact with real financial data.'
@@ -249,9 +232,9 @@ const ProductDetails: React.FC = () => {
         </div>
       </div>
 
-      {/* PayPal Support Section - Only for FinSight (模組化) */}
+      {/* Enterprise evaluation CTA - Only for FinSight */}
       {product.id === 3 && (
-        <FinSightPayPalSection isEnglish={isEnglish} />
+        <FinSightEnterpriseCta isEnglish={isEnglish} />
       )}
 
       {/* Specifications (模組化) */}

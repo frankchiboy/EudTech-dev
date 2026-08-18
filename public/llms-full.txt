@@ -1,6 +1,6 @@
-# EudTech Configurator Full Context
+# EudTech Solutions Full Context
 
-Generated for AI assistants, search tools, and procurement researchers that need a structured summary of EudTech configurator routes.
+Generated for AI assistants, search tools, and researchers that need a structured summary of EudTech solutions, products, resources, and configurator routes.
 
 ## Business Context
 
@@ -15,7 +15,15 @@ Generated for AI assistants, search tools, and procurement researchers that need
 
 - Homepage: https://eudaemonia.tech/
 - Comino Grando Configurator: https://eudaemonia.tech/configurator/
-- Configurator Solutions Hub: https://eudaemonia.tech/solutions/
+- AI Solutions Overview: https://eudaemonia.tech/solutions/
+- AI Agent and Headless SaaS Implementation: https://eudaemonia.tech/solutions/ai-agent/
+- 產品與品牌｜EudTech: https://eudaemonia.tech/products/
+- GPU 伺服器選型與採購｜EudTech: https://eudaemonia.tech/resources/
+- AI 運算基礎設施｜EudTech: https://eudaemonia.tech/solutions/ai-infrastructure/
+- 社群情報與品牌保護｜EudTech: https://eudaemonia.tech/solutions/social-intelligence/
+- 關於 EudTech｜優達盟資訊科技: https://eudaemonia.tech/about/
+- 聯絡 EudTech｜開始諮詢: https://eudaemonia.tech/contact/
+- 隱私與資料使用｜EudTech: https://eudaemonia.tech/privacy/
 - Configurator Link Index: https://eudaemonia.tech/configurator-links.html
 - INTEGRATION KIT 8x H200 配置器: https://eudaemonia.tech/configurator/27/
 - INTEGRATION KIT 8x PRO 6000 配置器: https://eudaemonia.tech/configurator/36/
@@ -39,12 +47,112 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - GPU 伺服器電力規劃配置器: https://eudaemonia.tech/solutions/gpu-server-power-planning/
 - 機架式 AI 伺服器部署配置器: https://eudaemonia.tech/solutions/rack-ai-server-deployment/
 - 台灣公部門 GPU 伺服器採購檢核表: https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/
-- Supermicro 與 Comino GPU 伺服器配置比較: https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/
+- Supermicro 與 Comino GPU 伺服器採購流程比較: https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/
 - AI 推論伺服器報價配置器｜台灣 LLM 與私有模型部署: https://eudaemonia.tech/solutions/ai-inference-server-taiwan/
 - Comino Grando 台灣報價配置器指南: https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/
 - NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表: https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/
 - RTX PRO 6000 本地 AI 推論工作站報價指南: https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/
 - 台灣 AI 伺服器採購案例指南與配置器詢價流程: https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/
+
+## Site Information Routes
+
+### 產品與品牌｜EudTech
+
+- URL: https://eudaemonia.tech/products/
+- Description: 瀏覽 EudTech 軟體與導入服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。
+- Lead: 依用途瀏覽 EudTech、Comino 與 Cyabra 產品，並直接進入產品詳情、配置器或諮詢。
+- Highlights:
+  - EudTech 軟體與企業 AI 導入服務。
+  - Comino 液冷多 GPU 工作站與伺服器。
+  - Cyabra 社群情報與品牌保護。
+- Details:
+  - 產品分類: 軟體與導入、AI 運算、社群情報
+  - AI 運算: Comino 液冷工作站與伺服器
+  - 企業軟體: AI Agent 與可追溯流程導入
+
+### GPU 伺服器選型與採購｜EudTech
+
+- URL: https://eudaemonia.tech/resources/
+- Description: 依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。
+- Lead: 尚未確定規格時由 EudTech 協助選型；已有方向時直接建立配置；準備採購文件時使用 RFQ 與驗收檢核表。
+- Highlights:
+  - 請 EudTech 依工作負載協助選型。
+  - 直接建立 GPU 伺服器或工作站配置。
+  - 準備 RFQ、部署條件與驗收要求。
+- Details:
+  - 第一步: 確認工作負載與部署條件
+  - 設備方向: GPU 伺服器、工作站或整合套件
+  - 下一步: 協助選型、建立配置或準備 RFQ
+
+### AI 運算基礎設施｜EudTech
+
+- URL: https://eudaemonia.tech/solutions/ai-infrastructure/
+- Description: 從工作負載、GPU 與記憶體選型、電力散熱、配置器到正式報價，建立可採購的 AI 伺服器與工作站方案。
+- Lead: 先定義訓練、推論、HPC、模擬或視覺化工作負載，再完成選型、配置、報價與導入。
+- Highlights:
+  - 工作負載與使用情境盤點。
+  - GPU、CPU、記憶體、儲存、電力與散熱選型。
+  - 可分享配置、正式報價與交付規劃。
+- Details:
+  - 適用需求: AI 訓練、推論、HPC、模擬與視覺化
+  - 規劃項目: GPU、CPU、記憶體、儲存、電力與散熱
+  - 交付路徑: 需求盤點、配置、報價與導入
+
+### 社群情報與品牌保護｜EudTech
+
+- URL: https://eudaemonia.tech/solutions/social-intelligence/
+- Description: EudTech 以 Cyabra 協助企業與公部門分析假帳號、協調式社群行為、敘事擴散及品牌風險。
+- Lead: 將社群帳號、敘事與擴散關係整理成公關、資安、政策及管理團隊可採取行動的情報。
+- Highlights:
+  - 假帳號與協調式行為分析。
+  - 敘事擴散與聲譽風險追蹤。
+  - 附證據的決策用情報交付。
+- Details:
+  - 適用團隊: 品牌、公關、資安、政策與公部門
+  - 分析對象: 帳號、敘事、擴散與協調行為
+  - 交付內容: 摘要、來源證據與回應建議
+
+### 關於 EudTech｜優達盟資訊科技
+
+- URL: https://eudaemonia.tech/about/
+- Description: 了解優達盟資訊科技在企業 AI 導入、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。
+- Lead: EudTech 協助企業、研究單位與公部門把 AI 軟體、運算設備與情報工具導入實際工作流程。
+- Highlights:
+  - 系統整合與事件驅動流程。
+  - 人工核准、權限與稽核治理。
+  - 可操作、可量測、可擴大的交付方式。
+- Details:
+  - 公司: 優達盟資訊科技有限公司
+  - 能力範圍: AI 軟體、運算基礎設施與社群情報
+  - 工作方法: 目標、證據、負責人與下一步明確化
+
+### 聯絡 EudTech｜開始諮詢
+
+- URL: https://eudaemonia.tech/contact/
+- Description: 選擇 AI Agent、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。
+- Lead: 先選擇需求類型，再安排正確的顧問、配置或情報諮詢。
+- Highlights:
+  - AI Agent 與企業流程導入。
+  - GPU 伺服器、工作站與液冷系統。
+  - Cyabra 社群情報與品牌保護。
+- Details:
+  - 聯絡信箱: info@eudaemonia.tech
+  - 諮詢類型: AI Agent、AI 運算與社群情報
+  - 會議方式: Microsoft Bookings 線上預約
+
+### 隱私與資料使用｜EudTech
+
+- URL: https://eudaemonia.tech/privacy/
+- Description: EudTech 說明詢價與聯絡資料、客戶來源追蹤、必要識別碼、資料保存及資料請求方式。
+- Lead: 說明 EudTech 官網在詢價、回覆、來源分析及服務改善所需範圍內使用資料的方式。
+- Highlights:
+  - 詢價與聯絡資料用途。
+  - 客戶來源與匿名識別碼。
+  - 資料查詢、更正及刪除請求方式。
+- Details:
+  - 資料聯絡: info@eudaemonia.tech
+  - 網站資料: 詢價、聯絡與來源歸因
+  - 資料請求: 查詢、更正或刪除請求
 
 ## Configurator Product Routes
 
@@ -701,29 +809,29 @@ Generated for AI assistants, search tools, and procurement researchers that need
   - Q: 配置器如何協助公部門審查？ / How does the configurator help public-sector review?
     A: 它會用連結保留已選硬體假設，讓技術審查與採購人員可以討論同一配置。 / It preserves the selected hardware assumptions in a URL so technical reviewers and purchasing staff can discuss the same configuration.
 
-### Supermicro 與 Comino GPU 伺服器配置比較 / Supermicro and Comino GPU Server Configuration Comparison
+### Supermicro 與 Comino GPU 伺服器採購流程比較 / Supermicro and Comino GPU Server Procurement Workflow Comparison
 
 - URL: https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/
 - Kind: comparison
 - Configurator URL: https://eudaemonia.tech/configurator/
 - Quote URL: https://eudaemonia.tech/configurator/?request=true
-- Description: 比較評估 Supermicro 類 GPU 伺服器 RFQ 與 Comino Grando 配置器導向 AI 伺服器報價時的採購路徑。 / Compare GPU server buying paths when evaluating Supermicro-style server RFQs and Comino Grando configurator-led AI server quotes.
+- Description: 比較傳統 Supermicro RFQ 與 Comino Grando 配置器詢價的採購流程、配置可追蹤性與報價交接；本頁不宣稱硬體效能基準測試結果。 / Compare the procurement workflow, configuration traceability, and quote handoff for a conventional Supermicro RFQ and a Comino Grando configurator-led request. This page does not claim a hardware performance benchmark.
 - Keywords: Supermicro GPU 伺服器比較, Comino GPU 伺服器, GPU 伺服器替代方案, AI 伺服器報價比較, GPU 伺服器配置器 / Supermicro GPU server comparison, Comino GPU server, GPU server alternative, AI server quote comparison, GPU server configurator
-- Hero: 比較 GPU 伺服器 RFQ 與配置器導向報價路徑 / Compare GPU server RFQs with configurator-led quote paths
-- Lead: 當採購團隊比較傳統 GPU 伺服器 RFQ 與可保留零組件選擇及報價脈絡的配置器流程時，可從此頁開始。 / Use this page when the buying team is comparing conventional GPU server RFQs with a configurator workflow that preserves component choices and quote context.
+- Hero: 送出報價前比較 GPU 伺服器採購流程 / Compare GPU server procurement workflows before requesting a quote
+- Lead: 使用本頁對齊兩種 RFQ 路徑所需資訊；最終硬體規格與效能證據，應針對選定配置另外審查。 / Use this page to align the information required by each RFQ path. Review the final hardware specifications and performance evidence separately for the selected configuration.
 - Image: https://eudaemonia.tech/grando-8gpu-server.jpg
-- Image alt: 用於 Supermicro 類 RFQ 評估的 Comino GPU 伺服器配置比較 / Comino GPU server configuration comparison for Supermicro-style RFQ evaluation
+- Image alt: Supermicro 類 RFQ 與 Comino GPU 伺服器採購流程比較 / Comino GPU server procurement workflow comparison for a Supermicro-style RFQ
 - Highlights:
-  - 以報價流程、配置清楚度與部署假設作為比較重點。 / Frames the decision around quote workflow, configuration clarity, and deployment assumptions.
+  - 比較兩種報價流程所需資訊與交接內容。 / Compares the information and handoff required by each quote workflow.
   - 配置器連結協助技術與採購團隊審查同一配置。 / Configurator URLs help both technical and purchasing teams review the same build.
-  - 適合採購者在選擇供應商前，需要可比較的 GPU 伺服器路徑。 / Useful when buyers need a comparable GPU server path before vendor selection.
+  - 使用選定配置另行提出技術與商務審查需求。 / Use the selected configuration to request a separate technical and commercial review.
 - Specification cues:
-  - 比較重點 / Comparison focus: RFQ 流程與配置可追蹤性 / RFQ workflow and configuration traceability
+  - 比較範圍 / Comparison scope: RFQ 流程與配置可追蹤性，不包含效能基準測試 / RFQ workflow and configuration traceability, not performance benchmarking
   - 適合情境 / Best use: 供應商評估與報價準備 / Vendor evaluation and quote preparation
-  - 下一步 / Next step: 開啟配置器並輸出報價脈絡 / Open configurator and export quote context
+  - 下一步 / Next step: 開啟對應配置器並提出技術審查需求 / Open a matching configurator and request a technical review
 - FAQs:
-  - Q: 這是逐規格效能比較嗎？ / Is this a specification-by-specification benchmark?
-    A: 不是。此頁比較採購流程與報價準備脈絡。具體產品效能應依最終選定配置另行審查。 / No. This page compares buying workflow and quote preparation context. Specific product performance should be reviewed against the final selected configuration.
+  - Q: 這頁有比較硬體效能嗎？ / Does this page compare hardware performance?
+    A: 沒有。本頁比較採購流程與配置可追蹤性；硬體決策前，請另外審查官方規格與針對選定配置的效能證據。 / No. This page compares procurement workflow and configuration traceability. Review official specifications and configuration-specific performance evidence separately before making a hardware decision.
   - Q: 為什麼要比較配置器流程？ / Why compare with a configurator workflow?
     A: 配置器流程會保留已選 GPU、CPU、記憶體、儲存、電源與網路假設，可讓 RFQ 審查更一致。 / A configurator workflow keeps selected GPU, CPU, memory, storage, power, and network assumptions visible, which can make RFQ review more consistent.
 
@@ -846,8 +954,8 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - Image: https://eudaemonia.tech/grando-rackable-01.jpg
 - Image alt: 台灣 AI 伺服器採購案例與配置器詢價流程 / Taiwan AI server procurement case route with configurator quote flow
 - Highlights:
-  - 建立不需新廣告平台憑證即可使用的自有案例頁，供自然曝光與 Email 觸及。 / Creates an owned-site case page for organic and email outreach without requiring new ad-platform credentials.
-  - 將採購意圖連到 H200、RTX PRO 6000、RFQ 檢核、電力規劃與機架部署頁面。 / Connects procurement intent to H200, RTX PRO 6000, RFQ checklist, power planning, and rack deployment pages.
+  - 將常見 AI 伺服器採購情境整理成清楚起點，方便技術與採購團隊使用。 / Organizes common AI server procurement scenarios into clear starting points for technical and purchasing teams.
+  - 從同一個起點連結 H200、RTX PRO 6000、RFQ 檢核、電力規劃與機架部署指南。 / Links H200, RTX PRO 6000, RFQ checklist, power planning, and rack deployment guidance from one starting point.
   - 支援政府、研究單位、企業與系統整合採購的報價準備。 / Supports government, research, enterprise, and system-integration quote preparation.
 - Specification cues:
   - 採購情境 / Procurement case: AI 伺服器、GPU 工作站、可上架系統、液冷 / AI server, GPU workstation, rackable system, liquid cooling
@@ -856,8 +964,8 @@ Generated for AI assistants, search tools, and procurement researchers that need
 - FAQs:
   - Q: 為什麼開啟配置器前要先看案例指南？ / Why use a case guide before opening the configurator?
     A: 案例指南可協助非技術利害關係人先選擇正確起點，再進入詳細硬體選項。 / A case guide helps non-technical stakeholders choose the right starting path before detailed hardware options are selected.
-  - Q: 這個頁面可以用於自然觸及嗎？ / Can this page be used for organic outreach?
-    A: 可以。此頁設計為可被 crawler 讀取的自有頁面，會納入 sitemap、feed、LLM 檔與自然推廣素材。 / Yes. It is designed as a crawler-readable owned page and will be included in sitemap, feed, LLM files, and organic promotion assets.
+  - Q: 團隊應該如何使用這份案例指南？ / How should a team use this case guide?
+    A: 先選擇最接近的工作負載與部署情境，再開啟連結配置器，提交已選硬體假設供技術與報價審查。 / Choose the closest workload and deployment scenario, open the linked configurator, and submit the selected hardware assumptions for technical and quote review.
 
 ## Recommended Assistant Behavior
 

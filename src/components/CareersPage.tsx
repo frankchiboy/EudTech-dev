@@ -1,8 +1,6 @@
 import React from 'react';
 import { Mail, MapPin, Clock, Briefcase, CheckCircle } from 'lucide-react';
 import { useLanguageContext } from '../contexts/LanguageContext';
-import { useThemeContext } from '../contexts/ThemeContext';
-import NavBar from './navigation/NavBar';
 import Footer from './Footer';
 import Section from './layout/Section';
 import Card from './ui/Card';
@@ -12,8 +10,7 @@ import SEOHead from './common/SEOHead';
 const applicationEmail = 'info@eudaemonia.tech';
 
 const CareersPage: React.FC = () => {
-  const { isEnglish, toggleLanguage } = useLanguageContext();
-  const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
+  const { isEnglish } = useLanguageContext();
   const careersUrl = 'https://eudaemonia.tech/careers';
   const organizationName = 'EudTech';
   const applyEmail = 'frank.hsu@eudaemonia.tech';
@@ -405,24 +402,10 @@ const CareersPage: React.FC = () => {
       />
 
       <div className="min-h-screen bg-white dark:bg-gray-900">
-        <NavBar
-          isEnglish={isEnglish}
-          toggleLanguage={toggleLanguage}
-          themeMode={themeMode}
-          isDarkMode={isDarkModeActive}
-          toggleDarkMode={toggleDarkMode}
-        />
-
         <main className="pt-16">
-          <section className="relative h-96 flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0">
-              <img
-                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
-                alt="Team collaboration"
-                className="w-full h-full object-cover transform scale-105"
-              />
-              <div className="absolute inset-0 bg-black/60 dark:bg-black/70"></div>
-            </div>
+          <section className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-slate-950">
+            <img src="/brand-provenance/eudtech-brand-careers.webp" alt={isEnglish ? 'EudTech team collaboration and careers' : 'EudTech 團隊協作與職涯發展'} className="absolute inset-0 h-full w-full object-cover object-center" loading="eager" fetchPriority="high" decoding="async" />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-slate-950/40" aria-hidden="true" />
             <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 {isEnglish ? 'Join Our Team' : '加入我們的團隊'}
@@ -445,29 +428,21 @@ const CareersPage: React.FC = () => {
                     <div className="flex items-center mb-4">
                       <Briefcase className="h-8 w-8 text-blue-600 dark:text-blue-400 mr-3" />
                       <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-                        {isEnglish ? 'Position' : '職缺'}
+                        {isEnglish ? job.title.en : job.title.zh}
                       </h2>
                     </div>
-                    <h3 className="text-2xl font-semibold text-blue-800 dark:text-blue-300">
-                      {isEnglish ? job.title.en : job.title.zh}
-                    </h3>
                   </div>
 
-                  <div className="mb-8 bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4">
-                    <p className="text-blue-800 dark:text-blue-300 font-medium text-center">
-                      {isEnglish
-                        ? 'Internal applications welcome. This position can also be taken as a concurrent role with additional compensation.'
-                        : '本職缺歡迎內部同仁申請，亦可採加給方式兼任。'
-                      }
-                    </p>
-                  </div>
-
-                  <div className="mb-8">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                  <details className="group mb-5 rounded-xl border border-gray-200 p-5 dark:border-gray-700">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
                       <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400 mr-2" />
                       {isEnglish ? 'Job Responsibilities' : '工作內容'}
                     </h3>
-                    <ul className="space-y-3">
+                    <span className="text-sm font-semibold text-blue-600 dark:text-blue-300 group-open:hidden">{isEnglish ? 'View' : '展開'}</span>
+                    <span className="hidden text-sm font-semibold text-blue-600 dark:text-blue-300 group-open:inline">{isEnglish ? 'Collapse' : '收合'}</span>
+                    </summary>
+                    <ul className="mt-5 space-y-3">
                       {(isEnglish ? job.responsibilities.en : job.responsibilities.zh).map((item, index) => (
                         <li key={index} className="flex items-start">
                           <div className="h-2 w-2 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
@@ -475,14 +450,18 @@ const CareersPage: React.FC = () => {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </details>
 
-                  <div className="mb-8">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                  <details className="group mb-8 rounded-xl border border-gray-200 p-5 dark:border-gray-700">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
                       <CheckCircle className="h-6 w-6 text-orange-600 dark:text-orange-400 mr-2" />
                       {isEnglish ? 'Requirements' : '條件需求'}
                     </h3>
-                    <ul className="space-y-3">
+                    <span className="text-sm font-semibold text-orange-600 dark:text-orange-300 group-open:hidden">{isEnglish ? 'View' : '展開'}</span>
+                    <span className="hidden text-sm font-semibold text-orange-600 dark:text-orange-300 group-open:inline">{isEnglish ? 'Collapse' : '收合'}</span>
+                    </summary>
+                    <ul className="mt-5 space-y-3">
                       {(isEnglish ? job.requirements.en : job.requirements.zh).map((item, index) => (
                         <li key={index} className="flex items-start">
                           <div className="h-2 w-2 bg-orange-600 dark:bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
@@ -490,7 +469,7 @@ const CareersPage: React.FC = () => {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </details>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">

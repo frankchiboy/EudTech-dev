@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight,
   BarChart3,
   Bell,
-  Bot,
   Briefcase,
   Building2,
   CalendarDays,
@@ -39,18 +38,37 @@ import type { LucideIcon } from 'lucide-react';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import SEOHead from '../common/SEOHead';
 import Footer from '../Footer';
+import { VENDOR_EVIDENCE } from '../../data/vendorEvidence';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
+import { SourceLink, VendorMedia } from './SitePagePrimitives';
+import { SITE_BOOKING } from '../../data/siteArchitecture';
 
 type Bilingual = { zh: string; en: string };
-const BOOKING_URL = 'https://outlook.office.com/book/EudTechOnlineMeeting@EudaemoniaTechnologLtd.onmicrosoft.com/';
+const BOOKING_URL = SITE_BOOKING.href;
 
 const text = (value: Bilingual, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
 
 interface IconItem {
   icon: LucideIcon;
+  visual: string;
   title: Bilingual;
   body: Bilingual;
 }
+
+const MICRO_VISUALS = {
+  intake: '/ai-agent/micro-illustrations/event-intake-v1.webp',
+  reconcile: '/ai-agent/micro-illustrations/reconciliation-v1.webp',
+  progress: '/ai-agent/micro-illustrations/task-progression-v1.webp',
+  approval: '/ai-agent/micro-illustrations/human-approval-v1.webp',
+  connect: '/ai-agent/micro-illustrations/connected-systems-v1.webp',
+  govern: '/ai-agent/micro-illustrations/governance-audit-v1.webp'
+} as const;
+
+const NarrativeVisual: React.FC<{ src: string; dark?: boolean }> = ({ src, dark = false }) => (
+  <div className={`flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl border ${dark ? 'border-white/10 bg-white/[0.07]' : 'border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-900'}`} aria-hidden="true">
+    <img src={src} alt="" className="h-14 w-14 object-contain" loading="lazy" decoding="async" />
+  </div>
+);
 
 interface SceneStep {
   stage: Bilingual;
@@ -62,33 +80,37 @@ interface SceneStep {
 const painPoints: IconItem[] = [
   {
     icon: Clock3,
+    visual: MICRO_VISUALS.progress,
     title: { zh: '追蹤靠人記，事情容易斷線', en: 'Human memory carries the follow-up load' },
     body: { zh: '信件、表單、試算表與聊天紀錄分散，團隊難以即時知道下一個責任人與期限。', en: 'Email, forms, spreadsheets, and chat records fragment ownership and deadlines.' }
   },
   {
     icon: SearchCheck,
+    visual: MICRO_VISUALS.reconcile,
     title: { zh: '核對資料耗時，錯誤難以提早發現', en: 'Manual reconciliation hides errors' },
     body: { zh: '人工比對報價、訂單、合約與附件，重複工作佔用熟手時間，也放大遺漏風險。', en: 'Manual comparison of quotes, orders, contracts, and attachments consumes expert time.' }
   },
   {
     icon: Bell,
+    visual: MICRO_VISUALS.progress,
     title: { zh: '催辦沒有節奏，客戶體驗不一致', en: 'Follow-ups lack a consistent rhythm' },
     body: { zh: '提醒常常依賴個人習慣，重要回覆可能延誤，客戶收到的服務品質也不一致。', en: 'Reminders depend on personal habits, so important replies can arrive late.' }
   },
   {
     icon: GitBranch,
+    visual: MICRO_VISUALS.connect,
     title: { zh: '系統各自運作，管理者看不到全貌', en: 'Disconnected systems obscure the full picture' },
     body: { zh: 'ERP、CRM、專案工具與郵件各自保存資料，管理者無法用同一套事件脈絡判斷進度。', en: 'ERP, CRM, project tools, and mail keep separate records without one shared event context.' }
   }
 ];
 
 const agentRoles: IconItem[] = [
-  { icon: SearchCheck, title: { zh: '資料整理 Agent', en: 'Intake Agent' }, body: { zh: '接收郵件、表單與檔案，擷取欄位並建立可追蹤事件。', en: 'Collects email, forms, and files, then turns them into traceable events.' } },
-  { icon: ClipboardCheck, title: { zh: '核對 Agent', en: 'Reconciliation Agent' }, body: { zh: '按照規則比對價格、數量、條款與附件，標示差異。', en: 'Compares prices, quantities, terms, and attachments against defined rules.' } },
-  { icon: Bell, title: { zh: '催辦 Agent', en: 'Follow-up Agent' }, body: { zh: '依期限、優先級與回覆狀態提出下一步提醒。', en: 'Suggests the next reminder from due dates, priority, and reply status.' } },
-  { icon: MessageSquare, title: { zh: '回覆草稿 Agent', en: 'Drafting Agent' }, body: { zh: '依既有脈絡產生可審核草稿，保留原始 thread 關聯。', en: 'Creates reviewable drafts while preserving the original thread context.' } },
-  { icon: BarChart3, title: { zh: '管理摘要 Agent', en: 'Briefing Agent' }, body: { zh: '把事件轉成管理者可讀的風險、進度與待決策摘要。', en: 'Turns events into decision-ready summaries of risk, progress, and open choices.' } },
-  { icon: ShieldCheck, title: { zh: '治理稽核 Agent', en: 'Governance Agent' }, body: { zh: '保留來源、版本、核准者與執行紀錄，支援稽核與復盤。', en: 'Preserves source, version, approver, and execution evidence for audit.' } }
+  { icon: SearchCheck, visual: MICRO_VISUALS.intake, title: { zh: '資料整理 Agent', en: 'Intake Agent' }, body: { zh: '接收郵件、表單與檔案，擷取欄位並建立可追蹤事件。', en: 'Collects email, forms, and files, then turns them into traceable events.' } },
+  { icon: ClipboardCheck, visual: MICRO_VISUALS.reconcile, title: { zh: '核對 Agent', en: 'Reconciliation Agent' }, body: { zh: '按照規則比對價格、數量、條款與附件，標示差異。', en: 'Compares prices, quantities, terms, and attachments against defined rules.' } },
+  { icon: Bell, visual: MICRO_VISUALS.progress, title: { zh: '催辦 Agent', en: 'Follow-up Agent' }, body: { zh: '依期限、優先級與回覆狀態提出下一步提醒。', en: 'Suggests the next reminder from due dates, priority, and reply status.' } },
+  { icon: MessageSquare, visual: MICRO_VISUALS.approval, title: { zh: '回覆草稿 Agent', en: 'Drafting Agent' }, body: { zh: '依既有脈絡產生可審核草稿，保留原始 thread 關聯。', en: 'Creates reviewable drafts while preserving the original thread context.' } },
+  { icon: BarChart3, visual: MICRO_VISUALS.reconcile, title: { zh: '管理摘要 Agent', en: 'Briefing Agent' }, body: { zh: '把事件轉成管理者可讀的風險、進度與待決策摘要。', en: 'Turns events into decision-ready summaries of risk, progress, and open choices.' } },
+  { icon: ShieldCheck, visual: MICRO_VISUALS.govern, title: { zh: '治理稽核 Agent', en: 'Governance Agent' }, body: { zh: '保留來源、版本、核准者與執行紀錄，支援稽核與復盤。', en: 'Preserves source, version, approver, and execution evidence for audit.' } }
 ];
 
 const scenes: { label: Bilingual; intro: Bilingual; steps: SceneStep[] }[] = [
@@ -122,46 +144,47 @@ const scenes: { label: Bilingual; intro: Bilingual; steps: SceneStep[] }[] = [
 ];
 
 const systems: IconItem[] = [
-  { icon: Mail, title: { zh: 'Email／Outlook', en: 'Email / Outlook' }, body: { zh: '保留 thread、寄件與回覆證據，觸發事件與提醒。', en: 'Preserve thread, sent, and reply evidence to trigger events and reminders.' } },
-  { icon: Database, title: { zh: 'ERP／會計', en: 'ERP / accounting' }, body: { zh: '對接訂單、發票、付款與庫存等營運資料。', en: 'Connect orders, invoices, payments, and operational inventory data.' } },
-  { icon: Users, title: { zh: 'CRM／客戶資料', en: 'CRM / customer data' }, body: { zh: '把客戶互動與商機狀態放進同一條追蹤脈絡。', en: 'Bring customer interactions and opportunity status into one trace.' } },
-  { icon: Workflow, title: { zh: '專案／任務系統', en: 'Project / task systems' }, body: { zh: '同步負責人、期限、阻礙與交付證據。', en: 'Synchronise owners, deadlines, blockers, and delivery evidence.' } },
-  { icon: MessageSquare, title: { zh: 'Teams／協作工具', en: 'Teams / collaboration' }, body: { zh: '把核准後的通知與摘要送到正確的團隊頻道。', en: 'Send approved notifications and briefs to the right team channels.' } },
-  { icon: Network, title: { zh: 'API／資料庫', en: 'APIs / databases' }, body: { zh: '以事件與權限邊界連接既有系統，不要求一次重建全部工具。', en: 'Connect existing systems through events and permission boundaries without rebuilding everything.' } }
+  { icon: Mail, visual: MICRO_VISUALS.intake, title: { zh: 'Email／Outlook', en: 'Email / Outlook' }, body: { zh: '保留 thread、寄件與回覆證據，觸發事件與提醒。', en: 'Preserve thread, sent, and reply evidence to trigger events and reminders.' } },
+  { icon: Database, visual: MICRO_VISUALS.reconcile, title: { zh: 'ERP／會計', en: 'ERP / accounting' }, body: { zh: '對接訂單、發票、付款與庫存等營運資料。', en: 'Connect orders, invoices, payments, and operational inventory data.' } },
+  { icon: Users, visual: MICRO_VISUALS.intake, title: { zh: 'CRM／客戶資料', en: 'CRM / customer data' }, body: { zh: '把客戶互動與商機狀態放進同一條追蹤脈絡。', en: 'Bring customer interactions and opportunity status into one trace.' } },
+  { icon: Workflow, visual: MICRO_VISUALS.progress, title: { zh: '專案／任務系統', en: 'Project / task systems' }, body: { zh: '同步負責人、期限、阻礙與交付證據。', en: 'Synchronise owners, deadlines, blockers, and delivery evidence.' } },
+  { icon: MessageSquare, visual: MICRO_VISUALS.approval, title: { zh: 'Teams／協作工具', en: 'Teams / collaboration' }, body: { zh: '把核准後的通知與摘要送到正確的團隊頻道。', en: 'Send approved notifications and briefs to the right team channels.' } },
+  { icon: Network, visual: MICRO_VISUALS.connect, title: { zh: 'API／資料庫', en: 'APIs / databases' }, body: { zh: '以事件與權限邊界連接既有系統，不要求一次重建全部工具。', en: 'Connect existing systems through events and permission boundaries without rebuilding everything.' } }
 ];
 
 const governance: IconItem[] = [
-  { icon: LockKeyhole, title: { zh: '權限最小化', en: 'Least privilege' }, body: { zh: '依角色、資料來源與動作授予最小必要權限。', en: 'Grant only the permissions required for each role, source, and action.' } },
-  { icon: ShieldCheck, title: { zh: '敏感動作人員核准', en: 'Human approval for sensitive actions' }, body: { zh: '付款、正式寄信、刪除與重大狀態變更由人員決定。', en: 'People decide on payments, formal sends, deletion, and material status changes.' } },
-  { icon: FileCheck2, title: { zh: '來源與版本可追溯', en: 'Traceable source and versions' }, body: { zh: '保存輸入、規則、輸出、核准者與時間，支援回溯。', en: 'Keep inputs, rules, outputs, approvers, and timestamps for review.' } },
-  { icon: Settings, title: { zh: '規則可調整', en: 'Adjustable rules' }, body: { zh: '以可讀規則設定升級門檻、提醒節奏與例外處理。', en: 'Configure escalation thresholds, reminder cadence, and exceptions with readable rules.' } },
-  { icon: BarChart3, title: { zh: '持續衡量', en: 'Continuous measurement' }, body: { zh: '追蹤準時率、回覆時間、人工介入與錯誤率，持續優化。', en: 'Measure on-time rate, response time, human intervention, and error rate.' } }
+  { icon: LockKeyhole, visual: MICRO_VISUALS.govern, title: { zh: '權限最小化', en: 'Least privilege' }, body: { zh: '依角色、資料來源與動作授予最小必要權限。', en: 'Grant only the permissions required for each role, source, and action.' } },
+  { icon: ShieldCheck, visual: MICRO_VISUALS.approval, title: { zh: '敏感動作人員核准', en: 'Human approval for sensitive actions' }, body: { zh: '付款、正式寄信、刪除與重大狀態變更由人員決定。', en: 'People decide on payments, formal sends, deletion, and material status changes.' } },
+  { icon: FileCheck2, visual: MICRO_VISUALS.govern, title: { zh: '來源與版本可追溯', en: 'Traceable source and versions' }, body: { zh: '保存輸入、規則、輸出、核准者與時間，支援回溯。', en: 'Keep inputs, rules, outputs, approvers, and timestamps for review.' } },
+  { icon: Settings, visual: MICRO_VISUALS.connect, title: { zh: '規則可調整', en: 'Adjustable rules' }, body: { zh: '以可讀規則設定升級門檻、提醒節奏與例外處理。', en: 'Configure escalation thresholds, reminder cadence, and exceptions with readable rules.' } },
+  { icon: BarChart3, visual: MICRO_VISUALS.reconcile, title: { zh: '持續衡量', en: 'Continuous measurement' }, body: { zh: '追蹤準時率、回覆時間、人工介入與錯誤率，持續優化。', en: 'Measure on-time rate, response time, human intervention, and error rate.' } }
 ];
 
 const onboardingSteps: IconItem[] = [
-  { icon: SearchCheck, title: { zh: '1. 找出高價值流程', en: '1. Find the highest-value flow' }, body: { zh: '盤點追蹤、核對與催辦工作，先選一條有明確輸入與結果的流程。', en: 'Map follow-up, reconciliation, and reminder work, then select one clear flow.' } },
-  { icon: GitBranch, title: { zh: '2. 設計事件與核准點', en: '2. Design events and approvals' }, body: { zh: '定義來源、狀態、負責人、期限、例外與必須由人員核准的動作。', en: 'Define sources, status, owners, deadlines, exceptions, and human approval points.' } },
-  { icon: Cpu, title: { zh: '3. 小範圍導入', en: '3. Launch a focused pilot' }, body: { zh: '接上既有系統，使用真實資料驗證事件、提醒與稽核紀錄。', en: 'Connect existing systems and validate events, reminders, and audit records with real data.' } },
-  { icon: BarChart3, title: { zh: '4. 量化後擴大', en: '4. Scale after measurement' }, body: { zh: '用可量化成果決定是否擴充角色、流程、部門與自動化範圍。', en: 'Use measurable outcomes to expand agents, workflows, teams, and automation.' } }
+  { icon: SearchCheck, visual: MICRO_VISUALS.intake, title: { zh: '1. 找出高價值流程', en: '1. Find the highest-value flow' }, body: { zh: '盤點追蹤、核對與催辦工作，先選一條有明確輸入與結果的流程。', en: 'Map follow-up, reconciliation, and reminder work, then select one clear flow.' } },
+  { icon: GitBranch, visual: MICRO_VISUALS.approval, title: { zh: '2. 設計事件與核准點', en: '2. Design events and approvals' }, body: { zh: '定義來源、狀態、負責人、期限、例外與必須由人員核准的動作。', en: 'Define sources, status, owners, deadlines, exceptions, and human approval points.' } },
+  { icon: Cpu, visual: MICRO_VISUALS.connect, title: { zh: '3. 小範圍導入', en: '3. Launch a focused pilot' }, body: { zh: '接上既有系統，使用真實資料驗證事件、提醒與稽核紀錄。', en: 'Connect existing systems and validate events, reminders, and audit records with real data.' } },
+  { icon: BarChart3, visual: MICRO_VISUALS.progress, title: { zh: '4. 量化後擴大', en: '4. Scale after measurement' }, body: { zh: '用可量化成果決定是否擴充角色、流程、部門與自動化範圍。', en: 'Use measurable outcomes to expand agents, workflows, teams, and automation.' } }
 ];
 
 const plans: IconItem[] = [
-  { icon: SearchCheck, title: { zh: '流程診斷', en: 'Process diagnostic' }, body: { zh: '釐清流程、資料來源、風險與第一個導入場景。', en: 'Clarify the process, sources, risks, and first implementation scene.' } },
-  { icon: Zap, title: { zh: '單流程試點', en: 'Single-flow pilot' }, body: { zh: '完成一條可操作、可觀察、可重複驗證的 Agent 流程。', en: 'Deliver one operable, observable, and repeatable agent workflow.' } },
-  { icon: Layers, title: { zh: '部門方案', en: 'Department solution' }, body: { zh: '整合多個角色與系統，建立部門級追蹤與治理。', en: 'Combine multiple agents and systems into department-level tracking and governance.' } },
-  { icon: Network, title: { zh: '企業營運方案', en: 'Enterprise operations' }, body: { zh: '以事件架構連接跨部門流程，建立可持續演進的營運系統。', en: 'Connect cross-functional flows with an event architecture built to evolve.' } }
+  { icon: SearchCheck, visual: MICRO_VISUALS.intake, title: { zh: '流程診斷', en: 'Process diagnostic' }, body: { zh: '釐清流程、資料來源、風險與第一個導入場景。', en: 'Clarify the process, sources, risks, and first implementation scene.' } },
+  { icon: Zap, visual: MICRO_VISUALS.progress, title: { zh: '單流程試點', en: 'Single-flow pilot' }, body: { zh: '完成一條可操作、可觀察、可重複驗證的 Agent 流程。', en: 'Deliver one operable, observable, and repeatable agent workflow.' } },
+  { icon: Layers, visual: MICRO_VISUALS.connect, title: { zh: '部門方案', en: 'Department solution' }, body: { zh: '整合多個角色與系統，建立部門級追蹤與治理。', en: 'Combine multiple agents and systems into department-level tracking and governance.' } },
+  { icon: Network, visual: MICRO_VISUALS.govern, title: { zh: '企業營運方案', en: 'Enterprise operations' }, body: { zh: '以事件架構連接跨部門流程，建立可持續演進的營運系統。', en: 'Connect cross-functional flows with an event architecture built to evolve.' } }
 ];
 
-const audiences: { icon: LucideIcon; title: Bilingual; body: Bilingual }[] = [
-  { icon: Building2, title: { zh: '成長中的企業', en: 'Growing companies' }, body: { zh: '流程已經變複雜，但還沒有足夠人力支撐追蹤。', en: 'Operations are complex but the team cannot scale manual follow-up.' } },
-  { icon: Briefcase, title: { zh: '專業服務團隊', en: 'Professional services' }, body: { zh: '需要保存客戶承諾、交付證據與專案節點。', en: 'Need reliable records of commitments, delivery evidence, and milestones.' } },
-  { icon: ShoppingCart, title: { zh: '採購與供應鏈團隊', en: 'Procurement & supply chain' }, body: { zh: '每天處理大量詢價、核對、交期與供應商回覆。', en: 'Handle high volumes of RFQs, checks, lead times, and supplier replies.' } },
-  { icon: Landmark, title: { zh: '重視合規的組織', en: 'Compliance-minded organisations' }, body: { zh: '要求重要決策有核准、有證據、可回溯。', en: 'Require approval, evidence, and traceability for important decisions.' } },
-  { icon: Stethoscope, title: { zh: '高敏感資料團隊', en: 'Sensitive-data teams' }, body: { zh: '需要嚴格的權限、資料邊界與人工介入。', en: 'Need strict access, data boundaries, and human intervention.' } },
-  { icon: Headphones, title: { zh: '客服與營運中心', en: 'Support & operations centres' }, body: { zh: '希望降低漏接、延誤與重複回覆。', en: 'Want to reduce missed requests, delays, and repeated replies.' } }
+const audiences: IconItem[] = [
+  { icon: Building2, visual: MICRO_VISUALS.progress, title: { zh: '成長中的企業', en: 'Growing companies' }, body: { zh: '流程已經變複雜，但還沒有足夠人力支撐追蹤。', en: 'Operations are complex but the team cannot scale manual follow-up.' } },
+  { icon: Briefcase, visual: MICRO_VISUALS.govern, title: { zh: '專業服務團隊', en: 'Professional services' }, body: { zh: '需要保存客戶承諾、交付證據與專案節點。', en: 'Need reliable records of commitments, delivery evidence, and milestones.' } },
+  { icon: ShoppingCart, visual: MICRO_VISUALS.reconcile, title: { zh: '採購與供應鏈團隊', en: 'Procurement & supply chain' }, body: { zh: '每天處理大量詢價、核對、交期與供應商回覆。', en: 'Handle high volumes of RFQs, checks, lead times, and supplier replies.' } },
+  { icon: Landmark, visual: MICRO_VISUALS.approval, title: { zh: '重視合規的組織', en: 'Compliance-minded organisations' }, body: { zh: '要求重要決策有核准、有證據、可回溯。', en: 'Require approval, evidence, and traceability for important decisions.' } },
+  { icon: Stethoscope, visual: MICRO_VISUALS.govern, title: { zh: '高敏感資料團隊', en: 'Sensitive-data teams' }, body: { zh: '需要嚴格的權限、資料邊界與人工介入。', en: 'Need strict access, data boundaries, and human intervention.' } },
+  { icon: Headphones, visual: MICRO_VISUALS.intake, title: { zh: '客服與營運中心', en: 'Support & operations centres' }, body: { zh: '希望降低漏接、延誤與重複回覆。', en: 'Want to reduce missed requests, delays, and repeated replies.' } }
 ];
 
 const faqs: { question: Bilingual; answer: Bilingual }[] = [
+  { question: { zh: 'AI Agent 與 Headless SaaS 是兩項不同服務嗎？', en: 'Are AI agents and headless SaaS separate services?' }, answer: { zh: '不是。EudTech 將兩者視為同一項企業導入服務：Headless SaaS 負責連接既有系統並建立品牌入口與事件層，AI Agent 在相同權限、核准與稽核架構內處理追蹤、核對與催辦。', en: 'No. EudTech delivers them as one enterprise service: headless SaaS connects existing systems and provides branded access and events, while AI agents handle follow-up and reconciliation inside the same permission, approval, and audit model.' } },
   { question: { zh: 'AI Agent 導入會直接取代人員嗎？', en: 'Will AI agents replace our staff?' }, answer: { zh: '本方案讓 AI 接手追蹤、核對與催辦，重要決策仍由人員核准。導入目標是提高團隊處理量與可見性，不是取消責任歸屬。', en: 'The solution lets agents handle follow-up, reconciliation, and reminders while people approve important decisions. The goal is capacity and visibility, not removing accountability.' } },
   { question: { zh: '需要更換目前使用的 ERP 或 CRM 嗎？', en: 'Do we need to replace our ERP or CRM?' }, answer: { zh: '不需要一次更換。導入會先確認既有系統的 API、匯出或事件能力，再用最小範圍連接高價值流程。', en: 'No. We first assess APIs, exports, or events in existing systems and connect the highest-value flow with minimal change.' } },
   { question: { zh: '第一個導入流程應該選什麼？', en: 'Which process should we start with?' }, answer: { zh: '建議選擇輸入明確、重複頻率高、延誤成本可量化的追蹤或核對流程，例如詢價追蹤、發票核對或專案催辦。', en: 'Start with a clear, repetitive flow where delay costs are measurable, such as RFQ follow-up, invoice checks, or project reminders.' } },
@@ -174,10 +197,10 @@ const faqs: { question: Bilingual; answer: Bilingual }[] = [
 
 const buildStructuredData = (isEnglish: boolean) => {
   const pageUrl = canonicalPageUrl('https://eudaemonia.tech/solutions/ai-agent');
-  const pageName = isEnglish ? 'AI Agent Implementation' : 'AI Agent 導入';
+  const pageName = isEnglish ? 'AI Agent and Headless SaaS Implementation' : 'AI Agent 與 Headless SaaS 導入';
   const pageDescription = isEnglish
-    ? 'EudTech helps teams use AI agents to take over follow-up, reconciliation, and reminders while people approve important decisions.'
-    : 'EudTech 協助企業導入 AI Agent 接手追蹤、核對與催辦，重要決策仍由人員核准。';
+    ? 'EudTech connects existing systems to branded portals, event workflows, and controlled AI agents while people approve important decisions.'
+    : 'EudTech 串接企業既有系統，建立品牌入口、事件流程與受控 AI Agent，重要決策仍由人員核准。';
 
   return [
     {
@@ -185,7 +208,7 @@ const buildStructuredData = (isEnglish: boolean) => {
       '@type': 'Service',
       name: pageName,
       description: pageDescription,
-      serviceType: 'AI agent implementation and workflow automation',
+      serviceType: 'AI agent and headless SaaS implementation',
       areaServed: { '@type': 'Country', name: isEnglish ? 'Taiwan' : '台灣' },
       provider: { '@type': 'Organization', name: 'EudTech', url: canonicalPageUrl('https://eudaemonia.tech'), email: 'info@eudaemonia.tech' },
       url: pageUrl
@@ -214,42 +237,62 @@ const buildStructuredData = (isEnglish: boolean) => {
 const AiAgentSolutionPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
   const [activeScene, setActiveScene] = useState(0);
+  const [showMobileActions, setShowMobileActions] = useState(false);
+  const heroRef = useRef<HTMLElement | null>(null);
   const selectedScene = scenes[activeScene];
   const pageUrl = canonicalPageUrl('https://eudaemonia.tech/solutions/ai-agent');
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero || typeof IntersectionObserver === 'undefined') return undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      setShowMobileActions(!entry.isIntersecting);
+    }, { threshold: 0.01 });
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
       <SEOHead
-        title={isEnglish ? 'Enterprise AI Agent Implementation' : '企業 AI Agent 導入｜串接 Outlook、Teams、Dataverse 與 ERP'}
-        description={isEnglish ? 'EudTech helps teams use AI agents to take over follow-up, reconciliation, and reminders while people approve important decisions.' : 'EudTech 協助企業導入 AI Agent 接手追蹤、核對與催辦，重要決策仍由人員核准。'}
-        keywords={isEnglish ? 'AI agent implementation, workflow automation, AI operations, business process automation, Taiwan' : 'AI Agent 導入, AI 營運系統, 工作流程自動化, 企業 AI 導入, 台灣 AI 顧問'}
+        title={isEnglish ? 'Enterprise AI Agent and Headless SaaS Implementation' : '企業 AI Agent 與 Headless SaaS 導入'}
+        description={isEnglish ? 'Connect ERP, CRM, Microsoft 365, databases, and APIs to branded portals, event workflows, and controlled AI agents with human approval.' : '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程與受控 AI Agent，重要動作保留人員核准。'}
+        keywords={isEnglish ? 'AI agent implementation, headless SaaS, workflow automation, customer portal, business process automation, Taiwan' : 'AI Agent 導入, Headless SaaS, 工作流程自動化, 客戶 Portal, 企業 AI 導入, 台灣 AI 顧問'}
         url={pageUrl}
         type="website"
         isEnglish={isEnglish}
         structuredData={buildStructuredData(isEnglish)}
       />
 
-      <div className="min-h-screen bg-white text-slate-950 dark:bg-slate-950 dark:text-white">
-        <section className="relative overflow-hidden bg-slate-950 pt-24 text-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(14,165,233,0.22),transparent_36%),radial-gradient(circle_at_80%_15%,rgba(16,185,129,0.18),transparent_30%)]" />
-          <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(148,163,184,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.18)_1px,transparent_1px)] [background-size:48px_48px]" />
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-28">
+      <div className="min-h-screen bg-white pb-[calc(6rem+env(safe-area-inset-bottom))] text-slate-950 dark:bg-slate-950 dark:text-white md:pb-0">
+        <section ref={heroRef} data-ai-agent-hero className="relative isolate overflow-hidden bg-slate-950 pt-24 text-white">
+          <img
+            src="/ai-agent-evidence-chain-v1.webp"
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 -z-20 h-full w-full object-cover object-[68%_center]"
+          />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/95 to-slate-950/35" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/25" />
+          <div className="relative mx-auto flex min-h-[680px] max-w-7xl items-center px-6 py-20 lg:min-h-[720px] lg:px-8 lg:py-28">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
                 <Sparkles className="h-4 w-4" />
-                {isEnglish ? 'AI operations, designed for accountability' : '以責任歸屬為核心的 AI 營運'}
+                {isEnglish ? 'AI agents × headless SaaS' : 'AI Agent × Headless SaaS'}
               </div>
               <h1 className="mt-7 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
-                {isEnglish ? 'Let AI handle the follow-up.' : '讓 AI 接手追蹤。'}
-                <span className="block text-cyan-300">{isEnglish ? 'Keep decisions with people.' : '重要決策仍由人員核准。'}</span>
+                {isEnglish ? 'Connect every system.' : '串接既有系統。'}
+                <span className="block text-cyan-300">{isEnglish ? 'Let agents move work forward.' : '讓 Agent 推動工作。'}</span>
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-                {isEnglish ? 'EudTech connects the systems your team already uses and turns scattered work into a visible, event-driven operating flow.' : 'EudTech 連接團隊已經使用的系統，把分散的工作轉成可見、可追蹤、由事件驅動的營運流程。'}
+                {isEnglish ? 'EudTech connects ERP, CRM, Microsoft 365, databases, and APIs to branded portals, event workflows, and controlled AI agents. Sensitive actions remain subject to human approval.' : 'EudTech 串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程與受控 AI Agent；敏感動作仍由人員核准。'}
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-950/30 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-200">
                   <CalendarDays className="mr-2 h-4 w-4" />
-                  {isEnglish ? 'Book a discovery call' : '預約導入諮詢'}
+                  {isEnglish ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh}
                 </a>
                 <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2" className="inline-flex items-center justify-center rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/70">
                   <Mail className="mr-2 h-4 w-4" />
@@ -257,48 +300,82 @@ const AiAgentSolutionPage: React.FC = () => {
                 </a>
               </div>
               <p className="mt-6 text-sm text-slate-400">{isEnglish ? 'Human approval remains the control point for sensitive actions.' : '付款、正式寄信與重大狀態變更等敏感動作，保留人員核准控制點。'}</p>
-            </div>
-            <div className="relative flex items-center justify-center">
-              <div className="w-full max-w-md rounded-2xl border border-white/15 bg-white/[0.07] p-6 shadow-2xl shadow-cyan-950/30 backdrop-blur-sm">
-                <div className="flex items-center justify-between border-b border-white/10 pb-5">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">{isEnglish ? 'Operating view' : '營運視圖'}</p>
-                    <p className="mt-2 text-xl font-semibold">{isEnglish ? 'One event. Clear next action.' : '一個事件，一個清楚的下一步。'}</p>
+              <div className="mt-9 grid max-w-2xl gap-3 text-sm text-slate-200 sm:grid-cols-3">
+                {[
+                  isEnglish ? 'Source evidence retained' : '保留來源證據',
+                  isEnglish ? 'Differences reconciled' : '完成差異核對',
+                  isEnglish ? 'A person approves action' : '人員核准執行'
+                ].map((label, index) => (
+                  <div key={label} className="flex items-center gap-2 rounded-lg border border-white/15 bg-slate-950/55 px-3 py-3 backdrop-blur-sm">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 text-xs font-bold text-cyan-200">{index + 1}</span>
+                    <span>{label}</span>
                   </div>
-                  <Bot className="h-9 w-9 text-cyan-300" />
-                </div>
-                <div className="mt-6 space-y-4">
-                  {[
-                    { icon: Mail, label: isEnglish ? 'New supplier reply detected' : '偵測到供應商新回覆', tone: 'text-cyan-300' },
-                    { icon: SearchCheck, label: isEnglish ? 'Quote terms reconciled' : '完成報價條件核對', tone: 'text-emerald-300' },
-                    { icon: Users, label: isEnglish ? 'Approval requested from owner' : '已向負責人提出核准請求', tone: 'text-amber-300' }
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-center gap-3 rounded-lg border border-white/10 bg-slate-900/70 p-4">
-                      <item.icon className={`h-5 w-5 ${item.tone}`} />
-                      <span className="text-sm text-slate-200">{item.label}</span>
-                      <Check className="ml-auto h-4 w-4 text-emerald-300" />
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 rounded-lg border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-6 text-cyan-100">
-                  {isEnglish ? 'AI prepares the next action. A person decides whether it happens.' : 'AI 準備下一步，人員決定是否執行。'}
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section className="bg-slate-50 py-20 dark:bg-slate-900/60">
+        <section data-ai-agent-example="official-document" className="border-b border-slate-200 bg-white py-14 sm:py-20 dark:border-slate-800 dark:bg-slate-950">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">
+                {isEnglish ? 'REAL USE CASE 01 | AI OFFICIAL-DOCUMENT SYSTEM' : '實際應用 01｜AI 公文系統'}
+              </p>
+              <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+                {isEnglish ? 'When a new official document is ready, notify, review, and open it directly.' : '新公文準備好後，直接通知、查看與開啟。'}
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300">
+                {isEnglish
+                  ? 'People receive a clear notification, see what needs attention, and open the document or recent files from the same work view.'
+                  : '使用者收到清楚通知後，可以看到待處理事項，直接開啟公文或查看最近文件，從收到通知一路完成下一步。'}
+              </p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                {[
+                  { zh: '收到通知', en: 'Receive a notification' },
+                  { zh: '辨識待辦', en: 'See what needs attention' },
+                  { zh: '直接閱讀', en: 'Open and read directly' }
+                ].map((outcome, index) => (
+                  <div key={outcome.en} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800 dark:bg-slate-900">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cyan-100 text-xs font-bold text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-300">{index + 1}</span>
+                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{isEnglish ? outcome.en : outcome.zh}</span>
+                  </div>
+                ))}
+              </div>
+              <a
+                href="mailto:info@eudaemonia.tech?subject=AI%20%E5%85%AC%E6%96%87%E7%B3%BB%E7%B5%B1%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2"
+                className="mt-8 inline-flex items-center rounded-md bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              >
+                {isEnglish ? 'Discuss an AI official-document system' : 'AI 公文系統導入諮詢'}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+            <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 p-3 shadow-sm dark:border-slate-700 sm:p-5">
+              <img
+                src="/ai-agent/official-document-menu.png"
+                alt={isEnglish ? 'AI official-document system menu showing notifications, unread count, recent documents, PDF opening, and saved files' : 'AI 公文系統選單，顯示通知、未讀數量、最近文件、開啟 PDF 與已儲存檔案'}
+                className="mx-auto h-auto max-h-[520px] w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="mt-3 text-center text-xs leading-5 text-slate-400">
+                {isEnglish ? 'Actual operation screen; the interface keeps notifications, pending items, and document access in one place.' : '實際操作畫面；通知、待辦與文件入口集中在同一個工作畫面。'}
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section className="bg-slate-50 py-14 sm:py-20 dark:bg-slate-900/60">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">{isEnglish ? 'The operational gap' : '營運缺口'}</p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Your team should not be the integration layer.' : '團隊不應該成為系統之間的整合層。'}</h2>
               <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'AI agents create a shared operational rhythm across the systems where work already happens.' : 'AI Agent 讓既有系統之間形成共同的營運節奏，讓工作不再依賴個人記憶。'}</p>
             </div>
-            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-4 sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {painPoints.map((item) => (
                 <article key={text(item.title, isEnglish)} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
-                  <item.icon className="h-7 w-7 text-cyan-600 dark:text-cyan-300" />
+                  <NarrativeVisual src={item.visual} />
                   <h3 className="mt-6 text-lg font-semibold">{text(item.title, isEnglish)}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p>
                 </article>
@@ -307,7 +384,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-white py-20 dark:bg-slate-950">
+        <section className="bg-white py-14 sm:py-20 dark:bg-slate-950">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
               <div>
@@ -316,11 +393,11 @@ const AiAgentSolutionPage: React.FC = () => {
               </div>
               <p className="text-base leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'Each role has a defined purpose, source, and hand-off. The system can automate preparation without hiding who approves the result.' : '每個角色都有明確目的、資料來源與交接點。系統可以自動準備工作，但不隱藏誰核准結果。'}</p>
             </div>
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 lg:grid-cols-3">
               {agentRoles.map((item, index) => (
                 <article key={text(item.title, isEnglish)} className="group rounded-xl border border-slate-200 p-6 transition hover:-translate-y-1 hover:border-emerald-400 hover:shadow-lg dark:border-slate-800 dark:hover:border-emerald-500">
                   <div className="flex items-center justify-between">
-                    <item.icon className="h-7 w-7 text-emerald-600 dark:text-emerald-300" />
+                    <NarrativeVisual src={item.visual} />
                     <span className="text-xs font-semibold text-slate-400">0{index + 1}</span>
                   </div>
                   <h3 className="mt-6 text-lg font-semibold">{text(item.title, isEnglish)}</h3>
@@ -331,7 +408,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section id="workflow-demo" className="scroll-mt-20 border-y border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/60">
+        <section id="workflow-demo" className="scroll-mt-20 border-y border-slate-200 bg-slate-50 py-14 sm:py-20 dark:border-slate-800 dark:bg-slate-900/60">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">{isEnglish ? 'See it in context' : '看見實際流程'}</p>
@@ -364,7 +441,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-white py-20 dark:bg-slate-950">
+        <section className="bg-white py-14 sm:py-20 dark:bg-slate-950">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
               <div>
@@ -375,7 +452,7 @@ const AiAgentSolutionPage: React.FC = () => {
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {systems.map((item) => (
                   <article key={text(item.title, isEnglish)} className="rounded-xl border border-slate-200 p-5 dark:border-slate-800">
-                    <item.icon className="h-6 w-6 text-cyan-600 dark:text-cyan-300" />
+                    <NarrativeVisual src={item.visual} />
                     <h3 className="mt-4 font-semibold">{text(item.title, isEnglish)}</h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p>
                   </article>
@@ -385,17 +462,46 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section id="consultation" className="scroll-mt-20 bg-slate-950 py-20 text-white">
+        <section className="border-y border-slate-200 bg-slate-50 py-14 sm:py-20 dark:border-slate-800 dark:bg-slate-900/60">
+          <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+            <VendorMedia
+              src={VENDOR_EVIDENCE.microsoft.image}
+              alt={VENDOR_EVIDENCE.microsoft.imageAlt}
+              caption={{ zh: 'Microsoft Copilot Studio 原廠產品導覽畫面；實際介面與功能依授權及版本更新。', en: 'Official Microsoft Copilot Studio product-tour screen; actual interface and capabilities depend on licensing and version.' }}
+              sourceHref={VENDOR_EVIDENCE.microsoft.sources.product.href}
+              sourceLabel={VENDOR_EVIDENCE.microsoft.sources.product.label}
+              isEnglish={isEnglish}
+              contain
+            />
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">Microsoft Copilot Studio</p>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Use official controls for connections, flows, and governance.' : '使用原廠連線、流程與治理控制'}</h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'When Microsoft technologies fit the customer environment, EudTech can use Copilot Studio, Dataverse, SharePoint, Microsoft 365, connectors, and APIs to build governed agents. The final architecture depends on licences, permissions, data boundaries, and acceptance requirements.' : '當 Microsoft 技術符合客戶環境時，EudTech 可採用 Copilot Studio、Dataverse、SharePoint、Microsoft 365、連接器與 API 建立受治理的 Agent。最終架構依授權、權限、資料邊界與驗收需求確認。'}</p>
+              <ul className="mt-7 space-y-3 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                <li className="flex gap-3"><Check className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-300" />{isEnglish ? 'Connect tools and knowledge through authenticated connections.' : '透過驗證連線接取工具與知識來源。'}</li>
+                <li className="flex gap-3"><Check className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-300" />{isEnglish ? 'Use agent flows for event-driven tasks and human intervention.' : '使用 Agent flows 執行事件驅動任務與人員介入。'}</li>
+                <li className="flex gap-3"><Check className="mt-1 h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-300" />{isEnglish ? 'Apply security, data-loss prevention, access, and environment governance.' : '套用安全性、資料外洩防護、存取與環境治理。'}</li>
+              </ul>
+              <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3">
+                <SourceLink href={VENDOR_EVIDENCE.microsoft.sources.connections.href} label={VENDOR_EVIDENCE.microsoft.sources.connections.label} isEnglish={isEnglish} />
+                <SourceLink href={VENDOR_EVIDENCE.microsoft.sources.flows.href} label={VENDOR_EVIDENCE.microsoft.sources.flows.label} isEnglish={isEnglish} />
+                <SourceLink href={VENDOR_EVIDENCE.microsoft.sources.governance.href} label={VENDOR_EVIDENCE.microsoft.sources.governance.label} isEnglish={isEnglish} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="consultation" className="scroll-mt-20 bg-slate-950 py-14 sm:py-20 text-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">{isEnglish ? 'Governance by design' : '內建治理'}</p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Automation should make responsibility clearer.' : '自動化應該讓責任更清楚。'}</h2>
               <p className="mt-5 text-base leading-8 text-slate-300">{isEnglish ? 'Every implementation includes control points so the team can understand, approve, and audit what the agents do.' : '每次導入都包含控制點，讓團隊可以理解、核准並稽核 Agent 的工作。'}</p>
             </div>
-            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-5">
               {governance.map((item) => (
                 <article key={text(item.title, isEnglish)} className="rounded-xl border border-white/10 bg-white/[0.06] p-5">
-                  <item.icon className="h-6 w-6 text-emerald-300" />
+                  <NarrativeVisual src={item.visual} dark />
                   <h3 className="mt-5 text-base font-semibold">{text(item.title, isEnglish)}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-300">{text(item.body, isEnglish)}</p>
                 </article>
@@ -404,7 +510,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-slate-50 py-20 dark:bg-slate-900/60">
+        <section className="bg-slate-50 py-14 sm:py-20 dark:bg-slate-900/60">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
               <div>
@@ -414,7 +520,7 @@ const AiAgentSolutionPage: React.FC = () => {
               <div className="grid gap-5 sm:grid-cols-2">
                 {onboardingSteps.map((item) => (
                   <article key={text(item.title, isEnglish)} className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-950">
-                    <item.icon className="h-7 w-7 text-cyan-600 dark:text-cyan-300" />
+                    <NarrativeVisual src={item.visual} />
                     <h3 className="mt-5 text-lg font-semibold">{text(item.title, isEnglish)}</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p>
                   </article>
@@ -424,16 +530,16 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-white py-20 dark:bg-slate-950">
+        <section className="bg-white py-14 sm:py-20 dark:bg-slate-950">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600 dark:text-emerald-300">{isEnglish ? 'Choose the right scope' : '選擇適合的導入範圍'}</p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Four ways to work with EudTech.' : 'EudTech 提供四種合作方案。'}</h2>
             </div>
-            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-4 sm:mt-12 md:grid-cols-2 lg:grid-cols-4">
               {plans.map((item, index) => (
                 <article key={text(item.title, isEnglish)} className={`rounded-xl border p-6 ${index === 1 ? 'border-cyan-400 bg-cyan-50 dark:border-cyan-500 dark:bg-cyan-950/30' : 'border-slate-200 dark:border-slate-800'}`}>
-                  <item.icon className="h-7 w-7 text-cyan-600 dark:text-cyan-300" />
+                  <NarrativeVisual src={item.visual} />
                   <h3 className="mt-6 text-lg font-semibold">{text(item.title, isEnglish)}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p>
                   <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E6%96%B9%E6%A1%88" className="mt-6 inline-flex items-center text-sm font-semibold text-cyan-700 hover:text-cyan-600 dark:text-cyan-300">
@@ -445,16 +551,16 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="border-y border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/60">
+        <section className="border-y border-slate-200 bg-slate-50 py-14 sm:py-20 dark:border-slate-800 dark:bg-slate-900/60">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">{isEnglish ? 'Built for real operations' : '適合實際營運團隊'}</p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'For teams where a missed next step has a cost.' : '適合每一個漏掉下一步就會產生成本的團隊。'}</h2>
             </div>
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-3">
               {audiences.map((item) => (
                 <article key={text(item.title, isEnglish)} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
-                  <item.icon className="mt-1 h-6 w-6 shrink-0 text-emerald-600 dark:text-emerald-300" />
+                  <NarrativeVisual src={item.visual} />
                   <div><h3 className="font-semibold">{text(item.title, isEnglish)}</h3><p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p></div>
                 </article>
               ))}
@@ -462,7 +568,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-white py-20 dark:bg-slate-950">
+        <section className="bg-white py-14 sm:py-20 dark:bg-slate-950">
           <div className="mx-auto max-w-4xl px-6 lg:px-8">
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">FAQ</p>
@@ -482,7 +588,7 @@ const AiAgentSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-slate-950 py-20 text-white">
+        <section className="bg-slate-950 py-14 sm:py-20 text-white">
           <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 lg:flex-row lg:items-center lg:px-8">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">{isEnglish ? 'Ready for the first workflow?' : '準備好選擇第一條流程了嗎？'}</p>
@@ -490,7 +596,7 @@ const AiAgentSolutionPage: React.FC = () => {
               <p className="mt-5 text-base leading-8 text-slate-300">{isEnglish ? 'Tell us where follow-up, reconciliation, or reminders consume the most time.' : '告訴 EudTech 哪一段追蹤、核對或催辦最消耗團隊時間。'}</p>
             </div>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-              <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"><CalendarDays className="mr-2 h-4 w-4" />{isEnglish ? 'Book a call' : '預約諮詢'}</a>
+              <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"><CalendarDays className="mr-2 h-4 w-4" />{isEnglish ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh}</a>
               <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E5%88%9D%E8%AB%87" className="inline-flex items-center justify-center rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"><Mail className="mr-2 h-4 w-4" />{isEnglish ? 'Send an email' : '寄送郵件'}</a>
             </div>
           </div>
@@ -498,10 +604,10 @@ const AiAgentSolutionPage: React.FC = () => {
 
         <Footer isEnglish={isEnglish} />
 
-        <div className="fixed inset-x-4 bottom-4 z-40 flex gap-2 rounded-xl border border-slate-200 bg-white/95 p-2 shadow-xl backdrop-blur md:hidden dark:border-slate-700 dark:bg-slate-900/95">
-          <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="flex flex-1 items-center justify-center rounded-lg bg-cyan-400 px-3 py-3 text-xs font-semibold text-slate-950"><CalendarDays className="mr-1.5 h-4 w-4" />{isEnglish ? 'Book' : '預約'}</a>
+        {showMobileActions && <nav aria-label={isEnglish ? 'AI Agent quick actions' : 'AI Agent 快速操作'} data-ai-agent-mobile-actions className="fixed inset-x-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 flex gap-2 rounded-xl border border-slate-200 bg-white/95 p-2 shadow-xl backdrop-blur md:hidden dark:border-slate-700 dark:bg-slate-900/95">
+          <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="flex flex-1 items-center justify-center rounded-lg bg-cyan-400 px-3 py-3 text-xs font-semibold text-slate-950"><CalendarDays className="mr-1.5 h-4 w-4" />{isEnglish ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh}</a>
           <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2" className="flex flex-1 items-center justify-center rounded-lg border border-slate-300 px-3 py-3 text-xs font-semibold text-slate-800 dark:border-slate-600 dark:text-slate-100"><Mail className="mr-1.5 h-4 w-4" />{isEnglish ? 'Email' : '寄信'}</a>
-        </div>
+        </nav>}
       </div>
     </>
   );

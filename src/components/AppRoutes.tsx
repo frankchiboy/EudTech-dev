@@ -1,27 +1,32 @@
-import React, { Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { Navigate, Routes, Route } from 'react-router-dom';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useLanguageContext } from '../contexts/LanguageContext';
 import NavBar from './navigation/NavBar';
 import HeroSection from './hero/HeroSection';
-import EudTechProductsSection from './EudTechProductsSection';
-import ComimoBrandIntro from './ComimoBrandIntro';
-import CyabraBrandIntro from './CyabraBrandIntro';
+import HomeSolutionsSection from './HomeSolutionsSection';
+import HomeBrandPartnersSection from './HomeBrandPartnersSection';
 import Footer from './Footer';
 import ScrollToTop from './common/ScrollToTop';
 import SkipToContent from './common/SkipToContent';
-import LoadingSpinner from './ui/LoadingSpinner';
 import CareersPage from './CareersPage';
 import AtomicComponentsDemo from './demo/AtomicComponentsDemo';
 import GrandoConfigurator from './configurator/GrandoConfigurator';
 import SEOHead from './common/SEOHead';
 import ConfiguratorSolutionPage from './pages/ConfiguratorSolutionPage';
-import ConfiguratorSolutionsHubPage from './pages/ConfiguratorSolutionsHubPage';
 import AiAgentSolutionPage from './pages/AiAgentSolutionPage';
 import MarketingEvents from './analytics/MarketingEvents';
-import { LazyProductDetails, LazyContactSection, LazyAboutSection } from '../utils/performance/codesplitting';
+import ProductDetails from './ProductDetails';
 import { canonicalPageUrl } from '../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath } from '../utils/seo/socialPreview';
+import SolutionsOverviewPage from './pages/SolutionsOverviewPage';
+import AiInfrastructureSolutionPage from './pages/AiInfrastructureSolutionPage';
+import SocialIntelligenceSolutionPage from './pages/SocialIntelligenceSolutionPage';
+import ProductsOverviewPage from './pages/ProductsOverviewPage';
+import ResourcesOverviewPage from './pages/ResourcesOverviewPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import PrivacyPage from './pages/PrivacyPage';
 
 const AppRoutes: React.FC = () => {
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
@@ -57,20 +62,15 @@ const AppRoutes: React.FC = () => {
       />
       <MarketingEvents />
       <main id="main-content" role="main">
-        <Suspense fallback={
-          <div className="flex items-center justify-center min-h-screen">
-            <LoadingSpinner size="lg" />
-          </div>
-        }>
-          <Routes>
+        <Routes>
             <Route path="/" element={
               <>
                 <SEOHead
-                  title={isEnglish ? 'AI GPU Servers and Comino Configurator' : 'AI GPU 伺服器與 Comino 配置器'}
+                  title={isEnglish ? 'AI agents & Headless SaaS, GPU Infrastructure, and Social Intelligence' : 'AI Agent 與 Headless SaaS、GPU 運算與社群情報'}
                   description={
                     isEnglish
-                      ? 'EudTech provides AI GPU servers, liquid-cooled Comino Grando systems, and a configurator for GPU server and workstation quote requests in Taiwan.'
-                      : 'EudTech 提供 AI GPU 伺服器、Comino Grando 液冷系統，以及可送出 GPU 伺服器與工作站報價需求的配置器。'
+                      ? 'EudTech provides one integrated AI agent and headless SaaS service, AI GPU infrastructure, and Cyabra social intelligence solutions.'
+                      : 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入服務、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
                   }
                   keywords={
                     isEnglish
@@ -84,36 +84,28 @@ const AppRoutes: React.FC = () => {
                   isEnglish={isEnglish}
                 />
                 <HeroSection isEnglish={isEnglish} />
-                <EudTechProductsSection isEnglish={isEnglish} />
-                <ComimoBrandIntro isEnglish={isEnglish} />
-                <CyabraBrandIntro isEnglish={isEnglish} />
-                <Suspense fallback={<LoadingSpinner />}>
-                  <LazyAboutSection isEnglish={isEnglish} />
-                </Suspense>
-                <Suspense fallback={<LoadingSpinner />}>
-                  <LazyContactSection />
-                </Suspense>
+                <HomeSolutionsSection isEnglish={isEnglish} />
+                <HomeBrandPartnersSection isEnglish={isEnglish} />
                 <Footer isEnglish={isEnglish} />
               </>
             } />
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/configurator" element={<GrandoConfigurator />} />
             <Route path="/configurator/:pid" element={<GrandoConfigurator />} />
-            <Route path="/solutions" element={<ConfiguratorSolutionsHubPage />} />
+            <Route path="/solutions" element={<SolutionsOverviewPage />} />
             <Route path="/solutions/ai-agent" element={<AiAgentSolutionPage />} />
+            <Route path="/solutions/headless-saas" element={<Navigate replace to="/solutions/ai-agent" />} />
+            <Route path="/solutions/ai-infrastructure" element={<AiInfrastructureSolutionPage />} />
+            <Route path="/solutions/social-intelligence" element={<SocialIntelligenceSolutionPage />} />
             <Route path="/solutions/:slug" element={<ConfiguratorSolutionPage />} />
-            <Route path="/components-demo" element={<AtomicComponentsDemo />} />
-            <Route path="/products/:id" element={
-              <Suspense fallback={
-                <div className="flex items-center justify-center min-h-screen">
-                  <LoadingSpinner size="lg" />
-                </div>
-              }>
-                <LazyProductDetails />
-              </Suspense>
-            } />
+            <Route path="/products" element={<ProductsOverviewPage />} />
+            <Route path="/resources" element={<ResourcesOverviewPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/components-demo" element={import.meta.env.DEV ? <AtomicComponentsDemo /> : <Navigate replace to="/" />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
           </Routes>
-        </Suspense>
       </main>
     </>
   );

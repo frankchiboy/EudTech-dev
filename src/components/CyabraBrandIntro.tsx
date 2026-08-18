@@ -212,8 +212,8 @@ const CyabraBrandIntro: React.FC<CyabraBrandIntroProps> = ({ isEnglish }) => {
       icon: <AlertCircle className="h-8 w-8 text-[#003daa]" />,
       title: isEnglish ? 'Real-time Alerts' : '即時警報',
       description: isEnglish
-        ? 'Receive proactive notifications about potential threats to your brand reputation with 24/7 monitoring.'
-        : '透過24/7監控，主動接收可能影響品牌聲譽的威脅通知。'
+        ? 'Receive proactive notifications when monitored narratives and risk conditions require review.'
+        : '當監測敘事與風險條件需要檢視時，主動通知負責人。'
     },
     {
       icon: <Search className="h-8 w-8 text-[#003daa]" />,
@@ -233,24 +233,24 @@ const CyabraBrandIntro: React.FC<CyabraBrandIntroProps> = ({ isEnglish }) => {
 
   const stats: StatItem[] = [
     {
-      value: '#1',
-      labelEn: 'Disinformation - Major Global Risk',
-      labelZh: '假資訊 - 主要全球風險'
+      value: 'AI',
+      labelEn: 'Profile Authenticity Analysis',
+      labelZh: '帳號真實性分析'
     },
     {
-      value: '$500B',
-      labelEn: 'Spent on Disinformation by 2028',
-      labelZh: '到2028年用於假資訊的支出'
+      value: 'SaaS',
+      labelEn: 'Direct Platform Access',
+      labelZh: '平台直接使用'
     },
     {
-      value: '24/7',
-      labelEn: 'Real-time Threat Monitoring',
-      labelZh: '即時威脅監控'
+      value: 'API',
+      labelEn: 'Enterprise Integration Direction',
+      labelZh: '企業整合方向'
     },
     {
-      value: '89%',
-      labelEn: 'Accuracy in Detecting Fake Profiles',
-      labelZh: '假帳號檢測準確率'
+      value: 'Alerts',
+      labelEn: 'Real-time Narrative Alerts',
+      labelZh: '即時敘事警示'
     }
   ];
 

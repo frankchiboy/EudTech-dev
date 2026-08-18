@@ -11,6 +11,7 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ link, textColorClass }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
   const renderLabel = () => {
     if (!link.labelLines?.length) {
       return link.name;
@@ -33,8 +34,16 @@ const NavLink: React.FC<NavLinkProps> = ({ link, textColorClass }) => {
     };
 
     document.addEventListener('mousedown', handleClickOutside);
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, []);
 
@@ -42,13 +51,17 @@ const NavLink: React.FC<NavLinkProps> = ({ link, textColorClass }) => {
     return (
       <div className="relative" ref={dropdownRef}>
         <button
+          ref={triggerRef}
           type="button"
           onClick={() => {
             if (!link.disabled) {
               setIsOpen((prev) => !prev);
             }
           }}
-          className={`${textColorClass} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-out flex items-center gap-1 focus:outline-none relative group ${
+          aria-haspopup="menu"
+          aria-expanded={isOpen}
+          aria-controls={`nav-menu-${link.name.replace(/\s+/g, '-')}`}
+          className={`${textColorClass} px-2.5 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-out flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-blue-400 relative group ${
             link.disabled ? 'opacity-60 cursor-not-allowed' : ''
           }`}
         >
@@ -65,7 +78,7 @@ const NavLink: React.FC<NavLinkProps> = ({ link, textColorClass }) => {
           )}
         </button>
         {isOpen && !link.disabled && link.children && (
-          <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50 transition-all duration-200 transform origin-top-left">
+          <div id={`nav-menu-${link.name.replace(/\s+/g, '-')}`} role="menu" className="absolute left-0 mt-2 w-72 rounded-md shadow-lg p-2 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50 transition-all duration-200 transform origin-top-left">
             {link.children.map((child) => (
               <a
                 key={child.name}
@@ -74,9 +87,11 @@ const NavLink: React.FC<NavLinkProps> = ({ link, textColorClass }) => {
                   handleNavClick(child.href, e);
                   setIsOpen(false);
                 }}
-                className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                role="menuitem"
+                className="block rounded-md px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
-                {child.name}
+                <span className="block font-semibold">{child.name}</span>
+                {child.description && <span className="mt-1 block text-xs leading-5 text-gray-500 dark:text-gray-400">{child.description}</span>}
               </a>
             ))}
           </div>

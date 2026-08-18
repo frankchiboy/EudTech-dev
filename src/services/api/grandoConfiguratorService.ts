@@ -1,6 +1,9 @@
 import {
   ConfiguratorDeviceResponse,
-  ConfiguratorDevicesResponse
+  ConfiguratorDevicesResponse,
+  ConfiguratorDevice,
+  ConfiguratorOption,
+  CONFIGURATOR_REQUIRED_MODULES
 } from '../../types/configurator';
 import {
   getFallbackDeviceResponse,
@@ -17,8 +20,25 @@ export type ConfiguratorDataResult<T> = {
   source: ConfiguratorDataSource;
 };
 
-const CONFIGURATOR_REQUEST_TIMEOUT_MS = 4000;
+// The Comino proxy refreshes a verified upstream cache when it expires.  The
+// first request may therefore take longer than a browser-only API request;
+// keep the user on the authoritative dataset instead of prematurely switching
+// to a reduced local fallback.
+const CONFIGURATOR_REQUEST_TIMEOUT_MS = 15_000;
 const CONFIGURATOR_PROXY_URL = '/api/comino-configurator';
+
+const hasNamedModule = (options: ConfiguratorOption[], moduleKey: string) => options.some(
+  (option) => String(option.module_type || '').toLowerCase() === moduleKey && typeof option.name === 'string' && option.name.trim().length > 0
+);
+
+export const hasCompleteConfiguratorSnapshot = (
+  device: ConfiguratorDevice | undefined,
+  options: ConfiguratorOption[] | undefined
+) => Boolean(
+  device &&
+  Array.isArray(options) &&
+  CONFIGURATOR_REQUIRED_MODULES.every((moduleKey) => hasNamedModule(options, moduleKey))
+);
 
 const fetchJson = async <T>(url: string): Promise<T> => {
   const controller = new AbortController();
@@ -57,13 +77,13 @@ export const getConfiguratorDevices = async () => {
   try {
     const result = await fetchOfficialConfiguratorData<ConfiguratorDevicesResponse>();
     const data = result.data;
-    if (!Array.isArray(data.devices)) {
+    if (!Array.isArray(data.devices) || data.devices.length === 0) {
       throw new Error('Grando API response did not include devices.');
     }
     return { data: data.devices, source: result.source } satisfies ConfiguratorDataResult<ConfiguratorDevicesResponse['devices']>;
   } catch (error) {
     const fallback = getFallbackDevicesResponse();
-    if (!fallback.devices.length) {
+    if (!fallback.devices.length || fallback.devices.some((item) => !hasCompleteConfiguratorSnapshot(item, item.options))) {
       throw error;
     }
     return {
@@ -77,13 +97,13 @@ export const getConfiguratorDevice = async (deviceId: string | number) => {
   try {
     const result = await fetchOfficialConfiguratorData<ConfiguratorDeviceResponse>(deviceId);
     const data = result.data;
-    if (!data.device || !Array.isArray(data.options)) {
-      throw new Error('Grando API response did not include a valid device.');
+    if (!hasCompleteConfiguratorSnapshot(data.device, data.options)) {
+      throw new Error('Grando API response did not include a valid complete configurator snapshot.');
     }
     return { data, source: result.source } satisfies ConfiguratorDataResult<ConfiguratorDeviceResponse>;
   } catch (error) {
     const fallback = getFallbackDeviceResponse(deviceId);
-    if (!fallback) {
+    if (!fallback || !hasCompleteConfiguratorSnapshot(fallback.device, fallback.options)) {
       throw error;
     }
     return {

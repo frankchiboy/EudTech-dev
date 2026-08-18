@@ -6,7 +6,8 @@ import {
   ConfiguratorOption,
   ConfiguratorSpec,
   ConfiguratorSpecItem,
-  ConfiguratorValidation
+  ConfiguratorValidation,
+  CONFIGURATOR_REQUIRED_MODULES
 } from '../../types/configurator';
 import { GRANDO_CONFIGURATOR_BASE_URL } from '../../services/api/grandoConfiguratorService';
 
@@ -326,15 +327,33 @@ export const buildRecommendedSpec = (
   return spec;
 };
 
+export const hasCompleteConfiguratorSpec = (spec: ConfiguratorSpec) => CONFIGURATOR_REQUIRED_MODULES.every((moduleKey) => {
+  const item = spec[moduleKey];
+  return Boolean(item && typeof item === 'object' && typeof item.name === 'string' && item.name.trim());
+});
+
 const getQueryOption = (
   moduleKey: ConfiguratorModule,
   uniqueId: string,
   options: ConfiguratorOption[]
 ) => {
-  return (
-    options.find((option) => option.module_type === moduleKey && option.unique_id === uniqueId) ||
-    options.find((option) => option.unique_id === uniqueId)
-  );
+  const moduleOptions = options.filter((option) => option.module_type === moduleKey);
+  const exact = moduleOptions.find((option) => option.unique_id === uniqueId);
+  if (exact) {
+    return exact;
+  }
+
+  // Older public links used product slugs while Comino's current API uses
+  // numeric/opaque unique IDs. Keep those links readable without accepting an
+  // ID from a different module.
+  const alias = uniqueId.toLowerCase();
+  return moduleOptions.find((option) => {
+    const name = option.name.toLowerCase();
+    if (alias === 'h200-141gb') return name.includes('h200') && name.includes('141gb');
+    if (alias === 'rtx-pro-6000-96gb') return name.includes('rtx') && name.includes('pro') && name.includes('6000') && name.includes('96gb');
+    if (alias === '5090') return name.includes('5090');
+    return false;
+  });
 };
 
 export const applyQueryToSpec = (
@@ -351,12 +370,32 @@ export const applyQueryToSpec = (
     }
   });
 
-  const gpuValue = Number(searchParams.get('gpu_value'));
-  const cpuValue = Number(searchParams.get('cpu_value'));
+  const requestedGpuValue = Number(searchParams.get('gpu_value'));
+  const requestedCpuValue = Number(searchParams.get('cpu_value'));
+  const baseGpuQuantity = spec.gpu?.total_quantity;
+  const baseCpuQuantity = spec.cpu?.total_quantity;
 
-  if (gpuValue && spec.gpu) {
-    spec.gpu = { ...spec.gpu, total_quantity: gpuValue };
-  }
+  const validQuantity = (moduleKey: ConfiguratorModule, option: ConfiguratorOption, value: number) => {
+    if (!Number.isInteger(value) || value <= 0 || !option.custom_values.includes(value)) {
+      return false;
+    }
+    return moduleKey !== 'gpu' || !baseSpec.device || value <= baseSpec.device.gpu_slots;
+  };
+
+  const getQuantity = (
+    moduleKey: ConfiguratorModule,
+    option: ConfiguratorOption,
+    requestedValue: number,
+    fallbackValue: number | undefined
+  ) => {
+    if (validQuantity(moduleKey, option, requestedValue)) {
+      return requestedValue;
+    }
+    if (validQuantity(moduleKey, option, fallbackValue || 0)) {
+      return fallbackValue as number;
+    }
+    return option.custom_values.find((value) => validQuantity(moduleKey, option, value)) || 1;
+  };
 
   CONFIGURATOR_MODULES.forEach((moduleKey) => {
     const uniqueId = searchParams.get(moduleKey);
@@ -372,26 +411,24 @@ export const applyQueryToSpec = (
 
     const quantity =
       moduleKey === 'gpu'
-        ? gpuValue || option.custom_values[0] || 1
+        ? getQuantity(moduleKey, option, requestedGpuValue, baseGpuQuantity)
         : moduleKey === 'cpu'
-          ? cpuValue || option.custom_values[0] || 1
+          ? getQuantity(moduleKey, option, requestedCpuValue, baseCpuQuantity)
           : option.custom_values[0] || 1;
 
     spec[moduleKey] = cloneSpecItem(option, quantity);
   });
 
-  if (cpuValue) {
-    if (spec.cpu) {
-      spec.cpu = { ...spec.cpu, total_quantity: cpuValue };
-    } else {
-      const cpu = baseSpec.cpu;
-      if (cpu) {
-        spec.cpu = { ...cpu, total_quantity: cpuValue };
-      }
-    }
-  }
-
   return spec;
+};
+
+export const hasCompleteConfiguratorModules = (options: ConfiguratorOption[]) => {
+  const modules = new Set(
+    options
+      .filter((option) => typeof option?.name === 'string' && option.name.trim())
+      .map((option) => String(option.module_type || '').toLowerCase())
+  );
+  return CONFIGURATOR_REQUIRED_MODULES.every((moduleKey) => modules.has(moduleKey));
 };
 
 export const calculateConfiguratorPrice = (spec: ConfiguratorSpec) => {
@@ -439,6 +476,7 @@ export const getConfiguratorValidation = (spec: ConfiguratorSpec): ConfiguratorV
   }
 
   if (
+    (psu?.unique_id === '2' && totalPower >= 3000) ||
     ((cpu?.unique_id === '5770' || cpu?.unique_id === '90988') && gpuQuantity > 6) ||
     (cpu?.unique_id === '1288' && isGeForce && gpuQuantity > 6) ||
     (cpu?.unique_id === '2566' && isGeForce && gpuQuantity > 4) ||
@@ -461,6 +499,14 @@ export const getConfiguratorValidation = (spec: ConfiguratorSpec): ConfiguratorV
 };
 
 export const getConfiguratorModelName = (spec: ConfiguratorSpec) => {
+  // The selected device is the authoritative public model name. The previous
+  // GPU-count heuristic changed distinct server and workstation pages into a
+  // generic GRANDO label (for example SERVER 6xH200 became a rackable
+  // workstation). Keep the device name stable while options are adjusted.
+  if (spec.device?.name) {
+    return spec.device.name;
+  }
+
   const gpuQuantity = spec.gpu?.total_quantity || 0;
 
   if (gpuQuantity <= 6) {
@@ -485,7 +531,7 @@ export const formatSpecValue = (moduleKey: ConfiguratorModule, item?: Configurat
     case 'ram':
       return `${Number(item.volume * item.total_quantity)} GB`;
     case 'cpu':
-      return `${item.name}${item.total_quantity > 1 ? `, ${item.total_quantity} cores` : ''}`;
+      return `${item.name}${item.total_quantity > 1 ? `, ${item.total_quantity} CPUs` : ''}`;
     case 'psu':
       return item.unique_id === '1'
         ? '4x Redundant (3+1, 2+2) Power Supplies. Power capacity up to 8000W'

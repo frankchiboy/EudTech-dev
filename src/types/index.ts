@@ -5,6 +5,7 @@ export type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 export interface NavLinkChild {
   name: string;
   href: string;
+  description?: string;
 }
 
 export interface NavLink {
@@ -38,7 +39,21 @@ export interface EmailFormData {
   country?: string;
   subject?: string;
   toEmail?: string;
+  comment?: string;
   quoteRequestId?: string;
+  configurationSummary?: {
+    device: string;
+    gpu: string;
+    cpu: string;
+    ram: string;
+    storage: string;
+    storage_1: string;
+    storage_2: string;
+    storage_3: string;
+    storage_4: string;
+    psu: string;
+    network: string;
+  };
   message: string;
   privacy: boolean;
 }

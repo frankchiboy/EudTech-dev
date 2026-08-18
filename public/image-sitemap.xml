@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://eudaemonia.tech/</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/home.jpg</image:loc>
     </image:image>
@@ -93,9 +93,65 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/solutions.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/ai-agent/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/solutions-ai-agent.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/products/</loc>
+    <lastmod>2026-08-16</lastmod>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/products.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/resources/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/resources.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/ai-infrastructure/</loc>
+    <lastmod>2026-08-16</lastmod>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/solutions-ai-infrastructure.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/solutions/social-intelligence/</loc>
+    <lastmod>2026-08-16</lastmod>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/solutions-social-intelligence.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/about/</loc>
+    <lastmod>2026-08-16</lastmod>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/about.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/contact/</loc>
+    <lastmod>2026-08-16</lastmod>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/contact.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/privacy/</loc>
+    <lastmod>2026-08-16</lastmod>
+    <image:image>
+      <image:loc>https://eudaemonia.tech/social/configurator/privacy.jpg</image:loc>
     </image:image>
   </url>
   <url>
@@ -177,7 +233,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/solutions-supermicro-comino-gpu-server-comparison.jpg</image:loc>
     </image:image>
@@ -212,7 +268,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/solutions-ai-server-procurement-case-taiwan.jpg</image:loc>
     </image:image>

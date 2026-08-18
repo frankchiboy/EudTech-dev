@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>EudTech Configurator Updates</title>
+    <title>EudTech Solutions and Resources</title>
     <link>https://eudaemonia.tech/solutions/</link>
-    <description>AI GPU server, Comino Grando configurator, workstation quote, and procurement solution entry points from EudTech.</description>
+    <description>EudTech AI Agent, AI infrastructure, social intelligence, products, resources, and consultation entry points.</description>
     <language>zh-TW</language>
-    <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://eudaemonia.tech/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Comino Grando GPU 伺服器報價配置器</title>
@@ -15,17 +15,73 @@
       <description>配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。</description>
     </item>
     <item>
-      <title>GPU 伺服器報價與配置器解決方案</title>
+      <title>AI 與數位服務解決方案總覽｜EudTech</title>
       <link>https://eudaemonia.tech/solutions/</link>
       <guid>https://eudaemonia.tech/solutions/</guid>
-      <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
-      <description>EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。</description>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 +0800</pubDate>
+      <description>從 AI Agent 與 Headless SaaS、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。</description>
+    </item>
+    <item>
+      <title>企業 AI Agent 與 Headless SaaS 導入</title>
+      <link>https://eudaemonia.tech/solutions/ai-agent/</link>
+      <guid>https://eudaemonia.tech/solutions/ai-agent/</guid>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 +0800</pubDate>
+      <description>串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。</description>
+    </item>
+    <item>
+      <title>產品與品牌｜EudTech</title>
+      <link>https://eudaemonia.tech/products/</link>
+      <guid>https://eudaemonia.tech/products/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>瀏覽 EudTech 軟體與導入服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。</description>
+    </item>
+    <item>
+      <title>GPU 伺服器選型與採購｜EudTech</title>
+      <link>https://eudaemonia.tech/resources/</link>
+      <guid>https://eudaemonia.tech/resources/</guid>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 +0800</pubDate>
+      <description>依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。</description>
+    </item>
+    <item>
+      <title>AI 運算基礎設施｜EudTech</title>
+      <link>https://eudaemonia.tech/solutions/ai-infrastructure/</link>
+      <guid>https://eudaemonia.tech/solutions/ai-infrastructure/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>從工作負載、GPU 與記憶體選型、電力散熱、配置器到正式報價，建立可採購的 AI 伺服器與工作站方案。</description>
+    </item>
+    <item>
+      <title>社群情報與品牌保護｜EudTech</title>
+      <link>https://eudaemonia.tech/solutions/social-intelligence/</link>
+      <guid>https://eudaemonia.tech/solutions/social-intelligence/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>EudTech 以 Cyabra 協助企業與公部門分析假帳號、協調式社群行為、敘事擴散及品牌風險。</description>
+    </item>
+    <item>
+      <title>關於 EudTech｜優達盟資訊科技</title>
+      <link>https://eudaemonia.tech/about/</link>
+      <guid>https://eudaemonia.tech/about/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>了解優達盟資訊科技在企業 AI 導入、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。</description>
+    </item>
+    <item>
+      <title>聯絡 EudTech｜開始諮詢</title>
+      <link>https://eudaemonia.tech/contact/</link>
+      <guid>https://eudaemonia.tech/contact/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>選擇 AI Agent、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。</description>
+    </item>
+    <item>
+      <title>隱私與資料使用｜EudTech</title>
+      <link>https://eudaemonia.tech/privacy/</link>
+      <guid>https://eudaemonia.tech/privacy/</guid>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>EudTech 說明詢價與聯絡資料、客戶來源追蹤、必要識別碼、資料保存及資料請求方式。</description>
     </item>
     <item>
       <title>EudTech 配置器公開連結索引</title>
       <link>https://eudaemonia.tech/configurator-links.html</link>
       <guid>https://eudaemonia.tech/configurator-links.html</guid>
-      <pubDate>Mon, 13 Jul 2026 00:00:00 +0800</pubDate>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
       <description>EudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。</description>
     </item>
     <item>
@@ -183,11 +239,11 @@
       <description>為台灣公部門 GPU 伺服器採購討論整理工作負載、配置、報價、交付、保固與審查假設。</description>
     </item>
     <item>
-      <title>Supermicro 與 Comino GPU 伺服器配置比較</title>
+      <title>Supermicro 與 Comino GPU 伺服器採購流程比較</title>
       <link>https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/</link>
       <guid>https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/</guid>
-      <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
-      <description>比較評估 Supermicro 類 GPU 伺服器 RFQ 與 Comino Grando 配置器導向 AI 伺服器報價時的採購路徑。</description>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
+      <description>比較傳統 Supermicro RFQ 與 Comino Grando 配置器詢價的採購流程、配置可追蹤性與報價交接；本頁不宣稱硬體效能基準測試結果。</description>
     </item>
     <item>
       <title>AI 推論伺服器報價配置器｜台灣 LLM 與私有模型部署</title>
@@ -221,7 +277,7 @@
       <title>台灣 AI 伺服器採購案例指南與配置器詢價流程</title>
       <link>https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/</link>
       <guid>https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/</guid>
-      <pubDate>Sun, 12 Jul 2026 00:00:00 +0800</pubDate>
+      <pubDate>Sun, 16 Aug 2026 00:00:00 +0800</pubDate>
       <description>將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。</description>
     </item>
   </channel>

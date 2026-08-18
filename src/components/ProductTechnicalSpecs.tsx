@@ -114,11 +114,13 @@ const ProductTechnicalSpecs: React.FC<ProductTechnicalSpecsProps> = ({
     <div className="bg-white dark:bg-gray-900 py-16">
       <div className="max-w-7xl mx-auto px-4">
         <div className="prose prose-lg dark:prose-invert max-w-none">
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6 text-center">
-              {isEnglish ? 'Technical Specifications' : '技術規格'}
-            </h3>
-            <div className="overflow-x-auto">
+          <details className="group mb-12 rounded-2xl border border-neutral-200 bg-white p-5 dark:border-neutral-700 dark:bg-gray-800" open={product.id !== 7}>
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-2xl font-bold text-neutral-900 dark:text-neutral-100 [&::-webkit-details-marker]:hidden">
+              <span>{isEnglish ? 'Technical Specifications' : '技術規格'}</span>
+              <span className="text-sm font-semibold text-eudtech-700 dark:text-eudtech-300 group-open:hidden">{isEnglish ? 'View details' : '展開詳細規格'}</span>
+              <span className="hidden text-sm font-semibold text-eudtech-700 group-open:inline dark:text-eudtech-300">{isEnglish ? 'Collapse' : '收合'}</span>
+            </summary>
+            <div className="mt-6 overflow-x-auto">
               <table className="min-w-full bg-white dark:bg-gray-800 border border-neutral-200 dark:border-neutral-700">
                 <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
                   {Object.entries(product.detailedDescription?.technicalSpecs || {}).map(([key, value], index) => (
@@ -141,7 +143,7 @@ const ProductTechnicalSpecs: React.FC<ProductTechnicalSpecsProps> = ({
                   : '* - 取決於配置'}
               </p>
             )}
-          </div>
+          </details>
         </div>
 
         {/* Available Configurations - for Comino Grando Rackable Workstation (id: 5), Desktop Workstation (id: 6), and Server (id: 7) */}

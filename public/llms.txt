@@ -1,12 +1,20 @@
-# EudTech Configurator
+# EudTech Solutions
 
-EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled system configuration services for Taiwan buyers.
+EudTech provides one integrated enterprise AI agent and headless SaaS service, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
 
 ## Primary URLs
 
 - Homepage: https://eudaemonia.tech/
 - Comino Grando Configurator: https://eudaemonia.tech/configurator/
-- Configurator Solutions Hub: https://eudaemonia.tech/solutions/
+- AI Solutions Overview: https://eudaemonia.tech/solutions/
+- AI Agent and Headless SaaS Implementation: https://eudaemonia.tech/solutions/ai-agent/
+- 產品與品牌｜EudTech: https://eudaemonia.tech/products/
+- GPU 伺服器選型與採購｜EudTech: https://eudaemonia.tech/resources/
+- AI 運算基礎設施｜EudTech: https://eudaemonia.tech/solutions/ai-infrastructure/
+- 社群情報與品牌保護｜EudTech: https://eudaemonia.tech/solutions/social-intelligence/
+- 關於 EudTech｜優達盟資訊科技: https://eudaemonia.tech/about/
+- 聯絡 EudTech｜開始諮詢: https://eudaemonia.tech/contact/
+- 隱私與資料使用｜EudTech: https://eudaemonia.tech/privacy/
 - Configurator Link Index: https://eudaemonia.tech/configurator-links.html
 - INTEGRATION KIT 8x H200 配置器: https://eudaemonia.tech/configurator/27/
 - INTEGRATION KIT 8x PRO 6000 配置器: https://eudaemonia.tech/configurator/36/
@@ -30,7 +38,7 @@ EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled 
 - GPU 伺服器電力規劃配置器: https://eudaemonia.tech/solutions/gpu-server-power-planning/
 - 機架式 AI 伺服器部署配置器: https://eudaemonia.tech/solutions/rack-ai-server-deployment/
 - 台灣公部門 GPU 伺服器採購檢核表: https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/
-- Supermicro 與 Comino GPU 伺服器配置比較: https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/
+- Supermicro 與 Comino GPU 伺服器採購流程比較: https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/
 - AI 推論伺服器報價配置器｜台灣 LLM 與私有模型部署: https://eudaemonia.tech/solutions/ai-inference-server-taiwan/
 - Comino Grando 台灣報價配置器指南: https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/
 - NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表: https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/
@@ -39,6 +47,9 @@ EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled 
 
 ## High-Intent Topics
 
+- Enterprise AI Agent and headless SaaS implementation
+- AI infrastructure planning
+- Cyabra social intelligence
 - GPU server quote
 - AI server quote
 - NVIDIA H200 server

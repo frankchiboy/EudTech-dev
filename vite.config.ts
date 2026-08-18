@@ -37,6 +37,8 @@ const PUBLIC_FILE_ALLOWLIST = [
   'd6fd206f713cd936d87b58a6010aa751.txt',
   'sw.js',
   'logo.svg',
+  'headless-saas-architecture.svg',
+  'ai-agent-evidence-chain-v1.webp',
   'icon.svg',
   'amd-logo.png',
   'amd-partner-badge.jpg',
@@ -92,15 +94,20 @@ const PUBLIC_FILE_ALLOWLIST = [
   'keras-logo.png',
   'linus-review.jpg',
   'nvidia-logo.png',
+  'nvidia-logo-modified.png',
   'pytorch-logo.png',
   'sentdex-review.jpg',
   'tensorflow-logo.png'
 ];
 
 const PUBLIC_DIRECTORY_ALLOWLIST = [
+  'ai-agent',
+  'brand-provenance',
   'cyabra-images',
   'images/configurator/devices',
-  'social'
+  'images/configurator/backgrounds',
+  'social',
+  'vendor'
 ];
 
 function copyPublicAsset(publicDir: string, distDir: string, relativePath: string) {

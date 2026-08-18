@@ -359,7 +359,9 @@ function assertStaticSeoFallback(route, jsonLd) {
     }
   }
 
-  if (route.path.startsWith('/solutions/') && route.path !== '/solutions') {
+  const isConfiguratorSolution = CONFIGURATOR_SEO_PAGES.some((page) => `/solutions/${page.slug}` === route.path)
+    || route.path === '/solutions/ai-infrastructure';
+  if (isConfiguratorSolution) {
     const productLinks = relatedConfiguratorProductLinks(route.path, links);
     requireAtLeast(route.path, 'related concrete configurator product links', productLinks.length, MIN_SOLUTION_PRODUCT_LINKS);
   }
@@ -436,7 +438,7 @@ function assertSocialMeta(route) {
 }
 
 function assertWebPageSchema(routePath, expectedUrl, expectedImage, items) {
-  const expectedType = routePath === '/solutions' ? 'CollectionPage' : 'WebPage';
+  const expectedType = ['/solutions', '/products', '/resources'].includes(routePath) ? 'CollectionPage' : 'WebPage';
   const schema = findType(items, expectedType);
 
   if (!schema) {
@@ -480,7 +482,7 @@ function assertConfiguratorProduct(routePath, expectedProductId, items) {
 for (const route of expectedRoutes) {
   const { html, jsonLd } = assertSocialMeta(route);
   assertWebPageSchema(route.path, route.canonicalUrl, route.socialImageUrl, jsonLd);
-  if (route.path === '/configurator' || route.path === '/solutions') {
+  if (route.path === '/configurator') {
     assertConfiguratorHubProductLinks(route.path, html, jsonLd);
   }
   if (route.productId) {

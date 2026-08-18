@@ -3,15 +3,15 @@ import { HeroContent } from '../types';
 export const getHeroContent = (isEnglish: boolean): HeroContent => {
   return {
     title: {
-      main: isEnglish ? 'Empowering the Future' : '賦能未來',
-      highlight: isEnglish ? 'Through AI Innovation' : '透過AI創新'
+      main: isEnglish ? 'Build the right AI system' : '把 AI 需求變成可執行方案',
+      highlight: isEnglish ? 'from workload to measurable delivery' : '從工作負載到可驗證交付'
     },
     subtitle: isEnglish 
-      ? 'Groundbreaking AI solutions that transform industries and enhance human potential.'
-      : '開創性的AI解決方案，改變產業格局，提升人類潛能。',
+      ? 'EudTech connects AI agents, liquid-cooled infrastructure, and social intelligence to the systems and decisions your team already owns.'
+      : 'EudTech 將 AI Agent、液冷運算基礎設施與社群情報，連接到團隊既有的系統與決策流程。',
     buttons: {
-      primary: isEnglish ? 'Explore Products' : '探索產品',
-      secondary: isEnglish ? 'Contact Us' : '聯絡我們'
+      primary: isEnglish ? 'Explore solutions' : '查看解決方案',
+      secondary: isEnglish ? 'Start a conversation' : '開始諮詢'
     }
   };
 };

@@ -1,71 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Logo from './common/Logo';
-import { handleNavClick } from '../utils/helpers/navigation';
+import { SITE_NAVIGATION_GROUPS, SITE_CTA } from '../data/siteArchitecture';
 
-interface FooterLink {
-  name: string;
-  href: string;
-  target?: string;
-  active: boolean;
-}
-
-interface FooterLinks {
-  company: {
-    title: string;
-    links: FooterLink[];
-  };
-  products: {
-    title: string;
-    links: FooterLink[];
-  };
-  legal: {
-    title: string;
-    links: FooterLink[];
-  };
-}
-
-interface FooterProps {
-  isEnglish: boolean;
-}
+interface FooterProps { isEnglish: boolean; }
 
 const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
   const currentYear = new Date().getFullYear();
   
-  const footerLinks: FooterLinks = {
-    company: {
-      title: isEnglish ? 'Solutions' : '解決方案',
-      links: [
-        { name: isEnglish ? 'AI Agent Services' : 'AI Agent 導入', href: '/solutions/ai-agent', active: true },
-        { name: isEnglish ? 'Configurator Solutions' : '配置器解決方案', href: '/solutions', active: true },
-        { name: isEnglish ? 'AI Servers' : 'AI 伺服器', href: '#eudtech-products', active: true },
-        { name: isEnglish ? 'GPU Server Quote' : 'GPU 伺服器報價', href: '/solutions/gpu-server-quote', active: true },
-        { name: isEnglish ? 'NVIDIA H200 Server' : 'NVIDIA H200 伺服器', href: '/solutions/nvidia-h200-server', active: true },
-        { name: isEnglish ? 'H200 vs RTX PRO' : 'H200 與 RTX PRO 比較', href: '/solutions/h200-vs-rtx-pro-6000', active: true },
-        { name: isEnglish ? 'AI Workstation Taiwan' : '台灣 AI 工作站', href: '/solutions/ai-workstation-taiwan', active: true },
-      ],
-    },
-    products: {
-      title: isEnglish ? 'Support' : '支援',
-      links: [
-        { name: isEnglish ? 'Comino Configurator' : 'Comino 配置器', href: '/configurator', active: true },
-        { name: isEnglish ? 'Configurator Link Index' : '配置器連結索引', href: '/configurator-links.html', active: true },
-        { name: isEnglish ? 'RTX PRO Workstation' : 'RTX PRO 工作站', href: '/solutions/rtx-pro-6000-workstation', active: true },
-        { name: isEnglish ? 'Liquid-Cooled GPU Server' : '液冷 GPU 伺服器', href: '/solutions/liquid-cooled-gpu-server', active: true },
-        { name: isEnglish ? 'GPU Server RFQ Checklist' : 'GPU 伺服器 RFQ 檢核表', href: '/solutions/gpu-server-rfq-checklist', active: true },
-        { name: isEnglish ? 'Liquid-Cooling AI Server' : '液冷 AI 伺服器採購', href: '/solutions/liquid-cooling-ai-server-procurement', active: true },
-        { name: isEnglish ? 'Contact Sales' : '聯繫銷售', href: '#contact', active: true },
-      ],
-    },
-    legal: {
-      title: isEnglish ? 'Company' : '公司',
-      links: [
-        { name: isEnglish ? 'About' : '關於我們', href: '#about', active: true },
-        { name: isEnglish ? 'Blog' : '部落格', href: '#', active: false },
-        { name: isEnglish ? 'Jobs' : '工作機會', href: '/careers', active: true },
-        { name: isEnglish ? 'Press' : '新聞稿', href: '#', active: false },
-      ],
-    },
-  };
+  const label = (value: { zh: string; en: string }) => (isEnglish ? value.en : value.zh);
 
   return (
     <footer className="bg-gray-900" aria-labelledby="footer-heading">
@@ -73,84 +16,18 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
         Footer
       </h2>
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <div className="space-y-8">
-            <Logo />
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_2fr]">
+          <div className="space-y-6">
+            <Logo inverse />
             <p className="text-sm leading-6 text-gray-300">
-              {isEnglish
-                ? 'Pioneering AI infrastructure for the next generation of intelligent applications.'
-                : '為下一代智能應用開創人工智能基礎設施。'}
+              {isEnglish ? 'EudTech connects AI agents and headless SaaS, infrastructure, and intelligence to accountable business outcomes.' : 'EudTech 將 AI Agent 與 Headless SaaS、運算基礎設施及社群情報連接到可負責的業務成果。'}
             </p>
+            <div className="flex flex-wrap gap-3"><Link to={SITE_CTA.configurator.href} className="rounded-md bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-300">{label(SITE_CTA.configurator)}</Link><Link to={SITE_CTA.contact.href} className="rounded-md border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:border-cyan-300">{label(SITE_CTA.contact)}</Link></div>
           </div>
-          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">{footerLinks.company.title}</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {footerLinks.company.links.map((link) => (
-                    <li key={link.name}>
-                      {link.active ? (
-                        <a
-                          href={link.href}
-                          onClick={(e) => handleNavClick(link.href, e)}
-                          className="text-sm leading-6 text-gray-300 hover:text-white"
-                        >
-                          {link.name}
-                        </a>
-                      ) : (
-                        <span className="text-sm leading-6 text-gray-500 cursor-not-allowed">{link.name}</span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">{footerLinks.products.title}</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {footerLinks.products.links.map((link) => (
-                    <li key={link.name}>
-                      {link.active ? (
-                        <a
-                          href={link.href}
-                          onClick={(e) => handleNavClick(link.href, e)}
-                          className="text-sm leading-6 text-gray-300 hover:text-white"
-                        >
-                          {link.name}
-                        </a>
-                      ) : (
-                        <span className="text-sm leading-6 text-gray-500 cursor-not-allowed">{link.name}</span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">{footerLinks.legal.title}</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {footerLinks.legal.links.map((link) => (
-                    <li key={link.name}>
-                      {link.active ? (
-                        <a
-                          href={link.href}
-                          onClick={(e) => handleNavClick(link.href, e)}
-                          className="text-sm leading-6 text-gray-300 hover:text-white"
-                        >
-                          {link.name}
-                        </a>
-                      ) : (
-                        <span className="text-sm leading-6 text-gray-500 cursor-not-allowed">{link.name}</span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+          <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">{SITE_NAVIGATION_GROUPS.map((group) => <div key={group.id}><h3 className="text-sm font-semibold leading-6 text-white">{label(group.label)}</h3><ul role="list" className="mt-5 space-y-3">{group.children?.map((child) => <li key={child.id}><Link to={child.href} className="text-sm leading-6 text-gray-300 hover:text-cyan-300">{label(child.label)}</Link></li>)}</ul></div>)}</div>
         </div>
         <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-400">&copy; {currentYear} {isEnglish ? 'Eudaemonia Technology Ltd.' : '優達盟資訊科技有限公司'}. All rights reserved.</p>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><p className="text-xs leading-5 text-gray-400">&copy; {currentYear} {isEnglish ? 'Eudaemonia Technology Ltd.' : '優達盟資訊科技有限公司'}. All rights reserved.</p><Link to="/privacy" className="text-xs text-gray-400 hover:text-white">{isEnglish ? 'Privacy' : '隱私與資料使用'}</Link></div>
         </div>
       </div>
     </footer>

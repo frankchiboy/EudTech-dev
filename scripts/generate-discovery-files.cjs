@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const { getConfiguratorSocialPreviewRoutes } = require('./configurator-social-preview-routes.cjs');
+const { SITE_INFORMATION_ROUTES } = require('./site-information-routes.cjs');
 
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
@@ -102,33 +103,33 @@ const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
 }));
 const homepageUrl = {
   loc: `${siteOrigin}/`,
-  title: 'AI GPU 伺服器與 Comino 配置器',
-  description: 'EudTech 提供 AI GPU 伺服器、Comino Grando 液冷系統，以及可送出 GPU 伺服器與工作站報價需求的配置器。',
+  title: 'AI Agent 與 Headless SaaS、GPU 運算與社群情報｜EudTech',
+  description: 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
   priority: '1.0',
   source: {
-    title: 'AI GPU 伺服器與 Comino 配置器',
-    description: 'EudTech 提供 AI GPU 伺服器、Comino Grando 液冷系統，以及可送出 GPU 伺服器與工作站報價需求的配置器。'
+    title: 'AI Agent 與 Headless SaaS、GPU 運算與社群情報｜EudTech',
+    description: 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
   }
 };
 const solutionHubUrl = {
   loc: pageUrl('/solutions'),
-  title: 'GPU 伺服器報價與配置器解決方案',
-  description: 'EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。',
+  title: 'AI 與數位服務解決方案總覽｜EudTech',
+  description: '從 AI Agent 與 Headless SaaS、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
   priority: '0.93',
   source: {
-    title: 'GPU 伺服器報價與配置器解決方案',
-    description: 'EudTech 可用於報價的配置器入口，集中 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購頁面。',
+    title: 'AI 與數位服務解決方案總覽｜EudTech',
+    description: 'EudTech 的 AI Agent 與 Headless SaaS、AI 運算基礎設施及 Cyabra 社群情報三大方案。',
     solutionSlugs: CONFIGURATOR_SEO_PAGES.map((page) => page.slug)
   }
 };
 const aiAgentUrl = {
   loc: pageUrl('/solutions/ai-agent'),
-  title: '企業 AI Agent 導入',
-  description: '串接 Outlook、Teams、SharePoint、Dataverse、ERP 與財務證據，建立可執行、可追溯、可人工核准的 AI Agent 工作流程。',
+  title: '企業 AI Agent 與 Headless SaaS 導入',
+  description: '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。',
   priority: '0.92',
   source: {
-    title: '企業 AI Agent 導入',
-    description: 'EudTech Kinetic、Dataverse 與 Accounting Hub 的企業 AI Agent 導入服務。'
+    title: '企業 AI Agent 與 Headless SaaS 導入',
+    description: 'EudTech 將品牌入口、事件整合與受控 AI Agent 合併為同一項企業導入服務。'
   }
 };
 const configuratorUrl = {
@@ -154,12 +155,23 @@ const configuratorLinkIndexUrl = {
     solutions: CONFIGURATOR_SEO_PAGES.map((page) => ({ slug: page.slug, title: page.title, description: page.description }))
   }
 };
+const siteInformationUrls = SITE_INFORMATION_ROUTES.map((route) => ({
+  loc: pageUrl(route.path),
+  title: route.title,
+  description: route.description,
+  priority: route.priority,
+  source: route
+}));
 
 const sitemapEntries = [
   { ...homepageUrl, changefreq: 'weekly' },
   { ...configuratorUrl, changefreq: 'weekly' },
   { ...solutionHubUrl, changefreq: 'weekly' },
   { ...aiAgentUrl, changefreq: 'weekly' },
+  ...siteInformationUrls.map((entry) => ({
+    ...entry,
+    changefreq: SITE_INFORMATION_ROUTES.find((route) => pageUrl(route.path) === entry.loc)?.changefreq || 'monthly'
+  })),
   { ...configuratorLinkIndexUrl, changefreq: 'weekly' },
   ...productUrls.map((entry) => ({ ...entry, changefreq: 'weekly' })),
   ...solutionUrls.map((entry) => ({ ...entry, changefreq: 'weekly' })),
@@ -258,7 +270,7 @@ ${entry.images
 </urlset>
 `;
 
-const feedEntries = [configuratorUrl, solutionHubUrl, configuratorLinkIndexUrl, ...productUrls, ...solutionUrls];
+const feedEntries = [configuratorUrl, solutionHubUrl, aiAgentUrl, ...siteInformationUrls, configuratorLinkIndexUrl, ...productUrls, ...solutionUrls];
 const feedItems = feedEntries
   .map(
     (entry) => `    <item>
@@ -274,9 +286,9 @@ const feedItems = feedEntries
 const feed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>EudTech Configurator Updates</title>
+    <title>EudTech Solutions and Resources</title>
     <link>${pageUrl('/solutions')}</link>
-    <description>AI GPU server, Comino Grando configurator, workstation quote, and procurement solution entry points from EudTech.</description>
+    <description>EudTech AI Agent, AI infrastructure, social intelligence, products, resources, and consultation entry points.</description>
     <language>zh-TW</language>
     <lastBuildDate>${formatRfc822Date(latestModifiedAt)}</lastBuildDate>
     <atom:link href="${siteOrigin}/feed.xml" rel="self" type="application/rss+xml" />
@@ -288,10 +300,10 @@ ${feedItems}
 const jsonFeed = JSON.stringify(
   {
     version: 'https://jsonfeed.org/version/1.1',
-    title: 'EudTech Configurator Updates',
+    title: 'EudTech Solutions and Resources',
     home_page_url: pageUrl('/solutions'),
     feed_url: `${siteOrigin}/feed.json`,
-    description: 'AI GPU server, Comino Grando configurator, workstation quote, and procurement solution entry points from EudTech.',
+    description: 'EudTech AI Agent, AI infrastructure, social intelligence, products, resources, and consultation entry points.',
     language: 'zh-TW',
     authors: [
       {
@@ -316,13 +328,18 @@ const jsonFeed = JSON.stringify(
 const llmsPrimaryUrls = [
   ['Homepage', `${siteOrigin}/`],
   ['Comino Grando Configurator', pageUrl('/configurator')],
-  ['Configurator Solutions Hub', pageUrl('/solutions')],
+  ['AI Solutions Overview', pageUrl('/solutions')],
+  ['AI Agent and Headless SaaS Implementation', pageUrl('/solutions/ai-agent')],
+  ...siteInformationUrls.map((entry) => [entry.title, entry.loc]),
   ['Configurator Link Index', pageUrl(CONFIGURATOR_LINK_INDEX_PATH)],
   ...productUrls.map((entry) => [entry.title, entry.loc]),
   ...solutionUrls.map((entry) => [entry.title, entry.loc])
 ];
 
 const llmsTopics = [
+  'Enterprise AI Agent and headless SaaS implementation',
+  'AI infrastructure planning',
+  'Cyabra social intelligence',
   'GPU server quote',
   'AI server quote',
   'NVIDIA H200 server',
@@ -357,9 +374,9 @@ const formatFaqs = (faqs) =>
     )
     .join('\n');
 
-const llms = `# EudTech Configurator
+const llms = `# EudTech Solutions
 
-EudTech provides AI GPU server, AI workstation, and Comino Grando liquid-cooled system configuration services for Taiwan buyers.
+EudTech provides one integrated enterprise AI agent and headless SaaS service, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
 
 ## Primary URLs
 
@@ -383,9 +400,9 @@ Users can configure GPU, CPU, RAM, storage, power supply, and networking options
 - Site: ${siteOrigin}/
 `;
 
-const llmsFull = `# EudTech Configurator Full Context
+const llmsFull = `# EudTech Solutions Full Context
 
-Generated for AI assistants, search tools, and procurement researchers that need a structured summary of EudTech configurator routes.
+Generated for AI assistants, search tools, and researchers that need a structured summary of EudTech solutions, products, resources, and configurator routes.
 
 ## Business Context
 
@@ -399,6 +416,18 @@ Generated for AI assistants, search tools, and procurement researchers that need
 ## Primary URLs
 
 ${llmsPrimaryUrls.map(([label, url]) => `- ${label}: ${url}`).join('\n')}
+
+## Site Information Routes
+
+${SITE_INFORMATION_ROUTES.map((route) => `### ${route.title}
+
+- URL: ${pageUrl(route.path)}
+- Description: ${route.description}
+- Lead: ${route.lead}
+- Highlights:
+${route.highlights.map((highlight) => `  - ${highlight}`).join('\n')}
+- Details:
+${route.specs.map((spec) => `  - ${spec.label}: ${spec.value}`).join('\n')}`).join('\n\n')}
 
 ## Configurator Product Routes
 
@@ -471,7 +500,7 @@ const configuratorLinkListJsonLd = {
   mainEntity: {
     '@type': 'ItemList',
     name: 'EudTech Configurator URLs',
-    itemListElement: [configuratorUrl, solutionHubUrl, ...productUrls, ...solutionUrls].map((entry, index) => ({
+    itemListElement: [configuratorUrl, solutionHubUrl, aiAgentUrl, ...siteInformationUrls, ...productUrls, ...solutionUrls].map((entry, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: entry.title,
@@ -507,6 +536,37 @@ const configuratorLinksHtml = `<!doctype html>
         margin: 0;
         background: #f8fafc;
         color: #111827;
+      }
+      header {
+        background: #0f172a;
+        color: #ffffff;
+      }
+      nav {
+        box-sizing: border-box;
+        display: flex;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 18px 20px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      nav > a {
+        color: #67e8f9;
+        font-size: 1.15rem;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 16px;
+      }
+      .nav-links a {
+        color: #e2e8f0;
+        font-size: .9rem;
+        font-weight: 700;
       }
       main {
         box-sizing: border-box;
@@ -604,17 +664,44 @@ const configuratorLinksHtml = `<!doctype html>
           color: #ffffff;
         }
       }
+      @media (max-width: 640px) {
+        nav {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .nav-links {
+          justify-content: flex-start;
+        }
+      }
     </style>
     <script type="application/ld+json">${JSON.stringify(configuratorLinkListJsonLd).replace(/</g, '\\u003c')}</script>
   </head>
   <body>
+    <header>
+      <nav aria-label="網站主要導覽">
+        <a href="https://eudaemonia.tech/">EudTech</a>
+        <div class="nav-links">
+          <a href="https://eudaemonia.tech/solutions/">解決方案</a>
+          <a href="https://eudaemonia.tech/products/">產品與品牌</a>
+          <a href="https://eudaemonia.tech/resources/">採購資源</a>
+          <a href="https://eudaemonia.tech/contact/">預約諮詢</a>
+        </div>
+      </nav>
+    </header>
     <main>
       <h1>${escapeHtml(configuratorLinkIndexUrl.title)}</h1>
       <p class="lead">${escapeHtml(configuratorLinkIndexUrl.description)} 此頁集中提供可爬取的正式 URL，方便採購者、搜尋引擎與 AI 搜尋工具進入正確配置頁。</p>
       <div class="actions">
         <a href="${escapeHtml(configuratorUrl.loc)}">開啟 Comino Grando 配置器</a>
-        <a href="${escapeHtml(solutionHubUrl.loc)}">查看配置器解決方案</a>
+        <a href="${escapeHtml(solutionHubUrl.loc)}">查看 AI 解決方案</a>
       </div>
+
+      <section aria-labelledby="site-information-links">
+        <h2 id="site-information-links">網站主要內容</h2>
+        <ul>
+${[solutionHubUrl, aiAgentUrl, ...siteInformationUrls].map(linkCard).join('\n')}
+        </ul>
+      </section>
 
       <section aria-labelledby="configurator-product-links">
         <h2 id="configurator-product-links">產品配置頁</h2>
@@ -632,6 +719,7 @@ ${solutionUrls.map(linkCard).join('\n')}
 
       <footer>
         <p>正式報價與供應條件以 EudTech 後續回覆為準。聯絡信箱：<a href="mailto:info@eudaemonia.tech">info@eudaemonia.tech</a></p>
+        <p><a href="https://eudaemonia.tech/about/">關於 EudTech</a> · <a href="https://eudaemonia.tech/privacy/">隱私與資料使用</a></p>
       </footer>
     </main>
   </body>

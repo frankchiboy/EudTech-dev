@@ -58,9 +58,10 @@ export const CONFIGURATOR_COPY = {
       comment: 'Comment'
     },
     retry: 'Retry',
+    loadingBaseline: 'Loading the current verified Comino configuration. Quote requests remain disabled until all ten modules are available.',
     emptyMessage: 'Hmm, we could not find any device matching your filter.',
     clearFilter: 'Clear filter',
-    cores: '# of cores',
+    cpuQuantity: '# of CPU cores',
     warning: 'warning',
     toggle: 'Toggle',
     showImage: 'Show configurator image',
@@ -72,10 +73,12 @@ export const CONFIGURATOR_COPY = {
     nic: 'Network Interface Controller',
     quoteSubject: 'Grando Configurator Request',
     quoteRequest: 'Configurator request',
+    device: 'Device',
     configurationLink: 'Configuration link',
     model: 'Model',
     systemFallback: 'Grando system',
     loadErrorFallback: 'Something went wrong.',
+    incompleteSnapshot: 'The verified Comino configuration is incomplete. Quote requests are disabled until all ten modules are available.',
     fallbackNotice:
       'The vendor live configurator is temporarily unavailable. This page is using EudTech\'s product configuration baseline; final options, pricing, and delivery lead time require a formal quote.'
   },
@@ -132,9 +135,10 @@ export const CONFIGURATOR_COPY = {
       comment: '留言'
     },
     retry: '重試',
+    loadingBaseline: '正在載入目前已驗證的 Comino 配置；十個模組完整可用前，詢價功能會保持停用。',
     emptyMessage: '找不到符合目前篩選條件的裝置。',
     clearFilter: '清除篩選',
-    cores: '核心數',
+    cpuQuantity: 'CPU 核心數',
     warning: '警告',
     toggle: '切換',
     showImage: '顯示配置圖片',
@@ -146,10 +150,12 @@ export const CONFIGURATOR_COPY = {
     nic: '網路介面控制器',
     quoteSubject: 'Grando 配置器報價需求',
     quoteRequest: '配置需求',
+    device: '裝置',
     configurationLink: '配置連結',
     model: '機型',
     systemFallback: 'Grando 系統',
     loadErrorFallback: '發生錯誤，請稍後再試。',
+    incompleteSnapshot: '已驗證的 Comino 配置資料不完整；十個模組完整可用前，詢價功能保持停用。',
     fallbackNotice:
       '原廠即時配置服務目前未連線。本頁使用優達盟產品配置基準；最終選項、價格與供期由正式報價確認。'
   }
@@ -328,9 +334,9 @@ export const formatLocalizedSpecValue = (
     case 'ram':
       return `${Number(item.volume * item.total_quantity).toLocaleString(getConfiguratorNumberLocale(locale))} GB`;
     case 'cpu':
-      return item.total_quantity > 1
-        ? `${item.name}${locale === 'zh' ? '，' : ', '}${item.total_quantity} ${locale === 'zh' ? '核心' : 'cores'}`
-        : item.name;
+      return `${item.name}${locale === 'zh' ? '，' : ', '}${item.total_quantity} ${locale === 'zh'
+        ? '核心'
+        : item.total_quantity === 1 ? 'CPU core' : 'CPU cores'}`;
     case 'psu':
       if (item.unique_id === '1') {
         return locale === 'zh'

@@ -9,6 +9,7 @@ import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
 import NavLink from './NavLink';
 import MobileMenu from './MobileMenu';
+import { SITE_CTA } from '../../data/siteArchitecture';
 
 interface NavBarProps {
   isEnglish: boolean;
@@ -29,8 +30,9 @@ const NavBar: React.FC<NavBarProps> = ({
   const [scrollY, setScrollY] = useState(0);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const isProductDetailPage = location.pathname.startsWith('/products/');
+  const isProductDetailPage = /^\/products\/[^/]+\/?$/.test(location.pathname);
   const navLinks = getNavLinks(isEnglish);
+  const ctaLabel = (value: { zh: string; en: string }) => (isEnglish ? value.en : value.zh);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -163,12 +165,12 @@ const NavBar: React.FC<NavBarProps> = ({
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Logo />
+              <Logo inverse={textColorClass.includes('text-white') || textColorClass.includes('text-gray-100')} />
             </div>
           </div>
 
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-4">
+          <div className="hidden lg:block">
+            <div className="ml-8 flex items-center gap-1 xl:gap-2">
               {navLinks.map((link) =>
                 link.isDropdown ? (
                   <NavLink key={link.name} link={link} textColorClass={textColorClass} />
@@ -189,7 +191,21 @@ const NavBar: React.FC<NavBarProps> = ({
             </div>
           </div>
 
-          <div className="hidden md:flex items-center">
+          <div className="hidden lg:flex items-center gap-2">
+            <a
+              href={SITE_CTA.configurator.href}
+              onClick={(event) => handleNavClick(SITE_CTA.configurator.href, event)}
+              className={`${textColorClass} hidden xl:inline-flex min-h-10 items-center rounded-md border border-current px-3 text-xs font-semibold transition hover:border-cyan-300 hover:bg-cyan-400/10 focus:outline-none focus:ring-2 focus:ring-cyan-300`}
+            >
+              {ctaLabel(SITE_CTA.configurator)}
+            </a>
+            <a
+              href={SITE_CTA.contact.href}
+              onClick={(event) => handleNavClick(SITE_CTA.contact.href, event)}
+              className="inline-flex min-h-10 items-center rounded-md bg-cyan-400 px-3 text-xs font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-200"
+            >
+              {ctaLabel(SITE_CTA.contact)}
+            </a>
             <LanguageToggle
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
@@ -205,7 +221,7 @@ const NavBar: React.FC<NavBarProps> = ({
             />
           </div>
 
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <LanguageToggle
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
@@ -224,6 +240,9 @@ const NavBar: React.FC<NavBarProps> = ({
             <button
               onClick={() => setIsOpen((prev) => !prev)}
               className={`${textColorClass} p-1 rounded-full transition-all duration-300 ease-out ml-2`}
+              aria-label={isOpen ? (isEnglish ? 'Close menu' : '關閉選單') : (isEnglish ? 'Open menu' : '開啟選單')}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -236,11 +255,6 @@ const NavBar: React.FC<NavBarProps> = ({
         navLinks={navLinks}
         onClose={() => setIsOpen(false)}
         isEnglish={isEnglish}
-        toggleLanguage={toggleLanguage}
-        themeMode={themeMode}
-        isDarkMode={isDarkMode}
-        toggleDarkMode={toggleDarkMode}
-        isScrolled={isScrolled}
       />
     </nav>
   );

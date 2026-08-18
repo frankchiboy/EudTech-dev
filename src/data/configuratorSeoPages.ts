@@ -770,55 +770,55 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     slug: 'supermicro-comino-gpu-server-comparison',
     kind: 'comparison',
     title: {
-      en: 'Supermicro and Comino GPU Server Configuration Comparison',
-      zh: 'Supermicro 與 Comino GPU 伺服器配置比較'
+      en: 'Supermicro and Comino GPU Server Procurement Workflow Comparison',
+      zh: 'Supermicro 與 Comino GPU 伺服器採購流程比較'
     },
     description: {
-      en: 'Compare GPU server buying paths when evaluating Supermicro-style server RFQs and Comino Grando configurator-led AI server quotes.',
-      zh: '比較評估 Supermicro 類 GPU 伺服器 RFQ 與 Comino Grando 配置器導向 AI 伺服器報價時的採購路徑。'
+      en: 'Compare the procurement workflow, configuration traceability, and quote handoff for a conventional Supermicro RFQ and a Comino Grando configurator-led request. This page does not claim a hardware performance benchmark.',
+      zh: '比較傳統 Supermicro RFQ 與 Comino Grando 配置器詢價的採購流程、配置可追蹤性與報價交接；本頁不宣稱硬體效能基準測試結果。'
     },
     keywords: {
       en: 'Supermicro GPU server comparison, Comino GPU server, GPU server alternative, AI server quote comparison, GPU server configurator',
       zh: 'Supermicro GPU 伺服器比較, Comino GPU 伺服器, GPU 伺服器替代方案, AI 伺服器報價比較, GPU 伺服器配置器'
     },
     hero: {
-      en: 'Compare GPU server RFQs with configurator-led quote paths',
-      zh: '比較 GPU 伺服器 RFQ 與配置器導向報價路徑'
+      en: 'Compare GPU server procurement workflows before requesting a quote',
+      zh: '送出報價前比較 GPU 伺服器採購流程'
     },
     lead: {
-      en: 'Use this page when the buying team is comparing conventional GPU server RFQs with a configurator workflow that preserves component choices and quote context.',
-      zh: '當採購團隊比較傳統 GPU 伺服器 RFQ 與可保留零組件選擇及報價脈絡的配置器流程時，可從此頁開始。'
+      en: 'Use this page to align the information required by each RFQ path. Review the final hardware specifications and performance evidence separately for the selected configuration.',
+      zh: '使用本頁對齊兩種 RFQ 路徑所需資訊；最終硬體規格與效能證據，應針對選定配置另外審查。'
     },
     image: '/grando-8gpu-server.jpg',
     imageAlt: {
-      en: 'Comino GPU server configuration comparison for Supermicro-style RFQ evaluation',
-      zh: '用於 Supermicro 類 RFQ 評估的 Comino GPU 伺服器配置比較'
+      en: 'Comino GPU server procurement workflow comparison for a Supermicro-style RFQ',
+      zh: 'Supermicro 類 RFQ 與 Comino GPU 伺服器採購流程比較'
     },
     configuratorHref: '/configurator',
     quoteHref: '/configurator?request=true',
     highlights: [
       {
-        en: 'Frames the decision around quote workflow, configuration clarity, and deployment assumptions.',
-        zh: '以報價流程、配置清楚度與部署假設作為比較重點。'
+        en: 'Compares the information and handoff required by each quote workflow.',
+        zh: '比較兩種報價流程所需資訊與交接內容。'
       },
       {
         en: 'Configurator URLs help both technical and purchasing teams review the same build.',
         zh: '配置器連結協助技術與採購團隊審查同一配置。'
       },
       {
-        en: 'Useful when buyers need a comparable GPU server path before vendor selection.',
-        zh: '適合採購者在選擇供應商前，需要可比較的 GPU 伺服器路徑。'
+        en: 'Use the selected configuration to request a separate technical and commercial review.',
+        zh: '使用選定配置另行提出技術與商務審查需求。'
       }
     ],
     specs: [
-      { label: { en: 'Comparison focus', zh: '比較重點' }, value: { en: 'RFQ workflow and configuration traceability', zh: 'RFQ 流程與配置可追蹤性' } },
+      { label: { en: 'Comparison scope', zh: '比較範圍' }, value: { en: 'RFQ workflow and configuration traceability, not performance benchmarking', zh: 'RFQ 流程與配置可追蹤性，不包含效能基準測試' } },
       { label: { en: 'Best use', zh: '適合情境' }, value: { en: 'Vendor evaluation and quote preparation', zh: '供應商評估與報價準備' } },
-      { label: { en: 'Next step', zh: '下一步' }, value: { en: 'Open configurator and export quote context', zh: '開啟配置器並輸出報價脈絡' } }
+      { label: { en: 'Next step', zh: '下一步' }, value: { en: 'Open a matching configurator and request a technical review', zh: '開啟對應配置器並提出技術審查需求' } }
     ],
     faqs: [
       {
-        question: { en: 'Is this a specification-by-specification benchmark?', zh: '這是逐規格效能比較嗎？' },
-        answer: { en: 'No. This page compares buying workflow and quote preparation context. Specific product performance should be reviewed against the final selected configuration.', zh: '不是。此頁比較採購流程與報價準備脈絡。具體產品效能應依最終選定配置另行審查。' }
+        question: { en: 'Does this page compare hardware performance?', zh: '這頁有比較硬體效能嗎？' },
+        answer: { en: 'No. This page compares procurement workflow and configuration traceability. Review official specifications and configuration-specific performance evidence separately before making a hardware decision.', zh: '沒有。本頁比較採購流程與配置可追蹤性；硬體決策前，請另外審查官方規格與針對選定配置的效能證據。' }
       },
       {
         question: { en: 'Why compare with a configurator workflow?', zh: '為什麼要比較配置器流程？' },
@@ -1101,12 +1101,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     quoteHref: '/configurator?request=true',
     highlights: [
       {
-        en: 'Creates an owned-site case page for organic and email outreach without requiring new ad-platform credentials.',
-        zh: '建立不需新廣告平台憑證即可使用的自有案例頁，供自然曝光與 Email 觸及。'
+        en: 'Organizes common AI server procurement scenarios into clear starting points for technical and purchasing teams.',
+        zh: '將常見 AI 伺服器採購情境整理成清楚起點，方便技術與採購團隊使用。'
       },
       {
-        en: 'Connects procurement intent to H200, RTX PRO 6000, RFQ checklist, power planning, and rack deployment pages.',
-        zh: '將採購意圖連到 H200、RTX PRO 6000、RFQ 檢核、電力規劃與機架部署頁面。'
+        en: 'Links H200, RTX PRO 6000, RFQ checklist, power planning, and rack deployment guidance from one starting point.',
+        zh: '從同一個起點連結 H200、RTX PRO 6000、RFQ 檢核、電力規劃與機架部署指南。'
       },
       {
         en: 'Supports government, research, enterprise, and system-integration quote preparation.',
@@ -1124,8 +1124,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
         answer: { en: 'A case guide helps non-technical stakeholders choose the right starting path before detailed hardware options are selected.', zh: '案例指南可協助非技術利害關係人先選擇正確起點，再進入詳細硬體選項。' }
       },
       {
-        question: { en: 'Can this page be used for organic outreach?', zh: '這個頁面可以用於自然觸及嗎？' },
-        answer: { en: 'Yes. It is designed as a crawler-readable owned page and will be included in sitemap, feed, LLM files, and organic promotion assets.', zh: '可以。此頁設計為可被 crawler 讀取的自有頁面，會納入 sitemap、feed、LLM 檔與自然推廣素材。' }
+        question: { en: 'How should a team use this case guide?', zh: '團隊應該如何使用這份案例指南？' },
+        answer: { en: 'Choose the closest workload and deployment scenario, open the linked configurator, and submit the selected hardware assumptions for technical and quote review.', zh: '先選擇最接近的工作負載與部署情境，再開啟連結配置器，提交已選硬體假設供技術與報價審查。' }
       }
     ]
   }
