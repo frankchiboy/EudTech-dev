@@ -6,10 +6,10 @@ export interface VendorEvidenceSource {
 export const VENDOR_EVIDENCE = {
   anthropic: {
     name: 'Claude Managed Agents',
-    image: '/ai-agent/anthropic/managed-agents-hybrid-architecture.webp',
+    image: '/editorial-photography/private-infrastructure.webp',
     imageAlt: {
-      zh: 'Claude Managed Agents 混合式架構示意，呈現雲端協調、自管執行環境與企業內部系統',
-      en: 'Claude Managed Agents hybrid architecture showing cloud orchestration, self-hosted execution, and private enterprise systems'
+      zh: '企業自管網路與伺服器基礎設施攝影',
+      en: 'Enterprise-managed network and server infrastructure'
     },
     sources: {
       overview: {
