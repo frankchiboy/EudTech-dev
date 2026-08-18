@@ -137,8 +137,8 @@ function copyDeployFiles() {
   return {
     name: 'copy-deploy-files',
     closeBundle() {
-      const distDir = resolve(__dirname, 'dist');
-      const publicDir = resolve(__dirname, 'public');
+      const distDir = resolve(import.meta.dirname, 'dist');
+      const publicDir = resolve(import.meta.dirname, 'public');
       
       // 確保 dist 目錄存在
       if (!existsSync(distDir)) {
@@ -158,7 +158,7 @@ function copyDeployFiles() {
       }
       
       // 複製 _redirects
-      const redirectsSrc = resolve(__dirname, '_redirects');
+      const redirectsSrc = resolve(import.meta.dirname, '_redirects');
       const redirectsDest = resolve(distDir, '_redirects');
       if (existsSync(redirectsSrc)) {
         try {
@@ -172,7 +172,7 @@ function copyDeployFiles() {
       }
       
       // 複製 _headers
-      const headersSrc = resolve(__dirname, '_headers');
+      const headersSrc = resolve(import.meta.dirname, '_headers');
       const headersDest = resolve(distDir, '_headers');
       if (existsSync(headersSrc)) {
         try {
@@ -212,7 +212,7 @@ export default defineConfig({
     },
     // 禁用快取
     fs: {
-      strict: false,
+      strict: true,
       allow: ['.'],
     },
     // 發送不快取的響應標頭
@@ -226,15 +226,17 @@ export default defineConfig({
     copyPublicDir: false,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
+        main: resolve(import.meta.dirname, 'index.html'),
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]',
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return undefined;
+          if (id.includes('react-router')) return 'router';
+          if (id.includes('/react/') || id.includes('/react-dom/')) return 'vendor';
+          return undefined;
         },
       },
     },

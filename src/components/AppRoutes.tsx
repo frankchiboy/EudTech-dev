@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useLanguageContext } from '../contexts/LanguageContext';
@@ -9,24 +9,36 @@ import HomeBrandPartnersSection from './HomeBrandPartnersSection';
 import Footer from './Footer';
 import ScrollToTop from './common/ScrollToTop';
 import SkipToContent from './common/SkipToContent';
-import CareersPage from './CareersPage';
-import AtomicComponentsDemo from './demo/AtomicComponentsDemo';
-import GrandoConfigurator from './configurator/GrandoConfigurator';
 import SEOHead from './common/SEOHead';
-import ConfiguratorSolutionPage from './pages/ConfiguratorSolutionPage';
-import AiAgentSolutionPage from './pages/AiAgentSolutionPage';
 import MarketingEvents from './analytics/MarketingEvents';
-import ProductDetails from './ProductDetails';
 import { canonicalPageUrl } from '../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath } from '../utils/seo/socialPreview';
-import SolutionsOverviewPage from './pages/SolutionsOverviewPage';
-import AiInfrastructureSolutionPage from './pages/AiInfrastructureSolutionPage';
-import SocialIntelligenceSolutionPage from './pages/SocialIntelligenceSolutionPage';
-import ProductsOverviewPage from './pages/ProductsOverviewPage';
-import ResourcesOverviewPage from './pages/ResourcesOverviewPage';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import PrivacyPage from './pages/PrivacyPage';
+
+const CareersPage = lazy(() => import('./CareersPage'));
+const AtomicComponentsDemo = lazy(() => import('./demo/AtomicComponentsDemo'));
+const GrandoConfigurator = lazy(() => import('./configurator/GrandoConfigurator'));
+const ConfiguratorSolutionPage = lazy(() => import('./pages/ConfiguratorSolutionPage'));
+const AiAgentSolutionPage = lazy(() => import('./pages/AiAgentSolutionPage'));
+const ProductDetails = lazy(() => import('./ProductDetails'));
+const SolutionsOverviewPage = lazy(() => import('./pages/SolutionsOverviewPage'));
+const AiInfrastructureSolutionPage = lazy(() => import('./pages/AiInfrastructureSolutionPage'));
+const SocialIntelligenceSolutionPage = lazy(() => import('./pages/SocialIntelligenceSolutionPage'));
+const ProductsOverviewPage = lazy(() => import('./pages/ProductsOverviewPage'));
+const ResourcesOverviewPage = lazy(() => import('./pages/ResourcesOverviewPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+
+const RouteLoadingFallback = () => (
+  <div
+    className="flex min-h-[50vh] items-center justify-center bg-white px-6 text-slate-700 dark:bg-slate-950 dark:text-slate-200"
+    role="status"
+    aria-live="polite"
+  >
+    <span className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-cyan-500" aria-hidden="true" />
+    <span className="sr-only">Loading</span>
+  </div>
+);
 
 const AppRoutes: React.FC = () => {
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
@@ -62,7 +74,8 @@ const AppRoutes: React.FC = () => {
       />
       <MarketingEvents />
       <main id="main-content" role="main">
-        <Routes>
+        <Suspense fallback={<RouteLoadingFallback />}>
+          <Routes>
             <Route path="/" element={
               <>
                 <SEOHead
@@ -106,6 +119,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/components-demo" element={import.meta.env.DEV ? <AtomicComponentsDemo /> : <Navigate replace to="/" />} />
             <Route path="/products/:id" element={<ProductDetails />} />
           </Routes>
+        </Suspense>
       </main>
     </>
   );
