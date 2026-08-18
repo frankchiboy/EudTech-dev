@@ -24,6 +24,7 @@ const HomeSolutionsSection: React.FC<HomeSolutionsSectionProps> = ({ isEnglish }
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">{isEnglish ? 'Start with the business outcome' : '先從實際成果開始'}</p>
           <h2 id="home-solutions-heading" className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Three solution paths, one accountable delivery model' : '三條解決方案路徑，同一套可追蹤交付方式'}</h2>
           <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'Choose the problem you need to solve. EudTech then defines the data, systems, approvals, and measurable next step.' : '先選擇需要解決的問題，再由 EudTech 定義資料、系統、核准點與可量化的下一步。'}</p>
+          <p data-home-hero-relationship className="mt-4 rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm leading-7 text-slate-700 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-slate-200">{isEnglish ? 'The homepage hero introduces EudTech as one delivery partner; these three paths show the distinct entry point for AI workflow implementation, AI infrastructure procurement, and social intelligence.' : '首頁主視覺介紹 EudTech 是同一個交付夥伴；以下三條路徑分別對應 AI 工作流程導入、AI 運算設備採購與社群情報需求。'}</p>
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {items.map(({ visual, href, title, body, color }) => (

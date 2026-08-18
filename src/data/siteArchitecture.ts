@@ -57,7 +57,17 @@ export const SITE_NAVIGATION_GROUPS: SiteNavigationItem[] = [
   }
 ];
 
+export const SITE_BOOKING = {
+  href: 'https://outlook.office.com/book/EudTechOnlineMeeting@EudaemoniaTechnologLtd.onmicrosoft.com/',
+  label: { zh: '預約需求診斷', en: 'Book discovery' },
+  title: { zh: '30 分鐘 EudTech 解決方案需求診斷', en: '30-minute EudTech solution discovery' },
+  description: {
+    zh: '確認需求類型、既有系統或工作負載、第一個可驗證交付物與下一步。',
+    en: 'Confirm the need, existing systems or workload, first verifiable deliverable, and next step.'
+  }
+} as const;
+
 export const SITE_CTA = {
   configurator: { zh: '配置 GPU 伺服器', en: 'Configure GPU server', href: '/configurator?request=true' },
-  contact: { zh: '預約諮詢', en: 'Book consultation', href: '/contact' }
+  contact: { ...SITE_BOOKING.label, href: '/contact' }
 };

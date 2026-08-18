@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight,
   BarChart3,
@@ -41,9 +41,10 @@ import Footer from '../Footer';
 import { VENDOR_EVIDENCE } from '../../data/vendorEvidence';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import { SourceLink, VendorMedia } from './SitePagePrimitives';
+import { SITE_BOOKING } from '../../data/siteArchitecture';
 
 type Bilingual = { zh: string; en: string };
-const BOOKING_URL = 'https://outlook.office.com/book/EudTechOnlineMeeting@EudaemoniaTechnologLtd.onmicrosoft.com/';
+const BOOKING_URL = SITE_BOOKING.href;
 
 const text = (value: Bilingual, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
 
@@ -236,8 +237,20 @@ const buildStructuredData = (isEnglish: boolean) => {
 const AiAgentSolutionPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
   const [activeScene, setActiveScene] = useState(0);
+  const [showMobileActions, setShowMobileActions] = useState(false);
+  const heroRef = useRef<HTMLElement | null>(null);
   const selectedScene = scenes[activeScene];
   const pageUrl = canonicalPageUrl('https://eudaemonia.tech/solutions/ai-agent');
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero || typeof IntersectionObserver === 'undefined') return undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      setShowMobileActions(!entry.isIntersecting);
+    }, { threshold: 0.01 });
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -251,8 +264,8 @@ const AiAgentSolutionPage: React.FC = () => {
         structuredData={buildStructuredData(isEnglish)}
       />
 
-      <div className="min-h-screen bg-white text-slate-950 dark:bg-slate-950 dark:text-white">
-        <section className="relative isolate overflow-hidden bg-slate-950 pt-24 text-white">
+      <div className={`min-h-screen bg-white text-slate-950 dark:bg-slate-950 dark:text-white ${showMobileActions ? 'pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-0' : ''}`}>
+        <section ref={heroRef} data-ai-agent-hero className="relative isolate overflow-hidden bg-slate-950 pt-24 text-white">
           <img
             src="/ai-agent-evidence-chain-v1.webp"
             alt=""
@@ -279,7 +292,7 @@ const AiAgentSolutionPage: React.FC = () => {
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-950/30 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-200">
                   <CalendarDays className="mr-2 h-4 w-4" />
-                  {isEnglish ? 'Book a discovery call' : '預約導入諮詢'}
+                  {isEnglish ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh}
                 </a>
                 <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2" className="inline-flex items-center justify-center rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/70">
                   <Mail className="mr-2 h-4 w-4" />
@@ -300,6 +313,55 @@ const AiAgentSolutionPage: React.FC = () => {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        <section data-ai-agent-example="official-document" className="border-b border-slate-200 bg-white py-14 sm:py-20 dark:border-slate-800 dark:bg-slate-950">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">
+                {isEnglish ? 'REAL USE CASE 01 | AI OFFICIAL-DOCUMENT SYSTEM' : '實際應用 01｜AI 公文系統'}
+              </p>
+              <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+                {isEnglish ? 'When a new official document is ready, notify, review, and open it directly.' : '新公文準備好後，直接通知、查看與開啟。'}
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300">
+                {isEnglish
+                  ? 'People receive a clear notification, see what needs attention, and open the document or recent files from the same work view.'
+                  : '使用者收到清楚通知後，可以看到待處理事項，直接開啟公文或查看最近文件，從收到通知一路完成下一步。'}
+              </p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                {[
+                  { zh: '收到通知', en: 'Receive a notification' },
+                  { zh: '辨識待辦', en: 'See what needs attention' },
+                  { zh: '直接閱讀', en: 'Open and read directly' }
+                ].map((outcome, index) => (
+                  <div key={outcome.en} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800 dark:bg-slate-900">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cyan-100 text-xs font-bold text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-300">{index + 1}</span>
+                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">{isEnglish ? outcome.en : outcome.zh}</span>
+                  </div>
+                ))}
+              </div>
+              <a
+                href="mailto:info@eudaemonia.tech?subject=AI%20%E5%85%AC%E6%96%87%E7%B3%BB%E7%B5%B1%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2"
+                className="mt-8 inline-flex items-center rounded-md bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              >
+                {isEnglish ? 'Discuss an AI official-document system' : 'AI 公文系統導入諮詢'}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+            <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 p-3 shadow-sm dark:border-slate-700 sm:p-5">
+              <img
+                src="/ai-agent/official-document-menu.png"
+                alt={isEnglish ? 'AI official-document system menu showing notifications, unread count, recent documents, PDF opening, and saved files' : 'AI 公文系統選單，顯示通知、未讀數量、最近文件、開啟 PDF 與已儲存檔案'}
+                className="mx-auto h-auto max-h-[520px] w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="mt-3 text-center text-xs leading-5 text-slate-400">
+                {isEnglish ? 'Actual operation screen; the interface keeps notifications, pending items, and document access in one place.' : '實際操作畫面；通知、待辦與文件入口集中在同一個工作畫面。'}
+              </figcaption>
+            </figure>
           </div>
         </section>
 
@@ -534,7 +596,7 @@ const AiAgentSolutionPage: React.FC = () => {
               <p className="mt-5 text-base leading-8 text-slate-300">{isEnglish ? 'Tell us where follow-up, reconciliation, or reminders consume the most time.' : '告訴 EudTech 哪一段追蹤、核對或催辦最消耗團隊時間。'}</p>
             </div>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-              <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"><CalendarDays className="mr-2 h-4 w-4" />{isEnglish ? 'Book a call' : '預約諮詢'}</a>
+              <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"><CalendarDays className="mr-2 h-4 w-4" />{isEnglish ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh}</a>
               <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E5%88%9D%E8%AB%87" className="inline-flex items-center justify-center rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"><Mail className="mr-2 h-4 w-4" />{isEnglish ? 'Send an email' : '寄送郵件'}</a>
             </div>
           </div>
@@ -542,10 +604,10 @@ const AiAgentSolutionPage: React.FC = () => {
 
         <Footer isEnglish={isEnglish} />
 
-        <div className="fixed inset-x-4 bottom-4 z-40 flex gap-2 rounded-xl border border-slate-200 bg-white/95 p-2 shadow-xl backdrop-blur md:hidden dark:border-slate-700 dark:bg-slate-900/95">
-          <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="flex flex-1 items-center justify-center rounded-lg bg-cyan-400 px-3 py-3 text-xs font-semibold text-slate-950"><CalendarDays className="mr-1.5 h-4 w-4" />{isEnglish ? 'Book' : '預約'}</a>
+        {showMobileActions && <nav aria-label={isEnglish ? 'AI Agent quick actions' : 'AI Agent 快速操作'} data-ai-agent-mobile-actions className="fixed inset-x-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 flex gap-2 rounded-xl border border-slate-200 bg-white/95 p-2 shadow-xl backdrop-blur md:hidden dark:border-slate-700 dark:bg-slate-900/95">
+          <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="flex flex-1 items-center justify-center rounded-lg bg-cyan-400 px-3 py-3 text-xs font-semibold text-slate-950"><CalendarDays className="mr-1.5 h-4 w-4" />{isEnglish ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh}</a>
           <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2" className="flex flex-1 items-center justify-center rounded-lg border border-slate-300 px-3 py-3 text-xs font-semibold text-slate-800 dark:border-slate-600 dark:text-slate-100"><Mail className="mr-1.5 h-4 w-4" />{isEnglish ? 'Email' : '寄信'}</a>
-        </div>
+        </nav>}
       </div>
     </>
   );

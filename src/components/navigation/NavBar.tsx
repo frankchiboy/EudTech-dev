@@ -255,11 +255,6 @@ const NavBar: React.FC<NavBarProps> = ({
         navLinks={navLinks}
         onClose={() => setIsOpen(false)}
         isEnglish={isEnglish}
-        toggleLanguage={toggleLanguage}
-        themeMode={themeMode}
-        isDarkMode={isDarkMode}
-        toggleDarkMode={toggleDarkMode}
-        isScrolled={isScrolled}
       />
     </nav>
   );

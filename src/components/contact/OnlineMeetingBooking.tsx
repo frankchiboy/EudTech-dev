@@ -1,10 +1,14 @@
 import React from 'react';
 import { Calendar, Mail } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nProvider';
+import { SITE_BOOKING } from '../../data/siteArchitecture';
 
 const OnlineMeetingBooking: React.FC = () => {
-  const { t } = useI18n();
-  const bookingUrl = "https://outlook.office.com/book/EudTechOnlineMeeting@EudaemoniaTechnologLtd.onmicrosoft.com/";
+  const { t, locale } = useI18n();
+  const bookingUrl = SITE_BOOKING.href;
+  const bookingLabel = locale === 'en' ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh;
+  const bookingTitle = locale === 'en' ? SITE_BOOKING.title.en : SITE_BOOKING.title.zh;
+  const bookingDescription = locale === 'en' ? SITE_BOOKING.description.en : SITE_BOOKING.description.zh;
   const emailAddress = "info@eudaemonia.tech";
 
   const handleBookMeeting = () => {
@@ -40,10 +44,10 @@ const OnlineMeetingBooking: React.FC = () => {
     <div className="p-12 dark:bg-gray-800 flex flex-col justify-center items-center">
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-          {t('contact.booking.title')}
+          {bookingTitle}
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-8">
-          {t('contact.booking.lead')}
+          {bookingDescription}
         </p>
       </div>
 
@@ -57,7 +61,7 @@ const OnlineMeetingBooking: React.FC = () => {
                   focus:ring-blue-500 dark:focus:ring-offset-gray-800"
       >
         <Calendar className="h-5 w-5 mr-2" />
-        {t('contact.booking.button.meeting')}
+        {bookingLabel}
       </button>
 
       {/* 分隔線 */}

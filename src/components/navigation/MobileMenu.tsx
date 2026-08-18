@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { NavLink, ThemeMode } from '../../types';
+import { NavLink } from '../../types';
 import { handleNavClick } from '../../utils/helpers/navigation';
-import LanguageToggle from './LanguageToggle';
-import ThemeToggle from './ThemeToggle';
 import { SITE_CTA } from '../../data/siteArchitecture';
 
 interface MobileMenuProps {
@@ -11,23 +9,13 @@ interface MobileMenuProps {
   navLinks: NavLink[];
   onClose: () => void;
   isEnglish: boolean;
-  toggleLanguage: () => void;
-  themeMode: ThemeMode;
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
-  isScrolled: boolean;
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ 
   isOpen, 
   navLinks, 
   onClose,
-  isEnglish,
-  toggleLanguage,
-  themeMode,
-  isDarkMode,
-  toggleDarkMode,
-  isScrolled
+  isEnglish
 }) => {
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
   useEffect(() => {
@@ -143,27 +131,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           </div>
         ))}
         
-        {/* 分隔線 */}
-        <div className="border-t border-neutral-200 dark:border-gray-700 my-2"></div>
-        
-        {/* 控制項區域 */}
-        <div className="flex items-center justify-center space-x-4 py-2">
-          <LanguageToggle 
-            isEnglish={isEnglish}
-            toggleLanguage={toggleLanguage}
-            isScrolled={isScrolled}
-            textColorClass="text-neutral-800 dark:text-neutral-100"
-            mobile
-          />
-          <ThemeToggle 
-            themeMode={themeMode}
-            isDarkMode={isDarkMode}
-            toggleDarkMode={toggleDarkMode}
-            isScrolled={isScrolled}
-            textColorClass="text-neutral-800 dark:text-neutral-100"
-            mobile
-          />
-        </div>
       </div>
     </div>
   );

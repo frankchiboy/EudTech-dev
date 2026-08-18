@@ -1,5 +1,11 @@
 # User Original Prompts
 
+## 2026-08-18 限制存取公文通知器原始碼
+
+1. `直接做做看一版給我：結合中性化需求完整列出做法`
+
+> 本項建立公司官網的「公文通知系統｜政府與教育機構限制存取原始碼」申請入口。產品內容與限制存取流程不包含公司內部帳號、憑證、真實公文、客戶資料或內部部署資訊。
+
 ## 2026-08-16 客戶來源追蹤
 
 1. 還需要導入客戶來源的對策嗎
@@ -107,3 +113,11 @@ This file preserves the user's original prompts for the configurator exposure ta
 ## 2026-08-18 Formal Domain Emergency Hotfix
 
 1. `馬上熱修復一切`
+
+## 2026-08-18 Product Design Audit
+
+1. `@product-design:audit`
+
+## 2026-08-18 AI Agent Official-document Example
+
+1. `在ai agent x headless saas 增加一些具體實例 首先呈現 AI公文系統 [$收發公文](/Users/serverc/WorkSpace-AI/skills/收公文/SKILL.md) 不要講太多內部細節 要從使用角度呈現 做完再度 @product-design audit和修復做到閉環 我給你的截圖要上去`
