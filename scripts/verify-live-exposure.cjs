@@ -389,6 +389,9 @@ function checkDiscoveryFiles(discovery, errors) {
   assert(robots.includes(`Sitemap: ${siteOrigin}/image-sitemap.xml`), errors, 'robots.txt missing image-sitemap.xml.');
   assert(robots.includes(`Sitemap: ${siteOrigin}/feed.xml`), errors, 'robots.txt missing feed.xml.');
   assert(robots.includes(`Sitemap: ${siteOrigin}/sitemap-index.xml`), errors, 'robots.txt missing sitemap-index.xml.');
+  for (const crawler of ['Googlebot', 'Bingbot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'ClaudeBot']) {
+    assert(new RegExp(`User-agent: ${crawler}\\s+Allow: /`, 'i').test(robots), errors, `robots.txt must allow ${crawler}.`);
+  }
   assert(sitemapIndexLocs.has(`${siteOrigin}/sitemap.xml`), errors, 'sitemap-index.xml missing sitemap.xml.');
   assert(sitemapIndexLocs.has(`${siteOrigin}/image-sitemap.xml`), errors, 'sitemap-index.xml missing image-sitemap.xml.');
   assert(sitemapIndexLocs.has(`${siteOrigin}/feed.xml`), errors, 'sitemap-index.xml missing feed.xml.');

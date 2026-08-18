@@ -1,6 +1,24 @@
 User-agent: *
 Allow: /
 
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 Sitemap: https://eudaemonia.tech/sitemap.xml
 Sitemap: https://eudaemonia.tech/image-sitemap.xml
 Sitemap: https://eudaemonia.tech/feed.xml
