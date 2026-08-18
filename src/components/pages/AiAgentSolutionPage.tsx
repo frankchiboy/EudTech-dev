@@ -1501,15 +1501,15 @@ const AiAgentSolutionPage: React.FC = () => {
                   : "適合每一個漏掉下一步就會產生成本的團隊。"}
               </h2>
             </div>
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-3">
+            <div className="mt-8 grid grid-cols-1 gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
               {audiences.map((item) => (
                 <article
                   key={text(item.title, isEnglish)}
-                  className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950"
+                  className="min-w-0 flex gap-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950"
                 >
                   <NarrativeVisual src={item.visual} />
-                  <div>
-                    <h3 className="font-semibold">
+                  <div className="min-w-0">
+                    <h3 className="break-words font-semibold">
                       {text(item.title, isEnglish)}
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
