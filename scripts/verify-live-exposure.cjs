@@ -406,14 +406,6 @@ function checkDiscoveryFiles(discovery, errors) {
     assert(configuratorLinksHtml.includes(`href="${url}"`), errors, `configurator-links.html missing ${url}.`);
   }
 
-  assert(sitemapLocs.has(configuratorLinkIndexUrl), errors, `sitemap.xml missing ${configuratorLinkIndexUrl}.`);
-  assert(feed.includes(configuratorLinkIndexUrl), errors, `feed.xml missing ${configuratorLinkIndexUrl}.`);
-  assert(feedJsonLinks.has(configuratorLinkIndexUrl), errors, `feed.json missing ${configuratorLinkIndexUrl}.`);
-  assert(llms.includes(configuratorLinkIndexUrl), errors, `llms.txt missing ${configuratorLinkIndexUrl}.`);
-  assert(llmsFull.includes(configuratorLinkIndexUrl), errors, `llms-full.txt missing ${configuratorLinkIndexUrl}.`);
-  assert(configuratorLinksHtml.includes(`<link rel="canonical" href="${configuratorLinkIndexUrl}">`), errors, 'configurator-links.html missing canonical link.');
-  assert(/<meta name="robots" content="index, follow">/i.test(configuratorLinksHtml), errors, 'configurator-links.html should be index, follow.');
-  assert(configuratorLinksHtml.includes('application/ld+json'), errors, 'configurator-links.html missing JSON-LD.');
   assert(feedJson?.version === 'https://jsonfeed.org/version/1.1', errors, 'feed.json missing valid JSON Feed version.');
   assert(lastmodManifest?.version === 1 && lastmodManifest?.entries, errors, 'discovery-lastmod.json missing a valid manifest.');
   for (const url of requiredPageUrls) {

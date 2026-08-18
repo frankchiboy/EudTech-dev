@@ -25,7 +25,8 @@ const expectedCommands = [
   'npm run verify:marketing-1password-item -- --structure-only --fail-on-missing',
   'npm run audit:external-platform-access',
   'npm run audit:external-exposure-status',
-  'npm run verify:live-exposure -- --expect-commit "$GITHUB_SHA" --wait-for-commit-ms 600000'
+  'npm run verify:live-exposure -- --expect-commit "$GITHUB_SHA" --wait-for-commit-ms 600000',
+  'npm run submit:indexnow:current | tee reports/submit-indexnow.log'
 ];
 const workflowOnlySecretKeys = [
   'OP_SERVICE_ACCOUNT_TOKEN'

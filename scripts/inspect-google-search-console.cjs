@@ -342,7 +342,7 @@ async function main() {
     return;
   }
 
-  const token = getSearchConsoleAccessToken();
+  const token = await getSearchConsoleAccessToken();
   const inspected = new Array(inspectionUrls.length);
   const errors = [];
   let nextIndex = 0;

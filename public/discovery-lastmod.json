@@ -56,11 +56,6 @@
       "publishedAt": "2026-08-16",
       "modifiedAt": "2026-08-16"
     },
-    "https://eudaemonia.tech/configurator-links.html": {
-      "hash": "0b60b080ced4e6d3e916f7c0965c7654bc5a8d5b13bf55a14e4f7b85a6fe297f",
-      "publishedAt": "2026-08-16",
-      "modifiedAt": "2026-08-16"
-    },
     "https://eudaemonia.tech/configurator/27/": {
       "hash": "77a3fa68ee6a48893c7c9cf89d784be21dfd50056d56211a0bd9c1f94754612e",
       "publishedAt": "2026-07-12",
@@ -200,11 +195,6 @@
       "hash": "8a017644899a402b1f63e59acab7974c20eadddb43ac25076e41489936da18bd",
       "publishedAt": "2026-08-16",
       "modifiedAt": "2026-08-16"
-    },
-    "https://eudaemonia.tech/careers": {
-      "hash": "11342c34956bb1f6928c0f779b0e0d87129bf0e46c9cb765705d6a279c79253d",
-      "publishedAt": "2026-07-12",
-      "modifiedAt": "2026-07-12"
     }
   }
 }

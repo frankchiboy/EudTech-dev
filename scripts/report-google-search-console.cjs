@@ -159,7 +159,7 @@ function writeOutput(outputPath, result) {
 }
 
 async function main() {
-  const token = getSearchConsoleAccessToken();
+  const token = await getSearchConsoleAccessToken();
   const dateRange = getDateRange();
   const rowLimit = getRowLimit();
   const startRow = getStartRow();

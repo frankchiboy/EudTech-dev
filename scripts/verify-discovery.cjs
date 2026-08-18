@@ -14,7 +14,7 @@ const solutionHubUrl = pageUrl('/solutions');
 const solutionUrls = CONFIGURATOR_SEO_PAGES.map((page) => pageUrl(`/solutions/${page.slug}`));
 const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => pageUrl(product.configuratorHref));
 const requiredPageUrls = [pageUrl('/configurator'), ...productUrls, solutionHubUrl, ...SITE_INFORMATION_ROUTES.map((route) => pageUrl(route.path)), ...solutionUrls];
-const requiredIndexUrls = [...requiredPageUrls, configuratorLinkIndexUrl];
+const requiredIndexUrls = requiredPageUrls;
 const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
 
 const readPublicFile = (filename) => fs.readFileSync(path.join(publicDir, filename), 'utf8');
