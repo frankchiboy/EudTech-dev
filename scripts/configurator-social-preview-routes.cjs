@@ -100,10 +100,10 @@ function getConfiguratorSocialPreviewRoutes() {
     },
     {
       path: '/solutions/ai-agent',
-      title: '企業 AI Agent 與 Headless SaaS 導入',
-      description: '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。',
+      title: '企業 AI Agent、Claude Managed Agents 與 Headless SaaS 導入｜EudTech',
+      description: '導入 Microsoft 或 Claude Managed Agents，包含自管 Sandbox、MCP 與企業系統整合、人員核准及稽核。',
       sourceImage: '/comino-facility-1.jpg',
-      imageAlt: 'EudTech 企業 AI Agent 與 Headless SaaS 導入服務'
+      imageAlt: 'EudTech 企業 AI Agent、Claude Managed Agents 與 Headless SaaS 導入服務'
     },
     ...SITE_INFORMATION_ROUTES.map((route) => ({
       path: route.path,

@@ -8,6 +8,7 @@ import {
   CalendarDays,
   Check,
   ChevronDown,
+  Cloud,
   CircleDollarSign,
   ClipboardCheck,
   Clock3,
@@ -22,6 +23,7 @@ import {
   Mail,
   MessageSquare,
   Network,
+  PackageCheck,
   Route,
   Scale,
   SearchCheck,
@@ -190,6 +192,8 @@ const faqs: { question: Bilingual; answer: Bilingual }[] = [
   { question: { zh: '第一個導入流程應該選什麼？', en: 'Which process should we start with?' }, answer: { zh: '建議選擇輸入明確、重複頻率高、延誤成本可量化的追蹤或核對流程，例如詢價追蹤、發票核對或專案催辦。', en: 'Start with a clear, repetitive flow where delay costs are measurable, such as RFQ follow-up, invoice checks, or project reminders.' } },
   { question: { zh: 'AI Agent 會自行寄出正式郵件嗎？', en: 'Will agents send formal email automatically?' }, answer: { zh: '預設先產生草稿與建議，正式寄出由授權人員核准；例外流程會依組織規則與風險分級設定。', en: 'By default, agents prepare drafts and suggestions while an authorised person approves the send. Exceptions follow your risk rules.' } },
   { question: { zh: '如何避免 AI 讀到不應該讀的資料？', en: 'How do we prevent inappropriate data access?' }, answer: { zh: '以資料來源、角色、欄位與動作建立權限邊界，並保留存取與輸出紀錄，導入前會先完成資料分類。', en: 'We define boundaries by source, role, field, and action, then retain access and output records after data classification.' } },
+  { question: { zh: 'Claude Managed Agents 是完整地端 AI 嗎？', en: 'Is Claude Managed Agents a fully on-premises AI solution?' }, answer: { zh: '不是。Claude 模型與協調控制仍由 Anthropic 執行；自管 Sandbox 將程式執行、檔案系統與網路存取放在客戶控制的環境。工具輸入與輸出仍會傳送至 Anthropic 控制平面，導入前必須完成資料分類與邊界確認。', en: 'No. Claude and the orchestration control plane remain with Anthropic. A self-hosted sandbox moves code execution, files, and network access into customer-controlled infrastructure. Tool inputs and outputs still flow through the Anthropic control plane, so data classification and boundary review are required.' } },
+  { question: { zh: 'Claude Managed Agents 建置需要地端 GPU 嗎？', en: 'Does a Claude Managed Agents implementation require an on-premises GPU?' }, answer: { zh: '這項架構不需要用地端 GPU 執行 Claude 推理。客戶端主機負責 Agent 工具、檔案與內部系統連線；只有客戶自己的工作負載需要 GPU 時才另外規劃。', en: 'This architecture does not require an on-premises GPU for Claude inference. Customer infrastructure runs agent tools, files, and internal-system connections; a GPU is planned separately only when the customer workload itself needs one.' } },
   { question: { zh: '導入成果如何衡量？', en: 'How do we measure the outcome?' }, answer: { zh: '以準時率、平均回覆時間、漏件率、人工介入比例與結案時間建立導入前後基準。', en: 'We establish before-and-after baselines for on-time rate, response time, missed items, human intervention, and closure time.' } },
   { question: { zh: '小型企業也適合導入嗎？', en: 'Is this suitable for a small business?' }, answer: { zh: '適合。小型企業可以從單一流程試點開始，先解決最常發生的追蹤與核對問題，再依成果逐步擴充。', en: 'Yes. A small business can start with one focused flow, solve the most frequent follow-up or check, and expand from measured results.' } },
   { question: { zh: 'EudTech 如何開始協助？', en: 'How does EudTech get started?' }, answer: { zh: '先安排流程診斷，確認工作目標、資料來源、核准點與成功指標，再提出適合的導入方案與範圍。', en: 'We begin with a process diagnostic covering goals, sources, approval points, and success metrics, then propose the right scope.' } }
@@ -197,10 +201,10 @@ const faqs: { question: Bilingual; answer: Bilingual }[] = [
 
 const buildStructuredData = (isEnglish: boolean) => {
   const pageUrl = canonicalPageUrl('https://eudaemonia.tech/solutions/ai-agent');
-  const pageName = isEnglish ? 'AI Agent and Headless SaaS Implementation' : 'AI Agent 與 Headless SaaS 導入';
+  const pageName = isEnglish ? 'AI Agent, Claude Managed Agents, and Headless SaaS Implementation' : 'AI Agent、Claude Managed Agents 與 Headless SaaS 導入';
   const pageDescription = isEnglish
-    ? 'EudTech connects existing systems to branded portals, event workflows, and controlled AI agents while people approve important decisions.'
-    : 'EudTech 串接企業既有系統，建立品牌入口、事件流程與受控 AI Agent，重要決策仍由人員核准。';
+    ? 'EudTech implements controlled AI agents with Microsoft or Claude Managed Agents, including self-hosted execution, enterprise integration, human approval, and audit evidence.'
+    : 'EudTech 導入 Microsoft 或 Claude Managed Agents，包含自管執行環境、企業系統整合、人員核准與稽核證據。';
 
   return [
     {
@@ -208,7 +212,7 @@ const buildStructuredData = (isEnglish: boolean) => {
       '@type': 'Service',
       name: pageName,
       description: pageDescription,
-      serviceType: 'AI agent and headless SaaS implementation',
+      serviceType: 'AI agent, Claude Managed Agents, and headless SaaS implementation',
       areaServed: { '@type': 'Country', name: isEnglish ? 'Taiwan' : '台灣' },
       provider: { '@type': 'Organization', name: 'EudTech', url: canonicalPageUrl('https://eudaemonia.tech'), email: 'info@eudaemonia.tech' },
       url: pageUrl
@@ -255,9 +259,9 @@ const AiAgentSolutionPage: React.FC = () => {
   return (
     <>
       <SEOHead
-        title={isEnglish ? 'Enterprise AI Agent and Headless SaaS Implementation' : '企業 AI Agent 與 Headless SaaS 導入'}
-        description={isEnglish ? 'Connect ERP, CRM, Microsoft 365, databases, and APIs to branded portals, event workflows, and controlled AI agents with human approval.' : '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程與受控 AI Agent，重要動作保留人員核准。'}
-        keywords={isEnglish ? 'AI agent implementation, headless SaaS, workflow automation, customer portal, business process automation, Taiwan' : 'AI Agent 導入, Headless SaaS, 工作流程自動化, 客戶 Portal, 企業 AI 導入, 台灣 AI 顧問'}
+        title={isEnglish ? 'Enterprise AI Agent, Claude Managed Agents, and Headless SaaS Implementation' : '企業 AI Agent、Claude Managed Agents 與 Headless SaaS 導入'}
+        description={isEnglish ? 'Implement controlled AI agents with Microsoft or Claude Managed Agents, including self-hosted execution, enterprise-system integration, human approval, and audit evidence.' : '導入 Microsoft 或 Claude Managed Agents，包含自管執行環境、企業系統整合、人員核准與稽核證據。'}
+        keywords={isEnglish ? 'AI agent implementation, Claude Managed Agents implementation, self-hosted sandbox, MCP tunnel, headless SaaS, workflow automation, Taiwan' : 'AI Agent 導入, Claude Managed Agents 建置, Self-hosted Sandbox, MCP Tunnel, Headless SaaS, 企業 AI 導入, 台灣 AI 顧問'}
         url={pageUrl}
         type="website"
         isEnglish={isEnglish}
@@ -487,6 +491,91 @@ const AiAgentSolutionPage: React.FC = () => {
                 <SourceLink href={VENDOR_EVIDENCE.microsoft.sources.flows.href} label={VENDOR_EVIDENCE.microsoft.sources.flows.label} isEnglish={isEnglish} />
                 <SourceLink href={VENDOR_EVIDENCE.microsoft.sources.governance.href} label={VENDOR_EVIDENCE.microsoft.sources.governance.label} isEnglish={isEnglish} />
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="claude-managed-agents" data-ai-agent-solution="claude-managed-agents" className="scroll-mt-20 overflow-hidden bg-slate-950 py-14 text-white sm:py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-amber-300/25 bg-amber-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">
+                  <Sparkles className="h-4 w-4" />
+                  {isEnglish ? 'Anthropic technology implementation' : 'Anthropic 技術建置服務'}
+                </div>
+                <h2 className="mt-6 text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+                  {isEnglish ? 'Claude Managed Agents, connected to the systems where work happens.' : 'Claude Managed Agents，接進企業真正工作的系統。'}
+                </h2>
+                <p className="mt-6 text-base leading-8 text-slate-300 sm:text-lg">
+                  {isEnglish
+                    ? 'EudTech designs the agent, deploys customer-controlled execution, connects private tools and data, and establishes approval and audit controls. Claude inference remains on Anthropic; code execution, files, and network reach can run inside your infrastructure.'
+                    : 'EudTech 負責 Agent 設計、自管執行環境、企業內部工具與資料連線，以及核准與稽核控制。Claude 推理仍由 Anthropic 執行；程式執行、檔案與網路存取可以留在客戶控制的基礎設施。'}
+                </p>
+                <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                  {[
+                    { icon: Cloud, zh: 'Managed Agents：長時間、多步驟任務的 Agent 主體', en: 'Managed Agents: the agent harness for long-running, multi-step work' },
+                    { icon: PackageCheck, zh: 'Self-hosted Sandbox：工具、檔案與網路在客戶環境執行', en: 'Self-hosted sandbox: tools, files, and network access run in your environment' },
+                    { icon: Network, zh: 'MCP／內部連線：接取 ERP、資料庫、檔案與內部 API', en: 'MCP and private connections: reach ERP, databases, files, and internal APIs' }
+                  ].map((item) => (
+                    <div key={item.en} className="flex min-h-16 items-start gap-3 rounded-xl border border-white/10 bg-white/[0.06] px-4 py-4">
+                      <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-cyan-300" aria-hidden="true" />
+                      <span className="text-sm leading-6 text-slate-200">{isEnglish ? item.en : item.zh}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <figure className="overflow-hidden rounded-2xl border border-white/10 bg-slate-900 p-3 shadow-2xl shadow-cyan-950/30 sm:p-5">
+                <img
+                  src={VENDOR_EVIDENCE.anthropic.image}
+                  alt={text(VENDOR_EVIDENCE.anthropic.imageAlt, isEnglish)}
+                  className="aspect-[8/5] w-full rounded-xl object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption className="mt-4 text-xs leading-6 text-slate-400">
+                  {isEnglish
+                    ? 'Architecture illustration: Anthropic orchestration, customer-controlled execution, and private enterprise systems remain distinct security boundaries.'
+                    : '架構示意：Anthropic 協調控制、客戶自管執行環境與企業內部系統維持不同安全邊界。'}
+                </figcaption>
+              </figure>
+            </div>
+
+            <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {[
+                { icon: Route, zh: 'Agent 與流程設計', en: 'Agent and workflow design', zhBody: '定義任務、工具、技能、版本、例外與人員核准點。', enBody: 'Define tasks, tools, skills, versions, exceptions, and human approvals.' },
+                { icon: Cpu, zh: '自管執行環境', en: 'Self-hosted execution', zhBody: '建置 Worker、Sandbox、權限、秘密管理、網路政策與監測。', enBody: 'Deploy workers, sandboxes, access, secret handling, network policy, and monitoring.' },
+                { icon: Database, zh: '企業系統整合', en: 'Enterprise integration', zhBody: '串接 ERP、SQL、文件、RAG、MCP Server 與內部 API。', enBody: 'Connect ERP, SQL, documents, RAG, MCP servers, and internal APIs.' },
+                { icon: ShieldCheck, zh: '驗收與治理', en: 'Acceptance and governance', zhBody: '驗證資料邊界、權限、核准、錯誤處理、日誌與復原程序。', enBody: 'Validate data boundaries, access, approvals, errors, logs, and recovery.' }
+              ].map((item) => (
+                <article key={item.en} className="rounded-xl border border-white/10 bg-white/[0.05] p-6">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300"><item.icon className="h-5 w-5" aria-hidden="true" /></div>
+                  <h3 className="mt-5 text-lg font-semibold">{isEnglish ? item.en : item.zh}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-300">{isEnglish ? item.enBody : item.zhBody}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-10 grid gap-6 rounded-2xl border border-amber-300/20 bg-amber-300/[0.06] p-6 md:grid-cols-[1fr_auto] md:items-center sm:p-8">
+              <div>
+                <h3 className="text-xl font-semibold">{isEnglish ? 'Commercial and data boundary' : '商務與資料邊界'}</h3>
+                <p className="mt-3 max-w-4xl text-sm leading-7 text-slate-300">
+                  {isEnglish
+                    ? 'Anthropic API usage and customer infrastructure are charged separately from EudTech implementation. Managed Agents is currently beta; MCP tunnels are a limited research preview. Tool inputs and outputs still flow through the Anthropic control plane, so EudTech confirms data classification and acceptance criteria before production.'
+                    : 'Anthropic API 使用量與客戶端基礎設施費用，和 EudTech 建置服務分開計算。Managed Agents 目前為 Beta；MCP Tunnels 為有限研究預覽。工具輸入與輸出仍會經過 Anthropic 控制平面，因此正式上線前會先確認資料分類與驗收條件。'}
+                </p>
+              </div>
+              <a href="mailto:info@eudaemonia.tech?subject=Claude%20Managed%20Agents%20%E5%BB%BA%E7%BD%AE%E6%9C%8D%E5%8B%99" className="inline-flex items-center justify-center rounded-md bg-amber-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-200">
+                {isEnglish ? 'Discuss a Claude implementation' : '洽談 Claude 建置'} <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+
+            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3">
+              <SourceLink href={VENDOR_EVIDENCE.anthropic.sources.overview.href} label={VENDOR_EVIDENCE.anthropic.sources.overview.label} isEnglish={isEnglish} />
+              <SourceLink href={VENDOR_EVIDENCE.anthropic.sources.selfHosted.href} label={VENDOR_EVIDENCE.anthropic.sources.selfHosted.label} isEnglish={isEnglish} />
+              <SourceLink href={VENDOR_EVIDENCE.anthropic.sources.tunnel.href} label={VENDOR_EVIDENCE.anthropic.sources.tunnel.label} isEnglish={isEnglish} />
+              <SourceLink href={VENDOR_EVIDENCE.anthropic.sources.security.href} label={VENDOR_EVIDENCE.anthropic.sources.security.label} isEnglish={isEnglish} />
+              <SourceLink href={VENDOR_EVIDENCE.anthropic.sources.pricing.href} label={VENDOR_EVIDENCE.anthropic.sources.pricing.label} isEnglish={isEnglish} />
             </div>
           </div>
         </section>

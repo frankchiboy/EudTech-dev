@@ -123,11 +123,11 @@ const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
 
 const aiAgentRoute = {
   path: '/solutions/ai-agent',
-  title: '企業 AI Agent 與 Headless SaaS 導入｜EudTech',
-  description: '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。',
-  keywords: '企業 AI Agent 導入, Headless SaaS, AI 流程自動化, 客戶 Portal, AI ERP, Microsoft 365 AI, API 整合',
-  lead: 'AI Agent 與 Headless SaaS 是同一項企業導入服務：保留既有系統，建立品牌入口、事件流程與受控 Agent，重要決策仍由人員核准。',
-  imageAlt: 'EudTech 企業 AI Agent 與 Headless SaaS 導入服務',
+  title: '企業 AI Agent、Claude Managed Agents 與 Headless SaaS 導入｜EudTech',
+  description: '導入 Microsoft 或 Claude Managed Agents，包含自管 Sandbox、MCP 與企業系統整合、人員核准及稽核。',
+  keywords: '企業 AI Agent 導入, Claude Managed Agents 建置, Self-hosted Sandbox, MCP Tunnel, Headless SaaS, Microsoft 365 AI, API 整合',
+  lead: 'EudTech 提供 Microsoft 與 Anthropic 技術的企業 AI Agent 建置，連接既有系統、自管執行環境與人員核准流程。',
+  imageAlt: 'EudTech 企業 AI Agent、Claude Managed Agents 與 Headless SaaS 導入服務',
   configuratorHref: '/solutions/ai-agent#workflow-demo',
   quoteHref: '/solutions/ai-agent#consultation',
   relatedLinks: [
@@ -135,18 +135,21 @@ const aiAgentRoute = {
     routeLink('/solutions', 'EudTech 解決方案'),
     routeLink('/configurator/29', 'Comino Grando GPU 伺服器配置器'),
     routeLink('/solutions/ai-agent#workflow-demo', 'AI Agent 工作流程示範'),
+    routeLink('/solutions/ai-agent#claude-managed-agents', 'Claude Managed Agents 建置服務'),
     routeLink('/solutions/ai-agent#consultation', '預約流程診斷')
   ],
   highlights: [
     '以 Outlook、Teams、SharePoint 與 Dataverse 串接郵件、任務、專案、文件與核准事件。',
     '以 EudTech Kinetic 保存採購、進貨、出貨、庫存、客戶與供應商的營運事實。',
     '以 Accounting Hub 核對公司銀行正式交易、發票、憑證、付款準備與對帳紀錄。',
-    '候選、確認、送出、放行、付款與完成分開記錄，關鍵動作保留人工核准。'
+    '候選、確認、送出、放行、付款與完成分開記錄，關鍵動作保留人工核准。',
+    '以 Claude Managed Agents 搭配自管 Sandbox 與企業內部 MCP／API，建立長時間、多步驟 Agent 流程。'
   ],
   specs: [
     { label: '適用企業', value: '已使用 Microsoft 365、工作仍散落於郵件、試算表與個人記事的企業' },
     { label: '導入方法', value: '流程診斷、可驗證試點、上線驗收、擴充維運' },
     { label: '驗收依據', value: '來源、權限、人工核准、輸出、去重、操作紀錄與實際案例重跑' },
+    { label: 'Claude 建置', value: 'Agent 定義、自管 Sandbox、企業系統連線、資料邊界、監測、驗收與維運文件' },
     { label: '聯絡方式', value: 'info@eudaemonia.tech' }
   ],
   faq: [
@@ -156,14 +159,16 @@ const aiAgentRoute = {
     ['AI 會直接寄信、付款或登帳嗎？', '每個動作依權限與流程設定；對外通知、付款、正式會計與驗收可以保留人工核准，並保存核准人、時間、來源與結果。'],
     ['導入前要先更換 ERP 嗎？', '不必。試點可以先串接一條現有流程，再依 API、資料品質與維運成本決定後續整合或移轉範圍。'],
     ['如何驗收 AI Agent？', '使用真實或去識別案例重跑完整流程，核對輸入、來源、判讀、權限、人工核准、輸出、重送去重及操作紀錄。'],
+    ['Claude Managed Agents 是完整地端 AI 嗎？', '不是。Claude 與協調控制仍由 Anthropic 執行；自管 Sandbox 將程式執行、檔案與網路存取放在客戶控制的環境，工具輸入與輸出仍會經過 Anthropic 控制平面。'],
+    ['Claude Managed Agents 需要地端 GPU 嗎？', '本架構不需要以地端 GPU 執行 Claude 推理；客戶端主機主要負責 Agent 工具、檔案與內部系統連線。'],
     ['可以協助申請政府補助嗎？', 'EudTech 可依當年度公告協助盤點適用計畫與導入範圍；資格、金額及核定結果以主管機關審查為準。']
   ],
   schema: [
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      name: '企業 AI Agent 與 Headless SaaS 導入服務',
-      description: '串接既有系統、品牌入口、事件流程與可追溯 AI Agent 的企業導入服務。',
+      name: '企業 AI Agent、Claude Managed Agents 與 Headless SaaS 導入服務',
+      description: '採用 Microsoft 或 Anthropic 技術，串接既有系統、自管執行環境、事件流程與可追溯 AI Agent 的企業導入服務。',
       url: pageUrl('/solutions/ai-agent'),
       provider: eudTechOrganization,
       areaServed: { '@type': 'Country', name: 'Taiwan' }

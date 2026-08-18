@@ -4,6 +4,36 @@ export interface VendorEvidenceSource {
 }
 
 export const VENDOR_EVIDENCE = {
+  anthropic: {
+    name: 'Claude Managed Agents',
+    image: '/ai-agent/anthropic/managed-agents-hybrid-architecture.webp',
+    imageAlt: {
+      zh: 'Claude Managed Agents 混合式架構示意，呈現雲端協調、自管執行環境與企業內部系統',
+      en: 'Claude Managed Agents hybrid architecture showing cloud orchestration, self-hosted execution, and private enterprise systems'
+    },
+    sources: {
+      overview: {
+        label: { zh: 'Anthropic：Claude Managed Agents 概覽', en: 'Anthropic: Claude Managed Agents overview' },
+        href: 'https://platform.claude.com/docs/en/managed-agents/overview'
+      },
+      selfHosted: {
+        label: { zh: 'Anthropic：自管 Sandbox', en: 'Anthropic: self-hosted sandboxes' },
+        href: 'https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes'
+      },
+      tunnel: {
+        label: { zh: 'Anthropic：MCP Tunnels', en: 'Anthropic: MCP tunnels' },
+        href: 'https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview'
+      },
+      security: {
+        label: { zh: 'Anthropic：自管環境安全責任', en: 'Anthropic: self-hosted security model' },
+        href: 'https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security'
+      },
+      pricing: {
+        label: { zh: 'Anthropic：Claude Platform 計費', en: 'Anthropic: Claude Platform pricing' },
+        href: 'https://platform.claude.com/docs/en/about-claude/pricing'
+      }
+    }
+  },
   microsoft: {
     name: 'Microsoft Copilot Studio',
     image: '/vendor/microsoft/copilot-studio-product-tour.png',
