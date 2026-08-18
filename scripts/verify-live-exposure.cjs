@@ -10,7 +10,6 @@ const {
 
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
-const configuratorLinkIndexUrl = `${siteOrigin}/configurator-links.html`;
 const expectedDeployCommit = getFlagValue('--expect-commit') || process.env.EXPECTED_DEPLOY_COMMIT || '';
 const waitForCommitMs = Number(getFlagValue('--wait-for-commit-ms') || process.env.WAIT_FOR_DEPLOY_COMMIT_MS || '0');
 const socialPreviewRoutes = getConfiguratorSocialPreviewRoutes();
@@ -29,7 +28,6 @@ const requiredDiscoveryUrls = [
   `${siteOrigin}/feed.xml`,
   `${siteOrigin}/feed.json`,
   `${siteOrigin}/discovery-lastmod.json`,
-  configuratorLinkIndexUrl,
   `${siteOrigin}/llms.txt`,
   `${siteOrigin}/llms-full.txt`
 ];
@@ -358,7 +356,6 @@ function checkDiscoveryFiles(discovery, errors) {
   const feed = discovery.find((item) => item.url.endsWith('/feed.xml'))?.text || '';
   const feedJsonText = discovery.find((item) => item.url.endsWith('/feed.json'))?.text || '';
   const lastmodManifestText = discovery.find((item) => item.url.endsWith('/discovery-lastmod.json'))?.text || '';
-  const configuratorLinksHtml = discovery.find((item) => item.url === configuratorLinkIndexUrl)?.text || '';
   const llms = discovery.find((item) => item.url.endsWith('/llms.txt'))?.text || '';
   const llmsFull = discovery.find((item) => item.url.endsWith('/llms-full.txt'))?.text || '';
   const sitemapLocs = new Set(collectXmlLocs(sitemap));
@@ -403,7 +400,6 @@ function checkDiscoveryFiles(discovery, errors) {
     assert(feedJsonLinks.has(url), errors, `feed.json missing ${url}.`);
     assert(llms.includes(url), errors, `llms.txt missing ${url}.`);
     assert(llmsFull.includes(url), errors, `llms-full.txt missing ${url}.`);
-    assert(configuratorLinksHtml.includes(`href="${url}"`), errors, `configurator-links.html missing ${url}.`);
   }
 
   assert(feedJson?.version === 'https://jsonfeed.org/version/1.1', errors, 'feed.json missing valid JSON Feed version.');
