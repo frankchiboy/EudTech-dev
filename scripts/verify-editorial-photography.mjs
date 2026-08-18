@@ -74,6 +74,11 @@ const { execFileSync } = await import('node:child_process');
 const heroDiff = execFileSync('git', ['diff', '--', ...heroLocks], { cwd: root, encoding: 'utf8' });
 if (heroDiff.trim()) failures.push('homepage hero lock files changed');
 
+const viteConfig = await readFile(path.join(root, 'vite.config.ts'), 'utf8');
+if (!viteConfig.includes("'editorial-photography'")) failures.push('deploy allowlist is missing editorial-photography');
+if (viteConfig.includes("  'brand-provenance',")) failures.push('deploy allowlist still exposes generated brand-provenance assets');
+if (viteConfig.includes("  'ai-agent',")) failures.push('deploy allowlist still exposes the complete generated ai-agent asset directory');
+
 if (failures.length) {
   console.error(JSON.stringify({ ok: false, failures }, null, 2));
   process.exit(1);

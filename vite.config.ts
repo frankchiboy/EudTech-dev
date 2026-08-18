@@ -37,8 +37,7 @@ const PUBLIC_FILE_ALLOWLIST = [
   'd6fd206f713cd936d87b58a6010aa751.txt',
   'sw.js',
   'logo.svg',
-  'headless-saas-architecture.svg',
-  'ai-agent-evidence-chain-v1.webp',
+  'ai-agent/official-document-menu.png',
   'icon.svg',
   'amd-logo.png',
   'amd-partner-badge.jpg',
@@ -101,9 +100,8 @@ const PUBLIC_FILE_ALLOWLIST = [
 ];
 
 const PUBLIC_DIRECTORY_ALLOWLIST = [
-  'ai-agent',
-  'brand-provenance',
   'cyabra-images',
+  'editorial-photography',
   'images/configurator/devices',
   'images/configurator/backgrounds',
   'social',
