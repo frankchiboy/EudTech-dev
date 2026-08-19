@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, ArrowRight, Blocks, Bot, Braces, LayoutDashboard, ShieldCheck, Webhook } from 'lucide-react';
+import { ArrowDown, ArrowRight, Bot, Braces, Database, ShieldCheck, Webhook } from 'lucide-react';
 
 interface HeadlessSaasVisualProps {
   isEnglish: boolean;
@@ -9,32 +9,32 @@ interface HeadlessSaasVisualProps {
 const HeadlessSaasVisual: React.FC<HeadlessSaasVisualProps> = ({ isEnglish, compact = false }) => {
   const nodes = [
     {
-      icon: Blocks,
-      eyebrow: isEnglish ? 'CONTENT & WORK' : '內容與協作',
-      title: isEnglish ? 'Existing systems and data' : '既有系統與資料',
-      body: isEnglish ? 'ERP, CRM, Microsoft 365, databases, and APIs' : 'ERP、CRM、Microsoft 365、資料庫與 API',
-      tone: 'border-slate-300 bg-white text-slate-950 dark:border-slate-700 dark:bg-slate-950 dark:text-white'
+      icon: Bot,
+      eyebrow: isEnglish ? 'AI INTERFACE' : 'AI 使用介面',
+      title: isEnglish ? 'ChatGPT / Claude' : 'ChatGPT／Claude',
+      body: isEnglish ? 'The AI tools employees already use' : '員工直接使用既有 AI 工作介面',
+      tone: 'border-violet-300/50 bg-violet-50 text-slate-950 dark:border-violet-300/30 dark:bg-violet-300/10 dark:text-white'
     },
     {
       icon: Webhook,
-      eyebrow: isEnglish ? 'EVENT & API' : '事件與 API',
-      title: isEnglish ? 'Secure integration' : '安全整合層',
-      body: isEnglish ? 'OAuth, webhooks, validation, and idempotency' : 'OAuth、Webhook、驗證與去重',
+      eyebrow: isEnglish ? 'REMOTE MCP' : 'REMOTE MCP',
+      title: isEnglish ? 'EudTech MCP Gateway' : 'EudTech MCP Gateway',
+      body: isEnglish ? 'A standard connection for enterprise tools and data' : '以標準協議連接企業資料與工具',
       tone: 'border-cyan-300/50 bg-cyan-50 text-slate-950 dark:border-cyan-300/30 dark:bg-cyan-300/10 dark:text-white'
     },
     {
       icon: ShieldCheck,
-      eyebrow: isEnglish ? 'EUDTECH CONTROL' : 'EUDTECH 控制層',
-      title: isEnglish ? 'Policy and AI actions' : '政策與 AI 動作',
-      body: isEnglish ? 'Permissions, approvals, tools, audit, and monitoring' : '權限、核准、工具、稽核與監測',
+      eyebrow: isEnglish ? 'EUDTECH AGENT SOR' : 'EUDTECH AGENT SOR',
+      title: isEnglish ? 'System of Record + Action Layer' : 'System of Record + Action Layer',
+      body: isEnglish ? 'Identity, permissions, workflow, approvals, actions, memory references, and audit evidence' : '身分、權限、流程、核准、Action、記憶索引與稽核證據',
       tone: 'border-emerald-300/50 bg-emerald-50 text-slate-950 dark:border-emerald-300/30 dark:bg-emerald-300/10 dark:text-white'
     },
     {
-      icon: LayoutDashboard,
-      eyebrow: isEnglish ? 'BRANDED EXPERIENCE' : '品牌化體驗',
-      title: isEnglish ? 'Portal / website / agent' : 'Portal／網站／Agent',
-      body: isEnglish ? 'A customer-facing experience under your brand' : '以企業品牌呈現的客戶入口',
-      tone: 'border-violet-300/50 bg-violet-50 text-slate-950 dark:border-violet-300/30 dark:bg-violet-300/10 dark:text-white'
+      icon: Database,
+      eyebrow: isEnglish ? 'BUSINESS SYSTEMS' : '企業正式系統',
+      title: isEnglish ? 'ERP / CRM / Email / DB' : 'ERP／CRM／Email／DB',
+      body: isEnglish ? 'Authoritative business records remain in the systems that already own them' : '正式業務資料仍留在原本負責的企業系統',
+      tone: 'border-slate-300 bg-white text-slate-950 dark:border-slate-700 dark:bg-slate-950 dark:text-white'
     }
   ];
 
@@ -66,11 +66,11 @@ const HeadlessSaasVisual: React.FC<HeadlessSaasVisualProps> = ({ isEnglish, comp
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-medium text-slate-600 dark:border-white/10 dark:bg-slate-950/60 dark:text-slate-300">
             <Braces className="h-4 w-4 shrink-0 text-cyan-600 dark:text-cyan-300" />
-            {isEnglish ? 'The integration uses authorised APIs—not page scraping.' : '整合使用已授權 API，不依賴網頁擷取。'}
+            {isEnglish ? 'No new chatbot UI is required: ChatGPT or Claude can remain the front end.' : '不需要再做一個聊天介面：ChatGPT 或 Claude 就是前台。'}
           </div>
           <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-medium text-slate-600 dark:border-white/10 dark:bg-slate-950/60 dark:text-slate-300">
-            <Bot className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-300" />
-            {isEnglish ? 'Sensitive writes can require human approval.' : '敏感寫回可設定為必須經人員核准。'}
+            <ShieldCheck className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-300" />
+            {isEnglish ? 'Every sensitive write can pass policy, approval, and audit before execution.' : '敏感寫回在執行前可經過政策、核准與完整稽核。'}
           </div>
         </div>
       )}
