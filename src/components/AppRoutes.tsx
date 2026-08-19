@@ -66,20 +66,20 @@ const AppRoutes: React.FC = () => {
             <Route path="/" element={
               <>
                 <SEOHead
-                  title={isEnglish ? 'AI agents & Headless SaaS, GPU Infrastructure, and Social Intelligence' : 'AI Agent 與 Headless SaaS、GPU 運算與社群情報'}
+                  title={isEnglish ? 'Agent SOR, AI Infrastructure, and Social Intelligence' : 'Agent SOR、AI 運算與社群情報'}
                   description={
                     isEnglish
-                      ? 'EudTech provides one integrated AI agent and headless SaaS service, AI GPU infrastructure, and Cyabra social intelligence solutions.'
-                      : 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入服務、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
+                      ? 'EudTech provides an Agent System of Record and Action Layer for ChatGPT and Claude, AI GPU infrastructure, and Cyabra social intelligence solutions.'
+                      : 'EudTech 提供以 ChatGPT／Claude 為介面的 Agent System of Record + Action Layer、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
                   }
                   keywords={
                     isEnglish
-                      ? 'AI GPU server, GPU server quote, Comino Grando, NVIDIA H200 server, RTX PRO 6000 workstation, liquid cooled GPU server, Taiwan AI workstation'
-                      : 'AI GPU 伺服器, GPU 伺服器報價, Comino Grando, NVIDIA H200 伺服器, RTX PRO 6000 工作站, 液冷 GPU 伺服器, 台灣 AI 工作站'
+                      ? 'Agent SOR, agent system of record, MCP gateway, AI GPU server, Comino Grando, Cyabra social intelligence'
+                      : 'Agent SOR, AI Agent System of Record, MCP Gateway, AI GPU 伺服器, Comino Grando, Cyabra 社群情報'
                   }
                   url="https://eudaemonia.tech/"
                   image={getConfiguratorSocialPreviewPath('/')}
-                  imageAlt={isEnglish ? 'EudTech AI GPU servers and Comino configurator' : 'EudTech AI GPU 伺服器與 Comino 配置器'}
+                  imageAlt={isEnglish ? 'EudTech Agent SOR and AI infrastructure' : 'EudTech Agent SOR 與 AI 運算基礎設施'}
                   structuredData={homeStructuredData}
                   isEnglish={isEnglish}
                 />
