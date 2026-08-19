@@ -118,7 +118,7 @@ jobs:
       - name: Build production bundle
         run: npm run build
 
-      - name: Promote commit and create immutable release tag
+      - name: Atomically promote commit and immutable release tag
         shell: bash
         env:
           TARGET_SHA: ${{ steps.resolve.outputs.target_sha }}
@@ -130,9 +130,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git push origin "${TARGET_SHA}:refs/heads/main"
           git tag -a "$RELEASE_TAG" "$TARGET_SHA" -m "Production release ${RELEASE_TAG} from ${SOURCE_BRANCH}"
-          git push origin "refs/tags/${RELEASE_TAG}"
+
+          # Update main and its immutable release tag together. If either ref is rejected,
+          # the remote applies neither change.
+          git push --atomic origin \
+            "${TARGET_SHA}:refs/heads/main" \
+            "refs/tags/${RELEASE_TAG}:refs/tags/${RELEASE_TAG}"
 
       - name: Write promotion summary
         shell: bash
@@ -144,4 +148,5 @@ jobs:
             echo "- Release tag: \`${{ steps.resolve.outputs.release_tag }}\`"
             echo "- Approval input: accepted"
             echo "- Build: passed"
+            echo "- Ref update: atomic"
           } >> "$GITHUB_STEP_SUMMARY"
