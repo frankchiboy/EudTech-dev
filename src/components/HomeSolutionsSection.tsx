@@ -21,7 +21,7 @@ const HomeSolutionsSection: React.FC<HomeSolutionsSectionProps> = ({ isEnglish }
     <section className="bg-white py-20 text-slate-950 dark:bg-slate-950 dark:text-white" aria-labelledby="home-solutions-heading">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">{isEnglish ? 'Start with the business outcome' : '先從實際成果開始'}</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{isEnglish ? 'Start with the business outcome' : '先從實際成果開始'}</p>
           <h2 id="home-solutions-heading" className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Three solution paths, one accountable delivery model' : '三條解決方案路徑，同一套可追蹤交付方式'}</h2>
           <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'Choose the problem you need to solve. EudTech then defines the data, systems, approvals, and measurable next step.' : '先選擇需要解決的問題，再由 EudTech 定義資料、系統、核准點與可量化的下一步。'}</p>
           <p data-home-hero-relationship className="mt-4 rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm leading-7 text-slate-700 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-slate-200">{isEnglish ? 'The homepage hero introduces EudTech as one delivery partner; these three paths show the distinct entry point for AI workflow implementation, AI infrastructure procurement, and social intelligence.' : '首頁主視覺介紹 EudTech 是同一個交付夥伴；以下三條路徑分別對應 AI 工作流程導入、AI 運算設備採購與社群情報需求。'}</p>
@@ -39,7 +39,7 @@ const HomeSolutionsSection: React.FC<HomeSolutionsSectionProps> = ({ isEnglish }
         <div className="mt-20 border-t border-slate-200 pt-16 dark:border-white/10">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">{isEnglish ? 'A delivery model you can inspect' : '可以逐項查核的交付方式'}</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">{isEnglish ? 'A delivery model you can inspect' : '可以逐項查核的交付方式'}</p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight">{isEnglish ? 'From requirement to evidence, every stage has an owner.' : '從需求到證據，每個階段都有負責人。'}</h2>
               <p className="mt-5 leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'EudTech does not treat a demo as completion. The accepted outcome includes the source, decision, approval, test result, and operating boundary.' : 'EudTech 不把展示畫面視為完成。正式驗收會包含來源、決策、核准、測試結果與維運邊界。'}</p>
               <div className="mt-7 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 dark:border-emerald-300/20 dark:bg-emerald-300/10">

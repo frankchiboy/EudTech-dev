@@ -1,6 +1,6 @@
 # Configurator Exposure Project Status
 
-更新時間：2026-07-13 04:00 Asia/Taipei
+更新時間：2026-07-13 22:00 Asia/Taipei
 
 這是 Configurator 曝光、詢價追蹤與正式部署的唯一接續入口。系統邊界、導入決策與操作
 準則見 `CONFIGURATOR_KNOWLEDGE.md`；歷史細節仍保留在
@@ -81,15 +81,14 @@
 1. GA4 property `EudTech Website - eudaemonia.tech`（property ID `543891100`）的
    `gmail2task-deployer@eudaemonia-vault-20260203.iam.gserviceaccount.com` 已有 Viewer 權限。
    其現有金鑰只保存在 1Password Automation Vault 的 `gmail2task GCP SA Key` 文件項目。
-2. Google Analytics Data API 在 GCP project `eudaemonia-vault-20260203` 尚未啟用。
-   Cloud Console 已顯示「啟用」按鈕，但該動作會接受 Google APIs Terms。
-3. 未取得使用者明確同意前，不可啟用此 API、不可接受 Google APIs Terms、不可建立廣告帳戶、
-   不可接受廣告平台條款、不可新增付款方式。
-4. 使用者明確同意後的下一步：
-   1. 在 GCP project `eudaemonia-vault-20260203` 啟用 `analyticsdata.googleapis.com`。
-   2. 使用現有服務帳戶讀取 `properties/543891100:runReport`，產生 90 天
-      acquisition、Configurator engagement、quote funnel 報表。
-   3. 將實際數據與 Search Console 的 query/page 報表合併，再決定自然內容優先順序與付費投放。
+2. `analyticsdata.googleapis.com` 與 `analyticsadmin.googleapis.com` 已在 GCP project
+   `eudaemonia-vault-20260203` 啟用；property `543891100` 的唯一 Web data stream 已確認與正式站的
+   Measurement ID 相符。
+3. 既有 property-scoped Viewer 服務帳戶已成功執行 `properties/543891100:runReport`。目前 90 天
+   Configurator／Solutions page 與漏斗事件皆為零列；此為可讀的實際資料結果，不代表 API 或 property
+   權限失敗。
+4. `npm run report:ga4-configurator -- --days=90` 可重複讀取匿名頁面與漏斗彙總；後續應以該報表與
+   Search Console 同期資料共同決定內容與付費投放優先順序。
 
 ### Access cleanup
 
@@ -102,19 +101,32 @@
 
 ### Paid and social platforms
 
-下列設定仍為空，未建立廣告帳戶、未接受平台條款、未進行付費投放：
+下列設定仍為空，未完成付費平台的追蹤或 API 設定：
 
 | Platform | Missing browser tracking values |
 |---|---|
-| Google Ads | 已確認有一般 Google 登入候選，但容器化瀏覽器沒有既有 Google Ads session，僅到達登入／立即開始入口；未發現可接管的 Ads 客戶帳戶，仍缺 `VITE_GOOGLE_ADS_ID`、`VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL` 與 API 身分 |
-| LinkedIn | 已確認既有登入可進入 Campaign Manager 的新廣告帳戶建立頁；協議未接受、帳戶未建立，故仍缺 `VITE_LINKEDIN_PARTNER_ID`、`VITE_LINKEDIN_QUOTE_CONVERSION_ID` 與 API 身分 |
+| Google Ads | 已建立無廣告活動帳戶，並固定 Taiwan／TWD／Asia-Taipei；已進入付款設定頁但未新增或儲存付款方式。帳戶識別碼僅安全保存於 1Password；仍缺 `VITE_GOOGLE_ADS_ID`、`VITE_GOOGLE_ADS_QUOTE_CONVERSION_LABEL` 與 API 身分 |
+| LinkedIn | 已確認 EudTech 廣告帳戶存在且暫停、付款方式為必填、活動數為零；2FA 啟用時被要求輸入寄往唯一且已退信的信箱之驗證碼。官方規定此情境須本人完成身分復原，故仍缺 `VITE_LINKEDIN_PARTNER_ID`、`VITE_LINKEDIN_QUOTE_CONVERSION_ID` 與 API 身分 |
 | Meta | `VITE_META_PIXEL_ID` |
 | Microsoft Ads | `VITE_MICROSOFT_UET_TAG_ID` |
 
 1Password 的 `EudTech Configurator Marketing Platforms` 項目已存在，欄位名稱正確；
 不可在 repo、終端輸出或狀態檔寫入任何值。
 
-2026-07-13 的容器化瀏覽器檢查確認：LinkedIn 既有登入可存取 EudTech 的廣告帳戶建立流程，但該流程要求接受 LinkedIn 廣告協議後才會建立帳戶。Google Ads 僅有一般 Google 登入候選，未存在已登入 Ads session，頁面仍顯示登入／立即開始入口。此輪未勾選協議、未建立帳戶、未新增付款資料，也未取得任何 tracking 或 API 值。Meta Business、Microsoft Advertising 均無 Automation vault 候選登入或憑證。
+### 2026-07-13 Paid-platform handoff
+
+1. 已驗證狀態
+   - GA4 與 GTM 的正式站量測維持啟用；GA4 Reporting API 已可唯讀查詢，90 天
+     Configurator／Solutions 與漏斗報表目前無資料列。
+   - Google Ads、LinkedIn、Meta、Microsoft Ads 的正式追蹤 ID、轉換 ID 與 API 憑證尚未同步至部署環境；嚴格外部平台稽核尚不可通過。
+   - 第一方詢價成功事件與耐久化聚合報表已可運作，可在外部廣告平台設定完成後作為轉換驗證基準。
+2. 無費用邊界
+   - Google Ads 已建立帳戶但未新增付款方式；未建立或啟動任何付費廣告活動，未設定預算、出價或自動扣款。
+3. 必要使用者決策
+   - Google Ads：帳戶未完成付款設定時，前往 API Center 會被導回付款設定頁，故尚不能取得 developer token 或建立詢價轉換；維持不得新增付款設定的邊界。
+   - LinkedIn：唯一信箱已退信，帳戶本人須依 LinkedIn 官方 Persona 流程以手機、有效政府證件與必要的人臉驗證完成身分恢復；完成後才可啟用 2FA、建立 Insight Tag 與詢價轉換，且不得新增付款設定。
+   - Meta：可免付款建立 Pixel，但 1Password 尚無可安全歸屬公司使用的 Facebook／Business 登入，故尚不能建立 Business portfolio 或 Pixel。
+   - Microsoft Ads：已取得並交叉核對公司法定資料，且使用者已明示同意 Microsoft Advertising 條款；但實際建帳表單的 226 個所在地不含臺灣，搜尋 `Taiwan` 亦無選項。Microsoft 官方文件稱帳戶建立全球可用（中國、印度除外），與目前帳戶表單資料矛盾；不得以美國資料替代臺灣公司資料，故尚不能建立帳戶或 UET。
 
 ## Resume Order
 
@@ -127,9 +139,9 @@
    npm run verify:live-exposure -- --expect-commit HEAD --wait-for-commit-ms 60000
    ```
 
-2. 使用者若明確同意 Google APIs Terms，啟用 Google Analytics Data API 並讀取真實 GA4 報表。
-3. 以實際 Search Console + GA4 數據決定下一批自然曝光內容，不以猜測新增 landing page。
-4. 使用者若明確授權建立或接管付費平台帳戶，再補齊相應 platform IDs，透過既有
+2. 以 `npm run report:ga4-configurator -- --days=90` 讀取實際 GA4 報表，並與 Search Console 同期資料決定自然曝光內容，不以猜測新增 landing page。
+3. Google Ads 帳戶已建立且停在未填付款資料的頁面；未完成付款設定前，API Center 與詢價轉換均不可操作。LinkedIn 則先完成帳戶本人身分恢復與兩步驟驗證。
+4. 依序補齊付費平台的 platform IDs，透過既有
    `sync:marketing-platform-env` / `apply:marketing-platform-env:netlify` 工作流同步，
    並在 production 回讀。
 5. 每次 production push 後，先確認 Netlify deploy 對應 commit，再跑
@@ -149,6 +161,7 @@
 | SEO/exposure readiness audit | `scripts/audit-configurator-exposure-readiness.cjs` |
 | Configurator system and decision knowledge | `CONFIGURATOR_KNOWLEDGE.md` |
 | Latest Search Console content decision | `docs/configurator-search-console-decision-20260713.md` |
+| GA4 Configurator report | `scripts/report-ga4-configurator.cjs` |
 | Historical exposure implementation | `docs/configurator-exposure-checklist.md` |
 | Original prompt archives | `USER_ORIGINAL_PROMPTS.md`, `docs/USER_ORIGINAL_PROMPTS.md` |
 

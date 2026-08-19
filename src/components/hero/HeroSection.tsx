@@ -4,7 +4,6 @@ import { getHeroContent } from '../../data/content';
 import HeroBackground from './HeroBackground';
 import HeroContent from './HeroContent';
 import ScrollIndicator from './ScrollIndicator';
-import LazyImage from '../common/LazyImage';
 
 interface HeroSectionProps {
   isEnglish: boolean;
@@ -22,8 +21,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isEnglish }) => {
       id="home" 
       ref={targetRef}
       className="relative h-screen flex items-center justify-center overflow-hidden"
-      role="banner"
-      aria-label={isEnglish ? 'Hero section' : '主要區塊'}
+      aria-labelledby="home-hero-heading"
     >
       <HeroBackground />
       <HeroContent content={content} />

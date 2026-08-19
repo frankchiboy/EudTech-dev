@@ -24,7 +24,7 @@ npm run sync:marketing-platform-env -- --op-item "EudTech Configurator Marketing
 
 ## Current Verified State
 
-Verified on 2026-07-12 Asia/Taipei. The authoritative resume state is also recorded in
+Verified on 2026-07-13 Asia/Taipei. The authoritative resume state is also recorded in
 [`PROJECT_STATUS.md`](../PROJECT_STATUS.md).
 
 | Area | Status | Evidence / next action |
@@ -34,11 +34,18 @@ Verified on 2026-07-12 Asia/Taipei. The authoritative resume state is also recor
 | GitHub Actions variables | Partially synced | The same five frontend variables are present in repository variables. |
 | GitHub Actions secrets | Partially synced | `NETLIFY_AUTH_TOKEN`, `GOOGLE_ANALYTICS_PROPERTY_ID`, `GOOGLE_TAG_MANAGER_ACCOUNT_ID`, and `GOOGLE_TAG_MANAGER_CONTAINER_ID` are present. |
 | Production browser tracking | Active for GA/GTM | The production bundle contains the configured GTM container and GA4 measurement ID. |
-| GA4 reporting API | Pending explicit Terms approval | A property-scoped Viewer service account is ready, but Google Analytics Data API (`analyticsdata.googleapis.com`) is not enabled in `eudaemonia-vault-20260203`. Do not click Enable or accept Google APIs Terms without explicit user approval. |
+| GA4 reporting API | Active | `analyticsdata.googleapis.com` and `analyticsadmin.googleapis.com` are enabled in `eudaemonia-vault-20260203`. The property-scoped Viewer service account can run `properties/543891100:runReport`; the current 90-day Configurator report has no page or funnel rows. |
 | Quote journey measurement | Active | Anonymous `quote_request_id` joins the quote form, first-party conversion event, quote email, and `quote_email_sent` log. |
 | Durable first-party funnel history | Active | Selected sanitized conversion/attribution events are stored in the site-scoped Netlify Blobs store `configurator-marketing-events-v1`; `npm run report:configurator-conversions -- --days=30` emits aggregate-only reporting. |
-| Paid conversion / retargeting | Blocked by empty platform values | Fill the Google Ads, LinkedIn, Meta, and Microsoft Ads fields listed below, then rerun the strict sync and audit commands. |
-| LinkedIn Campaign Manager | Account setup reached, not created | An existing LinkedIn login reaches the EudTech new-advertiser page, but the LinkedIn Advertising Agreement remains unchecked. No partner ID, conversion ID, ad account, API token, or payment setting exists. |
+| Paid conversion / retargeting | Platform IDs pending | Google Ads、LinkedIn、Meta、Microsoft Ads fields are empty; fill them only after the corresponding account and permanent API access are established. |
+| LinkedIn Campaign Manager | Account exists, tracking unavailable | The EudTech account is paused, has no payment method and zero campaigns; Campaign Manager requires two-step verification before Insight Tag setup. No partner ID, conversion ID, or API token exists. |
+
+### 2026-07-13 Paid-platform handoff
+
+1. Google Ads：已建立僅帳戶設定的帳戶，且不可變更設定已確認為 Taiwan／TWD／Asia-Taipei。Google Ads 已轉入付款設定頁，但未新增或儲存付款方式，亦未建立廣告活動、預算或出價；帳戶識別碼僅保存在 1Password。未完成付款設定時，API Center 會導回付款設定頁，因此 developer token 與詢價轉換仍不可建立。
+2. LinkedIn：唯一信箱已被平台標示為無法送達。啟用 2FA 時，平台強制要求該信箱的 6 位數驗證碼；官方帳戶復原規定必須由帳戶本人以手機、政府證件、必要時的人臉驗證及明示同意完成，不能以自動化取代。完成後才建立 Insight Tag 與詢價轉換，且不新增付款設定。
+3. Meta：官方允許在未新增付款方式時建立 Business portfolio 與 Web dataset／Pixel；但目前 1Password 僅有無法安全歸屬公司使用的 Facebook 登入，故尚不能建立 Pixel。
+4. Microsoft Ads：已驗證可登入帳戶建立流程，且官方允許免廣告活動、免付款建立帳戶與 UET。公司法定資料已由 Google Drive 與 SharePoint／OneDrive 的最新公司登記文件交叉核對，使用者亦已明示同意條款；但實際建帳表單的 226 個所在地不含臺灣，搜尋 `Taiwan` 亦無選項，與 Microsoft 官方的全球可用說明矛盾。不得以美國資料替代臺灣公司資料，故尚不能提交或建立 UET。
 
 The external audit reports separate `accessReady` from `configComplete`. `accessReady=true` means the automation token can read the service; `configComplete=false` means paid-platform IDs or API credentials are still empty.
 

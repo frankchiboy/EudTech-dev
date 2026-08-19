@@ -202,6 +202,10 @@
 
 1. `@product-design:audit`
 
+## 2026-08-18 - Product Design Audit and Closed-loop Repair
+
+1. `/goal @product-design audit eudaemonia.tech 和修復做到閉環`
+
 ## 2026-08-18 - AI Agent Official-document Example
 
 1. `在ai agent x headless saas 增加一些具體實例 首先呈現 AI公文系統 [$收發公文](/Users/serverc/WorkSpace-AI/skills/收公文/SKILL.md) 不要講太多內部細節 要從使用角度呈現 做完再度 @product-design audit和修復做到閉環 我給你的截圖要上去`
@@ -209,3 +213,8 @@
 ## 2026-08-18 - Homepage Brand-partner Layout
 
 1. `跑版？`
+
+## 2026-08-18 - SEO 與 AI 曝光策略
+
+1. `我要讓ai容易看得到我也是要優化seo還是同時有其他方式要做`
+2. `這要先在測試暫時做還是上版正式站後做？`

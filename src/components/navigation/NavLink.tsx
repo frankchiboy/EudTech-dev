@@ -78,7 +78,7 @@ const NavLink: React.FC<NavLinkProps> = ({ link, textColorClass }) => {
           )}
         </button>
         {isOpen && !link.disabled && link.children && (
-          <div id={`nav-menu-${link.name.replace(/\s+/g, '-')}`} role="menu" className="absolute left-0 mt-2 w-72 rounded-md shadow-lg p-2 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50 transition-all duration-200 transform origin-top-left">
+          <div id={`nav-menu-${link.name.replace(/\s+/g, '-')}`} className="absolute left-0 mt-2 w-72 rounded-md shadow-lg p-2 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50 transition-all duration-200 transform origin-top-left">
             {link.children.map((child) => (
               <a
                 key={child.name}
@@ -87,7 +87,6 @@ const NavLink: React.FC<NavLinkProps> = ({ link, textColorClass }) => {
                   handleNavClick(child.href, e);
                   setIsOpen(false);
                 }}
-                role="menuitem"
                 className="block rounded-md px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
                 <span className="block font-semibold">{child.name}</span>

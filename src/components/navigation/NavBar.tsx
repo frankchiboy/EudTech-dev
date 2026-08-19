@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { getNavLinks } from '../../data/navigation';
@@ -28,6 +28,8 @@ const NavBar: React.FC<NavBarProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const menuTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const wasMenuOpenRef = useRef(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isProductDetailPage = /^\/products\/[^/]+\/?$/.test(location.pathname);
@@ -44,7 +46,13 @@ const NavBar: React.FC<NavBarProps> = ({
   }, []);
 
   const scrollProgress = Math.min(scrollY / 100, 1);
-  const isScrolled = scrollY > 20;
+
+  useEffect(() => {
+    if (wasMenuOpenRef.current && !isOpen) {
+      menuTriggerRef.current?.focus();
+    }
+    wasMenuOpenRef.current = isOpen;
+  }, [isOpen]);
 
   const getBackgroundColor = () => {
     if (isProductDetailPage) {
@@ -137,6 +145,9 @@ const NavBar: React.FC<NavBarProps> = ({
   };
 
   const textColorClass = getTextColorClass();
+  const handleMobileMenuClose = useCallback(() => {
+    setIsOpen(false);
+  }, []);
   const renderLinkLabel = (link: ReturnType<typeof getNavLinks>[number]) => {
     if (!link.labelLines?.length) {
       return link.name;
@@ -153,6 +164,7 @@ const NavBar: React.FC<NavBarProps> = ({
 
   return (
     <nav
+      aria-label={isEnglish ? 'Primary navigation' : '主要導覽'}
       className="fixed w-full z-50 transition-all duration-500 ease-out"
       style={{
         backgroundColor: getBackgroundColor(),
@@ -180,7 +192,7 @@ const NavBar: React.FC<NavBarProps> = ({
                     href={link.href}
                     onClick={(e) => handleNavClick(link.href, e)}
                     aria-label={link.name}
-                    className={`${textColorClass} flex min-h-10 items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-300 ease-out ${
+                    className={`${textColorClass} flex min-h-10 items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 ${
                       isHomePage && scrollY < 30 ? 'text-shadow-sm' : ''
                     }`}
                   >
@@ -209,14 +221,12 @@ const NavBar: React.FC<NavBarProps> = ({
             <LanguageToggle
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
-              isScrolled={isScrolled}
               textColorClass={textColorClass}
             />
             <ThemeToggle
               themeMode={themeMode}
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
-              isScrolled={isScrolled}
               textColorClass={textColorClass}
             />
           </div>
@@ -225,7 +235,6 @@ const NavBar: React.FC<NavBarProps> = ({
             <LanguageToggle
               isEnglish={isEnglish}
               toggleLanguage={toggleLanguage}
-              isScrolled={isScrolled}
               textColorClass={textColorClass}
               mobile
             />
@@ -233,13 +242,14 @@ const NavBar: React.FC<NavBarProps> = ({
               themeMode={themeMode}
               isDarkMode={isDarkMode}
               toggleDarkMode={toggleDarkMode}
-              isScrolled={isScrolled}
               textColorClass={textColorClass}
               mobile
             />
             <button
+              ref={menuTriggerRef}
+              type="button"
               onClick={() => setIsOpen((prev) => !prev)}
-              className={`${textColorClass} p-1 rounded-full transition-all duration-300 ease-out ml-2`}
+              className={`${textColorClass} p-1 rounded-full transition-all duration-300 ease-out ml-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2`}
               aria-label={isOpen ? (isEnglish ? 'Close menu' : '關閉選單') : (isEnglish ? 'Open menu' : '開啟選單')}
               aria-expanded={isOpen}
               aria-controls="mobile-navigation"
@@ -253,7 +263,7 @@ const NavBar: React.FC<NavBarProps> = ({
       <MobileMenu
         isOpen={isOpen}
         navLinks={navLinks}
-        onClose={() => setIsOpen(false)}
+        onClose={handleMobileMenuClose}
         isEnglish={isEnglish}
       />
     </nav>

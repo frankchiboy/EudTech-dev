@@ -1,5 +1,11 @@
 # User Original Prompts
 
+## 2026-08-18 Headless SaaS 獨立文宣範例
+
+1. `/goal 幫我思考 怎樣做進去headless saas網站文宣 做一版範例給我看 先跟網站分開： [$accounting-hub] [$eudtech-kinetic] [$line] [$telegram-intake] [$open-work-tracker] [$imagegen] @product-design @visualize @sites`
+
+> 本項建立與正式網站分離的 Headless SaaS 文宣範例。範例從使用者角度呈現 Accounting Hub、EudTech Kinetic、LINE 與 Telegram 的可追溯營運價值，不保存內部指示、憑證、帳號、密碼、驗證碼或交易細節。
+
 ## 2026-08-18 限制存取公文通知器原始碼
 
 1. `直接做做看一版給我：結合中性化需求完整列出做法`
@@ -118,6 +124,10 @@ This file preserves the user's original prompts for the configurator exposure ta
 
 1. `@product-design:audit`
 
+## 2026-08-18 Product Design Audit and Closed-loop Repair
+
+1. `/goal @product-design audit eudaemonia.tech 和修復做到閉環`
+
 ## 2026-08-18 AI Agent Official-document Example
 
 1. `在ai agent x headless saas 增加一些具體實例 首先呈現 AI公文系統 [$收發公文](/Users/serverc/WorkSpace-AI/skills/收公文/SKILL.md) 不要講太多內部細節 要從使用角度呈現 做完再度 @product-design audit和修復做到閉環 我給你的截圖要上去`
@@ -125,3 +135,8 @@ This file preserves the user's original prompts for the configurator exposure ta
 ## 2026-08-18 Homepage Brand-partner Layout
 
 1. `跑版？`
+
+## 2026-08-18 SEO 與 AI 曝光策略
+
+1. `我要讓ai容易看得到我也是要優化seo還是同時有其他方式要做`
+2. `這要先在測試暫時做還是上版正式站後做？`
