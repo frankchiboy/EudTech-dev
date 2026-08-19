@@ -1,0 +1,147 @@
+name: Promote Approved Preview to Main
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_branch:
+        description: "Short-lived preview branch to promote; must start with codex/"
+        required: true
+        type: string
+      commit_sha:
+        description: "Optional exact commit SHA from the source branch; defaults to the branch head"
+        required: false
+        type: string
+      release_tag:
+        description: "Immutable production tag, for example v2026.08.19-01"
+        required: true
+        type: string
+      approval:
+        description: "Type 正式發布 or DEPLOY PRODUCTION"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: eudtech-production-promotion
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    name: Validate and promote an approved preview
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout repository history
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Resolve and validate promotion target
+        id: resolve
+        shell: bash
+        env:
+          SOURCE_BRANCH: ${{ inputs.source_branch }}
+          INPUT_SHA: ${{ inputs.commit_sha }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          APPROVAL: ${{ inputs.approval }}
+        run: |
+          set -euo pipefail
+
+          case "$SOURCE_BRANCH" in
+            codex/*) ;;
+            *)
+              echo "source_branch must start with codex/." >&2
+              exit 1
+              ;;
+          esac
+
+          if [ "$APPROVAL" != "正式發布" ] && [ "$APPROVAL" != "DEPLOY PRODUCTION" ]; then
+            echo "Production approval phrase is missing." >&2
+            exit 1
+          fi
+
+          if ! [[ "$RELEASE_TAG" =~ ^v[0-9]{4}\.[0-9]{2}\.[0-9]{2}-[0-9]{2}$ ]]; then
+            echo "release_tag must match vYYYY.MM.DD-NN." >&2
+            exit 1
+          fi
+
+          git fetch origin \
+            "refs/heads/main:refs/remotes/origin/main" \
+            "refs/heads/${SOURCE_BRANCH}:refs/remotes/origin/${SOURCE_BRANCH}" \
+            --tags --prune
+
+          if [ -n "$INPUT_SHA" ]; then
+            TARGET_SHA="$INPUT_SHA"
+          else
+            TARGET_SHA="$(git rev-parse "origin/${SOURCE_BRANCH}")"
+          fi
+
+          git cat-file -e "${TARGET_SHA}^{commit}"
+          git merge-base --is-ancestor "$TARGET_SHA" "origin/${SOURCE_BRANCH}"
+          git merge-base --is-ancestor origin/main "$TARGET_SHA"
+
+          if [ "$TARGET_SHA" = "$(git rev-parse origin/main)" ]; then
+            echo "The selected commit is already the production baseline." >&2
+            exit 1
+          fi
+
+          if git rev-parse -q --verify "refs/tags/${RELEASE_TAG}" >/dev/null; then
+            echo "Release tag ${RELEASE_TAG} already exists." >&2
+            exit 1
+          fi
+
+          echo "target_sha=$TARGET_SHA" >> "$GITHUB_OUTPUT"
+          echo "release_tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+          echo "source_branch=$SOURCE_BRANCH" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout approved commit
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.resolve.outputs.target_sha }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify preserved user instructions
+        run: npm run verify:original-prompts
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Promote commit and create immutable release tag
+        shell: bash
+        env:
+          TARGET_SHA: ${{ steps.resolve.outputs.target_sha }}
+          RELEASE_TAG: ${{ steps.resolve.outputs.release_tag }}
+          SOURCE_BRANCH: ${{ steps.resolve.outputs.source_branch }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git push origin "${TARGET_SHA}:refs/heads/main"
+          git tag -a "$RELEASE_TAG" "$TARGET_SHA" -m "Production release ${RELEASE_TAG} from ${SOURCE_BRANCH}"
+          git push origin "refs/tags/${RELEASE_TAG}"
+
+      - name: Write promotion summary
+        shell: bash
+        run: |
+          {
+            echo "## Production promotion"
+            echo "- Source branch: \`${{ steps.resolve.outputs.source_branch }}\`"
+            echo "- Commit: \`${{ steps.resolve.outputs.target_sha }}\`"
+            echo "- Release tag: \`${{ steps.resolve.outputs.release_tag }}\`"
+            echo "- Approval input: accepted"
+            echo "- Build: passed"
+          } >> "$GITHUB_STEP_SUMMARY"
