@@ -16,7 +16,7 @@ export const SITE_NAVIGATION_GROUPS: SiteNavigationItem[] = [
     description: { zh: '依營運問題、運算工作負載與情報需求選擇方案。', en: 'Choose by operating problem, compute workload, or intelligence need.' },
     children: [
       { id: 'solutions-overview', label: { zh: '解決方案總覽', en: 'Solutions overview' }, href: '/solutions', description: { zh: '三大服務方案與下一步。', en: 'Three solution areas and next steps.' } },
-      { id: 'ai-agent', label: { zh: 'AI Agent 與 Headless SaaS', en: 'AI agents & headless SaaS' }, href: '/solutions/ai-agent', description: { zh: '串接既有系統，建立品牌入口、事件、Agent 與治理。', en: 'Connect existing systems to branded experiences, events, agents, and governance.' } },
+      { id: 'ai-agent', label: { zh: 'Agent SOR 與 Action Layer', en: 'Agent SOR & Action Layer' }, href: '/solutions/ai-agent', description: { zh: '以 ChatGPT／Claude 為介面，透過 MCP 串接企業系統並治理 Agent 行動。', en: 'Use ChatGPT or Claude as the interface while MCP connects enterprise systems to governed agent actions.' } },
       { id: 'ai-infrastructure', label: { zh: 'AI 運算基礎設施', en: 'AI infrastructure' }, href: '/solutions/ai-infrastructure', description: { zh: '從工作負載到可採購配置。', en: 'From workload to a quote-ready configuration.' } },
       { id: 'social-intelligence', label: { zh: '社群情報', en: 'Social intelligence' }, href: '/solutions/social-intelligence', description: { zh: '用 Cyabra 辨識假帳號與協調式敘事。', en: 'Use Cyabra to identify fake profiles and coordinated narratives.' } }
     ]
