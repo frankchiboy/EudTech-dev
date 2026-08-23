@@ -1,0 +1,1 @@
+Deploy taipei-social-housing-public-art production v1.2.0 on 2026-08-23.
