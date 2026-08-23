@@ -2,10 +2,11 @@ name: One-time deploy Taipei Public Art
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - netlify-public-art-trigger.txt
+    branches: [main]
+    paths: [netlify-public-art-trigger.txt]
+  pull_request:
+    branches: [main]
+    paths: [netlify-public-art-pr-trigger.txt]
   workflow_dispatch:
 
 permissions:
@@ -17,7 +18,7 @@ jobs:
     timeout-minutes: 15
     env:
       SITE_ID: 9b0339fd-8ff9-4ab3-98e0-759b2ed37a0c
-      PACKAGE_URL: https://sdmntprjapaneast.oaiusercontent.com/files/00000000-bf0c-8209-a155-0974121218fd/raw?se=2026-08-23T04%3A42%3A04Z&sp=r&sv=2026-02-06&sr=b&scid=b2794f1b-0178-5634-b7c0-b4909d96c907&skoid=fe2e0858-51c5-47e9-acb7-46ebb9a0f396&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-22T23%3A56%3A43Z&ske=2026-08-23T23%3A56%3A43Z&sks=b&skv=2026-02-06&sig=MSSxZlPXXDLyW%2FUZOw58h2qT9JpoDk2eWGU9NnX7BI8%3D
+      PACKAGE_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-60a4-8209-a253-82cde8037af2/raw?se=2026-08-23T04%3A44%3A50Z&sp=r&sv=2026-02-06&sr=b&scid=9ddec34a-755b-5adb-950c-598f42ca0742&skoid=fe2e0858-51c5-47e9-acb7-46ebb9a0f396&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-23T01%3A52%3A05Z&ske=2026-08-24T01%3A52%3A05Z&sks=b&skv=2026-02-06&sig=5a4YxN%2BGNCUVBRbD0EZguu3g1EFL0vL%2B8vSCzX%2BEwNY%3D"
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
     steps:
       - name: Check Netlify credential
@@ -26,7 +27,7 @@ jobs:
           set -euo pipefail
           test -n "$NETLIFY_AUTH_TOKEN"
 
-      - name: Download and verify deployment package
+      - name: Download and verify package
         shell: bash
         run: |
           set -euo pipefail
@@ -44,12 +45,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx --yes netlify-cli@latest deploy \
-            --dir=site \
-            --prod \
-            --site="$SITE_ID" \
-            --auth="$NETLIFY_AUTH_TOKEN" \
-            --json > deploy-result.json
+          npx --yes netlify-cli@latest deploy --dir=site --prod --site="$SITE_ID" --auth="$NETLIFY_AUTH_TOKEN" --json > deploy-result.json
           cat deploy-result.json
           python - <<'PY'
           import json, os
@@ -63,15 +59,13 @@ jobs:
               f.write(f'deploy_id={deploy_id}\n')
           PY
 
-      - name: Validate live production pages
+      - name: Validate live pages
         shell: bash
         run: |
           set -euo pipefail
           url='${{ steps.deploy.outputs.url }}'
           for attempt in $(seq 1 30); do
-            if curl --fail --silent --show-error --location "$url/" --output live-index.html; then
-              break
-            fi
+            curl --fail --silent --show-error --location "$url/" --output live-index.html && break
             sleep 2
           done
           grep -q '臺北社宅公共藝術平臺' live-index.html
