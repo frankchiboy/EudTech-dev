@@ -5,6 +5,11 @@
   Cache-Control: public, max-age=0, must-revalidate
   X-Content-Type-Options: nosniff
 
+/matter-mail/darwin/arm64/stable.json
+  Cache-Control: public, max-age=300, must-revalidate
+  Content-Type: application/json; charset=utf-8
+  X-Content-Type-Options: nosniff
+
 /robots.txt
   Cache-Control: public, max-age=3600, must-revalidate
   X-Content-Type-Options: nosniff

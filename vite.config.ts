@@ -106,6 +106,7 @@ const PUBLIC_DIRECTORY_ALLOWLIST = [
   'cyabra-images',
   'images/configurator/devices',
   'images/configurator/backgrounds',
+  'matter-mail',
   'social',
   'vendor'
 ];
