@@ -30,9 +30,9 @@ interface Review {
 
 const VerificationCard: React.FC<{ isEnglish: boolean }> = ({ isEnglish }) => {
   const infoText = isEnglish
-    ? 'EudTech is now the official Comino distributor. You can check our authorization on the official Comino distributor page:'
-    : 'EudTech已列為Comino官方經銷商。您可以在Comino官網經銷商頁面查證我們的授權：';
-  const ctaText = isEnglish ? 'Verify on Comino Website' : 'Comino經銷商頁面';
+    ? 'EudTech is listed as an official Comino distributor. You can verify this on the Comino distributor page:'
+    : 'EudTech 已列為 Comino 官方經銷商。授權狀態可在 Comino 官網的經銷商頁面查證：';
+  const ctaText = isEnglish ? 'Verify on the Comino website' : 'Comino 經銷商頁面';
 
   return (
     <div className="bg-gradient-to-r from-white to-gray-50 dark:from-blue-900/40 dark:to-teal-800/40 p-8 rounded-xl mb-12 max-w-3xl mx-auto shadow-lg border border-gray-200 dark:border-blue-900/20 backdrop-blur-sm">
@@ -95,7 +95,7 @@ const FeatureGrid: React.FC<{ features: Feature[] }> = ({ features }) => (
 const PartnerLogos: React.FC<{ partners: Partner[]; isEnglish: boolean }> = ({ partners, isEnglish }) => (
   <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 sm:p-8 mb-20">
     <h4 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-6 sm:mb-8">
-      {isEnglish ? 'Compatible Technologies' : '相容技術'}
+      {isEnglish ? 'Compatible technologies' : '相容技術'}
     </h4>
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap justify-center items-center gap-x-6 sm:gap-x-8 gap-y-10 py-4">
       {partners.map((partner) => {
@@ -137,7 +137,7 @@ const PartnerLogos: React.FC<{ partners: Partner[]; isEnglish: boolean }> = ({ p
 const ReviewGrid: React.FC<{ reviews: Review[]; isEnglish: boolean }> = ({ reviews, isEnglish }) => (
   <div className="text-center mb-16">
     <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
-      {isEnglish ? 'Industry Recognition' : '業界認可'}
+      {isEnglish ? 'Industry recognition' : '業界認可'}
     </h4>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
       {reviews.map((review) => (
@@ -170,31 +170,31 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
   const features: Feature[] = [
     {
       icon: <Droplets className="h-8 w-8 text-blue-600" />,
-      title: isEnglish ? 'Engineered Around Liquid Cooling' : '以液冷技術為核心設計',
+      title: isEnglish ? 'Engineered around liquid cooling' : '以液冷為核心的設計',
       description: isEnglish
-        ? 'Grando is designed from scratch by the Comino team. Maximizes the benefits of liquid-cooling & minimizes its drawbacks with manufactured & tailored components.'
-        : 'Grando由Comino團隊從零開始設計，最大化液冷技術優勢並最小化其缺點，採用專門製造和客製化元件。'
+        ? 'Grando is designed from the ground up by the Comino team. Purpose-made and tailored components keep the benefits of liquid cooling and limit its drawbacks.'
+        : 'Grando 由 Comino 團隊從零設計。自製與客製元件保留液冷的優點，並減少其缺點。'
     },
     {
       icon: <Award className="h-8 w-8 text-yellow-600" />,
-      title: isEnglish ? 'Engineered for 24/7 Operation' : '24/7全天候運作設計',
+      title: isEnglish ? 'Engineered for 24/7 operation' : '24/7 連續運作設計',
       description: isEnglish
-        ? 'Designed for continuous operation up to 40°C with zero thermal throttling. The quality assurance cycle from idea to support in single hands.'
-        : '設計可在40°C高溫環境下24小時連續運作，無熱節流。從概念到支援的品質保證循環全由單一團隊掌控。'
+        ? 'Designed for continuous operation at up to 40°C with no thermal throttling. One team handles quality from design to support.'
+        : '可在最高 40°C 環境下連續運作，無熱節流。從設計到支援的品質流程由同一團隊負責。'
     },
     {
       icon: <Globe className="h-8 w-8 text-green-600" />,
-      title: isEnglish ? 'Storage Review Best of 2024' : '2024年StorageReview最佳獎',
+      title: isEnglish ? 'Storage Review Best of 2024' : '2024 年 StorageReview 最佳獎',
       description: isEnglish
-        ? 'Comino Grando has received the "Storage Review Best of 2024" award for accommodating up to six 450W GPUs in a 4U chassis while ensuring optimal performance.'
-        : 'Comino Grando榮獲「2024年StorageReview最佳獎」，在4U機箱中容納最多6個450W GPU，同時確保最佳效能。'
+        ? 'Comino Grando received the "Storage Review Best of 2024" award for fitting up to six 450W GPUs in a 4U chassis while maintaining performance.'
+        : 'Comino Grando 獲得「2024 年 StorageReview 最佳獎」，理由是在 4U 機箱內容納最多 6 顆 450W GPU 並維持效能。'
     },
     {
       icon: <TrendingUp className="h-8 w-8 text-teal-600" />,
-      title: isEnglish ? 'Extreme Performance' : '極致效能',
+      title: isEnglish ? 'Multi-GPU performance' : '多 GPU 效能',
       description: isEnglish
-        ? '8 GPUs, 2 CPUs - 40% faster than air-cooled systems. Cooling capacity up to 5.5kW @25°C, enough to run up to 8x 600W GPUs with 90% utilization rate.'
-        : '8個GPU，2個CPU - 比氣冷系統快40%。散熱容量在25°C下可達5.5kW，足以支援8個600W GPU在90%使用率下運作。'
+        ? 'Up to 8 GPUs and 2 CPUs, running up to 40% faster than air-cooled systems. Cooling capacity of 5.5kW at 25°C supports eight 600W GPUs at 90% utilisation.'
+        : '最多 8 顆 GPU 與 2 顆 CPU，效能比氣冷系統高出最多 40%。25°C 下散熱能力 5.5kW，可支撐 8 顆 600W GPU 以 90% 使用率運作。'
     }
   ];
 
@@ -211,31 +211,31 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
     {
       id: 1,
       name: 'Sentdex',
-      role: isEnglish ? 'Harrison Kinsley, AI Researcher & YouTuber' : 'Harrison Kinsley，AI研究者與YouTuber',
+      role: isEnglish ? 'Harrison Kinsley, AI researcher and YouTuber' : 'Harrison Kinsley，AI 研究者與 YouTuber',
       company: '',
       content: isEnglish
-        ? 'A lot of inference power comes from this Powerhouse machine from Comino which has not one, not two, not three - it has six 4090s inside!'
-        : 'Comino這台強大機器帶來大量推論能力，不是一個、不是兩個、不是三個 - 它內建6個4090！',
+        ? 'A lot of inference power comes from this powerhouse machine from Comino, which has not one, not two, not three – it has six 4090s inside.'
+        : '這台 Comino 主機提供大量推論算力，不是一顆、不是兩顆、不是三顆，裡面裝了 6 顆 4090。',
       avatar: '/sentdex-review.jpg'
     },
     {
       id: 2,
       name: 'Linus Tech Tips',
-      role: isEnglish ? 'Tech Reviewer' : '技術評測者',
+      role: isEnglish ? 'Tech reviewer' : '技術評測者',
       company: '',
       content: isEnglish
-        ? 'Our Password Recovery Machine helps to improve passwords in a Crackinator Project by Linus Tech Tips.'
-        : '我們的密碼破解機器協助Linus Tech Tips在Crackinator專案中提升密碼強度。',
+        ? 'The Comino Password Recovery Machine was used in the Crackinator project by Linus Tech Tips to help improve password strength.'
+        : 'Comino Password Recovery Machine 用於 Linus Tech Tips 的 Crackinator 專案，協助提升密碼強度。',
       avatar: '/linus-review.jpg'
     },
     {
       id: 3,
       name: 'Storage Review',
-      role: isEnglish ? 'Storage Review Team' : 'Storage Review團隊',
+      role: isEnglish ? 'Storage Review team' : 'Storage Review 團隊',
       company: '',
       content: isEnglish
-        ? 'StorageReview.com published an outstanding review of Comino Grando units. We\'re thrilled that Grando received the "Storage Review Best of 2024" award.'
-        : 'StorageReview.com發表了對Comino Grando的傑出評測。我們很高興Grando榮獲「2024年StorageReview最佳獎」。',
+        ? 'StorageReview.com reviewed Comino Grando units, and Grando received the "Storage Review Best of 2024" award.'
+        : 'StorageReview.com 評測了 Comino Grando，Grando 並獲得「2024 年 StorageReview 最佳獎」。',
       avatar: '/sentdex-review.jpg'
     }
   ];
@@ -260,7 +260,7 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
           </div>
         </div>
         <h2 className="text-base font-semibold tracking-wide text-blue-600 dark:text-blue-400 uppercase mb-4">
-          {isEnglish ? 'Authorized Distributor' : '授權經銷商'}
+          {isEnglish ? 'Authorised distributor' : '授權經銷商'}
         </h2>
         <h3 className="text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl mb-6">
           <a
@@ -274,8 +274,8 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
         </h3>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
           {isEnglish
-            ? 'EudTech is the authorized distributor of Comino, the world leader in liquid-cooled AI computing solutions. Comino Grando systems are engineered - not just assembled - delivering unprecedented performance for AI training, inference, and HPC workloads with liquid-cooled multi-GPU devices.'
-            : 'EudTech是Comino的授權經銷商，Comino是液冷AI運算解決方案的全球領導者。Comino Grando系統經過工程設計而非僅僅組裝，為AI訓練、推論和HPC工作負載提供前所未有的效能。'}
+            ? 'EudTech is an authorised Comino distributor. Comino builds liquid-cooled AI computing systems. Grando systems are engineered, not just assembled, for AI training, inference, and HPC workloads on liquid-cooled multi-GPU hardware.'
+            : 'EudTech 是 Comino 的授權經銷商。Comino 專注液冷 AI 運算系統。Grando 系列經工程設計而非只是組裝，適用於 AI 訓練、推論與 HPC 工作負載。'}
         </p>
         <div className="flex justify-center mb-12">
           <img src="/amd-partner-badge.jpg" alt="AMD Elite Partner" className="h-20 object-contain" />
@@ -294,12 +294,12 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex items-center">
             <div className="text-white p-12 max-w-xl">
               <h4 className="text-3xl font-bold mb-4">
-                {isEnglish ? 'Liquid-Cooled Multi-GPU Devices' : '液冷多GPU設備'}
+                {isEnglish ? 'Liquid-cooled multi-GPU systems' : '液冷多 GPU 系統'}
               </h4>
               <p className="text-lg font-medium">
                 {isEnglish
-                  ? 'For AI Inference & Training - Engineered around liquid cooling technology with up to 8 GPUs'
-                  : '用於AI推論與訓練 - 圍繞液冷技術設計，最高支援8個GPU'}
+                  ? 'For AI inference and training. Engineered around liquid cooling, with up to 8 GPUs.'
+                  : '用於 AI 推論與訓練。以液冷為核心設計，最多支援 8 顆 GPU。'}
               </p>
             </div>
           </div>
@@ -321,8 +321,8 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
       <div className="text-center">
         <p className="text-gray-600 dark:text-gray-300 mb-6">
           {isEnglish
-            ? 'Discover the full range of Comino Grando products available through EudTech'
-            : '探索EudTech提供的完整Comino Grando產品線'}
+            ? 'See the Comino Grando products available through EudTech.'
+            : '查看 EudTech 提供的 Comino Grando 產品。'}
         </p>
         <div className="flex flex-col items-center">
           <button
@@ -331,7 +331,7 @@ const ComimoBrandIntro: React.FC<ComimoBrandIntroProps> = ({ isEnglish }) => {
             title={isEnglish ? 'Coming soon' : '即將推出'}
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-gray-400 bg-gray-300 dark:bg-gray-700 dark:text-gray-500 cursor-not-allowed transition duration-200"
           >
-            {isEnglish ? 'Explore Comino Products' : '探索Comino產品'}
+            {isEnglish ? 'Explore Comino products' : '查看 Comino 產品'}
           </button>
         </div>
       </div>

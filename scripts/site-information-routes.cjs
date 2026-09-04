@@ -39,7 +39,7 @@ const SITE_INFORMATION_ROUTES = [
     imageAlt: 'EudTech 企業 Headless SaaS 與 AI Agent 架構',
     priority: '0.90',
     changefreq: 'monthly',
-    highlights: ['品牌化網站、客戶 Portal 與 AI Agent。', '已授權 API、Webhook 事件與人工核准。', '來源、版本、權限、執行與稽核證據。'],
+    highlights: ['品牌化網站、客戶 Portal 與 AI Agent。', '已授權 API、Webhook 事件與人員核准。', '來源、版本、權限、執行與稽核證據。'],
     specs: [{ label: '既有系統', value: 'ERP、CRM、Microsoft 365、資料庫與 API' }, { label: '整合層', value: 'API、Webhook、事件、權限與稽核' }, { label: '客戶體驗', value: '品牌網站、Portal 與 AI Agent' }],
     faq: [
       ['Headless SaaS 是什麼？', 'Headless SaaS 將前端體驗與後端資料及業務邏輯分開。企業可以保留既有 ERP、CRM、Microsoft 365、資料庫或 API，再建立品牌網站、客戶 Portal、行動介面與 AI Agent。'],
@@ -107,7 +107,7 @@ const SITE_INFORMATION_ROUTES = [
     imageAlt: 'EudTech 公司能力與工作方式',
     priority: '0.65',
     changefreq: 'monthly',
-    highlights: ['系統整合與事件驅動流程。', '人工核准、權限與稽核治理。', '可操作、可量測、可擴大的交付方式。'],
+    highlights: ['系統整合與事件驅動流程。', '人員核准、權限與稽核治理。', '可操作、可量測、可擴大的交付方式。'],
     specs: [{ label: '公司', value: '優達盟資訊科技有限公司' }, { label: '能力範圍', value: 'AI 軟體、運算基礎設施與社群情報' }, { label: '工作方法', value: '目標、證據、負責人與下一步明確化' }],
     relatedLinks: ['/solutions', '/products', '/careers', '/contact', '/privacy']
   },

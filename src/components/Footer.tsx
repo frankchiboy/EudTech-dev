@@ -20,7 +20,7 @@ const Footer: React.FC<FooterProps> = ({ isEnglish }) => {
           <div className="space-y-6">
             <Logo inverse />
             <p className="text-sm leading-6 text-gray-300">
-              {isEnglish ? 'EudTech connects AI agents and headless SaaS, infrastructure, and intelligence to accountable business outcomes.' : 'EudTech 將 AI Agent 與 Headless SaaS、運算基礎設施及社群情報連接到可負責的業務成果。'}
+              {isEnglish ? 'EudTech delivers AI agents and headless SaaS, AI infrastructure, and social intelligence, with outcomes you can verify and accept.' : 'EudTech 提供 AI Agent 與 Headless SaaS、AI 運算基礎設施與社群情報方案，交付可驗收的業務成果。'}
             </p>
             <div className="flex flex-wrap gap-3"><Link to={SITE_CTA.configurator.href} className="rounded-md bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-300">{label(SITE_CTA.configurator)}</Link><Link to={SITE_CTA.contact.href} className="rounded-md border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:border-cyan-300">{label(SITE_CTA.contact)}</Link></div>
           </div>

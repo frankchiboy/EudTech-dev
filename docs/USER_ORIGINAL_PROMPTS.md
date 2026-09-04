@@ -222,3 +222,22 @@
 
 1. `現在正式站有這樣壞掉嗎`
 2. `修好`
+
+## 2026-08-23 - Comino Datasheet Version 2
+
+1. ` /goal [comino datasheet](chatgpt-conversation://6a89a102-5cdc-83ee-97bc-195f0948b79f) @product-design 按照comino網站 www.comino.com 的風格和裡面的素材改良製作 /Users/serverc/_軟體專案/EudTech-dev @PDF `
+
+## 2026-08-23 - Comino Datasheet GIGABYTE Style Revision
+
+1. `[$telegram-intake] 但是要技嘉style`
+
+## 2026-09-05 - Homepage Static SEO Flash Fix and Production Release
+
+1. `官網進去的時候會先閃過ai agent那頁 是我的錯覺還是不是 簡答`
+2. `需要改進還是不用`
+3. `藥不影響SEO情況下改進`
+4. `好先上到正式官網`
+
+## 2026-09-05 - Whole-site Content Optimisation
+
+1. `/goal 全站內容 不是程式碼 是內容 優化載測試站給我`
