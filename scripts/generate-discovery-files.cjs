@@ -172,10 +172,8 @@ const sitemapEntries = [
     ...entry,
     changefreq: SITE_INFORMATION_ROUTES.find((route) => pageUrl(route.path) === entry.loc)?.changefreq || 'monthly'
   })),
-  { ...configuratorLinkIndexUrl, changefreq: 'weekly' },
   ...productUrls.map((entry) => ({ ...entry, changefreq: 'weekly' })),
-  ...solutionUrls.map((entry) => ({ ...entry, changefreq: 'weekly' })),
-  { loc: `${siteOrigin}/careers`, changefreq: 'monthly', priority: '0.45', source: { path: '/careers' } }
+  ...solutionUrls.map((entry) => ({ ...entry, changefreq: 'weekly' }))
 ];
 const previousLastmodManifest = readLastmodManifest();
 const lastmodEntries = Object.fromEntries(sitemapEntries.map((entry) => {
@@ -237,6 +235,24 @@ ${sitemapIndexEntries
 `;
 
 const robots = `User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
 Allow: /
 
 Sitemap: ${siteOrigin}/sitemap.xml

@@ -140,3 +140,8 @@ This file preserves the user's original prompts for the configurator exposure ta
 
 1. `我要讓ai容易看得到我也是要優化seo還是同時有其他方式要做`
 2. `這要先在測試暫時做還是上版正式站後做？`
+## 2026-08-17 Production Configurator Repair
+
+1. `現在正式站有這樣壞掉嗎`
+2. `修好`
+3. `配置器不對 要跟comino原廠的配置器一樣 做到熱修復驗證閉環`

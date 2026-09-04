@@ -1,0 +1,221 @@
+name: One-time deploy Taipei Public Art v1.3 corrected
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - netlify-public-art-v13/**
+      - netlify-public-art-v13-trigger.txt
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SITE_ID: 9b0339fd-8ff9-4ab3-98e0-759b2ed37a0c
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    steps:
+      - name: Check out proposed upgrade
+        uses: actions/checkout@v4
+
+      - name: Confirm deployment credential and browser
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$NETLIFY_AUTH_TOKEN"
+          chrome=$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)
+          test -x "$chrome"
+          echo "CHROME_PATH=$chrome" >> "$GITHUB_ENV"
+          echo "Chrome: $chrome"
+
+      - name: Build v1.3 from verified production baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          python netlify-public-art-v13/build-site.py
+          python netlify-public-art-v13/fix-generated-site.py
+          test -f site/index.html
+          test -f site/admin.html
+          test -f site/netlify.toml
+          test -f site/data/photo-sources.json
+          test -f site/assets/accessibility-extreme.js
+          test -f site/assets/accessibility-extreme.css
+
+      - name: Static accessibility and source audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check site/assets/accessibility-extreme.js
+          node --check site/assets/app.js
+          node --check site/assets/admin.js
+          python - <<'PY'
+          from pathlib import Path
+          import json, re, tomllib
+          root=Path('site'); errors=[]
+          manifest=json.loads((root/'data/photo-sources.json').read_text(encoding='utf-8'))
+          photos=manifest['photos']
+          if len(photos)<12: errors.append(f'photo sources: {len(photos)}')
+          for p in photos:
+              for key in ('key','title','original_url','source_page','credit','alt','long_description','usage_note'):
+                  if not p.get(key): errors.append(f'{p.get("key","unknown")} missing {key}')
+              if len(p['alt'])<10: errors.append(f'{p["key"]} alt too short')
+              if len(p['long_description'])<25: errors.append(f'{p["key"]} long description too short')
+              if not p['original_url'].startswith('https://'): errors.append(f'{p["key"]} non-HTTPS image')
+              if not p['source_page'].startswith('https://'): errors.append(f'{p["key"]} non-HTTPS source page')
+          for name in ('index.html','admin.html','photo-sources.html','accessibility-conformance.html'):
+              text=(root/name).read_text(encoding='utf-8')
+              if 'lang="zh-Hant-TW"' not in text: errors.append(f'{name}: language missing')
+              if 'accessibility-extreme' not in text: errors.append(f'{name}: enhancement missing')
+              if not re.match(r'\s*<!doctype html>\s*<html\b',text,re.I): errors.append(f'{name}: document structure')
+              if text.find('<noscript>')<text.find('<body'): errors.append(f'{name}: noscript outside body')
+          cfg=tomllib.loads((root/'netlify.toml').read_text(encoding='utf-8'))
+          if len(cfg.get('images',{}).get('remote_images',[]))<2: errors.append('remote image allowlist missing')
+          seed=json.loads((root/'data/seed.json').read_text(encoding='utf-8'))
+          blob=json.dumps(seed,ensure_ascii=False)
+          refs=blob.count('/.netlify/images?')
+          if refs<12: errors.append(f'Image CDN references: {refs}')
+          if errors: raise SystemExit('\n'.join(errors))
+          print(json.dumps({'photos':len(photos),'image_cdn_refs':refs,'status':'pass'},ensure_ascii=False))
+          PY
+
+      - name: Start local preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m http.server 8767 --directory site >/tmp/public-art-v13-http.log 2>&1 &
+          echo $! > /tmp/public-art-v13-http.pid
+          for i in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:8767/ >/dev/null; then exit 0; fi
+            sleep .2
+          done
+          cat /tmp/public-art-v13-http.log
+          exit 1
+
+      - name: Browser, axe, keyboard, reflow and target-size audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save playwright-core axe-core >/dev/null
+          cat > audit-v13.mjs <<'JS'
+          import { chromium } from 'playwright-core';
+          import fs from 'node:fs';
+          const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH,args:['--no-sandbox','--disable-dev-shm-usage']});
+          const cases=[['home','http://127.0.0.1:8767/'],['artworks','http://127.0.0.1:8767/#/artworks'],['admin','http://127.0.0.1:8767/admin.html'],['sources','http://127.0.0.1:8767/photo-sources.html'],['a11y','http://127.0.0.1:8767/accessibility-conformance.html']];
+          const report={pages:{},violations:[],keyboard:{},reflow:{}};
+          const imageBody='<svg xmlns="http://www.w3.org/2000/svg" width="160" height="100"><rect width="160" height="100" fill="#dcebe5"/><path d="M0 90L60 35l35 30 30-22 35 47" fill="none" stroke="#17352d" stroke-width="5"/></svg>';
+          async function stub(page){await page.route('**/.netlify/images*',r=>r.fulfill({status:200,contentType:'image/svg+xml',body:imageBody}));}
+          for(const [name,url] of cases){
+            const page=await browser.newPage({viewport:{width:1280,height:900}});await stub(page);
+            await page.goto(url,{waitUntil:'domcontentloaded'});await page.waitForTimeout(1400);
+            await page.addScriptTag({path:'node_modules/axe-core/axe.min.js'});
+            const result=await page.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa','best-practice']}}));
+            const serious=result.violations.filter(v=>['critical','serious'].includes(v.impact));
+            const dom=await page.evaluate(()=>{const visible=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0};const targets=[...document.querySelectorAll('button,input,select,textarea,.btn,.icon-btn,[role="button"],nav a,summary')].filter(visible);const small=targets.filter(e=>{const r=e.getBoundingClientRect();return r.width<43.5||r.height<43.5}).map(e=>({tag:e.tagName,text:(e.innerText||e.getAttribute('aria-label')||'').trim().slice(0,80),width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height}));return{lang:document.documentElement.lang,noAlt:[...document.images].filter(i=>visible(i)&&!i.hasAttribute('alt')).length,small,photos:document.querySelectorAll('img[data-public-photo="true"]').length,srcsets:document.querySelectorAll('img[data-public-photo="true"][srcset]').length,descriptions:document.querySelectorAll('img[data-public-photo="true"][aria-describedby]').length,credits:document.querySelectorAll('.ax-credit').length,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,skipLinks:document.querySelectorAll('.skip-links a').length,dialogs:document.querySelectorAll('#ax-dialog').length};});
+            report.pages[name]={serious:serious.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length,help:v.help})),all:result.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length})),dom};
+            if(serious.length||dom.noAlt||dom.small.length||dom.overflow>2||dom.skipLinks<1||(name==='artworks'&&(dom.photos<10||dom.srcsets<10||dom.descriptions<10||dom.credits<10))){report.violations.push({name,serious:report.pages[name].serious,dom})}
+            await page.screenshot({path:`${name}-v13.png`,fullPage:true});await page.close();
+          }
+          const keyPage=await browser.newPage({viewport:{width:1280,height:900}});await stub(keyPage);await keyPage.goto('http://127.0.0.1:8767/',{waitUntil:'domcontentloaded'});await keyPage.waitForTimeout(1000);await keyPage.keyboard.press('Tab');report.keyboard.firstTab=await keyPage.evaluate(()=>({text:document.activeElement?.textContent?.trim(),className:document.activeElement?.className}));const open=keyPage.locator('#a11y-open');await open.focus();await open.press('Enter');await keyPage.waitForTimeout(150);report.keyboard.dialogOpen=await keyPage.locator('#ax-dialog[open]').count();report.keyboard.dialogFocus=await keyPage.evaluate(()=>document.activeElement?.className);await keyPage.keyboard.press('Escape');report.keyboard.returnedFocus=await keyPage.evaluate(()=>document.activeElement?.id);if(!String(report.keyboard.firstTab.text||'').includes('跳到主要內容')||report.keyboard.dialogOpen!==1||report.keyboard.returnedFocus!=='a11y-open')report.violations.push({name:'keyboard',data:report.keyboard});await keyPage.close();
+          const mobile=await browser.newPage({viewport:{width:320,height:900}});await stub(mobile);await mobile.addInitScript(()=>localStorage.setItem('taipei-public-art-a11y-v13',JSON.stringify({font:200,line:'2',spacing:true,contrast:true,mono:false,underline:true,reduce:true,width:true,focus:false,hide:false,desc:true})));await mobile.goto('http://127.0.0.1:8767/#/artworks',{waitUntil:'domcontentloaded'});await mobile.waitForTimeout(1400);report.reflow=await mobile.evaluate(()=>({viewport:document.documentElement.clientWidth,scrollWidth:document.documentElement.scrollWidth,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,font:getComputedStyle(document.documentElement).fontSize,line:getComputedStyle(document.body).lineHeight}));await mobile.screenshot({path:'reflow-320-200pct.png',fullPage:true});if(report.reflow.overflow>2)report.violations.push({name:'reflow',data:report.reflow});await mobile.close();
+          await browser.close();fs.writeFileSync('browser-a11y-report.json',JSON.stringify(report,null,2));if(report.violations.length){console.error(JSON.stringify(report,null,2));process.exit(1)}console.log(JSON.stringify(report,null,2));
+          JS
+          node audit-v13.mjs
+
+      - name: Deploy production site
+        id: deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd site
+          npx --yes netlify-cli@latest deploy --dir=. --prod --site="$SITE_ID" --auth="$NETLIFY_AUTH_TOKEN" --json > ../deploy-result.json
+          cd ..
+          cat deploy-result.json
+          python - <<'PY'
+          import json,os
+          data=json.load(open('deploy-result.json',encoding='utf-8'))
+          url=data.get('url') or data.get('deploy_url') or data.get('ssl_url')
+          deploy=data.get('deploy_id') or data.get('id')
+          if not url or not deploy: raise SystemExit(f'Incomplete Netlify response: {data}')
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as out:
+              out.write(f'url={url}\n')
+              out.write(f'deploy_id={deploy}\n')
+          PY
+
+      - name: Validate production pages and every public photo through Image CDN
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='${{ steps.deploy.outputs.url }}'
+          for i in $(seq 1 40); do
+            if curl -fsSL "$url/" -o live-index.html; then break; fi
+            sleep 2
+          done
+          grep -q '臺北社宅公共藝術平臺' live-index.html
+          grep -q 'accessibility-extreme.css' live-index.html
+          curl -fsSL "$url/admin.html" -o live-admin.html
+          grep -q '內容管理後臺' live-admin.html
+          curl -fsSL "$url/photo-sources.html" -o live-photo-sources.html
+          grep -q '影像來源與替代文字' live-photo-sources.html
+          curl -fsSL "$url/accessibility-conformance.html" -o live-a11y.html
+          grep -q '無障礙最佳化說明' live-a11y.html
+          python - <<'PY' > image-cdn-paths.txt
+          import json
+          from urllib.parse import quote
+          data=json.load(open('site/data/photo-sources.json',encoding='utf-8'))
+          for p in data['photos']:
+              path='/.netlify/images?url='+quote(p['original_url'],safe='')+'&w=480&h=300&fit=cover&fm=webp&q=84'
+              print(p['key']+'\t'+path)
+          PY
+          : > image-cdn-validation.txt
+          while IFS=$'\t' read -r key path; do
+            headers="headers-$key.txt"; body="image-$key.webp"
+            curl -fsSL -D "$headers" "$url$path" -o "$body"
+            bytes=$(stat -c%s "$body")
+            test "$bytes" -gt 1000
+            grep -qi 'content-type: image/' "$headers"
+            printf '%s\t%s\n' "$key" "$bytes" >> image-cdn-validation.txt
+          done < image-cdn-paths.txt
+          test "$(wc -l < image-cdn-validation.txt)" -ge 12
+          echo "PRODUCTION_URL=$url"
+          echo "DEPLOY_ID=${{ steps.deploy.outputs.deploy_id }}"
+          cat image-cdn-validation.txt
+
+      - name: Lighthouse accessibility validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='${{ steps.deploy.outputs.url }}'
+          npx --yes lighthouse "$url/" --only-categories=accessibility --chrome-path="$CHROME_PATH" --chrome-flags='--headless --no-sandbox --disable-dev-shm-usage' --output=json --output-path=lighthouse-accessibility.json --quiet
+          python - <<'PY'
+          import json
+          data=json.load(open('lighthouse-accessibility.json',encoding='utf-8'))
+          score=data['categories']['accessibility']['score']
+          print('LIGHTHOUSE_ACCESSIBILITY_SCORE=',score)
+          if score < .98: raise SystemExit(f'accessibility score {score}')
+          PY
+
+      - name: Preserve deployment evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: netlify-public-art-v13-evidence
+          path: |
+            deploy-result.json
+            browser-a11y-report.json
+            lighthouse-accessibility.json
+            image-cdn-validation.txt
+            live-index.html
+            live-admin.html
+            live-photo-sources.html
+            live-a11y.html
+            home-v13.png
+            artworks-v13.png
+            admin-v13.png
+            sources-v13.png
+            a11y-v13.png
+            reflow-320-200pct.png
+          retention-days: 2

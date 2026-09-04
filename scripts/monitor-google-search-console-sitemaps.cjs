@@ -29,7 +29,7 @@ async function listSitemaps(token) {
 }
 
 async function main() {
-  const token = getSearchConsoleAccessToken();
+  const token = await getSearchConsoleAccessToken();
   const listed = await listSitemaps(token);
   const indexedSitemaps = listed.map((item) => ({
     path: item.path,

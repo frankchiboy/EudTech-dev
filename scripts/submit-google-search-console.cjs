@@ -55,7 +55,7 @@ async function main() {
     throw new Error('public/sitemap.xml does not contain the configurator URL.');
   }
 
-  const token = getSearchConsoleAccessToken();
+  const token = await getSearchConsoleAccessToken();
   const submitted = [];
   for (const sitemap of sitemaps) {
     submitted.push(await submitSitemap(token, sitemap));
