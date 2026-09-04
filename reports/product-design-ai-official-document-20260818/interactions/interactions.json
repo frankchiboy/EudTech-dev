@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-08-18T10:40:21.233Z",
+  "baseUrl": "https://codex-website-next-update--website-eudtech.netlify.app",
+  "passed": false,
+  "results": [
+    {
+      "name": "AI Agent 場景頁籤",
+      "passed": true,
+      "evidence": {
+        "found": true,
+        "selected": "true",
+        "text": true
+      }
+    },
+    {
+      "name": "FAQ 展開",
+      "passed": true,
+      "evidence": {
+        "found": true,
+        "open": true,
+        "textLength": 130
+      }
+    },
+    {
+      "name": "語言切換",
+      "passed": true,
+      "evidence": {
+        "languageFound": true,
+        "languageChanged": true,
+        "themeFound": true,
+        "themeChanged": true,
+        "beforeThemeMode": "light",
+        "afterThemeMode": "dark",
+        "afterThemeDark": true,
+        "expectedThemeDark": true
+      }
+    },
+    {
+      "name": "深淺色切換",
+      "passed": true,
+      "evidence": {
+        "languageFound": true,
+        "languageChanged": true,
+        "themeFound": true,
+        "themeChanged": true,
+        "beforeThemeMode": "light",
+        "afterThemeMode": "dark",
+        "afterThemeDark": true,
+        "expectedThemeDark": true
+      }
+    },
+    {
+      "name": "主要行動連結",
+      "passed": true,
+      "evidence": [
+        {
+          "text": "Book discovery",
+          "href": "https://codex-website-next-update--website-eudtech.netlify.app/contact"
+        },
+        {
+          "text": "Book discovery",
+          "href": "https://outlook.office.com/book/EudTechOnlineMeeting@EudaemoniaTechnologLtd.onmicrosoft.com/"
+        },
+        {
+          "text": "Book discovery",
+          "href": "https://outlook.office.com/book/EudTechOnlineMeeting@EudaemoniaTechnologLtd.onmicrosoft.com/"
+        },
+        {
+          "text": "Book discovery",
+          "href": "https://codex-website-next-update--website-eudtech.netlify.app/contact"
+        }
+      ]
+    },
+    {
+      "name": "AI 公文系統使用案例",
+      "passed": false,
+      "evidence": {
+        "found": true,
+        "imageLoaded": true,
+        "hasUserOutcomes": false,
+        "hasInternalImplementationDetail": false
+      }
+    },
+    {
+      "name": "AI Agent 手機首屏操作列不遮擋 Hero",
+      "passed": true,
+      "evidence": {
+        "heroVisible": true,
+        "actionVisible": false,
+        "overflow": false
+      }
+    },
+    {
+      "name": "AI Agent 手機捲動後快速操作",
+      "passed": false,
+      "evidence": {
+        "actionVisible": true,
+        "finalContentAboveAction": false,
+        "overflow": false
+      }
+    },
+    {
+      "name": "行動版導覽",
+      "passed": true,
+      "evidence": {
+        "found": true,
+        "expanded": "true",
+        "solutionsVisible": true
+      }
+    },
+    {
+      "name": "行動版導覽只保留一組語言與主題控制",
+      "passed": true,
+      "evidence": {
+        "languageControls": 1,
+        "themeControls": 1,
+        "scrollLocked": true
+      }
+    },
+    {
+      "name": "瀏覽器重大錯誤",
+      "passed": true,
+      "evidence": []
+    }
+  ]
+}

@@ -27,6 +27,7 @@ import ResourcesOverviewPage from './pages/ResourcesOverviewPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
+import DocumentNotifierAccessPage from './pages/DocumentNotifierAccessPage';
 
 const AppRoutes: React.FC = () => {
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
@@ -103,6 +104,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/official-document-notifier" element={<DocumentNotifierAccessPage />} />
             <Route path="/components-demo" element={import.meta.env.DEV ? <AtomicComponentsDemo /> : <Navigate replace to="/" />} />
             <Route path="/products/:id" element={<ProductDetails />} />
           </Routes>

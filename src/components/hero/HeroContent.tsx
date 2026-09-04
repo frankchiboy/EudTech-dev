@@ -17,7 +17,7 @@ interface HeroContentProps {
 const HeroContent: React.FC<HeroContentProps> = ({ content }) => {
   return (
     <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">
+      <h1 id="home-hero-heading" className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">
         <span className="block">{content.title.main}</span>
         <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400">
           {content.title.highlight}

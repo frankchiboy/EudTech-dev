@@ -12,6 +12,7 @@ dist
 dist-ssr
 tmp
 *.local
+*.tsbuildinfo
 reports/*.json
 reports/*.md
 marketing.env

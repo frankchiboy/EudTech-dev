@@ -49,6 +49,13 @@ function getFlagValue(name) {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+function shouldRetryTransientStatus(status) {
+  // Netlify may briefly return 403 when its security layer evaluates a dense
+  // verification sweep. Preserve a final 403 as a real failure, but do not
+  // treat the first transient response as evidence that a canonical URL broke.
+  return status === 403 || status >= 500;
+}
+
 async function fetchText(url, options = {}) {
   const cacheBustedUrl = options.cacheBust === false ? url : `${url}${url.includes('?') ? '&' : '?'}t=${Date.now()}`;
   const attempts = options.attempts || 4;
@@ -75,7 +82,7 @@ async function fetchText(url, options = {}) {
         text
       };
 
-      if (response.status < 500 || attempt === attempts) {
+      if (!shouldRetryTransientStatus(response.status) || attempt === attempts) {
         return result;
       }
       lastError = new Error(`${url} returned HTTP ${response.status}`);
@@ -116,7 +123,7 @@ async function fetchImageInfo(url, options = {}) {
         format: metadata.format
       };
 
-      if (response.status < 500 || attempt === attempts) {
+      if (!shouldRetryTransientStatus(response.status) || attempt === attempts) {
         return result;
       }
       lastError = new Error(`${url} returned HTTP ${response.status}`);

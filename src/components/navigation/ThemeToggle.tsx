@@ -6,7 +6,6 @@ interface ThemeToggleProps {
   themeMode: ThemeMode;
   isDarkMode: boolean;
   toggleDarkMode: () => void;
-  isScrolled: boolean;
   textColorClass: string;
   mobile?: boolean;
 }
@@ -15,7 +14,6 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
   themeMode, 
   isDarkMode, 
   toggleDarkMode, 
-  isScrolled, 
   textColorClass,
   mobile = false 
 }) => {
@@ -53,8 +51,9 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
 
   return (
     <button
+      type="button"
       onClick={toggleDarkMode}
-      className={`flex items-center ${mobile ? 'mr-2' : 'ml-2'} ${textColorClass} ${mobile ? 'p-1' : 'px-2 py-2'} rounded-md transition-colors duration-200 relative group`}
+      className={`flex items-center ${mobile ? 'mr-2' : 'ml-2'} ${textColorClass} ${mobile ? 'p-1' : 'px-2 py-2'} rounded-md transition-colors duration-200 relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2`}
       aria-label={getAriaLabel()}
     >
       {getIcon()}
