@@ -465,8 +465,19 @@ function safeJson(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c');
 }
 
+function staticSeoFallbackScript() {
+  // Hide the static SEO fallback only while JavaScript is running so visitors do not see it flash
+  // before React mounts. Crawlers without JS (and users if the app fails to mount within 4s)
+  // still get the fully visible fallback content, so SEO exposure is unchanged.
+  return `<script data-static-seo-fallback-js>document.documentElement.classList.add('static-seo-js');setTimeout(function(){document.documentElement.classList.remove('static-seo-js');},4000);</script>`;
+}
+
 function staticSeoFallbackStyle() {
   return `<style data-static-seo-fallback>
+      html.static-seo-js .static-seo-fallback {
+        opacity: 0;
+        pointer-events: none;
+      }
       .static-seo-fallback {
         box-sizing: border-box;
         max-width: 1040px;
@@ -1149,6 +1160,7 @@ function injectHead(baseHtml, route) {
     `<link data-rh="true" rel="alternate" type="application/feed+json" title="EudTech Configurator Updates" href="${siteOrigin}/feed.json">`,
     `<link data-rh="true" rel="alternate" type="text/markdown" title="EudTech LLM Summary" href="${siteOrigin}/llms.txt">`,
     `<link data-rh="true" rel="alternate" type="text/markdown" title="EudTech Full LLM Context" href="${siteOrigin}/llms-full.txt">`,
+    staticSeoFallbackScript(),
     staticSeoFallbackStyle(),
     ...verificationTags(),
     ...schemaItems
