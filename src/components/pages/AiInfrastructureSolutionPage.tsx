@@ -33,14 +33,19 @@ const stages = [
   { title: { zh: '維護與後續支援', en: 'Maintenance and support' }, body: { zh: '列明保固、維護責任、教育與支援範圍。涉及產地或採購要求時，依選定型號與原廠文件逐項核對。', en: 'Define warranty, maintenance responsibilities, training and support. Check origin and procurement requirements against the selected model and manufacturer documents.' } },
 ];
 
-const StoryFigure: React.FC<{ src: string; alt: Bilingual; caption: Bilingual; isEnglish: boolean; eager?: boolean }> = ({ src, alt, caption, isEnglish, eager }) => (
+const localizedKitImages = new Set(['liquid-airflow', 'monitoring-qdc']);
+const StoryFigure: React.FC<{ src: string; alt: Bilingual; caption: Bilingual; isEnglish: boolean; eager?: boolean }> = ({ src: originalSrc, alt, caption, isEnglish, eager }) => {
+  const imageName = originalSrc.startsWith(kit) ? originalSrc.slice(kit.length).replace(/\.webp$/, '') : '';
+  const src = isEnglish && localizedKitImages.has(imageName) ? `${kit}${imageName}-en.webp` : originalSrc;
+  return (
   <figure className="comino-figure">
     <a href={src} target="_blank" rel="noreferrer" aria-label={(isEnglish ? 'Open full image: ' : '開啟完整圖片：') + tx(alt, isEnglish)}>
       <img src={src} alt={tx(alt, isEnglish)} width={eager ? 1600 : 1800} height={eager ? 1070 : 1013} loading={eager ? 'eager' : 'lazy'} decoding="async" />
     </a>
     <figcaption><span>{tx(caption, isEnglish)}</span><a href={src} target="_blank" rel="noreferrer">{isEnglish ? 'View full image' : '查看完整圖片'}</a></figcaption>
   </figure>
-);
+  );
+};
 
 const AiInfrastructureSolutionPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
@@ -72,7 +77,7 @@ const AiInfrastructureSolutionPage: React.FC = () => {
         <div className="comino-wrap">
           <div className="comino-intro"><p className="comino-eyebrow">{text('看懂液冷原理', 'Inside the cooling design')}</p><h2 id="cooling-heading">{text('把熱帶到散熱器，讓機箱空間留給運算。', 'Move heat to the radiator. Make room for compute.')}</h2><p>{text('冷卻液與氣流各有分工。熱從高負載元件經冷卻液傳遞，再由機箱散熱器排入周圍環境。', 'Coolant and airflow have different roles. Heat travels from high-load components through the coolant, then leaves the chassis radiator for the surrounding environment.')}</p></div>
           <div className="comino-explainer">
-            <StoryFigure src={kit + 'liquid-airflow.webp'} alt={{ zh: 'GRANDO 冷卻液與氣流原理圖：藍紅色管路為冷卻液，波浪箭頭為氣流', en: 'GRANDO cooling diagram: blue and red pipes represent coolant; wavy arrows represent airflow' }} caption={{ zh: '原廠 Sales Kit 0911：實色管路是冷卻液，波浪箭頭是氣流。', en: 'Manufacturer Sales Kit 0911: solid pipes show coolant; wavy arrows show airflow. Original labels are in Chinese; the explanation is provided alongside.' }} isEnglish={isEnglish} />
+            <StoryFigure src={kit + 'liquid-airflow.webp'} alt={{ zh: 'GRANDO 冷卻液與氣流原理圖：藍紅色管路為冷卻液，波浪箭頭為氣流', en: 'GRANDO cooling diagram: blue and red pipes represent coolant; wavy arrows represent airflow' }} caption={{ zh: '原廠 Sales Kit 0911：實色管路是冷卻液，波浪箭頭是氣流。', en: 'Manufacturer Sales Kit 0911: solid pipes show coolant; wavy arrows show airflow.' }} isEnglish={isEnglish} />
             <ol className="comino-notes">{cooling.map((item, index) => <li key={item.title.en}><span className="comino-number">0{index + 1}</span><div><h3>{tx(item.title, isEnglish)}</h3><p>{tx(item.body, isEnglish)}</p></div></li>)}</ol>
           </div>
           <p className="comino-condition"><strong>{text('不接冷卻塔，不等於不需要空調。', 'No cooling tower does not mean no room cooling.')} </strong>{text('本頁介紹的機內封閉循環方案不需另接冷卻塔；熱仍會排入室內，現場空調、通風與供電仍須確認。', 'The self-contained design described here does not require an external cooling tower. Heat still enters the room, so air conditioning, ventilation and power must be checked.')}</p>
@@ -111,7 +116,7 @@ const AiInfrastructureSolutionPage: React.FC = () => {
 
       <section className="comino-section comino-tint" aria-labelledby="operations-heading">
         <div className="comino-wrap"><div className="comino-intro"><p className="comino-eyebrow">{text('長期使用與維護', 'Everyday operation')}</p><h2 id="operations-heading">{text('不只看滿載能力，也要看每天怎麼管理。', 'Plan for everyday operation, not only peak load.')}</h2><p>{text('原廠文件展示冷卻狀態監控、快速斷開接頭與不同電源設計。EudTech 會依選定機型，把監控方式、維護責任、保固與支援範圍列入交付確認。', 'Manufacturer documentation shows cooling-system monitoring, quick-disconnect couplings and different power designs. EudTech confirms monitoring, maintenance responsibilities, warranty and support for the selected system.')}</p></div>
-          <div className="comino-explainer"><StoryFigure src={kit + 'monitoring-qdc.webp'} alt={{ zh: '原廠實照：左上工作站散熱器、右上電源模組、左下監控畫面、右下快速斷開接頭', en: 'Manufacturer images: workstation radiator at upper left, power modules at upper right, monitoring at lower left and quick-disconnect couplings at lower right' }} caption={{ zh: 'Sales Kit 0911 原廠實照。左下為監控、右下為 QDC、右上為電源模組。', en: 'Sales Kit 0911 manufacturer images. Lower left: monitoring; lower right: QDC; upper right: power modules. Original labels are in Chinese.' }} isEnglish={isEnglish} /><div className="comino-operation-notes">{operations.map(item => <article key={item.title.en}><h3>{tx(item.title, isEnglish)}</h3><p>{tx(item.body, isEnglish)}</p></article>)}</div></div>
+          <div className="comino-explainer"><StoryFigure src={kit + 'monitoring-qdc.webp'} alt={{ zh: '原廠實照：左上工作站散熱器、右上電源模組、左下監控畫面、右下快速斷開接頭', en: 'Manufacturer images: workstation radiator at upper left, power modules at upper right, monitoring at lower left and quick-disconnect couplings at lower right' }} caption={{ zh: 'Sales Kit 0911 原廠實照。左下為監控、右下為 QDC、右上為電源模組。', en: 'Sales Kit 0911 manufacturer images. Lower left: monitoring; lower right: QDC; upper right: power modules.' }} isEnglish={isEnglish} /><div className="comino-operation-notes">{operations.map(item => <article key={item.title.en}><h3>{tx(item.title, isEnglish)}</h3><p>{tx(item.body, isEnglish)}</p></article>)}</div></div>
         </div>
       </section>
 
