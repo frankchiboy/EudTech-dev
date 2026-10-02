@@ -25,7 +25,7 @@ const ProductsOverviewPage: React.FC = () => {
     {
       label: { zh: '合作硬體平台', en: 'Partner hardware platform' },
       title: { zh: 'Comino 液冷 AI 運算', en: 'Comino liquid-cooled AI computing' },
-      body: { zh: '液冷工作站、4U 伺服器與多 GPU 平台。先盤點工作負載，再用配置器整理配置並送出詢價。', en: 'Liquid-cooled workstations, 4U servers, and multi-GPU platforms. Review the workload first, then build a configuration and send a quote request.' },
+      body: { zh: '從桌邊工作站到機架式多 GPU 系統，以封閉式液冷為核心，依工作負載與場地條件評估噪音、空間、供電及散熱。確認方向後，可用配置器整理規格並詢價。', en: 'Closed-loop liquid-cooled systems, from deskside workstations to rack-mounted multi-GPU systems. Review noise, space, power and cooling against your workload and site, then use the configurator to prepare a specification and quote request.' },
       icon: Cpu,
       href: '/solutions/ai-infrastructure',
       image: VENDOR_EVIDENCE.comino.image,

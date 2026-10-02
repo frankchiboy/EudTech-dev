@@ -32,6 +32,7 @@ const NavBar: React.FC<NavBarProps> = ({
   const wasMenuOpenRef = useRef(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const hasThemeAwareHero = ['/careers', '/solutions/ai-infrastructure'].includes(location.pathname.replace(/\/$/, ''));
   const isProductDetailPage = /^\/products\/[^/]+\/?$/.test(location.pathname);
   const navLinks = getNavLinks(isEnglish);
   const ctaLabel = (value: { zh: string; en: string }) => (isEnglish ? value.en : value.zh);
@@ -64,7 +65,7 @@ const NavBar: React.FC<NavBarProps> = ({
       return `rgba(${bgColor}, ${opacity})`;
     }
 
-    if (location.pathname === '/careers') {
+    if (hasThemeAwareHero) {
       const bgColor = isDarkMode ? '17, 24, 39' : '255, 255, 255';
       return `rgba(${bgColor}, 0.95)`;
     }
@@ -79,7 +80,7 @@ const NavBar: React.FC<NavBarProps> = ({
       return 'transparent';
     }
 
-    if (location.pathname === '/careers') {
+    if (hasThemeAwareHero) {
       const borderColor = isDarkMode ? '55, 65, 81' : '229, 231, 235';
       return `rgba(${borderColor}, 0.3)`;
     }
@@ -96,7 +97,7 @@ const NavBar: React.FC<NavBarProps> = ({
         : 'text-gray-800 hover:text-blue-600';
     }
 
-    if (location.pathname === '/careers') {
+    if (hasThemeAwareHero) {
       return isDarkMode
         ? 'text-gray-100 hover:text-blue-300'
         : 'text-gray-800 hover:text-blue-600';
@@ -119,7 +120,7 @@ const NavBar: React.FC<NavBarProps> = ({
       return scrollProgress > 0.3 ? 'blur(10px)' : 'blur(6px)';
     }
 
-    if (location.pathname === '/careers') {
+    if (hasThemeAwareHero) {
       return 'blur(8px)';
     }
 
@@ -136,7 +137,7 @@ const NavBar: React.FC<NavBarProps> = ({
       return 'none';
     }
 
-    if (location.pathname === '/careers') {
+    if (hasThemeAwareHero) {
       return '0 1px 3px 0 rgba(0, 0, 0, 0.1)';
     }
 

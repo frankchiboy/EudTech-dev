@@ -1,0 +1,59 @@
+.comino-story{--comino-ink:#0f172a;--comino-muted:#475569;--comino-line:#dbe3ec;--comino-surface:#f8fafc;--comino-accent:#0e7490;color:var(--comino-ink);font-size:1rem;line-height:1.85}
+.dark .comino-story{--comino-ink:#f8fafc;--comino-muted:#cbd5e1;--comino-line:#334155;--comino-surface:#0f172a;--comino-accent:#67e8f9}
+.comino-story *{min-width:0}
+.comino-wrap{width:min(100% - 3rem,1216px);margin-inline:auto}
+.comino-hero{padding:9rem 0 5rem}
+.comino-section{padding:5rem 0;border-top:1px solid var(--comino-line)}
+.comino-tint{background:var(--comino-surface)}
+.comino-split{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3.5rem}
+.comino-story h1{font-size:clamp(2.1rem,3.6vw,3.5rem);font-weight:750;line-height:1.22;letter-spacing:-.035em;margin:1.25rem 0 1.5rem;text-wrap:balance}
+.comino-story h2{font-size:clamp(1.75rem,2.8vw,2.5rem);font-weight:700;line-height:1.35;letter-spacing:-.025em;text-wrap:balance}
+.comino-story h3{font-size:1.2rem;font-weight:650;line-height:1.5}
+.comino-story p{color:var(--comino-muted);margin-top:1rem}
+.comino-story .comino-lead{font-size:1.125rem;line-height:1.85}
+.comino-story .comino-eyebrow{font-size:.875rem;line-height:1.7;font-weight:650;color:var(--comino-accent);letter-spacing:.1em;margin:0 0 1rem}
+.comino-intro{max-width:850px;margin-bottom:2.75rem}
+.comino-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.comino-button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.75rem 1.25rem;border:1px solid #22d3ee;border-radius:.4rem;background:#22d3ee;color:#082f49;font-size:.9375rem;font-weight:650;text-align:center;line-height:1.6;text-decoration:none}
+.comino-button:hover{background:#67e8f9;border-color:#67e8f9}
+.comino-button-secondary{background:transparent;color:var(--comino-ink);border-color:#94a3b8}
+.comino-button-secondary:hover{background:var(--comino-surface);border-color:var(--comino-accent)}
+.comino-story a:focus-visible,.comino-story summary:focus-visible{outline:3px solid var(--comino-accent);outline-offset:5px;border-radius:3px}
+.comino-figure{margin:0;min-width:0}
+.comino-figure>a{display:block;border:1px solid var(--comino-line);border-radius:.75rem;overflow:hidden;background:#fff}
+.comino-figure img{width:100%;height:auto;display:block;object-fit:contain}
+.comino-figure figcaption{display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;margin-top:.875rem;font-size:.875rem;line-height:1.7;color:var(--comino-muted)}
+.comino-figure figcaption a,.comino-sources a,.comino-retrofit a{color:var(--comino-accent);font-weight:600;text-decoration:underline;text-underline-offset:4px;min-height:24px}
+.comino-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem}
+.comino-rule{border-top:1px solid var(--comino-line);padding-top:1.5rem}
+.comino-explainer{display:grid;grid-template-columns:1.6fr 1fr;gap:2.75rem;align-items:start}
+.comino-notes{list-style:none;margin:0;padding:0;display:grid;gap:1.75rem}
+.comino-notes li{display:flex;gap:1rem}
+.comino-number{font-size:1rem;color:var(--comino-accent);font-weight:650;font-variant-numeric:tabular-nums;flex-shrink:0;line-height:1.8}
+.comino-notes p,.comino-operation-notes p{margin-top:.5rem}
+.comino-story .comino-condition{padding:1.3rem 1.5rem;margin-top:2.5rem;border-left:3px solid var(--comino-accent);background:var(--comino-surface)}
+.comino-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
+.comino-deployment{border:1px solid var(--comino-line);border-radius:.75rem;overflow:hidden;background:white}
+.dark .comino-deployment{background:#020617}
+.comino-deployment>img{width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#e5e7eb}
+.comino-deployment>div{padding:1.75rem}
+.comino-story .comino-small{font-size:.875rem;line-height:1.8}
+.comino-details{margin-top:2rem;border-block:1px solid var(--comino-line)}
+.comino-details summary{cursor:pointer;padding:1.25rem .25rem;font-weight:650;line-height:1.7}
+.comino-details-content{padding:0 0 2rem}
+.comino-details-content>p{margin:0 0 1.5rem}
+.comino-legend{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.75rem}
+.comino-legend dt{font-weight:650}.comino-legend dd{color:var(--comino-muted);font-size:.9375rem;margin-top:.35rem}
+.comino-story .comino-workload-note{font-size:.9375rem;font-weight:600;color:var(--comino-accent);margin-top:1.5rem}
+.comino-operation-notes{display:grid;gap:1.5rem}
+.comino-delivery{list-style:none;padding:0;margin:0 0 1.5rem}
+.comino-delivery li{display:grid;grid-template-columns:2.5rem minmax(180px,.8fr) 2fr;gap:1.5rem;padding:1.5rem 0;border-top:1px solid var(--comino-line)}
+.comino-delivery p{margin:0}
+.comino-sources{display:flex;flex-wrap:wrap;gap:1rem 1.75rem;margin-top:2rem;font-size:.875rem;line-height:1.8}
+.comino-sources span{font-weight:650}
+.comino-final{background:var(--comino-surface)}
+.comino-final .comino-intro{margin-bottom:0}
+.comino-retrofit{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--comino-line);max-width:850px}
+.comino-retrofit p{margin:.5rem 0 1rem}
+@media(max-width:1023px){.comino-split{grid-template-columns:1fr;gap:2.5rem}.comino-split>div{max-width:780px}.comino-split .comino-figure{max-width:780px}.comino-hero{padding:8rem 0 3.5rem}.comino-explainer{grid-template-columns:1fr;gap:2rem}.comino-notes{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}.comino-notes li{display:block}.comino-notes h3{margin-top:.5rem}.comino-operation-notes{grid-template-columns:repeat(3,minmax(0,1fr))}.comino-delivery li{grid-template-columns:2rem .9fr 1.5fr;gap:1rem}}
+@media(max-width:639px){.comino-wrap{width:calc(100% - 2.5rem)}.comino-hero{padding:7rem 0 3rem}.comino-section{padding:3rem 0}.comino-three,.comino-two,.comino-notes,.comino-operation-notes,.comino-legend{grid-template-columns:1fr}.comino-three{gap:1.75rem}.comino-actions{flex-direction:column;align-items:stretch}.comino-notes li{display:flex}.comino-notes h3{margin-top:0}.comino-deployment>div{padding:1.25rem}.comino-delivery li{grid-template-columns:1.75rem 1fr;gap:.5rem .75rem}.comino-delivery p{grid-column:2}.comino-story .comino-condition{padding:1rem 1.25rem}.comino-intro{margin-bottom:2rem}}
