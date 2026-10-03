@@ -1,3 +1,4 @@
+import { languagePath } from '../../utils/seo/languageUrl';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
@@ -206,14 +207,14 @@ const NavBar: React.FC<NavBarProps> = ({
 
           <div className="hidden lg:flex items-center gap-2">
             <a
-              href={SITE_CTA.configurator.href}
+              href={languagePath(SITE_CTA.configurator.href, isEnglish)}
               onClick={(event) => handleNavClick(SITE_CTA.configurator.href, event)}
               className={`${textColorClass} hidden xl:inline-flex min-h-10 items-center rounded-md border border-current px-3 text-xs font-semibold transition hover:border-cyan-300 hover:bg-cyan-400/10 focus:outline-none focus:ring-2 focus:ring-cyan-300`}
             >
               {ctaLabel(SITE_CTA.configurator)}
             </a>
             <a
-              href={SITE_CTA.contact.href}
+              href={languagePath(SITE_CTA.contact.href, isEnglish)}
               onClick={(event) => handleNavClick(SITE_CTA.contact.href, event)}
               className="inline-flex min-h-10 items-center rounded-md bg-cyan-400 px-3 text-xs font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-200"
             >

@@ -5,6 +5,7 @@ import { LanguageProvider } from '../../contexts/LanguageContext';
 import ErrorBoundary from '../common/ErrorBoundary/ErrorBoundary';
 import { I18nProvider, useI18n } from '../../i18n/I18nProvider';
 import { useLanguageContext } from '../../contexts/LanguageContext';
+import { isEnglishPath } from '../../utils/seo/languageUrl';
 
 interface AppProvidersProps {
   children: React.ReactNode;
@@ -23,11 +24,11 @@ const I18nLanguageSync: React.FC = () => {
 const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
   return (
     <ErrorBoundary>
-      <I18nProvider initialLocale="zh">
+      <I18nProvider initialLocale={isEnglishPath(window.location.pathname) ? 'en' : 'zh'}>
         <ThemeProvider>
           <LanguageProvider>
             <I18nLanguageSync />
-            <Router>
+            <Router basename={isEnglishPath(window.location.pathname) ? '/en' : '/'}>
               {children}
             </Router>
           </LanguageProvider>

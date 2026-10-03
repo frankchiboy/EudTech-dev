@@ -5,6 +5,8 @@ const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs'
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const { getConfiguratorSocialPreviewRoutes } = require('./configurator-social-preview-routes.cjs');
 const { SITE_INFORMATION_ROUTES } = require('./site-information-routes.cjs');
+const { publicProductRoutes, englishRoutes, careersRoute } = require('./seo-public-pages.cjs');
+const cominoReference = require('../src/data/cominoProcurement.json');
 
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
@@ -175,13 +177,26 @@ const sitemapEntries = [
   ...productUrls.map((entry) => ({ ...entry, changefreq: 'weekly' })),
   ...solutionUrls.map((entry) => ({ ...entry, changefreq: 'weekly' }))
 ];
+for (const route of [...publicProductRoutes(), careersRoute]) sitemapEntries.push({loc:pageUrl(route.path),title:route.title,description:route.description,source:route,priority:'0.7',changefreq:'monthly'});
+for (const route of englishRoutes()) sitemapEntries.push({loc:pageUrl(`/en${route.path}`),title:route.title,description:route.description,source:route,priority:'0.7',changefreq:'monthly'});
+for (const document of cominoReference.documents) sitemapEntries.push({loc:`${siteOrigin}${document.readerHrefZh.replace(/\.html$/, '').toLowerCase()}`,title:document.title.zh,description:document.description.zh,source:document,priority:'0.6',changefreq:'monthly'});
 const previousLastmodManifest = readLastmodManifest();
+const sourcePages = {'/':'src/data/content.ts','/solutions':'src/components/pages/SolutionsOverviewPage.tsx','/solutions/ai-agent':'src/components/pages/AiAgentSolutionPage.tsx','/solutions/ai-infrastructure':'src/components/pages/AiInfrastructureSolutionPage.tsx','/solutions/social-intelligence':'src/components/pages/SocialIntelligenceSolutionPage.tsx','/products':'src/components/pages/ProductsOverviewPage.tsx','/resources':'src/components/pages/ResourcesOverviewPage.tsx','/about':'src/components/pages/AboutPage.tsx','/contact':'src/components/pages/ContactPage.tsx','/privacy':'src/components/pages/PrivacyPage.tsx','/careers':'src/components/CareersPage.tsx'};
+function bodyFingerprint(loc) {
+  const pathname=(new URL(loc).pathname.replace(/^\/en(?=\/|$)/,'').replace(/\/$/,'') || '/');
+  const files = sourcePages[pathname] ? [sourcePages[pathname]] : [];
+  if (pathname==='/solutions/ai-infrastructure') files.push('src/data/cominoProcurement.json','src/data/cominoTestDrive.json');
+  if (/^\/products\/\d+$/.test(pathname)) files.push('src/data/productData.ts');
+  if (pathname.startsWith('/vendor/')) files.push('docs/comino-document-translations-zh.json');
+  return files.map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'..',file))).digest('hex')]);
+}
 const lastmodEntries = Object.fromEntries(sitemapEntries.map((entry) => {
   const hash = contentHash({
     loc: entry.loc,
     changefreq: entry.changefreq,
     priority: entry.priority,
-    source: entry.source
+    source: entry.source,
+    body: bodyFingerprint(entry.loc)
   });
   const previous = previousLastmodManifest.entries?.[entry.loc];
   const unchanged = previous?.hash === hash && /^\d{4}-\d{2}-\d{2}$/.test(previous.modifiedAt || '');
@@ -202,12 +217,17 @@ const latestModifiedAt = Object.values(lastmodEntries)
   .at(-1) || buildDate;
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${sitemapEntries
   .map(
     (entry) => `  <url>
     <loc>${escapeXml(entry.loc)}</loc>
     <lastmod>${lastmodFor(entry.loc)}</lastmod>
+    ${entry.loc.includes('/vendor/') ? '' : (() => {
+      const pathname = new URL(entry.loc).pathname.replace(/^\/en(?=\/|$)/, '') || '/';
+      const zh = pageUrl(pathname), en = pageUrl(`/en${pathname}`);
+      return [['zh-Hant',zh],['en',en],['x-default',zh]].map(([lang,href]) => `<xhtml:link rel="alternate" hreflang="${lang}" href="${escapeXml(href)}"/>`).join('\n    ');
+    })()}
     <changefreq>${entry.changefreq}</changefreq>
     <priority>${entry.priority}</priority>
   </url>`
@@ -286,7 +306,7 @@ ${entry.images
 </urlset>
 `;
 
-const feedEntries = [configuratorUrl, solutionHubUrl, aiAgentUrl, ...siteInformationUrls, configuratorLinkIndexUrl, ...productUrls, ...solutionUrls];
+const feedEntries = [configuratorUrl, solutionHubUrl, aiAgentUrl, ...siteInformationUrls, ...productUrls, ...solutionUrls];
 const feedItems = feedEntries
   .map(
     (entry) => `    <item>
@@ -742,7 +762,7 @@ ${solutionUrls.map(linkCard).join('\n')}
 </html>
 `;
 
-fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap);
+fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap.replace(/[ \t]+$/gm, ''));
 fs.writeFileSync(path.join(publicDir, 'sitemap-index.xml'), sitemapIndex);
 fs.writeFileSync(path.join(publicDir, 'image-sitemap.xml'), imageSitemap);
 fs.writeFileSync(path.join(publicDir, 'robots.txt'), robots);

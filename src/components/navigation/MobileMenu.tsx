@@ -1,3 +1,4 @@
+import { languagePath } from '../../utils/seo/languageUrl';
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { NavLink } from '../../types';
@@ -82,7 +83,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
       <div className="min-h-full px-4 pb-8 pt-4 space-y-1 sm:px-6">
         <div className="grid gap-3 pb-4 sm:grid-cols-2">
           <a
-            href={SITE_CTA.configurator.href}
+            href={languagePath(SITE_CTA.configurator.href, isEnglish)}
             onClick={(event) => {
               handleNavClick(SITE_CTA.configurator.href, event);
               onClose();
@@ -92,7 +93,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             {isEnglish ? SITE_CTA.configurator.en : SITE_CTA.configurator.zh}
           </a>
           <a
-            href={SITE_CTA.contact.href}
+            href={languagePath(SITE_CTA.contact.href, isEnglish)}
             onClick={(event) => {
               handleNavClick(SITE_CTA.contact.href, event);
               onClose();

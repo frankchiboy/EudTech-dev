@@ -52,3 +52,9 @@
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.pdf
+  Link: <https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw>; rel="canonical"
+
+/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.pdf
+  Link: <https://eudaemonia.tech/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-tw>; rel="canonical"

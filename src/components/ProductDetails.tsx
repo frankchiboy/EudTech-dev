@@ -13,6 +13,7 @@ import FinSightEnterpriseCta from './FinSightEnterpriseCta';
 import ProductTechnicalSpecs from './ProductTechnicalSpecs';
 import LazyImage from './common/LazyImage';
 import cominoReference from '../data/cominoProcurement.json';
+import SEOHead from './common/SEOHead';
 
 const FinSightSystemVisual = ({ isEnglish }: { isEnglish: boolean }) => {
   const stages = [
@@ -69,6 +70,7 @@ const ProductDetails: React.FC = () => {
 
   return (
     <>
+      <SEOHead title={product.title} description={product.description} url={`https://eudaemonia.tech/products/${product.id}/`} image={product.image} imageAlt={product.title} isEnglish={isEnglish} />
       <div className="min-h-screen bg-neutral-50 dark:bg-gray-900 overflow-x-hidden pt-16">
       {/* Product Header */}
       <div className="bg-white dark:bg-gray-800">

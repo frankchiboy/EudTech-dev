@@ -60,7 +60,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="/grando-8gpu-server.jpg" as="image" type="image/jpeg" media="(min-width: 768px)">
     
     <style>
       body {
@@ -89,17 +88,6 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Service Worker registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => console.log('SW registered'))
-            .catch(error => console.log('SW registration failed'));
-        });
-      }
-    </script>
     
     <!-- 自動移除舊 Service Worker，避免快取錯誤 -->
     <script>

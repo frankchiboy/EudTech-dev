@@ -1,4 +1,5 @@
 import { NavLink } from '../types';
+import { languagePath } from '../utils/seo/languageUrl';
 import { SITE_NAVIGATION_GROUPS } from './siteArchitecture';
 
 export const getNavLinks = (isEnglish: boolean): NavLink[] => {
@@ -6,11 +7,11 @@ export const getNavLinks = (isEnglish: boolean): NavLink[] => {
   return [
     ...SITE_NAVIGATION_GROUPS.map((group) => ({
       name: label(group.label),
-      href: group.href,
+      href: languagePath(group.href, isEnglish),
       isDropdown: true,
       children: group.children?.map((child) => ({
         name: label(child.label),
-        href: child.href,
+        href: languagePath(child.href, isEnglish),
         description: label(child.description)
       }))
     }))

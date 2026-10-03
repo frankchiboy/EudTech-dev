@@ -1,4 +1,8 @@
 /configurator-links.html    /resources/    301!
 /components-demo/*          /              301!
 /solutions/headless-saas/*  /solutions/ai-agent/  301!
-/*    /index.html   200
+/en/configurator-links.html /en/resources/ 301!
+/en/components-demo/* /en/ 301!
+/en/solutions/headless-saas/* /en/solutions/ai-agent/ 301!
+/en/* /en/404.html 404
+/* /404.html 404

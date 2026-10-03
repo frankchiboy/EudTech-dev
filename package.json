@@ -7,13 +7,13 @@
     "dev": "rm -rf node_modules/.vite && vite --force",
     "dev:full": "bash prepare-deploy.sh && vite --force",
     "dev:clean": "rm -rf node_modules/.vite dist && vite --force",
-    "build": "npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && bash prepare-deploy.sh && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs",
+    "build": "npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && bash prepare-deploy.sh && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs && node scripts/verify-bilingual-seo.cjs",
     "build:vercel": "npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && bash prepare-deploy.sh && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs && node scripts/vercel-build.cjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "postbuild": "node scripts/inject-version.cjs",
     "test-env": "vite preview --open public/test-environment.html",
-    "build:netlify": "npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs",
+    "build:netlify": "npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs && node scripts/verify-bilingual-seo.cjs",
     "submit:indexnow": "npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && node scripts/submit-indexnow.cjs",
     "submit:indexnow:current": "node scripts/submit-indexnow.cjs",
     "submit:indexnow:dry-run": "node scripts/submit-indexnow.cjs --dry-run",
@@ -76,7 +76,8 @@
     "exposure:postdeploy": "npm run verify:live-exposure && npm run submit:search-console && npm run monitor:sitemaps && npm run inspect:search-console -- --include-aliases --include-double-slash-aliases --output=reports/search-console-indexing.json --summary-output=reports/search-console-indexing-summary.md && npm run report:search-console -- --days=90 --row-limit=50 --output=reports/search-console-latest.json",
     "exposure:strict": "npm run verify:live-exposure && npm run submit:search-console && npm run monitor:sitemaps && npm run inspect:search-console -- --include-aliases --include-double-slash-aliases --output=reports/search-console-indexing.json --summary-output=reports/search-console-indexing-summary.md --fail-on-unindexed --fail-on-canonical-mismatch && npm run report:search-console -- --days=90 --row-limit=50 --output=reports/search-console-latest.json --fail-on-empty",
     "verify:discovery": "node scripts/verify-discovery.cjs",
-    "verify:seo-html": "node scripts/verify-static-seo.cjs"
+    "verify:seo-html": "node scripts/verify-static-seo.cjs",
+    "verify:seo-languages": "node scripts/verify-bilingual-seo.cjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

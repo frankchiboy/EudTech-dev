@@ -43,7 +43,7 @@ const StoryFigure: React.FC<{ src: string; alt: Bilingual; caption: Bilingual; i
   return (
   <figure className="comino-figure">
     <a href={src} target="_blank" rel="noreferrer" aria-label={(isEnglish ? 'Open full image: ' : '開啟完整圖片：') + tx(alt, isEnglish)}>
-      <img src={src} alt={tx(alt, isEnglish)} width={eager ? 1600 : 1800} height={eager ? 1070 : 1013} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+      <img src={src} alt={tx(alt, isEnglish)} width={eager ? 1600 : 1800} height={eager ? 1070 : 1013} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'} decoding="async" />
     </a>
     <figcaption><span>{tx(caption, isEnglish)}</span><a href={src} target="_blank" rel="noreferrer">{isEnglish ? 'View full image' : '查看完整圖片'}</a></figcaption>
   </figure>
@@ -55,7 +55,7 @@ const AiInfrastructureSolutionPage: React.FC = () => {
   const text = (zh: string, en: string) => isEnglish ? en : zh;
   const actions = <div className="comino-actions"><Link className="comino-button" to="/contact">{text('討論我的部署需求', 'Discuss my deployment')}</Link><a className="comino-button comino-button-secondary" href="#test-drive">{tx(testDrive.entryLabel, isEnglish)}</a><Link className="comino-button comino-button-secondary" to="/configurator?request=true">{text('我已知道規格，開始配置', 'I know my specification')}</Link><a className="comino-button comino-button-secondary" href="#procurement">{text('機關採購參考與文件', 'Procurement reference and documents')}</a></div>;
 
-  return <PageShell title={{ zh: 'AI 運算基礎設施｜EudTech', en: 'AI infrastructure | EudTech' }} description={{ zh: '從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。', en: 'Plan AI servers and workstations from workload, site and liquid-cooling configuration through procurement reference, manufacturer documents and acceptance criteria.' }} path="/solutions/ai-infrastructure">
+  return <PageShell title={{ zh: 'Comino 液冷 GPU 伺服器、AI 工作站與機關採購', en: 'AI infrastructure | EudTech' }} description={{ zh: '從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。', en: 'Plan AI servers and workstations from workload, site and liquid-cooling configuration through procurement reference, manufacturer documents and acceptance criteria.' }} path="/solutions/ai-infrastructure">
     <div className="comino-story">
       <section className="comino-hero" aria-labelledby="comino-title">
         <div className="comino-wrap comino-split">

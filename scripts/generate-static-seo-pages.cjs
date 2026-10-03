@@ -1,4 +1,8 @@
 const fs = require('fs');
+const { formatSeoTitle, publicProductRoutes, englishRoutes, careersRoute } = require('./seo-public-pages.cjs');
+const dates = require('../public/discovery-lastmod.json').entries;
+const dateFor = route => dates[pageUrl(route.path)] || {};
+const { renderEnglishPage, writeNotFoundPages, writeUtilityPages } = require('./generate-language-seo.cjs');
 const path = require('path');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
@@ -798,6 +802,7 @@ function routeSpecSummary(specs) {
 }
 
 function routeStaticCopy(route, specs, highlights) {
+  if (route.contentType === 'information' || !route.path.startsWith('/configurator')) return [route.lead || route.description];
   const keywords = routeKeywords(route);
   const specSummary = routeSpecSummary(specs);
   const firstHighlight = highlights[0] || route.lead || route.description;
@@ -822,6 +827,7 @@ function routeStaticCopy(route, specs, highlights) {
 }
 
 function routeUseCases(route, specs, highlights) {
+  if (route.contentType === 'information' || !route.path.startsWith('/configurator')) return [];
   if (route.path === '/solutions/headless-saas') {
     return compactList([
       '需要沿用既有 ERP、CRM、Microsoft 365、資料庫或 API，同時建立新的品牌網站或客戶 Portal。',
@@ -843,6 +849,7 @@ function routeUseCases(route, specs, highlights) {
 }
 
 function routeQuoteChecklist(route, specs) {
+  if (route.contentType === 'information' || !route.path.startsWith('/configurator')) return [];
   const specLabels = specs.slice(0, 4).map((spec) => spec.label).join('、');
 
   return compactList([
@@ -855,41 +862,12 @@ function routeQuoteChecklist(route, specs) {
 }
 
 function routeFaqs(route, specs = []) {
+  // Only these source-backed solution FAQs are also visible in the React page.
+  if (!CONFIGURATOR_SEO_PAGES.some(page => route.path === `/solutions/${page.slug}`)) return [];
   const configuredFaqs = [...(route.faq || []), ...(route.faqs || [])]
     .map((faq) => (Array.isArray(faq) ? faq : [faq.question, faq.answer]))
     .filter(([question, answer]) => question && answer);
-  const specLabels = specs.slice(0, 4).map((spec) => spec.label).join('、');
-  const generatedFaqs = [
-    [
-      `${route.title} 的詢價會包含哪些資訊？`,
-      specLabels
-        ? `詢價會包含目前頁面的配置連結、${specLabels} 等已選或已整理的資訊，以及使用者在表單中提供的聯絡資料。`
-        : '詢價會包含目前頁面的配置連結、已選硬體資訊，以及使用者在表單中提供的聯絡資料。'
-    ],
-    [
-      `${route.title} 是否有公開價格？`,
-      '沒有。本頁不顯示預估價格或公開售價；正式報價會依實際配置、採購需求與供應條件由 EudTech 回覆確認。'
-    ],
-    [
-      `${route.title} 適合台灣採購流程使用嗎？`,
-      '適合。此頁保留中文搜尋內容、配置器入口、詢價連結與 EudTech 聯絡信箱，便於台灣企業、研究單位與採購團隊整理需求。'
-    ],
-    [
-      `${route.title} 在送出 RFQ 前應先確認哪些條件？`,
-      specLabels
-        ? `建議先確認 ${specLabels}，並補充交期、部署地點、供電、散熱、網路、軟體堆疊與採購窗口。`
-        : '建議先確認 GPU、CPU、記憶體、儲存、供電、散熱、網路、軟體堆疊、交期與採購窗口。'
-    ]
-  ];
-  const seen = new Set();
-
-  return [...configuredFaqs, ...generatedFaqs].filter(([question]) => {
-    if (seen.has(question)) {
-      return false;
-    }
-    seen.add(question);
-    return true;
-  }).slice(0, 4);
+  return configuredFaqs.filter(([question], index, all) => all.findIndex(item => item[0] === question) === index);
 }
 
 function faqSchema(route) {
@@ -951,7 +929,7 @@ function staticSeoFallback(route) {
 
   return `<main class="static-seo-fallback" data-static-seo-fallback>
       <section aria-labelledby="static-seo-title">
-        <div class="static-seo-kicker">EudTech Configurator</div>
+        <div class="static-seo-kicker">EudTech</div>
         <h1 id="static-seo-title">${escapeHtml(route.title)}</h1>
         <p class="static-seo-lead">${escapeHtml(route.lead || route.description)}</p>
         <nav class="static-seo-actions" aria-label="配置器曝光入口">
@@ -959,7 +937,7 @@ function staticSeoFallback(route) {
         </nav>
       </section>
       <section aria-labelledby="static-seo-overview">
-        <h2 id="static-seo-overview">配置與詢價說明</h2>
+        <h2 id="static-seo-overview">內容說明</h2>
         <div class="static-seo-copy">
           ${copy.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('\n          ')}
         </div>
@@ -1047,12 +1025,11 @@ function webPageSchema(route, { title, url, image, imageAlt }) {
     publisher: {
       '@id': organizationId
     },
-    dateModified: schemaDate,
+    dateModified: dateFor(route).modifiedAt,
     primaryImageOfPage: {
       '@type': 'ImageObject',
       url: image,
-      width: SOCIAL_IMAGE_WIDTH,
-      height: SOCIAL_IMAGE_HEIGHT,
+      ...(image.includes('/social/configurator/') ? {width:SOCIAL_IMAGE_WIDTH, height:SOCIAL_IMAGE_HEIGHT} : {}),
       caption: imageAlt
     },
     breadcrumb: {
@@ -1109,8 +1086,8 @@ function routeSchema(route) {
           headline: route.serviceName || route.title,
           description: route.description,
           image: pageImage,
-          datePublished: schemaDate,
-          dateModified: schemaDate,
+          datePublished: dateFor(route).publishedAt,
+          dateModified: dateFor(route).modifiedAt,
           author: { '@type': 'Organization', name: 'EudTech', url: siteRootUrl },
           publisher: eudTechOrganization,
           mainEntityOfPage: url
@@ -1147,33 +1124,35 @@ function verificationTags() {
 }
 
 function injectHead(baseHtml, route) {
-  const title = `${route.title} | ${siteSuffix}`;
+  const title = formatSeoTitle(route.title);
   const url = pageUrl(route.path);
   const socialPreview = socialPreviewByPath.get(route.path);
-  const image = socialPreview?.socialImageUrl || route.image || defaultImage;
+  const image = new URL(socialPreview?.socialImageUrl || route.image || defaultImage, siteOrigin).href;
   const imageAlt = socialPreview?.imageAlt || route.imageAlt || route.title;
   const isArticlePage = route.kind === 'comparison' || route.kind === 'guide' || route.kind === 'checklist';
   const ogType = socialPreview?.ogType || (isArticlePage ? 'article' : 'website');
   const articleTimeTags = isArticlePage
     ? [
-        `<meta data-rh="true" property="article:published_time" content="${schemaDate}">`,
-        `<meta data-rh="true" property="article:modified_time" content="${schemaDate}">`
+        `<meta data-rh="true" property="article:published_time" content="${dateFor(route).publishedAt}">`,
+        `<meta data-rh="true" property="article:modified_time" content="${dateFor(route).modifiedAt}">`
       ]
     : [];
-  const schemaItems = [webPageSchema(route, { title, url, image, imageAlt }), ...routeSchema(route)];
+  const schemaItems = [webPageSchema(route, { title, url, image, imageAlt }), ...routeSchema(route)].map(item =>
+    item && ['WebPage','CollectionPage','Article'].includes(item['@type'])
+      ? {...item, url, dateModified:dateFor(route).modifiedAt, ...(item['@type']==='Article'?{datePublished:dateFor(route).publishedAt}:{})} : item);
   const managedHead = [
     `<title>${escapeHtml(title)}</title>`,
     `<meta data-rh="true" name="description" content="${escapeHtml(route.description)}">`,
-    `<meta data-rh="true" name="keywords" content="${escapeHtml(route.keywords)}">`,
+    ...(route.keywords ? [`<meta data-rh="true" name="keywords" content="${escapeHtml(route.keywords)}">`] : []),
     '<meta data-rh="true" name="author" content="EudTech">',
-    '<meta data-rh="true" name="robots" content="index, follow">',
+    '<meta data-rh="true" name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">',
     `<meta data-rh="true" property="og:title" content="${escapeHtml(title)}">`,
     `<meta data-rh="true" property="og:description" content="${escapeHtml(route.description)}">`,
     `<meta data-rh="true" property="og:image" content="${escapeHtml(image)}">`,
     `<meta data-rh="true" property="og:image:secure_url" content="${escapeHtml(image)}">`,
     `<meta data-rh="true" property="og:image:alt" content="${escapeHtml(imageAlt)}">`,
-    `<meta data-rh="true" property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}">`,
-    `<meta data-rh="true" property="og:image:height" content="${SOCIAL_IMAGE_HEIGHT}">`,
+    ...(socialPreview ? [`<meta data-rh="true" property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}">`,
+      `<meta data-rh="true" property="og:image:height" content="${SOCIAL_IMAGE_HEIGHT}">`] : []),
     `<meta data-rh="true" property="og:url" content="${escapeHtml(url)}">`,
     `<meta data-rh="true" property="og:type" content="${ogType}">`,
     '<meta data-rh="true" property="og:site_name" content="EudTech">',
@@ -1186,6 +1165,9 @@ function injectHead(baseHtml, route) {
     `<meta data-rh="true" name="twitter:image:alt" content="${escapeHtml(imageAlt)}">`,
     `<meta data-rh="true" name="twitter:url" content="${escapeHtml(url)}">`,
     `<link data-rh="true" rel="canonical" href="${escapeHtml(url)}">`,
+    `<link data-rh="true" rel="alternate" hreflang="zh-Hant" href="${escapeHtml(url)}">`,
+    `<link data-rh="true" rel="alternate" hreflang="en" href="${pageUrl(`/en${route.path}`)}">`,
+    `<link data-rh="true" rel="alternate" hreflang="x-default" href="${escapeHtml(url)}">`,
     `<link data-rh="true" rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href="${siteOrigin}/feed.xml">`,
     `<link data-rh="true" rel="alternate" type="application/feed+json" title="EudTech Configurator Updates" href="${siteOrigin}/feed.json">`,
     `<link data-rh="true" rel="alternate" type="text/markdown" title="EudTech LLM Summary" href="${siteOrigin}/llms.txt">`,
@@ -1222,5 +1204,12 @@ if (!fs.existsSync(indexPath)) {
 }
 
 const baseHtml = fs.readFileSync(indexPath, 'utf8');
-routes.forEach((route) => writeRouteHtml(route, injectHead(baseHtml, route)));
-console.log(`✓ Generated ${routes.length} static SEO route HTML files`);
+[...routes, ...publicProductRoutes(), careersRoute].forEach((route) => writeRouteHtml(route, injectHead(baseHtml, route)));
+console.log(`✓ Generated ${routes.length + publicProductRoutes().length + 1} Chinese and ${englishRoutes().length} English static SEO pages`);
+
+englishRoutes().forEach(route => writeRouteHtml({path:`/en${route.path}`}, renderEnglishPage(baseHtml, route)));
+writeNotFoundPages(distDir);
+writeUtilityPages(distDir, baseHtml);
+if (process.env.CONTEXT && process.env.CONTEXT !== 'production') {
+  fs.appendFileSync(path.join(distDir, '_headers'), '\n/*\n  X-Robots-Tag: noindex, nofollow\n');
+}

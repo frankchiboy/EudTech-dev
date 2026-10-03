@@ -51,6 +51,10 @@ def build(spec, translation):
     image_dir = pdf_path.parent / (stem + "-pages")
     image_dir.mkdir(exist_ok=True)
     title = spec["title"]["zh"] + " " + spec["version"]
+    canonical = "https://eudaemonia.tech" + spec["readerHrefZh"].removesuffix(".html").lower()
+    metadata = json.dumps({"@context": "https://schema.org", "@type": "DigitalDocument", "name": title,
+                           "url": canonical, "inLanguage": "zh-Hant", "dateModified": REFERENCE["translatedAt"],
+                           "isBasedOn": spec["source"], "encoding": {"@type": "MediaObject", "contentUrl": "https://eudaemonia.tech" + spec["hrefZh"], "encodingFormat": "application/pdf"}}, ensure_ascii=False).replace("<", "\\u003c")
     pages = []
     for i, page in enumerate(pdf, 1):
         pix = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
@@ -75,7 +79,11 @@ def build(spec, translation):
 <title>{escape(title)}｜繁體中文線上閱讀｜EudTech</title>
 <meta name="description" content="{escape(title)}完整繁體中文譯本，共 {len(pdf)} 頁。線上閱讀、放大圖表或下載 PDF。">
 <meta name="source-pdf-sha256" content="{digest}">
-<link rel="canonical" href="https://eudaemonia.tech{spec['readerHrefZh']}"><style>{STYLE}</style></head>
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:title" content="{escape(title)}｜繁體中文線上閱讀｜EudTech"><meta property="og:description" content="{escape(spec['description']['zh'])}">
+<meta property="og:url" content="{canonical}"><meta property="og:locale" content="zh_TW"><meta property="og:type" content="article">
+<meta property="og:image" content="https://eudaemonia.tech/social/configurator/solutions-ai-infrastructure.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{canonical}"><script type="application/ld+json">{metadata}</script><style>{STYLE}</style></head>
 <body><header><a class="brand" href="/solutions/ai-infrastructure/#procurement">EudTech · 機關採購參考</a>
 <p class="eyebrow">繁體中文線上閱讀 · 共 {len(pdf)} 頁</p><h1>{escape(title)}</h1>
 <p class="note">{escape(REFERENCE['translationNote']['zh'])}</p>
