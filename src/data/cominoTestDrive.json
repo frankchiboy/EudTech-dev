@@ -2,32 +2,209 @@
   "source": "https://www.grando.ai/promo/experience-amd-rocm-on-radeon-tm-pro",
   "application": "https://www.grando.ai/request-forms/a-free-test-drive-of-a-amd-radeon-tm-pro-w7900",
   "reviewedAt": "2026-10-04",
-  "entryLabel": { "zh": "免費遠端試用", "en": "Free remote test drive" },
-  "eyebrow": { "zh": "Comino Test Drive · 原廠免費遠端評估", "en": "Comino Test Drive · Free remote evaluation" },
-  "title": { "zh": "先跑你的工作負載，再決定配置。", "en": "Try your workload before choosing a configuration." },
+  "entryLabel": {
+    "zh": "免費遠端試用",
+    "en": "Free remote test drive"
+  },
+  "eyebrow": {
+    "zh": "Comino Test Drive · 原廠免費遠端評估",
+    "en": "Comino Test Drive · Free remote evaluation"
+  },
+  "title": {
+    "zh": "先跑你的工作負載，再決定配置。",
+    "en": "Try your workload before choosing a configuration."
+  },
   "description": {
     "zh": "透過 Comino 原廠試用計畫，申請遠端評估 AMD Radeon PRO W7900、Radeon AI PRO R9700 與 ROCm 環境，確認 AI／HPC 工作負載的相容性與效能。",
     "en": "Apply through Comino’s official Test Drive program to remotely evaluate AMD Radeon PRO W7900, Radeon AI PRO R9700 and ROCm for your AI or HPC workload’s compatibility and performance."
   },
   "steps": [
     {
-      "title": { "zh": "填寫原廠申請", "en": "Apply to Comino" },
-      "body": { "zh": "在原廠表單說明使用情境、軟體與測試目的。", "en": "Describe your use case, software and evaluation goals in the official form." }
+      "title": {
+        "zh": "填寫原廠申請",
+        "en": "Apply to Comino"
+      },
+      "body": {
+        "zh": "在原廠表單說明使用情境、軟體與測試目的。",
+        "en": "Describe your use case, software and evaluation goals in the official form."
+      }
     },
     {
-      "title": { "zh": "審核後取得連線資訊", "en": "Receive access after review" },
-      "body": { "zh": "符合資格者會收到 Comino 寄送的連線說明。", "en": "Qualifying applicants receive connection instructions from Comino by email." }
+      "title": {
+        "zh": "審核後取得連線資訊",
+        "en": "Receive access after review"
+      },
+      "body": {
+        "zh": "符合資格者會收到 Comino 寄送的連線說明。",
+        "en": "Qualifying applicants receive connection instructions from Comino by email."
+      }
     },
     {
-      "title": { "zh": "以測試結果討論選型", "en": "Use results to plan your system" },
-      "body": { "zh": "完成評估後，可與 EudTech 討論 GPU 配置、場地條件與報價。", "en": "After evaluation, discuss GPU configuration, site requirements and a quotation with EudTech." }
+      "title": {
+        "zh": "以測試結果討論選型",
+        "en": "Use results to plan your system"
+      },
+      "body": {
+        "zh": "完成評估後，可與 EudTech 討論 GPU 配置、場地條件與報價。",
+        "en": "After evaluation, discuss GPU configuration, site requirements and a quotation with EudTech."
+      }
     }
   ],
   "terms": {
     "zh": "試用僅限評估，禁止將免費運算時間用於商業用途；Comino 保留隨時終止遠端存取的權利。試用資格、配置與開放時程以原廠確認為準。",
     "en": "Evaluation only; commercial use of the free computing time is prohibited. Comino may revoke remote access at any time. Eligibility, configuration and availability are subject to Comino’s confirmation."
   },
-  "applyLabel": { "zh": "向原廠申請免費試用", "en": "Apply for a free test drive" },
-  "sourceLabel": { "zh": "查看原廠計畫（英文）", "en": "View the official program" },
-  "contactLabel": { "zh": "與 EudTech 討論測試需求", "en": "Discuss test requirements with EudTech" }
+  "applyLabel": {
+    "zh": "向原廠申請免費試用",
+    "en": "Apply for a free test drive"
+  },
+  "sourceLabel": {
+    "zh": "查看原廠計畫（英文）",
+    "en": "View the official program"
+  },
+  "contactLabel": {
+    "zh": "與 EudTech 討論測試需求",
+    "en": "Discuss test requirements with EudTech"
+  },
+  "heroImage": {
+    "src": "/vendor/comino/test-drive/hero.webp",
+    "source": "https://cdn.prod.website-files.com/628eab9015508e812f82b1d3/6821b7c7de04a1df2e456e03_GRANDO_RM-M-CRPS_7000WX_6xW7900_13_compr%20(1).jpg"
+  },
+  "hardwareLines": [
+    "AMD ROCm™",
+    "W7900 · AI PRO R9700"
+  ],
+  "configurationsLabel": {
+    "zh": "探索原廠配置",
+    "en": "Explore configurations"
+  },
+  "ecosystemTitle": {
+    "zh": "從 GPU 到軟體，一起評估。",
+    "en": "Evaluate the hardware and software together."
+  },
+  "features": [
+    {
+      "title": {
+        "zh": "AMD Radeon · AI 運算",
+        "en": "AMD Radeon for AI"
+      },
+      "body": {
+        "zh": "用代表性工作負載，確認模型、GPU 記憶體需求與實際執行表現。",
+        "en": "Use a representative workload to assess your model, GPU memory needs and execution performance."
+      },
+      "image": "/vendor/comino/test-drive/amd-ai.webp",
+      "source": "https://cdn.prod.website-files.com/628295a883124981fd568435/6821ce588aa9c2e48304b53e_2505306-amd-radeon-ai-ready-Copy.jpg"
+    },
+    {
+      "title": {
+        "zh": "AMD ROCm · 開放軟體平台",
+        "en": "AMD ROCm open software"
+      },
+      "body": {
+        "zh": "結合程式庫、開發工具與執行環境，評估 AI 與 HPC 軟體流程。",
+        "en": "Explore libraries, development tools and runtimes for your AI and HPC software workflow."
+      },
+      "image": "/vendor/comino/test-drive/rocm.webp",
+      "source": "https://cdn.prod.website-files.com/628295a883124981fd568435/6821cf9faa021a10e8d22fea_amd-rocm-Copy.jpg"
+    }
+  ],
+  "softwareSource": "https://www.amd.com/en/products/software/rocm.html",
+  "softwareLabel": {
+    "zh": "了解 AMD ROCm（英文）",
+    "en": "Explore AMD ROCm"
+  },
+  "configurationsTitle": {
+    "zh": "四種配置，找到你的評估起點。",
+    "en": "Four configurations. A starting point for your evaluation."
+  },
+  "configurationLabel": {
+    "zh": "查看原廠配置",
+    "en": "View manufacturer configuration"
+  },
+  "memoryLabel": {
+    "zh": "GPU 記憶體合計",
+    "en": "Total GPU memory"
+  },
+  "coolingLabel": {
+    "zh": "Comino 液冷",
+    "en": "Comino liquid cooling"
+  },
+  "configurationNote": {
+    "zh": "配置與機箱圖片取自原廠活動頁；實際試用資源由 Comino 確認。GPU 記憶體為各卡容量加總，軟體可用容量依多 GPU 支援而定。",
+    "en": "Configurations and chassis images are from Comino’s program page; test resources require Comino’s confirmation. GPU memory is summed across cards; usable capacity depends on multi-GPU software support."
+  },
+  "stepsTitle": {
+    "zh": "從申請到選型，三個步驟。",
+    "en": "From application to configuration in three steps."
+  },
+  "creditLabel": {
+    "zh": "活動與圖片來源：Comino 原廠",
+    "en": "Program and imagery: Comino"
+  },
+  "configurations": [
+    {
+      "id": "w7900-rack",
+      "gpu": "8× Radeon PRO W7900",
+      "memory": "384 GB",
+      "format": {
+        "zh": "4U · 機架式工作站",
+        "en": "4U · Rackable workstation"
+      },
+      "cpu": {
+        "zh": "AMD EPYC 9004/9005 · 64 核心",
+        "en": "AMD EPYC 9004/9005 · 64 cores"
+      },
+      "image": "/vendor/comino/test-drive/w7900-rack.webp",
+      "imageSource": "https://cdn.prod.website-files.com/628295a883124981fd568435/65e749fb0db08f319103fac7__GRANDO-DPR-4090-FT6%20(1).png",
+      "href": "https://configurator.grando.ai/configurator/5?gpu=790&gpu_value=8&cpu=1288&cpu_value=64&storage_1=7115&psu=1"
+    },
+    {
+      "id": "w7900-desktop",
+      "gpu": "4× Radeon PRO W7900",
+      "memory": "192 GB",
+      "format": {
+        "zh": "4U · 桌邊工作站",
+        "en": "4U · Desktop workstation"
+      },
+      "cpu": {
+        "zh": "AMD Threadripper PRO 7985WX",
+        "en": "AMD Threadripper PRO 7985WX"
+      },
+      "image": "/vendor/comino/test-drive/w7900-desktop.webp",
+      "imageSource": "https://cdn.prod.website-files.com/628295a883124981fd568435/65e74d60fa05434fd547cda1_GRANDO-WS_4xA100_upside_closed%20(2).png",
+      "href": "https://configurator.grando.ai/configurator/5?gpu=790&gpu_value=4&cpu=90988&cpu_value=96&storage_1=7115"
+    },
+    {
+      "id": "r9700-rack",
+      "gpu": "8× Radeon AI PRO R9700",
+      "memory": "256 GB",
+      "format": {
+        "zh": "4U · 機架式工作站",
+        "en": "4U · Rackable workstation"
+      },
+      "cpu": {
+        "zh": "AMD EPYC 9004/9005 · 64 核心",
+        "en": "AMD EPYC 9004/9005 · 64 cores"
+      },
+      "image": "/vendor/comino/test-drive/r9700-rack.webp",
+      "imageSource": "https://cdn.prod.website-files.com/628295a883124981fd568435/67a4b59c84dffcea5efa8f33_GRANDO_RM-M-CRPS_9004_8x4090_21-3%20(1).png",
+      "href": "https://configurator.grando.ai/configurator/5?gpu=7977&gpu_value=8&cpu=1288&cpu_value=64&storage_1=7115&psu=1"
+    },
+    {
+      "id": "r9700-desktop",
+      "gpu": "4× Radeon AI PRO R9700",
+      "memory": "128 GB",
+      "format": {
+        "zh": "4U · 桌邊工作站",
+        "en": "4U · Desktop workstation"
+      },
+      "cpu": {
+        "zh": "AMD Threadripper PRO 7985WX",
+        "en": "AMD Threadripper PRO 7985WX"
+      },
+      "image": "/vendor/comino/test-drive/r9700-desktop.webp",
+      "imageSource": "https://cdn.prod.website-files.com/628295a883124981fd568435/65e74bb537cba97a9a21b8af_GRANDO-WS_4xA100_front.png",
+      "href": "https://configurator.grando.ai/configurator/5?gpu=7977&gpu_value=4&cpu=90988&cpu_value=96&storage_1=7115"
+    }
+  ]
 }

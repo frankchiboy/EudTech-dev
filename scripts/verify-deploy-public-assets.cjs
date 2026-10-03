@@ -9,10 +9,12 @@ const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const reportsDir = path.join(rootDir, 'reports');
 const maxTotalMb = maxTotalMbArgIndex >= 0 ? Number(args[maxTotalMbArgIndex + 1]) : 260;
-// Adds two static readers and 16 page images for PDF plug-in-independent reading.
-const maxFileCount = maxFileCountArgIndex >= 0 ? Number(args[maxFileCountArgIndex + 1]) : 248;
+// Includes seven optimized images for the Comino Test Drive section.
+const maxFileCount = maxFileCountArgIndex >= 0 ? Number(args[maxFileCountArgIndex + 1]) : 255;
+const cominoTestDrive = require('../src/data/cominoTestDrive.json');
 
 const requiredFiles = [
+  ...[cominoTestDrive.heroImage.src, ...cominoTestDrive.features.map((item) => item.image), ...cominoTestDrive.configurations.map((item) => item.image)].map((src) => src.replace(/^\//, '')),
   '_headers',
   '_redirects',
   'build-meta.json',

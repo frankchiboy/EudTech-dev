@@ -1,0 +1,66 @@
+.comino-test-drive {
+  --comino-ink: #f4f8f5;
+  --comino-muted: #c4cec7;
+  --comino-line: #34443a;
+  --comino-surface: #1b2820;
+  --comino-accent: #80df9a;
+  background: #111813;
+  color: var(--comino-ink);
+}
+.comino-trial-hero { position: relative; isolation: isolate; overflow: hidden; background: #101512; }
+.comino-trial-backdrop { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center 44%; }
+.comino-trial-hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg,rgba(8,15,10,.7),rgba(8,15,10,.63) 65%,#111813); }
+.comino-trial-hero-content { max-width: 1030px; margin: auto; padding: 5rem 1.5rem 6rem; text-align: center; }
+.comino-story .comino-trial-hero h2 { font-size: clamp(1.65rem,2.7vw,2.4rem); }
+.comino-story .comino-trial-hardware { color: var(--comino-accent); font-size: clamp(2.25rem,4.8vw,4.5rem); line-height: 1.15; font-weight: 750; letter-spacing: -.045em; margin: 1.75rem 0; }
+.comino-trial-hardware span { display: block; }
+.comino-story .comino-trial-description { max-width: 790px; margin: 1.5rem auto 0; font-size: 1.0625rem; color: #e2e9e4; }
+.comino-trial-hero .comino-actions { justify-content: center; }
+.comino-test-drive .comino-button { gap: .5rem; border-color: #80df9a; background: #80df9a; color: #0b2112; }
+.comino-test-drive .comino-button:hover { background: #a2f2b7; border-color: #a2f2b7; }
+.comino-test-drive .comino-button-secondary { color: #eaf7ed; background: #101a14b3; border-color: #769f81; }
+.comino-test-drive .comino-button-secondary:hover { background: #263c2c; border-color: #80df9a; }
+.comino-test-drive .comino-button svg { flex-shrink: 0; }
+.comino-trial-content { padding-block: 1rem 4rem; }
+.comino-story .comino-trial-content h3 { font-size: clamp(1.5rem,2.3vw,2rem); font-weight: 650; line-height: 1.4; }
+.comino-trial-content h4 { font-size: 1.125rem; font-weight: 650; line-height: 1.5; }
+.comino-trial-features { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
+.comino-trial-features article { display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 1.5rem; }
+.comino-trial-features img { width: 120px; height: 130px; object-fit: contain; }
+.comino-trial-features p { font-size: .9375rem; }
+.comino-trial-text-link { display: inline-flex; align-items: center; gap: .35rem; color: var(--comino-accent); text-decoration: underline; text-underline-offset: 4px; margin-top: 1.5rem; font-size: .9375rem; }
+.comino-trial-configurations { padding-top: 4rem; scroll-margin-top: 6rem; }
+.comino-trial-cards { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; margin-top: 2rem; }
+.comino-trial-card { display: flex; flex-direction: column; padding: 1.35rem; border: 1px solid #34443a; border-radius: .75rem; background: #19231c; }
+.comino-trial-product-image { height: 190px; display: grid; place-items: center; margin-bottom: 1.25rem; }
+.comino-trial-product-image img { width: 100%; height: 100%; object-fit: contain; }
+.comino-trial-card .comino-eyebrow { font-size: .75rem; letter-spacing: .03em; }
+.comino-trial-card h4 { min-height: 3.4em; font-size: 1.2rem; }
+.comino-trial-card dl { border-top: 1px solid #34443a; margin-top: 1.5rem; padding-top: 1rem; }
+.comino-trial-card dt { font-size: .75rem; color: var(--comino-muted); }
+.comino-trial-card dd { font-size: 1.9rem; font-weight: 650; line-height: 1.4; color: var(--comino-accent); }
+.comino-story .comino-trial-cpu { font-size: .875rem; min-height: 3.7em; }
+.comino-story .comino-trial-cooling { margin: .5rem 0 1.5rem; font-size: .875rem; }
+.comino-trial-card .comino-button { margin-top: auto; padding: .7rem .5rem; font-size: .8125rem; }
+.comino-trial-next { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--comino-line); }
+.comino-trial-next .comino-three { margin-top: 2rem; list-style: none; padding: 0; }
+.comino-trial-next h4 { margin-top: .5rem; }
+.comino-trial-credit { font-size: .8125rem; }
+@media(max-width:1023px) {
+  .comino-trial-cards { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .comino-trial-features { gap: 2rem; }
+  .comino-trial-features article { grid-template-columns: 90px 1fr; gap: 1rem; }
+  .comino-trial-features img { width: 90px; }
+}
+@media(max-width:639px) {
+  .comino-trial-hero-content { padding: 3.5rem 1.25rem 4rem; }
+  .comino-story .comino-trial-hardware { font-size: clamp(1.7rem,6.9vw,2.7rem); letter-spacing: -.035em; }
+  .comino-trial-features,.comino-trial-cards { grid-template-columns: 1fr; }
+  .comino-trial-content { padding-bottom: 3rem; }
+  .comino-trial-features article { grid-template-columns: 90px 1fr; }
+  .comino-trial-card { padding: 1.5rem; }
+  .comino-trial-card h4,.comino-story .comino-trial-cpu { min-height: 0; }
+  .comino-trial-product-image { height: 210px; }
+  .comino-trial-configurations { padding-top: 3rem; }
+  .comino-trial-next { margin-top: 3rem; padding-top: 2.5rem; }
+}
