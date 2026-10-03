@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import discoveryDates from '../../../public/discovery-lastmod.json';
 import englishCopy from '../../data/englishSeoPages.json';
@@ -33,12 +34,13 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   keywords,
   image,
   imageAlt,
-  url = window.location.href,
+  url,
   type = 'website',
   isEnglish = false,
   structuredData,
   noIndex = false
 }) => {
+  const location = useLocation();
   const defaultTitle = isEnglish 
     ? 'EudTech - Next Generation AI Solutions'
     : 'EudTech - 下一代AI解決方案';
@@ -51,7 +53,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     ? 'AI servers, artificial intelligence, machine learning, GPU computing, liquid cooling, financial AI, EudTech'
     : 'AI伺服器, 人工智能, 機器學習, GPU運算, 液冷, 金融AI, EudTech';
 
-  const basePath = new URL(url, SITE_ORIGIN).pathname.replace(/^\/en(?=\/|$)/, '') || '/';
+  const basePath = new URL(url || location.pathname, SITE_ORIGIN).pathname.replace(/^\/en(?=\/|$)/, '') || '/';
   const copy = isEnglish ? englishCopy[(basePath.replace(/\/$/, '') || '/') as keyof typeof englishCopy] : undefined;
   const pageTitle = copy?.title || title;
   const pageDescription = copy?.description || description || defaultDescription;
@@ -84,8 +86,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     return value;
   };
   const structuredDataItems: Array<Record<string, unknown>> = suppliedData.filter((item): item is Record<string, unknown> => Boolean(item))
+    .filter(item => !['Organization', 'WebSite'].includes(String(item['@type'])))
     .filter(item => !(item['@type'] === 'FAQPage' && basePath.startsWith('/configurator'))).map(item => {
-    if (['Organization', 'WebSite'].includes(String(item['@type']))) return item;
     const copy = localizeSchema(item) as Record<string, unknown>;
     if (copy['@type'] === 'Article' && dates) {
       copy.url = canonicalUrl;
@@ -96,6 +98,18 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     if (typeof copy.url === 'string' && new URL(copy.url, SITE_ORIGIN).pathname === basePath) copy.url = canonicalUrl;
     return copy;
   });
+  structuredDataItems.unshift(
+    {
+      '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE_ORIGIN}/#organization`,
+      name: 'EudTech', alternateName: 'Eudaemonia Technology', url: `${SITE_ORIGIN}/`,
+      email: 'info@eudaemonia.tech', logo: `${SITE_ORIGIN}/logo.svg`
+    },
+    {
+      '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE_ORIGIN}/#website`,
+      name: 'EudTech', url: `${SITE_ORIGIN}/`, inLanguage: ['zh-TW', 'en'],
+      publisher: { '@id': `${SITE_ORIGIN}/#organization` }
+    }
+  );
   if (shouldIndex) structuredDataItems.push({
     '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${canonicalUrl}#webpage`,
     url: canonicalUrl, name: fullTitle, description: pageDescription, inLanguage: isEnglish ? 'en' : 'zh-TW',
@@ -122,6 +136,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="EudTech" />
       <meta property="og:locale" content={isEnglish ? 'en_US' : 'zh_TW'} />
+      {type === 'article' && dates && <meta property="article:published_time" content={dates.publishedAt} />}
+      {type === 'article' && dates && <meta property="article:modified_time" content={dates.modifiedAt} />}
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />

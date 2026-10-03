@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { classNames } from '../../utils/helpers';
-import { getThumbnailUrl } from '../../utils/performance/imageOptimization';
+import { getResponsiveNetlifyImageProps } from '../../utils/performance/netlifyImageCdn';
 
 interface LazyImageProps {
   src: string;
@@ -8,6 +8,8 @@ interface LazyImageProps {
   className?: string;
   onLoad?: () => void;
   onError?: () => void;
+  priority?: boolean;
+  sizes?: string;
 }
 
 const LazyImage: React.FC<LazyImageProps> = ({
@@ -15,52 +17,32 @@ const LazyImage: React.FC<LazyImageProps> = ({
   alt,
   className,
   onLoad,
-  onError
+  onError,
+  priority = false,
+  sizes = '(max-width: 1023px) 100vw, 50vw'
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const imgRef = useRef<HTMLDivElement>(null);
-
-  const handleLoad = () => {
-    setIsLoaded(true);
-    onLoad?.();
-  };
-
-  const handleError = () => {
-    onError?.();
-  };
-
-  // 使用導入的 getThumbnailUrl 函數來獲取縮圖URL
-  const thumbnailUrl = getThumbnailUrl(src);
-
-  // 預載入高清圖片
-  React.useEffect(() => {
-    const img = new Image();
-    img.src = src;
-  }, [src]);
+  const image = src.startsWith('/') && /\.(?:jpe?g|png|webp)$/i.test(src)
+    ? getResponsiveNetlifyImageProps(src, { widths: [480, 768, 1280, 1920], sizes, quality: 80, format: 'webp' })
+    : { src };
 
   return (
-    <div ref={imgRef} className={classNames('relative overflow-hidden', className)}>
-      <div 
-        className={classNames(
-          'absolute inset-0 w-full h-full bg-center bg-cover transition-opacity duration-300 filter blur-sm transform scale-105',
-          isLoaded ? 'opacity-0' : 'opacity-100'
-        )}
-        style={{
-          backgroundImage: `url(${thumbnailUrl})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundColor: 'rgba(15, 23, 42, 0.3)'
-        }}
-      />
+    <div className={classNames('relative overflow-hidden', className)}>
       <img
-        src={src}
+        {...image}
         alt={alt}
-        onLoad={handleLoad}
-        onError={handleError}
-        className={classNames(
-          'w-full h-full transition-all duration-500',
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        )}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
+        decoding="async"
+        onLoad={() => onLoad?.()}
+        onError={(event) => {
+          const target = event.currentTarget;
+          if (image.src !== src && !target.dataset.originalFallback) {
+            target.dataset.originalFallback = 'true';
+            target.removeAttribute('srcset');
+            target.src = src;
+          } else onError?.();
+        }}
+        className="w-full h-full"
         style={{
           objectFit: className?.includes('object-contain') ? 'contain' : 'cover',
           objectPosition: 'center'

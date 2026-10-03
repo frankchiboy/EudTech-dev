@@ -479,7 +479,14 @@ function assertConfiguratorProduct(routePath, expectedProductId, items) {
   requireQuoteAction(routePath, service);
 }
 
+let renderedRouteCount = 0;
 for (const route of expectedRoutes) {
+  // Rendered routes use the actual React layout, verified below. Legacy layout
+  // checks still apply to every live-data configurator fallback.
+  if (readRouteHtml(route.path).includes('data-rendered="true"')) {
+    renderedRouteCount++;
+    continue;
+  }
   const { html, jsonLd } = assertSocialMeta(route);
   assertWebPageSchema(route.path, route.canonicalUrl, route.socialImageUrl, jsonLd);
   if (route.path === '/configurator') {
@@ -493,6 +500,7 @@ for (const route of expectedRoutes) {
 for (const page of CONFIGURATOR_SEO_PAGES) {
   const routePath = `/solutions/${page.slug}`;
   const html = readRouteHtml(routePath);
+  if (html.includes('data-rendered="true"')) continue;
   const items = collectJsonLd(routePath, html);
   requireType(routePath, items, 'BreadcrumbList');
   requireType(routePath, items, page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist' ? 'Article' : 'Service');
@@ -504,6 +512,8 @@ for (const page of CONFIGURATOR_SEO_PAGES) {
   }
 }
 
+if (renderedRouteCount) require('./verify-rendered-pages.cjs');
+
 console.log(
   JSON.stringify(
     {
@@ -511,9 +521,9 @@ console.log(
       configuratorProductPages: CONFIGURATOR_PRODUCT_SEO.length,
       solutionPages: CONFIGURATOR_SEO_PAGES.length,
       checkedStaticRoutes: expectedRoutes.length,
-      checkedSocialPreviewTags: true,
-      checkedRelatedInternalLinks: true,
-      checkedRelatedItemLists: true
+      checkedLegacyFallbackRoutes: expectedRoutes.length - renderedRouteCount,
+      checkedRenderedRoutes: renderedRouteCount,
+      checkedSocialPreviewTags: true
     },
     null,
     2

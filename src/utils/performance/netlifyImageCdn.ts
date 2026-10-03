@@ -1,12 +1,3 @@
-const LOCAL_HOST_PATTERNS = [
-  /^localhost$/,
-  /^host\.docker\.internal$/,
-  /^127\.0\.0\.1$/,
-  /^192\.168\./,
-  /^10\./,
-  /^172\.(1[6-9]|2\d|3[0-1])\./
-];
-
 type NetlifyImageOptions = {
   width: number;
   quality?: number;
@@ -21,11 +12,9 @@ type ResponsiveImageOptions = {
 };
 
 export const canUseNetlifyImageCdn = () => {
-  if (typeof window === 'undefined') {
-    return false;
-  }
-
-  return !LOCAL_HOST_PATTERNS.some((pattern) => pattern.test(window.location.hostname));
+  // Build-rendered markup and hydration must request the same image variants.
+  // Development uses source images; production and Netlify previews use the CDN.
+  return import.meta.env.PROD;
 };
 
 export const getNetlifyImageUrl = (url: string, options: NetlifyImageOptions) => {

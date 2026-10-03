@@ -19,10 +19,11 @@ export const useLanguageContext = () => {
 
 interface LanguageProviderProps {
   children: ReactNode;
+  initialPath: string;
 }
 
-export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const languageHook = useLanguage();
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children, initialPath }) => {
+  const languageHook = useLanguage(initialPath);
   
   return (
     <LanguageContext.Provider value={languageHook}>
