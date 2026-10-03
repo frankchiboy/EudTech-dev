@@ -7,13 +7,13 @@
     "dev": "rm -rf node_modules/.vite && vite --force",
     "dev:full": "bash prepare-deploy.sh && vite --force",
     "dev:clean": "rm -rf node_modules/.vite dist && vite --force",
-    "build": "npm run generate:hero-images && npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && bash prepare-deploy.sh && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs && node scripts/render-public-pages.mjs && node scripts/verify-rendered-pages.cjs && node scripts/verify-bilingual-seo.cjs",
-    "build:vercel": "npm run generate:hero-images && npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && bash prepare-deploy.sh && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs && node scripts/render-public-pages.mjs && node scripts/verify-rendered-pages.cjs && node scripts/vercel-build.cjs",
+    "build": "npm run generate:hero-images && npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && bash prepare-deploy.sh && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs && node scripts/render-public-pages.mjs && node scripts/verify-rendered-pages.cjs && node scripts/generate-content-image-sitemap.cjs && node scripts/verify-content-image-sitemap.cjs && node scripts/verify-bilingual-seo.cjs",
+    "build:vercel": "npm run generate:hero-images && npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && bash prepare-deploy.sh && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs && node scripts/render-public-pages.mjs && node scripts/verify-rendered-pages.cjs && node scripts/generate-content-image-sitemap.cjs && node scripts/verify-content-image-sitemap.cjs && node scripts/vercel-build.cjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "postbuild": "node scripts/inject-version.cjs",
     "test-env": "vite preview --open public/test-environment.html",
-    "build:netlify": "npm run generate:hero-images && npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs && node scripts/render-public-pages.mjs && node scripts/verify-rendered-pages.cjs && node scripts/verify-bilingual-seo.cjs",
+    "build:netlify": "npm run generate:hero-images && npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && npm run clean:public-assets:safe-duplicates && vite build && node scripts/generate-build-metadata.cjs && node scripts/generate-static-seo-pages.cjs && node scripts/verify-static-seo.cjs && node scripts/render-public-pages.mjs && node scripts/verify-rendered-pages.cjs && node scripts/generate-content-image-sitemap.cjs && node scripts/verify-content-image-sitemap.cjs && node scripts/verify-bilingual-seo.cjs",
     "submit:indexnow": "npm run generate:social-images && node scripts/generate-discovery-files.cjs && node scripts/verify-discovery.cjs && node scripts/submit-indexnow.cjs",
     "submit:indexnow:current": "node scripts/submit-indexnow.cjs",
     "submit:indexnow:dry-run": "node scripts/submit-indexnow.cjs --dry-run",
@@ -79,7 +79,8 @@
     "verify:seo-html": "node scripts/verify-static-seo.cjs",
     "verify:seo-languages": "node scripts/verify-bilingual-seo.cjs",
     "verify:rendered-pages": "node scripts/verify-rendered-pages.cjs",
-    "generate:hero-images": "node scripts/generate-hero-images.mjs"
+    "generate:hero-images": "node scripts/generate-hero-images.mjs",
+    "verify:content-images": "node scripts/verify-content-image-sitemap.cjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
