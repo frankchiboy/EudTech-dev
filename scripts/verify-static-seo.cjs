@@ -309,7 +309,7 @@ function assertStaticSeoFallback(route, jsonLd) {
     throw new Error(`${route.path} static SEO body fallback missing title text.`);
   }
 
-  if (!text.includes('info@eudaemonia.tech')) {
+  if (!text.includes('quote@eudaemonia.tech')) {
     throw new Error(`${route.path} static SEO body fallback missing quote contact email.`);
   }
 

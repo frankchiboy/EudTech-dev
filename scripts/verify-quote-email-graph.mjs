@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 
 const env = {
   QUOTE_SENDER_EMAIL: 'frank.hsu@eudaemonia.tech',
-  QUOTE_RECIPIENT_EMAIL: 'info@eudaemonia.tech',
+  QUOTE_RECIPIENT_EMAIL: 'quote@eudaemonia.tech',
   QUOTE_INBOX_COPY_EMAIL: '',
   GRAPH_TENANT_ID: 'tenant-id',
   GRAPH_CLIENT_ID: 'client-id',
@@ -67,7 +67,8 @@ assert.equal(calls.length, 3);
 
 const draftCall = calls[1];
 const draft = JSON.parse(draftCall.options.body);
-assert.equal(draft.toRecipients[0].emailAddress.address, 'info@eudaemonia.tech');
+assert.equal(draft.toRecipients[0].emailAddress.address, 'quote@eudaemonia.tech');
+assert.equal(draft.toRecipients[0].emailAddress.name, '詢價');
 assert.equal(draft.replyTo[0].emailAddress.address, 'buyer@example.com');
 assert.deepEqual(draft.internetMessageHeaders, [
   { name: 'x-eudtech-source', value: 'website-configurator' },
@@ -84,5 +85,12 @@ const wrongRecipient = await sendQuoteEmail(new Request('https://example.test/se
 }));
 assert.equal(wrongRecipient.status, 400);
 assert.equal(calls.length, 3);
+
+const legacy = await sendQuoteEmail(new Request('https://example.test/send-email', {
+  method: 'POST', headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ firstName: 'Ada', lastName: 'Buyer', email: 'buyer@example.com', message: 'Cached form inquiry', toEmail: 'info@eudaemonia.tech' })
+}));
+assert.equal(legacy.status, 200);
+assert.equal(JSON.parse(calls[4].options.body).toRecipients[0].emailAddress.address, 'quote@eudaemonia.tech');
 
 console.log(JSON.stringify({ ok: true, graphCalls: calls.length, quoteRequestIdValidatedForConfigurator: true, completeConfigurationSummaryVerified: true, fixedRecipientVerified: true, sourceHeaderVerified: true }));

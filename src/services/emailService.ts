@@ -213,7 +213,7 @@ class EmailService {
 
     try {
       const timestamp = new Date().toISOString();
-      const recipientEmail = data.toEmail || 'info@eudaemonia.tech';
+      const recipientEmail = data.toEmail || 'quote@eudaemonia.tech';
       const subject = data.subject || `網站表單聯繫 - ${timestamp}`;
       console.log('開始發送郵件到 EmailJS...');
       const result = await this.withRetry(() =>

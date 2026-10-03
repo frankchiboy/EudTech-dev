@@ -48,7 +48,7 @@ const eudTechOrganization = {
   name: 'EudTech',
   alternateName: 'Eudaemonia Technology',
   url: siteRootUrl,
-  email: 'info@eudaemonia.tech',
+  email: 'quote@eudaemonia.tech',
   logo: {
     '@type': 'ImageObject',
     url: `${siteOrigin}/logo.svg`
@@ -60,7 +60,7 @@ const eudTechOrganization = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
-    email: 'info@eudaemonia.tech',
+    email: 'quote@eudaemonia.tech',
     availableLanguage: ['zh-TW', 'en']
   }
 };
@@ -153,7 +153,7 @@ const aiAgentRoute = {
     { label: '適用企業', value: '已使用 Microsoft 365、工作仍散落於郵件、試算表與個人記事的企業' },
     { label: '導入方法', value: '流程診斷、可驗證試點、上線驗收、擴充維運' },
     { label: '驗收依據', value: '來源、權限、人員核准、輸出、去重、操作紀錄與實際案例重跑' },
-    { label: '聯絡方式', value: 'info@eudaemonia.tech' }
+    { label: '聯絡方式', value: 'quote@eudaemonia.tech' }
   ],
   faq: [
     ['AI Agent 與 Headless SaaS 是兩項不同服務嗎？', '不是。Headless SaaS 負責串接既有系統並建立品牌入口與事件層；AI Agent 在相同權限、核准與稽核架構內處理追蹤、核對與催辦。'],
@@ -246,7 +246,7 @@ const solutionHubRoute = {
     ['如何選擇 EudTech 解決方案？', '需要串接既有系統、建立品牌入口、改善企業流程或導入 Agent 時，選擇 AI Agent 與 Headless SaaS；需要 GPU 伺服器或工作站時選擇 AI 運算基礎設施；需要分析社群風險時選擇社群情報。'],
     ['方案是否可以先做小範圍驗證？', '可以。EudTech 會先定義問題、資料、負責人、證據與成功指標，再以可操作範圍開始。'],
     ['AI 運算方案可以直接配置嗎？', '可以。AI 運算基礎設施頁會連到 Comino 配置器，保留可分享配置並送出詢價。'],
-    ['如何開始諮詢？', '使用聯絡頁選擇需求類型，再透過 Microsoft Bookings 或 info@eudaemonia.tech 安排下一步。']
+    ['如何開始諮詢？', '使用聯絡頁選擇需求類型，再透過 Microsoft Bookings 或 quote@eudaemonia.tech 安排下一步。']
   ],
   schema: [
     {
@@ -413,7 +413,7 @@ const routes = [
     ],
     specs: [
       { label: '可配置項目', value: 'GPU、CPU、RAM、儲存、電源、網路' },
-      { label: '報價流程', value: '配置器送出至 info@eudaemonia.tech' },
+      { label: '報價流程', value: '配置器送出至 quote@eudaemonia.tech' },
       { label: '服務區域', value: 'Taiwan' }
     ],
     faq: [
@@ -857,7 +857,7 @@ function routeQuoteChecklist(route, specs) {
     route.contentType === 'information' ? '依本頁提供的分類與內容選擇最符合需求的下一步，並保留需要進一步確認的問題。' : '',
     route.configuratorHref ? '開啟配置器後保留目前選項與可分享連結，避免規格溝通時版本不一致。' : '',
     route.quoteHref ? '使用取得報價流程送出聯絡資料、公司資訊、備註與配置連結。' : '',
-    '送出後由 EudTech 透過 info@eudaemonia.tech 追蹤正式報價，不以此靜態頁面上的文字取代正式報價單。'
+    '送出後由 EudTech 透過 quote@eudaemonia.tech 追蹤正式報價，不以此靜態頁面上的文字取代正式報價單。'
   ]);
 }
 
@@ -1006,7 +1006,7 @@ function staticSeoFallback(route) {
       }
       ${staticTestDrive(route)}
       ${staticProcurementReference(route)}
-      <p class="static-seo-contact">正式詢價與配置討論請聯絡 <a href="mailto:info@eudaemonia.tech">info@eudaemonia.tech</a>。</p>
+      <p class="static-seo-contact">正式詢價與配置討論請聯絡 <a href="mailto:quote@eudaemonia.tech">quote@eudaemonia.tech</a>。</p>
     </main>`;
 }
 

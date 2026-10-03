@@ -179,7 +179,7 @@ try {
     const labels = [...(dialog?.querySelectorAll('label > span') || [])].map(label => label.textContent.trim());
     const errors = dialog?.querySelectorAll('small').length || 0;
     const summary = dialog?.querySelector('.grando-quote-summary')?.textContent || '';
-    return { found: Boolean(dialog), recipient: dialog?.textContent.includes('info@eudaemonia.tech'), labels, errors, summary };
+    return { found: Boolean(dialog), recipient: dialog?.textContent.includes('quote@eudaemonia.tech'), labels, errors, summary };
   })()`);
   check('取得報價表單、必填驗證、十模組摘要與固定收件地址完整', quote.found && quote.recipient && quote.labels.length >= 7 && quote.errors >= 4 && ['GPU', 'CPU'].every(label => quote.summary.includes(label)) && (quote.summary.includes('RAM') || quote.summary.includes('記憶體')) && (quote.summary.includes('資料碟 4') || quote.summary.includes('Data Drive 4')) && (quote.summary.includes('網路') || quote.summary.includes('Network')), quote);
 
@@ -187,7 +187,7 @@ try {
   await waitFor("document.querySelector('.grando-quote-modal') !== null", 10_000, 'request=true quote form');
   const requestMode = await evaluate(`(() => ({
     found: Boolean(document.querySelector('.grando-quote-modal')),
-    recipient: document.querySelector('.grando-quote-modal')?.textContent.includes('info@eudaemonia.tech')
+    recipient: document.querySelector('.grando-quote-modal')?.textContent.includes('quote@eudaemonia.tech')
   }))()`);
   check('request=true 會等待資料完成後自動開啟詢價表單', requestMode.found && requestMode.recipient, requestMode);
 

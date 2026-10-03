@@ -63,7 +63,7 @@ const buildStructuredData = (isEnglish: boolean) => {
         '@type': 'Organization',
         name: 'EudTech',
         url: SITE_ROOT_URL,
-        email: 'info@eudaemonia.tech'
+        email: 'quote@eudaemonia.tech'
       },
       mainEntity: {
         '@type': 'ItemList',

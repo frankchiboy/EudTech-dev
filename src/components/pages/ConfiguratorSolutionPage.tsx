@@ -116,7 +116,7 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
             '@type': 'Organization',
             name: 'EudTech',
             url: SITE_ROOT_URL,
-            email: 'info@eudaemonia.tech'
+            email: 'quote@eudaemonia.tech'
           },
           url: pageUrl,
           image: pageImage

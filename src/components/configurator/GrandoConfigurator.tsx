@@ -81,7 +81,7 @@ import './Configurator.css';
 
 type DeviceSummary = ConfiguratorDevice & { options: ConfiguratorOption[] };
 
-const QUOTE_RECIPIENT_EMAIL = 'info@eudaemonia.tech';
+const QUOTE_RECIPIENT_EMAIL = 'quote@eudaemonia.tech';
 const createQuoteRequestId = () => {
   if (globalThis.crypto?.randomUUID) {
     return globalThis.crypto.randomUUID();

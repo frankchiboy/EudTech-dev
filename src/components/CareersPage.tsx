@@ -7,13 +7,13 @@ import Card from './ui/Card';
 import Button from './ui/Button';
 import SEOHead from './common/SEOHead';
 
-const applicationEmail = 'info@eudaemonia.tech';
+const applicationEmail = 'quote@eudaemonia.tech';
 
 const CareersPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
   const careersUrl = 'https://eudaemonia.tech/careers';
   const organizationName = 'EudTech';
-  const applyEmail = 'frank.hsu@eudaemonia.tech';
+  const applyEmail = 'quote@eudaemonia.tech';
 
   const jobData = [
     {

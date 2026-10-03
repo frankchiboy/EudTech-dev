@@ -41,7 +41,7 @@ const AppRoutes: React.FC = () => {
       name: 'EudTech',
       alternateName: 'Eudaemonia Technology',
       url: canonicalPageUrl('https://eudaemonia.tech'),
-      email: 'info@eudaemonia.tech'
+      email: 'quote@eudaemonia.tech'
     },
     {
       '@context': 'https://schema.org',

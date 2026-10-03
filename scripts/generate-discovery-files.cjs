@@ -444,7 +444,7 @@ Use the configurator to prepare GPU, CPU, RAM, storage, power and networking req
 
 ## Contact
 
-- Email: info@eudaemonia.tech
+- Email: quote@eudaemonia.tech
 - Site: ${siteOrigin}/
 `;
 
@@ -456,7 +456,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 
 - Company: EudTech / Eudaemonia Technology
 - Region: Taiwan
-- Contact: info@eudaemonia.tech
+- Contact: quote@eudaemonia.tech
 - Services: AI agent and headless SaaS implementation, Comino AI infrastructure, and Cyabra social intelligence.
 - Configurable items: GPU, CPU, RAM, OS drive, data drives, power supply, and networking.
 - Public pricing: not published. Availability, pricing, warranty and acceptance criteria require a confirmed quotation and BOM.
@@ -766,7 +766,7 @@ ${solutionUrls.map(linkCard).join('\n')}
       </section>
 
       <footer>
-        <p>正式報價與供應條件以 EudTech 後續回覆為準。聯絡信箱：<a href="mailto:info@eudaemonia.tech">info@eudaemonia.tech</a></p>
+        <p>正式報價與供應條件以 EudTech 後續回覆為準。聯絡信箱：<a href="mailto:quote@eudaemonia.tech">quote@eudaemonia.tech</a></p>
         <p><a href="https://eudaemonia.tech/about/">關於 EudTech</a> · <a href="https://eudaemonia.tech/privacy/">隱私與資料使用</a></p>
       </footer>
     </main>

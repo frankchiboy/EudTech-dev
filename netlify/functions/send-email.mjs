@@ -7,7 +7,7 @@ const requiredEnv = [
 
 const GRAPH_ROOT = 'https://graph.microsoft.com/v1.0';
 const WEBSITE_SOURCE_HEADER = 'website-configurator';
-const QUOTE_RECIPIENT_EMAIL = 'info@eudaemonia.tech';
+const QUOTE_RECIPIENT_EMAIL = 'quote@eudaemonia.tech';
 const REQUIRED_CONFIGURATION_FIELDS = [
   'device',
   'gpu',
@@ -180,8 +180,8 @@ async function sendQuoteEmail(request) {
   }
 
   const requestedRecipient = normalize(payload.toEmail);
-  if (requestedRecipient && requestedRecipient.toLowerCase() !== QUOTE_RECIPIENT_EMAIL) {
-    return json(400, { error: 'Quote recipient is fixed to info@eudaemonia.tech' });
+  if (requestedRecipient && ![QUOTE_RECIPIENT_EMAIL, 'info@eudaemonia.tech'].includes(requestedRecipient.toLowerCase())) {
+    return json(400, { error: 'Quote recipient is fixed to quote@eudaemonia.tech' });
   }
 
   if (quoteRequestId && !hasCompleteConfigurationSummary(payload.configurationSummary)) {
@@ -228,7 +228,7 @@ async function sendQuoteEmail(request) {
           configurationSummary: normalizedConfigurationSummary
         })}<p style="white-space:pre-wrap">${escapeHtml(text)}</p>`
       },
-      toRecipients: [graphRecipient(recipient)],
+      toRecipients: [{ emailAddress: { address: recipient, name: '詢價' } }],
       bccRecipients: inboxCopies.map(graphRecipient),
       replyTo: [graphRecipient(email)],
       internetMessageHeaders: [

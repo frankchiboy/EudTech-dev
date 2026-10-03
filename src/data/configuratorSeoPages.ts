@@ -182,7 +182,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     specs: [
       { label: { en: 'GPU focus', zh: 'GPU 重點' }, value: { en: 'NVIDIA RTX PRO 6000 class options', zh: 'NVIDIA RTX PRO 6000 等級選項' } },
       { label: { en: 'Use case', zh: '應用場景' }, value: { en: 'Local AI inference, rendering, simulation', zh: '本地 AI 推論、渲染、模擬' } },
-      { label: { en: 'Quote request path', zh: '詢價路徑' }, value: { en: 'Configurator form to info@eudaemonia.tech', zh: '配置器表單送至 info@eudaemonia.tech' } }
+      { label: { en: 'Quote request path', zh: '詢價路徑' }, value: { en: 'Configurator form to quote@eudaemonia.tech', zh: '配置器表單送至 quote@eudaemonia.tech' } }
     ],
     faqs: [
       {
@@ -945,7 +945,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       },
       {
         question: { en: 'Does EudTech handle Taiwan quote follow-up for Comino Grando?', zh: 'EudTech 會追蹤 Comino Grando 的台灣報價嗎？' },
-        answer: { en: 'Yes. EudTech receives the submitted configuration and follows up through info@eudaemonia.tech.', zh: '會。EudTech 接收送出的配置，並透過 info@eudaemonia.tech 追蹤報價。' }
+        answer: { en: 'Yes. EudTech receives the submitted configuration and follows up through quote@eudaemonia.tech.', zh: '會。EudTech 接收送出的配置，並透過 quote@eudaemonia.tech 追蹤報價。' }
       }
     ]
   },

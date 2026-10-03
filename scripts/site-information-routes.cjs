@@ -136,7 +136,7 @@ const SITE_INFORMATION_ROUTES = [
     priority: '0.75',
     changefreq: 'monthly',
     highlights: ['AI Agent 與企業流程導入。', 'GPU 伺服器、工作站與液冷系統。', 'Cyabra 社群情報與品牌保護。'],
-    specs: [{ label: '聯絡信箱', value: 'info@eudaemonia.tech' }, { label: '諮詢類型', value: 'AI Agent、AI 運算與社群情報' }, { label: '會議方式', value: 'Microsoft Bookings 線上預約' }],
+    specs: [{ label: '聯絡信箱', value: 'quote@eudaemonia.tech' }, { label: '諮詢類型', value: 'AI Agent、AI 運算與社群情報' }, { label: '會議方式', value: 'Microsoft Bookings 線上預約' }],
     relatedLinks: ['/solutions', '/products', '/configurator', '/about']
   },
   {
@@ -150,7 +150,7 @@ const SITE_INFORMATION_ROUTES = [
     priority: '0.40',
     changefreq: 'yearly',
     highlights: ['詢價與聯絡資料用途。', '客戶來源與匿名識別碼。', '資料查詢、更正及刪除請求方式。'],
-    specs: [{ label: '資料聯絡', value: 'info@eudaemonia.tech' }, { label: '網站資料', value: '詢價、聯絡與來源歸因' }, { label: '資料請求', value: '查詢、更正或刪除請求' }],
+    specs: [{ label: '資料聯絡', value: 'quote@eudaemonia.tech' }, { label: '網站資料', value: '詢價、聯絡與來源歸因' }, { label: '資料請求', value: '查詢、更正或刪除請求' }],
     relatedLinks: ['/contact', '/about', '/solutions', '/products']
   }
 ].filter((route) => route.path !== '/solutions/headless-saas');

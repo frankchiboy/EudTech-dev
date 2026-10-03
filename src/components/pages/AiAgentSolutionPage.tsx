@@ -210,7 +210,7 @@ const buildStructuredData = (isEnglish: boolean) => {
       description: pageDescription,
       serviceType: 'AI agent and headless SaaS implementation',
       areaServed: { '@type': 'Country', name: isEnglish ? 'Taiwan' : '台灣' },
-      provider: { '@type': 'Organization', name: 'EudTech', url: canonicalPageUrl('https://eudaemonia.tech'), email: 'info@eudaemonia.tech' },
+      provider: { '@type': 'Organization', name: 'EudTech', url: canonicalPageUrl('https://eudaemonia.tech'), email: 'quote@eudaemonia.tech' },
       url: pageUrl
     },
     {
@@ -294,7 +294,7 @@ const AiAgentSolutionPage: React.FC = () => {
                   <CalendarDays className="mr-2 h-4 w-4" />
                   {isEnglish ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh}
                 </a>
-                <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2" className="inline-flex items-center justify-center rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/70">
+                <a href="mailto:quote@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2" className="inline-flex items-center justify-center rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/70">
                   <Mail className="mr-2 h-4 w-4" />
                   {isEnglish ? 'Email EudTech' : '寄信給 EudTech'}
                 </a>
@@ -343,7 +343,7 @@ const AiAgentSolutionPage: React.FC = () => {
                 ))}
               </div>
               <a
-                href="mailto:info@eudaemonia.tech?subject=AI%20%E5%85%AC%E6%96%87%E7%B3%BB%E7%B5%B1%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2"
+                href="mailto:quote@eudaemonia.tech?subject=AI%20%E5%85%AC%E6%96%87%E7%B3%BB%E7%B5%B1%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2"
                 className="mt-8 inline-flex items-center rounded-md bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
               >
                 {isEnglish ? 'Discuss an AI official-document system' : 'AI 公文系統導入諮詢'}
@@ -542,7 +542,7 @@ const AiAgentSolutionPage: React.FC = () => {
                   <NarrativeVisual src={item.visual} />
                   <h3 className="mt-6 text-lg font-semibold">{text(item.title, isEnglish)}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text(item.body, isEnglish)}</p>
-                  <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E6%96%B9%E6%A1%88" className="mt-6 inline-flex items-center text-sm font-semibold text-cyan-700 hover:text-cyan-600 dark:text-cyan-300">
+                  <a href="mailto:quote@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E6%96%B9%E6%A1%88" className="mt-6 inline-flex items-center text-sm font-semibold text-cyan-700 hover:text-cyan-600 dark:text-cyan-300">
                     {isEnglish ? 'Discuss scope' : '討論範圍'} <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </article>
@@ -597,7 +597,7 @@ const AiAgentSolutionPage: React.FC = () => {
             </div>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-md bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"><CalendarDays className="mr-2 h-4 w-4" />{isEnglish ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh}</a>
-              <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E5%88%9D%E8%AB%87" className="inline-flex items-center justify-center rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"><Mail className="mr-2 h-4 w-4" />{isEnglish ? 'Send an email' : '寄送郵件'}</a>
+              <a href="mailto:quote@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E5%88%9D%E8%AB%87" className="inline-flex items-center justify-center rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"><Mail className="mr-2 h-4 w-4" />{isEnglish ? 'Send an email' : '寄送郵件'}</a>
             </div>
           </div>
         </section>
@@ -606,7 +606,7 @@ const AiAgentSolutionPage: React.FC = () => {
 
         {showMobileActions && <nav aria-label={isEnglish ? 'AI Agent quick actions' : 'AI Agent 快速操作'} data-ai-agent-mobile-actions className="fixed inset-x-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 flex gap-2 rounded-xl border border-slate-200 bg-white/95 p-2 shadow-xl backdrop-blur md:hidden dark:border-slate-700 dark:bg-slate-900/95">
           <a href={BOOKING_URL} target="_blank" rel="noreferrer" className="flex flex-1 items-center justify-center rounded-lg bg-cyan-400 px-3 py-3 text-xs font-semibold text-slate-950"><CalendarDays className="mr-1.5 h-4 w-4" />{isEnglish ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh}</a>
-          <a href="mailto:info@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2" className="flex flex-1 items-center justify-center rounded-lg border border-slate-300 px-3 py-3 text-xs font-semibold text-slate-800 dark:border-slate-600 dark:text-slate-100"><Mail className="mr-1.5 h-4 w-4" />{isEnglish ? 'Email' : '寄信'}</a>
+          <a href="mailto:quote@eudaemonia.tech?subject=AI%20Agent%20%E5%B0%8E%E5%85%A5%E8%AB%AE%E8%A9%A2" className="flex flex-1 items-center justify-center rounded-lg border border-slate-300 px-3 py-3 text-xs font-semibold text-slate-800 dark:border-slate-600 dark:text-slate-100"><Mail className="mr-1.5 h-4 w-4" />{isEnglish ? 'Email' : '寄信'}</a>
         </nav>}
       </div>
     </>
