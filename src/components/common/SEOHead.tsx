@@ -59,8 +59,10 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   const zhUrl = canonicalPageUrl(`${SITE_ORIGIN}${basePath}`, SITE_ORIGIN);
   const enUrl = canonicalPageUrl(`${SITE_ORIGIN}/en${basePath}`, SITE_ORIGIN);
   const canonicalUrl = isEnglish ? enUrl : zhUrl;
+  const shouldIndex = !noIndex && canonicalUrl in discoveryDates.entries;
   const socialSlug = basePath === '/' ? 'home' : basePath.replace(/^\/+|\/+$/g, '').replace(/\//g, '-');
-  const imageUrl = normalizeAbsoluteUrl(image || `/social/configurator/${socialSlug}.jpg`);
+  const imageUrl = normalizeAbsoluteUrl(image || `/social/configurator/${shouldIndex ? socialSlug : 'home'}.jpg`);
+  const hasSocialImageDimensions = imageUrl.includes('/social/configurator/');
   const dates = discoveryDates.entries[canonicalUrl as keyof typeof discoveryDates.entries];
   const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION as string | undefined;
   const bingSiteVerification = import.meta.env.VITE_BING_SITE_VERIFICATION as string | undefined;
@@ -94,7 +96,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     if (typeof copy.url === 'string' && new URL(copy.url, SITE_ORIGIN).pathname === basePath) copy.url = canonicalUrl;
     return copy;
   });
-  if (!noIndex) structuredDataItems.push({
+  if (shouldIndex) structuredDataItems.push({
     '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${canonicalUrl}#webpage`,
     url: canonicalUrl, name: fullTitle, description: pageDescription, inLanguage: isEnglish ? 'en' : 'zh-TW',
     ...(dates ? { dateModified: dates.modifiedAt } : {}),
@@ -114,8 +116,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:image" content={imageUrl} />
       <meta property="og:image:secure_url" content={imageUrl} />
       <meta property="og:image:alt" content={imageAlt || title || defaultTitle} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      {hasSocialImageDimensions && <meta property="og:image:width" content="1200" />}
+      {hasSocialImageDimensions && <meta property="og:image:height" content="630" />}
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="EudTech" />
@@ -130,12 +132,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:url" content={canonicalUrl} />
       
       {/* Additional SEO */}
-      <meta name="robots" content={noIndex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+      <meta name="robots" content={shouldIndex ? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' : 'noindex, follow'} />
       <meta name="author" content="EudTech" />
       <link rel="canonical" href={canonicalUrl} />
-      {!noIndex && <link rel="alternate" hrefLang="zh-Hant" href={zhUrl} />}
-      {!noIndex && <link rel="alternate" hrefLang="en" href={enUrl} />}
-      {!noIndex && <link rel="alternate" hrefLang="x-default" href={zhUrl} />}
+      {shouldIndex && <link rel="alternate" hrefLang="zh-Hant" href={zhUrl} />}
+      {shouldIndex && <link rel="alternate" hrefLang="en" href={enUrl} />}
+      {shouldIndex && <link rel="alternate" hrefLang="x-default" href={zhUrl} />}
       <link rel="alternate" type="application/rss+xml" title="EudTech Configurator Updates" href={`${SITE_ORIGIN}/feed.xml`} />
       <link rel="alternate" type="application/feed+json" title="EudTech Configurator Updates" href={`${SITE_ORIGIN}/feed.json`} />
       <link rel="alternate" type="text/markdown" title="EudTech LLM Summary" href={`${SITE_ORIGIN}/llms.txt`} />

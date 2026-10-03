@@ -1029,8 +1029,7 @@ function webPageSchema(route, { title, url, image, imageAlt }) {
     primaryImageOfPage: {
       '@type': 'ImageObject',
       url: image,
-      width: SOCIAL_IMAGE_WIDTH,
-      height: SOCIAL_IMAGE_HEIGHT,
+      ...(image.includes('/social/configurator/') ? {width:SOCIAL_IMAGE_WIDTH, height:SOCIAL_IMAGE_HEIGHT} : {}),
       caption: imageAlt
     },
     breadcrumb: {
@@ -1152,8 +1151,8 @@ function injectHead(baseHtml, route) {
     `<meta data-rh="true" property="og:image" content="${escapeHtml(image)}">`,
     `<meta data-rh="true" property="og:image:secure_url" content="${escapeHtml(image)}">`,
     `<meta data-rh="true" property="og:image:alt" content="${escapeHtml(imageAlt)}">`,
-    `<meta data-rh="true" property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}">`,
-    `<meta data-rh="true" property="og:image:height" content="${SOCIAL_IMAGE_HEIGHT}">`,
+    ...(socialPreview ? [`<meta data-rh="true" property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}">`,
+      `<meta data-rh="true" property="og:image:height" content="${SOCIAL_IMAGE_HEIGHT}">`] : []),
     `<meta data-rh="true" property="og:url" content="${escapeHtml(url)}">`,
     `<meta data-rh="true" property="og:type" content="${ogType}">`,
     '<meta data-rh="true" property="og:site_name" content="EudTech">',
