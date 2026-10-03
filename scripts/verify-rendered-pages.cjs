@@ -42,6 +42,12 @@ for (const route of englishRoutes()) for (const en of [false, true]) {
 assert.equal(rendered, 70);
 assert.equal(dynamic, 24);
 assert.ok(!fs.existsSync(path.join(dist, 'entry-server.js')), 'Server code must not be published');
+assert.ok(!fs.existsSync(path.join(dist, '.vite/manifest.json')), 'Build manifest must stay outside the published directory');
+for (const p of ['solutions/ai-infrastructure/index.html', 'en/solutions/ai-infrastructure/index.html']) {
+  const html = fs.readFileSync(path.join(dist, p), 'utf8');
+  assert.match(html, /<link[^>]+rel="stylesheet"[^>]+href="\/assets\/AiInfrastructureSolutionPage-[^"]+\.css"/, `First-paint styles missing: ${p}`);
+  assert.match(html, /<link[^>]+rel="modulepreload"[^>]+href="\/assets\/AiInfrastructureSolutionPage-[^"]+\.js"/, `Route code preload missing: ${p}`);
+}
 for (const p of ['index.html', 'en/index.html']) {
   const html = fs.readFileSync(path.join(dist, p), 'utf8');
   assert.ok(html.includes('fetchPriority="high"') && html.includes('960w,') && html.includes('2560w'), `Responsive priority hero missing: ${p}`);
