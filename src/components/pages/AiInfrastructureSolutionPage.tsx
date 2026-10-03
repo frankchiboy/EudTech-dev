@@ -5,6 +5,8 @@ import { VENDOR_EVIDENCE, vendorEvidenceHref } from '../../data/vendorEvidence';
 import { Bilingual, PageShell, tx } from './SitePagePrimitives';
 import './AiInfrastructureSolutionPage.css';
 import CominoProcurementSection from './CominoProcurementSection';
+import CominoTestDriveSection from './CominoTestDriveSection';
+import testDrive from '../../data/cominoTestDrive.json';
 
 const kit = '/vendor/comino/sales-kit-0911/';
 const questions = [
@@ -51,7 +53,7 @@ const StoryFigure: React.FC<{ src: string; alt: Bilingual; caption: Bilingual; i
 const AiInfrastructureSolutionPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
   const text = (zh: string, en: string) => isEnglish ? en : zh;
-  const actions = <div className="comino-actions"><Link className="comino-button" to="/contact">{text('討論我的部署需求', 'Discuss my deployment')}</Link><Link className="comino-button comino-button-secondary" to="/configurator?request=true">{text('我已知道規格，開始配置', 'I know my specification')}</Link><a className="comino-button comino-button-secondary" href="#procurement">{text('機關採購參考與文件', 'Procurement reference and documents')}</a></div>;
+  const actions = <div className="comino-actions"><Link className="comino-button" to="/contact">{text('討論我的部署需求', 'Discuss my deployment')}</Link><a className="comino-button comino-button-secondary" href="#test-drive">{tx(testDrive.entryLabel, isEnglish)}</a><Link className="comino-button comino-button-secondary" to="/configurator?request=true">{text('我已知道規格，開始配置', 'I know my specification')}</Link><a className="comino-button comino-button-secondary" href="#procurement">{text('機關採購參考與文件', 'Procurement reference and documents')}</a></div>;
 
   return <PageShell title={{ zh: 'AI 運算基礎設施｜EudTech', en: 'AI infrastructure | EudTech' }} description={{ zh: '從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。', en: 'Plan AI servers and workstations from workload, site and liquid-cooling configuration through procurement reference, manufacturer documents and acceptance criteria.' }} path="/solutions/ai-infrastructure">
     <div className="comino-story">
@@ -66,6 +68,8 @@ const AiInfrastructureSolutionPage: React.FC = () => {
           <StoryFigure src={VENDOR_EVIDENCE.comino.image} alt={VENDOR_EVIDENCE.comino.imageAlt} caption={{ zh: 'GRANDO 原廠實機：GPU 冷卻模組、管路與後段散熱器一起設計。', en: 'Official GRANDO system: GPU cooling blocks, pipework and rear radiator designed together.' }} isEnglish={isEnglish} eager />
         </div>
       </section>
+
+      <CominoTestDriveSection isEnglish={isEnglish} />
 
       <section className="comino-section comino-tint" aria-labelledby="site-heading">
         <div className="comino-wrap">
