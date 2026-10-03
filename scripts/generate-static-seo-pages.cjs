@@ -911,13 +911,13 @@ function faqSchema(route) {
 function staticProcurementReference(route) {
   if (route.procurement) {
     const reference = route.procurement;
-    const documents = reference.documents.map((document) => `<li><a href="${escapeHtml(document.href)}">${escapeHtml(document.title.zh)} ${escapeHtml(document.version)}</a> — ${escapeHtml(document.language.zh)}。${escapeHtml(document.description.zh)}</li>`).join('');
+    const documents = reference.documents.map((document) => `<li><a href="${escapeHtml(document.hrefZh)}">${escapeHtml(document.title.zh)} ${escapeHtml(document.version)}</a> — ${escapeHtml(document.language.zh)}。${escapeHtml(document.description.zh)} <a href="${escapeHtml(document.source)}">原廠英文原文</a></li>`).join('');
     const criteria = reference.criteria.map((criterion) => {
       const document = reference.documents.find((item) => item.id === criterion.documentId);
-      const source = document ? `<a href="${escapeHtml(document.href)}#page=${criterion.page}">原廠文件第 ${escapeHtml(criterion.pages)} 頁</a>` : '';
+      const source = document ? `<a href="${escapeHtml(document.hrefZh)}#page=${criterion.page}">中文譯本第 ${escapeHtml(criterion.pages)} 頁</a>` : '';
       return `<li><h3>${escapeHtml(criterion.title.zh)}</h3><p>${escapeHtml(criterion.requirement.zh)}</p><p>${escapeHtml(criterion.evidence.zh)} ${source}</p></li>`;
     }).join('');
-    return `<section id="procurement" aria-labelledby="static-seo-procurement"><h2 id="static-seo-procurement">${escapeHtml(reference.title.zh)}</h2><p>文件查核日期：${escapeHtml(reference.reviewedAt)}</p><ul>${documents}</ul><h3>可供規格研議的功能與證據</h3><ul>${criteria}</ul><h3>數值與適用條件</h3><ul>${['cooling', 'power', 'noise', 'temperature'].map((key) => `<li>${escapeHtml(reference.specs[key].zh)}</li>`).join('')}</ul><p>${escapeHtml(reference.conformityNote.zh)}</p><p>${escapeHtml(reference.procurementNote.zh)} <a href="${escapeHtml(reference.procurementSource)}">政府採購法第 26 條</a></p></section>`;
+    return `<section id="procurement" aria-labelledby="static-seo-procurement"><h2 id="static-seo-procurement">${escapeHtml(reference.title.zh)}</h2><p>文件查核日期：${escapeHtml(reference.reviewedAt)}</p><p>${escapeHtml(reference.translationNote.zh)} 翻譯日期：${escapeHtml(reference.translatedAt)}</p><ul>${documents}</ul><h3>可供規格研議的功能與證據</h3><ul>${criteria}</ul><h3>數值與適用條件</h3><ul>${['cooling', 'power', 'noise', 'temperature'].map((key) => `<li>${escapeHtml(reference.specs[key].zh)}</li>`).join('')}</ul><p>${escapeHtml(reference.conformityNote.zh)}</p><p>${escapeHtml(reference.procurementNote.zh)} <a href="${escapeHtml(reference.procurementSource)}">政府採購法第 26 條</a></p></section>`;
   }
   if (route.path === '/resources' || route.path === '/products' || route.path.startsWith('/configurator')) {
     return `<section aria-labelledby="static-seo-procurement"><h2 id="static-seo-procurement">${escapeHtml(cominoReference.title.zh)}</h2><p>${escapeHtml(cominoReference.configurationNote.zh)}</p><a href="${escapeHtml(cominoReference.href)}">查看功能、適用條件與原廠文件</a></section>`;

@@ -39,6 +39,8 @@ const requiredFiles = [
   'vendor/comino/sales-kit-0911/monitoring-qdc-en.webp',
   'vendor/comino/documents/grando-server-datasheet-v2.3.pdf',
   'vendor/comino/documents/grando-rm-quick-start-v2.0.2.pdf',
+  'vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.pdf',
+  'vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.pdf',
   'social/configurator/configurator.jpg',
   'images/configurator/devices/comino-integration-kit-8x-pro-6000.webp',
   'images/configurator/devices/comino-rtx-pro-6000-workstation.webp',

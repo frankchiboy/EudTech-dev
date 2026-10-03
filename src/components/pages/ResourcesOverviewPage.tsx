@@ -14,7 +14,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import { CONFIGURATOR_SEO_PAGES } from '../../data/configuratorSeoPages';
-import { VENDOR_EVIDENCE } from '../../data/vendorEvidence';
+import { VENDOR_EVIDENCE, vendorEvidenceHref } from '../../data/vendorEvidence';
 import cominoReference from '../../data/cominoProcurement.json';
 import { ActionLink, PageHero, PageShell, SourceLink, tx } from './SitePagePrimitives';
 
@@ -56,11 +56,11 @@ const ResourcesOverviewPage: React.FC = () => {
       eyebrow: { zh: '正在準備採購文件', en: 'Preparing procurement documents' },
       title: cominoReference.title,
       body: {
-        zh: '下載原廠規格書與使用指南，對照散熱、維護、監控、電源備援及符合性證據，整理可查證的需求與驗收。',
+        zh: '下載原廠規格書與使用指南的繁體中文譯本，對照散熱、維護、監控、電源備援及符合性證據，整理可查證的需求與驗收。',
         en: 'Download manufacturer datasheets and guides. Review cooling, service, monitoring, power redundancy and conformity evidence to define verifiable requirements and acceptance terms.'
       },
       href: cominoReference.href,
-      action: { zh: '查看參考與原廠文件', en: 'View reference and manufacturer documents' }
+      action: { zh: '查看參考與中文文件', en: 'View reference and manufacturer documents' }
     }
   ];
 
@@ -211,7 +211,7 @@ const ResourcesOverviewPage: React.FC = () => {
               </p>
               <div className="mt-3 flex flex-wrap gap-x-5 gap-y-3">
                 <SourceLink href={VENDOR_EVIDENCE.comino.sources.blackwell.href} label={VENDOR_EVIDENCE.comino.sources.blackwell.label} isEnglish={isEnglish} />
-                <SourceLink href={VENDOR_EVIDENCE.comino.sources.server.href} label={VENDOR_EVIDENCE.comino.sources.server.label} isEnglish={isEnglish} />
+                <SourceLink href={vendorEvidenceHref(VENDOR_EVIDENCE.comino.sources.server, isEnglish)} label={VENDOR_EVIDENCE.comino.sources.server.label} isEnglish={isEnglish} />
                 <SourceLink href={VENDOR_EVIDENCE.comino.sources.downloads.href} label={VENDOR_EVIDENCE.comino.sources.downloads.label} isEnglish={isEnglish} />
               </div>
             </div>

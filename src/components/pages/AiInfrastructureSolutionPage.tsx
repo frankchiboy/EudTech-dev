@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguageContext } from '../../contexts/LanguageContext';
-import { VENDOR_EVIDENCE } from '../../data/vendorEvidence';
+import { VENDOR_EVIDENCE, vendorEvidenceHref } from '../../data/vendorEvidence';
 import { Bilingual, PageShell, tx } from './SitePagePrimitives';
 import './AiInfrastructureSolutionPage.css';
 import CominoProcurementSection from './CominoProcurementSection';
@@ -127,7 +127,7 @@ const AiInfrastructureSolutionPage: React.FC = () => {
         <div className="comino-wrap"><div className="comino-intro"><p className="comino-eyebrow">Comino × EudTech</p><h2 id="delivery-heading">{text('從原廠配置，到台灣現場的部署與驗收。', 'From the manufacturer’s configuration to deployment in Taiwan.')}</h2><p>{text('Comino 提供硬體與液冷系統設計；EudTech 承接在地需求、配置審查與交付討論，讓使用端、資訊端與採購端能對齊同一份資料。', 'Comino provides the hardware and liquid-cooling system design. EudTech handles local requirements, configuration review and delivery planning so users, IT and procurement work from the same information.')}</p></div>
           <ol className="comino-delivery">{stages.map((item, index) => <li key={item.title.en}><span className="comino-number">0{index + 1}</span><h3>{tx(item.title, isEnglish)}</h3><p>{tx(item.body, isEnglish)}</p></li>)}</ol>
           <p className="comino-small">{text('實際供貨、安裝、測試與支援項目，以正式報價及約定範圍為準。', 'Actual supply, installation, testing and support are defined by the formal quotation and agreed scope.')}</p>
-          <div className="comino-sources"><span>{text('進一步查證', 'Further reading')}</span>{[VENDOR_EVIDENCE.comino.sources.blackwell, VENDOR_EVIDENCE.comino.sources.server, VENDOR_EVIDENCE.comino.sources.downloads].map(source => <a key={source.href} href={source.href} target="_blank" rel="noreferrer">{tx(source.label, isEnglish)}</a>)}</div>
+          <div className="comino-sources"><span>{text('進一步查證', 'Further reading')}</span>{[VENDOR_EVIDENCE.comino.sources.blackwell, VENDOR_EVIDENCE.comino.sources.server, VENDOR_EVIDENCE.comino.sources.downloads].map(source => <a key={source.href} href={vendorEvidenceHref(source, isEnglish)} target="_blank" rel="noreferrer">{tx(source.label, isEnglish)}</a>)}</div>
         </div>
       </section>
 
