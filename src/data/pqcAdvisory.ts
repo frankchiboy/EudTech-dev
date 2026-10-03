@@ -4,7 +4,7 @@ export const pqcExperts = [
   {
     id: 'frank-hsu', name: 'Chung-hao (Frank) Hsu', image: '/vendor/pqc/chung-hao-frank-hsu.png',
     focus: ['PQC 與硬體研究', 'PQC & hardware research'],
-    degree: ['國立中正大學哲學碩士', 'M.A. in Philosophy, National Chung Cheng University'],
+    degree: ['國立中興大學電機系（dropout）', 'Electrical Engineering, National Chung Hsing University (dropout)'],
     expertise: ['FPGA · 後量子密碼 · 音訊隱寫術', 'FPGA · Post-quantum cryptography · Audio steganography'],
     detail: ['研究關注延伸至形式邏輯與溯因推理（IBE），從假設、推理到可驗證的技術判斷。', 'Research interests also include formal logic and abductive reasoning (IBE), connecting assumptions and inference to testable technical judgments.'],
     href: 'https://eudtech.ai/#team', source: ['完整研究與學術背景', 'Full research and academic background']
