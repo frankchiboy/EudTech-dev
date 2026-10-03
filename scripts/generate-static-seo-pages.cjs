@@ -9,6 +9,7 @@ const {
 } = require('./configurator-social-preview-routes.cjs');
 const { SITE_INFORMATION_ROUTES } = require('./site-information-routes.cjs');
 const cominoReference = require('../src/data/cominoProcurement.json');
+const cominoTestDrive = require('../src/data/cominoTestDrive.json');
 
 const distDir = path.resolve(__dirname, '..', 'dist');
 const indexPath = path.join(distDir, 'index.html');
@@ -908,6 +909,13 @@ function faqSchema(route) {
   };
 }
 
+function staticTestDrive(route) {
+  if (route.path !== '/solutions/ai-infrastructure') return '';
+  const trial = cominoTestDrive;
+  const steps = trial.steps.map((step) => `<li><h3>${escapeHtml(step.title.zh)}</h3><p>${escapeHtml(step.body.zh)}</p></li>`).join('');
+  return `<section id="test-drive" aria-labelledby="static-seo-test-drive"><p>${escapeHtml(trial.eyebrow.zh)}</p><h2 id="static-seo-test-drive">${escapeHtml(trial.title.zh)}</h2><p>${escapeHtml(trial.description.zh)}</p><ol>${steps}</ol><p>${escapeHtml(trial.terms.zh)}</p><p><a href="${escapeHtml(trial.application)}">${escapeHtml(trial.applyLabel.zh)}</a> <a href="${escapeHtml(trial.source)}">${escapeHtml(trial.sourceLabel.zh)}</a> <a href="/contact">${escapeHtml(trial.contactLabel.zh)}</a></p></section>`;
+}
+
 function staticProcurementReference(route) {
   if (route.procurement) {
     const reference = route.procurement;
@@ -1016,6 +1024,7 @@ function staticSeoFallback(route) {
       </section>`
           : ''
       }
+      ${staticTestDrive(route)}
       ${staticProcurementReference(route)}
       <p class="static-seo-contact">正式詢價與配置討論請聯絡 <a href="mailto:info@eudaemonia.tech">info@eudaemonia.tech</a>。</p>
     </main>`;

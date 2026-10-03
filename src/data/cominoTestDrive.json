@@ -1,0 +1,33 @@
+{
+  "source": "https://www.grando.ai/promo/experience-amd-rocm-on-radeon-tm-pro",
+  "application": "https://www.grando.ai/request-forms/a-free-test-drive-of-a-amd-radeon-tm-pro-w7900",
+  "reviewedAt": "2026-10-04",
+  "entryLabel": { "zh": "免費遠端試用", "en": "Free remote test drive" },
+  "eyebrow": { "zh": "Comino Test Drive · 原廠免費遠端評估", "en": "Comino Test Drive · Free remote evaluation" },
+  "title": { "zh": "先跑你的工作負載，再決定配置。", "en": "Try your workload before choosing a configuration." },
+  "description": {
+    "zh": "透過 Comino 原廠試用計畫，申請遠端評估 AMD Radeon PRO W7900、Radeon AI PRO R9700 與 ROCm 環境，確認 AI／HPC 工作負載的相容性與效能。",
+    "en": "Apply through Comino’s official Test Drive program to remotely evaluate AMD Radeon PRO W7900, Radeon AI PRO R9700 and ROCm for your AI or HPC workload’s compatibility and performance."
+  },
+  "steps": [
+    {
+      "title": { "zh": "填寫原廠申請", "en": "Apply to Comino" },
+      "body": { "zh": "在原廠表單說明使用情境、軟體與測試目的。", "en": "Describe your use case, software and evaluation goals in the official form." }
+    },
+    {
+      "title": { "zh": "審核後取得連線資訊", "en": "Receive access after review" },
+      "body": { "zh": "符合資格者會收到 Comino 寄送的連線說明。", "en": "Qualifying applicants receive connection instructions from Comino by email." }
+    },
+    {
+      "title": { "zh": "以測試結果討論選型", "en": "Use results to plan your system" },
+      "body": { "zh": "完成評估後，可與 EudTech 討論 GPU 配置、場地條件與報價。", "en": "After evaluation, discuss GPU configuration, site requirements and a quotation with EudTech." }
+    }
+  ],
+  "terms": {
+    "zh": "試用僅限評估，禁止將免費運算時間用於商業用途；Comino 保留隨時終止遠端存取的權利。試用資格、配置與開放時程以原廠確認為準。",
+    "en": "Evaluation only; commercial use of the free computing time is prohibited. Comino may revoke remote access at any time. Eligibility, configuration and availability are subject to Comino’s confirmation."
+  },
+  "applyLabel": { "zh": "向原廠申請免費試用", "en": "Apply for a free test drive" },
+  "sourceLabel": { "zh": "查看原廠計畫（英文）", "en": "View the official program" },
+  "contactLabel": { "zh": "與 EudTech 討論測試需求", "en": "Discuss test requirements with EudTech" }
+}
