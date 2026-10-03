@@ -1,3 +1,5 @@
+import cominoReference from './cominoProcurement.json';
+
 export interface VendorEvidenceSource {
   label: { zh: string; en: string };
   href: string;
@@ -43,8 +45,8 @@ export const VENDOR_EVIDENCE = {
         href: 'https://www.comino.com/products/comino-grando-workstation-or-server-with-up-to-8x-rtx-5090'
       },
       server: {
-        label: { zh: 'Comino Wiki：GRANDO Server 規格', en: 'Comino Wiki: GRANDO Server specifications' },
-        href: 'https://faq.comino.com/grandorm/server'
+        label: { zh: 'Comino：GRANDO Server v2.3 原廠規格書', en: 'Comino: GRANDO Server v2.3 manufacturer datasheet' },
+        href: cominoReference.documents[0].href
       },
       downloads: {
         label: { zh: 'Comino：原廠資料下載', en: 'Comino: official downloads' },

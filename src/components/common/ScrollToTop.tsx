@@ -2,9 +2,16 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = () => {
-  const { pathname, state } = useLocation();
+  const { pathname, hash, state } = useLocation();
 
   useEffect(() => {
+    if (hash) {
+      const element = document.getElementById(hash.slice(1));
+      if (element) {
+        window.scrollTo({ top: Math.max(0, element.getBoundingClientRect().top + window.scrollY - 100), behavior: 'auto' });
+        return;
+      }
+    }
     if (pathname === '/') {
       // 檢查是否有從 sessionStorage 傳遞的滾動目標
       const scrollTarget = sessionStorage.getItem('scrollToSection');
@@ -72,7 +79,7 @@ const ScrollToTop = () => {
         behavior: 'smooth'
       });
     }
-  }, [pathname, state]);
+  }, [pathname, hash, state]);
 
   return null;
 };

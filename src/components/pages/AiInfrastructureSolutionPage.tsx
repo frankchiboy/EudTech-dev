@@ -4,6 +4,7 @@ import { useLanguageContext } from '../../contexts/LanguageContext';
 import { VENDOR_EVIDENCE } from '../../data/vendorEvidence';
 import { Bilingual, PageShell, tx } from './SitePagePrimitives';
 import './AiInfrastructureSolutionPage.css';
+import CominoProcurementSection from './CominoProcurementSection';
 
 const kit = '/vendor/comino/sales-kit-0911/';
 const questions = [
@@ -50,9 +51,9 @@ const StoryFigure: React.FC<{ src: string; alt: Bilingual; caption: Bilingual; i
 const AiInfrastructureSolutionPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
   const text = (zh: string, en: string) => isEnglish ? en : zh;
-  const actions = <div className="comino-actions"><Link className="comino-button" to="/contact">{text('討論我的部署需求', 'Discuss my deployment')}</Link><Link className="comino-button comino-button-secondary" to="/configurator?request=true">{text('我已知道規格，開始配置', 'I know my specification')}</Link></div>;
+  const actions = <div className="comino-actions"><Link className="comino-button" to="/contact">{text('討論我的部署需求', 'Discuss my deployment')}</Link><Link className="comino-button comino-button-secondary" to="/configurator?request=true">{text('我已知道規格，開始配置', 'I know my specification')}</Link><a className="comino-button comino-button-secondary" href="#procurement">{text('機關採購參考與文件', 'Procurement reference and documents')}</a></div>;
 
-  return <PageShell title={{ zh: 'AI 運算基礎設施｜EudTech', en: 'AI infrastructure | EudTech' }} description={{ zh: '從工作負載、選型、配置到報價與驗收，建立可採購的 Comino 液冷 AI GPU 運算基礎設施。', en: 'Build quote-ready Comino liquid-cooled AI GPU infrastructure from workload discovery through selection, configuration, quote, and acceptance.' }} path="/solutions/ai-infrastructure">
+  return <PageShell title={{ zh: 'AI 運算基礎設施｜EudTech', en: 'AI infrastructure | EudTech' }} description={{ zh: '從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。', en: 'Plan AI servers and workstations from workload, site and liquid-cooling configuration through procurement reference, manufacturer documents and acceptance criteria.' }} path="/solutions/ai-infrastructure">
     <div className="comino-story">
       <section className="comino-hero" aria-labelledby="comino-title">
         <div className="comino-wrap comino-split">
@@ -119,6 +120,8 @@ const AiInfrastructureSolutionPage: React.FC = () => {
           <div className="comino-explainer"><StoryFigure src={kit + 'monitoring-qdc.webp'} alt={{ zh: '原廠實照：左上工作站散熱器、右上電源模組、左下監控畫面、右下快速斷開接頭', en: 'Manufacturer images: workstation radiator at upper left, power modules at upper right, monitoring at lower left and quick-disconnect couplings at lower right' }} caption={{ zh: 'Sales Kit 0911 原廠實照。左下為監控、右下為 QDC、右上為電源模組。', en: 'Sales Kit 0911 manufacturer images. Lower left: monitoring; lower right: QDC; upper right: power modules.' }} isEnglish={isEnglish} /><div className="comino-operation-notes">{operations.map(item => <article key={item.title.en}><h3>{tx(item.title, isEnglish)}</h3><p>{tx(item.body, isEnglish)}</p></article>)}</div></div>
         </div>
       </section>
+
+      <CominoProcurementSection isEnglish={isEnglish} />
 
       <section className="comino-section" aria-labelledby="delivery-heading">
         <div className="comino-wrap"><div className="comino-intro"><p className="comino-eyebrow">Comino × EudTech</p><h2 id="delivery-heading">{text('從原廠配置，到台灣現場的部署與驗收。', 'From the manufacturer’s configuration to deployment in Taiwan.')}</h2><p>{text('Comino 提供硬體與液冷系統設計；EudTech 承接在地需求、配置審查與交付討論，讓使用端、資訊端與採購端能對齊同一份資料。', 'Comino provides the hardware and liquid-cooling system design. EudTech handles local requirements, configuration review and delivery planning so users, IT and procurement work from the same information.')}</p></div>

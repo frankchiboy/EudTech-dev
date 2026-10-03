@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   AlertTriangle,
   Box,
@@ -76,6 +76,7 @@ import { getConfiguratorProductSeo } from '../../data/configuratorProductSeo';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath, getConfiguratorSocialPreviewUrl } from '../../utils/seo/socialPreview';
 import SEOHead from '../common/SEOHead';
+import cominoReference from '../../data/cominoProcurement.json';
 import './Configurator.css';
 
 type DeviceSummary = ConfiguratorDevice & { options: ConfiguratorOption[] };
@@ -2031,6 +2032,10 @@ const GrandoConfigurator = () => {
   return (
     <>
       {pid ? <ConfiguratorDetail pid={pid} language={language} /> : <ConfiguratorHome language={language} />}
+      <aside className="grando-procurement-reference" aria-label={isEnglish ? cominoReference.title.en : cominoReference.title.zh}>
+        <p>{isEnglish ? cominoReference.configurationNote.en : cominoReference.configurationNote.zh}</p>
+        <Link to={cominoReference.href}>{isEnglish ? 'Procurement reference and manufacturer documents' : '機關採購參考與原廠文件'}</Link>
+      </aside>
       <Footer isEnglish={isEnglish} />
     </>
   );

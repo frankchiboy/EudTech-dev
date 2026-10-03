@@ -12,6 +12,7 @@ import ProductSpecifications from './ProductSpecifications';
 import FinSightEnterpriseCta from './FinSightEnterpriseCta';
 import ProductTechnicalSpecs from './ProductTechnicalSpecs';
 import LazyImage from './common/LazyImage';
+import cominoReference from '../data/cominoProcurement.json';
 
 const FinSightSystemVisual = ({ isEnglish }: { isEnglish: boolean }) => {
   const stages = [
@@ -185,6 +186,11 @@ const ProductDetails: React.FC = () => {
                 </div>
               )}
             </div>
+            {[5, 6, 7].includes(product.id) && <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">{isEnglish ? cominoReference.title.en : cominoReference.title.zh}</h2>
+              <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{isEnglish ? cominoReference.configurationNote.en : cominoReference.configurationNote.zh}</p>
+              <Link to={cominoReference.href} className="mt-4 inline-block font-semibold text-cyan-700 underline underline-offset-4 dark:text-cyan-300">{isEnglish ? 'Review conditions and manufacturer documents' : '核對適用條件與原廠文件'}</Link>
+            </div>}
             {/* CTA 行動按鈕 */}
             {product.id === 3 && (
               <div className="flex flex-col items-center mt-8">

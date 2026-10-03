@@ -55,16 +55,16 @@
       "summary": "依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。",
       "content_text": "GPU 伺服器選型與採購｜EudTech\n\n依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。\n\nhttps://eudaemonia.tech/resources/",
       "date_published": "2026-08-17T00:00:00+08:00",
-      "date_modified": "2026-08-17T00:00:00+08:00"
+      "date_modified": "2026-10-02T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/ai-infrastructure/",
       "url": "https://eudaemonia.tech/solutions/ai-infrastructure/",
       "title": "AI 運算基礎設施｜EudTech",
-      "summary": "從工作負載、GPU 與記憶體選型、電力散熱、配置器到正式報價，建立可採購的 AI 伺服器與工作站方案。",
-      "content_text": "AI 運算基礎設施｜EudTech\n\n從工作負載、GPU 與記憶體選型、電力散熱、配置器到正式報價，建立可採購的 AI 伺服器與工作站方案。\n\nhttps://eudaemonia.tech/solutions/ai-infrastructure/",
+      "summary": "從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。",
+      "content_text": "AI 運算基礎設施｜EudTech\n\n從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。\n\nhttps://eudaemonia.tech/solutions/ai-infrastructure/",
       "date_published": "2026-08-16T00:00:00+08:00",
-      "date_modified": "2026-10-02T00:00:00+08:00"
+      "date_modified": "2026-10-04T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/social-intelligence/",
@@ -108,8 +108,8 @@
       "title": "EudTech 配置器公開連結索引",
       "summary": "EudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。",
       "content_text": "EudTech 配置器公開連結索引\n\nEudTech Comino Grando 配置器、GPU 伺服器報價、NVIDIA H200、RTX PRO 6000、RFQ 與液冷 AI 伺服器採購入口索引。\n\nhttps://eudaemonia.tech/configurator-links.html",
-      "date_published": "2026-10-02T00:00:00+08:00",
-      "date_modified": "2026-10-02T00:00:00+08:00"
+      "date_published": "2026-10-04T00:00:00+08:00",
+      "date_modified": "2026-10-04T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/configurator/27/",

@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import { CONFIGURATOR_SEO_PAGES } from '../../data/configuratorSeoPages';
 import { VENDOR_EVIDENCE } from '../../data/vendorEvidence';
+import cominoReference from '../../data/cominoProcurement.json';
 import { ActionLink, PageHero, PageShell, SourceLink, tx } from './SitePagePrimitives';
 
 const FEATURED_RESOURCE_SLUGS = [
@@ -53,13 +54,13 @@ const ResourcesOverviewPage: React.FC = () => {
     {
       icon: ClipboardCheck,
       eyebrow: { zh: '正在準備採購文件', en: 'Preparing procurement documents' },
-      title: { zh: '整理 RFQ 與驗收條件', en: 'Prepare the RFQ and acceptance terms' },
+      title: cominoReference.title,
       body: {
-        zh: '確認規格、供電、散熱、交付、保固、測試與文件要求，讓技術與採購審查同一份需求。',
-        en: 'Confirm specification, power, cooling, delivery, warranty, testing, and document requirements so technical and procurement reviewers work from one list.'
+        zh: '下載原廠規格書與使用指南，對照散熱、維護、監控、電源備援及符合性證據，整理可查證的需求與驗收。',
+        en: 'Download manufacturer datasheets and guides. Review cooling, service, monitoring, power redundancy and conformity evidence to define verifiable requirements and acceptance terms.'
       },
-      href: '/solutions/gpu-server-rfq-checklist',
-      action: { zh: '查看 RFQ 檢核表', en: 'Open the RFQ checklist' }
+      href: cominoReference.href,
+      action: { zh: '查看參考與原廠文件', en: 'View reference and manufacturer documents' }
     }
   ];
 
