@@ -72,6 +72,10 @@ requireAll('feed.xml', requiredIndexUrls, (url) => feedLinks.has(url));
 requireAll('feed.json', requiredIndexUrls, (url) => feedJsonLinks.has(url));
 requireAll('llms.txt', requiredIndexUrls, (url) => llmsText.includes(url));
 requireAll('llms-full.txt', requiredIndexUrls, (url) => llmsFullText.includes(url));
+requireAll('llms.txt complete bilingual inventory', [...sitemapLocs], (url) => llmsText.includes(url));
+requireAll('llms-full.txt complete bilingual inventory', [...sitemapLocs], (url) => llmsFullText.includes(url));
+const cominoReference = require('../src/data/cominoProcurement.json');
+requireAll('llms-full.txt Comino answers', cominoReference.faqs.flatMap(faq => [faq.answer.zh, faq.answer.en]), answer => llmsFullText.includes(answer));
 requireAll('configurator-links.html', requiredPageUrls, (url) => configuratorLinksHtml.includes(`href="${url}"`));
 requireAll('llms-full.txt product ids', CONFIGURATOR_PRODUCT_SEO.map((product) => product.productId), (productId) =>
   llmsFullText.includes(productId)

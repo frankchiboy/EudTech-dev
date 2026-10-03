@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { englishRoutes } = require('./seo-public-pages.cjs');
+const procurement = require('../src/data/cominoProcurement.json');
 const dist = path.resolve(__dirname, '../dist');
 const text = value => value.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
 let rendered = 0, dynamic = 0;
@@ -47,9 +48,31 @@ for (const p of ['solutions/ai-infrastructure/index.html', 'en/solutions/ai-infr
   const html = fs.readFileSync(path.join(dist, p), 'utf8');
   assert.match(html, /<link[^>]+rel="stylesheet"[^>]+href="\/assets\/AiInfrastructureSolutionPage-[^"]+\.css"/, `First-paint styles missing: ${p}`);
   assert.match(html, /<link[^>]+rel="modulepreload"[^>]+href="\/assets\/AiInfrastructureSolutionPage-[^"]+\.js"/, `Route code preload missing: ${p}`);
+  const en = p.startsWith('en/');
+  const pageUrl = `https://eudaemonia.tech/${en ? 'en/' : ''}solutions/ai-infrastructure/`;
+  const schemas = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+  const faqSchema = schemas.find(schema => schema['@type'] === 'FAQPage');
+  assert.equal(faqSchema?.mainEntity.length, procurement.faqs.length, `Missing procurement answers: ${p}`);
+  for (const faq of procurement.faqs) {
+    const question = faqSchema.mainEntity.find(item => item.url === `${pageUrl}#${faq.id}`);
+    assert.ok(question && html.includes(`id="${faq.id}"`), `Question permalink does not resolve: ${p}#${faq.id}`);
+    const doc = procurement.documents.find(item => item.id === faq.documentId);
+    assert.ok(doc, `Question references an unknown document: ${faq.id}`);
+    const citation = new URL(question.acceptedAnswer.citation);
+    const sourceFile = en ? doc.href : doc.readerHrefZh;
+    assert.equal(citation.origin, 'https://eudaemonia.tech');
+    assert.equal(citation.pathname, en ? doc.href : doc.readerHrefZh.replace(/\.html$/, '').toLowerCase());
+    assert.equal(citation.hash, en ? `#page=${faq.page}` : `#page-${faq.page}`);
+    assert.ok(html.includes(`href="${citation.href}"`), `Schema citation must be a visible source link: ${faq.id}`);
+    assert.ok(fs.existsSync(path.join(dist, sourceFile)), `Missing source document: ${sourceFile}`);
+    if (!en) {
+      const reader = fs.readFileSync(path.join(dist, sourceFile), 'utf8');
+      assert.ok(reader.includes(`id="page-${faq.page}"`), `Source page anchor does not resolve: ${citation.href}`);
+    }
+  }
 }
 for (const p of ['index.html', 'en/index.html']) {
   const html = fs.readFileSync(path.join(dist, p), 'utf8');
   assert.ok(html.includes('fetchPriority="high"') && html.includes('960w,') && html.includes('2560w'), `Responsive priority hero missing: ${p}`);
 }
-console.log(JSON.stringify({ ok: true, renderedPages: rendered, liveConfiguratorFallbacks: dynamic, visibleFaqParity: true }));
+console.log(JSON.stringify({ ok: true, renderedPages: rendered, liveConfiguratorFallbacks: dynamic, visibleFaqParity: true, procurementCitations: procurement.faqs.length * 2 }));

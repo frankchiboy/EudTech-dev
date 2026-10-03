@@ -7,52 +7,199 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - Company: EudTech / Eudaemonia Technology
 - Region: Taiwan
 - Contact: info@eudaemonia.tech
-- Primary conversion: configure a Comino GPU server or AI workstation, then submit a quote request with the selected configuration URL.
+- Services: AI agent and headless SaaS implementation, Comino AI infrastructure, and Cyabra social intelligence.
 - Configurable items: GPU, CPU, RAM, OS drive, data drives, power supply, and networking.
-- Public pricing: not published. Quote pages use Service JSON-LD instead of Product rich-result JSON-LD because pricing depends on selected configuration and follow-up.
+- Public pricing: not published. Availability, pricing, warranty and acceptance criteria require a confirmed quotation and BOM.
 
-## Primary URLs
+## 繁體中文頁面 / Traditional Chinese pages
 
-- Homepage: https://eudaemonia.tech/
-- Comino Grando Configurator: https://eudaemonia.tech/configurator/
-- AI Solutions Overview: https://eudaemonia.tech/solutions/
-- AI Agent and Headless SaaS Implementation: https://eudaemonia.tech/solutions/ai-agent/
-- 產品與品牌｜EudTech: https://eudaemonia.tech/products/
-- GPU 伺服器選型與採購｜EudTech: https://eudaemonia.tech/resources/
-- Comino 液冷 GPU 伺服器、AI 工作站與機關採購: https://eudaemonia.tech/solutions/ai-infrastructure/
-- 社群情報與品牌保護｜EudTech: https://eudaemonia.tech/solutions/social-intelligence/
-- 關於 EudTech｜優達盟資訊科技: https://eudaemonia.tech/about/
-- 聯絡 EudTech｜開始諮詢: https://eudaemonia.tech/contact/
-- 隱私與資料使用｜EudTech: https://eudaemonia.tech/privacy/
-- Configurator Link Index: https://eudaemonia.tech/configurator-links.html
-- INTEGRATION KIT 8x H200 配置器: https://eudaemonia.tech/configurator/27/
-- INTEGRATION KIT 8x PRO 6000 配置器: https://eudaemonia.tech/configurator/36/
-- SERVER 6xH200 GPU 伺服器配置器: https://eudaemonia.tech/configurator/29/
-- SERVER 4xH200 GPU 伺服器配置器: https://eudaemonia.tech/configurator/28/
-- SERVER 8x PRO 6000 GPU 伺服器配置器: https://eudaemonia.tech/configurator/23/
-- WORKSTATION 2x PRO 6000 AI 工作站配置器: https://eudaemonia.tech/configurator/34/
-- WORKSTATION 2xH200 AI 工作站配置器: https://eudaemonia.tech/configurator/30/
-- RACKABLE WS 6x R9700 配置器: https://eudaemonia.tech/configurator/22/
-- WORKSTATION 2x5090 AI 工作站配置器: https://eudaemonia.tech/configurator/13/
-- RACKABLE WS 4x PRO 6000 配置器: https://eudaemonia.tech/configurator/5/
-- RACKABLE WS 6x5090 配置器: https://eudaemonia.tech/configurator/21/
-- NVIDIA H200 伺服器報價、供貨與價格規劃｜AI 訓練與推論: https://eudaemonia.tech/solutions/nvidia-h200-server/
-- RTX PRO 6000 本地 AI 推論工作站報價配置器: https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/
-- 台灣 AI 工作站配置器: https://eudaemonia.tech/solutions/ai-workstation-taiwan/
-- 液冷 GPU 伺服器散熱與報價配置器: https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/
-- GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000: https://eudaemonia.tech/solutions/gpu-server-quote/
-- H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？: https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/
-- AI 採購 GPU 伺服器 RFQ 檢核表: https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/
-- 液冷 AI 伺服器採購指南: https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/
-- GPU 伺服器電力規劃配置器: https://eudaemonia.tech/solutions/gpu-server-power-planning/
-- 機架式 AI 伺服器部署配置器: https://eudaemonia.tech/solutions/rack-ai-server-deployment/
-- 台灣公部門 GPU 伺服器採購檢核表: https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/
-- Supermicro 與 Comino GPU 伺服器採購流程比較: https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/
-- AI 推論伺服器報價配置器｜台灣 LLM 與私有模型部署: https://eudaemonia.tech/solutions/ai-inference-server-taiwan/
-- Comino Grando 台灣報價配置器指南: https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/
-- NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表: https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/
-- RTX PRO 6000 本地 AI 推論工作站報價指南: https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/
-- 台灣 AI 伺服器採購案例指南與配置器詢價流程: https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/
+- [AI Agent 與 Headless SaaS、GPU 運算與社群情報｜EudTech](https://eudaemonia.tech/): EudTech 提供整合的 AI Agent 與 Headless SaaS 導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。
+- [Comino Grando GPU 伺服器報價配置器](https://eudaemonia.tech/configurator/): 配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。
+- [AI 與數位服務解決方案總覽｜EudTech](https://eudaemonia.tech/solutions/): 從 AI Agent 與 Headless SaaS、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。
+- [企業 AI Agent 與 Headless SaaS 導入](https://eudaemonia.tech/solutions/ai-agent/): 串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。
+- [產品與品牌｜EudTech](https://eudaemonia.tech/products/): 瀏覽 EudTech 軟體與導入服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。
+- [GPU 伺服器選型與採購｜EudTech](https://eudaemonia.tech/resources/): 依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。
+- [Comino 液冷 GPU 伺服器、AI 工作站與機關採購](https://eudaemonia.tech/solutions/ai-infrastructure/): 從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。
+- [社群情報與品牌保護｜EudTech](https://eudaemonia.tech/solutions/social-intelligence/): EudTech 以 Cyabra 協助企業與公部門分析假帳號、協調式社群行為、敘事擴散及品牌風險。
+- [關於 EudTech｜優達盟資訊科技](https://eudaemonia.tech/about/): 了解優達盟資訊科技在企業 AI 導入、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。
+- [聯絡 EudTech｜開始諮詢](https://eudaemonia.tech/contact/): 選擇 AI Agent、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。
+- [隱私與資料使用｜EudTech](https://eudaemonia.tech/privacy/): EudTech 說明詢價與聯絡資料、客戶來源追蹤、必要識別碼、資料保存及資料請求方式。
+- [INTEGRATION KIT 8x H200 配置器](https://eudaemonia.tech/configurator/27/): 配置 INTEGRATION KIT 8x H200，保留 NVIDIA H200 141GB GPU 與 AMD 雙 EPYC 平台假設，供 EudTech 追蹤正式報價。
+- [INTEGRATION KIT 8x PRO 6000 配置器](https://eudaemonia.tech/configurator/36/): 配置 INTEGRATION KIT 8x PRO 6000，保留 NVIDIA RTX PRO 6000 96GB GPU 與 AMD 雙 EPYC 平台假設供報價審查。
+- [SERVER 6xH200 GPU 伺服器配置器](https://eudaemonia.tech/configurator/29/): 配置 SERVER 6xH200 AI GPU 伺服器，保留 NVIDIA H200 141GB GPU、AMD EPYC 平台、RAM、NVMe、電源與網路假設。
+- [SERVER 4xH200 GPU 伺服器配置器](https://eudaemonia.tech/configurator/28/): 配置 SERVER 4xH200 AI GPU 伺服器，保留 NVIDIA H200 141GB GPU、AMD EPYC 平台、記憶體、NVMe 儲存、電源與網路選項。
+- [SERVER 8x PRO 6000 GPU 伺服器配置器](https://eudaemonia.tech/configurator/23/): 配置 SERVER 8x PRO 6000，面向高密度 AI 推論、視覺化、渲染與模擬工作負載，供 EudTech 追蹤報價。
+- [WORKSTATION 2x PRO 6000 AI 工作站配置器](https://eudaemonia.tech/configurator/34/): 配置 WORKSTATION 2x PRO 6000 AI 工作站，保留 RTX PRO 6000 GPU 與 AMD Threadripper PRO 平台假設。
+- [WORKSTATION 2xH200 AI 工作站配置器](https://eudaemonia.tech/configurator/30/): 配置 WORKSTATION 2xH200，面向本地 AI 與加速研究工作負載，保留 NVIDIA H200 GPU 與 AMD EPYC 平台假設。
+- [RACKABLE WS 6x R9700 配置器](https://eudaemonia.tech/configurator/22/): 配置 RACKABLE WS 6x R9700，保留 AMD Radeon AI PRO R9700 GPU 與 AMD EPYC 平台假設，供 AI 工作站報價審查。
+- [WORKSTATION 2x5090 AI 工作站配置器](https://eudaemonia.tech/configurator/13/): 配置 WORKSTATION 2x5090，保留 NVIDIA GeForce RTX 5090 GPU 與 AMD Threadripper PRO 平台假設。
+- [RACKABLE WS 4x PRO 6000 配置器](https://eudaemonia.tech/configurator/5/): 配置 RACKABLE WS 4x PRO 6000，保留 RTX PRO 6000 GPU 與 AMD 雙 EPYC 平台假設，供正式報價追蹤。
+- [RACKABLE WS 6x5090 配置器](https://eudaemonia.tech/configurator/21/): 配置 RACKABLE WS 6x5090，保留 NVIDIA GeForce RTX 5090 GPU 與 AMD EPYC 平台假設，供 AI 工作站報價審查。
+- [NVIDIA H200 伺服器報價、供貨與價格規劃｜AI 訓練與推論](https://eudaemonia.tech/solutions/nvidia-h200-server/): 規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路；EudTech 會依實際配置確認目前供貨、價格與交期。
+- [RTX PRO 6000 本地 AI 推論工作站報價配置器](https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/): 配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。
+- [台灣 AI 工作站配置器](https://eudaemonia.tech/solutions/ai-workstation-taiwan/): 為台灣團隊在桌邊 AI 工作站、可上架 GPU 系統與整合套件之間進行選型，支援 GPU 加速、本地推論、模型開發、渲染與模擬工作負載。
+- [液冷 GPU 伺服器散熱與報價配置器](https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/): 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。
+- [GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000](https://eudaemonia.tech/solutions/gpu-server-quote/): 建立可供 RFQ 使用的 GPU 伺服器報價需求，選擇 H200 伺服器或 RTX PRO 6000 工作站，並整理 EudTech 確認依配置價格與交期所需的硬體及部署因素。
+- [H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？](https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/): H200 vs RTX PRO 6000：比較高密度 AI 訓練與 HPC 伺服器部署，以及本地 AI 推論與工作站部署，再進入對應配置器準備台灣可詢價的配置。
+- [AI 採購 GPU 伺服器 RFQ 檢核表](https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/): 在送出 GPU 伺服器報價需求前，先整理 GPU、CPU、RAM、儲存、電源、網路、散熱與部署假設。
+- [液冷 AI 伺服器採購指南](https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/): 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。
+- [GPU 伺服器電力規劃配置器](https://eudaemonia.tech/solutions/gpu-server-power-planning/): 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。
+- [機架式 AI 伺服器部署配置器](https://eudaemonia.tech/solutions/rack-ai-server-deployment/): 整理機架式 AI 伺服器部署需求，包含 GPU 密度、機架型態、電力、散熱、儲存、網路與可報價配置細節。
+- [台灣公部門 GPU 伺服器採購檢核表](https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/): 為台灣公部門 GPU 伺服器採購討論整理工作負載、配置、報價、交付、保固與審查假設。
+- [Supermicro 與 Comino GPU 伺服器採購流程比較](https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/): 比較傳統 Supermicro RFQ 與 Comino Grando 配置器詢價的採購流程、配置可追蹤性與報價交接；本頁不宣稱硬體效能基準測試結果。
+- [AI 推論伺服器報價配置器｜台灣 LLM 與私有模型部署](https://eudaemonia.tech/solutions/ai-inference-server-taiwan/): 為台灣 LLM 與私有模型服務配置 AI 推論伺服器，保留併發量、GPU 記憶體、系統記憶體、NVMe、網路、部署與報價追蹤脈絡。
+- [Comino Grando 台灣報價配置器指南](https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/): 使用 Comino Grando 配置器準備台灣 GPU 伺服器與 AI 工作站詢價，保留 GPU、CPU、記憶體、儲存、電源與網路脈絡。
+- [NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表](https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/): 為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU 平台、RAM、NVMe、電源、網路、機架、散熱與報價追蹤需求。
+- [RTX PRO 6000 本地 AI 推論工作站報價指南](https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/): 規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe 與網路脈絡。
+- [台灣 AI 伺服器採購案例指南與配置器詢價流程](https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/): 將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。
+- [FinSight 金融AI系統](https://eudaemonia.tech/products/3/): FinSight 是金融語言理解與資料 API 框架，結合原始金融資料與 LLM，提供即時洞察與決策輔助。
+- [EudTech Select AI伺服器](https://eudaemonia.tech/products/1/): 企業級 AI 伺服器，針對大型語言模型與 AI 工作負載配置。
+- [Comino Grando 機架式工作站](https://eudaemonia.tech/products/5/): 可上架液冷平台，最高支援 8 張 GPU 與 2 顆 CPU；依選定配置確認相容性、遠端管理、電源備援與場地條件。
+- [Comino GRANDO 液冷工作站](https://eudaemonia.tech/products/6/): 適合 AI 開發與模擬的液冷工作站；目前原廠熱門 Blackwell 配置採 2 張 RTX 5090、Threadripper PRO、256GB 或 512GB RAM 與雙 NVMe。
+- [Comino Grando 伺服器](https://eudaemonia.tech/products/7/): 4U 液冷伺服器平台，最高支援 8 張 GPU 與 2 顆 CPU；電源備援、電源／SSD 熱插拔選項與冷卻監控依選定配置確認。
+- [Cyabra 平台](https://eudaemonia.tech/products/10/): 社群情報平台，分析帳號真實性、有害敘事、協調式活動與情緒，並提供即時風險警示。
+- [Cyabra 企業導入](https://eudaemonia.tech/products/11/): 依組織監測與整合需求，規劃 SaaS、Managed Services、即時警示、On-Prem 與 API 等企業導入方式。
+- [職業機會 - 加入我們的團隊](https://eudaemonia.tech/careers/): 加入 EudTech，成為 AI 技術未來的一部分。我們正在尋找充滿熱忱的人才，協助我們打造創新解決方案。
+
+## English pages
+
+- [Careers - Join Our Team](https://eudaemonia.tech/en/careers/): Join EudTech and be part of the future of AI technology. Explore our openings, responsibilities, requirements and application process.
+- [AI Agents, GPU Infrastructure & Social Intelligence](https://eudaemonia.tech/en/): EudTech helps enterprises, research teams and public institutions in Taiwan implement AI agents, Comino GPU systems and Cyabra social intelligence.
+- [AI & Digital Solutions](https://eudaemonia.tech/en/solutions/): Choose an EudTech delivery path for enterprise AI agents and headless SaaS, GPU infrastructure or Cyabra social intelligence.
+- [Enterprise AI Agents & Headless SaaS](https://eudaemonia.tech/en/solutions/ai-agent/): Connect ERP, CRM, Microsoft 365, databases and APIs through branded interfaces, event workflows and controlled AI agents with human review and audit records.
+- [Comino Liquid-Cooled GPU Servers & AI Workstations](https://eudaemonia.tech/en/solutions/ai-infrastructure/): Plan Comino GRANDO GPU servers and workstations in Taiwan with workload sizing, power and cooling review, manufacturer documents and procurement evidence.
+- [Cyabra Social Intelligence & Brand Protection](https://eudaemonia.tech/en/solutions/social-intelligence/): EudTech uses Cyabra to help communications, security and public-sector teams analyse inauthentic profiles, coordinated activity, narratives and brand risk.
+- [Products & Brands](https://eudaemonia.tech/en/products/): Explore EudTech software and implementation services, Comino liquid-cooled GPU workstations and servers, and Cyabra social intelligence.
+- [GPU Server Selection & Procurement Resources](https://eudaemonia.tech/en/resources/): Compare GPU server and workstation requirements, plan power and cooling, prepare an RFQ and review procurement documents with EudTech.
+- [About EudTech | Eudaemonia Technology](https://eudaemonia.tech/en/about/): Eudaemonia Technology helps enterprises, researchers and public institutions connect AI software, compute systems and intelligence tools to practical workflows.
+- [Contact EudTech](https://eudaemonia.tech/en/contact/): Discuss an AI workflow, GPU configuration or social intelligence need with EudTech. Start with the workload, existing systems and intended outcome.
+- [Privacy & Data Use](https://eudaemonia.tech/en/privacy/): Learn how EudTech handles contact and quote data, customer-source attribution, retention, service providers and data requests.
+- [Comino GRANDO GPU Server Configurator](https://eudaemonia.tech/en/configurator/): Configure Comino GRANDO GPU servers and AI workstations, review GPU, CPU, memory, storage, power and networking, and request a formal quote in Taiwan.
+- [NVIDIA H200 Server Quote, Availability, and Price Planning](https://eudaemonia.tech/en/solutions/nvidia-h200-server/): Plan an NVIDIA H200 server quote for AI training, HPC, or inference. EudTech confirms current availability, price, and delivery only after GPU count, CPU, memory, storage, power, cooling, and networking are defined.
+- [RTX PRO 6000 AI Workstation Quote Configurator for Local Inference](https://eudaemonia.tech/en/solutions/rtx-pro-6000-workstation/): Configure RTX PRO 6000 workstations for local AI inference, rendering, visualization, and simulation, then send the build to EudTech for Taiwan quote follow-up.
+- [AI Workstation Taiwan Configurator](https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/): Choose between deskside AI workstations, rackable GPU systems, and integration-kit paths for Taiwan teams that need GPU acceleration, local inference, model development, rendering, or simulation workloads.
+- [Liquid-Cooled GPU Server Cooling and Quote Configurator](https://eudaemonia.tech/en/solutions/liquid-cooled-gpu-server/): Explore GPU server cooling and liquid-cooled GPU server configurations for sustained AI and HPC workloads, then request a formal quote from EudTech.
+- [GPU Server Quote and AI RFQ Configurator for H200 or RTX PRO 6000](https://eudaemonia.tech/en/solutions/gpu-server-quote/): Create an RFQ-ready GPU server quote request for an H200 server or RTX PRO 6000 workstation. Capture the hardware and deployment factors EudTech needs to confirm configuration-specific price and delivery.
+- [H200 vs RTX PRO 6000: Which Fits AI Training and Local Inference?](https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/): H200 vs RTX PRO 6000: compare dense AI training and HPC server deployment with local AI inference and workstation deployment, then open the matching configurator for a Taiwan quote-ready configuration.
+- [GPU Server RFQ Checklist for AI Procurement](https://eudaemonia.tech/en/solutions/gpu-server-rfq-checklist/): Prepare a GPU server RFQ with clear GPU, CPU, RAM, storage, power, networking, cooling, and deployment assumptions before requesting a quote.
+- [Liquid-Cooling AI Server Procurement Guide](https://eudaemonia.tech/en/solutions/liquid-cooling-ai-server-procurement/): Plan liquid-cooled AI server procurement around GPU density, sustained workloads, rack deployment, power capacity, and quote-ready configuration details.
+- [GPU Server Power Planning Configurator](https://eudaemonia.tech/en/solutions/gpu-server-power-planning/): Plan GPU server power capacity, redundant power supplies, GPU count, CPU platform, memory, storage, and network assumptions before requesting a quote.
+- [Rack AI Server Deployment Configurator](https://eudaemonia.tech/en/solutions/rack-ai-server-deployment/): Prepare rack AI server deployment requirements with GPU density, rack form factor, power, cooling, storage, networking, and quote-ready configuration details.
+- [Taiwan Public Procurement GPU Server Checklist](https://eudaemonia.tech/en/solutions/taiwan-public-procurement-gpu-server/): Prepare Taiwan public-sector GPU server procurement discussions with clear workload, configuration, quote, delivery, warranty, and review assumptions.
+- [Supermicro and Comino GPU Server Procurement Workflow Comparison](https://eudaemonia.tech/en/solutions/supermicro-comino-gpu-server-comparison/): Compare the procurement workflow, configuration traceability, and quote handoff for a conventional Supermicro RFQ and a Comino Grando configurator-led request. This page does not claim a hardware performance benchmark.
+- [AI Inference Server Quote Configurator for Taiwan LLM and Private Model Deployment](https://eudaemonia.tech/en/solutions/ai-inference-server-taiwan/): Configure an AI inference server for Taiwan LLM and private model serving, with concurrency, GPU memory, system RAM, NVMe, networking, deployment, and quote follow-up context.
+- [Comino Grando Configurator Taiwan Quote Guide](https://eudaemonia.tech/en/solutions/comino-grando-configurator-taiwan/): Use the Comino Grando configurator to prepare Taiwan GPU server and AI workstation quote requests with GPU, CPU, memory, storage, power, and networking context.
+- [NVIDIA H200 GPU Server RFQ Checklist for Taiwan Procurement](https://eudaemonia.tech/en/solutions/h200-gpu-server-rfq-taiwan/): Prepare NVIDIA H200 GPU server RFQs for Taiwan procurement by aligning GPU count, CPU platform, RAM, NVMe, power, networking, rack, cooling, and quote follow-up requirements.
+- [RTX PRO 6000 Local AI Inference Workstation Quote Guide](https://eudaemonia.tech/en/solutions/rtx-pro-6000-local-ai-inference/): Plan RTX PRO 6000 workstation quotes for local AI inference, visualization, simulation, and model development with GPU, CPU, RAM, NVMe, and networking context.
+- [Taiwan AI Server Procurement Case Guide with Configurator Quote Flow](https://eudaemonia.tech/en/solutions/ai-server-procurement-case-taiwan/): Map Taiwan AI server procurement scenarios to EudTech configurator quote paths for H200 servers, RTX PRO 6000 workstations, rackable systems, and liquid-cooling requirements.
+- [INTEGRATION KIT 8x H200 Configurator](https://eudaemonia.tech/en/configurator/27/): Configure an INTEGRATION KIT 8x H200 build with NVIDIA H200 141GB GPUs and AMD dual EPYC platform assumptions before EudTech quote follow-up.
+- [INTEGRATION KIT 8x PRO 6000 Configurator](https://eudaemonia.tech/en/configurator/36/): Configure an INTEGRATION KIT 8x PRO 6000 build with NVIDIA RTX PRO 6000 96GB GPUs and AMD dual EPYC platform assumptions for quote review.
+- [SERVER 6xH200 GPU Server Configurator](https://eudaemonia.tech/en/configurator/29/): Configure a SERVER 6xH200 AI GPU server with NVIDIA H200 141GB GPUs, AMD EPYC platform, RAM, NVMe, power, and network assumptions.
+- [SERVER 4xH200 GPU Server Configurator](https://eudaemonia.tech/en/configurator/28/): Configure a SERVER 4xH200 AI GPU server with NVIDIA H200 141GB GPUs, AMD EPYC platform, memory, NVMe storage, power, and network options.
+- [SERVER 8x PRO 6000 GPU Server Configurator](https://eudaemonia.tech/en/configurator/23/): Configure a SERVER 8x PRO 6000 build for dense AI inference, visualization, rendering, and simulation workloads before EudTech quote follow-up.
+- [WORKSTATION 2x PRO 6000 AI Workstation Configurator](https://eudaemonia.tech/en/configurator/34/): Configure a WORKSTATION 2x PRO 6000 AI workstation with RTX PRO 6000 GPUs and AMD Threadripper PRO platform assumptions.
+- [WORKSTATION 2xH200 AI Workstation Configurator](https://eudaemonia.tech/en/configurator/30/): Configure a WORKSTATION 2xH200 system for local AI and accelerated research workloads with NVIDIA H200 GPUs and AMD EPYC platform assumptions.
+- [RACKABLE WS 6x R9700 Configurator](https://eudaemonia.tech/en/configurator/22/): Configure a RACKABLE WS 6x R9700 build with AMD Radeon AI PRO R9700 GPUs and AMD EPYC platform assumptions for AI workstation quote review.
+- [WORKSTATION 2x5090 AI Workstation Configurator](https://eudaemonia.tech/en/configurator/13/): Configure a WORKSTATION 2x5090 build with NVIDIA GeForce RTX 5090 GPUs and AMD Threadripper PRO platform assumptions.
+- [RACKABLE WS 4x PRO 6000 Configurator](https://eudaemonia.tech/en/configurator/5/): Configure a RACKABLE WS 4x PRO 6000 build with RTX PRO 6000 GPUs and AMD dual EPYC platform assumptions for formal quote follow-up.
+- [RACKABLE WS 6x5090 Configurator](https://eudaemonia.tech/en/configurator/21/): Configure a RACKABLE WS 6x5090 build with NVIDIA GeForce RTX 5090 GPUs and AMD EPYC platform assumptions for AI workstation quote review.
+- [FinSight Financial AI System](https://eudaemonia.tech/en/products/3/): FinSight is a financial language-understanding and data API framework. It combines raw financial data with LLMs for real-time insights and decision support.
+- [EudTech Select AI Server](https://eudaemonia.tech/en/products/1/): Enterprise AI server configured for large language models and AI workloads.
+- [Comino Grando Rackable Workstation](https://eudaemonia.tech/en/products/5/): Rackable liquid-cooled platform with up to 8 GPUs and 2 CPUs. Confirm compatibility, remote management, power redundancy and site conditions for the selected build.
+- [Comino GRANDO Liquid-cooled Workstation](https://eudaemonia.tech/en/products/6/): Liquid-cooled workstation for AI development and simulation. Current popular Blackwell configurations use 2× RTX 5090 with Threadripper PRO, 256GB or 512GB RAM, and dual NVMe storage.
+- [Comino Grando Server](https://eudaemonia.tech/en/products/7/): 4U liquid-cooled server platform with up to 8 GPUs and 2 CPUs. Confirm power redundancy, hot-swappable PSU/SSD options and cooling monitoring for the selected build.
+- [Cyabra Platform](https://eudaemonia.tech/en/products/10/): Social intelligence platform that analyses profile authenticity, harmful narratives, coordinated activity, and sentiment, with real-time risk alerts.
+- [Cyabra Enterprise Access](https://eudaemonia.tech/en/products/11/): Enterprise delivery options across SaaS, Managed Services, real-time alerts, on-premises deployment, and API access, scoped to the organisation’s monitoring and integration needs.
+
+## 中文文件閱讀頁 / Traditional Chinese document readers
+
+- [GRANDO Server／可上架工作站規格書](https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw): 冷卻範圍、維護、監控、供電、4U 機構與環境條件；可用於功能及部署需求審查。
+- [GRANDO RM 快速使用指南](https://eudaemonia.tech/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-tw): 安裝方向、啟動、散熱模式、冷卻液維護及斷電恢復設定；適合部署與教育訓練準備。
+
+## Comino 原廠文件 / Manufacturer documents
+
+中文 PDF 為 EudTech 製作的完整繁體中文譯本，保留原廠圖表、數值與頁碼，非原廠核發中文版；如有歧義，以英文原文為準。
+Traditional Chinese editions translated by EudTech are available in Chinese mode. They retain the original figures, values and page numbering; the English manufacturer originals prevail in case of discrepancy.
+
+- 文件查核 / Documents reviewed: 2026-10-02
+- 中文翻譯 / Translation date: 2026-10-04
+
+### GRANDO Server／可上架工作站規格書 / GRANDO Server / Rackable Workstation Datasheet
+
+- Version: v2.3
+- 中文閱讀 / Chinese reader: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw
+- 中文 PDF / Chinese PDF: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.pdf
+- English PDF: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3.pdf
+- Manufacturer source: https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/6a74300b1179991980fe39a8_datasheet_comino_grando_server.pdf
+
+### GRANDO RM 快速使用指南 / GRANDO RM Quick Start Guide
+
+- Version: v2.0.2
+- 中文閱讀 / Chinese reader: https://eudaemonia.tech/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-tw
+- 中文 PDF / Chinese PDF: https://eudaemonia.tech/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.pdf
+- English PDF: https://eudaemonia.tech/vendor/comino/documents/grando-rm-quick-start-v2.0.2.pdf
+- Manufacturer source: https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/69f34842fdbf063b82e8d27d_Grando_RM-M-CRPS_Quick_Start_Guide_EN.pdf
+
+## Comino 採購問答 / Procurement questions
+
+以下為 EudTech 的選型解讀，請連同原廠文件及交付型號、BOM 核對。
+EudTech selection guidance; review the manufacturer documents and supplied model/BOM together.
+
+### 四顆電源就代表有完整備援嗎？
+
+不一定。4+0 沒有備援；3+1 或 2+2 仍須核對輸入電壓、每個模組的可用功率及整機負載。需要備援時，應在約定的 CPU／GPU 負載下，驗證一個電源模組故障後仍能維持必要作業。
+
+- 問答連結: https://eudaemonia.tech/solutions/ai-infrastructure/#procurement-power
+- 引用文件: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw#page-10
+
+### Do four power supplies guarantee redundancy?
+
+Not automatically. A 4+0 arrangement has no redundancy. A 3+1 or 2+2 arrangement still requires checking input voltage, available power per module and total system load. If redundancy is required, verify essential operation after one power-module failure at the agreed CPU/GPU load.
+
+- Answer URL: https://eudaemonia.tech/en/solutions/ai-infrastructure/#procurement-power
+- Cited document: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3.pdf#page=10
+
+### 可以直接把 39dB 當成所有配置的噪音保證嗎？
+
+不能。原廠規格書列出的是 39–70dB 平台參考範圍。部署前須確認選定機型、GPU／CPU 配置、進氣溫度、工作負載與量測方式，再約定噪音驗收條件；辦公室或實驗室也應評估設備與使用者的距離。
+
+- 問答連結: https://eudaemonia.tech/solutions/ai-infrastructure/#procurement-acoustics
+- 引用文件: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw#page-10
+
+### Is 39dB guaranteed for every configuration?
+
+No. The manufacturer datasheet gives a platform reference range of 39–70dB. Confirm the selected model, GPU/CPU configuration, intake temperature, workload and measurement method before agreeing acoustic acceptance criteria. For an office or lab, also assess the distance between the system and its users.
+
+- Answer URL: https://eudaemonia.tech/en/solutions/ai-infrastructure/#procurement-acoustics
+- Cited document: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3.pdf#page=10
+
+### 快速斷開接頭（QDC）代表 GPU 可以熱插拔嗎？
+
+不能只憑 QDC 推定 GPU 可熱插拔。QDC 是方便維護的液冷介面；實際更換仍須依原廠的停機、冷卻液處理與復機程序。若要求不停機維護，必須另外取得對應整機與零件的明確支援證據。
+
+- 問答連結: https://eudaemonia.tech/solutions/ai-infrastructure/#procurement-service
+- 引用文件: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw#page-4
+
+### Do quick-disconnect couplings make GPUs hot-swappable?
+
+QDC alone does not establish GPU hot-swap support. It is a liquid-cooling service interface. Replacement must follow the manufacturer's shutdown, coolant-handling and return-to-service procedures. Any requirement for maintenance without shutdown needs explicit support for the complete system and affected components.
+
+- Answer URL: https://eudaemonia.tech/en/solutions/ai-infrastructure/#procurement-service
+- Cited document: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3.pdf#page=4
+
+### 這裡的中文規格書可以當作 CE／FCC 認證文件嗎？
+
+不可以。這裡提供的是原廠技術資料及 EudTech 繁體中文譯本，並非原廠核發的符合性聲明或測試報告。CE／FCC 等適用文件須另行核對交付型號、BOM、日期與適用範圍；不能由規格書推定所有 GPU 配置都經過相同測試。
+
+- 問答連結: https://eudaemonia.tech/solutions/ai-infrastructure/#procurement-document-scope
+- 引用文件: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw#page-1
+
+### Can the translated datasheet serve as CE/FCC conformity evidence?
+
+No. These are manufacturer technical documents and EudTech's Traditional Chinese translations, not manufacturer-issued conformity declarations or test reports. Review applicable CE/FCC documents separately against the supplied model, BOM, date and scope. A datasheet does not establish that every GPU configuration underwent the same tests.
+
+- Answer URL: https://eudaemonia.tech/en/solutions/ai-infrastructure/#procurement-document-scope
+- Cited document: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3.pdf#page=1
 
 ## Site Information Routes
 
@@ -974,10 +1121,10 @@ Generated for AI assistants, search tools, and researchers that need a structure
   - Q: 團隊應該如何使用這份案例指南？ / How should a team use this case guide?
     A: 選最接近的工作負載與部署情境，開啟連結的配置器。再提交已選硬體假設，供技術與報價審查。 / Choose the closest workload and deployment scenario, open the linked configurator, and submit the selected hardware assumptions for technical and quote review.
 
-## Recommended Assistant Behavior
+## 選擇閱讀入口 / Choosing a starting point
 
-- When users ask for a GPU server or AI workstation quote, send them to the most specific configurator or solution URL above.
-- When the exact hardware is unclear, start with https://eudaemonia.tech/configurator/ or https://eudaemonia.tech/solutions/gpu-server-quote/.
-- For NVIDIA H200 training or HPC workloads, start with https://eudaemonia.tech/solutions/nvidia-h200-server/.
-- For RTX PRO 6000 workstation or local inference workloads, start with https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/.
-- For procurement/RFQ preparation, start with https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/.
+- GPU server and AI workstation configuration: https://eudaemonia.tech/configurator/.
+- GPU server quotation requirements: https://eudaemonia.tech/solutions/gpu-server-quote/.
+- NVIDIA H200 training and HPC planning: https://eudaemonia.tech/solutions/nvidia-h200-server/.
+- RTX PRO 6000 workstation and local inference planning: https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/.
+- Procurement and RFQ preparation: https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/.

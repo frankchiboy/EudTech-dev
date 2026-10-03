@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import reference from '../../data/cominoProcurement.json';
 import { tx } from './SitePagePrimitives';
+import { cominoQuestionSource } from '../../utils/seo/cominoQuestions';
 
 const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish }) => {
   const text = (zh: string, en: string) => isEnglish ? en : zh;
@@ -58,6 +59,20 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
 
       <p className="comino-condition">{tx(reference.conformityNote, isEnglish)}</p>
       <p className="comino-small">{tx(reference.procurementNote, isEnglish)} <a href={reference.procurementSource} target="_blank" rel="noreferrer">{text('政府採購法第 26 條', 'Government Procurement Act, Article 26')}</a></p>
+      <section id="procurement-questions" aria-labelledby="procurement-questions-heading">
+        <h3 id="procurement-questions-heading" className="comino-reference-heading">{text('採購常見問題', 'Procurement questions')}</h3>
+        <p className="comino-small">{text('以下為 EudTech 依原廠資料整理的選型解讀；請連同引用頁面、實際型號與 BOM 核對。', 'EudTech selection guidance based on manufacturer documents. Review each cited page together with the actual model and BOM.')}</p>
+        <div className="comino-document-grid">
+          {reference.faqs.map(faq => <article id={faq.id} className="comino-document scroll-mt-28" key={faq.id}>
+            <h4 className="text-lg font-semibold">{tx(faq.question, isEnglish)}</h4>
+            <p>{tx(faq.answer, isEnglish)}</p>
+            <div className="comino-document-links">
+              <a href={cominoQuestionSource(faq.documentId, faq.page, isEnglish)}>{text('核對規格書第 ', 'Review datasheet p. ')}{faq.page}{text(' 頁', '')}</a>
+              <a href={`#${faq.id}`} aria-label={`${text('此問答的連結：', 'Link to this answer: ')}${tx(faq.question, isEnglish)}`}>{text('問答連結', 'Link to answer')}</a>
+            </div>
+          </article>)}
+        </div>
+      </section>
       <div className="comino-actions"><Link to="/contact" className="comino-button">{text('討論採購需求與文件', 'Discuss requirements and documents')}</Link><Link to="/solutions/gpu-server-rfq-checklist/" className="comino-button comino-button-secondary">{text('查看 RFQ 檢核表', 'View the RFQ checklist')}</Link></div>
     </div>
   </section>;
