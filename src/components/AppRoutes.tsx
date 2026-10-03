@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useLanguageContext } from '../contexts/LanguageContext';
@@ -9,25 +9,27 @@ import HomeBrandPartnersSection from './HomeBrandPartnersSection';
 import Footer from './Footer';
 import ScrollToTop from './common/ScrollToTop';
 import SkipToContent from './common/SkipToContent';
-import CareersPage from './CareersPage';
-import AtomicComponentsDemo from './demo/AtomicComponentsDemo';
-import GrandoConfigurator from './configurator/GrandoConfigurator';
+import NotFoundPage from './pages/NotFoundPage';
 import SEOHead from './common/SEOHead';
-import ConfiguratorSolutionPage from './pages/ConfiguratorSolutionPage';
-import AiAgentSolutionPage from './pages/AiAgentSolutionPage';
 import MarketingEvents from './analytics/MarketingEvents';
-import ProductDetails from './ProductDetails';
 import { canonicalPageUrl } from '../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath } from '../utils/seo/socialPreview';
-import SolutionsOverviewPage from './pages/SolutionsOverviewPage';
-import AiInfrastructureSolutionPage from './pages/AiInfrastructureSolutionPage';
-import SocialIntelligenceSolutionPage from './pages/SocialIntelligenceSolutionPage';
-import ProductsOverviewPage from './pages/ProductsOverviewPage';
-import ResourcesOverviewPage from './pages/ResourcesOverviewPage';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import PrivacyPage from './pages/PrivacyPage';
-import DocumentNotifierAccessPage from './pages/DocumentNotifierAccessPage';
+
+const CareersPage = lazy(() => import('./CareersPage'));
+const AtomicComponentsDemo = lazy(() => import('./demo/AtomicComponentsDemo'));
+const GrandoConfigurator = lazy(() => import('./configurator/GrandoConfigurator'));
+const ConfiguratorSolutionPage = lazy(() => import('./pages/ConfiguratorSolutionPage'));
+const AiAgentSolutionPage = lazy(() => import('./pages/AiAgentSolutionPage'));
+const ProductDetails = lazy(() => import('./ProductDetails'));
+const SolutionsOverviewPage = lazy(() => import('./pages/SolutionsOverviewPage'));
+const AiInfrastructureSolutionPage = lazy(() => import('./pages/AiInfrastructureSolutionPage'));
+const SocialIntelligenceSolutionPage = lazy(() => import('./pages/SocialIntelligenceSolutionPage'));
+const ProductsOverviewPage = lazy(() => import('./pages/ProductsOverviewPage'));
+const ResourcesOverviewPage = lazy(() => import('./pages/ResourcesOverviewPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+const DocumentNotifierAccessPage = lazy(() => import('./pages/DocumentNotifierAccessPage'));
 
 const AppRoutes: React.FC = () => {
   const { themeMode, isDarkModeActive, toggleDarkMode } = useThemeContext();
@@ -39,8 +41,7 @@ const AppRoutes: React.FC = () => {
       name: 'EudTech',
       alternateName: 'Eudaemonia Technology',
       url: canonicalPageUrl('https://eudaemonia.tech'),
-      email: 'info@eudaemonia.tech',
-      sameAs: [canonicalPageUrl('https://eudaemonia.tech/configurator')]
+      email: 'info@eudaemonia.tech'
     },
     {
       '@context': 'https://schema.org',
@@ -63,6 +64,7 @@ const AppRoutes: React.FC = () => {
       />
       <MarketingEvents />
       <main id="main-content" role="main">
+        <Suspense fallback={<p role="status" className="p-24 text-center">{isEnglish ? 'Loading…' : '載入中…'}</p>}>
         <Routes>
             <Route path="/" element={
               <>
@@ -107,7 +109,9 @@ const AppRoutes: React.FC = () => {
             <Route path="/official-document-notifier" element={<DocumentNotifierAccessPage />} />
             <Route path="/components-demo" element={import.meta.env.DEV ? <AtomicComponentsDemo /> : <Navigate replace to="/" />} />
             <Route path="/products/:id" element={<ProductDetails />} />
+          <Route path="*" element={<NotFoundPage />} />
           </Routes>
+        </Suspense>
       </main>
     </>
   );

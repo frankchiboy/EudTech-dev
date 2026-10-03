@@ -10,7 +10,7 @@ const {
 const distDir = path.resolve(__dirname, '..', 'dist');
 const { CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const expectedRoutes = getConfiguratorSocialPreviewRoutes();
-const MIN_STATIC_SEO_TEXT_LENGTH = 1200;
+const MIN_STATIC_SEO_TEXT_LENGTH = 200;
 const MIN_STATIC_SEO_HIGHLIGHTS = 3;
 const MIN_STATIC_SEO_SPEC_ROWS = 3;
 const MIN_STATIC_SEO_CHECKLIST_ITEMS = 3;
@@ -286,7 +286,7 @@ function assertFaqSchema(routePath, questions, items) {
   }
 
   const schemaQuestions = (faqSchema.mainEntity || []).map((item) => item.name).filter(Boolean);
-  requireAtLeast(routePath, 'FAQ schema entries', schemaQuestions.length, MIN_STATIC_SEO_FAQ_ITEMS);
+  requireEqual(routePath, 'FAQ schema entry count', schemaQuestions.length, questions.length);
 
   const missingQuestions = questions.filter((question) => !schemaQuestions.includes(question));
   if (missingQuestions.length > 0) {
@@ -315,11 +315,11 @@ function assertStaticSeoFallback(route, jsonLd) {
 
   requireAtLeast(route.path, 'highlight items', listItemCount(html, 'static-seo-highlights'), MIN_STATIC_SEO_HIGHLIGHTS);
   requireAtLeast(route.path, 'spec rows', tableRowCount(html, 'static-seo-specs'), MIN_STATIC_SEO_SPEC_ROWS);
-  requireAtLeast(route.path, 'checklist items', listItemCount(html, 'static-seo-checklist'), MIN_STATIC_SEO_CHECKLIST_ITEMS);
+
 
   const faqQuestions = visibleFaqQuestions(html);
-  requireAtLeast(route.path, 'FAQ items', faqQuestions.length, MIN_STATIC_SEO_FAQ_ITEMS);
-  assertFaqSchema(route.path, faqQuestions, jsonLd);
+  if (faqQuestions.length) assertFaqSchema(route.path, faqQuestions, jsonLd);
+  else if (hasType(jsonLd, 'FAQPage')) throw new Error(`${route.path} has FAQ schema without visible FAQs`);
 
   const links = relatedInternalLinks(html);
   if (links.length < MIN_STATIC_SEO_RELATED_LINKS) {

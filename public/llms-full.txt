@@ -19,7 +19,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - AI Agent and Headless SaaS Implementation: https://eudaemonia.tech/solutions/ai-agent/
 - 產品與品牌｜EudTech: https://eudaemonia.tech/products/
 - GPU 伺服器選型與採購｜EudTech: https://eudaemonia.tech/resources/
-- AI 運算基礎設施｜EudTech: https://eudaemonia.tech/solutions/ai-infrastructure/
+- Comino 液冷 GPU 伺服器、AI 工作站與機關採購: https://eudaemonia.tech/solutions/ai-infrastructure/
 - 社群情報與品牌保護｜EudTech: https://eudaemonia.tech/solutions/social-intelligence/
 - 關於 EudTech｜優達盟資訊科技: https://eudaemonia.tech/about/
 - 聯絡 EudTech｜開始諮詢: https://eudaemonia.tech/contact/
@@ -84,7 +84,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
   - 設備方向: GPU 伺服器、工作站或整合套件
   - 下一步: 協助選型、建立配置或準備 RFQ
 
-### AI 運算基礎設施｜EudTech
+### Comino 液冷 GPU 伺服器、AI 工作站與機關採購
 
 - URL: https://eudaemonia.tech/solutions/ai-infrastructure/
 - Description: 從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。

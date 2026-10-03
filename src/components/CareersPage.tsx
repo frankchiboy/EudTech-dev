@@ -396,6 +396,7 @@ const CareersPage: React.FC = () => {
             : '加入 EudTech，成為 AI 技術未來的一部分。我們正在尋找充滿熱忱的人才，協助我們打造創新解決方案。'
         }
         url={careersUrl}
+        image="/brand-provenance/eudtech-brand-careers.webp"
         structuredData={jobPostingStructuredData}
         isEnglish={isEnglish}
       />

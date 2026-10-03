@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import reference from '../../data/cominoProcurement.json';
 import { tx } from './SitePagePrimitives';
 
@@ -57,7 +58,7 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
 
       <p className="comino-condition">{tx(reference.conformityNote, isEnglish)}</p>
       <p className="comino-small">{tx(reference.procurementNote, isEnglish)} <a href={reference.procurementSource} target="_blank" rel="noreferrer">{text('政府採購法第 26 條', 'Government Procurement Act, Article 26')}</a></p>
-      <div className="comino-actions"><a href="/contact" className="comino-button">{text('討論採購需求與文件', 'Discuss requirements and documents')}</a><a href="/solutions/gpu-server-rfq-checklist/" className="comino-button comino-button-secondary">{text('查看 RFQ 檢核表', 'View the RFQ checklist')}</a></div>
+      <div className="comino-actions"><Link to="/contact" className="comino-button">{text('討論採購需求與文件', 'Discuss requirements and documents')}</Link><Link to="/solutions/gpu-server-rfq-checklist/" className="comino-button comino-button-secondary">{text('查看 RFQ 檢核表', 'View the RFQ checklist')}</Link></div>
     </div>
   </section>;
 };

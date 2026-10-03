@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import NotFoundPage from './NotFoundPage';
 import { ArrowRight, CheckCircle2, Cpu, ExternalLink, Mail, Server } from 'lucide-react';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import SEOHead from '../common/SEOHead';
@@ -141,7 +142,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
   const page = getConfiguratorSeoPage(slug);
 
   if (!page) {
-    return <Navigate to="/configurator/" replace />;
+    return <NotFoundPage />;
   }
 
   const pageUrl = canonicalPageUrl(`${SITE_ORIGIN}/solutions/${page.slug}`);

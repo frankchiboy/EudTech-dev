@@ -1,20 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { LANGUAGE_STORAGE_KEY } from '../../constants/index';
+import { isEnglishPath, languagePath } from '../../utils/seo/languageUrl';
 
 export const useLanguage = () => {
-  const [isEnglish, setIsEnglish] = useState(false);
-
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-    if (savedLanguage) {
-      setIsEnglish(savedLanguage === 'en');
-    }
-  }, []);
+  // The URL is authoritative so every visitor and crawler sees the same language.
+  const [isEnglish, setIsEnglish] = useState(() => isEnglishPath(window.location.pathname));
 
   const setLanguage = (language: 'en' | 'zh') => {
     const newIsEnglish = language === 'en';
     setIsEnglish(newIsEnglish);
-    localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+    try { localStorage.setItem(LANGUAGE_STORAGE_KEY, language); } catch { /* Storage is optional. */ }
+    if (newIsEnglish !== isEnglishPath(window.location.pathname)) {
+      window.location.assign(languagePath(window.location.href, newIsEnglish));
+    }
   };
 
   const toggleLanguage = () => {

@@ -73,7 +73,7 @@ const SITE_INFORMATION_ROUTES = [
   },
   {
     path: '/solutions/ai-infrastructure',
-    title: 'AI 運算基礎設施｜EudTech',
+    title: 'Comino 液冷 GPU 伺服器、AI 工作站與機關採購',
     description: '從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。',
     keywords: 'AI 運算基礎設施, GPU 伺服器, AI 工作站, Comino 液冷, GPU 配置器, 機關採購參考, Comino 原廠文件',
     lead: '多 GPU 算力，也要適合你的工作環境。從桌邊工作站到機架式多 GPU 系統，Comino GRANDO 以封閉式液冷為核心。EudTech 依工作負載評估噪音、空間、供電與散熱，整理成可配置、可詢價的方案。',

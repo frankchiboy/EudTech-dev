@@ -1,237 +1,863 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://eudaemonia.tech/</loc>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/"/>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/</loc>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/"/>
     <changefreq>weekly</changefreq>
     <priority>0.93</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/ai-agent/</loc>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-agent/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-agent/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-agent/"/>
     <changefreq>weekly</changefreq>
     <priority>0.92</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/products/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/"/>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/resources/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/resources/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/resources/"/>
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/ai-infrastructure/</loc>
     <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-infrastructure/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-infrastructure/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-infrastructure/"/>
     <changefreq>weekly</changefreq>
     <priority>0.92</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/social-intelligence/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/social-intelligence/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/social-intelligence/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/social-intelligence/"/>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/about/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/about/"/>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/contact/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/contact/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/contact/"/>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/privacy/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/privacy/"/>
     <changefreq>yearly</changefreq>
     <priority>0.40</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/27/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/27/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/27/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/27/"/>
     <changefreq>weekly</changefreq>
     <priority>0.86</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/36/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/36/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/36/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/36/"/>
     <changefreq>weekly</changefreq>
     <priority>0.86</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/29/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/29/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/29/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/29/"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/28/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/28/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/28/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/28/"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/23/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/23/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/23/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/23/"/>
     <changefreq>weekly</changefreq>
     <priority>0.86</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/34/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/34/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/34/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/34/"/>
     <changefreq>weekly</changefreq>
     <priority>0.86</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/30/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/30/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/30/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/30/"/>
     <changefreq>weekly</changefreq>
     <priority>0.86</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/22/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/22/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/22/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/22/"/>
     <changefreq>weekly</changefreq>
     <priority>0.86</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/13/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/13/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/13/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/13/"/>
     <changefreq>weekly</changefreq>
     <priority>0.86</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/5/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/5/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/5/"/>
     <changefreq>weekly</changefreq>
     <priority>0.86</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/configurator/21/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/21/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/21/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/21/"/>
     <changefreq>weekly</changefreq>
     <priority>0.86</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/nvidia-h200-server/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/nvidia-h200-server/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/nvidia-h200-server/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/nvidia-h200-server/"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/rtx-pro-6000-workstation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/ai-workstation-taiwan/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-workstation-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-workstation-taiwan/"/>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/liquid-cooled-gpu-server/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/"/>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/gpu-server-quote/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/gpu-server-quote/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/gpu-server-quote/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/gpu-server-quote/"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/"/>
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/gpu-server-rfq-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/"/>
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/liquid-cooling-ai-server-procurement/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/"/>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/gpu-server-power-planning/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/gpu-server-power-planning/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/gpu-server-power-planning/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/gpu-server-power-planning/"/>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/rack-ai-server-deployment/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/rack-ai-server-deployment/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/rack-ai-server-deployment/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/rack-ai-server-deployment/"/>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/taiwan-public-procurement-gpu-server/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/"/>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/supermicro-comino-gpu-server-comparison/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/"/>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/ai-inference-server-taiwan/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-inference-server-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-inference-server-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-inference-server-taiwan/"/>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/comino-grando-configurator-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/h200-gpu-server-rfq-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/"/>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/rtx-pro-6000-local-ai-inference/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/"/>
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-server-procurement-case-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/"/>
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/products/3/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/3/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/3/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/products/1/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/1/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/1/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/1/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/products/5/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/5/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/5/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/products/6/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/6/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/6/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/6/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/products/7/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/7/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/7/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/7/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/products/10/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/10/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/10/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/10/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/products/11/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/11/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/11/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/11/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/careers/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/careers/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/careers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/careers/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/careers/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/careers/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/careers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/careers/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/ai-agent/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-agent/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-agent/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-agent/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/ai-infrastructure/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-infrastructure/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-infrastructure/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-infrastructure/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/social-intelligence/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/social-intelligence/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/social-intelligence/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/social-intelligence/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/products/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/resources/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/resources/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/resources/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/about/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/about/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/about/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/contact/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/contact/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/contact/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/privacy/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/privacy/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/nvidia-h200-server/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/nvidia-h200-server/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/nvidia-h200-server/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/nvidia-h200-server/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/rtx-pro-6000-workstation/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/rtx-pro-6000-workstation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-workstation-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-workstation-taiwan/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/liquid-cooled-gpu-server/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/liquid-cooled-gpu-server/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/gpu-server-quote/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/gpu-server-quote/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/gpu-server-quote/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/gpu-server-quote/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/gpu-server-rfq-checklist/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/gpu-server-rfq-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/liquid-cooling-ai-server-procurement/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/liquid-cooling-ai-server-procurement/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/gpu-server-power-planning/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/gpu-server-power-planning/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/gpu-server-power-planning/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/gpu-server-power-planning/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/rack-ai-server-deployment/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/rack-ai-server-deployment/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/rack-ai-server-deployment/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/rack-ai-server-deployment/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/taiwan-public-procurement-gpu-server/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/taiwan-public-procurement-gpu-server/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/supermicro-comino-gpu-server-comparison/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/supermicro-comino-gpu-server-comparison/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/ai-inference-server-taiwan/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-inference-server-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-inference-server-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-inference-server-taiwan/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/comino-grando-configurator-taiwan/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/comino-grando-configurator-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/h200-gpu-server-rfq-taiwan/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/h200-gpu-server-rfq-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/rtx-pro-6000-local-ai-inference/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/rtx-pro-6000-local-ai-inference/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/ai-server-procurement-case-taiwan/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-server-procurement-case-taiwan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/27/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/27/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/27/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/27/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/36/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/36/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/36/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/36/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/29/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/29/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/29/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/29/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/28/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/28/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/28/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/28/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/23/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/23/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/23/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/23/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/34/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/34/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/34/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/34/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/30/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/30/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/30/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/30/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/22/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/22/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/22/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/22/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/13/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/13/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/13/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/13/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/5/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/5/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/5/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/configurator/21/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/21/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/21/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/21/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/products/3/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/3/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/3/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/products/1/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/1/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/1/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/1/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/products/5/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/5/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/5/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/products/6/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/6/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/6/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/6/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/products/7/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/7/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/7/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/7/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/products/10/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/10/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/10/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/10/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/products/11/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/products/11/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/products/11/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/products/11/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw</loc>
+    <lastmod>2026-10-04</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-tw</loc>
+    <lastmod>2026-10-04</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
