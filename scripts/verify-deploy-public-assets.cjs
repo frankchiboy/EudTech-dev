@@ -9,7 +9,8 @@ const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const reportsDir = path.join(rootDir, 'reports');
 const maxTotalMb = maxTotalMbArgIndex >= 0 ? Number(args[maxTotalMbArgIndex + 1]) : 260;
-const maxFileCount = maxFileCountArgIndex >= 0 ? Number(args[maxFileCountArgIndex + 1]) : 220;
+// Includes the localized Comino diagrams, chassis images and procurement PDFs.
+const maxFileCount = maxFileCountArgIndex >= 0 ? Number(args[maxFileCountArgIndex + 1]) : 230;
 
 const requiredFiles = [
   '_headers',
@@ -32,8 +33,12 @@ const requiredFiles = [
   'vendor/comino/grando-deskside-chassis.webp',
   'vendor/comino/grando-rackable-chassis.webp',
   'vendor/comino/sales-kit-0911/liquid-airflow.webp',
+  'vendor/comino/sales-kit-0911/liquid-airflow-en.webp',
   'vendor/comino/sales-kit-0911/workload-selection-matrix.webp',
   'vendor/comino/sales-kit-0911/monitoring-qdc.webp',
+  'vendor/comino/sales-kit-0911/monitoring-qdc-en.webp',
+  'vendor/comino/documents/grando-server-datasheet-v2.3.pdf',
+  'vendor/comino/documents/grando-rm-quick-start-v2.0.2.pdf',
   'social/configurator/configurator.jpg',
   'images/configurator/devices/comino-integration-kit-8x-pro-6000.webp',
   'images/configurator/devices/comino-rtx-pro-6000-workstation.webp',

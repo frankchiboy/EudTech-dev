@@ -1,0 +1,90 @@
+{
+  "reviewedAt": "2026-10-02",
+  "href": "/solutions/ai-infrastructure/#procurement",
+  "title": { "zh": "機關採購參考", "en": "Public-sector procurement reference" },
+  "configurationNote": {
+    "zh": "配置器記錄選型與詢價需求；正式規格、供貨、符合性文件及驗收條件，須對應確認後的整機型號與零件清單（BOM）。",
+    "en": "The configurator records selection and quote requirements. Formal specifications, availability, conformity documents and acceptance terms must match the confirmed system model and bill of materials (BOM)."
+  },
+  "specs": {
+    "cooling": { "zh": "最高 6.5kW；20°C 進氣、性能模式，依配置確認", "en": "Up to 6.5kW at 20°C intake in performance mode; confirm for the configuration" },
+    "power": { "zh": "最多 4×2000W CRPS（180–264V）；90–140V 時每模組最高 1000W。4+0 無備援；3+1、2+2 須核算實際負載", "en": "Up to 4×2000W CRPS at 180–264V; up to 1000W per module at 90–140V. 4+0 has no redundancy; size 3+1 or 2+2 for the actual load" },
+    "noise": { "zh": "原廠平台參考 39–70dB；依配置、進氣溫度、負載與量測方式確認", "en": "Manufacturer platform reference: 39–70dB; confirm configuration, intake temperature, load and measurement method" },
+    "temperature": { "zh": "儲存 −5–50°C；操作 3–38°C，依配置確認", "en": "Storage: −5–50°C; operation: 3–38°C, depending on configuration" },
+    "fans": { "zh": "原廠列示 3×6200RPM 或 3×3000RPM；依配置及聲學需求確認", "en": "Manufacturer lists 3×6200RPM or 3×3000RPM; confirm for the configuration and acoustic requirements" },
+    "coverage": { "zh": "CPU 及 VRM、GPU 及 GDDR／VRM；依交付冷板配置確認", "en": "CPU and VRM; GPU and GDDR/VRM. Confirm the cooling-block configuration supplied" }
+  },
+  "documents": [
+    {
+      "id": "server-datasheet",
+      "title": { "zh": "GRANDO Server／可上架工作站規格書", "en": "GRANDO Server / Rackable Workstation Datasheet" },
+      "version": "v2.3",
+      "language": { "zh": "英文原廠 PDF · 14 頁", "en": "Original manufacturer PDF in English · 14 pages" },
+      "description": { "zh": "冷卻範圍、維護、監控、供電、4U 機構與環境條件；可用於功能及部署需求審查。", "en": "Cooling coverage, service, monitoring, power, 4U chassis and environmental conditions for functional and deployment review." },
+      "href": "/vendor/comino/documents/grando-server-datasheet-v2.3.pdf",
+      "source": "https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/6a74300b1179991980fe39a8_datasheet_comino_grando_server.pdf"
+    },
+    {
+      "id": "quick-start",
+      "title": { "zh": "GRANDO RM 快速使用指南", "en": "GRANDO RM Quick Start Guide" },
+      "version": "v2.0.2",
+      "language": { "zh": "英文原廠 PDF · 2 頁", "en": "Original manufacturer PDF in English · 2 pages" },
+      "description": { "zh": "安裝方向、啟動、散熱模式、冷卻液維護及斷電恢復設定；適合部署與教育訓練準備。", "en": "Installation orientation, startup, cooling profiles, coolant maintenance and power-loss recovery settings for deployment and training." },
+      "href": "/vendor/comino/documents/grando-rm-quick-start-v2.0.2.pdf",
+      "source": "https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/69f34842fdbf063b82e8d27d_Grando_RM-M-CRPS_Quick_Start_Guide_EN.pdf"
+    }
+  ],
+  "criteria": [
+    {
+      "id": "coverage",
+      "title": { "zh": "散熱範圍與持續運算", "en": "Cooling coverage and sustained compute" },
+      "requirement": { "zh": "說明 CPU、GPU、顯示記憶體與供電元件的散熱範圍；依指定工作負載與進氣溫度驗證連續運算。", "en": "Describe cooling for CPU, GPU, graphics memory and power components. Validate sustained operation at the agreed workload and intake temperature." },
+      "evidence": { "zh": "冷卻配置圖、元件溫度、功耗、吞吐量與降頻紀錄。", "en": "Cooling layout, component temperatures, power, throughput and throttling records." },
+      "documentId": "server-datasheet", "pages": "4, 8, 10", "page": 4
+    },
+    {
+      "id": "service",
+      "title": { "zh": "可維護的液冷設計", "en": "Serviceable liquid cooling" },
+      "requirement": { "zh": "提出元件更換、冷卻液處理、防漏及恢復服務程序；有維修時間需求時，以實作驗證。", "en": "Provide procedures for component replacement, coolant handling, leak prevention and return to service. Demonstrate service time when required." },
+      "evidence": { "zh": "維護手冊、接頭操作示範及更換後檢查。QDC 不代表所有元件皆可熱插拔。", "en": "Service manual, coupling demonstration and checks after replacement. QDC does not make every component hot-swappable." },
+      "documentId": "server-datasheet", "pages": "4", "page": 4
+    },
+    {
+      "id": "monitoring",
+      "title": { "zh": "監控與異常紀錄", "en": "Monitoring and event records" },
+      "requirement": { "zh": "列明可監測及記錄的溫度、風扇、幫浦與冷卻狀態，以及標準配備、選配和告警方式。", "en": "List monitored and logged temperatures, fans, pumps and cooling states, with standard or optional features and alert methods." },
+      "evidence": { "zh": "監控畫面、異常及歷史紀錄。液位感測器依選配確認；資安功能另行核對。", "en": "Monitoring views, events and history. Confirm optional coolant-level sensing; review security functions separately." },
+      "documentId": "quick-start", "pages": "2", "page": 2
+    },
+    {
+      "id": "power",
+      "title": { "zh": "指定負載下的電源備援", "en": "Power redundancy at the specified load" },
+      "requirement": { "zh": "若用途需要備援，應在指定 CPU／GPU 負載下，驗證一組電源模組故障時維持必要作業。", "en": "When redundancy is required, verify that essential operation continues after one power-module failure at the specified CPU/GPU load." },
+      "evidence": { "zh": "輸入電壓、可用功率計算與故障測試。4+0 無備援；3+1、2+2 須依負載核算。", "en": "Input voltage, available-power calculations and a failure test. 4+0 has no redundancy; size 3+1 or 2+2 for the load." },
+      "documentId": "server-datasheet", "pages": "10", "page": 10
+    },
+    {
+      "id": "site",
+      "title": { "zh": "場地、密度與聲學條件", "en": "Site, density and acoustics" },
+      "requirement": { "zh": "依現場機櫃、供電、空調與使用者距離設定空間、GPU 容量及噪音需求，並保留維護空間。", "en": "Set space, GPU capacity and acoustic requirements from the rack, power, room cooling and user distance. Allow service access." },
+      "evidence": { "zh": "完整 BOM、尺寸重量、排熱與聲學測試條件。平台最高值不能直接當作每個配置的保證。", "en": "Complete BOM, dimensions, weight, heat removal and acoustic test conditions. Platform maxima are not guarantees for every build." },
+      "documentId": "server-datasheet", "pages": "8–12", "page": 8
+    },
+    {
+      "id": "conformity",
+      "title": { "zh": "型號相符的符合性證據", "en": "Conformity evidence matching the model" },
+      "requirement": { "zh": "依設備用途及適用法規，要求與交付型號、配置相符的安全、電磁相容及限用物質證據。", "en": "Request safety, electromagnetic-compatibility and restricted-substance evidence matching the supplied model and configuration under applicable requirements." },
+      "evidence": { "zh": "核對 CE／FCC／RoHS／REACH 等適用文件的型號、日期、範圍及引用報告；臺灣適用之商品檢驗要求另行確認。", "en": "Review model, date, scope and referenced reports in applicable CE, FCC, RoHS or REACH documents; confirm Taiwan product-inspection requirements separately." },
+      "documentId": null, "pages": null, "page": null
+    }
+  ],
+  "conformityNote": {
+    "zh": "規格書與使用指南是技術資料。CE／FCC 符合性聲明、RoHS／REACH 聲明及相關測試報告，須在確認型號與 BOM 後另行核對；聲明與測試報告用途不同，不能推定每一種 GPU 配置均已完成相同測試。",
+    "en": "Datasheets and guides are technical information. Review CE/FCC conformity declarations, RoHS/REACH declarations and relevant test reports against the confirmed model and BOM. Declarations and test reports serve different purposes; do not assume every GPU build has undergone the same tests."
+  },
+  "procurementNote": {
+    "zh": "供市場調查與需求研議參考。機關應依實際功能、效益及現場條件決定必要要求，並依法保留符合需求的等效方案。",
+    "en": "For market research and requirements planning. The procuring entity determines necessary requirements from function, benefit and site conditions, allowing equivalent solutions that meet the requirements under applicable procurement rules."
+  },
+  "procurementSource": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=A0030057&flno=26"
+}

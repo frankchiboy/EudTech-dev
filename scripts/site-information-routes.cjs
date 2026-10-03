@@ -1,3 +1,5 @@
+const cominoReference = require('../src/data/cominoProcurement.json');
+
 const SITE_INFORMATION_ROUTES = [
   {
     path: '/products',
@@ -25,7 +27,7 @@ const SITE_INFORMATION_ROUTES = [
     kind: 'collection',
     priority: '0.88',
     changefreq: 'weekly',
-    highlights: ['請 EudTech 依工作負載協助選型。', '直接建立 GPU 伺服器或工作站配置。', '準備 RFQ、部署條件與驗收要求。'],
+    highlights: ['請 EudTech 依工作負載協助選型。', '直接建立 GPU 伺服器或工作站配置。', '機關採購參考提供原廠文件、功能及驗收證據；另可使用 RFQ 檢核表整理需求。'],
     specs: [{ label: '第一步', value: '確認工作負載與部署條件' }, { label: '設備方向', value: 'GPU 伺服器、工作站或整合套件' }, { label: '下一步', value: '協助選型、建立配置或準備 RFQ' }],
     relatedLinks: ['/solutions/ai-infrastructure', '/configurator', '/solutions/gpu-server-rfq-checklist', '/solutions/gpu-server-quote', '/contact']
   },
@@ -72,13 +74,14 @@ const SITE_INFORMATION_ROUTES = [
   {
     path: '/solutions/ai-infrastructure',
     title: 'AI 運算基礎設施｜EudTech',
-    description: '從工作負載、GPU 與記憶體選型、電力散熱、配置器到正式報價，建立可採購的 AI 伺服器與工作站方案。',
-    keywords: 'AI 運算基礎設施, GPU 伺服器, AI 工作站, Comino 液冷, GPU 配置器',
+    description: '從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。',
+    keywords: 'AI 運算基礎設施, GPU 伺服器, AI 工作站, Comino 液冷, GPU 配置器, 機關採購參考, Comino 原廠文件',
     lead: '多 GPU 算力，也要適合你的工作環境。從桌邊工作站到機架式多 GPU 系統，Comino GRANDO 以封閉式液冷為核心。EudTech 依工作負載評估噪音、空間、供電與散熱，整理成可配置、可詢價的方案。',
     sourceImage: '/vendor/comino/grando-blackwell-official.jpg',
     imageAlt: 'Comino GRANDO Blackwell 多 GPU 液冷系統原廠圖片',
     priority: '0.92',
     changefreq: 'weekly',
+    procurement: cominoReference,
     highlights: [
       '買得到 GPU，不代表場地已經準備好。先確認設備旁是否有人工作、空間與電力，以及連續運作時間。',
       '把熱帶到散熱器，讓機箱空間留給運算。冷卻液傳遞高熱元件的熱，散熱器與氣流將熱排入周圍環境。',
@@ -87,7 +90,9 @@ const SITE_INFORMATION_ROUTES = [
       'AI 推論與微調、生命科學與工程運算、渲染與虛擬製作，需依軟體、精度、資料交換及使用人數確認配置。GPU 張數不是軟體效能保證。',
       '冷卻監控、快速斷開接頭、電源容量與備援方式依機型確認；維護仍須依原廠程序。',
       'EudTech 協助需求與工程選型、場地與配置審查、正式報價與驗收、維護及後續支援；實際項目以正式報價及約定範圍為準。',
-      '既有設備液冷改裝先評估相容性、施工範圍與保固影響，再決定是否適合。'
+      '既有設備液冷改裝先評估相容性、施工範圍與保固影響，再決定是否適合。',
+      '機關採購參考提供 GRANDO Server v2.3 規格書、RM v2.0.2 使用指南及功能與驗收證據對照。',
+      cominoReference.configurationNote.zh
     ],
     specs: [{ label: '適用需求', value: 'AI 訓練、推論、HPC、模擬與視覺化' }, { label: '規劃項目', value: 'GPU、CPU、記憶體、儲存、電力與散熱' }, { label: '交付路徑', value: '需求盤點、配置、報價與導入' }],
     relatedLinks: ['/configurator', '/configurator/29', '/resources', '/solutions/gpu-server-quote', '/solutions/nvidia-h200-server', '/contact']

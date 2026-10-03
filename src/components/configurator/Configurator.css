@@ -1112,3 +1112,8 @@
     width: 100%;
   }
 }
+.grando-procurement-reference{padding:1.5rem max(1.5rem,calc((100vw - 1216px)/2));background:#f8fafc;color:#475569;font-size:.875rem;line-height:1.8;border-top:1px solid #dbe3ec}
+.grando-procurement-reference a{display:inline-block;margin-top:.75rem;color:#0e7490;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.grando-procurement-reference a:focus-visible{outline:3px solid #0e7490;outline-offset:4px}
+.dark .grando-procurement-reference{background:#0f172a;color:#cbd5e1;border-color:#334155}
+.dark .grando-procurement-reference a{color:#67e8f9}

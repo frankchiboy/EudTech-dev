@@ -1,6 +1,10 @@
 import React from 'react';
 import { Server, Shield, Monitor } from 'lucide-react';
 import { Product } from './models/Product';
+import cominoReference from './cominoProcurement.json';
+
+const cominoSpec = (key: keyof typeof cominoReference.specs, isEnglish: boolean) =>
+  cominoReference.specs[key][isEnglish ? 'en' : 'zh'];
 
 export const getEudTechProducts = (isEnglish: boolean): Product[] => [
   {
@@ -148,67 +152,63 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     id: 5,
     title: isEnglish ? 'Comino Grando Rackable Workstation' : 'Comino Grando 機架式工作站',
     description: isEnglish
-      ? 'Rackmount workstation or server with up to 8 GPUs and 2 CPUs. Liquid cooling, modular design, remote management, and redundant power supply.'
-      : '機架式工作站或伺服器，最多 8 顆 GPU 與 2 顆 CPU。具備液冷、模組化設計、遠端管理與備援電源。',
+      ? 'Rackable liquid-cooled platform with up to 8 GPUs and 2 CPUs. Confirm compatibility, remote management, power redundancy and site conditions for the selected build.'
+      : '可上架液冷平台，最高支援 8 張 GPU 與 2 顆 CPU；依選定配置確認相容性、遠端管理、電源備援與場地條件。',
     icon: React.createElement(Server, { className: "h-8 w-8 text-purple-700" }),
     image: "/grando-8gpu-server.jpg",
     features: isEnglish ? [
       'Up to 8 GPUs & 2 CPUs',
       'Engineered for versatile deployment, whether mounted in a rack or placed on a table',
-      'Redundant Power supply system up to 4x 2000W hot-swap CRPS modules (Redundancy modes: 4+0, 3+1, 2+2). Power capacity up to 8.0kW',
-      '3x Ultra High Flow fans 6200RPM each (high noise level) or 3x 140mm 3000RPM (low noise level)',
-      'Cooling Capacity up to 6.5kW',
+      cominoSpec('power', true),
+      cominoSpec('fans', true),
+      cominoSpec('cooling', true),
       'Optional installation of up to 8 hot swap SSDs (SATA or NVME)'
     ] : [
       '最多8顆GPU與2顆CPU',
       '可機架安裝或桌面擺放，彈性部署',
-      '備援電源系統，最高4顆2000W熱插拔CRPS（備援模式：4+0、3+1、2+2），電力最高8.0kW',
-      '3顆超高流量6200RPM風扇（高噪音）或3顆140mm 3000RPM（低噪音）',
-      '散熱能力最高6.5kW',
+      cominoSpec('power', false),
+      cominoSpec('fans', false),
+      cominoSpec('cooling', false),
       '可選配最多8顆熱插拔SSD（SATA或NVME）'
     ],
     specs: isEnglish ? {
-      'Maximum Cooling Capacity': '6500 W @ 20°C intake air, performance mode',
+      'Maximum Cooling Capacity': cominoSpec('cooling', true),
       'Motherboard': 'Up to EATX & EBB',
       'GPUs': 'Up to 8; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200; AMD: W7800, W7900',
       'CPUs': 'Up to 2; Intel Xeon W-2400/2500 & 3400/3500, Xeon Scalable 4th/5th Gen, XEON 6; AMD Threadripper PRO 5000WX/7000WX/9000WX, EPYC 9004/9005',
       'RAM': 'Up to 2TB *',
       'Storage': 'Back panel hot swap cages: up to 4x hot swap SSDs (4x 7mm or 2x 15mm) and up to 4 more instead of 4th PSU; Internal 3.5" cage up to 4x 3.5" or 4x 2.5" 15mm or 12x 2.5" 7mm; Internal 2.5" slots: up to 4x 2.5" SSD 7mm *',
-      'Power Supply System': '4x 2000W CRPS modules (Redundancy: 4+0, 3+1, 2+2), up to 8.0kW @ 180-264V, up to 4kW @ 90-140V',
-      'Noise Level': '39dB - 70dB',
+      'Power Supply System': cominoSpec('power', true),
+      'Noise Level': cominoSpec('noise', true),
       'Lan': 'Up to 2x 10GbE on motherboard, up to 400GbE in PCIe',
       'OS': 'Ubuntu / Windows 11 (Pro/Home) / Windows Server',
-      'Liquid Cooling': 'CPU with VRM, GPU with GDDR and VRM',
+      'Liquid Cooling': cominoSpec('coverage', true),
       'Reservoir': 'Comino custom 450ml with integrated pumps',
-      'Pumps': '2x Laing DDC 20W',
-      'Radiators': '1x 120x360mm core',
-      'Fans': '3x Ultra High Flow 6200RPM (high noise) or 3x High Flow 3000RPM (low noise)',
+      'Fans': cominoSpec('fans', true),
       'Installation': '19" rack-mountable or standalone as a workstation',
       'Required rack space': '4U',
       'Size': '439 x 681 x 177mm (without handles and protruding parts)',
       'Weight': '4 GPUs: 49kg (net), 67kg (gross); 6 GPUs: 52kg (net), 70kg (gross)',
-      'Operating & storage temperature range': 'Storage: -5.5°C / 23.1°F; Operating: 3.4°C / 38.1°C *'
+      'Operating & storage temperature range': cominoSpec('temperature', true)
     } : {
-      '最大冷卻能力': '6500 W @ 20°C進氣，性能模式',
+      '最大冷卻能力': cominoSpec('cooling', false),
       '主機板': '支援EATX & EBB',
       'GPU': '最高8顆；NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200；AMD: W7800, W7900',
       'CPU': '最高2顆；Intel Xeon W-2400/2500 & 3400/3500, Xeon Scalable 4/5代, XEON 6；AMD Threadripper PRO 5000WX/7000WX/9000WX, EPYC 9004/9005',
       '記憶體': '最高2TB *',
       '儲存': '背板熱插拔：最高4顆SSD（4x 7mm或2x 15mm），可再加4顆（取代第4顆電源）；內部3.5吋托架最高4顆3.5吋或4顆2.5吋15mm或12顆2.5吋7mm；內部2.5吋槽最高4顆2.5吋SSD 7mm *',
-      '電源系統': '4x 2000W CRPS（備援：4+0、3+1、2+2），180-264V最高8.0kW，90-140V最高4kW',
-      '噪音': '39dB - 70dB',
+      '電源系統': cominoSpec('power', false),
+      '噪音': cominoSpec('noise', false),
       '網路': '主機板最高2x 10GbE，PCIe最高400GbE',
       '作業系統': 'Ubuntu / Windows 11 (Pro/Home) / Windows Server',
-      '液冷': 'CPU含VRM，GPU含GDDR與VRM',
+      '液冷': cominoSpec('coverage', false),
       '水箱': 'Comino客製450ml含整合式幫浦',
-      '幫浦': '2x Laing DDC 20W',
-      '散熱排': '1x 120x360mm核心',
-      '風扇': '3顆超高流量6200RPM（高噪音）或3顆140mm 3000RPM（低噪音）',
+      '風扇': cominoSpec('fans', false),
       '安裝方式': '19吋機架或獨立工作站',
       '機架空間': '4U',
       '尺寸': '439 x 681 x 177mm（不含把手及突出部件）',
       '重量': '4顆GPU時49kg（淨重），67kg（毛重）；6顆GPU時52kg（淨重），70kg（毛重）',
-      '操作與儲存溫度範圍': '儲存：-5.5°C / 23.1°F；操作：3.4°C / 38.1°C *'
+      '操作與儲存溫度範圍': cominoSpec('temperature', false)
     },
     comingSoon: false,
     detailedDescription: {
@@ -221,7 +221,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
   },
   {
     id: 6,
-    title: isEnglish ? 'Comino GRANDO Silent Workstation' : 'Comino GRANDO 靜音工作站',
+    title: isEnglish ? 'Comino GRANDO Liquid-cooled Workstation' : 'Comino GRANDO 液冷工作站',
     description: isEnglish
       ? 'Liquid-cooled workstation for AI development and simulation. Current popular Blackwell configurations use 2× RTX 5090 with Threadripper PRO, 256GB or 512GB RAM, and dual NVMe storage.'
       : '適合 AI 開發與模擬的液冷工作站；目前原廠熱門 Blackwell 配置採 2 張 RTX 5090、Threadripper PRO、256GB 或 512GB RAM 與雙 NVMe。',
@@ -259,7 +259,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     },
     comingSoon: false,
     detailedDescription: {
-      title: isEnglish ? 'Comino GRANDO Silent Workstation' : 'Comino GRANDO 靜音工作站',
+      title: isEnglish ? 'Comino GRANDO Liquid-cooled Workstation' : 'Comino GRANDO 液冷工作站',
       formFactor: isEnglish ? 'Liquid-cooled Workstation' : '液冷工作站',
       introduction: isEnglish ? 'A liquid-cooled workstation for high-performance AI development and simulation. Current popular Blackwell configurations use 2× RTX 5090 with Threadripper PRO, 256GB or 512GB RAM, and dual NVMe storage.' : '適合高效能 AI 開發與模擬的液冷工作站。目前原廠熱門 Blackwell 配置採 2 張 RTX 5090、Threadripper PRO、256GB 或 512GB RAM 與雙 NVMe。',
       keyFeatures: [],
@@ -270,59 +270,59 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     id: 7,
     title: isEnglish ? 'Comino Grando Server' : 'Comino Grando 伺服器',
     description: isEnglish
-      ? '4U server with up to 8 GPUs and 2 CPUs. Liquid cooling, redundant power supply, hot-swappable components, and the Comino monitoring system.'
-      : '4U 伺服器，最多 8 顆 GPU 與 2 顆 CPU。具備液冷、備援電源、熱插拔元件與 Comino 監控系統。',
+      ? '4U liquid-cooled server platform with up to 8 GPUs and 2 CPUs. Confirm power redundancy, hot-swappable PSU/SSD options and cooling monitoring for the selected build.'
+      : '4U 液冷伺服器平台，最高支援 8 張 GPU 與 2 顆 CPU；電源備援、電源／SSD 熱插拔選項與冷卻監控依選定配置確認。',
     icon: React.createElement(Server, { className: "h-8 w-8 text-red-700" }),
     image: "/GRANDO_RM-M-CRPS_9004_8xGPU_21.jpg",
     features: isEnglish ? [
       'Up to 8 GPUs & 2 CPUs',
       'Hot-swappable SSDs and redundant power supply modules',
       'Engineered for rack mounting in professional server environments',
-      'Redundant Power supply system up to 4x 2000W hot-swap CRPS modules (Redundancy modes: 4+0, 3+1, 2+2). Power capacity up to 8.0kW',
-      '3x Ultra High Flow fans 6200RPM each (high noise level) or 3x 140mm 3000RPM (low noise level)',
-      'Cooling Capacity up to 6.5kW',
+      cominoSpec('power', true),
+      cominoSpec('fans', true),
+      cominoSpec('cooling', true),
       'Optional installation of up to 8 hot swap SSDs (SATA or NVME)',
       'Built for critical IT infrastructure'
     ] : [
       '最多8顆GPU與2顆CPU',
       '熱插拔SSD與冗餘電源模組',
       '專業伺服器環境機架安裝設計',
-      '備援電源系統，最高4顆2000W熱插拔CRPS（備援模式：4+0、3+1、2+2），電力最高8.0kW',
-      '3顆超高流量6200RPM風扇（高噪音）或3顆140mm 3000RPM（低噪音）',
-      '散熱能力最高6.5kW',
+      cominoSpec('power', false),
+      cominoSpec('fans', false),
+      cominoSpec('cooling', false),
       '可選配最多8顆熱插拔SSD（SATA或NVME）',
       '適用於關鍵 IT 基礎設施'
     ],
     specs: isEnglish ? {
-      'Maximum Cooling Capacity': '6500 W @ 20°C intake air, performance mode',
+      'Maximum Cooling Capacity': cominoSpec('cooling', true),
       'Motherboard': 'Up to EATX & EBB',
       'GPUs': 'Up to 8; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200; AMD: W7800, W7900',
       'CPUs': 'Up to 2; Single socket: Intel Xeon W-2400/2500 & 3400/3500, Intel Xeon Scalable 4th Gen, 5th Gen, XEON 6, AMD Threadripper PRO 5000WX, 7000WX, 9000WX, AMD EPYC 9004/9005; Dual socket: Intel Xeon Scalable 4th & 5th Gen, XEON 6, AMD EPYC 9004/9005',
       'RAM': 'Up to 2TB *',
       'Storage': 'Back panel hot swap cages: up to 4x hot swap SSDs (4x 7mm or 2x 15mm) and up to 4 more (4x 7mm or 2x 15mm) instead of 4th PSU; Internal 3.5" cage up to 4x 3.5" or 4x 2.5" 15mm or 12x 2.5" 7mm; Internal 2.5" slots: up to 4x 2.5" SSD 7mm *',
-      'Power Supply System': '4x 2000W CRPS modules (Redundancy modes: 4+0, 3+1, 2+2). Power capacity up to 8.0kW @ 180-264V, up to 4kW @ 90-140V'
+      'Power Supply System': cominoSpec('power', true)
     } : {
-      '最大冷卻能力': '6500 W @ 20°C進氣，性能模式',
+      '最大冷卻能力': cominoSpec('cooling', false),
       '主機板': '支援EATX & EBB',
       'GPU': '最高8顆；NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200；AMD: W7800, W7900',
       'CPU': '最高2顆；單插槽：Intel Xeon W-2400/2500 & 3400/3500, Intel Xeon Scalable 4代, 5代, XEON 6, AMD Threadripper PRO 5000WX, 7000WX, 9000WX, AMD EPYC 9004/9005；雙插槽：Intel Xeon Scalable 4代 & 5代, XEON 6, AMD EPYC 9004/9005',
       '記憶體': '最高2TB *',
       '儲存': '背板熱插拔架：最多4顆熱插拔SSD（4x 7mm或2x 15mm）並可再加4顆（4x 7mm或2x 15mm）取代第4顆電源；內部3.5吋架最多4顆3.5吋或4顆2.5吋15mm或12顆2.5吋7mm；內部2.5吋插槽：最多4顆2.5吋SSD 7mm *',
-      '電源系統': '4顆2000W CRPS模組（備援模式：4+0、3+1、2+2）。180-264V電力容量最高8.0kW，90-140V電力容量最高4kW'
+      '電源系統': cominoSpec('power', false)
     },
     comingSoon: false,
     detailedDescription: {
       title: isEnglish ? 'Comino Grando Server' : 'Comino Grando 伺服器',
       formFactor: isEnglish ? '4U Rackmount Server' : '4U機架式伺服器',
       introduction: isEnglish
-        ? 'The Comino Grando Server is built for AI, machine learning, and scientific computing workloads. Liquid cooling, redundant power supplies, and hot-swappable components support continuous operation in critical IT infrastructure.'
-        : 'Comino Grando 伺服器適用於 AI、機器學習與科學運算工作負載。液冷、備援電源與熱插拔元件，支援關鍵 IT 基礎設施的連續運作。',
+        ? 'The Comino Grando Server is a liquid-cooled platform for AI, machine learning and scientific computing. Sustained performance, redundancy, management and service options are reviewed against the actual workload and build.'
+        : 'Comino Grando 伺服器是供 AI、機器學習與科學運算評估的液冷平台。持續運算效能、備援、管理與維護選項依實際工作負載及配置審查。',
       keyFeatures: isEnglish ? [
         'Up to 8 GPUs & 2 CPUs',
         'Hot-swappable SSDs and redundant power supply modules',
         'Engineered for rack mounting in professional server environments',
-        'Redundant Power supply system up to 4x 2000W hot-swap CRPS modules',
-        'Cooling Capacity up to 6.5kW',
+        cominoSpec('power', true),
+        cominoSpec('cooling', true),
         'Optional installation of up to 8 hot swap SSDs (SATA or NVME)',
         'Built for critical IT infrastructure',
         'Liquid cooling with quick-disconnect couplings',
@@ -332,8 +332,8 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
         '最多8顆GPU與2顆CPU',
         '熱插拔SSD與冗餘電源模組',
         '專業伺服器環境機架安裝設計',
-        '備援電源系統，最高4顆2000W熱插拔CRPS模組',
-        '散熱能力最高6.5kW',
+        cominoSpec('power', false),
+        cominoSpec('cooling', false),
         '可選配最多8顆熱插拔SSD（SATA或NVME）',
         '適用於關鍵 IT 基礎設施',
         '液冷系統配備快速接頭',
@@ -344,45 +344,41 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
         'Motherboards': 'Up to EATX & EBB',
         'RAM': 'Up to 2TB *',
         'M2 drives': 'Up to 8x NVME; Internal 3.5" cage up to 4x 3.5" or 4x 2.5" 15mm or 12x 2.5" 7mm; Internal 2.5" slots: up to 4x 2.5" SSD 7mm',
-        'PSU and operating voltage': '4x 2000W CRPS modules (Redundancy modes: 4+0, 3+1, 2+2). Power capacity up to 8.0kW @ 180-264V, up to 4kW @ 90-140V',
-        'Cooling Capacity': '6.5kW',
-        'Noise level': '39dB - 70dB',
+        'PSU and operating voltage': cominoSpec('power', true),
+        'Cooling Capacity': cominoSpec('cooling', true),
+        'Noise level': cominoSpec('noise', true),
         'Lan': 'Up to 2x 10GbE on motherboard, up to 400GbE in PCIe',
         'OS': 'Ubuntu / Windows 11 (Pro/Home) / Windows Server',
-        'Liquid cooling': 'CPU with VRM and GPU with GDDR and VRM',
+        'Liquid cooling': cominoSpec('coverage', true),
         'Reservoir': 'Comino custom 450ml with integrated pumps',
-        'Pumps': '2x Laing DDC 20W',
-        'Radiators': '1x 120x360mm core',
-        'Fans': '3x Ultra High Flow 140mm 6200RPM (high noise level) or 3x High Flow 140mm 5000RPM (medium noise level)',
+            'Fans': cominoSpec('fans', true),
         'Installation': '19" rack-mountable or standalone as a workstation',
         'Required rack space': '4U',
         'Size': '439 x 681 x 177mm (without handles and protruding parts)',
         'Weight': '4x CRPS and 4 GPUs — 49kg (net), 67kg (gross); 4x CRPS and 6 GPUs — 52kg (net), 70kg (gross); 4x CRPS and 8 GPUs — 55kg (net), 72kg (gross)',
-        'Operating & storage temperature range': 'Storage: -5.50ºC / 23.122ºF; Operating: 3.38ºC / 38.100ºF *'
+        'Operating & storage temperature range': cominoSpec('temperature', true)
       } : {
         '主機板': '最高支援EATX與EBB',
         '記憶體': '最高2TB *',
         'M2硬碟': '最多8顆NVME；內部3.5吋架最多4顆3.5吋或4顆2.5吋15mm或12顆2.5吋7mm；內部2.5吋插槽最多4顆2.5吋SSD 7mm',
-        '電源與電壓': '4顆2000W CRPS模組（備援模式：4+0、3+1、2+2）。180-264V電力容量最高8.0kW，90-140V電力容量最高4kW',
-        '冷卻能力': '6.5kW',
-        '噪音值': '39dB - 70dB',
+        '電源與電壓': cominoSpec('power', false),
+        '冷卻能力': cominoSpec('cooling', false),
+        '噪音值': cominoSpec('noise', false),
         '網路': '主機板最高2x 10GbE，PCIe最高400GbE',
         '作業系統': 'Ubuntu / Windows 11 (Pro/Home) / Windows Server',
-        '液冷範圍': 'CPU含VRM、GPU含GDDR與VRM',
+        '液冷範圍': cominoSpec('coverage', false),
         '水箱': 'Comino客製450ml整合式水箱',
-        '幫浦': '2x Laing DDC 20W',
-        '散熱排': '1x 120x360mm核心',
-        '風扇': '3顆超高流量140mm 6200RPM（高噪音）或3顆高流量140mm 5000RPM（中噪音）',
+            '風扇': cominoSpec('fans', false),
         '安裝方式': '19吋機架安裝或獨立工作站',
         '機架空間': '4U',
         '尺寸': '439 x 681 x 177mm（不含把手與突出部件）',
         '重量': '4顆CRPS與4顆GPU時49kg（淨重），67kg（毛重）；4顆CRPS與6顆GPU時52kg（淨重），70kg（毛重）；4顆CRPS與8顆GPU時55kg（淨重），72kg（毛重）',
-        '操作與儲存溫度範圍': '儲存：-5.50ºC / 23.122ºF；操作：3.38ºC / 38.100ºF *'
+        '操作與儲存溫度範圍': cominoSpec('temperature', false)
       },
       relevantConfigurations: isEnglish ? [
         {
           title: 'Comino Integration Kit',
-          description: 'The Comino integration kit upgrades any multi-GPU air-cooled server to liquid cooling. It raises performance by up to 30%, cuts facility power consumption by up to 40%, and allows operation in harsh environments up to +40ºC/104ºF with no thermal throttling.'
+          description: 'A liquid-cooling retrofit requires a compatibility review of the existing multi-GPU server. Confirm performance, energy use and operating temperature through tests of the complete modified system and its external cooling equipment.'
         },
         {
           title: 'Cooling system connection',
@@ -398,7 +394,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
       ] : [
         {
           title: 'Comino 整合套件',
-          description: 'Comino 整合套件可將任何多 GPU 氣冷伺服器升級為液冷。效能最高提升 30%，設施總功耗最高降低 40%，並可在最高 +40ºC/104ºF 的嚴苛環境下運作而無熱節流。'
+          description: '既有多 GPU 伺服器改裝液冷，須先審查相容性。效能、能耗與操作溫度，依改裝後整機、外部冷卻設備及實測條件確認。'
         },
         {
           title: '冷卻系統連接',
@@ -413,17 +409,17 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
         }
       ],
       additionalFeatures: isEnglish ? {
-        'LIQUID COOLED': 'The Comino liquid cooling system lets current high-end GPUs and CPUs run at full performance. It helps extend hardware lifespan and supports 24/7 operation in harsh environments with no thermal throttling.',
-        'QUICK-DISCONNECT COUPLINGS': 'Quick-disconnect couplings (Comino TheQ) on each GPU and CPU simplify servicing, shorten maintenance time, and increase system availability.',
-        'REMOTE MANAGEMENT': 'An IPMI interface provides remote management, including remote KVM access, OS installation, and server monitoring, to help keep downtime low.',
-        "COMINO'S MONITORING SYSTEM": "Collects cooling system logs offline to analyse device usage history, record failure events, and track temperature statistics. A web-based GUI allows several devices to be inspected remotely, which increases system availability.",
-        'REDUNDANT POWER SUPPLY (CRPS)': 'Designed for critical IT infrastructure. The PSUs operate across the full 100-240VAC and 240VDC range and provide N+M redundancy.'
+        'LIQUID COOLED': 'Cooling coverage includes CPU/VRM and GPU/GDDR/VRM, depending on the cooling blocks supplied. Validate sustained performance at the agreed intake temperature and workload.',
+        'QUICK-DISCONNECT COUPLINGS': 'Quick-disconnect couplings support component service under the manufacturer procedure. Verify coolant handling, leak prevention and return to service; QDC does not imply GPU or CPU hot-swap.',
+        'REMOTE MANAGEMENT': 'The datasheet describes IPMI remote management. Confirm KVM, OS installation, monitoring and access controls against the selected motherboard and software.',
+        "COMINO'S MONITORING SYSTEM": "The datasheet describes offline cooling logs, event history, temperature statistics and a web interface. Confirm installed version, sensors, alerts and security functions for delivery.",
+        'REDUNDANT POWER SUPPLY (CRPS)': cominoSpec('power', true)
       } : {
-        '液冷系統': 'Comino 液冷系統讓高階 GPU 與 CPU 維持完整效能。有助延長硬體壽命，並支援在嚴苛環境下 24/7 運作，無熱節流。',
-        '快速接頭': '每顆 GPU 與 CPU 均配備快速接頭（Comino TheQ），簡化維護、縮短維護時間，提高系統可用性。',
-        '遠端管理': '內建 IPMI 介面提供遠端管理，包含遠端 KVM 存取、作業系統安裝與伺服器監控，有助降低停機時間。',
-        'Comino監控系統': '可離線收集冷卻系統日誌，分析設備使用歷史、記錄故障事件並監控溫度統計。網頁介面可遠端檢視多台設備，提高系統可用性。',
-        '備援電源供應器(CRPS)': '專為關鍵 IT 基礎設施設計。電源供應器支援 100-240VAC 與 240VDC 全範圍電壓，並提供 N+M 備援。'
+        '液冷系統': '冷板配置可涵蓋 CPU／VRM 及 GPU／GDDR／VRM；依交付配置確認，並在約定進氣溫度及工作負載下驗證持續運算表現。',
+        '快速接頭': '快速斷開接頭支援依原廠程序維護元件；須確認冷卻液處理、防漏與恢復服務。QDC 不代表 GPU 或 CPU 可熱插拔。',
+        '遠端管理': '原廠規格書列示 IPMI 遠端管理；KVM、作業系統安裝、監控與存取控制，依選定主機板及軟體確認。',
+        'Comino監控系統': '原廠規格書列示離線冷卻紀錄、事件歷史、溫度統計與網頁介面。交付時須確認版本、感測器、告警與資安功能。',
+        '備援電源供應器(CRPS)': cominoSpec('power', false)
       }
     }
   },
