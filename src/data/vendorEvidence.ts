@@ -51,7 +51,7 @@ export const VENDOR_EVIDENCE = {
       server: {
         label: { zh: 'Comino：GRANDO Server v2.3 規格書（繁體中文譯本）', en: 'Comino: GRANDO Server v2.3 manufacturer datasheet' },
         href: cominoReference.documents[0].href,
-        hrefZh: cominoReference.documents[0].hrefZh
+        hrefZh: cominoReference.documents[0].readerHrefZh
       },
       downloads: {
         label: { zh: 'Comino：原廠資料下載', en: 'Comino: official downloads' },

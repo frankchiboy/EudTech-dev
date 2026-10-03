@@ -21,6 +21,7 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
           <h3>{tx(document.title, isEnglish)}</h3>
           <p>{tx(document.description, isEnglish)}</p>
           <div className="comino-document-links">
+            {!isEnglish && <a href={document.readerHrefZh}>線上閱讀繁體中文版</a>}
             <a href={isEnglish ? document.href : document.hrefZh} download>{text('下載繁體中文版 PDF', 'Download manufacturer PDF')}</a>
             <a href={document.source} target="_blank" rel="noreferrer">{text('查看原廠英文原文', 'View manufacturer source')}</a>
           </div>
@@ -37,7 +38,7 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
             return <tr key={criterion.id}>
               <th scope="row">{tx(criterion.title, isEnglish)}</th>
               <td>{tx(criterion.requirement, isEnglish)}</td>
-              <td>{tx(criterion.evidence, isEnglish)}{document && <a href={`${isEnglish ? document.href : document.hrefZh}#page=${criterion.page}`} target="_blank" rel="noreferrer">{text('中文譯本', 'Manufacturer document')} · {text('第 ', 'pp. ')}{criterion.pages}{text(' 頁', '')}</a>}</td>
+              <td>{tx(criterion.evidence, isEnglish)}{document && <a href={isEnglish ? `${document.href}#page=${criterion.page}` : `${document.readerHrefZh}#page-${criterion.page}`} target="_blank" rel="noreferrer">{text('中文譯本', 'Manufacturer document')} · {text('第 ', 'pp. ')}{criterion.pages}{text(' 頁', '')}</a>}</td>
             </tr>;
           })}</tbody>
         </table>

@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GRANDO Server／可上架工作站規格書 v2.3｜繁體中文線上閱讀｜EudTech</title>
+<meta name="description" content="GRANDO Server／可上架工作站規格書 v2.3完整繁體中文譯本，共 14 頁。線上閱讀、放大圖表或下載 PDF。">
+<meta name="source-pdf-sha256" content="745322ae0977fa558fb8c0a79b84a06a35ba62dc40ff6e16f6997d43bcf99661">
+<link rel="canonical" href="https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.html"><style>
+:root { color-scheme: light dark; --bg:#f2f6f4; --ink:#152f27; --muted:#50685e; --panel:#fff; --line:#ccddd5; --accent:#087f50; }
+* { box-sizing:border-box; } html { scroll-padding-top:100px; }
+body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.7 system-ui,-apple-system,"Noto Sans TC",sans-serif; }
+a { color:var(--accent); text-underline-offset:4px; } a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #f29f05; outline-offset:4px; }
+header,main,footer { max-width:1480px; margin:auto; padding:24px; }
+header { padding-top:36px; } .brand { font-weight:750; text-decoration:none; letter-spacing:.04em; } .eyebrow { color:var(--accent); font-size:.85rem; margin:24px 0 8px; }
+h1 { font-size:clamp(1.7rem,3vw,2.6rem); line-height:1.3; margin:0 0 16px; } .note { color:var(--muted); max-width:80ch; }
+.actions { display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; } .actions a,button { border:1px solid var(--line); border-radius:8px; padding:9px 14px; background:var(--panel); color:var(--ink); font:inherit; text-decoration:none; cursor:pointer; }
+.actions a.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+.toolbar { position:sticky; top:0; z-index:1; background:var(--panel); border-block:1px solid var(--line); }
+.toolbar-inner { max-width:1480px; margin:auto; padding:10px 24px; display:flex; gap:12px; align-items:center; }
+.pages { display:flex; gap:6px; overflow-x:auto; padding:5px 2px; flex:1; } .pages a { flex:0 0 auto; min-width:36px; padding:3px 8px; border:1px solid var(--line); text-align:center; border-radius:6px; text-decoration:none; }
+#zoom { white-space:nowrap; } .page { scroll-margin-top:100px; margin:0 0 36px; }
+.page-heading { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px; margin-bottom:12px; }
+h2 { font-size:1.2rem; margin:0; } .page-heading a { font-size:.9rem; }
+.page-view { overflow:auto; border:1px solid var(--line); border-radius:8px; background:#fff; }
+.page-image { display:block; width:100%; height:auto; } body.zoomed .page-image { width:1684px; max-width:none; }
+details { margin-top:10px; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 16px; } summary { cursor:pointer; color:var(--muted); }
+pre { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; font-size:.95rem; } footer { color:var(--muted); border-top:1px solid var(--line); }
+@media(max-width:600px) { header,main,footer { padding:20px 14px; } .toolbar-inner { padding:8px 14px; } #zoom { font-size:.85rem; padding:8px; } }
+@media(prefers-color-scheme:dark) { :root { --bg:#101915; --ink:#e8f3ed; --muted:#b8ccc0; --panel:#19291f; --line:#354b3d; --accent:#54d997; } .actions a.primary { color:#092116; } }
+</style></head>
+<body><header><a class="brand" href="/solutions/ai-infrastructure/#procurement">EudTech · 機關採購參考</a>
+<p class="eyebrow">繁體中文線上閱讀 · 共 14 頁</p><h1>GRANDO Server／可上架工作站規格書 v2.3</h1>
+<p class="note">中文 PDF 為 EudTech 製作的完整繁體中文譯本，保留原廠圖表、數值與頁碼，非原廠核發中文版；如有歧義，以英文原文為準。</p>
+<p class="note">完整圖文與原文頁碼對應。可用下方頁碼跳頁、放大閱讀，或展開本頁文字。翻譯日期：2026-10-04。</p>
+<div class="actions"><a class="primary" href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.pdf" download>下載中文版 PDF（9.3 MB）</a><a href="https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/6a74300b1179991980fe39a8_datasheet_comino_grando_server.pdf" target="_blank" rel="noopener">原廠英文原文</a><a href="/solutions/ai-infrastructure/#procurement">返回採購參考</a></div></header>
+<div class="toolbar"><div class="toolbar-inner"><nav class="pages" aria-label="文件頁碼"><a href="#page-1" aria-label="跳至第 1 頁">1</a><a href="#page-2" aria-label="跳至第 2 頁">2</a><a href="#page-3" aria-label="跳至第 3 頁">3</a><a href="#page-4" aria-label="跳至第 4 頁">4</a><a href="#page-5" aria-label="跳至第 5 頁">5</a><a href="#page-6" aria-label="跳至第 6 頁">6</a><a href="#page-7" aria-label="跳至第 7 頁">7</a><a href="#page-8" aria-label="跳至第 8 頁">8</a><a href="#page-9" aria-label="跳至第 9 頁">9</a><a href="#page-10" aria-label="跳至第 10 頁">10</a><a href="#page-11" aria-label="跳至第 11 頁">11</a><a href="#page-12" aria-label="跳至第 12 頁">12</a><a href="#page-13" aria-label="跳至第 13 頁">13</a><a href="#page-14" aria-label="跳至第 14 頁">14</a></nav><button id="zoom" type="button" aria-pressed="false" hidden>放大閱讀</button></div></div>
+<main><section class="page" id="page-1" aria-labelledby="heading-1">
+<div class="page-heading"><h2 id="heading-1">第 1 頁 · 封面</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-01.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-01.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 1 頁：封面" loading="eager" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>產品規格書
+COMINO GRANDO
+伺服器與                                              6.5kW
+                          冷卻能力可上架工作站
+
+
+專為先進且運算資源需求龐大的工作，打造高效能多 GPU 解決方案。
+
+
+    AI 研究：機器學習、深度學習、推論
+  內容創作：剪輯、設計、工程、建築
+  製作：影片、虛擬製作、渲染、動畫
+  數位鑑識：密碼復原
+  以及更多應用！
+
+核心優勢
+
+
+       為專業人員、工作小組及研究團隊          易於配置、維護及擴充的              專為最高 38°C／100°F 嚴苛環境中
+       提供最佳多 GPU 效能                先進硬體！                                      24/7 全天候可靠、高效能運作設計
+
+譯註：原廠效能與環境條件須依配置確認；6.5kW 的適用條件詳見第 5 頁。
+版本 2.3
+                      EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-2" aria-labelledby="heading-2">
+<div class="page-heading"><h2 id="heading-2">第 2 頁 · 產品實照</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-02.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-02.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 2 頁：產品實照" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         2產品實照
+
+
+
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-3" aria-labelledby="heading-3">
+<div class="page-heading"><h2 id="heading-3">第 3 頁 · 產品特色</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-03.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-03.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 3 頁：產品特色" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         3產品特色
+
+
+ 最高支援 8 張 GPU 與 2 顆 CPU
+
+ 支援多元部署方式，可安裝於機架或放置於桌面。
+
+
+ 備援電源系統：最多 4 個 2000W 可熱插拔 CRPS
+ 模組。供電模式：4+0、3+1、2+2；總供電容量最高
+  8.0kW。
+
+  3 個 6200RPM 超高風量風扇（高噪音），或 3 個
+  140mm、3000RPM 風扇（低噪音）。
+
+ 冷卻能力最高 6.5kW
+ 可選配安裝最多 8 個可熱插拔 SSD
+  （SATA 或 NVME）。
+
+
+
+
+   譯註：4+0 為無備援模式；3+1、2+2 的可用功率與備援能力須依實際負載及輸入電壓核算。
+
+
+
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-4" aria-labelledby="heading-4">
+<div class="page-heading"><h2 id="heading-4">第 4 頁 · 產品特色</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-04.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-04.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 4 頁：產品特色" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         4產品特色
+
+
+
+  以液冷為核心的設計
+   Comino 表示，GRANDO 的冷卻設計可完全消除熱降頻，發揮新世代高階 GPU 與 CPU
+  的完整效能潛力，延長硬體壽命，並在嚴苛環境下維持 24/7
+  穩定運作。同時，藉由降低系統整體耗電，提高效率、降低電力使用效率指標（PUE），並改善投資報
+  酬率（ROI）。
+
+
+
+  易於維護
+  模組化設計，以及每個 GPU 與 CPU 上的快速斷開接頭（Comino
+  TheQ），可簡化維護、縮短維修時間並提高系統可用性。原廠表示，維護不需具特殊技能的工程師，操
+  作如同氣冷系統，設計的兩次維護間隔最長可達 3 年。
+
+
+
+  遠端管理
+   GRANDO 系統配備 IPMI 介面，支援遠端 KVM
+  存取、作業系統安裝，以及完整的伺服器監控，方便隨時隨地管理效能並減少停機時間。
+
+
+
+   Comino 監控系統
+  可離線蒐集冷卻系統日誌，用於分析設備使用歷程、記錄故障事件與監測溫度統計。網頁式圖形介
+  面可遠端檢視多台設備，協助提高系統可用性。
+
+
+
+  可熱插拔備援電源供應器（CRPS）
+  專為關鍵 IT 基礎設施設計，提供可靠的系統供電。原文列示電源支援 100-240VAC 與
+   240VDC，並提供 N+M 備援。
+
+
+
+   譯註：本頁為原廠功能與效益描述；實際功能、維護間隔、供電容量及驗收條件，須依交付型號、配置與環境確認。
+
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-5" aria-labelledby="heading-5">
+<div class="page-heading"><h2 id="heading-5">第 5 頁 · 系統概覽</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-05.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-05.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 5 頁：系統概覽" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         5系統概覽
+
+
+
+最高        6 500 W
+冷卻能力   最高冷卻能力的條件：進氣溫度 20°C，
+       冷卻系統使用「性能模式」。
+
+
+
+主機板     最高支援 EATX、EBB
+
+
+        伺服器：最多 8 張
+GPU
+               NVIDIA: RTX A6000, RTX 6000 ADA, RTX PRO 6000,                                                                                          8 張 GPU
+              A40, L40, L40S, A100, H100, H200
+
+        可上架工作站：最多 6 張
+               NVIDIA: 3090, 4090, 5080, 5090, RTX A6000, RTX 6000 ADA,
+             RTX PRO 6000, A40, L40, L40S, A100, H100, H200;
+            AMD: W7800, W7900
+
+
+CPU      最多 2 顆
+        單處理器插槽：
+                  Intel Xeon W-2400/2500 &amp; 3400/3500
+                  Intel Xeon Scalable 第 4、5 代及 XEON 6
+          AMD Threadripper PRO 5000WX, 7000WX, 9000WX
+          AMD EPYC 9004 / 9005
+
+         雙處理器插槽：
+                  Intel Xeon Scalable 第 4、5 代及 XEON 6
+          AMD EPYC 9004 / 9005
+
+記憶體     最高 2TB *
+
+
+儲存     背面熱插拔槽：最多 4 個 SSD（4×7mm 或 2×15mm）；
+       以第 4 個電源位置再增加最多 4 個
+         （4×7mm 或 2×15mm）。
+       內部 3.5 吋槽：最多 4×3.5 吋、4×2.5 吋 15mm，
+       或 12×2.5 吋 7mm。
+       內部 2.5 吋槽：最多 4×2.5 吋 7mm SSD。*
+
+             4 個 2000W 可熱插拔 CRPS 模組；                                                                                                     * 依配置而異；詳細資訊請洽 Comino 團隊。電源供應
+          供電模式：4+0、3+1、2+2。系統           180-264V：最高 8.0kW；90-140V：最高 4kW。
+
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-6" aria-labelledby="heading-6">
+<div class="page-heading"><h2 id="heading-6">第 6 頁 · 系統概覽</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-06.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-06.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 6 頁：系統概覽" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         6系統概覽
+
+
+3 個 120mm、6200RPM 超高風量風扇，
+或 3 個 140mm、3000RPM 一般風量風扇
+
+
+
+最多 4 個 3.5 吋 HDD                                                           最多 4 個 2.5 吋 SSD
+
+
+                                                              可熱插拔電源模組
+冷卻系統控制器
+
+
+
+最多 8 張 GPU*                                                                    散熱器
+
+
+
+儲液槽
+
+
+
+顯示幕
+
+
+
+最多 2 顆 CPU*                                    正面
+
+
+                                          背面
+
+* 可提供不同配置。
+
+
+
+
+
+                                                          最多 4 個可熱插拔 2.5 吋 SSD（SATA 或 NVME）；
+                                                          以第 4 個電源位置可再增加最多 4 個。
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-7" aria-labelledby="heading-7">
+<div class="page-heading"><h2 id="heading-7">第 7 頁 · 冷卻系統</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-07.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-07.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 7 頁：冷卻系統" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         7冷卻系統
+
+
+
+      Comino 獨有的液冷系統設計
+                                                             排出氣流
+
+    COMINO GRANDO
+   冷卻系統的氣流由機箱前方流向後方，因此設備可
+   放置於桌面，也可安裝於機架。
+
+   主機板位於機箱前段，讓 RAM
+   與其他採用氣冷的元件，取得盡可能低溫的進氣。
+
+
+
+          冷卻液
+
+          氣流
+
+
+
+
+
+                                                               冷卻液流向
+
+    進入氣流
+
+
+
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-8" aria-labelledby="heading-8">
+<div class="page-heading"><h2 id="heading-8">第 8 頁 · 效能圖表</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-08.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-08.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 8 頁：效能圖表" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         8效能圖表
+
+
+                      備援電源供應系統上限
+       8000
+
+       7000
+
+       6000
+
+                                                                                                                                          1 顆 CPU + 8 張 600W GPU
+       5000                                           20°C
+                                           環境空氣
+                                                                                                                                          1 顆 CPU + 8 張 450W GPU                                            25°C       4000
+
+                                                                                                                                          1 顆 CPU + 6 張 450W GPU                                               30°C         桌上型工作站電源系統上限       3000
+                                                   35°C                                    1 顆 CPU + 6 張 300W GPU／
+       2000                                                                                                                          4 張 450W GPU
+
+         1000                                                                                                                          1 顆 CPU + 4 張 300W GPU       設備總耗電量，W                                                                                                                                   1 顆 CPU + 2 張 300W GPU          0
+               100      200      300     400     500     600      700     800     900      1000
+        風量，m³/h
+
+            39 dB                噪音值                       70 dB
+
+           所有資料皆為粗略估算，僅供參考；如需釐清，請聯絡 Comino 團隊。
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-9" aria-labelledby="heading-9">
+<div class="page-heading"><h2 id="heading-9">第 9 頁 · 配置範例</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-09.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-09.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 9 頁：配置範例" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         9配置範例
+
+
+                                GPU 熱設計功耗（TDP）與每台系統的 GPU 張數
+
+
+                           250W – 300W           300W – 400W           400W – 500W           500W – 600W
+
+ 工作站 CPU                                    x2      x4      x6      x8           x2      x4      x6      x8           x2      x4      x6      x8           x2      x4      x6      x8
+ AMD Threadripper PRO 5000WX      x1
+ AMD Threadripper PRO 7000WX      x1
+  Intel Xeon-W 2400                         x1
+  Intel Xeon-W 3400                         x1
+ W3400 與 7000WX 超頻                     x1
+ 伺服器 CPU
+                                                      x1
+ AMD EPYC 9004
+                                             x2
+                                                      x1   Intel Xeon Scalable 第 4、5 代
+                                             x2
+
+
+
+ GRANDO 桌上型工作站                        低噪音
+ GRANDO 桌上型工作站與可上架工作站                 中等噪音
+ GRANDO 可上架工作站與伺服器                    高噪音，環境溫度最高 35-40°C／95-104°F
+ GRANDO 可上架工作站與伺服器                    高噪音，環境溫度最高 25-30°C／77-86°F
+ GRANDO 伺服器                                    高噪音，環境溫度最高 15-20°C／59-68°F
+                                    未列示
+
+
+
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-10" aria-labelledby="heading-10">
+<div class="page-heading"><h2 id="heading-10">第 10 頁 · 技術規格</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-10.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-10.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 10 頁：技術規格" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         10技術規格
+
+
+
+
+
+主機板            最高支援 EATX、EBB                        液冷範圍                CPU 與 VRM；GPU 與 GDDR、VRM
+
+
+記憶體            最高 2TB *                             儲液槽                   Comino 特製 450ml 儲液槽，整合幫浦
+
+                                                 風扇                       3 個 6200RPM 超高風量風扇（高噪音），
+M.2 磁碟           最多 8 個 NVME *                                                               或 3 個 3000RPM 高風量風扇（低噪音）
+
+                 背面熱插拔槽：
+                 最多 4 個 SSD（4×7mm 或 2×15mm）；以第 4 個電源                                                 安裝方式                   19 吋機架安裝，或獨立放置作為工作站
+                 位置再增加最多 4 個（4×7mm 或 2×15mm）。
+                 內部 3.5 吋槽：最多 4×3.5 吋、4×2.5 吋 15mm，
+                 或 12×2.5 吋 7mm。
+                 內部 2.5 吋槽：最多 4×2.5 吋 7mm SSD。*                所需機架空間             4U
+                       180-264V：最多 4×2000W 可熱插拔 CRPS
+電源與工作電壓             90-140V：最多 4×1000W 可熱插拔 CRPS
+                    供電模式：4+0、3+1、2+2                      尺寸                439×681×177mm（不含把手與突出部位）
+
+冷卻能力                    6.5kW                                                                          Comino GRANDO 伺服器或可上架工作站：
+                                                   重量                       4 張 GPU：淨重 49kg，毛重 67kg
+                                                                                                                  6 張 GPU：淨重 52kg，毛重 70kg
+噪音                      39dB - 70dB                                                                            8 張 GPU：淨重 55kg，毛重 72kg
+
+
+區域網路           主機板最高 2×10Gbit/s；PCIe 最高 400Gbit/s                                                   操作與儲存             儲存：-5 至 50°C／23 至 122°F
+                                                   溫度範圍            操作：3 至 38°C／38 至 100°F *
+
+作業系統                  Ubuntu／Windows 11（Pro／Home）／Windows Server
+
+
+
+
+
+                                        * 依配置而異；詳細資訊請洽 Comino 團隊。
+
+
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-11" aria-labelledby="heading-11">
+<div class="page-heading"><h2 id="heading-11">第 11 頁 · 尺寸圖</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-11.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-11.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 11 頁：尺寸圖" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         11尺寸圖
+
+
+
+                                                                   A    90° (1:5)
+                                    695                                                                                                                                 464.1
+
+
+                                                                                                                                                                           177
+
+
+
+
+
+                                                                  B    90° (1:5)
+
+ A
+                                                B     482                                                                                 439 482
+
+
+                                                                                                                     463
+
+
+
+
+
+                                     681
+                                    754
+
+
+尺寸標註、視圖 A／B、角度 90° 與比例 1:5 均保留原圖。尺寸單位：mm。
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-12" aria-labelledby="heading-12">
+<div class="page-heading"><h2 id="heading-12">第 12 頁 · 尺寸圖</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-12.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-12.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 12 頁：尺寸圖" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         12尺寸圖
+
+
+                                                                          А
+                                                     724                                                                                                                                      182
+
+
+
+
+
+            А                                               В                          442
+                                                                                          490
+
+
+
+
+
+                                                                                                               300
+                                                                              В
+                                                                                                                                                177
+
+
+
+
+
+                                                          681
+
+
+
+
+
+尺寸標註及視圖 A／B 均保留原圖。尺寸單位：mm。
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-13" aria-labelledby="heading-13">
+<div class="page-heading"><h2 id="heading-13">第 13 頁 · 液冷整合套件</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-13.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-13.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 13 頁：液冷整合套件" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                                                   GRANDO 伺服器／可上架工作站規格書                                         13液冷整合套件
+
+
+
+
+原廠表示，Comino 整合套件可將多 GPU
+氣冷伺服器升級為液冷系統，使效能最高提升
+30%、設施總耗電量最高降低 40%，並能在最高
++40°C／104°F 的嚴苛環境下運作而不發生熱降頻。
+
+
+升級後的伺服器可連接 Comino InRack Drycooler，或透過
+CDU（冷卻液分配單元）連接外部冷卻系統。
+
+
+
+適用的伺服器配置
+• 雙 EPYC 或 XEON／8 張 NVIDIA H200／2TB RAM／2TB NVME
+• 雙 EPYC 或 XEON／8 張 NVIDIA H100／2TB RAM／2TB NVME
+• 雙 EPYC 或 XEON／8 張 NVIDIA RTX PRO 6000／2TB RAM／2TB NVME
+
+
+
+
+
+譯註：本頁數值為原廠效益宣稱，原文未於此頁列出測試條件。效能、節能及環境溫度能力，須以改裝後整機、外部冷卻設備與實際測試條件確認；不應直接套用於每一配置。
+
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section><section class="page" id="page-14" aria-labelledby="heading-14">
+<div class="page-heading"><h2 id="heading-14">第 14 頁 · 原廠聯絡資訊</h2><a href="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-14.webp" target="_blank" rel="noopener">另開本頁大圖</a></div>
+<div class="page-view"><img class="page-image" src="/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-14.webp" width="1684" height="1191" alt="GRANDO Server／可上架工作站規格書 v2.3繁體中文譯本，第 14 頁：原廠聯絡資訊" loading="lazy" decoding="async"></div>
+<details><summary>本頁文字（可搜尋與複製）</summary><pre>                                           更多產品資訊：
+                                                                       www.comino.com
+                                                                               www.grando.ai
+
+                                                                電子郵件：info@comino.com
+
+
+                                                               COMINO HOLDING LTD
+                                                                       30 Churchill Pl, London, England, E14 5RE
+                                                                   +44 203 885 5315
+
+                                           製造地點地址
+                                                                              Krimuldas iela 2A, LV-1039, Riga, Latvia
+
+                                    社群帳號
+
+                                                                       @cominotech
+                                                                       @cominotech
+                                                                       @cominotech
+
+
+                                                             繁體中文譯本：EudTech 優達盟資訊科技
+                                                                 原文：Comino 規格書 v2.3，共 14 頁
+                                                            翻譯日期：2026-10-04；頁碼與原文對應。
+
+
+EudTech 繁體中文譯本｜依原廠原文翻譯，非原廠核發中文版；如有歧義，以英文原文為準。</pre></details>
+</section></main><footer>EudTech 優達盟資訊科技 · 原廠文件繁體中文譯本</footer>
+<script>
+const zoom = document.getElementById('zoom');
+zoom.hidden = false;
+zoom.addEventListener('click', () => {
+  const active = document.body.classList.toggle('zoomed');
+  zoom.setAttribute('aria-pressed', String(active));
+  zoom.textContent = active ? '適合螢幕' : '放大閱讀';
+});
+</script></body></html>

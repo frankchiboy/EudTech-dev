@@ -28,6 +28,7 @@
       "description": { "zh": "冷卻範圍、維護、監控、供電、4U 機構與環境條件；可用於功能及部署需求審查。", "en": "Cooling coverage, service, monitoring, power, 4U chassis and environmental conditions for functional and deployment review." },
       "href": "/vendor/comino/documents/grando-server-datasheet-v2.3.pdf",
       "hrefZh": "/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.pdf",
+      "readerHrefZh": "/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.html",
       "source": "https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/6a74300b1179991980fe39a8_datasheet_comino_grando_server.pdf"
     },
     {
@@ -38,6 +39,7 @@
       "description": { "zh": "安裝方向、啟動、散熱模式、冷卻液維護及斷電恢復設定；適合部署與教育訓練準備。", "en": "Installation orientation, startup, cooling profiles, coolant maintenance and power-loss recovery settings for deployment and training." },
       "href": "/vendor/comino/documents/grando-rm-quick-start-v2.0.2.pdf",
       "hrefZh": "/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.pdf",
+      "readerHrefZh": "/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.html",
       "source": "https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/69f34842fdbf063b82e8d27d_Grando_RM-M-CRPS_Quick_Start_Guide_EN.pdf"
     }
   ],
