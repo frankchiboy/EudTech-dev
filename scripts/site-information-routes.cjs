@@ -1,6 +1,7 @@
 const cominoReference = require('../src/data/cominoProcurement.json');
 
 const SITE_INFORMATION_ROUTES = [
+  { path: '/solutions/pqc', title: 'PQC 後量子密碼導入與專家顧問', description: '從密碼資產盤點到架構試點與遷移治理，認識 EudTech 專家團隊、學術背景與 ML-DSA 實作研究。', keywords: 'PQC, 後量子密碼, 密碼資產盤點, ML-DSA, ML-KEM, 遷移顧問', lead: '由研究背景支撐導入決策，規劃可審查的密碼資產盤點、試點驗證與分階段遷移。', sourceImage: '/vendor/pqc/hung-jr-shiu.png', imageAlt: 'Hung-Jr Shiu 密碼學研究專家肖像', priority: '0.85', changefreq: 'monthly', highlights: ['Chung-hao (Frank) Hsu 與 Hung-Jr Shiu 的研究專長與學術背景。', '密碼資產盤點、架構試點及遷移治理。', 'NIST 標準、供應商依賴與可驗證交付。'], specs: [{label: '服務', value: 'PQC 導入顧問'}, {label: '研究', value: '密碼學、FPGA 與 ML-DSA 實作'}, {label: '交付', value: '資產清冊、試點驗證與遷移路線圖'}], relatedLinks: ['/solutions', '/contact', '/about', '/solutions/ai-infrastructure'] },
   {
     path: '/products',
     title: '產品與品牌｜EudTech',

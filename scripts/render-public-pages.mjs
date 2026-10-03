@@ -13,6 +13,7 @@ const routeModules = {
   '/': 'index.html',
   '/careers': 'src/components/CareersPage.tsx',
   '/solutions': 'src/components/pages/SolutionsOverviewPage.tsx',
+  '/solutions/pqc': 'src/components/pages/PqcAdvisoryPage.tsx',
   '/solutions/aws': 'src/components/pages/AwsCloudSolutionPage.tsx',
   '/solutions/ai-infrastructure': 'src/components/pages/AiInfrastructureSolutionPage.tsx',
   '/solutions/social-intelligence': 'src/components/pages/SocialIntelligenceSolutionPage.tsx',

@@ -12,12 +12,17 @@
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/solutions/": {
-      "hash": "814d98cce289a2e44dba290404f6e74c310c75cc44e73c909bc0277376161fbf",
+      "hash": "a361a320e82ce8c1816eb97d522c60307ce0375a6f6d9b00ec9d92537f0f681b",
       "publishedAt": "2026-08-17",
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/solutions/aws/": {
       "hash": "abc3e387f1d946aaea0f8aa8d3d1039f439389863cf50eec419cfad032ee52e7",
+      "publishedAt": "2026-10-04",
+      "modifiedAt": "2026-10-04"
+    },
+    "https://eudaemonia.tech/solutions/pqc/": {
+      "hash": "1892d6a1a57e92f4ee5890c7657cc0b04050782d5cc3bf6bfa9c1548c0f9bdae",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-04"
     },
@@ -247,7 +252,7 @@
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/en/solutions/": {
-      "hash": "a5cb2ac1a04f70a62e0f3ad03fc54cb134d8a1efbab856b844e0acd474a290e4",
+      "hash": "807ca6dda12d14d78c7bbb62df82518bfd8e985b697b5000d0885968bfc61119",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-04"
     },
@@ -293,6 +298,11 @@
     },
     "https://eudaemonia.tech/en/solutions/aws/": {
       "hash": "582cd2027b29fa7dfbead4059c97404b30436cd3956946ee0d3d00918c3794f4",
+      "publishedAt": "2026-10-04",
+      "modifiedAt": "2026-10-04"
+    },
+    "https://eudaemonia.tech/en/solutions/pqc/": {
+      "hash": "81a7f38185d5bacf9eea2e84342e91c36948b815bc62c88738208b31f94a07d2",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-04"
     },

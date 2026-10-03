@@ -17,6 +17,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - [Comino Grando GPU 伺服器報價配置器](https://eudaemonia.tech/configurator/): 配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。
 - [AI 與數位服務解決方案總覽｜EudTech](https://eudaemonia.tech/solutions/): 從 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。
 - [企業 AWS 雲端銷售與導入](https://eudaemonia.tech/solutions/aws/): 協助企業規劃 AWS 運算、儲存、資料庫與生成式 AI，整合需求評估、採購報價、導入與維運範圍。
+- [PQC 後量子密碼導入與專家顧問](https://eudaemonia.tech/solutions/pqc/): 從密碼資產盤點到架構試點與遷移治理，認識 EudTech 專家團隊、學術背景與 ML-DSA 實作研究。
 - [產品與品牌｜EudTech](https://eudaemonia.tech/products/): 瀏覽 AWS 雲端銷售服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。
 - [GPU 伺服器選型與採購｜EudTech](https://eudaemonia.tech/resources/): 依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。
 - [Comino 液冷 GPU 伺服器、AI 工作站與機關採購](https://eudaemonia.tech/solutions/ai-infrastructure/): 從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。
@@ -75,6 +76,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - [Privacy & Data Use](https://eudaemonia.tech/en/privacy/): Learn how EudTech handles contact and quote data, customer-source attribution, retention, service providers and data requests.
 - [Comino GRANDO GPU Server Configurator](https://eudaemonia.tech/en/configurator/): Configure Comino GRANDO GPU servers and AI workstations, review GPU, CPU, memory, storage, power and networking, and request a formal quote in Taiwan.
 - [AWS Cloud Sales | Planning, Quotes & Deployment](https://eudaemonia.tech/en/solutions/aws/): Plan AWS compute, storage, databases and generative AI with EudTech, from requirements and quotes to deployment and support scope.
+- [PQC Migration & Expert Advisory](https://eudaemonia.tech/en/solutions/pqc/): Meet the experts behind cryptographic inventories, PQC architecture pilots, and phased migration. Explore academic backgrounds and ML-DSA implementation research.
 - [NVIDIA H200 Server Quote, Availability, and Price Planning](https://eudaemonia.tech/en/solutions/nvidia-h200-server/): Plan an NVIDIA H200 server quote for AI training, HPC, or inference. EudTech confirms current availability, price, and delivery only after GPU count, CPU, memory, storage, power, cooling, and networking are defined.
 - [RTX PRO 6000 AI Workstation Quote Configurator for Local Inference](https://eudaemonia.tech/en/solutions/rtx-pro-6000-workstation/): Configure RTX PRO 6000 workstations for local AI inference, rendering, visualization, and simulation, then send the build to EudTech for Taiwan quote follow-up.
 - [AI Workstation Taiwan Configurator](https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/): Choose between deskside AI workstations, rackable GPU systems, and integration-kit paths for Taiwan teams that need GPU acceleration, local inference, model development, rendering, or simulation workloads.
@@ -202,6 +204,20 @@ No. These are manufacturer technical documents and EudTech's Traditional Chinese
 - Cited document: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3.pdf#page=1
 
 ## Site Information Routes
+
+### PQC 後量子密碼導入與專家顧問
+
+- URL: https://eudaemonia.tech/solutions/pqc/
+- Description: 從密碼資產盤點到架構試點與遷移治理，認識 EudTech 專家團隊、學術背景與 ML-DSA 實作研究。
+- Lead: 由研究背景支撐導入決策，規劃可審查的密碼資產盤點、試點驗證與分階段遷移。
+- Highlights:
+  - Chung-hao (Frank) Hsu 與 Hung-Jr Shiu 的研究專長與學術背景。
+  - 密碼資產盤點、架構試點及遷移治理。
+  - NIST 標準、供應商依賴與可驗證交付。
+- Details:
+  - 服務: PQC 導入顧問
+  - 研究: 密碼學、FPGA 與 ML-DSA 實作
+  - 交付: 資產清冊、試點驗證與遷移路線圖
 
 ### 產品與品牌｜EudTech
 

@@ -112,5 +112,15 @@
       "Review service selection, usage estimates, procurement quotes, and implementation scope.",
       "Service availability, billing, and activation are confirmed in your formal quote."
     ]
+  },
+  "/solutions/pqc": {
+    "title": "PQC Migration & Expert Advisory",
+    "description": "Meet the experts behind cryptographic inventories, PQC architecture pilots, and phased migration. Explore academic backgrounds and ML-DSA implementation research.",
+    "keywords": "PQC, post-quantum cryptography, cryptographic inventory, ML-DSA, ML-KEM, migration advisory",
+    "highlights": [
+      "Research and academic backgrounds of Chung-hao (Frank) Hsu and Hung-Jr Shiu.",
+      "Cryptographic inventory, architecture pilots, and migration governance.",
+      "NIST standards, vendor dependencies, and reviewable deliverables."
+    ]
   }
 }

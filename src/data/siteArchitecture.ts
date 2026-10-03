@@ -15,7 +15,8 @@ export const SITE_NAVIGATION_GROUPS: SiteNavigationItem[] = [
     href: '/solutions',
     description: { zh: '依營運問題、運算工作負載與情報需求選擇方案。', en: 'Choose by operating problem, compute workload, or intelligence need.' },
     children: [
-      { id: 'solutions-overview', label: { zh: '解決方案總覽', en: 'Solutions overview' }, href: '/solutions', description: { zh: '三類解決方案與下一步。', en: 'Three solution areas and next steps.' } },
+      { id: 'solutions-overview', label: { zh: '解決方案總覽', en: 'Solutions overview' }, href: '/solutions', description: { zh: '四類解決方案與下一步。', en: 'Four solution areas and next steps.' } },
+      { id: 'pqc', label: { zh: 'PQC 後量子密碼導入', en: 'PQC migration advisory' }, href: '/solutions/pqc', description: { zh: '專家團隊、密碼資產盤點、架構試點與遷移治理。', en: 'Experts, cryptographic inventory, architecture pilots, and migration governance.' } },
       { id: 'aws', label: { zh: 'AWS 雲端銷售服務', en: 'AWS cloud sales' }, href: '/solutions/aws', description: { zh: 'AWS 服務選型、採購報價、建置移轉與維運規劃。', en: 'AWS service planning, procurement quotes, deployment, and support scope.' } },
       { id: 'ai-infrastructure', label: { zh: 'AI 運算基礎設施', en: 'AI infrastructure' }, href: '/solutions/ai-infrastructure', description: { zh: '從工作負載到可採購配置。', en: 'From workload to a quote-ready configuration.' } },
       { id: 'social-intelligence', label: { zh: '社群情報', en: 'Social intelligence' }, href: '/solutions/social-intelligence', description: { zh: '用 Cyabra 辨識假帳號與協調式敘事。', en: 'Use Cyabra to identify fake profiles and coordinated narratives.' } }

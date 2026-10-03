@@ -33,7 +33,7 @@ const NavBar: React.FC<NavBarProps> = ({
   const wasMenuOpenRef = useRef(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const hasThemeAwareHero = ['/careers', '/solutions/ai-infrastructure'].includes(location.pathname.replace(/\/$/, ''));
+  const hasThemeAwareHero = ['/careers', '/solutions/ai-infrastructure', '/solutions/pqc'].includes(location.pathname.replace(/\/$/, ''));
   const isProductDetailPage = /^\/products\/[^/]+\/?$/.test(location.pathname);
   const navLinks = getNavLinks(isEnglish);
   const ctaLabel = (value: { zh: string; en: string }) => (isEnglish ? value.en : value.zh);

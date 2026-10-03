@@ -40,7 +40,7 @@ for (const route of englishRoutes()) for (const en of [false, true]) {
   }
   rendered++;
 }
-assert.equal(rendered, 70);
+assert.equal(rendered, 72);
 assert.equal(dynamic, 24);
 assert.ok(!fs.existsSync(path.join(dist, 'entry-server.js')), 'Server code must not be published');
 assert.ok(!fs.existsSync(path.join(dist, '.vite/manifest.json')), 'Build manifest must stay outside the published directory');
@@ -70,6 +70,11 @@ for (const p of ['solutions/ai-infrastructure/index.html', 'en/solutions/ai-infr
       assert.ok(reader.includes(`id="page-${faq.page}"`), `Source page anchor does not resolve: ${citation.href}`);
     }
   }
+}
+for (const p of ['solutions/pqc/index.html', 'en/solutions/pqc/index.html']) {
+  const html = fs.readFileSync(path.join(dist, p), 'utf8');
+  assert.match(html, /<link[^>]+rel="stylesheet"[^>]+href="\/assets\/PqcAdvisoryPage-[^"]+\.css"/, `PQC first-paint styles missing: ${p}`);
+  assert.ok(html.includes('Chung-hao (Frank) Hsu') && html.includes('Hung-Jr Shiu'), `PQC expert credentials must render without JavaScript: ${p}`);
 }
 for (const p of ['index.html', 'en/index.html']) {
   const html = fs.readFileSync(path.join(dist, p), 'utf8');
