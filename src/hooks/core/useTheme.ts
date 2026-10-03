@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, startTransition } from 'react';
 import { ThemeMode } from '../../types';
 import { THEME_STORAGE_KEY } from '../../constants/index';
 
@@ -7,15 +7,19 @@ export const useTheme = () => {
   const [isDarkModeActive, setIsDarkModeActive] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) as ThemeMode | null;
-    
-    if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
-      setThemeMode(savedTheme);
-      applyTheme(savedTheme);
-    } else {
-      setThemeMode('system');
-      applyTheme('system');
-    }
+    let savedTheme: ThemeMode | null = null;
+    try { savedTheme = localStorage.getItem(THEME_STORAGE_KEY) as ThemeMode | null; } catch { /* Storage is optional. */ }
+    // A lazy route may still be hydrating when browser preferences are restored.
+    // Let React finish that boundary before applying the context update.
+    startTransition(() => {
+      if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
+        setThemeMode(savedTheme);
+        applyTheme(savedTheme);
+      } else {
+        setThemeMode('system');
+        applyTheme('system');
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -23,7 +27,7 @@ export const useTheme = () => {
     const handleChange = (e: MediaQueryListEvent) => {
       if (themeMode === 'system') {
         const isDark = e.matches;
-        setIsDarkModeActive(isDark);
+        startTransition(() => setIsDarkModeActive(isDark));
         if (isDark) {
           document.documentElement.classList.add('dark');
         } else {
@@ -32,12 +36,9 @@ export const useTheme = () => {
       }
     };
 
-    if (themeMode === 'system') {
-      const isDark = mediaQuery.matches;
-      setIsDarkModeActive(isDark);
-    } else {
-      setIsDarkModeActive(themeMode === 'dark');
-    }
+    startTransition(() => {
+      setIsDarkModeActive(themeMode === 'system' ? mediaQuery.matches : themeMode === 'dark');
+    });
 
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
@@ -74,9 +75,11 @@ export const useTheme = () => {
       newMode = 'system';
     }
     
-    setThemeMode(newMode);
-    applyTheme(newMode);
-    localStorage.setItem(THEME_STORAGE_KEY, newMode);
+    startTransition(() => {
+      setThemeMode(newMode);
+      applyTheme(newMode);
+    });
+    try { localStorage.setItem(THEME_STORAGE_KEY, newMode); } catch { /* Storage is optional. */ }
   };
 
   return {
