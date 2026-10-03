@@ -2,9 +2,15 @@ https://website-eudtech.netlify.app/* https://eudaemonia.tech/:splat 301!
 http://website-eudtech.netlify.app/* https://eudaemonia.tech/:splat 301!
 /configurator-links.html    /resources/    301!
 /components-demo/*          /              301!
-/solutions/headless-saas/*  /solutions/ai-agent/  301!
+/solutions/ai-agent /solutions/aws/ 301!
+/solutions/ai-agent/* /solutions/aws/ 301!
+/solutions/headless-saas /solutions/aws/ 301!
+/solutions/headless-saas/* /solutions/aws/ 301!
 /en/configurator-links.html /en/resources/ 301!
 /en/components-demo/* /en/ 301!
-/en/solutions/headless-saas/* /en/solutions/ai-agent/ 301!
+/en/solutions/ai-agent /en/solutions/aws/ 301!
+/en/solutions/ai-agent/* /en/solutions/aws/ 301!
+/en/solutions/headless-saas /en/solutions/aws/ 301!
+/en/solutions/headless-saas/* /en/solutions/aws/ 301!
 /en/* /en/404.html 404
 /* /404.html 404

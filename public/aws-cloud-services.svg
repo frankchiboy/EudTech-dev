@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<rect width="1200" height="800" fill="#101a2b"/>
+<g stroke="#27364c" fill="none"><path d="M0 160h1200M0 320h1200M0 480h1200M0 640h1200M200 0v800M400 0v800M600 0v800M800 0v800M1000 0v800"/></g>
+<rect x="135" y="110" width="930" height="580" rx="28" fill="#17243a" stroke="#4a5b72"/>
+<text x="195" y="210" fill="#fdba74" font-family="Arial,sans-serif" font-size="22" letter-spacing="4">EUDTECH / CLOUD SERVICES</text>
+<text x="190" y="338" fill="white" font-family="Arial,sans-serif" font-size="116" font-weight="700">AWS</text>
+<path d="M195 372h75" stroke="#fb923c" stroke-width="5"/>
+<text x="295" y="380" fill="#cbd5e1" font-family="Arial,sans-serif" font-size="26">Amazon Web Services</text>
+<g fill="#1e304b" stroke="#506077"><rect x="195" y="445" width="240" height="180" rx="14"/><rect x="480" y="445" width="240" height="180" rx="14"/><rect x="765" y="445" width="240" height="180" rx="14"/></g>
+<g fill="none" stroke="#fdba74" stroke-width="3"><rect x="223" y="475" width="40" height="15" rx="3"/><rect x="223" y="500" width="40" height="15" rx="3"/><path d="M514 475h30l14 16v28h-44z"/><ellipse cx="814" cy="482" rx="23" ry="9"/><path d="M791 482v30c0 12 46 12 46 0v-30M791 497c0 12 46 12 46 0"/></g>
+<g fill="white" font-family="Arial,sans-serif" font-size="25"><text x="222" y="567">Compute</text><text x="509" y="567">Storage</text><text x="793" y="567">Database</text></g>
+<g fill="#94a3b8" font-family="Arial,sans-serif" font-size="18"><text x="222" y="602">Amazon EC2</text><text x="509" y="602">Amazon S3</text><text x="793" y="602">Amazon RDS</text></g>
+</svg>

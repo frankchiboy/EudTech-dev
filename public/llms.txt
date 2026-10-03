@@ -1,20 +1,20 @@
 # EudTech 官網資料導覽 / Website reference
 
-EudTech 提供企業 AI Agent 與 Headless SaaS 導入、Comino 液冷 GPU 基礎設施，以及 Cyabra 社群情報方案。
-EudTech provides one integrated enterprise AI agent and headless SaaS service, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
+EudTech 提供企業 AWS 雲端銷售與導入、Comino 液冷 GPU 基礎設施，以及 Cyabra 社群情報方案。
+EudTech provides AWS cloud sales and implementation, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
 
 ## 繁體中文頁面 / Traditional Chinese pages
 
-- [AI Agent 與 Headless SaaS、GPU 運算與社群情報｜EudTech](https://eudaemonia.tech/): EudTech 提供整合的 AI Agent 與 Headless SaaS 導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。
+- [AWS 雲端銷售、GPU 運算與社群情報｜EudTech](https://eudaemonia.tech/): EudTech 提供整合的 AWS 雲端銷售與導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。
 - [Comino Grando GPU 伺服器報價配置器](https://eudaemonia.tech/configurator/): 配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。
-- [AI 與數位服務解決方案總覽｜EudTech](https://eudaemonia.tech/solutions/): 從 AI Agent 與 Headless SaaS、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。
-- [企業 AI Agent 與 Headless SaaS 導入](https://eudaemonia.tech/solutions/ai-agent/): 串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。
-- [產品與品牌｜EudTech](https://eudaemonia.tech/products/): 瀏覽 EudTech 軟體與導入服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。
+- [AI 與數位服務解決方案總覽｜EudTech](https://eudaemonia.tech/solutions/): 從 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。
+- [企業 AWS 雲端銷售與導入](https://eudaemonia.tech/solutions/aws/): 協助企業規劃 AWS 運算、儲存、資料庫與生成式 AI，整合需求評估、採購報價、導入與維運範圍。
+- [產品與品牌｜EudTech](https://eudaemonia.tech/products/): 瀏覽 AWS 雲端銷售服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。
 - [GPU 伺服器選型與採購｜EudTech](https://eudaemonia.tech/resources/): 依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。
 - [Comino 液冷 GPU 伺服器、AI 工作站與機關採購](https://eudaemonia.tech/solutions/ai-infrastructure/): 從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。
 - [社群情報與品牌保護｜EudTech](https://eudaemonia.tech/solutions/social-intelligence/): EudTech 以 Cyabra 協助企業與公部門分析假帳號、協調式社群行為、敘事擴散及品牌風險。
-- [關於 EudTech｜優達盟資訊科技](https://eudaemonia.tech/about/): 了解優達盟資訊科技在企業 AI 導入、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。
-- [聯絡 EudTech｜開始諮詢](https://eudaemonia.tech/contact/): 選擇 AI Agent、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。
+- [關於 EudTech｜優達盟資訊科技](https://eudaemonia.tech/about/): 了解優達盟資訊科技在AWS 雲端服務、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。
+- [聯絡 EudTech｜開始諮詢](https://eudaemonia.tech/contact/): 選擇 AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。
 - [隱私與資料使用｜EudTech](https://eudaemonia.tech/privacy/): EudTech 說明詢價與聯絡資料、客戶來源追蹤、必要識別碼、資料保存及資料請求方式。
 - [INTEGRATION KIT 8x H200 配置器](https://eudaemonia.tech/configurator/27/): 配置 INTEGRATION KIT 8x H200，保留 NVIDIA H200 141GB GPU 與 AMD 雙 EPYC 平台假設，供 EudTech 追蹤正式報價。
 - [INTEGRATION KIT 8x PRO 6000 配置器](https://eudaemonia.tech/configurator/36/): 配置 INTEGRATION KIT 8x PRO 6000，保留 NVIDIA RTX PRO 6000 96GB GPU 與 AMD 雙 EPYC 平台假設供報價審查。
@@ -56,17 +56,17 @@ EudTech provides one integrated enterprise AI agent and headless SaaS service, A
 ## English pages
 
 - [Careers - Join Our Team](https://eudaemonia.tech/en/careers/): Join EudTech and be part of the future of AI technology. Explore our openings, responsibilities, requirements and application process.
-- [AI Agents, GPU Infrastructure & Social Intelligence](https://eudaemonia.tech/en/): EudTech helps enterprises, research teams and public institutions in Taiwan implement AI agents, Comino GPU systems and Cyabra social intelligence.
-- [AI & Digital Solutions](https://eudaemonia.tech/en/solutions/): Choose an EudTech delivery path for enterprise AI agents and headless SaaS, GPU infrastructure or Cyabra social intelligence.
-- [Enterprise AI Agents & Headless SaaS](https://eudaemonia.tech/en/solutions/ai-agent/): Connect ERP, CRM, Microsoft 365, databases and APIs through branded interfaces, event workflows and controlled AI agents with human review and audit records.
+- [AWS Cloud Sales, GPU Infrastructure & Social Intelligence](https://eudaemonia.tech/en/): EudTech helps enterprises, research teams and public institutions in Taiwan plan AWS cloud services, Comino GPU systems and Cyabra social intelligence.
+- [AI & Digital Solutions](https://eudaemonia.tech/en/solutions/): Choose an EudTech service for AWS cloud sales, GPU infrastructure or Cyabra social intelligence.
 - [Comino Liquid-Cooled GPU Servers & AI Workstations](https://eudaemonia.tech/en/solutions/ai-infrastructure/): Plan Comino GRANDO GPU servers and workstations in Taiwan with workload sizing, power and cooling review, manufacturer documents and procurement evidence.
 - [Cyabra Social Intelligence & Brand Protection](https://eudaemonia.tech/en/solutions/social-intelligence/): EudTech uses Cyabra to help communications, security and public-sector teams analyse inauthentic profiles, coordinated activity, narratives and brand risk.
-- [Products & Brands](https://eudaemonia.tech/en/products/): Explore EudTech software and implementation services, Comino liquid-cooled GPU workstations and servers, and Cyabra social intelligence.
+- [Products & Brands](https://eudaemonia.tech/en/products/): Explore AWS cloud sales services, Comino liquid-cooled GPU workstations and servers, and Cyabra social intelligence.
 - [GPU Server Selection & Procurement Resources](https://eudaemonia.tech/en/resources/): Compare GPU server and workstation requirements, plan power and cooling, prepare an RFQ and review procurement documents with EudTech.
-- [About EudTech | Eudaemonia Technology](https://eudaemonia.tech/en/about/): Eudaemonia Technology helps enterprises, researchers and public institutions connect AI software, compute systems and intelligence tools to practical workflows.
-- [Contact EudTech](https://eudaemonia.tech/en/contact/): Discuss an AI workflow, GPU configuration or social intelligence need with EudTech. Start with the workload, existing systems and intended outcome.
+- [About EudTech | Eudaemonia Technology](https://eudaemonia.tech/en/about/): Eudaemonia Technology helps enterprises, researchers and public institutions connect AWS cloud services, compute systems and intelligence tools to practical workflows.
+- [Contact EudTech](https://eudaemonia.tech/en/contact/): Discuss an AWS cloud service, GPU configuration or social intelligence need with EudTech. Start with the workload, existing systems and intended outcome.
 - [Privacy & Data Use](https://eudaemonia.tech/en/privacy/): Learn how EudTech handles contact and quote data, customer-source attribution, retention, service providers and data requests.
 - [Comino GRANDO GPU Server Configurator](https://eudaemonia.tech/en/configurator/): Configure Comino GRANDO GPU servers and AI workstations, review GPU, CPU, memory, storage, power and networking, and request a formal quote in Taiwan.
+- [AWS Cloud Sales | Planning, Quotes & Deployment](https://eudaemonia.tech/en/solutions/aws/): Plan AWS compute, storage, databases and generative AI with EudTech, from requirements and quotes to deployment and support scope.
 - [NVIDIA H200 Server Quote, Availability, and Price Planning](https://eudaemonia.tech/en/solutions/nvidia-h200-server/): Plan an NVIDIA H200 server quote for AI training, HPC, or inference. EudTech confirms current availability, price, and delivery only after GPU count, CPU, memory, storage, power, cooling, and networking are defined.
 - [RTX PRO 6000 AI Workstation Quote Configurator for Local Inference](https://eudaemonia.tech/en/solutions/rtx-pro-6000-workstation/): Configure RTX PRO 6000 workstations for local AI inference, rendering, visualization, and simulation, then send the build to EudTech for Taiwan quote follow-up.
 - [AI Workstation Taiwan Configurator](https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/): Choose between deskside AI workstations, rackable GPU systems, and integration-kit paths for Taiwan teams that need GPU acceleration, local inference, model development, rendering, or simulation workloads.

@@ -105,33 +105,33 @@ const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
 }));
 const homepageUrl = {
   loc: `${siteOrigin}/`,
-  title: 'AI Agent 與 Headless SaaS、GPU 運算與社群情報｜EudTech',
-  description: 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
+  title: 'AWS 雲端銷售、GPU 運算與社群情報｜EudTech',
+  description: 'EudTech 提供整合的 AWS 雲端銷售與導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
   priority: '1.0',
   source: {
-    title: 'AI Agent 與 Headless SaaS、GPU 運算與社群情報｜EudTech',
-    description: 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
+    title: 'AWS 雲端銷售、GPU 運算與社群情報｜EudTech',
+    description: 'EudTech 提供整合的 AWS 雲端銷售與導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
   }
 };
 const solutionHubUrl = {
   loc: pageUrl('/solutions'),
   title: 'AI 與數位服務解決方案總覽｜EudTech',
-  description: '從 AI Agent 與 Headless SaaS、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
+  description: '從 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
   priority: '0.93',
   source: {
     title: 'AI 與數位服務解決方案總覽｜EudTech',
-    description: 'EudTech 的 AI Agent 與 Headless SaaS、AI 運算基礎設施及 Cyabra 社群情報三大方案。',
+    description: 'EudTech 的 AWS 雲端銷售、AI 運算基礎設施及 Cyabra 社群情報三大方案。',
     solutionSlugs: CONFIGURATOR_SEO_PAGES.map((page) => page.slug)
   }
 };
-const aiAgentUrl = {
-  loc: pageUrl('/solutions/ai-agent'),
-  title: '企業 AI Agent 與 Headless SaaS 導入',
-  description: '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。',
+const awsCloudUrl = {
+  loc: pageUrl('/solutions/aws'),
+  title: '企業 AWS 雲端銷售與導入',
+  description: '協助企業規劃 AWS 運算、儲存、資料庫與生成式 AI，整合需求評估、採購報價、導入與維運範圍。',
   priority: '0.92',
   source: {
-    title: '企業 AI Agent 與 Headless SaaS 導入',
-    description: 'EudTech 將品牌入口、事件整合與受控 AI Agent 合併為同一項企業導入服務。'
+    title: '企業 AWS 雲端銷售與導入',
+    description: 'EudTech 協助 AWS 選型、預算估算、採購報價與導入規劃。'
   }
 };
 const configuratorUrl = {
@@ -169,7 +169,7 @@ const sitemapEntries = [
   { ...homepageUrl, changefreq: 'weekly' },
   { ...configuratorUrl, changefreq: 'weekly' },
   { ...solutionHubUrl, changefreq: 'weekly' },
-  { ...aiAgentUrl, changefreq: 'weekly' },
+  { ...awsCloudUrl, changefreq: 'weekly' },
   ...siteInformationUrls.map((entry) => ({
     ...entry,
     changefreq: SITE_INFORMATION_ROUTES.find((route) => pageUrl(route.path) === entry.loc)?.changefreq || 'monthly'
@@ -181,7 +181,7 @@ for (const route of [...publicProductRoutes(), careersRoute]) sitemapEntries.pus
 for (const route of englishRoutes()) sitemapEntries.push({loc:pageUrl(`/en${route.path}`),title:route.title,description:route.description,source:route,priority:'0.7',changefreq:'monthly'});
 for (const document of cominoReference.documents) sitemapEntries.push({loc:`${siteOrigin}${document.readerHrefZh.replace(/\.html$/, '').toLowerCase()}`,title:document.title.zh,description:document.description.zh,source:document,priority:'0.6',changefreq:'monthly'});
 const previousLastmodManifest = readLastmodManifest();
-const sourcePages = {'/':'src/data/content.ts','/solutions':'src/components/pages/SolutionsOverviewPage.tsx','/solutions/ai-agent':'src/components/pages/AiAgentSolutionPage.tsx','/solutions/ai-infrastructure':'src/components/pages/AiInfrastructureSolutionPage.tsx','/solutions/social-intelligence':'src/components/pages/SocialIntelligenceSolutionPage.tsx','/products':'src/components/pages/ProductsOverviewPage.tsx','/resources':'src/components/pages/ResourcesOverviewPage.tsx','/about':'src/components/pages/AboutPage.tsx','/contact':'src/components/pages/ContactPage.tsx','/privacy':'src/components/pages/PrivacyPage.tsx','/careers':'src/components/CareersPage.tsx'};
+const sourcePages = {'/':'src/data/content.ts','/solutions':'src/components/pages/SolutionsOverviewPage.tsx','/solutions/aws':'src/components/pages/AwsCloudSolutionPage.tsx','/solutions/ai-infrastructure':'src/components/pages/AiInfrastructureSolutionPage.tsx','/solutions/social-intelligence':'src/components/pages/SocialIntelligenceSolutionPage.tsx','/products':'src/components/pages/ProductsOverviewPage.tsx','/resources':'src/components/pages/ResourcesOverviewPage.tsx','/about':'src/components/pages/AboutPage.tsx','/contact':'src/components/pages/ContactPage.tsx','/privacy':'src/components/pages/PrivacyPage.tsx','/careers':'src/components/CareersPage.tsx'};
 function bodyFingerprint(loc) {
   const pathname=(new URL(loc).pathname.replace(/^\/en(?=\/|$)/,'').replace(/\/$/,'') || '/');
   const files = sourcePages[pathname] ? [sourcePages[pathname]] : [];
@@ -306,7 +306,7 @@ ${entry.images
 </urlset>
 `;
 
-const feedEntries = [configuratorUrl, solutionHubUrl, aiAgentUrl, ...siteInformationUrls, ...productUrls, ...solutionUrls];
+const feedEntries = [configuratorUrl, solutionHubUrl, awsCloudUrl, ...siteInformationUrls, ...productUrls, ...solutionUrls];
 const feedItems = feedEntries
   .map(
     (entry) => `    <item>
@@ -324,7 +324,7 @@ const feed = `<?xml version="1.0" encoding="UTF-8"?>
   <channel>
     <title>EudTech Solutions and Resources</title>
     <link>${pageUrl('/solutions')}</link>
-    <description>EudTech AI Agent, AI infrastructure, social intelligence, products, resources, and consultation entry points.</description>
+    <description>EudTech AWS cloud sales, AI infrastructure, social intelligence, products, resources, and consultation entry points.</description>
     <language>zh-TW</language>
     <lastBuildDate>${formatRfc822Date(latestModifiedAt)}</lastBuildDate>
     <atom:link href="${siteOrigin}/feed.xml" rel="self" type="application/rss+xml" />
@@ -339,7 +339,7 @@ const jsonFeed = JSON.stringify(
     title: 'EudTech Solutions and Resources',
     home_page_url: pageUrl('/solutions'),
     feed_url: `${siteOrigin}/feed.json`,
-    description: 'EudTech AI Agent, AI infrastructure, social intelligence, products, resources, and consultation entry points.',
+    description: 'EudTech AWS cloud sales, AI infrastructure, social intelligence, products, resources, and consultation entry points.',
     language: 'zh-TW',
     authors: [
       {
@@ -428,8 +428,8 @@ const formatFaqs = (faqs) =>
 
 const llms = `# EudTech 官網資料導覽 / Website reference
 
-EudTech 提供企業 AI Agent 與 Headless SaaS 導入、Comino 液冷 GPU 基礎設施，以及 Cyabra 社群情報方案。
-EudTech provides one integrated enterprise AI agent and headless SaaS service, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
+EudTech 提供企業 AWS 雲端銷售與導入、Comino 液冷 GPU 基礎設施，以及 Cyabra 社群情報方案。
+EudTech provides AWS cloud sales and implementation, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
 
 ${llmsDirectory}
 
@@ -457,7 +457,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - Company: EudTech / Eudaemonia Technology
 - Region: Taiwan
 - Contact: quote@eudaemonia.tech
-- Services: AI agent and headless SaaS implementation, Comino AI infrastructure, and Cyabra social intelligence.
+- Services: AWS cloud sales and implementation, Comino AI infrastructure, and Cyabra social intelligence.
 - Configurable items: GPU, CPU, RAM, OS drive, data drives, power supply, and networking.
 - Public pricing: not published. Availability, pricing, warranty and acceptance criteria require a confirmed quotation and BOM.
 
@@ -548,7 +548,7 @@ const configuratorLinkListJsonLd = {
   mainEntity: {
     '@type': 'ItemList',
     name: 'EudTech Configurator URLs',
-    itemListElement: [configuratorUrl, solutionHubUrl, aiAgentUrl, ...siteInformationUrls, ...productUrls, ...solutionUrls].map((entry, index) => ({
+    itemListElement: [configuratorUrl, solutionHubUrl, awsCloudUrl, ...siteInformationUrls, ...productUrls, ...solutionUrls].map((entry, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: entry.title,
@@ -747,7 +747,7 @@ const configuratorLinksHtml = `<!doctype html>
       <section aria-labelledby="site-information-links">
         <h2 id="site-information-links">網站主要內容</h2>
         <ul>
-${[solutionHubUrl, aiAgentUrl, ...siteInformationUrls].map(linkCard).join('\n')}
+${[solutionHubUrl, awsCloudUrl, ...siteInformationUrls].map(linkCard).join('\n')}
         </ul>
       </section>
 

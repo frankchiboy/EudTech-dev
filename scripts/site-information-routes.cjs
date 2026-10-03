@@ -4,17 +4,17 @@ const SITE_INFORMATION_ROUTES = [
   {
     path: '/products',
     title: '產品與品牌｜EudTech',
-    description: '瀏覽 EudTech 軟體與導入服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。',
-    keywords: 'EudTech 產品, Comino 液冷系統, Cyabra 社群情報, AI Agent, AI GPU 伺服器',
-    lead: '依用途瀏覽 EudTech、Comino 與 Cyabra 產品，並直接進入產品詳情、配置器或諮詢。',
+    description: '瀏覽 AWS 雲端銷售服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。',
+    keywords: 'EudTech 產品, Comino 液冷系統, Cyabra 社群情報, AWS 雲端服務, AI GPU 伺服器',
+    lead: '依用途瀏覽 AWS、Comino 與 Cyabra 產品，並直接進入產品詳情、配置器或諮詢。',
     sourceImage: '/grando-8gpu-server.jpg',
     imageAlt: 'EudTech 產品與品牌總覽',
     kind: 'collection',
     priority: '0.90',
     changefreq: 'monthly',
-    highlights: ['EudTech 軟體與企業 AI 導入服務。', 'Comino 液冷多 GPU 工作站與伺服器。', 'Cyabra 社群情報與品牌保護。'],
-    specs: [{ label: '產品分類', value: '軟體與導入、AI 運算、社群情報' }, { label: 'AI 運算', value: 'Comino 液冷工作站與伺服器' }, { label: '企業軟體', value: 'AI Agent 與可追溯流程導入' }],
-    relatedLinks: ['/solutions', '/configurator', '/solutions/ai-agent', '/solutions/social-intelligence', '/contact']
+    highlights: ['AWS 選型、採購與導入服務。', 'Comino 液冷多 GPU 工作站與伺服器。', 'Cyabra 社群情報與品牌保護。'],
+    specs: [{ label: '產品分類', value: '雲端服務、AI 運算、社群情報' }, { label: 'AI 運算', value: 'Comino 液冷工作站與伺服器' }, { label: '雲端服務', value: 'AWS 選型、報價與導入' }],
+    relatedLinks: ['/solutions', '/configurator', '/solutions/aws', '/solutions/social-intelligence', '/contact']
   },
   {
     path: '/resources',
@@ -30,46 +30,6 @@ const SITE_INFORMATION_ROUTES = [
     highlights: ['請 EudTech 依工作負載協助選型。', '直接建立 GPU 伺服器或工作站配置。', '機關採購參考提供原廠文件、功能及驗收證據；另可使用 RFQ 檢核表整理需求。'],
     specs: [{ label: '第一步', value: '確認工作負載與部署條件' }, { label: '設備方向', value: 'GPU 伺服器、工作站或整合套件' }, { label: '下一步', value: '協助選型、建立配置或準備 RFQ' }],
     relatedLinks: ['/solutions/ai-infrastructure', '/configurator', '/solutions/gpu-server-rfq-checklist', '/solutions/gpu-server-quote', '/contact']
-  },
-  {
-    path: '/solutions/headless-saas',
-    title: '企業 Headless SaaS 與 AI Agent 導入｜EudTech',
-    description: '串接企業既有 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌化入口、事件流程、受控 AI Agent、權限與稽核。',
-    keywords: '企業 Headless SaaS, SaaS 整合, 客戶 Portal, 事件驅動, AI Agent, API 整合',
-    lead: '沿用企業有效的既有系統，建立客戶真正需要的品牌入口、事件自動化、AI Agent、權限與治理。',
-    sourceImage: '/headless-saas-architecture.svg',
-    imageAlt: 'EudTech 企業 Headless SaaS 與 AI Agent 架構',
-    priority: '0.90',
-    changefreq: 'monthly',
-    highlights: ['品牌化網站、客戶 Portal 與 AI Agent。', '已授權 API、Webhook 事件與人員核准。', '來源、版本、權限、執行與稽核證據。'],
-    specs: [{ label: '既有系統', value: 'ERP、CRM、Microsoft 365、資料庫與 API' }, { label: '整合層', value: 'API、Webhook、事件、權限與稽核' }, { label: '客戶體驗', value: '品牌網站、Portal 與 AI Agent' }],
-    faq: [
-      ['Headless SaaS 是什麼？', 'Headless SaaS 將前端體驗與後端資料及業務邏輯分開。企業可以保留既有 ERP、CRM、Microsoft 365、資料庫或 API，再建立品牌網站、客戶 Portal、行動介面與 AI Agent。'],
-      ['需要更換現有 ERP 或 CRM 嗎？', '不需要先更換。第一階段會盤點既有系統、資料、API、權限與流程，再決定保留、串接或逐步移轉的範圍。'],
-      ['AI 會直接修改正式資料嗎？', '每一類動作都會設定工具與權限。對外發布、正式狀態、付款或其他敏感寫回可設定為必須經人員核准，並保存核准者、時間、來源與執行結果。'],
-      ['可以做成多租戶 SaaS 嗎？', '可以分階段產品化。EudTech 先以單一企業專屬服務驗證資料、權限、事件與維運，再依商業模式評估租戶隔離、計費、方案管理與自助開通。']
-    ],
-    schema: [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Service',
-        name: '企業 Headless SaaS 與 AI Agent 導入',
-        serviceType: 'Headless SaaS 整合與產品化服務',
-        areaServed: 'TW',
-        url: 'https://eudaemonia.tech/solutions/headless-saas/',
-        provider: { '@type': 'Organization', name: 'EudTech', url: 'https://eudaemonia.tech/' }
-      },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: '首頁', item: 'https://eudaemonia.tech/' },
-          { '@type': 'ListItem', position: 2, name: '解決方案', item: 'https://eudaemonia.tech/solutions/' },
-          { '@type': 'ListItem', position: 3, name: '企業 Headless SaaS 導入', item: 'https://eudaemonia.tech/solutions/headless-saas/' }
-        ]
-      }
-    ],
-    relatedLinks: ['/solutions', '/solutions/ai-agent', '/contact', '/about']
   },
   {
     path: '/solutions/ai-infrastructure',
@@ -114,29 +74,29 @@ const SITE_INFORMATION_ROUTES = [
   {
     path: '/about',
     title: '關於 EudTech｜優達盟資訊科技',
-    description: '了解優達盟資訊科技在企業 AI 導入、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。',
-    keywords: '優達盟資訊科技, EudTech, AI 導入, AI 基礎設施, 社群情報',
-    lead: 'EudTech 協助企業、研究單位與公部門把 AI 軟體、運算設備與情報工具導入實際工作流程。',
+    description: '了解優達盟資訊科技在AWS 雲端服務、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。',
+    keywords: '優達盟資訊科技, EudTech, 雲端導入, AI 基礎設施, 社群情報',
+    lead: 'EudTech 協助企業、研究單位與公部門把 AWS 雲端服務、運算設備與情報工具導入實際工作流程。',
     sourceImage: '/comino-facility-1.jpg',
     imageAlt: 'EudTech 公司能力與工作方式',
     priority: '0.65',
     changefreq: 'monthly',
     highlights: ['系統整合與事件驅動流程。', '人員核准、權限與稽核治理。', '可操作、可量測、可擴大的交付方式。'],
-    specs: [{ label: '公司', value: '優達盟資訊科技有限公司' }, { label: '能力範圍', value: 'AI 軟體、運算基礎設施與社群情報' }, { label: '工作方法', value: '目標、證據、負責人與下一步明確化' }],
+    specs: [{ label: '公司', value: '優達盟資訊科技有限公司' }, { label: '能力範圍', value: 'AWS 雲端服務、運算基礎設施與社群情報' }, { label: '工作方法', value: '目標、證據、負責人與下一步明確化' }],
     relatedLinks: ['/solutions', '/products', '/careers', '/contact', '/privacy']
   },
   {
     path: '/contact',
     title: '聯絡 EudTech｜開始諮詢',
-    description: '選擇 AI Agent、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。',
-    keywords: 'EudTech 聯絡, AI Agent 諮詢, GPU 伺服器詢價, Cyabra 諮詢',
+    description: '選擇 AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。',
+    keywords: 'EudTech 聯絡, AWS 雲端服務 諮詢, GPU 伺服器詢價, Cyabra 諮詢',
     lead: '先選擇需求類型，再安排正確的顧問、配置或情報諮詢。',
     sourceImage: '/comino-facility-1.jpg',
-    imageAlt: '聯絡 EudTech 開始 AI 導入或設備諮詢',
+    imageAlt: '聯絡 EudTech 開始 雲端導入或設備諮詢',
     priority: '0.75',
     changefreq: 'monthly',
-    highlights: ['AI Agent 與企業流程導入。', 'GPU 伺服器、工作站與液冷系統。', 'Cyabra 社群情報與品牌保護。'],
-    specs: [{ label: '聯絡信箱', value: 'quote@eudaemonia.tech' }, { label: '諮詢類型', value: 'AI Agent、AI 運算與社群情報' }, { label: '會議方式', value: 'Microsoft Bookings 線上預約' }],
+    highlights: ['AWS 雲端銷售與導入。', 'GPU 伺服器、工作站與液冷系統。', 'Cyabra 社群情報與品牌保護。'],
+    specs: [{ label: '聯絡信箱', value: 'quote@eudaemonia.tech' }, { label: '諮詢類型', value: 'AWS 雲端服務、AI 運算與社群情報' }, { label: '會議方式', value: 'Microsoft Bookings 線上預約' }],
     relatedLinks: ['/solutions', '/products', '/configurator', '/about']
   },
   {
@@ -153,6 +113,6 @@ const SITE_INFORMATION_ROUTES = [
     specs: [{ label: '資料聯絡', value: 'quote@eudaemonia.tech' }, { label: '網站資料', value: '詢價、聯絡與來源歸因' }, { label: '資料請求', value: '查詢、更正或刪除請求' }],
     relatedLinks: ['/contact', '/about', '/solutions', '/products']
   }
-].filter((route) => route.path !== '/solutions/headless-saas');
+];
 
 module.exports = { SITE_INFORMATION_ROUTES };

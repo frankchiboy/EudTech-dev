@@ -3,7 +3,7 @@
   <channel>
     <title>EudTech Solutions and Resources</title>
     <link>https://eudaemonia.tech/solutions/</link>
-    <description>EudTech AI Agent, AI infrastructure, social intelligence, products, resources, and consultation entry points.</description>
+    <description>EudTech AWS cloud sales, AI infrastructure, social intelligence, products, resources, and consultation entry points.</description>
     <language>zh-TW</language>
     <lastBuildDate>Sun, 04 Oct 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://eudaemonia.tech/feed.xml" rel="self" type="application/rss+xml" />
@@ -19,21 +19,21 @@
       <link>https://eudaemonia.tech/solutions/</link>
       <guid>https://eudaemonia.tech/solutions/</guid>
       <pubDate>Sun, 04 Oct 2026 00:00:00 +0800</pubDate>
-      <description>從 AI Agent 與 Headless SaaS、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。</description>
+      <description>從 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。</description>
     </item>
     <item>
-      <title>企業 AI Agent 與 Headless SaaS 導入</title>
-      <link>https://eudaemonia.tech/solutions/ai-agent/</link>
-      <guid>https://eudaemonia.tech/solutions/ai-agent/</guid>
+      <title>企業 AWS 雲端銷售與導入</title>
+      <link>https://eudaemonia.tech/solutions/aws/</link>
+      <guid>https://eudaemonia.tech/solutions/aws/</guid>
       <pubDate>Sun, 04 Oct 2026 00:00:00 +0800</pubDate>
-      <description>串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。</description>
+      <description>協助企業規劃 AWS 運算、儲存、資料庫與生成式 AI，整合需求評估、採購報價、導入與維運範圍。</description>
     </item>
     <item>
       <title>產品與品牌｜EudTech</title>
       <link>https://eudaemonia.tech/products/</link>
       <guid>https://eudaemonia.tech/products/</guid>
       <pubDate>Sun, 04 Oct 2026 00:00:00 +0800</pubDate>
-      <description>瀏覽 EudTech 軟體與導入服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。</description>
+      <description>瀏覽 AWS 雲端銷售服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。</description>
     </item>
     <item>
       <title>GPU 伺服器選型與採購｜EudTech</title>
@@ -61,14 +61,14 @@
       <link>https://eudaemonia.tech/about/</link>
       <guid>https://eudaemonia.tech/about/</guid>
       <pubDate>Sun, 04 Oct 2026 00:00:00 +0800</pubDate>
-      <description>了解優達盟資訊科技在企業 AI 導入、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。</description>
+      <description>了解優達盟資訊科技在AWS 雲端服務、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。</description>
     </item>
     <item>
       <title>聯絡 EudTech｜開始諮詢</title>
       <link>https://eudaemonia.tech/contact/</link>
       <guid>https://eudaemonia.tech/contact/</guid>
       <pubDate>Sun, 04 Oct 2026 00:00:00 +0800</pubDate>
-      <description>選擇 AI Agent、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。</description>
+      <description>選擇 AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。</description>
     </item>
     <item>
       <title>隱私與資料使用｜EudTech</title>

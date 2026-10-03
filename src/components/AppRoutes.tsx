@@ -19,7 +19,7 @@ const CareersPage = lazy(() => import('./CareersPage'));
 const AtomicComponentsDemo = lazy(() => import('./demo/AtomicComponentsDemo'));
 const GrandoConfigurator = lazy(() => import('./configurator/GrandoConfigurator'));
 const ConfiguratorSolutionPage = lazy(() => import('./pages/ConfiguratorSolutionPage'));
-const AiAgentSolutionPage = lazy(() => import('./pages/AiAgentSolutionPage'));
+const AwsCloudSolutionPage = lazy(() => import('./pages/AwsCloudSolutionPage'));
 const ProductDetails = lazy(() => import('./ProductDetails'));
 const SolutionsOverviewPage = lazy(() => import('./pages/SolutionsOverviewPage'));
 const AiInfrastructureSolutionPage = lazy(() => import('./pages/AiInfrastructureSolutionPage'));
@@ -69,11 +69,11 @@ const AppRoutes: React.FC = () => {
             <Route path="/" element={
               <>
                 <SEOHead
-                  title={isEnglish ? 'AI agents & Headless SaaS, GPU Infrastructure, and Social Intelligence' : 'AI Agent 與 Headless SaaS、GPU 運算與社群情報'}
+                  title={isEnglish ? 'AWS Cloud Sales, GPU Infrastructure, and Social Intelligence' : 'AWS 雲端銷售、GPU 運算與社群情報'}
                   description={
                     isEnglish
-                      ? 'EudTech provides one integrated AI agent and headless SaaS service, AI GPU infrastructure, and Cyabra social intelligence solutions.'
-                      : 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入服務、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
+                      ? 'EudTech provides AWS cloud sales and implementation, AI GPU infrastructure, and Cyabra social intelligence solutions.'
+                      : 'EudTech 提供AWS 雲端銷售與導入服務、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
                   }
                   keywords={
                     isEnglish
@@ -96,8 +96,9 @@ const AppRoutes: React.FC = () => {
             <Route path="/configurator" element={<GrandoConfigurator />} />
             <Route path="/configurator/:pid" element={<GrandoConfigurator />} />
             <Route path="/solutions" element={<SolutionsOverviewPage />} />
-            <Route path="/solutions/ai-agent" element={<AiAgentSolutionPage />} />
-            <Route path="/solutions/headless-saas" element={<Navigate replace to="/solutions/ai-agent" />} />
+            <Route path="/solutions/aws" element={<AwsCloudSolutionPage />} />
+            <Route path="/solutions/ai-agent" element={<Navigate replace to="/solutions/aws" />} />
+            <Route path="/solutions/headless-saas" element={<Navigate replace to="/solutions/aws" />} />
             <Route path="/solutions/ai-infrastructure" element={<AiInfrastructureSolutionPage />} />
             <Route path="/solutions/social-intelligence" element={<SocialIntelligenceSolutionPage />} />
             <Route path="/solutions/:slug" element={<ConfiguratorSolutionPage />} />

@@ -78,10 +78,10 @@ function getConfiguratorSocialPreviewRoutes() {
   const routes = [
     {
       path: '/',
-      title: 'AI Agent 與 Headless SaaS、GPU 運算與社群情報｜EudTech',
-      description: 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
+      title: 'AWS 雲端銷售、GPU 運算與社群情報｜EudTech',
+      description: 'EudTech 提供整合的 AWS 雲端銷售與導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
       sourceImage: DEFAULT_SOURCE_IMAGE,
-      imageAlt: 'EudTech AI Agent 與 Headless SaaS、GPU 運算與社群情報解決方案'
+      imageAlt: 'EudTech AWS 雲端銷售、GPU 運算與社群情報解決方案'
     },
     {
       path: '/configurator',
@@ -94,16 +94,16 @@ function getConfiguratorSocialPreviewRoutes() {
     {
       path: '/solutions',
       title: 'AI 與數位服務解決方案總覽｜EudTech',
-      description: '從 AI Agent 與 Headless SaaS、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
+      description: '從 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
       sourceImage: DEFAULT_SOURCE_IMAGE,
       imageAlt: 'EudTech AI 解決方案總覽'
     },
     {
-      path: '/solutions/ai-agent',
-      title: '企業 AI Agent 與 Headless SaaS 導入',
-      description: '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。',
-      sourceImage: '/comino-facility-1.jpg',
-      imageAlt: 'EudTech 企業 AI Agent 與 Headless SaaS 導入服務'
+      path: '/solutions/aws',
+      title: 'AWS 雲端銷售服務',
+      description: '協助企業規劃 AWS 運算、儲存、資料庫與生成式 AI，整合需求評估、採購報價、導入與維運範圍。',
+      sourceImage: '/aws-cloud-services.svg',
+      imageAlt: 'EudTech AWS 雲端銷售服務服務'
     },
     ...SITE_INFORMATION_ROUTES.map((route) => ({
       path: route.path,

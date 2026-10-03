@@ -127,62 +127,21 @@ const solutionRoutes = CONFIGURATOR_SEO_PAGES.map((page) => ({
   faq: page.faqs.map((faq) => [getZh(faq.question), getZh(faq.answer)])
 }));
 
-const aiAgentRoute = {
-  path: '/solutions/ai-agent',
-  title: '企業 AI Agent 與 Headless SaaS 導入｜EudTech',
-  description: '串接 ERP、CRM、Microsoft 365、資料庫與 API，建立品牌入口、事件流程、受控 AI Agent、人員核准與稽核。',
-  keywords: '企業 AI Agent 導入, Headless SaaS, AI 流程自動化, 客戶 Portal, AI ERP, Microsoft 365 AI, API 整合',
-  lead: 'AI Agent 與 Headless SaaS 是同一項企業導入服務：保留既有系統，建立品牌入口、事件流程與受控 Agent，重要決策仍由人員核准。',
-  imageAlt: 'EudTech 企業 AI Agent 與 Headless SaaS 導入服務',
-  configuratorHref: '/solutions/ai-agent#workflow-demo',
-  quoteHref: '/solutions/ai-agent#consultation',
-  relatedLinks: [
-    routeLink('/', 'EudTech 首頁'),
-    routeLink('/solutions', 'EudTech 解決方案'),
-    routeLink('/configurator/29', 'Comino Grando GPU 伺服器配置器'),
-    routeLink('/solutions/ai-agent#workflow-demo', 'AI Agent 工作流程示範'),
-    routeLink('/solutions/ai-agent#consultation', '預約流程診斷')
-  ],
-  highlights: [
-    '以 Outlook、Teams、SharePoint 與 Dataverse 串接郵件、任務、專案、文件與核准事件。',
-    '以 EudTech Kinetic 保存採購、進貨、出貨、庫存、客戶與供應商的營運事實。',
-    '以 Accounting Hub 核對公司銀行正式交易、發票、憑證、付款準備與對帳紀錄。',
-    '候選、確認、送出、放行、付款與完成分開記錄，關鍵動作保留人員核准。'
-  ],
-  specs: [
-    { label: '適用企業', value: '已使用 Microsoft 365、工作仍散落於郵件、試算表與個人記事的企業' },
-    { label: '導入方法', value: '流程診斷、可驗證試點、上線驗收、擴充維運' },
-    { label: '驗收依據', value: '來源、權限、人員核准、輸出、去重、操作紀錄與實際案例重跑' },
-    { label: '聯絡方式', value: 'quote@eudaemonia.tech' }
-  ],
-  faq: [
-    ['AI Agent 與 Headless SaaS 是兩項不同服務嗎？', '不是。Headless SaaS 負責串接既有系統並建立品牌入口與事件層；AI Agent 在相同權限、核准與稽核架構內處理追蹤、核對與催辦。'],
-    ['AI Agent 和一般聊天機器人有什麼差別？', '一般聊天機器人主要回答問題；EudTech AI Agent 會在授權範圍內讀取企業資料、判斷流程狀態、建立待辦、提出動作建議並保存執行紀錄。'],
-    ['可以使用現有 Microsoft 365 嗎？', '可以。實際串接範圍依客戶既有授權、API 權限及資料品質，在流程診斷後確認。'],
-    ['AI 會直接寄信、付款或登帳嗎？', '每個動作依權限與流程設定；對外通知、付款、正式會計與驗收可以保留人員核准，並保存核准人、時間、來源與結果。'],
-    ['導入前要先更換 ERP 嗎？', '不必。試點可以先串接一條現有流程，再依 API、資料品質與維運成本決定後續整合或移轉範圍。'],
-    ['如何驗收 AI Agent？', '使用真實或去識別案例重跑完整流程，核對輸入、來源、判讀、權限、人員核准、輸出、重送去重及操作紀錄。'],
-    ['可以協助申請政府補助嗎？', 'EudTech 可依當年度公告協助盤點適用計畫與導入範圍；資格、金額及核定結果以主管機關審查為準。']
-  ],
-  schema: [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      name: '企業 AI Agent 與 Headless SaaS 導入服務',
-      description: '串接既有系統、品牌入口、事件流程與可追溯 AI Agent 的企業導入服務。',
-      url: pageUrl('/solutions/ai-agent'),
-      provider: eudTechOrganization,
-      areaServed: { '@type': 'Country', name: 'Taiwan' }
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: '首頁', item: siteRootUrl },
-        { '@type': 'ListItem', position: 2, name: 'AI Agent 與 Headless SaaS', item: pageUrl('/solutions/ai-agent') }
-      ]
-    }
-  ]
+const awsCloudRoute = {
+  path: '/solutions/aws',
+  title: 'AWS 雲端銷售服務｜選型、報價與導入',
+  description: 'EudTech 協助企業規劃 AWS 運算、儲存、資料庫與生成式 AI，整合需求評估、採購報價、導入與維運範圍。',
+  keywords: 'AWS 雲端服務, AWS 報價, Amazon EC2, Amazon S3, Amazon RDS, Amazon Bedrock',
+  lead: '從服務選型、預算估算到採購與上線，由 EudTech 台灣窗口整合需求，讓每一筆雲端投資都有清楚的下一步。',
+  image: `${siteOrigin}/aws-cloud-services.svg`,
+  imageAlt: 'AWS 運算、儲存與資料庫服務規劃示意',
+  contentType: 'information',
+  quoteHref: '/contact',
+  relatedLinks: [routeLink('/solutions', 'EudTech 解決方案'), routeLink('/products', '產品與品牌'), routeLink('/about', '認識 EudTech'), routeLink('/contact', '洽詢 AWS 銷售服務')],
+  highlights: ['依工作負載規劃 AWS 運算、儲存備份、資料庫與生成式 AI。', '整合服務選型、預算估算與採購報價。', '確認建置移轉、驗收及維運分工。', '可供服務、計費條件及開通時程，依正式報價確認。'],
+  specs: [{ label: '服務範圍', value: '選型、採購報價、導入與維運規劃' }, { label: '規劃方向', value: 'EC2、S3、RDS、Bedrock 等服務' }, { label: '聯絡方式', value: 'quote@eudaemonia.tech' }],
+  faq: [],
+  schema: [{ '@context': 'https://schema.org', '@type': 'Service', name: 'AWS 雲端銷售服務', description: 'AWS 選型、採購報價與導入規劃。', url: pageUrl('/solutions/aws'), provider: eudTechOrganization, areaServed: { '@type': 'Country', name: 'Taiwan' } }]
 };
 
 function configuratorProductLinks() {
@@ -216,8 +175,8 @@ function configuratorHubItemList() {
 const solutionHubRoute = {
   path: '/solutions',
   title: 'AI 與數位服務解決方案總覽｜EudTech',
-  description: '從企業 AI Agent 與 Headless SaaS、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
-  keywords: 'AI 解決方案, AI Agent 導入, 企業 Headless SaaS, SaaS 整合, AI 運算基礎設施, Cyabra 社群情報, EudTech',
+  description: '從企業 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
+  keywords: 'AI 解決方案, AWS 雲端銷售, AWS 採購, 雲端移轉, AI 運算基礎設施, Cyabra 社群情報, EudTech',
   lead: '從需要改善的營運流程、數位服務、運算工作負載或社群風險開始，進入有明確內容、下一步及可追蹤交付的方案。',
   image: defaultImage,
   imageAlt: 'EudTech AI 解決方案總覽',
@@ -225,7 +184,7 @@ const solutionHubRoute = {
   configuratorHref: '/configurator',
   quoteHref: '/configurator?request=true',
   relatedLinks: [
-    routeLink('/solutions/ai-agent', 'AI Agent 與 Headless SaaS 導入'),
+    routeLink('/solutions/aws', 'AWS 雲端銷售與導入'),
     routeLink('/solutions/ai-infrastructure', 'AI 運算基礎設施'),
     routeLink('/solutions/social-intelligence', '社群情報與品牌保護'),
     routeLink('/products', '產品與品牌'),
@@ -233,17 +192,17 @@ const solutionHubRoute = {
     routeLink('/contact', '聯絡與諮詢')
   ],
   highlights: [
-    'AI Agent 與 Headless SaaS：串接既有系統，建立品牌入口、事件、受控 Agent、人員核准與治理。',
+    'AWS 雲端銷售：服務選型、用量估算、採購報價與導入規劃。',
     'AI 運算基礎設施：從工作負載到可採購配置。',
     '社群情報：分析假帳號、敘事、擴散與品牌風險。'
   ],
   specs: [
-    { label: '方案一', value: 'AI Agent 與 Headless SaaS 導入' },
+    { label: '方案一', value: 'AWS 雲端銷售與導入' },
     { label: '方案二', value: 'AI 運算基礎設施' },
     { label: '方案三', value: 'Cyabra 社群情報' }
   ],
   faq: [
-    ['如何選擇 EudTech 解決方案？', '需要串接既有系統、建立品牌入口、改善企業流程或導入 Agent 時，選擇 AI Agent 與 Headless SaaS；需要 GPU 伺服器或工作站時選擇 AI 運算基礎設施；需要分析社群風險時選擇社群情報。'],
+    ['如何選擇 EudTech 解決方案？', '需要串接既有系統、建立品牌入口、改善企業流程或導入 Agent 時，選擇 AWS 雲端銷售；需要 GPU 伺服器或工作站時選擇 AI 運算基礎設施；需要分析社群風險時選擇社群情報。'],
     ['方案是否可以先做小範圍驗證？', '可以。EudTech 會先定義問題、資料、負責人、證據與成功指標，再以可操作範圍開始。'],
     ['AI 運算方案可以直接配置嗎？', '可以。AI 運算基礎設施頁會連到 Comino 配置器，保留可分享配置並送出詢價。'],
     ['如何開始諮詢？', '使用聯絡頁選擇需求類型，再透過 Microsoft Bookings 或 quote@eudaemonia.tech 安排下一步。']
@@ -261,14 +220,14 @@ const solutionHubRoute = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: 'AI 解決方案',
-      description: 'EudTech 的 AI Agent 與 Headless SaaS、AI 運算基礎設施及 Cyabra 社群情報三大方案。',
+      description: 'EudTech 的 AWS 雲端銷售、AI 運算基礎設施及 Cyabra 社群情報三大方案。',
       url: pageUrl('/solutions'),
       publisher: eudTechOrganization,
       mainEntity: {
         '@type': 'ItemList',
         name: 'EudTech 三大解決方案',
         itemListElement: [
-          ['AI Agent 與 Headless SaaS 導入', '/solutions/ai-agent'],
+          ['AWS 雲端銷售與導入', '/solutions/aws'],
           ['AI 運算基礎設施', '/solutions/ai-infrastructure'],
           ['社群情報與品牌保護', '/solutions/social-intelligence']
         ].map(([name, pathname], index) => ({
@@ -353,28 +312,28 @@ const siteInformationRoutes = SITE_INFORMATION_ROUTES.map((route) => ({
 const routes = [
   {
     path: '/',
-    title: 'AI Agent 與 Headless SaaS、GPU 運算與社群情報｜EudTech',
-    description: 'EudTech 提供整合的 AI Agent 與 Headless SaaS 導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
-    keywords: 'AI Agent 導入, 企業 Headless SaaS, SaaS 整合, AI GPU 伺服器, Comino Grando, Cyabra 社群情報, EudTech',
-    lead: 'EudTech 將 AI Agent 與 Headless SaaS、液冷 GPU 運算基礎設施及社群情報，連接到企業、研究單位與公部門的實際工作與決策流程。',
-    imageAlt: 'EudTech AI Agent 與 Headless SaaS、GPU 運算與社群情報解決方案',
+    title: 'AWS 雲端銷售、GPU 運算與社群情報｜EudTech',
+    description: 'EudTech 提供整合的 AWS 雲端銷售與導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
+    keywords: 'AWS 雲端銷售, AWS 採購, 雲端移轉, AI GPU 伺服器, Comino Grando, Cyabra 社群情報, EudTech',
+    lead: 'EudTech 將 AWS 雲端銷售、液冷 GPU 運算基礎設施及社群情報，連接到企業、研究單位與公部門的實際工作與決策流程。',
+    imageAlt: 'EudTech AWS 雲端銷售、GPU 運算與社群情報解決方案',
     configuratorHref: '/configurator',
     quoteHref: '/configurator?request=true',
     relatedLinks: [
       routeLink('/solutions', 'AI 解決方案總覽'),
-      routeLink('/solutions/ai-agent', 'AI Agent 與 Headless SaaS 導入'),
+      routeLink('/solutions/aws', 'AWS 雲端銷售與導入'),
       routeLink('/solutions/ai-infrastructure', 'AI 運算基礎設施'),
       routeLink('/solutions/social-intelligence', '社群情報與品牌保護'),
       routeLink('/products', '產品與品牌'),
       routeLink('/contact', '聯絡與諮詢')
     ],
     highlights: [
-      'AI Agent 與 Headless SaaS 串接既有系統，建立品牌入口、事件、受控 Agent 與治理。',
+      'AWS 雲端銷售整合服務選型、用量估算、採購報價與導入規劃。',
       'AI 運算基礎設施從工作負載連到配置、詢價與部署。',
       'Cyabra 社群情報協助辨識假帳號、敘事與品牌風險。'
     ],
     specs: [
-      { label: '方案一', value: 'AI Agent 與 Headless SaaS 導入' },
+      { label: '方案一', value: 'AWS 雲端銷售與導入' },
       { label: '方案二', value: 'AI GPU 運算基礎設施' },
       { label: '方案三', value: 'Cyabra 社群情報' }
     ],
@@ -455,7 +414,7 @@ const routes = [
   },
   ...productRoutes,
   solutionHubRoute,
-  aiAgentRoute,
+  awsCloudRoute,
   ...siteInformationRoutes
 ].concat(solutionRoutes);
 
@@ -806,14 +765,6 @@ function routeStaticCopy(route, specs, highlights) {
   const keywords = routeKeywords(route);
   const specSummary = routeSpecSummary(specs);
   const firstHighlight = highlights[0] || route.lead || route.description;
-  if (route.path === '/solutions/headless-saas') {
-    return compactList([
-      `${route.title} 是 EudTech 針對 ${keywords.join('、')} 提供的企業系統整合與產品化服務，重點是沿用既有系統，同時建立品牌入口、事件流程、受控 AI Agent 與治理。`,
-      specSummary ? `頁面目前可直接讀取的架構重點包含 ${specSummary}。這些內容可協助企業確認既有系統、資料來源、權限、核准點與第一個試點範圍。` : '',
-      `${firstHighlight} 正式導入前會先確認 API 能力、資料品質、身分權限、事件觸發、錯誤處理與驗收條件。`,
-      '實際串接範圍、授權、時程與費用，依客戶現有系統及流程診斷結果提供書面規劃。'
-    ]);
-  }
   const quoteText = route.quoteHref
     ? '送出詢價時會帶入目前配置連結與表單聯絡資料，方便 EudTech 後續確認正式規格與報價。'
     : '此頁提供進入配置器與相關採購頁面的路徑，便於後續整理詢價需求。';
@@ -828,14 +779,6 @@ function routeStaticCopy(route, specs, highlights) {
 
 function routeUseCases(route, specs, highlights) {
   if (route.contentType === 'information' || !route.path.startsWith('/configurator')) return [];
-  if (route.path === '/solutions/headless-saas') {
-    return compactList([
-      '需要沿用既有 ERP、CRM、Microsoft 365、資料庫或 API，同時建立新的品牌網站或客戶 Portal。',
-      '需要把表單、郵件、系統及資料變更轉成可去重、可追蹤的事件流程。',
-      '需要讓 AI Agent 在工具白名單、最小權限與人員核准條件下執行工作。',
-      highlights[1] || ''
-    ]);
-  }
   const gpuSpec = specs.find((spec) => /GPU|顯示|圖形/i.test(spec.label)) || specs[0];
   const platformSpec = specs.find((spec) => /CPU|平台|機構|型態/i.test(spec.label)) || specs[1];
   const bestFitSpec = specs.find((spec) => /適合|Best fit|需求/i.test(spec.label)) || specs[2];

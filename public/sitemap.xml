@@ -28,11 +28,11 @@
     <priority>0.93</priority>
   </url>
   <url>
-    <loc>https://eudaemonia.tech/solutions/ai-agent/</loc>
+    <loc>https://eudaemonia.tech/solutions/aws/</loc>
     <lastmod>2026-10-04</lastmod>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-agent/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-agent/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-agent/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/aws/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/aws/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/aws/"/>
     <changefreq>weekly</changefreq>
     <priority>0.92</priority>
   </url>
@@ -451,15 +451,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://eudaemonia.tech/en/solutions/ai-agent/</loc>
-    <lastmod>2026-10-04</lastmod>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-agent/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/ai-agent/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/ai-agent/"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://eudaemonia.tech/en/solutions/ai-infrastructure/</loc>
     <lastmod>2026-10-04</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/ai-infrastructure/"/>
@@ -528,6 +519,15 @@
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/configurator/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/configurator/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/configurator/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/en/solutions/aws/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/aws/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/aws/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/aws/"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

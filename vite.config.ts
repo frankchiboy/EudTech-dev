@@ -37,6 +37,7 @@ const PUBLIC_FILE_ALLOWLIST = [
   'd6fd206f713cd936d87b58a6010aa751.txt',
   'sw.js',
   'logo.svg',
+  'aws-cloud-services.svg',
   'headless-saas-architecture.svg',
   'ai-agent-evidence-chain-v1.webp',
   'icon.svg',
