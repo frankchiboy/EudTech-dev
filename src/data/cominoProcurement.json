@@ -1,5 +1,10 @@
 {
   "reviewedAt": "2026-10-02",
+  "translatedAt": "2026-10-04",
+  "translationNote": {
+    "zh": "中文 PDF 為 EudTech 製作的完整繁體中文譯本，保留原廠圖表、數值與頁碼，非原廠核發中文版；如有歧義，以英文原文為準。",
+    "en": "Traditional Chinese editions translated by EudTech are available in Chinese mode. They retain the original figures, values and page numbering; the English manufacturer originals prevail in case of discrepancy."
+  },
   "href": "/solutions/ai-infrastructure/#procurement",
   "title": { "zh": "機關採購參考", "en": "Public-sector procurement reference" },
   "configurationNote": {
@@ -19,18 +24,20 @@
       "id": "server-datasheet",
       "title": { "zh": "GRANDO Server／可上架工作站規格書", "en": "GRANDO Server / Rackable Workstation Datasheet" },
       "version": "v2.3",
-      "language": { "zh": "英文原廠 PDF · 14 頁", "en": "Original manufacturer PDF in English · 14 pages" },
+      "language": { "zh": "繁體中文譯本 · 14 頁", "en": "Original manufacturer PDF in English · 14 pages" },
       "description": { "zh": "冷卻範圍、維護、監控、供電、4U 機構與環境條件；可用於功能及部署需求審查。", "en": "Cooling coverage, service, monitoring, power, 4U chassis and environmental conditions for functional and deployment review." },
       "href": "/vendor/comino/documents/grando-server-datasheet-v2.3.pdf",
+      "hrefZh": "/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.pdf",
       "source": "https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/6a74300b1179991980fe39a8_datasheet_comino_grando_server.pdf"
     },
     {
       "id": "quick-start",
       "title": { "zh": "GRANDO RM 快速使用指南", "en": "GRANDO RM Quick Start Guide" },
       "version": "v2.0.2",
-      "language": { "zh": "英文原廠 PDF · 2 頁", "en": "Original manufacturer PDF in English · 2 pages" },
+      "language": { "zh": "繁體中文譯本 · 2 頁", "en": "Original manufacturer PDF in English · 2 pages" },
       "description": { "zh": "安裝方向、啟動、散熱模式、冷卻液維護及斷電恢復設定；適合部署與教育訓練準備。", "en": "Installation orientation, startup, cooling profiles, coolant maintenance and power-loss recovery settings for deployment and training." },
       "href": "/vendor/comino/documents/grando-rm-quick-start-v2.0.2.pdf",
+      "hrefZh": "/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.pdf",
       "source": "https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/69f34842fdbf063b82e8d27d_Grando_RM-M-CRPS_Quick_Start_Guide_EN.pdf"
     }
   ],

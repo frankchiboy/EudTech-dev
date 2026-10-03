@@ -14,14 +14,15 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
         <p className="comino-small">{text('文件查核日期：', 'Documents reviewed: ')}<time dateTime={reference.reviewedAt}>{reference.reviewedAt}</time></p>
       </div>
 
-      <div className="comino-document-grid" aria-label={text('原廠文件', 'Manufacturer documents')}>
+      <p className="comino-small">{tx(reference.translationNote, isEnglish)} {text('翻譯日期：', 'Translation date: ')}<time dateTime={reference.translatedAt}>{reference.translatedAt}</time></p>
+      <div className="comino-document-grid" aria-label={text('原廠文件與中文譯本', 'Manufacturer documents')}>
         {reference.documents.map(document => <article className="comino-document" key={document.id}>
           <p className="comino-eyebrow">{document.version} · {tx(document.language, isEnglish)}</p>
           <h3>{tx(document.title, isEnglish)}</h3>
           <p>{tx(document.description, isEnglish)}</p>
           <div className="comino-document-links">
-            <a href={document.href} download>{text('下載原廠 PDF', 'Download manufacturer PDF')}</a>
-            <a href={document.source} target="_blank" rel="noreferrer">{text('查看原廠來源', 'View manufacturer source')}</a>
+            <a href={isEnglish ? document.href : document.hrefZh} download>{text('下載繁體中文版 PDF', 'Download manufacturer PDF')}</a>
+            <a href={document.source} target="_blank" rel="noreferrer">{text('查看原廠英文原文', 'View manufacturer source')}</a>
           </div>
         </article>)}
       </div>
@@ -36,7 +37,7 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
             return <tr key={criterion.id}>
               <th scope="row">{tx(criterion.title, isEnglish)}</th>
               <td>{tx(criterion.requirement, isEnglish)}</td>
-              <td>{tx(criterion.evidence, isEnglish)}{document && <a href={`${document.href}#page=${criterion.page}`} target="_blank" rel="noreferrer">{text('原廠文件', 'Manufacturer document')} · {text('第 ', 'pp. ')}{criterion.pages}{text(' 頁', '')}</a>}</td>
+              <td>{tx(criterion.evidence, isEnglish)}{document && <a href={`${isEnglish ? document.href : document.hrefZh}#page=${criterion.page}`} target="_blank" rel="noreferrer">{text('中文譯本', 'Manufacturer document')} · {text('第 ', 'pp. ')}{criterion.pages}{text(' 頁', '')}</a>}</td>
             </tr>;
           })}</tbody>
         </table>
@@ -50,7 +51,7 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
           <div><dt>{text('噪音', 'Noise')}</dt><dd>{tx(reference.specs.noise, isEnglish)}</dd></div>
           <div><dt>{text('環境溫度', 'Temperature')}</dt><dd>{tx(reference.specs.temperature, isEnglish)}</dd></div>
         </dl>
-        <p className="comino-small">{text('原廠 PDF 保留原文；上述摘要補充引用時的條件。改裝套件的效能、節能與環境溫度宣稱，需以改裝後整機、外部冷卻設備及實測條件確認。', 'Manufacturer PDFs retain their original wording; the summary clarifies conditions for citation. Performance, energy-saving and temperature claims for retrofit kits require the complete modified system, external cooling equipment and test conditions.')}</p>
+        <p className="comino-small">{text('中文 PDF 與英文原文頁碼一致；上述摘要補充引用時的條件。改裝套件的效能、節能與環境溫度宣稱，需以改裝後整機、外部冷卻設備及實測條件確認。', 'Manufacturer PDFs retain their original wording; the summary clarifies conditions for citation. Performance, energy-saving and temperature claims for retrofit kits require the complete modified system, external cooling equipment and test conditions.')}</p>
       </details>
 
       <p className="comino-condition">{tx(reference.conformityNote, isEnglish)}</p>
