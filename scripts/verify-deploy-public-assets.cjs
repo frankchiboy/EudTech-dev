@@ -9,8 +9,8 @@ const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const reportsDir = path.join(rootDir, 'reports');
 const maxTotalMb = maxTotalMbArgIndex >= 0 ? Number(args[maxTotalMbArgIndex + 1]) : 260;
-// Includes the localized Comino diagrams, chassis images and procurement PDFs.
-const maxFileCount = maxFileCountArgIndex >= 0 ? Number(args[maxFileCountArgIndex + 1]) : 230;
+// Adds two static readers and 16 page images for PDF plug-in-independent reading.
+const maxFileCount = maxFileCountArgIndex >= 0 ? Number(args[maxFileCountArgIndex + 1]) : 248;
 
 const requiredFiles = [
   '_headers',
@@ -41,6 +41,10 @@ const requiredFiles = [
   'vendor/comino/documents/grando-rm-quick-start-v2.0.2.pdf',
   'vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.pdf',
   'vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.pdf',
+  'vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.html',
+  'vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.html',
+  ...Array.from({ length: 14 }, (_, i) => `vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-${String(i + 1).padStart(2, '0')}.webp`),
+  ...Array.from({ length: 2 }, (_, i) => `vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW-pages/page-${String(i + 1).padStart(2, '0')}.webp`),
   'social/configurator/configurator.jpg',
   'images/configurator/devices/comino-integration-kit-8x-pro-6000.webp',
   'images/configurator/devices/comino-rtx-pro-6000-workstation.webp',
