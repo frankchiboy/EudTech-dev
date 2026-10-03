@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from '../../contexts/ThemeContext';
 import { LanguageProvider } from '../../contexts/LanguageContext';
 import ErrorBoundary from '../common/ErrorBoundary/ErrorBoundary';
@@ -9,6 +8,7 @@ import { isEnglishPath } from '../../utils/seo/languageUrl';
 
 interface AppProvidersProps {
   children: React.ReactNode;
+  initialPath: string;
 }
 
 // 將 LanguageContext 的語言設定同步到 I18nProvider
@@ -21,16 +21,14 @@ const I18nLanguageSync: React.FC = () => {
   return null;
 };
 
-const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
+const AppProviders: React.FC<AppProvidersProps> = ({ children, initialPath }) => {
   return (
     <ErrorBoundary>
-      <I18nProvider initialLocale={isEnglishPath(window.location.pathname) ? 'en' : 'zh'}>
+      <I18nProvider initialLocale={isEnglishPath(initialPath) ? 'en' : 'zh'}>
         <ThemeProvider>
-          <LanguageProvider>
+          <LanguageProvider initialPath={initialPath}>
             <I18nLanguageSync />
-            <Router basename={isEnglishPath(window.location.pathname) ? '/en' : '/'}>
-              {children}
-            </Router>
+            {children}
           </LanguageProvider>
         </ThemeProvider>
       </I18nProvider>

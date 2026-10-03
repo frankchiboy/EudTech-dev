@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { LANGUAGE_STORAGE_KEY } from '../../constants/index';
 import { isEnglishPath, languagePath } from '../../utils/seo/languageUrl';
 
-export const useLanguage = () => {
+export const useLanguage = (initialPath: string) => {
   // The URL is authoritative so every visitor and crawler sees the same language.
-  const [isEnglish, setIsEnglish] = useState(() => isEnglishPath(window.location.pathname));
+  const [isEnglish, setIsEnglish] = useState(() => isEnglishPath(initialPath));
 
   const setLanguage = (language: 'en' | 'zh') => {
     const newIsEnglish = language === 'en';

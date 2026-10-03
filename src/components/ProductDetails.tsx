@@ -226,6 +226,7 @@ const ProductDetails: React.FC = () => {
                 <div className="w-full aspect-[16/9] overflow-hidden relative">
                   <LazyImage 
                     src={product.image} 
+                    priority
                     alt={product.title}
                     className="w-full h-full object-cover object-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 transform transition-transform duration-700 group-hover:scale-105"
                   />

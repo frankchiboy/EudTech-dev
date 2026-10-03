@@ -24,10 +24,10 @@ for (const route of englishRoutes()) for (const en of [false,true]) {
   assert.equal((html.match(/<h1\b/g)||[]).length,1,`Expected one H1 ${url}`);
   assert.ok(!/content="noindex/.test(html),`Indexable page blocked ${url}`);
   assert.ok(!/undefined/.test(html.match(/<head>[\s\S]*?<\/head>/)?.[0].replace(/<script[\s\S]*?<\/script>/g,'') || ''),`Undefined metadata ${url}`);
-  const title=html.match(/<title>(.*?)<\/title>/)?.[1];
+  const title=html.match(/<title\b[^>]*>(.*?)<\/title>/)?.[1];
   assert.ok(title && !title.includes('| EudTech | EudTech'),`Invalid title ${url}`);
   for (const [lang,href] of [['zh-Hant',canon(route.path)],['en',canon(`/en${route.path}`)],['x-default',canon(route.path)]]) {
-    assert.ok(html.includes(`hreflang="${lang}" href="${href}"`),`Missing reciprocal alternate ${url} ${lang}`);
+    assert.ok(html.toLowerCase().includes(`hreflang="${lang}" href="${href}"`.toLowerCase()),`Missing reciprocal alternate ${url} ${lang}`);
   }
   for (const match of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
     const data=JSON.parse(match[1]);

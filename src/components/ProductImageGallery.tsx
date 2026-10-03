@@ -25,6 +25,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({ product, isEn
           >            <div className="relative aspect-video overflow-hidden rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
               <LazyImage 
                 src={image} 
+                sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                 alt={`${product.title} ${idx + 1}`}
                 className="absolute inset-0 w-full h-full object-contain object-center transition-transform duration-700 group-hover:scale-105"
               />
