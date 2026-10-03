@@ -1,0 +1,904 @@
+[
+  {
+    "source": "https://cyabra.com/product/authenticity-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Authenticity-Analysis-Fake-account-detection-2.svg",
+    "alt": "Inauthentic Account Detection",
+    "category": "authenticity-analysis",
+    "id": "official-01",
+    "original": "tmp/cyabra-enrichment/official-01.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-01.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 23972,
+    "title": {
+      "zh": "辨識不真實帳號",
+      "en": "Inauthentic Account Detection"
+    },
+    "group": "authenticity-analysis",
+    "groupTitle": {
+      "zh": "帳號真實性",
+      "en": "Authenticity"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/authenticity-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Authenticity-Analysis-Inauthentic-content-volume.svg",
+    "alt": "Inauthentic Content Volume",
+    "category": "authenticity-analysis",
+    "id": "official-02",
+    "original": "tmp/cyabra-enrichment/official-02.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-02.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 47044,
+    "title": {
+      "zh": "比較不真實內容量",
+      "en": "Inauthentic Content Volume"
+    },
+    "group": "authenticity-analysis",
+    "groupTitle": {
+      "zh": "帳號真實性",
+      "en": "Authenticity"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/authenticity-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Authenticity-Analysis-Inauthenticity-reasons-3.svg",
+    "alt": "Inauthenticity Reasons",
+    "category": "authenticity-analysis",
+    "id": "official-03",
+    "original": "tmp/cyabra-enrichment/official-03.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-03.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 32478,
+    "title": {
+      "zh": "檢視帳號判斷理由",
+      "en": "Inauthenticity Reasons"
+    },
+    "group": "authenticity-analysis",
+    "groupTitle": {
+      "zh": "帳號真實性",
+      "en": "Authenticity"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/authenticity-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Authenticity-Analysis-Topic-proliferation-mapping.svg",
+    "alt": "Topic Proliferation Mapping",
+    "category": "authenticity-analysis",
+    "id": "official-04",
+    "original": "tmp/cyabra-enrichment/official-04.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-04.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 59904,
+    "title": {
+      "zh": "追蹤話題擴散",
+      "en": "Topic Proliferation Mapping"
+    },
+    "group": "authenticity-analysis",
+    "groupTitle": {
+      "zh": "帳號真實性",
+      "en": "Authenticity"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/coordinated-campaigns-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Coordinated-Campaigns-Visual-Link-Analysis.svg",
+    "alt": "Visual Link Analysis",
+    "category": "coordinated-campaigns-detection",
+    "id": "official-05",
+    "original": "tmp/cyabra-enrichment/official-05.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-05.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 283204,
+    "title": {
+      "zh": "帳號關係視覺分析",
+      "en": "Visual Link Analysis"
+    },
+    "group": "coordinated-campaigns-detection",
+    "groupTitle": {
+      "zh": "協同行動",
+      "en": "Coordination"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/coordinated-campaigns-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Coordinated-Campaigns-Inauthentic-Behavior-Correlation.svg",
+    "alt": "Inauthentic Behavior & Correlation",
+    "category": "coordinated-campaigns-detection",
+    "id": "official-06",
+    "original": "tmp/cyabra-enrichment/official-06.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-06.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 30860,
+    "title": {
+      "zh": "不真實行為與關聯",
+      "en": "Inauthentic Behavior & Correlation"
+    },
+    "group": "coordinated-campaigns-detection",
+    "groupTitle": {
+      "zh": "協同行動",
+      "en": "Coordination"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/coordinated-campaigns-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Coordinated-Campaigns-Platform-Wide-Breakdown-1.svg",
+    "alt": "Platform-Wide Breakdown",
+    "category": "coordinated-campaigns-detection",
+    "id": "official-07",
+    "original": "tmp/cyabra-enrichment/official-07.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-07.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 26800,
+    "title": {
+      "zh": "跨平台活動分布",
+      "en": "Platform-Wide Breakdown"
+    },
+    "group": "coordinated-campaigns-detection",
+    "groupTitle": {
+      "zh": "協同行動",
+      "en": "Coordination"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/coordinated-campaigns-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Coordinated-Campaigns-Community-Leader-Discovery.svg",
+    "alt": "Community Leader Discovery",
+    "category": "coordinated-campaigns-detection",
+    "id": "official-08",
+    "original": "tmp/cyabra-enrichment/official-08.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-08.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 155412,
+    "title": {
+      "zh": "找出社群關鍵推動者",
+      "en": "Community Leader Discovery"
+    },
+    "group": "coordinated-campaigns-detection",
+    "groupTitle": {
+      "zh": "協同行動",
+      "en": "Coordination"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/sentiment-narrative-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Sentiment-and-Narrative-Analysis-Narrative-identification.svg",
+    "alt": "Narrative Identification",
+    "category": "sentiment-narrative-analysis",
+    "id": "official-09",
+    "original": "tmp/cyabra-enrichment/official-09.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-09.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 79420,
+    "title": {
+      "zh": "辨識主要敘事",
+      "en": "Narrative Identification"
+    },
+    "group": "sentiment-narrative-analysis",
+    "groupTitle": {
+      "zh": "敘事與情緒",
+      "en": "Narratives"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/sentiment-narrative-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Sentiment-and-Narrative-Analysis-Sentiment-by-Authenticity.svg",
+    "alt": "Sentiment by Authenticity",
+    "category": "sentiment-narrative-analysis",
+    "id": "official-10",
+    "original": "tmp/cyabra-enrichment/official-10.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-10.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 58128,
+    "title": {
+      "zh": "依帳號真實性比較情緒",
+      "en": "Sentiment by Authenticity"
+    },
+    "group": "sentiment-narrative-analysis",
+    "groupTitle": {
+      "zh": "敘事與情緒",
+      "en": "Narratives"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/sentiment-narrative-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Sentiment-and-Narrative-Analysis-Narrative-Proliferation.svg",
+    "alt": "Narrative Proliferation",
+    "category": "sentiment-narrative-analysis",
+    "id": "official-11",
+    "original": "tmp/cyabra-enrichment/official-11.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-11.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 70626,
+    "title": {
+      "zh": "追蹤敘事擴散",
+      "en": "Narrative Proliferation"
+    },
+    "group": "sentiment-narrative-analysis",
+    "groupTitle": {
+      "zh": "敘事與情緒",
+      "en": "Narratives"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/sentiment-narrative-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Sentiment-and-Narrative-Analysis-Cross-Platform-Tone-Mapping-1.svg",
+    "alt": "Cross-Platform Tone Mapping",
+    "category": "sentiment-narrative-analysis",
+    "id": "official-12",
+    "original": "tmp/cyabra-enrichment/official-12.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-12.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 49324,
+    "title": {
+      "zh": "跨平台語氣分布",
+      "en": "Cross-Platform Tone Mapping"
+    },
+    "group": "sentiment-narrative-analysis",
+    "groupTitle": {
+      "zh": "敘事與情緒",
+      "en": "Narratives"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/image-media-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Image-and-Media-Analysis-Visual-Narrative-Tracking.svg",
+    "alt": "Visual Narrative Tracking",
+    "category": "image-media-analysis",
+    "id": "official-13",
+    "original": "tmp/cyabra-enrichment/official-13.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-13.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 19986,
+    "title": {
+      "zh": "追蹤視覺敘事",
+      "en": "Visual Narrative Tracking"
+    },
+    "group": "image-media-analysis",
+    "groupTitle": {
+      "zh": "影像與媒體",
+      "en": "Media"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/image-media-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Image-and-Media-Analysis-Facial-Object-Recognition-1.svg",
+    "alt": "Facial & Object Recognition",
+    "category": "image-media-analysis",
+    "id": "official-14",
+    "original": "tmp/cyabra-enrichment/official-14.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-14.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 94936,
+    "title": {
+      "zh": "人物與物件辨識",
+      "en": "Facial & Object Recognition"
+    },
+    "group": "image-media-analysis",
+    "groupTitle": {
+      "zh": "影像與媒體",
+      "en": "Media"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/image-media-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Image-and-Media-Analysis-Logo-Detection.svg",
+    "alt": "Logo Detection",
+    "category": "image-media-analysis",
+    "id": "official-15",
+    "original": "tmp/cyabra-enrichment/official-15.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-15.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 109342,
+    "title": {
+      "zh": "品牌標誌辨識",
+      "en": "Logo Detection"
+    },
+    "group": "image-media-analysis",
+    "groupTitle": {
+      "zh": "影像與媒體",
+      "en": "Media"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/image-media-analysis/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Image-and-Media-Analysis-Integrated-Visual-Search.svg",
+    "alt": "Integrated Visual Search",
+    "category": "image-media-analysis",
+    "id": "official-16",
+    "original": "tmp/cyabra-enrichment/official-16.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-16.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 94820,
+    "title": {
+      "zh": "整合反向圖片搜尋",
+      "en": "Integrated Visual Search"
+    },
+    "group": "image-media-analysis",
+    "groupTitle": {
+      "zh": "影像與媒體",
+      "en": "Media"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/narrative-alerts/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Narrative-Alerts-Early-Warning-System.svg",
+    "alt": "Early Warning System",
+    "category": "narrative-alerts",
+    "id": "official-17",
+    "original": "tmp/cyabra-enrichment/official-17.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-17.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 46548,
+    "title": {
+      "zh": "敘事早期預警",
+      "en": "Early Warning System"
+    },
+    "group": "narrative-alerts",
+    "groupTitle": {
+      "zh": "輿論預警",
+      "en": "Alerts"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/narrative-alerts/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Narrative-Alerts-Authenticity-Filter.svg",
+    "alt": "Authenticity Filter",
+    "category": "narrative-alerts",
+    "id": "official-18",
+    "original": "tmp/cyabra-enrichment/official-18.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-18.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 43342,
+    "title": {
+      "zh": "帳號真實性篩選",
+      "en": "Authenticity Filter"
+    },
+    "group": "narrative-alerts",
+    "groupTitle": {
+      "zh": "輿論預警",
+      "en": "Alerts"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/narrative-alerts/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Narrative-Alerts-Automated-Cadence.svg",
+    "alt": "Automated Cadence",
+    "category": "narrative-alerts",
+    "id": "official-19",
+    "original": "tmp/cyabra-enrichment/official-19.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-19.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 40028,
+    "title": {
+      "zh": "自動安排通知頻率",
+      "en": "Automated Cadence"
+    },
+    "group": "narrative-alerts",
+    "groupTitle": {
+      "zh": "輿論預警",
+      "en": "Alerts"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/deepfake-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Deepfake-Detection-Forensic-Media-Analysis.svg",
+    "alt": "Forensic Media Analysis",
+    "category": "deepfake-detection",
+    "id": "official-20",
+    "original": "tmp/cyabra-enrichment/official-20.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-20.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 92774,
+    "title": {
+      "zh": "媒體鑑識分析",
+      "en": "Forensic Media Analysis"
+    },
+    "group": "deepfake-detection",
+    "groupTitle": {
+      "zh": "深偽偵測",
+      "en": "Deepfakes"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/deepfake-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Deepfake-Detection-Heatmap-Visualization.svg",
+    "alt": "Heatmap Visualization",
+    "category": "deepfake-detection",
+    "id": "official-21",
+    "original": "tmp/cyabra-enrichment/official-21.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-21.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 65626,
+    "title": {
+      "zh": "可疑位置熱區圖",
+      "en": "Heatmap Visualization"
+    },
+    "group": "deepfake-detection",
+    "groupTitle": {
+      "zh": "深偽偵測",
+      "en": "Deepfakes"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/deepfake-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Deepfake-Detection-Spatio-Temporal-Video-Detection.svg",
+    "alt": "Spatio-Temporal Video Detection",
+    "category": "deepfake-detection",
+    "id": "official-22",
+    "original": "tmp/cyabra-enrichment/official-22.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-22.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 32400,
+    "title": {
+      "zh": "影片時序異常偵測",
+      "en": "Spatio-Temporal Video Detection"
+    },
+    "group": "deepfake-detection",
+    "groupTitle": {
+      "zh": "深偽偵測",
+      "en": "Deepfakes"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/deepfake-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Deepfake-Detection-Coordinated-Disinformation-Defense.svg",
+    "alt": "Coordinated Manipulation Defense",
+    "category": "deepfake-detection",
+    "id": "official-23",
+    "original": "tmp/cyabra-enrichment/official-23.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-23.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 54536,
+    "title": {
+      "zh": "深偽內容的協同傳播",
+      "en": "Coordinated Manipulation Defense"
+    },
+    "group": "deepfake-detection",
+    "groupTitle": {
+      "zh": "深偽偵測",
+      "en": "Deepfakes"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/impersonation-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Impersonation-Detection-Business-Executive-Protection.svg",
+    "alt": "Business & Executive Protection",
+    "category": "impersonation-detection",
+    "id": "official-24",
+    "original": "tmp/cyabra-enrichment/official-24.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-24.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 62750,
+    "title": {
+      "zh": "保護品牌與主管身分",
+      "en": "Business & Executive Protection"
+    },
+    "group": "impersonation-detection",
+    "groupTitle": {
+      "zh": "冒名偵測",
+      "en": "Impersonation"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/impersonation-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Impersonation-Detection-Advanced-Similarity-Modeling.svg",
+    "alt": "Advanced Similarity Modeling",
+    "category": "impersonation-detection",
+    "id": "official-25",
+    "original": "tmp/cyabra-enrichment/official-25.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-25.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 41354,
+    "title": {
+      "zh": "比對冒名帳號特徵",
+      "en": "Advanced Similarity Modeling"
+    },
+    "group": "impersonation-detection",
+    "groupTitle": {
+      "zh": "冒名偵測",
+      "en": "Impersonation"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/impersonation-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Impersonation-Detection-Multi-Platform-Forensic-Coverage.svg",
+    "alt": "Multi-Platform Forensic Coverage",
+    "category": "impersonation-detection",
+    "id": "official-26",
+    "original": "tmp/cyabra-enrichment/official-26.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-26.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 34318,
+    "title": {
+      "zh": "跨平台冒名調查",
+      "en": "Multi-Platform Forensic Coverage"
+    },
+    "group": "impersonation-detection",
+    "groupTitle": {
+      "zh": "冒名偵測",
+      "en": "Impersonation"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/impersonation-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Impersonation-Detection-Similarity-Scoring-Triaging.svg",
+    "alt": "Similarity Scoring & Triaging",
+    "category": "impersonation-detection",
+    "id": "official-27",
+    "original": "tmp/cyabra-enrichment/official-27.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-27.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 50160,
+    "title": {
+      "zh": "相似度評分與查核排序",
+      "en": "Similarity Scoring & Triaging"
+    },
+    "group": "impersonation-detection",
+    "groupTitle": {
+      "zh": "冒名偵測",
+      "en": "Impersonation"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/response-and-mitigation/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Response-Mitigation-Coordinated-Campaign-Mapping.svg",
+    "alt": "Coordinated Campaign Mapping",
+    "category": "response-and-mitigation",
+    "id": "official-28",
+    "original": "tmp/cyabra-enrichment/official-28.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-28.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 52372,
+    "title": {
+      "zh": "串接協同行動線索",
+      "en": "Coordinated Campaign Mapping"
+    },
+    "group": "response-and-mitigation",
+    "groupTitle": {
+      "zh": "證據與應對",
+      "en": "Mitigation"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/response-and-mitigation/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Response-Mitigation-Forensic-Mitigation-Reports.svg",
+    "alt": "Forensic Mitigation Reports",
+    "category": "response-and-mitigation",
+    "id": "official-29",
+    "original": "tmp/cyabra-enrichment/official-29.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-29.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 49114,
+    "title": {
+      "zh": "整理減害證據報告",
+      "en": "Forensic Mitigation Reports"
+    },
+    "group": "response-and-mitigation",
+    "groupTitle": {
+      "zh": "證據與應對",
+      "en": "Mitigation"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/response-and-mitigation/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Response-Mitigation-Policy-Violation-Mapping.svg",
+    "alt": "Policy Violation Mapping",
+    "category": "response-and-mitigation",
+    "id": "official-30",
+    "original": "tmp/cyabra-enrichment/official-30.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-30.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 44852,
+    "title": {
+      "zh": "對照平台違規政策",
+      "en": "Policy Violation Mapping"
+    },
+    "group": "response-and-mitigation",
+    "groupTitle": {
+      "zh": "證據與應對",
+      "en": "Mitigation"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/response-and-mitigation/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Response-Mitigation-Mitigation-Prioritization.svg",
+    "alt": "Mitigation Prioritization",
+    "category": "response-and-mitigation",
+    "id": "official-31",
+    "original": "tmp/cyabra-enrichment/official-31.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-31.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 31416,
+    "title": {
+      "zh": "安排風險處理優先順序",
+      "en": "Mitigation Prioritization"
+    },
+    "group": "response-and-mitigation",
+    "groupTitle": {
+      "zh": "證據與應對",
+      "en": "Mitigation"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/product/response-and-mitigation/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Response-Mitigation-Cross-Platform-Enforcement.svg",
+    "alt": "Cross-Platform Enforcement",
+    "category": "response-and-mitigation",
+    "id": "official-32",
+    "original": "tmp/cyabra-enrichment/official-32.svg",
+    "path": "/vendor/cyabra/2026/gallery/official-32.webp",
+    "width": 1600,
+    "height": 1067,
+    "bytes": 36530,
+    "title": {
+      "zh": "跨平台申訴材料",
+      "en": "Cross-Platform Enforcement"
+    },
+    "group": "response-and-mitigation",
+    "groupTitle": {
+      "zh": "證據與應對",
+      "en": "Mitigation"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/blog/introducing-cyabras-coordinated-activity-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/07/ChatGPT-Image-Jul-22-2026-11_40_54-PM-1024x561.png",
+    "alt": "",
+    "category": "introducing-cyabras-coordinated-activity-detection",
+    "id": "official-33",
+    "original": "tmp/cyabra-enrichment/official-33.png",
+    "path": "/vendor/cyabra/2026/gallery/official-33.webp",
+    "width": 1024,
+    "height": 561,
+    "bytes": 32126,
+    "title": {
+      "zh": "AI 調查員原廠發布視覺",
+      "en": "AI agent launch illustration"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "illustration"
+  },
+  {
+    "source": "https://cyabra.com/blog/introducing-cyabras-coordinated-activity-detection/",
+    "remote": "https://cyabra.com/wp-content/uploads/2024/07/Gemini_Generated_Image_4db42u4db42u4db4-scaled.png",
+    "alt": "",
+    "category": "introducing-cyabras-coordinated-activity-detection",
+    "id": "official-34",
+    "original": "tmp/cyabra-enrichment/official-34.png",
+    "path": "/vendor/cyabra/2026/gallery/official-34.webp",
+    "width": 1291,
+    "height": 2560,
+    "bytes": 229340,
+    "title": {
+      "zh": "協同行動報告範例",
+      "en": "Sample coordinated activity report"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "sample"
+  },
+  {
+    "source": "https://cyabra.com/blog/introducing-news-claims-analysis-verify-what-the-news-is-actually-saying/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/04/Screenshot-2026-04-21-120432-1024x370.png",
+    "alt": "",
+    "category": "introducing-news-claims-analysis-verify-what-the-news-is-actually-saying",
+    "id": "official-35",
+    "original": "tmp/cyabra-enrichment/official-35.png",
+    "path": "/vendor/cyabra/2026/gallery/official-35.webp",
+    "width": 1024,
+    "height": 370,
+    "bytes": 63100,
+    "title": {
+      "zh": "新聞主張：找到反駁證據",
+      "en": "News claim with contradicting evidence"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "screenshot"
+  },
+  {
+    "source": "https://cyabra.com/blog/introducing-news-claims-analysis-verify-what-the-news-is-actually-saying/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/04/Screenshot-2026-04-21-122007-1024x246.png",
+    "alt": "",
+    "category": "introducing-news-claims-analysis-verify-what-the-news-is-actually-saying",
+    "id": "official-36",
+    "original": "tmp/cyabra-enrichment/official-36.png",
+    "path": "/vendor/cyabra/2026/gallery/official-36.webp",
+    "width": 1024,
+    "height": 246,
+    "bytes": 26602,
+    "title": {
+      "zh": "新聞主張：找到支持證據",
+      "en": "News claim with supporting evidence"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "screenshot"
+  },
+  {
+    "source": "https://cyabra.com/blog/introducing-news-claims-analysis-verify-what-the-news-is-actually-saying/",
+    "remote": "https://cyabra.com/wp-content/uploads/2025/04/image-5-1024x414.png",
+    "alt": "",
+    "category": "introducing-news-claims-analysis-verify-what-the-news-is-actually-saying",
+    "id": "official-37",
+    "original": "tmp/cyabra-enrichment/official-37.png",
+    "path": "/vendor/cyabra/2026/gallery/official-37.webp",
+    "width": 1024,
+    "height": 414,
+    "bytes": 64786,
+    "title": {
+      "zh": "新聞主張：多來源交叉比對",
+      "en": "News claim with multiple references"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "screenshot"
+  },
+  {
+    "source": "https://cyabra.com/blog/cyabra-launches-narrative-alerts-to-help-organizations-stay-ahead-of-online-manipulation/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/image-26.png",
+    "alt": "",
+    "category": "cyabra-launches-narrative-alerts-to-help-organizations-stay-ahead-of-online-manipulation",
+    "id": "official-38",
+    "original": "tmp/cyabra-enrichment/official-38.png",
+    "path": "/vendor/cyabra/2026/gallery/official-38.webp",
+    "width": 973,
+    "height": 421,
+    "bytes": 25692,
+    "title": {
+      "zh": "預警內容量與互動分析",
+      "en": "Alert content and engagement analysis"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "screenshot"
+  },
+  {
+    "source": "https://cyabra.com/blog/cyabra-launches-narrative-alerts-to-help-organizations-stay-ahead-of-online-manipulation/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/image-2-14-1024x690.png",
+    "alt": "",
+    "category": "cyabra-launches-narrative-alerts-to-help-organizations-stay-ahead-of-online-manipulation",
+    "id": "official-39",
+    "original": "tmp/cyabra-enrichment/official-39.png",
+    "path": "/vendor/cyabra/2026/gallery/official-39.webp",
+    "width": 1024,
+    "height": 690,
+    "bytes": 122108,
+    "title": {
+      "zh": "預警中的風險敘事摘要",
+      "en": "Concerning narrative summary"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "screenshot"
+  },
+  {
+    "source": "https://cyabra.com/blog/cyabra-launches-narrative-alerts-to-help-organizations-stay-ahead-of-online-manipulation/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/image-1-10-1024x350.png",
+    "alt": "",
+    "category": "cyabra-launches-narrative-alerts-to-help-organizations-stay-ahead-of-online-manipulation",
+    "id": "official-40",
+    "original": "tmp/cyabra-enrichment/official-40.png",
+    "path": "/vendor/cyabra/2026/gallery/official-40.webp",
+    "width": 1024,
+    "height": 350,
+    "bytes": 43938,
+    "title": {
+      "zh": "影響敘事的關鍵貼文",
+      "en": "Top posts shaping the narrative"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "screenshot"
+  },
+  {
+    "source": "https://cyabra.com/blog/introducing-cyabras-new-conflicting-locations-feature-exposes-deception/",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/2.-profile-deepdive-with-explanation-1-scaled.png",
+    "alt": "",
+    "category": "introducing-cyabras-new-conflicting-locations-feature-exposes-deception",
+    "id": "official-41",
+    "original": "tmp/cyabra-enrichment/official-41.png",
+    "path": "/vendor/cyabra/2026/gallery/official-41.webp",
+    "width": 1600,
+    "height": 938,
+    "bytes": 117064,
+    "title": {
+      "zh": "帳號自稱位置與平台資料比對",
+      "en": "Claimed location and platform data comparison"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "screenshot"
+  }
+]

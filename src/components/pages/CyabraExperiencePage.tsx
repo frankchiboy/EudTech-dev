@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react';
-import { ArrowDown, ArrowUpRight, BellRing, BookOpen, Check, ChevronDown, FileText, Fingerprint, Globe2, Layers, Network, Play, ScanFace, Search, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, BellRing, BookOpen, Check, ChevronDown, FileText, Fingerprint, Globe2, Layers, Network, Play, ScanFace, Search, ShieldCheck } from 'lucide-react';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import { cyabraCapabilities, cyabraLearning, cyabraScenarios, bilingual as b } from '../../data/cyabraExperience';
 import { ActionLink, PageShell, tx, type Bilingual } from './SitePagePrimitives';
 import './CyabraExperiencePage.css';
 import CyabraResourceCatalog from './CyabraResourceCatalog';
+import { CyabraNewFeatures, CyabraOfficialGallery } from './CyabraNewFeatures';
 
 const icons = [Network, Fingerprint, Layers, BellRing, Search, ScanFace, ShieldCheck, FileText];
 const sourceLabel = b('閱讀原廠說明', 'Read the vendor overview');
@@ -26,11 +27,6 @@ const CyabraExperiencePage: React.FC = () => {
     const next = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? (index + 1) % length : event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? (index - 1 + length) % length : event.key === 'Home' ? 0 : event.key === 'End' ? length - 1 : null;
     if (next !== null) { event.preventDefault(); update(next); refs.current[next]?.focus(); }
   };
-  const updates = [
-    {tag:'AI AGENT',title:b('協同行動，自動產出證據報告','An evidence report for every scan'),body:b('八類訊號交叉分析，把可疑行動整理成有依據的判斷。','Eight signal categories connect suspicious activity to explainable findings.'),date:'2026.07',href:'https://cyabra.com/blog/introducing-cyabras-coordinated-activity-detection/'},
-    {tag:'NARRATIVE ALERTS',title:b('在話題升溫前，收到預警','Catch narratives before they escalate'),body:b('辨識新興與有害敘事，同時看見源頭、放大帳號與可能影響。','Identify emerging and harmful narratives with origin, amplification, and impact context.'),date:'2026.02',href:'https://cyabra.com/blog/cyabra-launches-narrative-alerts-to-help-organizations-stay-ahead-of-online-manipulation/'},
-    {tag:'CONFLICTING LOCATIONS',title:b('自稱的所在地，是否一致？','Does the claimed location match?'),body:b('比對自稱所在地與平台可取得的位置資訊，找出不一致及地理群聚線索。','Compare claimed locations with available location information to expose inconsistencies and clustering.'),date:'2026.01',href:'https://cyabra.com/blog/introducing-cyabras-new-conflicting-locations-feature-exposes-deception/'}
-  ];
   const faqs = [
     {q:b('與一般社群聆聽工具有什麼不同？','How does Cyabra complement social listening?'),a:b('一般社群聆聽協助掌握提及量與情緒。Cyabra 進一步分析參與帳號、行為與協同關係，讓團隊理解聲量的真實性，以及背後是否存在有組織的操作。','Social listening measures mentions and sentiment. Cyabra adds profile authenticity, behavior, and coordination analysis to explain who is driving that activity.')},
     {q:b('分析的是哪些資料？','What data does it analyze?'),a:b('依原廠資料方法教材，分析以公開的社群與新聞資料為基礎，並依來源、議題與掃描設定採集及抽樣。不是私訊讀取服務，也不代表涵蓋每一則網路內容。','The vendor methodology describes collection and sampling of publicly available social and news data according to the source, topic, and scan settings. It does not imply access to private messages or exhaustive coverage.')},
@@ -49,7 +45,7 @@ const CyabraExperiencePage: React.FC = () => {
             <div className="cy-brandline"><span>EudTech</span><i aria-hidden="true" /><strong>Cyabra</strong><span className="cy-brand-caption">NARRATIVE INTELLIGENCE</span></div>
             <h1>{isEnglish ? <>See who’s shaping<br /><em>the narrative.</em></> : <>看清聲量背後，<br /><em>誰在推動敘事。</em></>}</h1>
             <p className="cy-hero-lead">{t(b('從假帳號、協同操作到深偽影像，連結人物、內容與行為，將網路聲量轉為有證據的情報。','Connect actors, content, and behavior—from fake profiles and coordinated activity to deepfakes—and turn online conversation into evidence-based intelligence.'))}</p>
-            <div className="cy-hero-actions"><ActionLink href="/contact">{t(b('預約 Cyabra 展示','Request a Cyabra demo'))}</ActionLink><a href="#capabilities" className="cy-quiet-button">{t(b('探索平台能力','Explore the platform'))}<ArrowDown size={17}/></a></div>
+            <div className="cy-hero-actions"><ActionLink href="/contact">{t(b('預約 Cyabra 展示','Request a Cyabra demo'))}</ActionLink><a href="#updates" className="cy-quiet-button">{t(b('看三大新功能','Explore what’s new'))}<ArrowDown size={17}/></a></div>
             <div className="cy-hero-audience">{t(b('品牌與公關 / 威脅情報 / 政府與公共安全','BRANDS & COMMS / THREAT INTELLIGENCE / PUBLIC SECTOR'))}</div>
           </div>
           <figure className="cy-hero-visual">
@@ -61,7 +57,9 @@ const CyabraExperiencePage: React.FC = () => {
         <div className="cy-container cy-hero-bottom"><span>{t(b('辨識真實性','ASSESS AUTHENTICITY'))}</span><i/><span>{t(b('追查協同行動','TRACE COORDINATION'))}</span><i/><span>{t(b('以證據支持決策','ACT WITH EVIDENCE'))}</span></div>
       </section>
 
-      <nav className="cy-section-nav" aria-label={t(b('Cyabra 頁面導覽','Cyabra page navigation'))}><div className="cy-container">{[['capabilities',b('平台能力','Capabilities')],['updates',b('最新進展','What’s new')],['scenarios',b('應用情境','Use cases')],['workflow',b('分析流程','Workflow')],['learning',b('學習資源','Learning')],['faq',b('常見問題','FAQ')]].map(([id,label])=><a key={id as string} href={`#${id}`}>{t(label as Bilingual)}</a>)}</div></nav>
+      <nav className="cy-section-nav" aria-label={t(b('Cyabra 頁面導覽','Cyabra page navigation'))}><div className="cy-container">{[['updates',b('三大新功能','What’s new')],['capabilities',b('平台能力','Capabilities')],['official-gallery',b('原廠圖片','Official gallery')],['scenarios',b('應用情境','Use cases')],['workflow',b('分析流程','Workflow')],['learning',b('學習資源','Learning')],['faq',b('常見問題','FAQ')]].map(([id,label])=><a key={id as string} href={`#${id}`}>{t(label as Bilingual)}</a>)}</div></nav>
+
+      <CyabraNewFeatures isEnglish={isEnglish}/>
 
       <section className="cy-section" id="capabilities"><div className="cy-container">
         <div className="cy-section-heading"><div><p className="cy-eyebrow">THE PLATFORM</p><h2>{t(b('從一則訊息，看見整個脈絡。','One message. The bigger picture.'))}</h2></div><p>{t(b('八大能力彼此串接，從「誰在說」一路追到「如何擴散、如何回應」。','Eight connected capabilities take you from who is speaking to how a narrative spreads—and what to do next.'))}</p></div>
@@ -72,13 +70,15 @@ const CyabraExperiencePage: React.FC = () => {
         </div>
       </div></section>
 
-      <section id="updates" className="cy-section cy-surface"><div className="cy-container"><div className="cy-section-heading"><div><p className="cy-eyebrow">WHAT’S NEW · 2026</p><h2>{t(b('更早發現，更快釐清。','Earlier signals. Clearer answers.'))}</h2></div><Sparkles className="cy-heading-icon" size={34}/></div><div className="cy-updates">{updates.map((item,index)=><article key={item.tag}><div className="cy-update-meta"><span>{item.tag}</span><time>{item.date}</time></div><span className="cy-update-index">0{index+1}</span><h3>{t(item.title)}</h3><p>{t(item.body)}</p><External href={item.href}>{t(b('查看功能發布','Read the announcement'))}</External></article>)}</div></div></section>
+
+
+      <CyabraOfficialGallery isEnglish={isEnglish}/>
 
       <section className="cy-extension"><div className="cy-container"><div className="cy-extension-heading"><p className="cy-eyebrow">CONNECTED INTELLIGENCE</p><h2>{t(b('跨平台，也接上既有工作。','Across platforms. Into your workflow.'))}</h2><External href="https://ir.cyabra.com/news-events/press-releases/detail/39/cyabra-reports-first-quarter-2026-results-and-highlights-commercial-progress-following-nasdaq-listing">{t(b('原廠 2026 平台更新','2026 platform update'))}</External></div><div className="cy-extension-items">{[
         [b('匯入既有監測資料','Import social listening data'),b('Meltwater / Talkwalker','Meltwater / Talkwalker'),b('將社群聆聽資料帶入真實性與敘事分析。','Bring existing listening data into authenticity and narrative analysis.')],
         [b('延伸中文平台覆蓋','Extend Chinese-platform coverage'),b('Douyin 抖音 / WeChat 微信','Douyin / WeChat'),b('擴展中文社群來源，依專案確認可用資料。','Expand Chinese-language sources; confirm the available data for your project.')],
         [b('比較異常與常態','Put anomalies in context'),'Authenticity Benchmark',b('比較相似情境下的不真實活動程度。','Compare inauthentic activity with similar environments.')],
-        [b('追查新聞中的主張','Follow claims into the news'),'News Claims Analysis',b('追蹤敘事如何從網路討論進入新聞內容。','Track how online narratives move into news content.')]
+        [b('逐條查核新聞主張','Verify individual news claims'),'News Claims Analysis',b('比對外部來源，提供三類查核結果與引用證據。','Cross-check external sources and return three assessment types with references.')]
       ].map(([title,label,body])=><div key={typeof title==='string'?title:title.en}><h3>{t(title as Bilingual)}</h3><strong>{typeof label==='string'?label:t(label)}</strong><p>{t(body as Bilingual)}</p></div>)}</div></div></section>
 
       <section id="scenarios" className="cy-section"><div className="cy-container"><div className="cy-section-heading"><div><p className="cy-eyebrow">BUILT FOR YOUR MISSION</p><h2>{t(b('同一套情報，回答不同的關鍵問題。','Different teams. Critical questions.'))}</h2></div></div>
