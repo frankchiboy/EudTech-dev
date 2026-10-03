@@ -66,8 +66,8 @@ const buildDefaultProductFaqs = ({
       zh: `${deviceName} 詢價會包含哪些資訊？`
     },
     answer: {
-      en: `The quote request preserves the selected ${gpuFocus.en}, ${cpuPlatform.en}, memory, NVMe storage, power, networking, and configurator URL for EudTech follow-up.`,
-      zh: `詢價會保留已選的${gpuFocus.zh}、${cpuPlatform.zh}、記憶體、NVMe 儲存、電源、網路與配置器連結，供 EudTech 後續追蹤。`
+      en: `It includes the selected ${gpuFocus.en}, ${cpuPlatform.en}, memory, NVMe storage, power, and networking, plus the configurator URL. EudTech uses this record to prepare the quote.`,
+      zh: `詢價會送出已選的 ${gpuFocus.zh}、${cpuPlatform.zh}、記憶體、NVMe 儲存、電源與網路，並附上配置器連結。EudTech 依此回覆報價。`
     }
   },
   {
@@ -76,8 +76,8 @@ const buildDefaultProductFaqs = ({
       zh: `${deviceName} 是伺服器、工作站還是整合套件路徑？`
     },
     answer: {
-      en: `${deviceName} is positioned as a ${formFactor.en.toLowerCase()} configuration path for quote and RFQ review.`,
-      zh: `${deviceName} 是${formFactor.zh}配置路徑，用於報價與 RFQ 審查。`
+      en: `Form factor: ${formFactor.en}. ${deviceName} is a configuration path for quote requests and RFQ review.`,
+      zh: `${deviceName} 屬於「${formFactor.zh}」配置路徑，用於詢價與 RFQ 審查。`
     }
   },
   {
@@ -86,8 +86,8 @@ const buildDefaultProductFaqs = ({
       zh: `${deviceName} 還沒選完所有選項也能送出詢價嗎？`
     },
     answer: {
-      en: 'Yes. The configurator sends the current hardware assumptions and URL, and EudTech can follow up on incomplete storage, power, networking, or deployment details.',
-      zh: '可以。配置器會送出目前硬體假設與連結，EudTech 可後續確認尚未完成的儲存、電源、網路或部署細節。'
+      en: 'Yes. The configurator sends the current hardware choices and URL. EudTech then follows up on any unfinished storage, power, networking, or deployment details.',
+      zh: '可以。配置器會送出目前的硬體選項與連結，EudTech 再確認尚未決定的儲存、電源、網路或部署細節。'
     }
   },
   {
@@ -96,8 +96,8 @@ const buildDefaultProductFaqs = ({
       zh: `${deviceName} 頁面適合台灣採購審查嗎？`
     },
     answer: {
-      en: 'Yes. The page keeps Chinese quote context, EudTech contact details, and a shareable configuration URL for local technical and purchasing review.',
-      zh: '適合。此頁保留中文詢價脈絡、EudTech 聯絡資訊與可分享配置連結，方便本地技術與採購審查。'
+      en: 'Yes. The page keeps the Chinese quote context, EudTech contact details, and a shareable configuration URL for local technical and purchasing review.',
+      zh: '適合。此頁保留中文詢價內容、EudTech 聯絡資訊與可分享的配置連結，方便台灣的技術與採購審查。'
     }
   }
 ];
@@ -145,36 +145,36 @@ const buildProductSeo = ({
     {
       name: { en: 'Workload fit', zh: '工作負載適配' },
       value: {
-        en: `${gpuFocus.en} for ${category.en.toLowerCase()} planning, AI workload sizing, and quote review`,
-        zh: `${gpuFocus.zh}，適合${category.zh}規劃、AI 工作負載估算與報價審查`
+        en: `${category.en}: ${gpuFocus.en} for planning, AI workload sizing, and quote review`,
+        zh: `${category.zh}：${gpuFocus.zh}，用於規劃、AI 工作負載估算與報價審查`
       }
     },
     {
       name: { en: 'Procurement cue', zh: '採購判斷' },
       value: {
-        en: `Review ${formFactor.en.toLowerCase()}, ${cpuPlatform.en}, memory, NVMe storage, power, and networking before RFQ.`,
-        zh: `送出 RFQ 前先確認${formFactor.zh}、${cpuPlatform.zh}、記憶體、NVMe 儲存、電源與網路需求。`
+        en: `Confirm the form factor (${formFactor.en}), ${cpuPlatform.en}, memory, NVMe storage, power, and networking before the RFQ.`,
+        zh: `送出 RFQ 前，先確認機構型態（${formFactor.zh}）、${cpuPlatform.zh}、記憶體、NVMe 儲存、電源與網路需求。`
       }
     },
     {
       name: { en: 'Deployment note', zh: '部署注意' },
       value: {
-        en: 'Use the configurator URL to preserve GPU count, platform, storage, power, and network context for EudTech follow-up.',
-        zh: '使用配置器連結保留 GPU 數量、平台、儲存、電源與網路脈絡，方便 EudTech 後續追蹤。'
+        en: 'The configurator URL keeps the GPU count, platform, storage, power, and network choices for EudTech follow-up.',
+        zh: '配置器連結會保留 GPU 數量、平台、儲存、電源與網路選項，方便 EudTech 後續追蹤。'
       }
     },
     {
       name: { en: 'Quote readiness', zh: '報價準備' },
       value: {
-        en: 'Prepare project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact before submission.',
-        zh: '送出前準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購聯絡窗口。'
+        en: 'Before submitting, prepare the project timeline, delivery site, software stack, rack or workstation constraints, and purchasing contact.',
+        zh: '送出前，先準備專案時程、交付地點、軟體堆疊、機架或工作站限制與採購窗口。'
       }
     },
     {
       name: { en: 'Quote path', zh: '詢價路徑' },
       value: {
-        en: 'Configurator request to EudTech',
-        zh: '配置器詢價送至 EudTech'
+        en: 'Quote request sent from the configurator to EudTech',
+        zh: '由配置器送出詢價至 EudTech'
       }
     }
   ]
@@ -221,12 +221,12 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     relatedProductIds: [29, 28, 36, 23],
     exposureNotes: [
       {
-        en: 'Best suited for teams that already plan chassis, rack, cooling, and integration work around an 8-GPU H200 platform.',
-        zh: '適合已規劃機箱、機架、散熱與整合工作的團隊，以 8-GPU H200 平台作為核心。'
+        en: 'For teams that already plan the chassis, rack, cooling, and integration work around an 8-GPU H200 platform.',
+        zh: '適合已自行規劃機箱、機架、散熱與整合工作，並以 8-GPU H200 平台為核心的團隊。'
       },
       {
-        en: 'Use this route when procurement needs a component-level integration discussion rather than a finished server SKU.',
-        zh: '適用於採購需要討論整合套件與零組件條件，而不是直接採購完整伺服器 SKU 的情境。'
+        en: 'Use this route when procurement needs to discuss component-level integration rather than a finished server SKU.',
+        zh: '採購需要討論整合套件與零組件條件、而非直接購買完整伺服器 SKU 時，使用此入口。'
       }
     ]
   }),
@@ -270,12 +270,12 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     relatedProductIds: [23, 34, 5, 27],
     exposureNotes: [
       {
-        en: 'Targets RTX PRO 6000 integration projects that need workstation-class GPU memory in an 8-GPU build plan.',
-        zh: '面向需要工作站等級 GPU 記憶體、並以 8-GPU 架構規劃整合的 RTX PRO 6000 專案。'
+        en: 'For RTX PRO 6000 integration projects that need workstation-class GPU memory in an 8-GPU build.',
+        zh: '適合需要工作站等級 GPU 記憶體，並以 8-GPU 架構規劃整合的 RTX PRO 6000 專案。'
       },
       {
-        en: 'Useful when the buyer is comparing integration kits against rackable workstation and finished server options.',
-        zh: '適合採購同時比較整合套件、可上架工作站與完整伺服器方案時使用。'
+        en: 'Use it when comparing an integration kit against rackable workstation and finished server options.',
+        zh: '同時比較整合套件、可上架工作站與完整伺服器方案時，可從這裡開始。'
       }
     ]
   }),
@@ -319,12 +319,12 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     relatedProductIds: [28, 27, 30, 23],
     exposureNotes: [
       {
-        en: 'Positioned for H200 training or inference projects that need more GPU density than a 4-GPU server but less than a full 8-GPU plan.',
-        zh: '適合需要高於 4-GPU、但尚未到完整 8-GPU 規模的 H200 訓練或推論專案。'
+        en: 'For H200 training or inference projects that need more GPUs than a 4-GPU server but not a full 8-GPU plan.',
+        zh: '適合 GPU 需求高於 4-GPU 伺服器、但尚未達到 8-GPU 規模的 H200 訓練或推論專案。'
       },
       {
-        en: 'Use this page to preserve 6x H200, EPYC, RAM, NVMe, power, and network assumptions for RFQ review.',
-        zh: '此頁可保留 6 張 H200、EPYC、RAM、NVMe、電源與網路假設，供 RFQ 審查。'
+        en: 'This page records the 6x H200, EPYC, RAM, NVMe, power, and network choices for RFQ review.',
+        zh: '此頁會保留 6 張 H200、EPYC、RAM、NVMe、電源與網路選項，供 RFQ 審查。'
       }
     ]
   }),
@@ -373,8 +373,8 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
           zh: '什麼情況應先看 SERVER 4xH200，而不是 6xH200 或 8xH200？'
         },
         answer: {
-          en: 'Start with SERVER 4xH200 when the project needs NVIDIA H200 memory capacity and formal GPU server planning, but the initial budget, rack, power, or workload assumptions do not yet require a 6-GPU or 8-GPU build.',
-          zh: '若專案需要 NVIDIA H200 記憶體容量與正式 GPU 伺服器規劃，但初期預算、機架、電力或工作負載尚未需要 6-GPU 或 8-GPU 配置，可先從 SERVER 4xH200 開始。'
+          en: 'Start with SERVER 4xH200 when the project needs NVIDIA H200 memory and a formal GPU server plan, but the budget, rack, power, or workload does not yet call for 6 or 8 GPUs.',
+          zh: '初期預算、機架、電力或工作負載尚未需要 6-GPU 或 8-GPU 配置時，先從 SERVER 4xH200 開始。它仍提供 NVIDIA H200 記憶體容量與正式的 GPU 伺服器規劃。'
         }
       },
       {
@@ -383,19 +383,19 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
           zh: 'SERVER 4xH200 適合 AI 訓練與推論報價嗎？'
         },
         answer: {
-          en: 'Yes. The 4xH200 route is suitable for quote discussions that need H200 GPU memory, AMD EPYC platform planning, RAM, NVMe storage, power, and networking context in one configuration.',
-          zh: '適合。4xH200 路徑可在同一份配置中整理 H200 GPU 記憶體、AMD EPYC 平台、RAM、NVMe 儲存、電源與網路條件，供 AI 訓練與推論報價討論。'
+          en: 'Yes. The 4xH200 route puts H200 GPU memory, the AMD EPYC platform, RAM, NVMe storage, power, and networking into one configuration for the quote discussion.',
+          zh: '適合。4xH200 路徑把 H200 GPU 記憶體、AMD EPYC 平台、RAM、NVMe 儲存、電源與網路整理在同一份配置，供 AI 訓練與推論的報價討論。'
         }
       }
     ],
     exposureNotes: [
       {
-        en: 'Designed for H200 buyers that need a focused 4-GPU server path before deciding whether to scale to 6 or 8 GPUs.',
-        zh: '適合 H200 採購先以 4-GPU 伺服器方案收斂需求，再評估是否擴充到 6 或 8 GPU。'
+        en: 'For H200 buyers who want a 4-GPU server first and will decide later whether to scale to 6 or 8 GPUs.',
+        zh: '適合先以 4-GPU 伺服器收斂 H200 需求，再評估是否擴充到 6 或 8 GPU 的採購案。'
       },
       {
-        en: 'A practical starting point for smaller AI teams that still need HBM capacity, EPYC platform planning, and formal quote follow-up.',
-        zh: '適合作為較小型 AI 團隊的起始方案，同時保留 HBM 容量、EPYC 平台與正式報價脈絡。'
+        en: 'A starting point for smaller AI teams that still need HBM capacity, an EPYC platform plan, and a formal quote.',
+        zh: '較小型 AI 團隊的起始方案，仍保有 HBM 容量、EPYC 平台規劃與正式報價流程。'
       }
     ]
   }),
@@ -439,12 +439,12 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     relatedProductIds: [36, 34, 5, 29],
     exposureNotes: [
       {
-        en: 'Targets dense RTX PRO 6000 inference, rendering, visualization, and simulation projects that need an 8-GPU server route.',
-        zh: '面向需要 8-GPU 伺服器路徑的 RTX PRO 6000 推論、渲染、視覺化與模擬專案。'
+        en: 'For RTX PRO 6000 inference, rendering, visualisation, and simulation projects that need an 8-GPU server.',
+        zh: '適合需要 8-GPU 伺服器的 RTX PRO 6000 推論、渲染、視覺化與模擬專案。'
       },
       {
-        en: 'Useful when teams compare RTX PRO 6000 server density against H200 memory bandwidth and workstation alternatives.',
-        zh: '適合團隊比較 RTX PRO 6000 伺服器密度、H200 記憶體頻寬與工作站替代方案時使用。'
+        en: 'Use it when weighing RTX PRO 6000 server density against H200 memory bandwidth and workstation alternatives.',
+        zh: '比較 RTX PRO 6000 伺服器密度、H200 記憶體頻寬與工作站方案時，可從這裡開始。'
       }
     ]
   }),
@@ -488,12 +488,12 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     relatedProductIds: [5, 36, 23, 30],
     exposureNotes: [
       {
-        en: 'Suited to deskside AI development, rendering, and visualization teams that need two RTX PRO 6000 GPUs without a rack server footprint.',
-        zh: '適合需要兩張 RTX PRO 6000、但不需要機架伺服器佔用的桌邊 AI 開發、渲染與視覺化團隊。'
+        en: 'For deskside AI development, rendering, and visualisation teams that need two RTX PRO 6000 GPUs without a rack server.',
+        zh: '適合需要兩張 RTX PRO 6000、但不想佔用機架的桌邊 AI 開發、渲染與視覺化團隊。'
       },
       {
-        en: 'Use this route when procurement must compare desktop workstation convenience against rackable RTX PRO 6000 options.',
-        zh: '適用於採購需要比較桌面工作站便利性與可上架 RTX PRO 6000 方案時。'
+        en: 'Use this route when procurement compares a desktop workstation against rackable RTX PRO 6000 options.',
+        zh: '採購需要比較桌面工作站與可上架 RTX PRO 6000 方案時，使用此入口。'
       }
     ]
   }),
@@ -537,12 +537,12 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     relatedProductIds: [28, 29, 34, 13],
     exposureNotes: [
       {
-        en: 'Built for local H200 validation, research, and pilot workloads that need HBM capacity in a workstation-oriented path.',
-        zh: '面向需要在工作站型態中使用 HBM 容量的本地 H200 驗證、研究與試點工作負載。'
+        en: 'For local H200 validation, research, and pilot workloads that need HBM capacity in a workstation.',
+        zh: '適合需要在工作站上取得 HBM 容量的本地 H200 驗證、研究與試點工作負載。'
       },
       {
-        en: 'Useful before scaling from a two-GPU H200 workstation to 4x or 6x H200 server configurations.',
-        zh: '適合在從 2-GPU H200 工作站擴展到 4x 或 6x H200 伺服器前先行評估。'
+        en: 'Evaluate here before scaling from a two-GPU H200 workstation to a 4x or 6x H200 server.',
+        zh: '從 2-GPU H200 工作站擴展到 4x 或 6x H200 伺服器前，先在這裡評估。'
       }
     ]
   }),
@@ -586,12 +586,12 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     relatedProductIds: [21, 5, 13, 34],
     exposureNotes: [
       {
-        en: 'Targets AMD Radeon AI PRO R9700 planning for teams evaluating non-NVIDIA GPU workstation routes.',
-        zh: '面向正在評估非 NVIDIA GPU 工作站路線的團隊，聚焦 AMD Radeon AI PRO R9700 規劃。'
+        en: 'For teams evaluating a non-NVIDIA GPU workstation built on AMD Radeon AI PRO R9700.',
+        zh: '適合評估非 NVIDIA GPU 工作站路線的團隊，以 AMD Radeon AI PRO R9700 為規劃核心。'
       },
       {
-        en: 'Use this page when the buyer needs rackable workstation planning with AMD GPU, EPYC, power, and network assumptions.',
-        zh: '適用於採購需要以 AMD GPU、EPYC、電源與網路假設規劃可上架工作站時。'
+        en: 'Use this page to plan a rackable workstation with AMD GPU, EPYC, power, and network choices.',
+        zh: '需要以 AMD GPU、EPYC、電源與網路條件規劃可上架工作站時，使用此頁。'
       }
     ]
   }),
@@ -635,12 +635,12 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     relatedProductIds: [21, 30, 34, 5],
     exposureNotes: [
       {
-        en: 'A focused route for AI development, testing, and visualization teams comparing RTX 5090 workstation cost and capability.',
-        zh: '適合 AI 開發、測試與視覺化團隊比較 RTX 5090 工作站成本與能力時使用。'
+        en: 'For AI development, testing, and visualisation teams weighing RTX 5090 workstation cost against capability.',
+        zh: '適合 AI 開發、測試與視覺化團隊比較 RTX 5090 工作站的成本與能力。'
       },
       {
-        en: 'Use this option before moving to rackable RTX 5090 or RTX PRO 6000 configurations for larger procurement needs.',
-        zh: '適合在擴大到可上架 RTX 5090 或 RTX PRO 6000 配置前，先確認較小型工作站需求。'
+        en: 'Confirm the smaller workstation need here before moving to rackable RTX 5090 or RTX PRO 6000 configurations.',
+        zh: '擴大到可上架 RTX 5090 或 RTX PRO 6000 配置前，先在這裡確認較小型的工作站需求。'
       }
     ]
   }),
@@ -684,12 +684,12 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     relatedProductIds: [34, 36, 23, 21],
     exposureNotes: [
       {
-        en: 'Targets rackable RTX PRO 6000 workstation projects where four GPUs and dual EPYC assumptions need RFQ review.',
-        zh: '面向需要四張 RTX PRO 6000 與雙 EPYC 假設進行 RFQ 審查的可上架工作站專案。'
+        en: 'For rackable RTX PRO 6000 workstation projects where four GPUs and a dual EPYC platform need RFQ review.',
+        zh: '適合以四張 RTX PRO 6000 與雙 EPYC 平台進行 RFQ 審查的可上架工作站專案。'
       },
       {
-        en: 'Useful for buyers comparing rackable workstation deployment against desktop workstation and 8-GPU server choices.',
-        zh: '適合採購比較可上架工作站部署、桌面工作站與 8-GPU 伺服器選項時。'
+        en: 'Use it when comparing a rackable workstation against desktop workstation and 8-GPU server options.',
+        zh: '比較可上架工作站、桌面工作站與 8-GPU 伺服器選項時，可從這裡開始。'
       }
     ]
   }),
@@ -733,12 +733,12 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     relatedProductIds: [13, 22, 5, 30],
     exposureNotes: [
       {
-        en: 'Designed for teams that need more RTX 5090 GPU count than a desktop workstation while keeping a rackable workstation path.',
-        zh: '適合需要高於桌面工作站 RTX 5090 GPU 數量、但仍採可上架工作站路線的團隊。'
+        en: 'For teams that need more RTX 5090 GPUs than a desktop workstation holds while staying on a rackable workstation.',
+        zh: '適合 RTX 5090 數量超過桌面工作站、但仍採用可上架工作站路線的團隊。'
       },
       {
-        en: 'Use this page to compare six RTX 5090 GPUs against AMD R9700, H200 workstation, and rackable PRO 6000 alternatives.',
-        zh: '此頁可協助比較六張 RTX 5090、AMD R9700、H200 工作站與可上架 PRO 6000 替代方案。'
+        en: 'Use this page to compare six RTX 5090 GPUs with AMD R9700, H200 workstation, and rackable PRO 6000 alternatives.',
+        zh: '此頁可用來比較六張 RTX 5090、AMD R9700、H200 工作站與可上架 PRO 6000 方案。'
       }
     ]
   })

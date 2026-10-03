@@ -185,7 +185,7 @@ const lastmodEntries = Object.fromEntries(sitemapEntries.map((entry) => {
   });
   const previous = previousLastmodManifest.entries?.[entry.loc];
   const unchanged = previous?.hash === hash && /^\d{4}-\d{2}-\d{2}$/.test(previous.modifiedAt || '');
-  const publishedAt = unchanged && /^\d{4}-\d{2}-\d{2}$/.test(previous.publishedAt || '')
+  const publishedAt = /^\d{4}-\d{2}-\d{2}$/.test(previous?.publishedAt || '')
     ? previous.publishedAt
     : buildDate;
   return [entry.loc, {

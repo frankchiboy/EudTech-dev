@@ -15,7 +15,7 @@ import LazyImage from './common/LazyImage';
 
 const FinSightSystemVisual = ({ isEnglish }: { isEnglish: boolean }) => {
   const stages = [
-    { icon: Database, title: isEnglish ? 'Authorised data' : '授權資料源', body: isEnglish ? 'Market, accounting, or internal operational data' : '市場、會計或企業內部營運資料' },
+    { icon: Database, title: isEnglish ? 'Authorised data' : '授權資料來源', body: isEnglish ? 'Market, accounting, or internal operational data' : '市場、會計或企業內部營運資料' },
     { icon: Braces, title: 'FinSight API', body: isEnglish ? 'Normalise, calculate, and return structured JSON' : '標準化、計算並回傳結構化 JSON' },
     { icon: Bot, title: isEnglish ? 'LLM or rules' : 'LLM 或規則', body: isEnglish ? 'Explain or summarise within the approved scope' : '依核准範圍解釋或摘要' },
     { icon: Shield, title: isEnglish ? 'Human decision' : '人員決策', body: isEnglish ? 'Review source, time, assumptions, and output' : '檢視來源、時間、假設與輸出' }
@@ -56,10 +56,10 @@ const ProductDetails: React.FC = () => {
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            {isEnglish ? 'Product Not Found' : '找不到產品'} (ID: {productId})
+            {isEnglish ? 'Product not found' : '找不到產品'} (ID: {productId})
           </h1>
           <Link to="/" className="text-eudtech-600 hover:text-eudtech-700 dark:text-eudtech-400 dark:hover:text-eudtech-300">
-            {isEnglish ? 'Back to Home' : '返回首頁'}
+            {isEnglish ? 'Back to home' : '返回首頁'}
           </Link>
         </div>
       </div>
@@ -78,7 +78,7 @@ const ProductDetails: React.FC = () => {
             className="inline-flex items-center text-eudtech-600 hover:text-eudtech-700 dark:text-eudtech-400 dark:hover:text-eudtech-300 transition-colors mb-8 group cursor-pointer bg-transparent border-none"
           >
             <ArrowLeft className="h-5 w-5 mr-2 transform group-hover:-translate-x-1 transition-transform duration-300" />
-            {isEnglish ? 'Back to Products' : '返回產品列表'}
+            {isEnglish ? 'Back to products' : '返回產品列表'}
           </Link>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -110,7 +110,7 @@ const ProductDetails: React.FC = () => {
                   </p>
                   <div className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-neo-light dark:shadow-neo-dark">
                     <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 text-center">
-                      {isEnglish ? 'Solution Highlights' : '解決方案亮點'}
+                      {isEnglish ? 'Solution highlights' : '方案重點'}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* API 模組 */}
@@ -120,8 +120,8 @@ const ProductDetails: React.FC = () => {
                         </h4>
                         <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                           {isEnglish
-                            ? 'Unified financial data API with technical indicators, price history, and extensible support for news, macro, and financial data. RESTful design enables easy integration for LLMs and enterprise systems.'
-                            : '金融資料整合API，包含技術指標、價格歷史，可擴充新聞、總經、財報資料。RESTful設計讓LLM與企業系統輕鬆整合。'}
+                            ? 'One API for financial data, covering technical indicators and price history, with extensions for news, macro, and financial-report data. The RESTful design integrates with LLMs and enterprise systems.'
+                            : '整合金融資料的 API，涵蓋技術指標與價格歷史，可擴充新聞、總經與財報資料。RESTful 設計方便 LLM 與企業系統整合。'}
                         </p>
                       </div>
                       
@@ -132,32 +132,32 @@ const ProductDetails: React.FC = () => {
                         </h4>
                         <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                           {isEnglish
-                            ? 'MVP demonstration system for LLM interaction, supporting ChatGPT Plugin, Hugging Face, and local LLM deployments.'
-                            : '語言模型互動展示系統，支援ChatGPT Plugin、Hugging Face及本地LLM部署。'}
+                            ? 'MVP demonstration system for LLM interaction. Supports ChatGPT Plugin, Hugging Face, and local LLM deployments.'
+                            : 'LLM 互動展示系統（MVP），支援 ChatGPT Plugin、Hugging Face 與本地 LLM 部署。'}
                         </p>
                       </div>
                       
                       {/* LLM 應用任務 */}
                       <div className="bg-white dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
                         <h4 className="font-semibold text-eudtech-700 dark:text-eudtech-400 mb-2 text-lg">
-                          {isEnglish ? 'LLM Applications' : 'LLM 應用功能'}
+                          {isEnglish ? 'LLM applications' : 'LLM 應用功能'}
                         </h4>
                         <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                           {isEnglish
-                            ? 'Comprehensive LLM capabilities including indicator explanation, trend prediction, automated reporting, charting, strategy simulation, and custom GPT development.'
-                            : '完整LLM功能包含指標解釋、趨勢預測、自動報告、圖表生成、策略模擬及專屬GPT開發。'}
+                            ? 'LLM functions include indicator explanation, trend prediction, automated reporting, charting, strategy simulation, and custom GPT development.'
+                            : 'LLM 功能包含指標解釋、趨勢預測、自動報告、圖表生成、策略模擬與專屬 GPT 開發。'}
                         </p>
                       </div>
                       
                       {/* 彈性與企業服務 */}
                       <div className="bg-white dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
                         <h4 className="font-semibold text-eudtech-700 dark:text-eudtech-400 mb-2 text-lg">
-                          {isEnglish ? 'Enterprise Services' : '企業服務'}
+                          {isEnglish ? 'Enterprise services' : '企業服務'}
                         </h4>
                         <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                           {isEnglish
-                            ? 'Highly extensible architecture supporting custom data sources, internal API integration, private LLM deployment, multi-role/multi-language support, and dedicated GPT assistant development.'
-                            : '高度彈性架構支援客製資料源、內部API整合、私有LLM部署、多角色多語系及專屬GPT助理開發。'}
+                            ? 'Extensible architecture for custom data sources, internal API integration, private LLM deployment, multi-role and multi-language support, and dedicated GPT assistants.'
+                            : '可延伸架構支援客製資料來源、內部 API 整合、私有 LLM 部署、多角色多語系與專屬 GPT 助理開發。'}
                         </p>
                       </div>
                     </div>
@@ -171,7 +171,7 @@ const ProductDetails: React.FC = () => {
                   {/* Key Features */}
                   <div className="mb-8 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-neo-light dark:shadow-neo-dark">
                     <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 text-center">
-                      {isEnglish ? 'Key Features' : '主要特色'}
+                      {isEnglish ? 'Key features' : '主要特色'}
                     </h3>
                     <ul className="space-y-3">
                       {product.features.map((feature, index) => (
@@ -191,15 +191,15 @@ const ProductDetails: React.FC = () => {
                 <FinSightSystemVisual isEnglish={isEnglish} />
                 <div className="mb-2 text-base text-gray-700 dark:text-gray-300 text-center">
                   {isEnglish
-                    ? 'Experience the FinSightGTP demo (MVP) to see how LLMs interact with real financial data.'
-                    : '立即體驗 FinSightGTP（MVP），感受語言模型與金融資料的互動應用。'}
+                    ? 'Try the FinSightGTP demo (MVP) to see how an LLM works with real financial data.'
+                    : '試用 FinSightGTP（MVP），看 LLM 如何處理實際金融資料。'}
                 </div>
                 <a
                   href="https://chatgpt.com/g/g-68708483b9788191935502fc337408eb-finsight"
                   className="inline-block px-8 py-3 mb-3 rounded-lg bg-eudtech-600 text-white font-semibold shadow-lg hover:bg-eudtech-700 transition-colors text-lg"
                   target="_blank" rel="noopener noreferrer"
                 >
-                  {isEnglish ? 'FinSightGTP Demo' : 'FinSightGTP體驗'}
+                  {isEnglish ? 'FinSightGTP demo' : '試用 FinSightGTP'}
                 </a>
                 <button
                   type="button"
@@ -208,7 +208,7 @@ const ProductDetails: React.FC = () => {
                     handleNavClick('#contact');
                   }}
                 >
-                  {isEnglish ? 'Contact Us' : '聯絡我們'}
+                  {isEnglish ? 'Contact us' : '聯絡我們'}
                 </button>
               </div>
             )}

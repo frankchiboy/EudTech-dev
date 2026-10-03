@@ -26,11 +26,11 @@ const OnlineMeetingBooking: React.FC = () => {
     document.body.removeChild(link);
 
     window.setTimeout(() => {
-      const fallbackMessage = `請透過電子郵件聯繫：${emailAddress}`;
+      const fallbackMessage = `請透過電子郵件聯絡：${emailAddress}`;
 
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(emailAddress).then(() => {
-          alert(`${fallbackMessage}\n\n電子郵件地址已複製到剪貼簿！`);
+          alert(`${fallbackMessage}\n\n電子郵件地址已複製到剪貼簿。`);
         }).catch(() => {
           alert(fallbackMessage);
         });

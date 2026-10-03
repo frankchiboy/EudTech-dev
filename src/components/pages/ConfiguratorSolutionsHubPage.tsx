@@ -130,12 +130,12 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
           <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
             <div className="max-w-4xl">
               <h1 className="text-4xl font-bold leading-tight tracking-normal sm:text-5xl lg:text-6xl">
-                {isEnglish ? 'GPU server quote paths by workload' : '依工作負載選擇 GPU 伺服器報價入口'}
+                {isEnglish ? 'GPU server quote entry points by workload' : '依工作負載選擇 GPU 伺服器報價入口'}
               </h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-200">
                 {isEnglish
-                  ? 'Choose the buying intent first, then enter the matching configurator with GPU, CPU, memory, storage, power, and network context ready for quote follow-up.'
-                  : '先依採購意圖選擇入口，再進入對應配置器，保留 GPU、CPU、記憶體、儲存、電源與網路脈絡供報價追蹤。'}
+                  ? 'Choose your buying intent first, then open the matching configurator. It keeps the GPU, CPU, memory, storage, power, and network choices that EudTech quotes from.'
+                  : '先依採購意圖選擇入口，再進入對應的配置器。配置會保留 GPU、CPU、記憶體、儲存、電源與網路選項，供 EudTech 回覆報價。'}
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -143,14 +143,14 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
                   className="inline-flex items-center justify-center rounded-md bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-950/30 transition hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-300"
                 >
                   <Cpu className="mr-2 h-4 w-4" />
-                  {isEnglish ? 'Open Configurator' : '開啟配置器'}
+                  {isEnglish ? 'Open configurator' : '開啟配置器'}
                 </Link>
                 <Link
                   to="/solutions/gpu-server-quote"
                   className="inline-flex items-center justify-center rounded-md border border-white/35 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/70"
                 >
                   <FileCheck2 className="mr-2 h-4 w-4" />
-                  {isEnglish ? 'GPU Server Quote Path' : 'GPU 伺服器報價路徑'}
+                  {isEnglish ? 'GPU server quote entry point' : 'GPU 伺服器報價入口'}
                 </Link>
               </div>
             </div>
@@ -192,20 +192,20 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
           <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <div>
               <h2 className="text-3xl font-bold tracking-normal text-gray-950 dark:text-white">
-                {isEnglish ? 'Keyword paths mapped to quote actions' : '關鍵字入口對應報價行動'}
+                {isEnglish ? 'Entry points by buying situation' : '採購情境對應的入口'}
               </h2>
               <p className="mt-5 text-base leading-8 text-gray-600 dark:text-gray-300">
                 {isEnglish
-                  ? 'Each entry point is designed to capture a different procurement search intent and move the buyer into a concrete configuration URL.'
-                  : '每個入口頁都承接不同採購搜尋意圖，並把使用者導向可操作的配置連結。'}
+                  ? 'Each entry point answers one procurement need and links directly to a concrete configurator URL.'
+                  : '每個入口頁對應一種採購需求，並直接連到可操作的配置器連結。'}
               </p>
             </div>
             <dl className="grid gap-4 sm:grid-cols-2">
               {[
-                [isEnglish ? 'Quote intent' : '報價意圖', isEnglish ? 'GPU server quote and AI server quote pages.' : 'GPU 伺服器報價與 AI 伺服器報價頁。'],
-                [isEnglish ? 'Product intent' : '產品意圖', isEnglish ? 'H200 and RTX PRO 6000 entry points.' : 'H200 與 RTX PRO 6000 入口。'],
-                [isEnglish ? 'Comparison intent' : '比較意圖', isEnglish ? 'H200 vs RTX PRO 6000 procurement comparison.' : 'H200 與 RTX PRO 6000 採購比較。'],
-                [isEnglish ? 'Planning intent' : '規劃意圖', isEnglish ? 'RFQ checklist and liquid-cooling procurement guide.' : 'RFQ 檢核表與液冷採購指南。']
+                [isEnglish ? 'Need a quote' : '需要報價', isEnglish ? 'Start from the GPU server quote or AI server quote page when you need a formal quote.' : '需要 GPU 伺服器或 AI 伺服器的正式報價時，從報價頁開始。'],
+                [isEnglish ? 'GPU already chosen' : '已選定 GPU', isEnglish ? 'Go straight to the H200 or RTX PRO 6000 entry point when the GPU is already decided.' : '已鎖定 H200 或 RTX PRO 6000 時，直接進入產品入口。'],
+                [isEnglish ? 'Still comparing' : '仍在比較', isEnglish ? 'Read the H200 vs RTX PRO 6000 procurement comparison while the choice is still open.' : '還在 H200 與 RTX PRO 6000 之間取捨時，先看採購比較。'],
+                [isEnglish ? 'Preparing RFQ and deployment' : '準備 RFQ 與部署', isEnglish ? 'Use the RFQ checklist and liquid-cooling procurement guide when preparing documents or a deployment.' : '準備 RFQ 或規劃液冷部署時，使用檢核表與採購指南。']
               ].map(([term, detail]) => (
                 <div key={term} className="rounded-lg bg-white p-5 shadow-sm dark:bg-gray-950">
                   <dt className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{term}</dt>

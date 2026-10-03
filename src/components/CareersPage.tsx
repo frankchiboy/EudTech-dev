@@ -24,7 +24,7 @@ const CareersPage: React.FC = () => {
       },
       responsibilities: {
         zh: [
-          '對政府機關與學校進行簡報、提案與標案推廣',
+          '向政府機關與學校進行簡報、提案與標案推廣',
           '撰寫標案文件、管理投標流程與競爭策略',
           '負責中標後履約進度、業主聯繫與協調',
           '與銀行窗口洽談履約貸款與保證金安排',
@@ -33,11 +33,11 @@ const CareersPage: React.FC = () => {
         ],
         en: [
           'Present proposals and promote tenders to government agencies and schools',
-          'Draft tender documents, manage bidding processes and competitive strategies',
-          'Handle post-award contract execution progress, client communication and coordination',
+          'Draft tender documents and manage the bidding process and competitive strategy',
+          'Manage post-award contract delivery, client communication, and coordination',
           'Negotiate performance loans and guarantee arrangements with bank representatives',
-          'Prepare and submit loan-related documents (contracts, financial reports, purpose statements, etc.)',
-          'Track loan approval, disbursement and contract cash flow status',
+          'Prepare and submit loan documents such as contracts, financial statements, and purpose statements',
+          'Track loan approval, disbursement, and contract cash flow',
         ],
       },
       requirements: {
@@ -73,14 +73,14 @@ const CareersPage: React.FC = () => {
           '準備貸款申請所需文件（契約、財報、資金用途說明）',
           '與授信窗口溝通利率、還款條件、擔保安排等議題',
           '定期追蹤貸款進度，確保撥款與標案履約時程對齊',
-          '探索多元融資管道，強化公司財務靈活性',
+          '探索多元融資管道，提高公司財務彈性',
         ],
         en: [
-          'Establish banking partnerships and handle performance loans, credit facilities and guarantee arrangements',
+          'Build banking relationships and handle performance loans, credit facilities, and guarantee arrangements',
           'Prepare loan application documents (contracts, financial reports, fund usage statements)',
           'Communicate with credit officers on interest rates, repayment terms, and collateral arrangements',
-          'Regularly track loan progress to ensure disbursement aligns with contract execution timeline',
-          'Explore diverse financing channels to enhance company financial flexibility',
+          'Track loan progress so that disbursement aligns with the contract delivery schedule',
+          'Explore a range of financing channels to improve company financial flexibility',
         ],
       },
       requirements: {
@@ -122,7 +122,7 @@ const CareersPage: React.FC = () => {
         en: [
           'Serve as the primary communication channel between the founder and all staff',
           'Convey company decisions, values, and goals to ensure consistent understanding',
-          'Gather and relay employee feedback, team needs, and organizational concerns',
+          'Gather and relay employee feedback, team needs, and organisational concerns',
           'Mediate internal miscommunications and drive alignment across teams',
           'Draft internal announcements, meeting summaries, and communication materials',
           'Support internal change communications, cultural initiatives, and policy rollouts',
@@ -159,20 +159,20 @@ const CareersPage: React.FC = () => {
       },
       responsibilities: {
         zh: [
-          '作為公司與 Comino 原廠之間的技術與產品窗口',
-          '熟悉 Comino 液冷工作站 / 伺服器產品線，管理本地化資料與技術文檔',
+          '擔任 EudTech 與 Comino 原廠之間的技術與產品窗口',
+          '熟悉 Comino 液冷工作站與伺服器產品線，管理本地化資料與技術文件',
           '協助企業端客戶進行需求評估、配置規劃與選型建議',
           '整合業務、技術與供應鏈資訊，定義導入流程與售後支援策略',
-          '規劃產品推廣內容（如配置工具教學、教育訓練、技術簡報）',
+          '規劃產品推廣內容（如配置器教學、教育訓練、技術簡報）',
           '支援報價、安規認證、物流進口、退換貨與保固流程',
         ],
         en: [
-          'Act as the primary product and technical liaison between our company and Comino',
-          'Manage localized technical materials and stay updated with the latest Comino product lines',
-          'Assist enterprise clients with solution evaluation, configuration planning, and deployment',
-          'Coordinate with sales and operations to define product integration and support flow',
-          'Plan product marketing and enablement content (configurator usage, workshops, technical docs)',
-          'Support quoting, BSM certification tracking, logistics, RMA, and warranty-related workflows',
+          'Act as the product and technical liaison between EudTech and Comino',
+          'Know the Comino liquid-cooled workstation and server lines, and manage localised materials and technical documentation',
+          'Help enterprise clients with requirement assessment, configuration planning, and model selection',
+          'Combine sales, technical, and supply chain information to define the implementation flow and after-sales support approach',
+          'Plan product content such as configurator tutorials, training sessions, and technical briefings',
+          'Support quoting, safety certification, import logistics, returns and exchanges, and warranty processes',
         ],
       },
       requirements: {
@@ -213,7 +213,7 @@ const CareersPage: React.FC = () => {
         ],
         en: [
           'Support day-to-day operations, project tracking, and cross-functional communication',
-          'Organize meeting notes, requirement documents, and project-related materials',
+          'Organise meeting notes, requirement documents, and project materials',
           'Help arrange schedules, confirm delivery milestones, and follow up on action items',
           'Handle administrative and project support tasks assigned by leadership',
         ],
@@ -229,7 +229,6 @@ const CareersPage: React.FC = () => {
           'Detail-oriented, organized, and comfortable handling multiple tasks at once',
           'Strong communication skills and solid document organization ability',
           'Interested in project collaboration, process improvement, or operations support',
-          'Experience with Excel, Google Sheets, or common office tools is a plus',
           'Experience with Excel, Google Sheets, or common office tools is a plus',
         ],
       },
@@ -257,7 +256,7 @@ const CareersPage: React.FC = () => {
         ],
         en: [
           'Assist with requirement gathering, scheduling, and progress tracking for technical projects',
-          'Organize technical documents, test results, and project delivery materials',
+          'Organise technical documents, test results, and project delivery materials',
           'Support communication and alignment between engineering, product, and clients',
           'Help with administrative follow-up, testing, and coordination before and after launch',
         ],
@@ -289,7 +288,7 @@ const CareersPage: React.FC = () => {
 
   const handleApply = (jobTitle: string) => {
     const subject = encodeURIComponent(`應徵${jobTitle}職位`);
-    const body = encodeURIComponent('請在此附上您的履歷與期待薪資');
+    const body = encodeURIComponent('請附上履歷與期待薪資');
     const mailtoLink = `mailto:${applicationEmail}?subject=${subject}&body=${body}`;
 
     const link = document.createElement('a');
@@ -305,11 +304,11 @@ const CareersPage: React.FC = () => {
         return;
       }
 
-      const fallbackMessage = `請發送履歷至：${applicationEmail}\n主旨：應徵${jobTitle}職位`;
+      const fallbackMessage = `請將履歷寄至：${applicationEmail}\n主旨：應徵${jobTitle}職位`;
 
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(applicationEmail).then(() => {
-          alert(`${fallbackMessage}\n\n電子郵件地址已複製到剪貼簿！`);
+          alert(`${fallbackMessage}\n\n電子郵件地址已複製到剪貼簿。`);
         }).catch(() => {
           alert(fallbackMessage);
         });
@@ -408,12 +407,12 @@ const CareersPage: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-slate-950/40" aria-hidden="true" />
             <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                {isEnglish ? 'Join Our Team' : '加入我們的團隊'}
+                {isEnglish ? 'Join the EudTech team' : '加入 EudTech 團隊'}
               </h1>
               <p className="text-xl text-gray-200 max-w-3xl mx-auto">
                 {isEnglish
-                  ? "Be part of the future of AI technology. We're looking for passionate individuals to help us build innovative solutions."
-                  : '成為 AI 技術未來的一部分。我們正在尋找充滿熱忱的人才，協助我們打造創新解決方案。'
+                  ? 'EudTech is hiring for the roles below. Each listing states the responsibilities, requirements, location, working hours, and how to apply.'
+                  : 'EudTech 正在招募以下職缺。每個職缺都列出工作內容、條件需求、工作地點、工作時間與應徵方式。'
                 }
               </p>
             </div>
@@ -437,9 +436,9 @@ const CareersPage: React.FC = () => {
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
                       <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400 mr-2" />
-                      {isEnglish ? 'Job Responsibilities' : '工作內容'}
+                      {isEnglish ? 'Job responsibilities' : '工作內容'}
                     </h3>
-                    <span className="text-sm font-semibold text-blue-600 dark:text-blue-300 group-open:hidden">{isEnglish ? 'View' : '展開'}</span>
+                    <span className="text-sm font-semibold text-blue-600 dark:text-blue-300 group-open:hidden">{isEnglish ? 'Expand' : '展開'}</span>
                     <span className="hidden text-sm font-semibold text-blue-600 dark:text-blue-300 group-open:inline">{isEnglish ? 'Collapse' : '收合'}</span>
                     </summary>
                     <ul className="mt-5 space-y-3">
@@ -458,7 +457,7 @@ const CareersPage: React.FC = () => {
                       <CheckCircle className="h-6 w-6 text-orange-600 dark:text-orange-400 mr-2" />
                       {isEnglish ? 'Requirements' : '條件需求'}
                     </h3>
-                    <span className="text-sm font-semibold text-orange-600 dark:text-orange-300 group-open:hidden">{isEnglish ? 'View' : '展開'}</span>
+                    <span className="text-sm font-semibold text-orange-600 dark:text-orange-300 group-open:hidden">{isEnglish ? 'Expand' : '展開'}</span>
                     <span className="hidden text-sm font-semibold text-orange-600 dark:text-orange-300 group-open:inline">{isEnglish ? 'Collapse' : '收合'}</span>
                     </summary>
                     <ul className="mt-5 space-y-3">
@@ -485,7 +484,7 @@ const CareersPage: React.FC = () => {
                     <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 flex items-center">
                         <Clock className="h-5 w-5 text-teal-600 dark:text-teal-400 mr-2" />
-                        {isEnglish ? 'Working Hours' : '工作時間'}
+                        {isEnglish ? 'Working hours' : '工作時間'}
                       </h4>
                       <p className="text-gray-700 dark:text-gray-300">
                         {isEnglish ? job.workTime.en : job.workTime.zh}
@@ -501,12 +500,12 @@ const CareersPage: React.FC = () => {
                       className="inline-flex items-center"
                     >
                       <Mail className="h-5 w-5 mr-2" />
-                      {isEnglish ? 'Apply Now' : '立即應徵'}
+                      {isEnglish ? 'Apply now' : '立即應徵'}
                     </Button>
                     <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
                       {isEnglish
-                        ? 'Send Resume & Expected Salary'
-                        : '提供履歷與期待薪資'
+                        ? 'Attach your CV and expected salary.'
+                        : '請附上履歷與期待薪資。'
                       }
                     </p>
                   </div>
@@ -518,7 +517,7 @@ const CareersPage: React.FC = () => {
           <Section background="gradient" padding="xl">
             <div className="text-center max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                {isEnglish ? 'Why Join EudTech?' : '為什麼選擇 EudTech？'}
+                {isEnglish ? 'Why join EudTech?' : '為什麼加入 EudTech？'}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
@@ -526,12 +525,12 @@ const CareersPage: React.FC = () => {
                     <Briefcase className="h-8 w-8 text-blue-600 dark:text-blue-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    {isEnglish ? 'Innovation Focus' : '創新導向'}
+                    {isEnglish ? 'AI project work' : 'AI 專案實務'}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300">
                     {isEnglish
-                      ? 'Work on cutting-edge AI technologies that shape the future'
-                      : '參與塑造未來的尖端 AI 技術工作'
+                      ? 'Work on projects that put AI software, compute systems, and intelligence tools into use.'
+                      : '參與 AI 軟體、運算設備與情報工具的導入專案。'
                     }
                   </p>
                 </div>
@@ -541,12 +540,12 @@ const CareersPage: React.FC = () => {
                     <MapPin className="h-8 w-8 text-green-600 dark:text-green-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    {isEnglish ? 'Remote Flexibility' : '遠端彈性'}
+                    {isEnglish ? 'Remote flexibility' : '遠端彈性'}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300">
                     {isEnglish
-                      ? 'Enjoy the freedom of fully remote work across Taiwan'
-                      : '享受台灣全境完全遠端工作的自由'
+                      ? 'Most roles are fully remote within Taiwan. The rest are based in Taipei with flexible remote work.'
+                      : '多數職缺可在台灣全遠端工作。其餘職缺以台北為主，搭配遠端彈性。'
                     }
                   </p>
                 </div>
@@ -556,12 +555,12 @@ const CareersPage: React.FC = () => {
                     <CheckCircle className="h-8 w-8 text-purple-600 dark:text-purple-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    {isEnglish ? 'Growth Opportunity' : '成長機會'}
+                    {isEnglish ? 'Career growth' : '成長機會'}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300">
                     {isEnglish
-                      ? 'Develop your career in the rapidly expanding AI industry'
-                      : '在快速發展的 AI 產業中發展您的職業生涯'
+                      ? 'Develop your career in the AI industry.'
+                      : '在 AI 產業中發展職涯。'
                     }
                   </p>
                 </div>

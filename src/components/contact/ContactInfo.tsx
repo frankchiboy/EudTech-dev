@@ -8,7 +8,7 @@ const ContactInfo: React.FC = () => {
   const items = [
     {
       icon: Calendar,
-      label: isEnglish ? 'Online Meeting' : '線上會議',
+      label: isEnglish ? 'Online meeting' : '線上會議',
       value: isEnglish ? 'Via video conferencing' : '透過視訊會議',
     },
     {
@@ -18,7 +18,7 @@ const ContactInfo: React.FC = () => {
     },
     {
       icon: Clock,
-      label: isEnglish ? 'Response Time' : '回覆時間',
+      label: isEnglish ? 'Response time' : '回覆時間',
       value: isEnglish ? 'Within 24 hours' : '24 小時內',
     },
     {
@@ -33,12 +33,12 @@ const ContactInfo: React.FC = () => {
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzR2Nmg2di02aC02em02IDZ2Nmg2di02aC02em0tNiA2djZoNnYtNmgtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-40"></div>
       <div className="relative z-10">
         <h3 className="mb-6 text-2xl font-bold">
-          {isEnglish ? 'Meeting & Contact Info' : '會議與聯絡資訊'}
+          {isEnglish ? 'Meeting and contact details' : '會議與聯絡資訊'}
         </h3>
         <p className="mb-8 max-w-sm">
           {isEnglish
-            ? 'Book an online consultation or contact us directly via email.'
-            : '預約線上諮詢，或直接透過電子郵件聯繫我們。'}
+            ? 'Book an online consultation or email EudTech directly.'
+            : '預約線上諮詢，或直接寄 Email 給 EudTech。'}
         </p>
       </div>
 

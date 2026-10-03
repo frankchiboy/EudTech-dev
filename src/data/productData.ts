@@ -7,8 +7,8 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
     id: 3,
     title: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統',
     description: isEnglish
-      ? 'FinSight: Financial language understanding and data API framework. Combine raw data with LLMs for real-time, flexible insights and decision support.'
-      : 'FinSight 金融語言理解與資料API架構，結合原始數據與LLM，提供即時彈性洞察與決策輔助。',
+      ? 'FinSight is a financial language-understanding and data API framework. It combines raw financial data with LLMs for real-time insights and decision support.'
+      : 'FinSight 是金融語言理解與資料 API 框架，結合原始金融資料與 LLM，提供即時洞察與決策輔助。',
     icon: React.createElement(Shield, { className: "h-8 w-8 text-blue-800" }),
     image: "https://images.pexels.com/photos/7567529/pexels-photo-7567529.jpeg",
     features: isEnglish
@@ -17,16 +17,16 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
           'RESTful API, SaaS or on-premises',
           'LLM demo system for finance',
           'Explain indicators and predict trends with LLM',
-          'Highly extensible architecture',
+          'Extensible architecture',
           'Enterprise consulting and custom GPT'
         ]
       : [
-          '金融資料整合API',
-          'RESTful API，SaaS雲端或本地端',
+          '金融資料整合 API',
+          'RESTful API，SaaS 或地端部署',
           '金融語言模型互動展示',
           '指標解釋、趨勢預測',
-          '高度彈性延伸架構',
-          '企業顧問與專屬GPT助理'
+          '可延伸的架構',
+          '企業顧問服務與專屬 GPT 助理'
         ],
     specs: isEnglish ? {
       'Model': 'LLM + API Wrapper',
@@ -35,39 +35,39 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
       'Deployment': 'SaaS / On-Premises'
     } : {
       '模型架構': 'LLM + API 包裝器',
-      '資料來源': '原始金融數據API',
+      '資料來源': '原始金融資料 API',
       '整合模式': 'Webhook 與 JSON/RESTful API',
-      '部署方式': 'SaaS 或 私有部署'
+      '部署方式': 'SaaS 或私有部署'
     },
     comingSoon: false,
     detailedDescription: {
       title: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統',
       formFactor: isEnglish ? 'Software Platform' : '軟體平台',
       introduction: isEnglish
-        ? 'FinSight is a comprehensive financial AI platform that specializes in processing raw numerical financial data. Our system focuses exclusively on hard data - market prices, trading volumes, financial ratios, and quantitative metrics - providing clean, structured access to real-time financial information without secondary interpretations or news content.'
-        : 'FinSight 是一個專門處理原始數字金融數據的綜合性金融AI平台。我們的系統專注於硬數據 - 市場價格、交易量、財務比率和量化指標 - 提供乾淨、結構化的即時金融資訊存取，不包含二手解讀或新聞內容。',
+        ? 'FinSight processes raw numerical financial data: market prices, trading volumes, financial ratios, and quantitative metrics. It returns clean, structured, real-time financial data without secondary interpretation or news content.'
+        : 'FinSight 專門處理原始數值型金融資料：市場價格、交易量、財務比率與量化指標。系統回傳乾淨、結構化的即時金融資料，不含二手解讀或新聞內容。',
       keyFeatures: isEnglish ? [
         'Raw financial data API integration',
         'Real-time market data processing',
         'Quantitative metrics calculation',
-        'Multi-market data normalization',
+        'Multi-market data normalisation',
         'LLM-powered data interpretation',
         'Custom financial indicators',
         'Enterprise-grade API infrastructure',
         'Flexible deployment options'
       ] : [
-        '原始金融數據API整合',
-        '即時市場數據處理',
+        '原始金融資料 API 整合',
+        '即時市場資料處理',
         '量化指標計算',
-        '多市場數據標準化',
-        'LLM驅動的數據解讀',
+        '多市場資料標準化',
+        'LLM 資料解讀',
         '客製化金融指標',
-        '企業級API基礎架構',
+        '企業級 API 基礎架構',
         '彈性部署選項'
       ],
       technicalSpecs: isEnglish ? {
         'Data Sources': 'Raw market data APIs, financial databases',
-        'Processing': 'Real-time data normalization and calculation',
+        'Processing': 'Real-time data normalisation and calculation',
         'API Format': 'RESTful JSON, WebSocket streaming',
         'LLM Integration': 'GPT-4 for data interpretation and insights',
         'Deployment': 'Cloud SaaS or on-premises installation',
@@ -75,13 +75,13 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
         'Scalability': 'Horizontal scaling for high-frequency data',
         'Latency': 'Sub-second response time for real-time queries'
       } : {
-        '資料來源': '原始市場數據API、金融資料庫',
-        '處理方式': '即時數據標準化與計算',
-        'API格式': 'RESTful JSON、WebSocket串流',
-        'LLM整合': 'GPT-4用於數據解讀與洞察',
-        '部署方式': '雲端SaaS或本地端安裝',
+        '資料來源': '原始市場資料 API、金融資料庫',
+        '處理方式': '即時資料標準化與計算',
+        'API格式': 'RESTful JSON、WebSocket 串流',
+        'LLM整合': 'GPT-4 用於資料解讀與洞察',
+        '部署方式': '雲端 SaaS 或地端安裝',
         '安全性': '企業級加密與存取控制',
-        '擴展性': '高頻數據的水平擴展',
+        '擴展性': '高頻資料的水平擴展',
         '延遲性': '即時查詢的亞秒級回應時間'
       },
       applications: isEnglish ? [
@@ -105,25 +105,25 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
     id: 1, 
     title: isEnglish ? 'EudTech Select AI Server' : 'EudTech Select AI伺服器',
     description: isEnglish
-      ? 'Enterprise-grade AI server with optimized performance for large language models and AI workloads.'
-      : '企業級AI伺服器，為大型語言模型和AI工作負載優化效能。',
+      ? 'Enterprise AI server configured for large language models and AI workloads.'
+      : '企業級 AI 伺服器，針對大型語言模型與 AI 工作負載配置。',
     icon: React.createElement(Server, { className: "h-8 w-8 text-blue-800" }),
     image: "/EudTech-Select-server-front.png",
     features: isEnglish
       ? [
           '8-GPU direct-connect architecture',
           '4 NVMe drive bays',
-          'Advanced cooling system',
-          'Dual Intel Xeon Processors',
-          '1TB DDR5 RAM Support',
-          'Redundant Power Supply'
+          'Cooling system',
+          'Dual Intel Xeon processors',
+          'Up to 1TB DDR5 RAM',
+          'Redundant power supply'
         ]
       : [
           '8-GPU 直連架構',
-          '4個 NVMe 驅動器托架',
-          '先進散熱系統',
-          '雙Intel Xeon處理器',
-          '支援1TB DDR5 RAM',
+          '4 個 NVMe 硬碟槽',
+          '散熱系統',
+          '雙 Intel Xeon 處理器',
+          '支援最高 1TB DDR5 RAM',
           '備援電源供應'
         ],
     specs: isEnglish ? {
@@ -148,8 +148,8 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     id: 5,
     title: isEnglish ? 'Comino Grando Rackable Workstation' : 'Comino Grando 機架式工作站',
     description: isEnglish
-      ? 'Rackmount workstation/server with up to 8 GPUs & 2 CPUs, advanced liquid cooling, modular design, remote management, and redundant power supply.'
-      : '機架式工作站/伺服器，支援最高8顆GPU與2顆CPU，具備先進液冷、模組化設計、遠端管理及冗餘電源。',
+      ? 'Rackmount workstation or server with up to 8 GPUs and 2 CPUs. Liquid cooling, modular design, remote management, and redundant power supply.'
+      : '機架式工作站或伺服器，最多 8 顆 GPU 與 2 顆 CPU。具備液冷、模組化設計、遠端管理與備援電源。',
     icon: React.createElement(Server, { className: "h-8 w-8 text-purple-700" }),
     image: "/grando-8gpu-server.jpg",
     features: isEnglish ? [
@@ -214,7 +214,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     detailedDescription: {
       title: isEnglish ? 'Comino Grando Rackable Workstation' : 'Comino Grando 機架式工作站',
       formFactor: isEnglish ? 'Rackmount / Workstation' : '機架式 / 工作站',
-      introduction: isEnglish ? 'High density liquid-cooled rack/workstation supporting up to 8 GPUs and 2 CPUs with modular power and flexible airflow.' : '高密度液冷機架/工作站，支援最多8顆GPU與2顆CPU，具模組化電源與彈性風道。',
+      introduction: isEnglish ? 'High-density liquid-cooled rack system or workstation with up to 8 GPUs and 2 CPUs, modular power, and flexible airflow.' : '高密度液冷機架系統或工作站，最多 8 顆 GPU 與 2 顆 CPU，具模組化電源與彈性風道。',
       keyFeatures: [],
       technicalSpecs: {},
     }
@@ -270,8 +270,8 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     id: 7,
     title: isEnglish ? 'Comino Grando Server' : 'Comino Grando 伺服器',
     description: isEnglish
-      ? 'High-performance server with up to 8 GPUs & 2 CPUs, enterprise-grade liquid cooling, redundant power supply, hot-swappable components, and advanced monitoring system.'
-      : '高效能伺服器，支援最高8顆GPU與2顆CPU，企業級液冷、冗餘電源、熱插拔元件及先進監控系統。',
+      ? '4U server with up to 8 GPUs and 2 CPUs. Liquid cooling, redundant power supply, hot-swappable components, and the Comino monitoring system.'
+      : '4U 伺服器，最多 8 顆 GPU 與 2 顆 CPU。具備液冷、備援電源、熱插拔元件與 Comino 監控系統。',
     icon: React.createElement(Server, { className: "h-8 w-8 text-red-700" }),
     image: "/GRANDO_RM-M-CRPS_9004_8xGPU_21.jpg",
     features: isEnglish ? [
@@ -282,7 +282,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
       '3x Ultra High Flow fans 6200RPM each (high noise level) or 3x 140mm 3000RPM (low noise level)',
       'Cooling Capacity up to 6.5kW',
       'Optional installation of up to 8 hot swap SSDs (SATA or NVME)',
-      'Enterprise-grade reliability and performance'
+      'Built for critical IT infrastructure'
     ] : [
       '最多8顆GPU與2顆CPU',
       '熱插拔SSD與冗餘電源模組',
@@ -291,7 +291,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
       '3顆超高流量6200RPM風扇（高噪音）或3顆140mm 3000RPM（低噪音）',
       '散熱能力最高6.5kW',
       '可選配最多8顆熱插拔SSD（SATA或NVME）',
-      '企業級可靠性與效能'
+      '適用於關鍵 IT 基礎設施'
     ],
     specs: isEnglish ? {
       'Maximum Cooling Capacity': '6500 W @ 20°C intake air, performance mode',
@@ -315,8 +315,8 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
       title: isEnglish ? 'Comino Grando Server' : 'Comino Grando 伺服器',
       formFactor: isEnglish ? '4U Rackmount Server' : '4U機架式伺服器',
       introduction: isEnglish
-        ? 'The Comino Grando Server is a high-performance, enterprise-grade computing solution designed for demanding AI, machine learning, and scientific computing workloads. Featuring advanced liquid cooling technology, redundant power supplies, and hot-swappable components, it delivers unmatched reliability and performance for critical IT infrastructure.'
-        : 'Comino Grando 伺服器是一款高效能企業級運算解決方案，專為AI、機器學習和科學運算等高需求工作負載而設計。配備先進液冷技術、冗餘電源和熱插拔元件，為關鍵IT基礎設施提供無與倫比的可靠性和效能。',
+        ? 'The Comino Grando Server is built for AI, machine learning, and scientific computing workloads. Liquid cooling, redundant power supplies, and hot-swappable components support continuous operation in critical IT infrastructure.'
+        : 'Comino Grando 伺服器適用於 AI、機器學習與科學運算工作負載。液冷、備援電源與熱插拔元件，支援關鍵 IT 基礎設施的連續運作。',
       keyFeatures: isEnglish ? [
         'Up to 8 GPUs & 2 CPUs',
         'Hot-swappable SSDs and redundant power supply modules',
@@ -324,10 +324,10 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
         'Redundant Power supply system up to 4x 2000W hot-swap CRPS modules',
         'Cooling Capacity up to 6.5kW',
         'Optional installation of up to 8 hot swap SSDs (SATA or NVME)',
-        'Enterprise-grade reliability and performance',
-        'Advanced liquid cooling with quick-disconnect couplings',
+        'Built for critical IT infrastructure',
+        'Liquid cooling with quick-disconnect couplings',
         'Remote management with IPMI interface',
-        'Comino monitoring system for comprehensive device monitoring'
+        'Comino monitoring system for device monitoring'
       ] : [
         '最多8顆GPU與2顆CPU',
         '熱插拔SSD與冗餘電源模組',
@@ -335,10 +335,10 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
         '備援電源系統，最高4顆2000W熱插拔CRPS模組',
         '散熱能力最高6.5kW',
         '可選配最多8顆熱插拔SSD（SATA或NVME）',
-        '企業級可靠性與效能',
-        '先進液冷技術配備快速接頭',
+        '適用於關鍵 IT 基礎設施',
+        '液冷系統配備快速接頭',
         'IPMI介面遠端管理',
-        'Comino監控系統，全面設備監控'
+        'Comino 監控系統，監看設備狀態'
       ],
       technicalSpecs: isEnglish ? {
         'Motherboards': 'Up to EATX & EBB',
@@ -382,14 +382,14 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
       relevantConfigurations: isEnglish ? [
         {
           title: 'Comino Integration Kit',
-          description: 'Comino integration kit upgrades any Multi-GPU air-cooled server with a liquid-cooling system, boosting performance up to 30%, lowering facility total power consumption up to 40% and providing the capability to operate in harsh environment up to +40ºC/104ºF with no thermal throttling.'
+          description: 'The Comino integration kit upgrades any multi-GPU air-cooled server to liquid cooling. It raises performance by up to 30%, cuts facility power consumption by up to 40%, and allows operation in harsh environments up to +40ºC/104ºF with no thermal throttling.'
         },
         {
-          title: 'Cooling System Connection',
-          description: 'Upgraded server could be connected to Comino InRack Drycooler or to an external cooling system via CDU (Cooling Distribution Unit)'
+          title: 'Cooling system connection',
+          description: 'The upgraded server can connect to a Comino InRack Drycooler, or to an external cooling system through a CDU (cooling distribution unit).'
         },
         {
-          title: 'Available Configurations',
+          title: 'Available configurations',
           configurations: [
             'DUAL EPYC or XEON / 8x NVIDIA H200 / 2TB RAM / 2TB NVME',
             'DUAL EPYC or XEON / 8x NVIDIA H100 / 2TB RAM / 2TB NVME'
@@ -397,12 +397,12 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
         }
       ] : [
         {
-          title: 'Comino整合套件',
-          description: 'Comino整合套件可將任何多GPU氣冷伺服器升級為液冷系統，提升效能最高30%，降低設施總功耗最高40%，並提供在惡劣環境中運行至+40ºC/104ºF而無熱節流的能力。'
+          title: 'Comino 整合套件',
+          description: 'Comino 整合套件可將任何多 GPU 氣冷伺服器升級為液冷。效能最高提升 30%，設施總功耗最高降低 40%，並可在最高 +40ºC/104ºF 的嚴苛環境下運作而無熱節流。'
         },
         {
           title: '冷卻系統連接',
-          description: '升級後的伺服器可連接至Comino InRack乾式冷卻器或透過CDU（冷卻分配單元）連接至外部冷卻系統'
+          description: '升級後的伺服器可連接 Comino InRack 乾式冷卻器，或透過 CDU（冷卻分配單元）連接外部冷卻系統。'
         },
         {
           title: '可用配置',
@@ -413,17 +413,17 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
         }
       ],
       additionalFeatures: isEnglish ? {
-        'LIQUID COOLED': 'Comino liquid cooling system unleashes the full performance potential of modern top-tier GPUs and CPUs, allows to prolong lifespan of the hardware and ensures 24/7 operation even in harsh environment with no thermal throttling.',
-        'QUICK-DISCONNECT COUPLINGS': 'Quick Disconnect Couplings (Comino TheQ) on each GPU and CPU allows to simplificate maintaining and reduce maintenance time to increase system availability.',
-        'REMOTE MANAGEMENT': 'Our servers come equipped with an IPMI interface for seamless remote management. Enjoy features like remote KVM access, OS installation, and comprehensive server monitoring. Ensure peak performance and minimal downtime anytime, anywhere.',
-        "COMINO'S MONITORING SYSTEM": "allows to collect cooling system log offline to analyze device usage history, log failure events and to monitor the temperature statistic. WEB based GUI allows to inspect several devices remotely. The monitoring system increases system availability.",
-        'REDUNDANT POWER SUPPLY (CRPS)': 'Designed for use in critical IT infrastructure. It provides reliable power for your system without limitation. PSU work at whole spectrum voltage 100-240VAC and 240VDC and provide N+M redundancy.'
+        'LIQUID COOLED': 'The Comino liquid cooling system lets current high-end GPUs and CPUs run at full performance. It helps extend hardware lifespan and supports 24/7 operation in harsh environments with no thermal throttling.',
+        'QUICK-DISCONNECT COUPLINGS': 'Quick-disconnect couplings (Comino TheQ) on each GPU and CPU simplify servicing, shorten maintenance time, and increase system availability.',
+        'REMOTE MANAGEMENT': 'An IPMI interface provides remote management, including remote KVM access, OS installation, and server monitoring, to help keep downtime low.',
+        "COMINO'S MONITORING SYSTEM": "Collects cooling system logs offline to analyse device usage history, record failure events, and track temperature statistics. A web-based GUI allows several devices to be inspected remotely, which increases system availability.",
+        'REDUNDANT POWER SUPPLY (CRPS)': 'Designed for critical IT infrastructure. The PSUs operate across the full 100-240VAC and 240VDC range and provide N+M redundancy.'
       } : {
-        '液冷系統': 'Comino液冷系統可釋放現代頂級GPU和CPU的全部效能潛力，延長硬體壽命，確保即使在惡劣環境下也能24/7運行，無熱節流。',
-        '快速接頭': '每顆GPU和CPU均配備快速接頭（Comino TheQ），簡化維護並減少維護時間，提升系統可用性。',
-        '遠端管理': '我們的伺服器配備IPMI介面，實現無縫遠端管理。享受遠端KVM存取、作業系統安裝和全面伺服器監控等功能。隨時隨地確保峰值效能和最小停機時間。',
-        'Comino監控系統': '可離線收集冷卻系統日誌，分析設備使用歷史、記錄故障事件並監控溫度統計。WEB介面可遠端檢查多台設備，提升系統可用性。',
-        '備援電源供應器(CRPS)': '專為關鍵IT基礎設施使用而設計。為您的系統提供無限制的可靠電力。電源供應器在100-240VAC和240VDC全頻譜電壓下工作，並提供N+M備援。'
+        '液冷系統': 'Comino 液冷系統讓高階 GPU 與 CPU 維持完整效能。有助延長硬體壽命，並支援在嚴苛環境下 24/7 運作，無熱節流。',
+        '快速接頭': '每顆 GPU 與 CPU 均配備快速接頭（Comino TheQ），簡化維護、縮短維護時間，提高系統可用性。',
+        '遠端管理': '內建 IPMI 介面提供遠端管理，包含遠端 KVM 存取、作業系統安裝與伺服器監控，有助降低停機時間。',
+        'Comino監控系統': '可離線收集冷卻系統日誌，分析設備使用歷史、記錄故障事件並監控溫度統計。網頁介面可遠端檢視多台設備，提高系統可用性。',
+        '備援電源供應器(CRPS)': '專為關鍵 IT 基礎設施設計。電源供應器支援 100-240VAC 與 240VDC 全範圍電壓，並提供 N+M 備援。'
       }
     }
   },
@@ -434,8 +434,8 @@ export const getCyabraProducts = (isEnglish: boolean): Product[] => [
     id: 10,
     title: isEnglish ? 'Cyabra Platform' : 'Cyabra 平台',
     description: isEnglish
-      ? 'Social intelligence platform for profile authenticity, harmful narratives, coordinated activity, sentiment, and real-time risk alerts.'
-      : '用於帳號真實性、有害敘事、協調式活動、情緒與即時風險警示的社群情報平台。',
+      ? 'Social intelligence platform that analyses profile authenticity, harmful narratives, coordinated activity, and sentiment, with real-time risk alerts.'
+      : '社群情報平台，分析帳號真實性、有害敘事、協調式活動與情緒，並提供即時風險警示。',
     icon: React.createElement(Shield, { className: "h-8 w-8 text-[#003daa]" }),
     image: "/vendor/cyabra/inauthentic-profile-analysis.svg",
     features: isEnglish
@@ -508,19 +508,19 @@ export const getCyabraProducts = (isEnglish: boolean): Product[] => [
         '最終範圍': '依授權版本、支援來源與契約資料範圍確認'
       },
       applications: isEnglish ? [
-        'Brand Protection: Monitor and respond to disinformation campaigns targeting your brand',
-        'Crisis Management: Early detection of emerging reputation threats',
-        'Campaign Integrity: Ensure political campaigns are not undermined by fake activity',
-        'Market Intelligence: Distinguish between authentic consumer trends and artificial manipulation',
-        'Public Sector Security: Protect government communications from coordinated misinformation',
-        'Event Monitoring: Track conversation authenticity around major corporate announcements'
+        'Brand protection: monitor and respond to disinformation campaigns targeting your brand',
+        'Crisis management: early detection of emerging reputation threats',
+        'Campaign integrity: detect fake activity that undermines political campaigns',
+        'Market intelligence: distinguish authentic consumer trends from artificial manipulation',
+        'Public sector security: detect coordinated misinformation targeting government communications',
+        'Event monitoring: track conversation authenticity around major corporate announcements'
       ] : [
-        '品牌保護：監控並回應針對您品牌的虛假信息活動',
-        '危機管理：及早發現新出現的聲譽威脅',
-        '活動完整性：確保政治活動不會受到假活動的破壞',
-        '市場情報：區分真實消費者趨勢和人工操縱',
-        '公共部門安全：保護政府通訊免受協調虛假信息的影響',
-        '事件監控：追蹤主要企業公告周圍對話的真實性'
+        '品牌保護：監測並回應針對品牌的虛假資訊行動',
+        '危機管理：及早發現新浮現的聲譽威脅',
+        '競選活動誠信：偵測破壞政治活動的虛假行為',
+        '市場情報：區分真實消費趨勢與人為操縱',
+        '公部門安全：偵測針對政府溝通的協調式虛假資訊',
+        '事件監測：追蹤重大企業公告相關討論的真實性'
       ]
     }
   },

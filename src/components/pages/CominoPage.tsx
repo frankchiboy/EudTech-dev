@@ -54,12 +54,12 @@ const CominoPage: React.FC = () => {
                 />
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                {isEnglish ? 'Liquid-Cooled Multi-GPU Systems' : '液冷多GPU系統'}
+                {isEnglish ? 'Liquid-cooled multi-GPU systems' : '液冷多 GPU 系統'}
               </h1>
               <p className="text-xl text-gray-200 max-w-3xl mx-auto">
                 {isEnglish 
-                  ? 'Engineered - not just assembled. Grando products deliver up to 40% faster performance than air-cooled systems.'
-                  : '工程設計而非僅僅組裝。Grando產品比氣冷系統提供高達40%的效能提升。'
+                  ? 'Engineered, not just assembled. Grando systems deliver up to 40% more performance than air-cooled systems.'
+                  : '工程設計，而非只是組裝。Grando 系統效能比氣冷系統高出最多 40%。'
                 }
               </p>
             </div>
@@ -74,15 +74,15 @@ const CominoPage: React.FC = () => {
           <Section background="white" padding="xl">
             <div className="text-center mb-16">
               <h2 className="text-base font-semibold tracking-wide text-purple-600 dark:text-purple-400 uppercase">
-                {isEnglish ? 'Product Lineup' : '產品陣容'}
+                {isEnglish ? 'Product lineup' : '產品陣容'}
               </h2>
               <p className="mt-1 text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl sm:tracking-tight">
-                {isEnglish ? 'Comino Grando Series' : 'Comino Grando 系列'}
+                {isEnglish ? 'Comino Grando series' : 'Comino Grando 系列'}
               </p>
               <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500 dark:text-gray-300">
                 {isEnglish
-                  ? 'Choose from our range of liquid-cooled AI computing solutions designed for different workloads and environments.'
-                  : '從我們為不同工作負載和環境設計的液冷AI運算解決方案系列中選擇。'
+                  ? 'Choose the liquid-cooled AI system that fits your workload and deployment environment.'
+                  : '依工作負載與部署環境，選擇合適的液冷 AI 運算機型。'
                 }
               </p>
             </div>
@@ -99,7 +99,7 @@ const CominoPage: React.FC = () => {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                  {isEnglish ? 'Why Choose Comino Grando?' : '為什麼選擇 Comino Grando？'}
+                  {isEnglish ? 'Why choose Comino Grando?' : '為什麼選擇 Comino Grando？'}
                 </h2>
               </div>
               
@@ -111,18 +111,18 @@ const CominoPage: React.FC = () => {
                     </svg>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                    {isEnglish ? 'Extreme Performance' : '極致效能'}
+                    {isEnglish ? 'Multi-GPU performance' : '多 GPU 效能'}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
                     {isEnglish
-                      ? 'Up to 8 GPUs with 40% faster performance than air-cooled systems. Cooling capacity up to 5.5kW @25°C.'
-                      : '最高8個GPU，比氣冷系統快40%。散熱容量在25°C下可達5.5kW。'
+                      ? 'Up to 8 GPUs, running up to 40% faster than air-cooled systems. Cooling capacity reaches 5.5kW at 25°C.'
+                      : '最多 8 顆 GPU，效能比氣冷系統高出最多 40%。25°C 環境下散熱能力可達 5.5kW。'
                     }
                   </p>
                   <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-                    <li>• {isEnglish ? 'Multi-GPU direct connect architecture' : '多GPU直連架構'}</li>
-                    <li>• {isEnglish ? 'Zero thermal throttling' : '零熱節流'}</li>
-                    <li>• {isEnglish ? '90% GPU utilization rate' : '90% GPU使用率'}</li>
+                    <li>• {isEnglish ? 'Multi-GPU direct-connect architecture' : '多 GPU 直連架構'}</li>
+                    <li>• {isEnglish ? 'No thermal throttling' : '無熱節流'}</li>
+                    <li>• {isEnglish ? '90% GPU utilisation' : '90% GPU 使用率'}</li>
                   </ul>
                 </div>
 
@@ -133,18 +133,18 @@ const CominoPage: React.FC = () => {
                     </svg>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                    {isEnglish ? 'Silent & Reliable' : '靜音可靠'}
+                    {isEnglish ? 'Quiet and reliable' : '靜音可靠'}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
                     {isEnglish
-                      ? 'Whisper-quiet operation with 24/7 reliability up to 40°C ambient temperature.'
-                      : '超靜音運作，可在40°C環境溫度下24/7可靠運行。'
+                      ? 'Low-noise operation, designed for 24/7 use at ambient temperatures up to 40°C.'
+                      : '低噪音運作，可在最高 40°C 環境溫度下 24/7 連續運作。'
                     }
                   </p>
                   <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-                    <li>• {isEnglish ? 'Advanced liquid cooling system' : '先進液冷系統'}</li>
-                    <li>• {isEnglish ? 'Low noise operation' : '低噪音運作'}</li>
-                    <li>• {isEnglish ? 'Industrial-grade reliability' : '工業級可靠性'}</li>
+                    <li>• {isEnglish ? 'GPU and CPU liquid cooling' : 'GPU 與 CPU 液冷'}</li>
+                    <li>• {isEnglish ? 'Low-noise operation' : '低噪音運作'}</li>
+                    <li>• {isEnglish ? 'Designed for continuous operation' : '可連續運作的設計'}</li>
                   </ul>
                 </div>
 
@@ -156,18 +156,18 @@ const CominoPage: React.FC = () => {
                     </svg>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                    {isEnglish ? 'Easy Maintenance' : '易於維護'}
+                    {isEnglish ? 'Easy maintenance' : '易於維護'}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
                     {isEnglish
-                      ? 'Designed for easy configuration and maintenance with modular components and accessible design.'
-                      : '採用模組化組件和易於存取的設計，便於配置和維護。'
+                      ? 'Modular components and an accessible layout make configuration and maintenance simpler.'
+                      : '模組化元件與易於拆裝的結構，讓配置與維護更簡單。'
                     }
                   </p>
                   <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-                    <li>• {isEnglish ? 'Modular component design' : '模組化組件設計'}</li>
-                    <li>• {isEnglish ? 'Easy access maintenance' : '易於存取維護'}</li>
-                    <li>• {isEnglish ? 'Comprehensive support' : '全面支援服務'}</li>
+                    <li>• {isEnglish ? 'Modular component design' : '模組化元件設計'}</li>
+                    <li>• {isEnglish ? 'Easy access for maintenance' : '維護時易於拆裝'}</li>
+                    <li>• {isEnglish ? 'Manufacturer support' : '原廠支援'}</li>
                   </ul>
                 </div>
 
@@ -178,18 +178,18 @@ const CominoPage: React.FC = () => {
                     </svg>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                    {isEnglish ? 'Award Winning' : '獲獎產品'}
+                    {isEnglish ? 'Award-winning' : '獲獎紀錄'}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
                     {isEnglish
-                      ? 'Recognized by industry experts with "Storage Review Best of 2024" award for outstanding performance.'
-                      : '榮獲業界專家認可，獲得「2024年StorageReview最佳獎」殊榮。'
+                      ? 'Comino Grando received the "Storage Review Best of 2024" award.'
+                      : 'Comino Grando 獲得「2024 年 StorageReview 最佳獎」。'
                     }
                   </p>
                   <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
                     <li>• {isEnglish ? 'Industry recognition' : '業界認可'}</li>
-                    <li>• {isEnglish ? 'Proven performance' : '經過驗證的效能'}</li>
-                    <li>• {isEnglish ? 'Trusted by experts' : '專家信賴'}</li>
+                    <li>• {isEnglish ? 'Up to six 450W GPUs in a 4U chassis' : '4U 機箱容納最多 6 顆 450W GPU'}</li>
+                    <li>• {isEnglish ? 'Public reviews and media coverage' : '公開評測與媒體報導'}</li>
                   </ul>
                 </div>
               </div>
@@ -200,12 +200,12 @@ const CominoPage: React.FC = () => {
           <Section background="gradient" padding="xl">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                {isEnglish ? 'Ready to Get Started?' : '準備開始了嗎？'}
+                {isEnglish ? 'Next step: configuration and quote request' : '下一步：確認配置與詢價'}
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
                 {isEnglish
-                  ? 'Contact us for custom configuration, pricing, and technical consultation for your AI computing needs.'
-                  : '聯絡我們獲取客製化配置、價格諮詢以及您AI運算需求的技術諮詢。'
+                  ? 'Share your workload and site conditions. EudTech will help confirm the configuration, provide a quote, and answer technical questions.'
+                  : '告知工作負載與場地條件，EudTech 會協助確認配置、提供報價並回答技術問題。'
                 }
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -213,7 +213,7 @@ const CominoPage: React.FC = () => {
                   href="#contact"
                   className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-700 hover:bg-purple-800 transition duration-200"
                 >
-                  {isEnglish ? 'Get Custom Quote' : '獲取客製報價'}
+                  {isEnglish ? 'Request a quote' : '送出詢價'}
                 </a>
                 <a
                   href="https://www.grando.ai/"
@@ -221,7 +221,7 @@ const CominoPage: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-8 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200"
                 >
-                  {isEnglish ? 'Visit Comino Website' : '造訪 Comino 官網'}
+                  {isEnglish ? 'Visit the Comino website' : '前往 Comino 官網'}
                 </a>
               </div>
             </div>

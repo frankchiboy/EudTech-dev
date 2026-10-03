@@ -200,7 +200,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
                   className="inline-flex items-center justify-center rounded-md bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-950/30 transition hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-300"
                 >
                   <Cpu className="mr-2 h-4 w-4" />
-                  {isEnglish ? 'Open Configurator' : '開啟配置器'}
+                  {isEnglish ? 'Open configurator' : '開啟配置器'}
                 </Link>
                 <Link
                   to={quoteHref}
@@ -208,14 +208,14 @@ const ConfiguratorSolutionPage: React.FC = () => {
                   className="inline-flex items-center justify-center rounded-md border border-white/35 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/70"
                 >
                   <Mail className="mr-2 h-4 w-4" />
-                  {isEnglish ? 'Request Quote' : '取得報價'}
+                  {isEnglish ? 'Request quote' : '取得報價'}
                 </Link>
               </div>
             </div>
 
             <div className="rounded-lg border border-white/12 bg-white/8 p-6 backdrop-blur-sm">
               <h2 className="text-base font-semibold text-emerald-300">
-                {isEnglish ? 'Configuration Focus' : '配置重點'}
+                {isEnglish ? 'Configuration focus' : '配置重點'}
               </h2>
               <dl className="mt-6 space-y-5">
                 {page.specs.map((spec) => (
@@ -239,20 +239,20 @@ const ConfiguratorSolutionPage: React.FC = () => {
               <h2 className="text-3xl font-bold tracking-normal text-gray-950 dark:text-white">
                 {page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist'
                   ? isEnglish
-                    ? 'How teams can use this guide'
-                    : '團隊可以如何使用這份指南'
+                    ? 'How to use this guide'
+                    : '如何使用這份指南'
                   : isEnglish
                     ? 'What this page helps you prepare'
-                    : '這份內容可以協助準備什麼'}
+                    : '這一頁能協助準備什麼'}
               </h2>
               <p className="mt-5 text-base leading-8 text-gray-600 dark:text-gray-300">
                 {page.kind === 'comparison' || page.kind === 'guide' || page.kind === 'checklist'
                   ? isEnglish
-                    ? 'Use the structured information here to choose a starting configuration, confirm the required assumptions, and prepare a quote request.'
-                    : '使用這些結構化資訊選擇起始配置、確認必要假設，並準備報價需求。'
+                    ? 'Use the information here to pick a starting configuration, confirm the assumptions, and prepare a quote request.'
+                    : '先用這裡的資訊選定起始配置與必要假設，再準備詢價。'
                   : isEnglish
-                    ? 'Use the page to clarify the workload, deployment constraints, and next step before requesting a quote.'
-                    : '使用這份內容釐清工作負載、部署限制與提出報價需求前的下一步。'}
+                    ? 'Clarify the workload and deployment constraints here, then decide the next step before requesting a quote.'
+                    : '先釐清工作負載與部署限制，再決定詢價前的下一步。'}
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
@@ -289,13 +289,13 @@ const ConfiguratorSolutionPage: React.FC = () => {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
-                {isEnglish ? 'Decision worksheet' : '專屬決策工作表'}
+                {isEnglish ? 'Decision worksheet' : '決策工作表'}
               </p>
               <h2 className="mt-4 text-3xl font-bold text-gray-950 dark:text-white">
                 {getText(page.title, isEnglish)}
               </h2>
               <p className="mt-4 leading-7 text-gray-600 dark:text-gray-300">
-                {isEnglish ? 'Record these three decisions before opening the configurator or requesting a quote.' : '先記錄以下三項決策，再開啟配置器或提出正式報價需求。'}
+                {isEnglish ? 'Record these three decisions before opening the configurator or requesting a quote.' : '先記錄以下三項決策，再開啟配置器或送出詢價。'}
               </p>
             </div>
             <div className="mt-10 grid gap-4 lg:grid-cols-3">
@@ -323,7 +323,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
                   {isEnglish
-                    ? 'Continue to a related guide or open the configurator when the required assumptions are ready.'
+                    ? 'Continue to a related guide, or open the configurator once the assumptions are confirmed.'
                     : '確認必要假設後，繼續閱讀相關指南或開啟配置器。'}
                 </p>
               </div>

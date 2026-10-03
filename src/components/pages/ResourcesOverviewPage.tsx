@@ -31,21 +31,21 @@ const ResourcesOverviewPage: React.FC = () => {
     {
       icon: MessageSquareText,
       eyebrow: { zh: '尚未確定規格', en: 'Need help choosing' },
-      title: { zh: '請 EudTech 協助選型', en: 'Ask EudTech to recommend a direction' },
+      title: { zh: '請 EudTech 協助選型', en: 'Ask EudTech to help choose' },
       body: {
-        zh: '提供模型、軟體、使用人數、運作時間、場地與預算範圍，先確認工作站或伺服器方向。',
-        en: 'Share the model, software, users, run time, site, and budget range to identify a workstation or server direction.'
+        zh: '提供模型、軟體、使用人數、運作時間、場地與預算範圍。EudTech 先協助確認工作站或伺服器方向。',
+        en: 'Share the model, software, user count, run time, site, and budget range. EudTech first confirms whether a workstation or a server fits.'
       },
       href: '/contact',
       action: { zh: '開始選型討論', en: 'Start a selection discussion' }
     },
     {
       icon: Settings2,
-      eyebrow: { zh: '已知道大致規格', en: 'Know the approximate specification' },
-      title: { zh: '直接建立設備配置', en: 'Build a system configuration' },
+      eyebrow: { zh: '已知道大致規格', en: 'Already know the rough specification' },
+      title: { zh: '直接建立設備配置', en: 'Build a configuration directly' },
       body: {
-        zh: '選擇伺服器、機架式工作站、桌面工作站或整合套件，再設定 GPU、CPU、RAM 與儲存。',
-        en: 'Choose a server, rackable workstation, desktop workstation, or integration kit, then set GPU, CPU, RAM, and storage.'
+        zh: '選擇伺服器、可上架工作站、桌面工作站或整合套件，再設定 GPU、CPU、記憶體與儲存。',
+        en: 'Choose a server, rackable workstation, desktop workstation, or integration kit, then set the GPU, CPU, memory, and storage.'
       },
       href: '/configurator?request=true',
       action: { zh: '開啟配置器', en: 'Open configurator' }
@@ -53,13 +53,13 @@ const ResourcesOverviewPage: React.FC = () => {
     {
       icon: ClipboardCheck,
       eyebrow: { zh: '正在準備採購文件', en: 'Preparing procurement documents' },
-      title: { zh: '整理 RFQ 與驗收條件', en: 'Prepare RFQ and acceptance requirements' },
+      title: { zh: '整理 RFQ 與驗收條件', en: 'Prepare the RFQ and acceptance terms' },
       body: {
         zh: '確認規格、供電、散熱、交付、保固、測試與文件要求，讓技術與採購審查同一份需求。',
-        en: 'Align specifications, power, cooling, delivery, warranty, testing, and documentation for one technical and procurement review.'
+        en: 'Confirm specification, power, cooling, delivery, warranty, testing, and document requirements so technical and procurement reviewers work from one list.'
       },
       href: '/solutions/gpu-server-rfq-checklist',
-      action: { zh: '查看 RFQ 檢核表', en: 'View RFQ checklist' }
+      action: { zh: '查看 RFQ 檢核表', en: 'Open the RFQ checklist' }
     }
   ];
 
@@ -67,12 +67,12 @@ const ResourcesOverviewPage: React.FC = () => {
     {
       n: '01',
       title: { zh: '工作負載', en: 'Workload' },
-      body: { zh: '模型、軟體、資料量、使用人數與連續運作時間。', en: 'Models, software, data scale, users, and sustained run time.' }
+      body: { zh: '模型、軟體、資料量、使用人數與連續運作時間。', en: 'Models, software, data volume, user count, and continuous run time.' }
     },
     {
       n: '02',
       title: { zh: '部署條件', en: 'Deployment conditions' },
-      body: { zh: '桌邊或機架、供電、散熱、噪音、網路與搬運限制。', en: 'Desk or rack, power, cooling, noise, network, and handling constraints.' }
+      body: { zh: '桌邊或機架、供電、散熱、噪音、網路與搬運限制。', en: 'Deskside or rack, power, cooling, noise, network, and handling limits.' }
     },
     {
       n: '03',
@@ -82,7 +82,7 @@ const ResourcesOverviewPage: React.FC = () => {
     {
       n: '04',
       title: { zh: '驗收方式', en: 'Acceptance method' },
-      body: { zh: '硬體辨識、壓力測試、溫度、錯誤紀錄與指定工作負載。', en: 'Hardware inventory, stress tests, thermals, error logs, and the agreed workload.' }
+      body: { zh: '硬體辨識、壓力測試、溫度、錯誤紀錄與指定工作負載。', en: 'Hardware identification, stress tests, temperatures, error logs, and the agreed workload.' }
     }
   ];
 
@@ -107,11 +107,11 @@ const ResourcesOverviewPage: React.FC = () => {
       path="/resources"
     >
       <PageHero
-        eyebrow={{ zh: 'GPU 伺服器選型與採購', en: 'GPU selection and procurement' }}
+        eyebrow={{ zh: 'GPU 伺服器選型與採購', en: 'GPU server selection and procurement' }}
         title={{ zh: '不知道該買哪一台？先從需求開始', en: 'Not sure which system to buy? Start with the requirement' }}
         lead={{
-          zh: 'EudTech 協助研究室、企業與公部門確認工作負載、設備型態、GPU、電力、散熱與採購條件，再形成可審查的配置與報價需求。',
-          en: 'EudTech helps labs, enterprises, and public-sector teams define workload, system type, GPU, power, cooling, and procurement requirements before producing a reviewable configuration and quote request.'
+          zh: 'EudTech 協助研究單位、企業與公部門確認工作負載、設備型態、GPU、電力、散熱與採購條件。確認後，再整理成可審查的配置與詢價。',
+          en: 'EudTech helps research units, enterprises, and public-sector teams confirm the workload, system type, GPU, power, cooling, and procurement terms. The result is a configuration and quote request that reviewers can check.'
         }}
         isEnglish={isEnglish}
         image="/brand-provenance/eudtech-brand-procurement.webp"
@@ -129,7 +129,7 @@ const ResourcesOverviewPage: React.FC = () => {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">
-              {isEnglish ? 'Choose your starting point' : '選擇目前的採購階段'}
+              {isEnglish ? 'Choose your procurement stage' : '選擇目前的採購階段'}
             </p>
             <h2 className="mt-4 text-3xl font-bold tracking-tight">
               {isEnglish ? 'What do you need to do now?' : '現在需要完成哪一件事？'}
@@ -137,7 +137,7 @@ const ResourcesOverviewPage: React.FC = () => {
             <p className="mt-5 leading-8 text-slate-600 dark:text-slate-300">
               {isEnglish
                 ? 'Choose one route. You do not need to read every guide before contacting EudTech.'
-                : '選擇一條符合目前狀況的路徑，不需要先讀完所有文章才能聯絡 EudTech。'}
+                : '選擇符合目前狀況的路徑即可。不需要先讀完所有指南，就能聯絡 EudTech。'}
             </p>
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -170,7 +170,7 @@ const ResourcesOverviewPage: React.FC = () => {
               {isEnglish ? 'Most-used guides' : '最常用的選購指南'}
             </p>
             <h2 className="mt-4 text-3xl font-bold tracking-tight">
-              {isEnglish ? 'Answer the four most common buying questions' : '先回答四個最常見的採購問題'}
+              {isEnglish ? 'Start with the four most common buying questions' : '先回答四個最常見的採購問題'}
             </h2>
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -198,11 +198,11 @@ const ResourcesOverviewPage: React.FC = () => {
             <div>
               <Cpu className="h-8 w-8 text-cyan-600 dark:text-cyan-300" aria-hidden="true" />
               <h2 className="mt-5 text-3xl font-bold tracking-tight">
-                {isEnglish ? 'Four items to confirm before quoting' : '報價前需要確認四項資訊'}
+                {isEnglish ? 'Confirm four items before requesting a quote' : '詢價前先確認四項資訊'}
               </h2>
               <p className="mt-5 leading-8 text-slate-600 dark:text-slate-300">
                 {isEnglish
-                  ? 'A GPU model alone is not enough to determine the correct system. These four items define the equipment, quote, and acceptance scope.'
+                  ? 'A GPU model alone does not determine the right system. These four items set the configuration, the quote, and the acceptance scope.'
                   : '只有 GPU 型號無法決定正確設備。以下四項資訊會共同決定設備配置、報價與驗收範圍。'}
               </p>
               <p className="mt-7 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
@@ -239,7 +239,7 @@ const ResourcesOverviewPage: React.FC = () => {
             </summary>
             <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 dark:text-slate-300">
               {isEnglish
-                ? 'These topic pages remain available for specific search and procurement needs. Start with the three routes above unless you need a particular subject.'
+                ? 'These topic pages cover specific search and procurement needs. Start with the three routes above unless you need a particular subject.'
                 : '以下專題保留給特定搜尋與採購需求。一般情況請先使用頁面上方三個入口。'}
             </p>
             <div className="mt-8 grid gap-8 md:grid-cols-2">
@@ -271,15 +271,15 @@ const ResourcesOverviewPage: React.FC = () => {
       <section className="bg-slate-950 py-16 text-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-7 px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
-            <h2 className="text-3xl font-bold">{isEnglish ? 'Bring the workload. EudTech will help define the system.' : '提供工作負載，EudTech 協助確認設備方向'}</h2>
+            <h2 className="text-3xl font-bold">{isEnglish ? 'Bring the workload. EudTech helps define the system.' : '提供工作負載，EudTech 協助確認設備方向'}</h2>
             <p className="mt-3 max-w-2xl leading-7 text-slate-300">
               {isEnglish
-                ? 'The first discussion confirms missing information, candidate platforms, site constraints, and the next configuration or quote step.'
-                : '第一次討論會確認尚缺資料、候選平台、場地限制，以及下一步配置或報價方式。'}
+                ? 'The first discussion confirms the missing information, candidate platforms, and site constraints, then sets the next configuration or quote step.'
+                : '第一次討論會確認尚缺資料、候選平台與場地限制，並決定下一步的配置或詢價方式。'}
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <ActionLink href="/contact">{isEnglish ? 'Ask for selection help' : '請 EudTech 協助選型'}</ActionLink>
+            <ActionLink href="/contact">{isEnglish ? 'Ask EudTech to help choose' : '請 EudTech 協助選型'}</ActionLink>
             <ActionLink href="/configurator?request=true" secondary>{isEnglish ? 'Configure directly' : '直接建立配置'}</ActionLink>
           </div>
         </div>
