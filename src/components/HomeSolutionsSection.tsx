@@ -1,80 +1,84 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface HomeSolutionsSectionProps { isEnglish: boolean; }
 
 const HomeSolutionsSection: React.FC<HomeSolutionsSectionProps> = ({ isEnglish }) => {
   const items = [
-    { visual: '/ai-agent/micro-illustrations/task-progression-v1.webp', href: '/solutions/ai-agent', title: isEnglish ? 'AI agents & headless SaaS' : 'AI Agent 與 Headless SaaS', body: isEnglish ? 'Connect ERP, CRM, Microsoft 365, databases, and APIs. Deliver branded portals, event workflows, controlled agents, and human approval.' : '串接 ERP、CRM、Microsoft 365、資料庫與 API。交付品牌入口、事件流程、受控 AI Agent 與人員核准。', color: 'hover:border-cyan-300/60' },
-    { visual: '/ai-agent/micro-illustrations/connected-systems-v1.webp', href: '/solutions/ai-infrastructure', title: isEnglish ? 'AI infrastructure' : 'AI 運算基礎設施', body: isEnglish ? 'Align workload, GPU, memory, cooling, and deployment conditions before the quote request. The output is a quote-ready configuration and a requirement record.' : '先對齊工作負載、GPU、記憶體、散熱與部署條件，再送出詢價。輸出可報價的配置與需求紀錄。', color: 'hover:border-emerald-300/60' },
-    { visual: '/ai-agent/micro-illustrations/governance-audit-v1.webp', href: '/solutions/social-intelligence', title: isEnglish ? 'Social intelligence' : '社群情報', body: isEnglish ? 'Use Cyabra to identify fake profiles, coordinated narratives, and reputation risk. Suited to brand, communications, security, and public-sector teams.' : '用 Cyabra 辨識假帳號、協調式敘事與品牌聲譽風險。適合品牌、公關、資安與公部門團隊。', color: 'hover:border-violet-300/60' }
-  ];
-  const deliverySteps = [
-    { visual: '/ai-agent/micro-illustrations/event-intake-v1.webp', n: '01', title: isEnglish ? 'Define the real problem' : '定義實際問題', body: isEnglish ? 'Confirm the users, workload, data, systems, site conditions, and decision owner.' : '確認使用者、工作負載、資料、系統、場地條件與決策負責人。' },
-    { visual: '/ai-agent/micro-illustrations/human-approval-v1.webp', n: '02', title: isEnglish ? 'Design a verifiable scope' : '設計可驗證範圍', body: isEnglish ? 'Write down sources, permissions, approval points, deliverables, and acceptance criteria.' : '寫明來源、權限、核准點、交付物與驗收條件。' },
-    { visual: '/ai-agent/micro-illustrations/connected-systems-v1.webp', n: '03', title: isEnglish ? 'Pilot with real evidence' : '用真實證據試點', body: isEnglish ? 'Run the complete path with real or de-identified cases. Keep a record of every decision.' : '用真實或去識別的案例跑完整流程。保留每一個決策紀錄。' },
-    { visual: '/ai-agent/micro-illustrations/governance-audit-v1.webp', n: '04', title: isEnglish ? 'Accept, operate, and expand' : '驗收、維運與擴充', body: isEnglish ? 'Confirm the result, ownership, monitoring, and support boundary first. Expand only after that.' : '先確認成果、責任、監測與支援邊界，再擴充範圍。' },
+    {
+      brand: 'EUDTECH',
+      visual: '/ai-agent/micro-illustrations/task-progression-v1.webp',
+      href: '/solutions/ai-agent',
+      service: isEnglish ? 'AI agents & headless SaaS' : 'AI Agent 與 Headless SaaS',
+      title: isEnglish ? 'Make your business workflows work together' : '讓跨系統工作流程真正跑起來',
+      body: isEnglish ? 'Connect ERP, CRM, Microsoft 365, and existing APIs. Bring data, tasks, and human approval into one workflow.' : '串接 ERP、CRM、Microsoft 365 與既有 API，將資料、任務與人員核准整合到同一條工作流程。',
+      action: isEnglish ? 'Explore workflow solutions' : '探索工作流程方案',
+    },
+    {
+      brand: 'COMINO',
+      visual: '/ai-agent/micro-illustrations/connected-systems-v1.webp',
+      href: '/solutions/ai-infrastructure',
+      service: isEnglish ? 'AI infrastructure' : 'AI 運算基礎設施',
+      title: isEnglish ? 'Find the GPU configuration for your workload' : '找到適合工作負載的 GPU 配置',
+      body: isEnglish ? 'Align GPUs, memory, cooling, and deployment conditions with your workload, then prepare a configuration and quote request.' : '先對齊工作負載、GPU、記憶體、散熱與部署條件，再建立配置與詢價需求。',
+      action: isEnglish ? 'Explore infrastructure' : '探索運算設備方案',
+    },
+    {
+      brand: 'CYABRA',
+      visual: '/ai-agent/micro-illustrations/governance-audit-v1.webp',
+      href: '/solutions/social-intelligence',
+      service: isEnglish ? 'Social intelligence' : '社群情報',
+      title: isEnglish ? 'See the signals behind social narratives' : '看清社群敘事背後的真實訊號',
+      body: isEnglish ? 'Use Cyabra to identify fake profiles and coordinated narratives. Help communications, brand, and security teams assess social risks.' : '用 Cyabra 辨識假帳號與協調式敘事，協助品牌、公關與資安團隊評估社群風險。',
+      action: isEnglish ? 'Explore social intelligence' : '探索社群情報方案',
+    },
   ];
 
   return (
-    <section className="bg-white py-20 text-slate-950 dark:bg-slate-950 dark:text-white" aria-labelledby="home-solutions-heading">
+    <section className="bg-slate-50 py-16 text-slate-950 dark:bg-slate-950 dark:text-white sm:py-24" aria-labelledby="home-solutions-heading">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{isEnglish ? 'Start with the problem to solve' : '先從要解決的問題開始'}</p>
-          <h2 id="home-solutions-heading" className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Three solution paths, one accountable delivery model' : '三條方案路徑，同一套可查核的交付方式'}</h2>
-          <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'Choose the problem you need to solve. EudTech then defines the data, systems, approval points, and measurable next step.' : '先選一個要解決的問題。EudTech 再定義資料、系統、核准點與可量化的下一步。'}</p>
-          <p data-home-hero-relationship className="mt-4 rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm leading-7 text-slate-700 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-slate-200">{isEnglish ? 'The hero above introduces EudTech as one delivery partner. The three paths below are the entry points for AI workflow implementation, AI infrastructure procurement, and social intelligence.' : '上方主視覺說明 EudTech 是同一個交付夥伴。以下三條路徑分別對應 AI 工作流程導入、AI 運算設備採購與社群情報。'}</p>
+        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-800 dark:text-cyan-300">{isEnglish ? 'Solutions for your next step' : '服務與方案'}</p>
+            <h2 id="home-solutions-heading" className="scroll-mt-24 mt-4 max-w-3xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl sm:leading-snug">{isEnglish ? 'Start with what you need to achieve' : '從你的需求，找到下一步'}</h2>
+          </div>
+          <p className="max-w-sm text-base leading-7 text-slate-600 dark:text-slate-300">{isEnglish ? 'Explore the path that fits your team, from connected workflows to compute and social intelligence.' : '從工作流程、運算設備到社群情報，選擇適合團隊的方案入口。'}</p>
         </div>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {items.map(({ visual, href, title, body, color }) => (
-            <Link key={href} to={href} className={`group rounded-2xl border border-slate-200 bg-slate-50 p-7 transition hover:-translate-y-1 ${color} hover:bg-cyan-50 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:border-white/10 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] dark:focus:ring-cyan-300`}>
-              <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-white/[0.07]" aria-hidden="true"><img src={visual} alt="" className="h-14 w-14 object-contain" loading="lazy" decoding="async" /></div>
-              <h3 className="mt-7 text-xl font-semibold">{title}</h3>
-              <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300 sm:min-h-[112px]">{body}</p>
-              <span className="mt-5 inline-flex items-center text-sm font-semibold text-cyan-700 dark:text-cyan-300">{isEnglish ? 'View solution' : '查看方案'}<ArrowRight className="ml-2 h-4 w-4 transition group-hover:translate-x-1" /></span>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {items.map(({ brand, visual, href, service, title, body, action }) => (
+            <Link key={href} to={href} className="group flex min-w-0 flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-cyan-600 hover:bg-cyan-50/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-4 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-cyan-400 dark:hover:bg-slate-800 dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950 lg:p-8">
+              <div className="flex items-center justify-between gap-3">
+                <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[10px] font-semibold tracking-[0.16em] text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">{brand}</span>
+                <img src={visual} alt="" aria-hidden="true" width="72" height="72" className="h-[72px] w-[72px] object-contain" loading="lazy" decoding="async" />
+              </div>
+              <p className="mt-6 text-xs font-semibold leading-6 text-cyan-800 dark:text-cyan-300">{service}</p>
+              <h3 className="mt-2 text-2xl font-semibold leading-snug tracking-tight">{title}</h3>
+              <p className="mt-5 text-sm leading-7 text-slate-600 dark:text-slate-300">{body}</p>
+              <div className="mt-auto pt-7">
+                <span className="flex min-h-11 items-center justify-between gap-3 border-t border-slate-100 pt-4 text-sm font-semibold text-slate-900 dark:border-slate-800 dark:text-white">{action}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-cyan-700 dark:text-cyan-300" /></span>
+              </div>
             </Link>
           ))}
         </div>
-        <div className="mt-20 border-t border-slate-200 pt-16 dark:border-white/10">
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">{isEnglish ? 'A delivery model you can inspect' : '可以逐項查核的交付方式'}</p>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight">{isEnglish ? 'From requirement to evidence, every stage has an owner' : '從需求到證據，每個階段都有負責人'}</h2>
-              <p className="mt-5 leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'A demo is not completion. Acceptance covers the source, decision, approval, test result, and operating boundary.' : '展示畫面不等於完成。驗收會包含來源、決策、核准、測試結果與維運邊界。'}</p>
-              <div className="mt-7 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 dark:border-emerald-300/20 dark:bg-emerald-300/10">
-                <ShieldCheck className="h-7 w-7 text-emerald-600 dark:text-emerald-300" />
-                <p className="mt-4 font-semibold">{isEnglish ? 'Suggested acceptance evidence' : '建議驗收證據'}</p>
-                <p className="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">{isEnglish ? 'Source records, version, approver, execution result, exception handling, and support owner.' : '來源紀錄、版本、核准者、執行結果、例外處理與維運負責人。'}</p>
-              </div>
+
+        <article className="mt-10 grid overflow-hidden rounded-2xl bg-slate-900 text-white lg:grid-cols-[1.3fr_0.7fr]" aria-labelledby="home-configurator-heading">
+          <div className="p-7 sm:p-10 lg:pr-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">{isEnglish ? 'Comino GPU configurator' : 'Comino GPU 配置工具'}</p>
+            <h2 id="home-configurator-heading" className="scroll-mt-24 mt-4 max-w-2xl text-2xl font-bold leading-snug tracking-tight sm:text-3xl">{isEnglish ? 'Turn your workload into a configuration' : '從工作負載開始，配置你的運算設備'}</h2>
+            <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300">{isEnglish ? 'Explore platform, GPU, and memory options, then send your selected configuration for a quote.' : '比較機型、GPU 與記憶體選項，整理需求後，直接以選定配置提出詢價。'}</p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
+              <Link to="/configurator?request=true" className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900">{isEnglish ? 'Configure & request a quote' : '配置 GPU 與詢價'}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+              <Link to="/solutions/ai-server-procurement-case-taiwan" className="inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-medium text-white underline decoration-slate-500 underline-offset-4 hover:decoration-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900">{isEnglish ? 'GPU procurement guide' : 'GPU 選型與採購指南'}<ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" /></Link>
             </div>
-            <ol className="grid gap-4 sm:grid-cols-2">
-              {deliverySteps.map(({ visual, n, title, body }) => (
-                <li key={n} className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/[0.04]">
-                  <div className="flex items-center justify-between"><span className="text-xs font-bold tracking-[0.2em] text-cyan-700 dark:text-cyan-300">{n}</span><div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-white/[0.07]" aria-hidden="true"><img src={visual} alt="" className="h-12 w-12 object-contain" loading="lazy" decoding="async" /></div></div>
-                  <h3 className="mt-6 text-lg font-semibold">{title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{body}</p>
-                </li>
-              ))}
-            </ol>
+            <p className="mt-5 text-xs leading-6 text-slate-400">{isEnglish ? 'Availability, compatibility, and pricing are confirmed in the formal quote.' : '供貨、相容性與價格，以正式報價確認。'}</p>
           </div>
-        </div>
-        <article className="mt-16 grid overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/[0.04] lg:grid-cols-[0.42fr_1fr]">
-          <div className="relative min-h-52 overflow-hidden bg-slate-900">
-            <img src="/brand-provenance/eudtech-brand-procurement.webp" alt={isEnglish ? 'GPU procurement review and acceptance planning' : 'GPU 採購審查與驗收規劃'} className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-slate-950/85 via-slate-950/30 to-cyan-900/20" aria-hidden="true" />
-          </div>
-          <div className="p-7 sm:p-9">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">{isEnglish ? 'Anonymised procurement example' : '匿名採購需求案例'}</p>
-            <h2 className="mt-4 text-2xl font-bold">{isEnglish ? 'Six independent GPU workloads with sustained cooling requirements' : '六張 GPU 獨立運算與長時間散熱需求'}</h2>
-            <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">{isEnglish ? 'The request separated GPU independence, NVLink assumptions, sustained operation, cooling, and stability before any platform choice. The output was a reviewable requirement record and a formal quote path, not an unverified product promise.' : '先拆解 GPU 獨立運作、NVLink 假設、連續運轉、散熱與穩定性，再選機型。輸出是可審查的需求紀錄與正式報價路徑，不做未驗證的產品承諾。'}</p>
-            <Link to="/solutions/ai-server-procurement-case-taiwan" className="mt-6 inline-flex items-center text-sm font-semibold text-cyan-700 dark:text-cyan-300">{isEnglish ? 'Read the decision record' : '查看決策紀錄'}<ArrowRight className="ml-2 h-4 w-4" /></Link>
-          </div>
+          <figure className="flex min-w-0 flex-col items-center justify-center px-7 pb-7 lg:p-7">
+            <img src="/vendor/comino/grando-workstation-closed.webp" alt={isEnglish ? 'Comino GRANDO deskside workstation chassis' : 'Comino GRANDO 桌邊工作站機箱'} width="800" height="816" className="h-48 w-full max-w-sm object-contain sm:h-56" loading="lazy" decoding="async" />
+            <figcaption className="mt-2 text-center text-xs leading-6 text-slate-400"><a href="https://www.comino.com/en/ai-configurator" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 rounded-sm underline decoration-slate-600 underline-offset-4 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">{isEnglish ? 'Manufacturer image · Comino GRANDO' : '原廠產品圖片 · Comino GRANDO'}<ArrowUpRight aria-hidden="true" className="h-3 w-3 shrink-0" /></a></figcaption>
+          </figure>
         </article>
-        <div className="mt-16 flex flex-col gap-5 rounded-2xl bg-cyan-400 px-7 py-8 text-slate-950 sm:flex-row sm:items-center sm:justify-between">
-          <div><h2 className="text-2xl font-bold">{isEnglish ? 'Bring one concrete problem to the first conversation' : '第一次討論，帶一個具體問題即可'}</h2><p className="mt-2 max-w-2xl text-sm leading-6 text-slate-800">{isEnglish ? 'EudTech will define the first reviewable deliverable and the evidence needed to accept it.' : 'EudTech 會定義第一個可審查的交付物，以及驗收所需的證據。'}</p></div>
-          <Link to="/contact" className="inline-flex shrink-0 items-center justify-center rounded-lg bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">{isEnglish ? 'Book a consultation' : '預約諮詢'}<ArrowRight className="ml-2 h-4 w-4" /></Link>
-        </div>
       </div>
     </section>
   );

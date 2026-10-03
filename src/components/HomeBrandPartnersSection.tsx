@@ -1,52 +1,71 @@
 import React from 'react';
-import { ArrowUpRight, BadgeCheck } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, BadgeCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface HomeBrandPartnersSectionProps { isEnglish: boolean; }
 
 const HomeBrandPartnersSection: React.FC<HomeBrandPartnersSectionProps> = ({ isEnglish }) => {
   const technologies = [
-    { name: 'NVIDIA', logo: '/nvidia-logo-modified.png' },
-    { name: 'AMD', logo: '/amd-logo.png' },
-    { name: 'PyTorch', logo: '/pytorch-logo.png' },
-    { name: 'TensorFlow', logo: '/tensorflow-logo.png' },
-    { name: 'Keras', logo: '/keras-logo.png' },
+    { name: 'NVIDIA', logo: '/nvidia-logo-modified.png', width: 2446, height: 552 },
+    { name: 'AMD', logo: '/amd-logo.png', width: 720, height: 172 },
+    { name: 'PyTorch', logo: '/pytorch-logo.png', width: 232, height: 232 },
+    { name: 'TensorFlow', logo: '/tensorflow-logo.png', width: 274, height: 262 },
+    { name: 'Keras', logo: '/keras-logo.png', width: 188, height: 190 },
   ];
+  const linkFocus = 'rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-4 dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-900';
 
   return (
-    <section className="border-t border-slate-200 bg-white py-20 text-slate-950 dark:border-slate-800 dark:bg-slate-950 dark:text-white" aria-labelledby="home-partners-heading">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{isEnglish ? 'EudTech × specialist platforms' : 'EudTech × 專業品牌平台'}</p>
-            <h2 id="home-partners-heading" className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{isEnglish ? 'Official technology paths, delivered with local accountability' : '原廠技術路徑，EudTech 負責在地交付'}</h2>
-            <p className="mt-5 leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'Product evidence, cases, and technical sources sit on each solution page. This section lists the partnerships and the links to verify them.' : '產品證據、案例與技術資料放在各解決方案頁。這裡只列合作關係與查證連結。'}</p>
-          </div>
-          <div className="grid gap-5 xl:grid-cols-2">
-            <article className="min-w-0 rounded-2xl border border-slate-200 bg-slate-50 p-7 dark:border-slate-800 dark:bg-slate-900">
-              <img src="/vendor/comino/sales-kit-0911/comino-x-eudtech.webp" alt={isEnglish ? 'COMINO × EudTech partnership visual from Sales Kit 0911' : 'Sales Kit 0911 的 COMINO × EudTech 合作視覺'} className="mb-6 aspect-video w-full rounded-xl object-cover" loading="eager" decoding="async" fetchPriority="high" />
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-2"><img src="/logo.svg" alt="EudTech" className="h-9 w-auto max-w-full" loading="eager" decoding="async" fetchPriority="high" /><span className="text-2xl font-light text-slate-400">×</span><img src="/comino-grando-logo.png" alt="Comino GRANDO" className="h-11 w-auto max-w-full rounded bg-slate-900 p-2" loading="eager" decoding="async" fetchPriority="high" /></div>
-              <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-emerald-700 dark:text-emerald-300"><BadgeCheck className="h-5 w-5" />{isEnglish ? 'Authorised Comino distribution' : 'Comino 授權經銷'}</div>
-              <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{isEnglish ? 'Explore Comino closed-loop liquid-cooled systems, from deskside workstations to multi-GPU servers, matched to your workload and site.' : '從桌邊工作站到多 GPU 伺服器，依工作負載與場地條件，評估 Comino 封閉式液冷配置。'}</p>
-              <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold"><Link to="/solutions/ai-infrastructure" className="text-cyan-700 dark:text-cyan-300">{isEnglish ? 'Explore Comino liquid cooling' : '了解 Comino 液冷方案'}</Link><a href="https://www.comino.com/en/company" target="_blank" rel="noreferrer" className="inline-flex items-center text-slate-600 hover:text-cyan-700 dark:text-slate-300">{isEnglish ? 'Comino partner list' : 'Comino 合作夥伴名單'}<ArrowUpRight className="ml-1 h-4 w-4" /></a></div>
-            </article>
-            <article className="min-w-0 rounded-2xl border border-slate-200 bg-slate-50 p-7 dark:border-slate-800 dark:bg-slate-900">
-              <img src="/cyabra-images/cyabra-detect-min.png" alt={isEnglish ? 'Cyabra cluster-analysis interface' : 'Cyabra 叢集分析介面'} className="mb-6 aspect-video w-full rounded-xl object-cover" loading="eager" decoding="async" fetchPriority="high" />
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-2"><img src="/logo.svg" alt="EudTech" className="h-9 w-auto max-w-full" loading="eager" decoding="async" fetchPriority="high" /><span className="text-2xl font-light text-slate-400">×</span><img src="/cyabra-logo.svg" alt="Cyabra" className="h-11 w-auto max-w-full object-contain" loading="eager" decoding="async" fetchPriority="high" /></div>
-              <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-violet-700 dark:text-violet-300"><BadgeCheck className="h-5 w-5" />{isEnglish ? 'Cyabra solution delivery' : 'Cyabra 解決方案合作'}</div>
-              <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{isEnglish ? 'Profile authenticity, narrative, coordinated activity, and reputation-risk analysis.' : '帳號真實性、敘事、協調式活動與品牌聲譽風險分析。'}</p>
-              <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold"><Link to="/solutions/social-intelligence" className="text-cyan-700 dark:text-cyan-300">{isEnglish ? 'View solution →' : '查看解決方案 →'}</Link><a href="https://cyabra.com/become-a-partner/" target="_blank" rel="noreferrer" className="inline-flex items-center text-slate-600 hover:text-cyan-700 dark:text-slate-300">{isEnglish ? 'Cyabra partner programme' : 'Cyabra 合作夥伴計畫'}<ArrowUpRight className="ml-1 h-4 w-4" /></a></div>
-            </article>
-          </div>
+    <section className="bg-slate-50 py-16 text-slate-950 dark:bg-slate-950 dark:text-white sm:py-20" aria-labelledby="home-partners-heading">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700 dark:text-cyan-300">{isEnglish ? 'Our platform partners' : '品牌合作夥伴'}</p>
+          <h2 id="home-partners-heading" className="scroll-mt-24 mt-4 text-3xl font-semibold leading-snug tracking-tight sm:text-4xl sm:leading-snug">{isEnglish ? 'Specialist platforms. Local integration and support.' : '專業平台，在地整合與支援'}</h2>
+          <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">{isEnglish ? 'Choose the platform that fits your task, with EudTech helping you define requirements, integrate the solution, and plan support.' : '依你的任務選擇適合的平台，由 EudTech 協助需求評估、方案整合與支援規劃。'}</p>
         </div>
-        <div className="mt-14 rounded-2xl border border-slate-200 px-6 py-8 dark:border-slate-800">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{isEnglish ? 'Compatible technology ecosystem' : '相容技術生態'}</p>
-          <div className="mt-7 grid grid-cols-2 items-center gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {technologies.map((item) => (
-              <div key={item.name} className="group flex h-20 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 dark:border-slate-700 dark:bg-white dark:shadow-none">
-                <img src={item.logo} alt={item.name} loading="eager" decoding="async" className="max-h-11 max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]" />
-              </div>
-            ))}
+
+        <div className="mt-9 grid gap-6 md:grid-cols-2">
+          <article className="flex min-w-0 flex-col rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900 sm:p-8">
+            <div className="flex h-16 items-center gap-3" aria-label="EudTech × Comino GRANDO">
+              <img src="/logo.svg" alt="EudTech" width={400} height={100} className="h-auto w-28 shrink-0 rounded bg-white sm:w-32" loading="lazy" decoding="async" />
+              <span className="text-xl font-light text-slate-400" aria-hidden="true">×</span>
+              <img src="/comino-grando-logo.png" alt="Comino GRANDO" width={1049} height={277} className="h-auto w-28 min-w-0 rounded bg-slate-950 p-1.5 sm:w-32" loading="lazy" decoding="async" />
+            </div>
+            <p className="mt-5 inline-flex items-center gap-2 text-xs font-semibold text-cyan-700 dark:text-cyan-300"><BadgeCheck className="h-4 w-4 shrink-0" aria-hidden="true" />{isEnglish ? 'Listed by Comino as a distribution partner' : 'Comino 原廠經銷夥伴'}</p>
+            <h3 className="mt-4 text-2xl font-semibold leading-snug tracking-tight">{isEnglish ? 'Liquid cooling shaped around your workload' : '液冷運算，依你的工作負載配置'}</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{isEnglish ? 'Evaluate Comino liquid-cooled workstations and multi-GPU servers against your workload, cooling needs, and deployment conditions.' : '依工作負載、散熱需求與部署條件，評估 Comino 液冷工作站與多 GPU 伺服器。'}</p>
+            <div className="mt-auto flex flex-col items-start gap-3 pt-7 text-sm font-semibold sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
+              <Link to="/solutions/ai-infrastructure" className={`inline-flex min-h-11 items-center gap-2 py-1.5 text-cyan-700 transition-colors hover:text-cyan-900 dark:text-cyan-300 dark:hover:text-cyan-200 ${linkFocus}`}>{isEnglish ? 'Explore liquid-cooled systems' : '了解液冷運算方案'}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+              <a href="https://www.comino.com/en/company" target="_blank" rel="noopener noreferrer" className={`inline-flex min-h-11 items-center gap-1.5 py-1.5 text-slate-600 transition-colors hover:text-cyan-700 dark:text-slate-300 dark:hover:text-cyan-300 ${linkFocus}`}>{isEnglish ? 'Comino partner list' : 'Comino 合作夥伴名單'}<ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
+            </div>
+          </article>
+
+          <article className="flex min-w-0 flex-col rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900 sm:p-8">
+            <div className="flex h-16 items-center gap-3" aria-label="EudTech × Cyabra">
+              <img src="/logo.svg" alt="EudTech" width={400} height={100} className="h-auto w-28 shrink-0 rounded bg-white sm:w-32" loading="lazy" decoding="async" />
+              <span className="text-xl font-light text-slate-400" aria-hidden="true">×</span>
+              <img src="/cyabra-logo.svg" alt="Cyabra" width={136} height={72} className="h-14 w-auto min-w-0 rounded bg-white object-contain px-2" loading="lazy" decoding="async" />
+            </div>
+            <p className="mt-5 inline-flex items-center gap-2 text-xs font-semibold text-cyan-700 dark:text-cyan-300"><BadgeCheck className="h-4 w-4 shrink-0" aria-hidden="true" />{isEnglish ? 'Listed as an official Cyabra partner' : 'Cyabra 官方合作夥伴'}</p>
+            <h3 className="mt-4 text-2xl font-semibold leading-snug tracking-tight">{isEnglish ? 'Make informed decisions from social signals' : '把社群訊號轉成判斷依據'}</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{isEnglish ? 'Use Cyabra to examine account authenticity, narratives, and coordinated activity when assessing risks to your brand or organisation.' : '用 Cyabra 分析帳號真實性、敘事與協調式活動，評估品牌或組織面臨的社群風險。'}</p>
+            <div className="mt-auto flex flex-col items-start gap-3 pt-7 text-sm font-semibold sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
+              <Link to="/solutions/social-intelligence" className={`inline-flex min-h-11 items-center gap-2 py-1.5 text-cyan-700 transition-colors hover:text-cyan-900 dark:text-cyan-300 dark:hover:text-cyan-200 ${linkFocus}`}>{isEnglish ? 'Explore social intelligence' : '了解社群情報方案'}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+              <a href="https://cyabra.com/become-a-partner/" target="_blank" rel="noopener noreferrer" className={`inline-flex min-h-11 items-center gap-1.5 py-1.5 text-slate-600 transition-colors hover:text-cyan-700 dark:text-slate-300 dark:hover:text-cyan-300 ${linkFocus}`}>{isEnglish ? 'Cyabra partner list' : 'Cyabra 合作夥伴名單'}<ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
+            </div>
+          </article>
+        </div>
+
+        <div className="mt-12 border-t border-slate-200 pt-8 dark:border-slate-800">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">{isEnglish ? 'Compatible technology ecosystem' : '相容技術生態'}</p>
+          <div className="mt-5 rounded-xl bg-white px-5 py-6 dark:bg-white/95 sm:px-8">
+            <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-8 gap-y-6 sm:justify-between">
+              {technologies.map((item) => (
+                <div key={item.name} className="flex w-24 flex-col items-center gap-3">
+                  <img src={item.logo} alt="" width={item.width} height={item.height} loading="lazy" decoding="async" className="h-8 w-auto max-w-full object-contain" />
+                  <span className="text-xs font-medium text-slate-600">{item.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

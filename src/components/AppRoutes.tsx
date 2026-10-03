@@ -6,6 +6,7 @@ import NavBar from './navigation/NavBar';
 import HeroSection from './hero/HeroSection';
 import HomeSolutionsSection from './HomeSolutionsSection';
 import HomeBrandPartnersSection from './HomeBrandPartnersSection';
+import HomeDeliverySection from './HomeDeliverySection';
 import Footer from './Footer';
 import ScrollToTop from './common/ScrollToTop';
 import SkipToContent from './common/SkipToContent';
@@ -89,6 +90,7 @@ const AppRoutes: React.FC = () => {
                 <HeroSection isEnglish={isEnglish} />
                 <HomeSolutionsSection isEnglish={isEnglish} />
                 <HomeBrandPartnersSection isEnglish={isEnglish} />
+                <HomeDeliverySection isEnglish={isEnglish} />
                 <Footer isEnglish={isEnglish} />
               </>
             } />
