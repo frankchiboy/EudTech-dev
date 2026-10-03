@@ -14,7 +14,7 @@ const ContactInfo: React.FC = () => {
     {
       icon: Mail,
       label: isEnglish ? 'Email' : '電子郵件',
-      value: 'info@eudaemonia.tech',
+      value: 'quote@eudaemonia.tech',
     },
     {
       icon: Clock,

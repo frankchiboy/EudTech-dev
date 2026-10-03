@@ -119,5 +119,5 @@ Use the configurator to prepare GPU, CPU, RAM, storage, power and networking req
 
 ## Contact
 
-- Email: info@eudaemonia.tech
+- Email: quote@eudaemonia.tech
 - Site: https://eudaemonia.tech/

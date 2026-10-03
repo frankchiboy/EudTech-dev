@@ -508,7 +508,7 @@ async function checkPages(errors) {
     assert(html.includes('data-static-seo-fallback'), errors, `${url} missing static SEO body fallback.`);
     assert(staticBodyText.length >= MIN_STATIC_SEO_TEXT_LENGTH, errors, `${url} static SEO body fallback is too short: ${staticBodyText.length}.`);
     assert(!socialPreview?.title || staticBodyText.includes(socialPreview.title), errors, `${url} static SEO body fallback missing route title.`);
-    assert(staticBodyText.includes('info@eudaemonia.tech'), errors, `${url} static SEO body fallback missing quote contact email.`);
+    assert(staticBodyText.includes('quote@eudaemonia.tech'), errors, `${url} static SEO body fallback missing quote contact email.`);
     assert(staticHighlights >= MIN_STATIC_SEO_HIGHLIGHTS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_HIGHLIGHTS} highlights; found ${staticHighlights}.`);
     assert(staticSpecRows >= MIN_STATIC_SEO_SPEC_ROWS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_SPEC_ROWS} spec rows; found ${staticSpecRows}.`);
     assert(staticChecklistItems >= MIN_STATIC_SEO_CHECKLIST_ITEMS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_CHECKLIST_ITEMS} checklist items; found ${staticChecklistItems}.`);

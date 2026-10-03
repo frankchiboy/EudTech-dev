@@ -47,12 +47,12 @@
   "/contact": {
     "title": "Contact EudTech",
     "description": "Discuss an AI workflow, GPU configuration or social intelligence need with EudTech. Start with the workload, existing systems and intended outcome.",
-    "highlights": ["Send your question to info@eudaemonia.tech or use the consultation form.", "For GPU systems, include software, workload, deployment location and available power and cooling.", "For AI workflows, identify the existing systems, data sources and desired output.", "EudTech will propose the next step: discovery, a pilot, configuration review, a demonstration or a formal quote."]
+    "highlights": ["Send your question to quote@eudaemonia.tech or use the consultation form.", "For GPU systems, include software, workload, deployment location and available power and cooling.", "For AI workflows, identify the existing systems, data sources and desired output.", "EudTech will propose the next step: discovery, a pilot, configuration review, a demonstration or a formal quote."]
   },
   "/privacy": {
     "title": "Privacy & Data Use",
     "description": "Learn how EudTech handles contact and quote data, customer-source attribution, retention, service providers and data requests.",
-    "highlights": ["Contact, company and configuration information is used to understand requests, prepare replies and maintain related business records.", "Attribution may include campaign parameters, referrers and anonymous identifiers. Personal email addresses are not placed in public URLs.", "Browser attribution data may be retained for up to 90 days. Customer-provided source information is kept separately.", "Hosting, analytics, Microsoft 365, email and customer-record services support website operation and replies. Information is not sold.", "Quote and business records are retained for service, contract, audit and legal needs, then deleted or de-identified when the purpose ends.", "For access, correction, restriction or deletion requests, contact info@eudaemonia.tech. The notice is effective from 16 August 2026."]
+    "highlights": ["Contact, company and configuration information is used to understand requests, prepare replies and maintain related business records.", "Attribution may include campaign parameters, referrers and anonymous identifiers. Personal email addresses are not placed in public URLs.", "Browser attribution data may be retained for up to 90 days. Customer-provided source information is kept separately.", "Hosting, analytics, Microsoft 365, email and customer-record services support website operation and replies. Information is not sold.", "Quote and business records are retained for service, contract, audit and legal needs, then deleted or de-identified when the purpose ends.", "For access, correction, restriction or deletion requests, contact quote@eudaemonia.tech. The notice is effective from 16 August 2026."]
   },
   "/configurator": {
     "title": "Comino GRANDO GPU Server Configurator",

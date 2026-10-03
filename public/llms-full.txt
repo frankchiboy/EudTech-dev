@@ -6,7 +6,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 
 - Company: EudTech / Eudaemonia Technology
 - Region: Taiwan
-- Contact: info@eudaemonia.tech
+- Contact: quote@eudaemonia.tech
 - Services: AI agent and headless SaaS implementation, Comino AI infrastructure, and Cyabra social intelligence.
 - Configurable items: GPU, CPU, RAM, OS drive, data drives, power supply, and networking.
 - Public pricing: not published. Availability, pricing, warranty and acceptance criteria require a confirmed quotation and BOM.
@@ -290,7 +290,7 @@ No. These are manufacturer technical documents and EudTech's Traditional Chinese
   - GPU 伺服器、工作站與液冷系統。
   - Cyabra 社群情報與品牌保護。
 - Details:
-  - 聯絡信箱: info@eudaemonia.tech
+  - 聯絡信箱: quote@eudaemonia.tech
   - 諮詢類型: AI Agent、AI 運算與社群情報
   - 會議方式: Microsoft Bookings 線上預約
 
@@ -304,7 +304,7 @@ No. These are manufacturer technical documents and EudTech's Traditional Chinese
   - 客戶來源與匿名識別碼。
   - 資料查詢、更正及刪除請求方式。
 - Details:
-  - 資料聯絡: info@eudaemonia.tech
+  - 資料聯絡: quote@eudaemonia.tech
   - 網站資料: 詢價、聯絡與來源歸因
   - 資料請求: 查詢、更正或刪除請求
 
@@ -706,7 +706,7 @@ No. These are manufacturer technical documents and EudTech's Traditional Chinese
 - Specification cues:
   - GPU 重點 / GPU focus: NVIDIA RTX PRO 6000 等級選項 / NVIDIA RTX PRO 6000 class options
   - 應用場景 / Use case: 本地 AI 推論、渲染、模擬 / Local AI inference, rendering, simulation
-  - 詢價路徑 / Quote request path: 配置器表單送至 info@eudaemonia.tech / Configurator form to info@eudaemonia.tech
+  - 詢價路徑 / Quote request path: 配置器表單送至 quote@eudaemonia.tech / Configurator form to quote@eudaemonia.tech
 - FAQs:
   - Q: 可以比較 RTX PRO 6000 與 H200 配置嗎？ / Can I compare RTX PRO 6000 and H200 builds?
     A: 可以。分別在工作站與機架式路徑完成配置，再把兩個連結交給 EudTech 比較。 / Yes. Configure one build on the workstation path and one on the rackable path, then share both links with EudTech.
@@ -1041,7 +1041,7 @@ No. These are manufacturer technical documents and EudTech's Traditional Chinese
   - Q: 這是 Comino Grando 配置器的主要入口嗎？ / Is this the main Comino Grando configurator entry?
     A: 是。此指南引導採購者進入 Grando 配置器與相關產品路徑，準備詢價。 / Yes. This guide leads buyers to the Grando configurator and the related product routes to prepare a quote request.
   - Q: EudTech 會追蹤 Comino Grando 的台灣報價嗎？ / Does EudTech handle Taiwan quote follow-up for Comino Grando?
-    A: 會。EudTech 接收送出的配置，並透過 info@eudaemonia.tech 追蹤報價。 / Yes. EudTech receives the submitted configuration and follows up through info@eudaemonia.tech.
+    A: 會。EudTech 接收送出的配置，並透過 quote@eudaemonia.tech 追蹤報價。 / Yes. EudTech receives the submitted configuration and follows up through quote@eudaemonia.tech.
 
 ### NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表 / NVIDIA H200 GPU Server RFQ Checklist for Taiwan Procurement
 

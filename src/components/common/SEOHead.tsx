@@ -102,7 +102,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     {
       '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE_ORIGIN}/#organization`,
       name: 'EudTech', alternateName: 'Eudaemonia Technology', url: `${SITE_ORIGIN}/`,
-      email: 'info@eudaemonia.tech', logo: `${SITE_ORIGIN}/logo.svg`
+      email: 'quote@eudaemonia.tech', logo: `${SITE_ORIGIN}/logo.svg`
     },
     {
       '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE_ORIGIN}/#website`,

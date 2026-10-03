@@ -9,7 +9,7 @@ const OnlineMeetingBooking: React.FC = () => {
   const bookingLabel = locale === 'en' ? SITE_BOOKING.label.en : SITE_BOOKING.label.zh;
   const bookingTitle = locale === 'en' ? SITE_BOOKING.title.en : SITE_BOOKING.title.zh;
   const bookingDescription = locale === 'en' ? SITE_BOOKING.description.en : SITE_BOOKING.description.zh;
-  const emailAddress = "info@eudaemonia.tech";
+  const emailAddress = "quote@eudaemonia.tech";
 
   const handleBookMeeting = () => {
     window.open(bookingUrl, '_blank');
