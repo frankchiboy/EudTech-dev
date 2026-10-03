@@ -33,6 +33,10 @@
 .comino-notes p,.comino-operation-notes p{margin-top:.5rem}
 .comino-story .comino-condition{padding:1.3rem 1.5rem;margin-top:2.5rem;border-left:3px solid var(--comino-accent);background:var(--comino-surface)}
 .comino-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
+.comino-compliance{scroll-margin-top:6rem}
+.comino-compliance .comino-two{gap:2rem 3.5rem}
+.comino-compliance .comino-compliance-evidence{color:var(--comino-accent);font-weight:600}
+.comino-compliance .comino-compliance-source{font-weight:400;color:var(--comino-muted)}
 .comino-deployment{border:1px solid var(--comino-line);border-radius:.75rem;overflow:hidden;background:white}
 .dark .comino-deployment{background:#020617}
 .comino-deployment>img{width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#e5e7eb}
