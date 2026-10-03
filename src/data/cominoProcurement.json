@@ -43,6 +43,32 @@
       "source": "https://cdn.prod.website-files.com/627a9ed158f3430181d090ef/69f34842fdbf063b82e8d27d_Grando_RM-M-CRPS_Quick_Start_Guide_EN.pdf"
     }
   ],
+  "faqs": [
+    {
+      "id": "procurement-power",
+      "question": { "zh": "四顆電源就代表有完整備援嗎？", "en": "Do four power supplies guarantee redundancy?" },
+      "answer": { "zh": "不一定。4+0 沒有備援；3+1 或 2+2 仍須核對輸入電壓、每個模組的可用功率及整機負載。需要備援時，應在約定的 CPU／GPU 負載下，驗證一個電源模組故障後仍能維持必要作業。", "en": "Not automatically. A 4+0 arrangement has no redundancy. A 3+1 or 2+2 arrangement still requires checking input voltage, available power per module and total system load. If redundancy is required, verify essential operation after one power-module failure at the agreed CPU/GPU load." },
+      "documentId": "server-datasheet", "page": 10
+    },
+    {
+      "id": "procurement-acoustics",
+      "question": { "zh": "可以直接把 39dB 當成所有配置的噪音保證嗎？", "en": "Is 39dB guaranteed for every configuration?" },
+      "answer": { "zh": "不能。原廠規格書列出的是 39–70dB 平台參考範圍。部署前須確認選定機型、GPU／CPU 配置、進氣溫度、工作負載與量測方式，再約定噪音驗收條件；辦公室或實驗室也應評估設備與使用者的距離。", "en": "No. The manufacturer datasheet gives a platform reference range of 39–70dB. Confirm the selected model, GPU/CPU configuration, intake temperature, workload and measurement method before agreeing acoustic acceptance criteria. For an office or lab, also assess the distance between the system and its users." },
+      "documentId": "server-datasheet", "page": 10
+    },
+    {
+      "id": "procurement-service",
+      "question": { "zh": "快速斷開接頭（QDC）代表 GPU 可以熱插拔嗎？", "en": "Do quick-disconnect couplings make GPUs hot-swappable?" },
+      "answer": { "zh": "不能只憑 QDC 推定 GPU 可熱插拔。QDC 是方便維護的液冷介面；實際更換仍須依原廠的停機、冷卻液處理與復機程序。若要求不停機維護，必須另外取得對應整機與零件的明確支援證據。", "en": "QDC alone does not establish GPU hot-swap support. It is a liquid-cooling service interface. Replacement must follow the manufacturer's shutdown, coolant-handling and return-to-service procedures. Any requirement for maintenance without shutdown needs explicit support for the complete system and affected components." },
+      "documentId": "server-datasheet", "page": 4
+    },
+    {
+      "id": "procurement-document-scope",
+      "question": { "zh": "這裡的中文規格書可以當作 CE／FCC 認證文件嗎？", "en": "Can the translated datasheet serve as CE/FCC conformity evidence?" },
+      "answer": { "zh": "不可以。這裡提供的是原廠技術資料及 EudTech 繁體中文譯本，並非原廠核發的符合性聲明或測試報告。CE／FCC 等適用文件須另行核對交付型號、BOM、日期與適用範圍；不能由規格書推定所有 GPU 配置都經過相同測試。", "en": "No. These are manufacturer technical documents and EudTech's Traditional Chinese translations, not manufacturer-issued conformity declarations or test reports. Review applicable CE/FCC documents separately against the supplied model, BOM, date and scope. A datasheet does not establish that every GPU configuration underwent the same tests." },
+      "documentId": "server-datasheet", "page": 1
+    }
+  ],
   "criteria": [
     {
       "id": "coverage",

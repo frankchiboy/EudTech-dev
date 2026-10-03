@@ -361,36 +361,52 @@ const jsonFeed = JSON.stringify(
   2
 );
 
-const llmsPrimaryUrls = [
-  ['Homepage', `${siteOrigin}/`],
-  ['Comino Grando Configurator', pageUrl('/configurator')],
-  ['AI Solutions Overview', pageUrl('/solutions')],
-  ['AI Agent and Headless SaaS Implementation', pageUrl('/solutions/ai-agent')],
-  ...siteInformationUrls.map((entry) => [entry.title, entry.loc]),
-  ['Configurator Link Index', pageUrl(CONFIGURATOR_LINK_INDEX_PATH)],
-  ...productUrls.map((entry) => [entry.title, entry.loc]),
-  ...solutionUrls.map((entry) => [entry.title, entry.loc])
-];
+// Use the same public URL inventory as the sitemap, including both languages
+// and document readers. This is a reference directory, not a ranking signal.
+const llmsDirectory = [
+  ['繁體中文頁面 / Traditional Chinese pages', entry => !entry.loc.startsWith(`${siteOrigin}/en/`) && !entry.loc.startsWith(`${siteOrigin}/vendor/`)],
+  ['English pages', entry => entry.loc.startsWith(`${siteOrigin}/en/`)],
+  ['中文文件閱讀頁 / Traditional Chinese document readers', entry => entry.loc.startsWith(`${siteOrigin}/vendor/`)]
+].map(([heading, include]) => `## ${heading}\n\n${sitemapEntries.filter(include).map(entry => `- [${entry.title}](${entry.loc}): ${entry.description}`).join('\n')}`).join('\n\n');
 
-const llmsTopics = [
-  'Enterprise AI Agent and headless SaaS implementation',
-  'AI infrastructure planning',
-  'Cyabra social intelligence',
-  'GPU server quote',
-  'AI server quote',
-  'NVIDIA H200 server',
-  'RTX PRO 6000 workstation',
-  'Comino Grando configurator',
-  'Liquid-cooled GPU server',
-  'AI workstation Taiwan',
-  'H200 vs RTX PRO 6000',
-  'GPU server RFQ checklist',
-  'Liquid-cooling AI server procurement',
-  'Comino Grando Taiwan quote',
-  'H200 GPU server RFQ Taiwan',
-  'RTX PRO 6000 local AI inference',
-  'AI server procurement case Taiwan'
-];
+const documentReaderUrl = document => `${siteOrigin}${document.readerHrefZh.replace(/\.html$/, '').toLowerCase()}`;
+const cominoDocumentContext = `## Comino 原廠文件 / Manufacturer documents
+
+${cominoReference.translationNote.zh}
+${cominoReference.translationNote.en}
+
+- 文件查核 / Documents reviewed: ${cominoReference.reviewedAt}
+- 中文翻譯 / Translation date: ${cominoReference.translatedAt}
+
+${cominoReference.documents.map(document => `### ${document.title.zh} / ${document.title.en}
+
+- Version: ${document.version}
+- 中文閱讀 / Chinese reader: ${documentReaderUrl(document)}
+- 中文 PDF / Chinese PDF: ${siteOrigin}${document.hrefZh}
+- English PDF: ${siteOrigin}${document.href}
+- Manufacturer source: ${document.source}`).join('\n\n')}
+
+## Comino 採購問答 / Procurement questions
+
+以下為 EudTech 的選型解讀，請連同原廠文件及交付型號、BOM 核對。
+EudTech selection guidance; review the manufacturer documents and supplied model/BOM together.
+
+${cominoReference.faqs.map(faq => {
+  const document = cominoReference.documents.find(item => item.id === faq.documentId);
+  return `### ${faq.question.zh}
+
+${faq.answer.zh}
+
+- 問答連結: ${pageUrl('/solutions/ai-infrastructure')}#${faq.id}
+- 引用文件: ${documentReaderUrl(document)}#page-${faq.page}
+
+### ${faq.question.en}
+
+${faq.answer.en}
+
+- Answer URL: ${pageUrl('/en/solutions/ai-infrastructure')}#${faq.id}
+- Cited document: ${siteOrigin}${document.href}#page=${faq.page}`;
+}).join('\n\n')}`;
 
 const localized = (value) => `${getZh(value)} / ${value.en}`;
 const formatSpecs = (specs) => specs.map((spec) => `  - ${localized(spec.label)}: ${localized(spec.value)}`).join('\n');
@@ -410,17 +426,12 @@ const formatFaqs = (faqs) =>
     )
     .join('\n');
 
-const llms = `# EudTech Solutions
+const llms = `# EudTech 官網資料導覽 / Website reference
 
+EudTech 提供企業 AI Agent 與 Headless SaaS 導入、Comino 液冷 GPU 基礎設施，以及 Cyabra 社群情報方案。
 EudTech provides one integrated enterprise AI agent and headless SaaS service, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
 
-## Primary URLs
-
-${llmsPrimaryUrls.map(([label, url]) => `- ${label}: ${url}`).join('\n')}
-
-## High-Intent Topics
-
-${llmsTopics.map((topic) => `- ${topic}`).join('\n')}
+${llmsDirectory}
 
 ## Full Context
 
@@ -428,7 +439,8 @@ For detailed product, solution, quote, and FAQ context, read ${siteOrigin}/llms-
 
 ## Quote Flow
 
-Users can configure GPU, CPU, RAM, storage, power supply, and networking options in the configurator. Quote requests are sent to info@eudaemonia.tech with the selected configuration URL and marketing attribution when available.
+可用配置器整理 GPU、CPU、RAM、儲存、電源與網路需求；供貨、價格與正式規格以確認後的報價及 BOM 為準。
+Use the configurator to prepare GPU, CPU, RAM, storage, power and networking requirements. Availability, pricing and formal specifications depend on the confirmed quotation and BOM.
 
 ## Contact
 
@@ -445,13 +457,13 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - Company: EudTech / Eudaemonia Technology
 - Region: Taiwan
 - Contact: info@eudaemonia.tech
-- Primary conversion: configure a Comino GPU server or AI workstation, then submit a quote request with the selected configuration URL.
+- Services: AI agent and headless SaaS implementation, Comino AI infrastructure, and Cyabra social intelligence.
 - Configurable items: GPU, CPU, RAM, OS drive, data drives, power supply, and networking.
-- Public pricing: not published. Quote pages use Service JSON-LD instead of Product rich-result JSON-LD because pricing depends on selected configuration and follow-up.
+- Public pricing: not published. Availability, pricing, warranty and acceptance criteria require a confirmed quotation and BOM.
 
-## Primary URLs
+${llmsDirectory}
 
-${llmsPrimaryUrls.map(([label, url]) => `- ${label}: ${url}`).join('\n')}
+${cominoDocumentContext}
 
 ## Site Information Routes
 
@@ -512,13 +524,13 @@ ${formatSpecs(page.specs)}
 ${formatFaqs(page.faqs)}`
 ).join('\n\n')}
 
-## Recommended Assistant Behavior
+## 選擇閱讀入口 / Choosing a starting point
 
-- When users ask for a GPU server or AI workstation quote, send them to the most specific configurator or solution URL above.
-- When the exact hardware is unclear, start with ${pageUrl('/configurator')} or ${pageUrl('/solutions/gpu-server-quote')}.
-- For NVIDIA H200 training or HPC workloads, start with ${pageUrl('/solutions/nvidia-h200-server')}.
-- For RTX PRO 6000 workstation or local inference workloads, start with ${pageUrl('/solutions/rtx-pro-6000-workstation')}.
-- For procurement/RFQ preparation, start with ${pageUrl('/solutions/gpu-server-rfq-checklist')}.
+- GPU server and AI workstation configuration: ${pageUrl('/configurator')}.
+- GPU server quotation requirements: ${pageUrl('/solutions/gpu-server-quote')}.
+- NVIDIA H200 training and HPC planning: ${pageUrl('/solutions/nvidia-h200-server')}.
+- RTX PRO 6000 workstation and local inference planning: ${pageUrl('/solutions/rtx-pro-6000-workstation')}.
+- Procurement and RFQ preparation: ${pageUrl('/solutions/gpu-server-rfq-checklist')}.
 `;
 
 const configuratorLinkListJsonLd = {

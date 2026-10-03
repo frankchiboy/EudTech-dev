@@ -9,11 +9,11 @@ import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 export type Bilingual = { zh: string; en: string };
 export const tx = (value: Bilingual, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
 
-export const PageShell: React.FC<{ children: React.ReactNode; title: Bilingual; description: Bilingual; path: string }> = ({ children, title, description, path }) => {
+export const PageShell: React.FC<{ children: React.ReactNode; title: Bilingual; description: Bilingual; path: string; structuredData?: Record<string, unknown> }> = ({ children, title, description, path, structuredData }) => {
   const { isEnglish } = useLanguageContext();
   return (
     <div className="min-h-screen bg-white text-slate-950 dark:bg-slate-950 dark:text-white">
-      <SEOHead title={tx(title, isEnglish)} description={tx(description, isEnglish)} url={canonicalPageUrl(`https://eudaemonia.tech${path}`)} isEnglish={isEnglish} />
+      <SEOHead title={tx(title, isEnglish)} description={tx(description, isEnglish)} url={canonicalPageUrl(`https://eudaemonia.tech${path}`)} isEnglish={isEnglish} structuredData={structuredData} />
       {children}
       <Footer isEnglish={isEnglish} />
     </div>
