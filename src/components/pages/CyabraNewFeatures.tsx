@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import { ArrowDown, ArrowUpRight, Check, Expand, Search } from 'lucide-react';
-import { cyabraOfficialImages, type CyabraOfficialImage } from '../../data/cyabraOfficialImages';
+import { cyabraExpandedImageIds, cyabraOfficialImages, type CyabraOfficialImage } from '../../data/cyabraOfficialImages';
 import { bilingual as b } from '../../data/cyabraExperience';
 import { tx, type Bilingual } from './SitePagePrimitives';
 import './CyabraNewFeatures.css';
 
 const official = (id: number) => cyabraOfficialImages.find(image => image.id === `official-${String(id).padStart(2, '0')}`)!;
+const expandedIds = new Set(cyabraExpandedImageIds);
+const galleryImages = [...cyabraOfficialImages.filter(image => expandedIds.has(image.id)), ...cyabraOfficialImages.filter(image => !expandedIds.has(image.id))];
+const imageNotes: Record<string, Bilingual> = {
+  sample: b('原廠範例；數值為示意', 'Vendor sample; illustrative figures'),
+  screenshot: b('Cyabra 原廠公開畫面', 'Screenshot published by Cyabra'),
+  illustration: b('原廠功能概念與示意圖', 'Official capability illustration'),
+  case: b('原廠案例研究圖；情境與數據見來源', 'Vendor case research; context and figures in source'),
+  guide: b('原廠實務指南封面', 'Official playbook cover'),
+  artwork: b('原廠功能發布主視覺', 'Official launch artwork')
+};
 
 export const CyabraOfficialFigure: React.FC<{ asset: CyabraOfficialImage; isEnglish: boolean; compact?: boolean }> = ({ asset, isEnglish, compact }) => (
   <figure className={`cy-official-figure${compact ? ' cy-official-compact' : ''}`}>
@@ -13,7 +23,7 @@ export const CyabraOfficialFigure: React.FC<{ asset: CyabraOfficialImage; isEngl
       <img src={asset.path} alt={tx(asset.title, isEnglish)} width={asset.width} height={asset.height} loading="lazy" decoding="async" />
       <span className="cy-image-expand"><Expand size={14} />{isEnglish ? 'Enlarge' : '放大圖片'}</span>
     </a>
-    <figcaption><span>{tx(asset.title, isEnglish)}<small>{asset.kind === 'sample' ? (isEnglish ? 'Vendor sample; illustrative figures' : '原廠範例；數值為示意') : asset.kind === 'screenshot' ? (isEnglish ? 'Screenshot published by Cyabra' : 'Cyabra 原廠公開畫面') : (isEnglish ? 'Official capability illustration' : '原廠功能示意圖')}</small></span><a href={asset.source} target="_blank" rel="noreferrer">{isEnglish ? 'Source' : '原廠來源'}<ArrowUpRight size={13} /></a></figcaption>
+    <figcaption><span>{tx(asset.title, isEnglish)}<small>{tx(imageNotes[asset.kind] ?? imageNotes.illustration, isEnglish)}</small></span><a href={asset.source} target="_blank" rel="noreferrer">{asset.kind === 'guide' ? (isEnglish ? 'Read guide' : '閱讀指南') : (isEnglish ? 'Source' : '原廠來源')}<ArrowUpRight size={13} /></a></figcaption>
   </figure>
 );
 
@@ -72,14 +82,22 @@ export const CyabraOfficialGallery: React.FC<{ isEnglish: boolean }> = ({ isEngl
   const [group,setGroup]=useState('all');
   const [expanded,setExpanded]=useState(false);
   const groups=[...new Map(cyabraOfficialImages.map(item=>[item.group,item.groupTitle])).entries()];
-  const matches=cyabraOfficialImages.filter(item=>group==='all'||item.group===group);
+  const matches=galleryImages.filter(item=>group==='all'||(group==='added' ? expandedIds.has(item.id) : item.group===group));
   const shown=expanded?matches:matches.slice(0,12);
+  const count=cyabraOfficialImages.length;
   return <section id="official-gallery" className="cy-section cy-surface"><div className="cy-container">
-    <div className="cy-section-heading"><div><p className="cy-eyebrow">INSIDE CYABRA</p><h2>{isEnglish?'See the platform, one image at a time.':'直接看原廠畫面，理解每一步。'}</h2></div><p>{isEnglish?'41 official illustrations, screenshots, and report samples. Enlarge any image to explore the detail.':'41 張原廠功能圖、操作畫面與報告範例。點圖放大，看懂每個分析環節。'}</p></div>
-    <div className="cy-gallery-filters" role="group" aria-label={isEnglish?'Filter official images':'原廠圖片分類'}><button aria-pressed={group==='all'} onClick={()=>{setGroup('all');setExpanded(false);}}>{isEnglish?'All images':'全部圖片'} <span>41</span></button>{groups.map(([key,title])=><button key={key} aria-pressed={group===key} onClick={()=>{setGroup(key);setExpanded(false);}}>{tx(title,isEnglish)}</button>)}</div>
+    <div className="cy-section-heading"><div><p className="cy-eyebrow">INSIDE CYABRA</p><h2>{isEnglish?'See the platform, one image at a time.':'直接看原廠畫面，理解每一步。'}</h2></div><p>{isEnglish?`${count} official screenshots, case-study visuals, workflow illustrations, and playbook covers. Enlarge any image to explore the detail.`:`${count} 張原廠操作畫面、案例分析、流程示意與指南封面。點圖放大，看懂每個分析環節。`}</p></div>
+    <div className="cy-gallery-filters" role="group" aria-label={isEnglish?'Filter official images':'原廠圖片分類'}><button aria-pressed={group==='all'} onClick={()=>{setGroup('all');setExpanded(false);}}>{isEnglish?'All images':'全部圖片'} <span>{count}</span></button><button aria-pressed={group==='added'} onClick={()=>{setGroup('added');setExpanded(false);}}>{isEnglish?'Added collection':'新增圖片'} <span>{cyabraExpandedImageIds.length}</span></button>{groups.map(([key,title])=><button key={key} aria-pressed={group===key} onClick={()=>{setGroup(key);setExpanded(false);}}>{tx(title,isEnglish)}</button>)}</div>
     <p className="cy-gallery-status" role="status"><Search size={14}/>{isEnglish?`Showing ${shown.length} of ${matches.length} images`:`顯示 ${shown.length} / ${matches.length} 張圖片`}</p>
     <div className="cy-gallery-grid">{shown.map(asset=><CyabraOfficialFigure key={asset.id} asset={asset} isEnglish={isEnglish} compact/>)}</div>
     {!expanded && matches.length>shown.length && <button className="cy-gallery-more" onClick={()=>setExpanded(true)}>{isEnglish?`Show all ${matches.length} images`:`展開全部 ${matches.length} 張原廠圖片`}<ArrowDown size={17}/></button>}
-    <p className="cy-fineprint">{isEnglish?'Images are published by Cyabra and include interface examples and illustrations. Sample data and depicted incidents demonstrate the product; availability and interface may vary by version.':'圖片均來自 Cyabra 公開官網，包含介面範例與功能示意。圖中數據及事件用於展示產品；實際介面與可用功能依版本而定。'}</p>
+    <p className="cy-fineprint">{isEnglish?'Images are published by Cyabra. Captions distinguish interface screenshots, research cases, concept artwork, and guide covers. Case context and figures are documented in the vendor source; interface and availability may vary by version.':'圖片均來自 Cyabra 公開官網，並區分操作畫面、案例研究、功能概念與指南封面。案例情境及數據請參閱原廠來源；實際介面與可用功能依版本而定。'}</p>
   </div></section>;
 };
+
+export const CyabraPublicGuides: React.FC<{ isEnglish: boolean }> = ({ isEnglish }) => (
+  <div className="cy-guide-library">
+    <div className="cy-section-heading"><div><p className="cy-eyebrow">OFFICIAL PLAYBOOKS</p><h3>{isEnglish ? 'Start with a practical guide.' : '先用一份實務指南，理解怎麼應對。'}</h3></div><p>{isEnglish ? 'Explore Cyabra’s public guides on comment sections, disinformation, deepfakes, crises, and harmful profiles.' : '從留言區、假資訊、深偽、危機預警到有害帳號，直接閱讀原廠公開指南。'}</p></div>
+    <div className="cy-gallery-grid">{cyabraOfficialImages.filter(asset => asset.group === 'playbooks').map(asset => <CyabraOfficialFigure key={asset.id} asset={asset} isEnglish={isEnglish} compact />)}</div>
+  </div>
+);
