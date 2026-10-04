@@ -56,14 +56,29 @@ const AiInfrastructureSolutionPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
   const text = (zh: string, en: string) => isEnglish ? en : zh;
   const actions = <div className="comino-actions"><Link className="comino-button" to="/contact">{text('討論我的部署需求', 'Discuss my deployment')}</Link><a className="comino-button comino-button-secondary" href="#test-drive">{tx(testDrive.entryLabel, isEnglish)}</a><Link className="comino-button comino-button-secondary" to="/configurator?request=true">{text('我已知道規格，開始配置', 'I know my specification')}</Link><a className="comino-button comino-button-secondary" href="#procurement">{text('機關採購參考與文件', 'Procurement reference and documents')}</a></div>;
+  const structuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': 'https://eudaemonia.tech/solutions/ai-infrastructure/#service',
+      name: text('Comino GRANDO 液冷 GPU 系統規劃與採購服務', 'Comino GRANDO liquid-cooled GPU system planning and procurement'),
+      description: text('依工作負載、場地、供電與散熱條件規劃 Comino GRANDO 液冷 GPU 工作站或伺服器，並提供配置審查、正式報價與驗收規劃。', 'Plan a Comino GRANDO liquid-cooled GPU workstation or server around workload, site, power, and heat-removal requirements, with configuration review, formal quotation, and acceptance planning.'),
+      serviceType: text('液冷 GPU 伺服器與 AI 工作站規劃', 'Liquid-cooled GPU server and AI workstation planning'),
+      url: 'https://eudaemonia.tech/solutions/ai-infrastructure/',
+      provider: { '@id': 'https://eudaemonia.tech/#organization' },
+      brand: { '@type': 'Brand', name: 'Comino', url: 'https://www.comino.com/en/company' },
+      areaServed: { '@type': 'Country', name: 'Taiwan' }
+    },
+    cominoQuestionsSchema(isEnglish)
+  ];
 
-  return <PageShell title={{ zh: 'Comino 液冷 GPU 伺服器、AI 工作站與機關採購', en: 'AI infrastructure | EudTech' }} description={{ zh: '從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。', en: 'Plan AI servers and workstations from workload, site and liquid-cooling configuration through procurement reference, manufacturer documents and acceptance criteria.' }} path="/solutions/ai-infrastructure" structuredData={cominoQuestionsSchema(isEnglish)}>
+  return <PageShell title={{ zh: 'Comino 液冷 GPU 伺服器、AI 工作站與機關採購', en: 'Comino Liquid-Cooled GPU Servers & Workstations' }} description={{ zh: '從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。', en: 'Plan Comino GRANDO GPU servers and workstations in Taiwan, including workload sizing, power, cooling, manufacturer documents and procurement evidence.' }} path="/solutions/ai-infrastructure" structuredData={structuredData}>
     <div className="comino-story">
       <section className="comino-hero" aria-labelledby="comino-title">
         <div className="comino-wrap comino-split">
           <div>
             <p className="comino-eyebrow">{text('AI 運算基礎設施', 'AI infrastructure')} · Comino GRANDO</p>
-            <h1 id="comino-title">{text('多 GPU 算力，也要適合你的工作環境。', 'Multi-GPU computing that fits where you work.')}</h1>
+            <h1 id="comino-title">{text('Comino GRANDO 液冷 GPU 伺服器與 AI 工作站採購', 'Comino GRANDO liquid-cooled GPU servers and AI workstations')}</h1>
             <p className="comino-lead">{text('從桌邊工作站到機架式多 GPU 系統，Comino GRANDO 以封閉式液冷為核心。EudTech 依你的工作負載，評估噪音、空間、供電與散熱，整理成可配置、可詢價的方案。', 'From deskside workstations to rack-mounted multi-GPU systems, Comino GRANDO is built around closed-loop liquid cooling. EudTech reviews your workload, noise, space, power and cooling needs to prepare a configuration and quotation.')}</p>
             {actions}
           </div>

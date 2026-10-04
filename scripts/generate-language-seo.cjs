@@ -3,15 +3,20 @@ const path = require('path');
 const { formatSeoTitle, englishRoutes } = require('./seo-public-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const { getConfiguratorSocialPreviewRoutes } = require('./configurator-social-preview-routes.cjs');
+const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const reference = require('../src/data/cominoProcurement.json');
+const conformity = require('../src/data/cominoConformity.json');
 const trial = require('../src/data/cominoTestDrive.json');
 const dates = require('../public/discovery-lastmod.json').entries;
+const organization = require('../src/data/organization.json');
+const { CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const origin = 'https://eudaemonia.tech';
 const absolute = p => canonicalPageUrl(p, origin);
 const enUrl = p => absolute(`/en${p}`);
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const json = value => JSON.stringify(value).replace(/</g, '\\u003c');
 const social = new Map(getConfiguratorSocialPreviewRoutes().map(r => [r.path, r.socialImageUrl]));
+const configuratorProductByPath = new Map(CONFIGURATOR_PRODUCT_SEO.map(product => [product.configuratorHref, product]));
 const style = '<style>.seo-content{max-width:1080px;margin:auto;padding:100px 24px 48px;color:#172e38;background:#fff;font:17px/1.8 system-ui}.seo-content h1{font-size:2.3rem;line-height:1.25}.seo-content h2{font-size:1.5rem;margin-top:2em}.seo-content a{color:#0759a1;text-decoration:underline}.seo-content nav{display:flex;gap:20px;flex-wrap:wrap}.seo-content td,.seo-content th{padding:10px;text-align:left;border-bottom:1px solid #ddd}.seo-content li{margin-bottom:12px}</style>';
 
 function cleanHead(html) {
@@ -22,7 +27,7 @@ function cleanHead(html) {
 }
 
 function procurement() {
-  return `<section id="procurement"><h2>${escape(reference.title.en)}</h2><p>${escape(reference.translationNote.en)}</p><ul>${reference.documents.map(d => `<li><a href="${escape(d.href)}">${escape(d.title.en)} ${escape(d.version)}</a> — ${escape(d.description.en)} <a href="${escape(d.source)}">Manufacturer source</a></li>`).join('')}</ul><h3>Functions and evidence for specification review</h3>${reference.criteria.map(c => `<h4>${escape(c.title.en)}</h4><p>${escape(c.requirement.en)}</p><p>${escape(c.evidence.en)}</p>`).join('')}<p>${escape(reference.conformityNote.en)}</p><p>${escape(reference.procurementNote.en)}</p></section>`;
+  return `<section id="procurement"><h2>${escape(reference.title.en)}</h2><p>${escape(reference.translationNote.en)}</p><ul>${reference.documents.map(d => `<li><a href="${escape(d.href)}">${escape(d.title.en)} ${escape(d.version)}</a> — ${escape(d.description.en)} <a href="${escape(d.source)}">Manufacturer source</a></li>`).join('')}</ul><h3>${escape(conformity.title.en)}</h3><p>${escape(conformity.translationBoundary.en)}</p><ul>${conformity.documents.map(d => `<li><a href="${escape(d.source)}">${escape(d.title.en)}</a> — ${escape(d.summary.en)}</li>`).join('')}</ul><p>${escape(conformity.fccBoundary.en)}</p><h3>Functions and evidence for specification review</h3>${reference.criteria.map(c => `<h4>${escape(c.title.en)}</h4><p>${escape(c.requirement.en)}</p><p>${escape(c.evidence.en)}</p>`).join('')}<p>${escape(reference.conformityNote.en)}</p><p>${escape(reference.procurementNote.en)}</p></section>`;
 }
 
 function testDrive() {
@@ -34,13 +39,53 @@ function renderEnglishPage(baseHtml, route) {
   const image = social.get(route.path) || new URL(route.image || (route.path==='/careers'?'/brand-provenance/eudtech-brand-careers.webp':'/social/configurator/home.jpg'), origin).href;
   const article = ['comparison','guide','checklist'].includes(route.kind);
   const related = englishRoutes().filter(r => r.path !== route.path && (['/resources','/products','/solutions','/configurator'].includes(route.path) || ['/solutions','/configurator','/resources','/contact'].includes(r.path)));
+  const relatedItemList = related.length ? {
+    '@context':'https://schema.org','@type':'ItemList','@id':`${url}#related-links`,name:`Related pages for ${route.title}`,
+    itemListElement:related.map((item,index)=>({'@type':'ListItem',position:index+1,name:item.title,url:enUrl(item.path)}))
+  } : null;
+  const configuratorProduct = configuratorProductByPath.get(route.path);
+  const configuratorSchemas = configuratorProduct ? [
+    {
+      '@context':'https://schema.org','@type':'WebApplication',name:configuratorProduct.title.en,
+      description:configuratorProduct.description.en,applicationCategory:'BusinessApplication',operatingSystem:'Web',url,
+      provider:{'@id':`${origin}/#organization`},potentialAction:{'@type':'QuoteAction',target:enUrl(configuratorProduct.quoteHref)}
+    },
+    {
+      '@context':'https://schema.org','@type':'Service',name:configuratorProduct.title.en,
+      description:configuratorProduct.description.en,image:new URL(configuratorProduct.image,origin).href,url,
+      provider:{'@id':`${origin}/#organization`},brand:{'@type':'Brand',name:configuratorProduct.brand},
+      serviceType:'GPU server quote configuration',category:configuratorProduct.category.en,identifier:configuratorProduct.productId,
+      additionalProperty:configuratorProduct.properties.map(property=>({'@type':'PropertyValue',name:property.name.en,value:property.value.en})),
+      potentialAction:{'@type':'QuoteAction',target:enUrl(configuratorProduct.quoteHref)}
+    }
+  ] : route.path === '/configurator' ? [
+    {
+      '@context':'https://schema.org','@type':'WebApplication',name:route.title,description:route.description,
+      applicationCategory:'BusinessApplication',operatingSystem:'Web',url,
+      provider:{'@id':`${origin}/#organization`},potentialAction:{'@type':'QuoteAction',target:enUrl('/configurator?request=true')}
+    },
+    {
+      '@context':'https://schema.org','@type':'ItemList',name:'EudTech configurator entries',
+      itemListElement:[
+        ...CONFIGURATOR_PRODUCT_SEO.map((product,index)=>({'@type':'ListItem',position:index+1,name:product.title.en,url:enUrl(product.configuratorHref)})),
+        ...[
+          ['Configurator solution hub','/solutions'],
+          ['GPU server quote process','/solutions/gpu-server-quote'],
+          ['GPU server RFQ checklist','/solutions/gpu-server-rfq-checklist'],
+          ['Liquid-cooled GPU server procurement','/solutions/liquid-cooling-ai-server-procurement']
+        ].map(([name,pathname],index)=>({'@type':'ListItem',position:CONFIGURATOR_PRODUCT_SEO.length+index+1,name,url:enUrl(pathname)}))
+      ]
+    }
+  ] : [];
   const schemas = [
-    {'@context':'https://schema.org','@type':'Organization','@id':`${origin}/#organization`,name:'EudTech',alternateName:['Eudaemonia Technology','優達盟資訊科技'],url:`${origin}/`,email:'quote@eudaemonia.tech'},
+    {'@context':'https://schema.org',...organization},
     {'@context':'https://schema.org','@type':'WebSite','@id':`${origin}/#website`,name:'EudTech',url:`${origin}/`,inLanguage:['zh-TW','en']},
     {'@context':'https://schema.org','@type':article?'Article':'WebPage','@id':`${url}#webpage`,url,name:title,headline:route.title,description:route.description,inLanguage:'en',image,
       datePublished:dates[url]?.publishedAt,dateModified:dates[url]?.modifiedAt,publisher:{'@id':`${origin}/#organization`},isPartOf:{'@id':`${origin}/#website`}},
-    {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'EudTech',item:enUrl('/')},...(route.path==='/'?[]:[{'@type':'ListItem',position:2,name:route.title,item:url}])]}
-  ];
+    {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'EudTech',item:enUrl('/')},...(route.path==='/'?[]:[{'@type':'ListItem',position:2,name:route.title,item:url}])]},
+    ...configuratorSchemas,
+    relatedItemList
+  ].filter(Boolean);
   if (route.faq?.length) schemas.push({'@context':'https://schema.org','@type':'FAQPage',mainEntity:route.faq.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}}))});
   const head = [
     `<title>${escape(title)}</title>`,

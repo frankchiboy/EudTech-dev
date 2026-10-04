@@ -9,10 +9,12 @@ const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const reportsDir = path.join(rootDir, 'reports');
 const maxTotalMb = maxTotalMbArgIndex >= 0 ? Number(args[maxTotalMbArgIndex + 1]) : 260;
-// Includes seven optimized images for the Comino Test Drive section.
-// 46 bilingual route pairs, document readers, utility/404 pages and split JS chunks.
-const maxFileCount = maxFileCountArgIndex >= 0 ? Number(args[maxFileCountArgIndex + 1]) : 360;
+// Includes optimized Comino Test Drive media and six searchable document readers.
+// 48 bilingual route pairs, utility/404 pages, generated discovery files and split JS chunks.
+// Keep a narrow margin above the current production bundle so unexpected asset growth still fails.
+const maxFileCount = maxFileCountArgIndex >= 0 ? Number(args[maxFileCountArgIndex + 1]) : 500;
 const cominoTestDrive = require('../src/data/cominoTestDrive.json');
+const cominoConformity = require('../src/data/cominoConformity.json');
 
 const requiredFiles = [
   ...[cominoTestDrive.heroImage.src, ...cominoTestDrive.features.map((item) => item.image), ...cominoTestDrive.configurations.map((item) => item.image)].map((src) => src.replace(/^\//, '')),
@@ -48,6 +50,7 @@ const requiredFiles = [
   'vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.html',
   ...Array.from({ length: 14 }, (_, i) => `vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW-pages/page-${String(i + 1).padStart(2, '0')}.webp`),
   ...Array.from({ length: 2 }, (_, i) => `vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW-pages/page-${String(i + 1).padStart(2, '0')}.webp`),
+  ...cominoConformity.documents.flatMap((document) => [document.hrefZh, document.readerHrefZh, document.previewHrefZh].map((src) => src.replace(/^\//, ''))),
   'social/configurator/configurator.jpg',
   'images/configurator/devices/comino-integration-kit-8x-pro-6000.webp',
   'images/configurator/devices/comino-rtx-pro-6000-workstation.webp',

@@ -4,6 +4,7 @@ const path = require('node:path');
 const { englishRoutes } = require('./seo-public-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const reference = require('../src/data/cominoProcurement.json');
+const conformity = require('../src/data/cominoConformity.json');
 const dates = require('../public/discovery-lastmod.json').entries;
 const origin = 'https://eudaemonia.tech';
 const dist = path.resolve(__dirname, '../dist');
@@ -29,19 +30,26 @@ for (const route of englishRoutes()) for (const en of [false,true]) {
   for (const [lang,href] of [['zh-Hant',canon(route.path)],['en',canon(`/en${route.path}`)],['x-default',canon(route.path)]]) {
     assert.ok(html.toLowerCase().includes(`hreflang="${lang}" href="${href}"`.toLowerCase()),`Missing reciprocal alternate ${url} ${lang}`);
   }
-  for (const match of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
-    const data=JSON.parse(match[1]);
+  const schemas=[...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match=>JSON.parse(match[1]));
+  for (const data of schemas) {
     if (data['@type']==='Article' || data['@type']==='WebPage' || data['@type']==='CollectionPage') {
       assert.equal(data.url,url,`Schema URL ${url}`);
       assert.equal(data.dateModified,dates[url].modifiedAt,`Unstable content date ${url}`);
     }
+  }
+  if (/^\/configurator(?:\/|$)/.test(route.path)) {
+    const types=new Set(schemas.map(schema=>schema['@type']));
+    for (const type of ['Organization','WebSite','WebPage','BreadcrumbList','WebApplication','ItemList']) {
+      assert.ok(types.has(type),`Missing ${type} schema ${url}`);
+    }
+    if (route.path !== '/configurator') assert.ok(types.has('Service'),`Missing Service schema ${url}`);
   }
   const image=html.match(/property="og:image" content="([^"]+)"/)?.[1];
   assert.ok(image?.startsWith('https://'),`Social image must be absolute ${url}`);
   if (image.startsWith(origin)) assert.ok(fs.existsSync(path.join(dist,new URL(image).pathname)),`Missing social image ${image}`);
   count++;
 }
-for (const doc of reference.documents) {
+for (const doc of [...reference.documents, ...conformity.documents]) {
   const url=origin+doc.readerHrefZh.replace(/\.html$/,'').toLowerCase();
   const html=fs.readFileSync(path.join(dist,doc.readerHrefZh),'utf8');
   assert.ok(urls.includes(url),`Document missing from sitemap ${url}`);
@@ -53,4 +61,4 @@ for (const file of ['404.html','en/404.html']) assert.ok(fs.readFileSync(path.jo
 const redirects=fs.readFileSync(path.join(dist,'_redirects'),'utf8');
 assert.ok(!/\/\*\s+\/index\.html\s+200/.test(redirects),'Soft-404 SPA fallback must not return');
 assert.ok(redirects.includes('/* /404.html 404') && redirects.includes('/en/* /en/404.html 404'),'Missing real 404 rules');
-console.log(JSON.stringify({ok:true,bilingualPages:count,documentPages:reference.documents.length,sitemapUrls:urls.length,reciprocalHreflang:true,stableDates:true,real404:true},null,2));
+console.log(JSON.stringify({ok:true,bilingualPages:count,documentPages:reference.documents.length+conformity.documents.length,sitemapUrls:urls.length,reciprocalHreflang:true,stableDates:true,real404:true},null,2));

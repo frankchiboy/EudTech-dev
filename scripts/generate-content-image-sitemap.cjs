@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const reference = require('../src/data/cominoProcurement.json');
+const conformity = require('../src/data/cominoConformity.json');
 
 // Read the final HTML so image discovery follows the same localized content that
 // visitors receive. The earlier public sitemap remains a development fallback.
@@ -42,7 +43,7 @@ function localImagePath(imageUrl, dist) {
 function generate(dist) {
   const sitemap = fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8');
   const pages = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => decode(m[1]));
-  const documentPaths = new Map(reference.documents.map(doc => [doc.readerHrefZh.replace(/\.html$/, '').toLowerCase(), doc.readerHrefZh]));
+  const documentPaths = new Map([...reference.documents, ...conformity.documents].map(doc => [doc.readerHrefZh.replace(/\.html$/, '').toLowerCase(), doc.readerHrefZh]));
   const entries = [];
   for (const pageUrl of pages) {
     const pathname = new URL(pageUrl).pathname;

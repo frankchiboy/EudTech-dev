@@ -452,7 +452,7 @@ export const CONFIGURATOR_PRODUCT_SEO: ConfiguratorProductSeo[] = [
     id: 34,
     deviceName: 'WORKSTATION 2x PRO 6000',
     title: {
-      en: 'WORKSTATION 2x PRO 6000 AI Workstation Configurator',
+      en: 'WORKSTATION 2x PRO 6000 Configurator',
       zh: 'WORKSTATION 2x PRO 6000 AI 工作站配置器'
     },
     description: {

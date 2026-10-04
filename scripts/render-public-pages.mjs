@@ -9,6 +9,12 @@ const root = process.cwd();
 const manifestPath = path.join(root, 'dist/.vite/manifest.json');
 const savedManifestPath = path.join(root, 'dist-ssr/client-manifest.json');
 const manifest = JSON.parse(fs.readFileSync(fs.existsSync(manifestPath) ? manifestPath : savedManifestPath, 'utf8'));
+const discoveryDates = JSON.parse(fs.readFileSync(path.join(root, 'public/discovery-lastmod.json'), 'utf8'));
+const canonicalPathByAlias = new Map(Object.keys(discoveryDates.entries).map((value) => {
+  const canonicalPath = new URL(value).pathname;
+  const alias = canonicalPath === '/' ? '/' : canonicalPath.replace(/\/$/, '');
+  return [alias, canonicalPath];
+}));
 const routeModules = {
   '/': 'index.html',
   '/careers': 'src/components/CareersPage.tsx',
@@ -40,6 +46,14 @@ function routeAssets(route, original) {
   return [...assets].filter(([file]) => !original.includes(`href="/${file}"`) && !original.includes(`src="/${file}"`))
     .map(([file, rel]) => `<link rel="${rel}" crossorigin href="/${file}">`).join('\n');
 }
+function canonicalizeInternalLinks(markup) {
+  return markup.replace(/\bhref="(\/[^\"]*)"/g, (tag, href) => {
+    const parsed = new URL(href, 'https://eudaemonia.tech');
+    const alias = parsed.pathname === '/' ? '/' : parsed.pathname.replace(/\/$/, '');
+    const canonicalPath = canonicalPathByAlias.get(alias);
+    return canonicalPath ? `href="${canonicalPath}${parsed.search}${parsed.hash}"` : tag;
+  });
+}
 // The server bundle stays outside the published directory.
 await build({
   configFile: false,
@@ -63,6 +77,7 @@ for (const route of pages.englishRoutes()) {
     const original = fs.readFileSync(file, 'utf8');
     const { body, head, htmlAttributes } = await render(pathname);
     if (!body.includes('<h1') || body.includes('<!--$!-->')) throw new Error(`Incomplete render: ${pathname}`);
+    const canonicalBody = canonicalizeInternalLinks(body);
     const bodyScripts = (original.match(/<body>[\s\S]*?<\/body>/)?.[0].match(/<script\b[\s\S]*?<\/script>/g) || []).join('\n');
     const html = original
       .replace(/<html\b[^>]*>/, `<html ${htmlAttributes} data-netlify="true">`)
@@ -73,7 +88,7 @@ for (const route of pages.englishRoutes()) {
       .replace(/<style\b[^>]*data-static-seo-fallback[^>]*>[\s\S]*?<\/style>/g, '')
       .replace(/<script\b[^>]*data-static-seo-fallback[^>]*>[\s\S]*?<\/script>/g, '')
       .replace('</head>', () => `${head}\n${routeAssets(route.path, original)}\n</head>`)
-      .replace(/<body>[\s\S]*?<\/body>/, () => `<body><div id="root" data-rendered="true">${body}</div>${bodyScripts}</body>`);
+      .replace(/<body>[\s\S]*?<\/body>/, () => `<body><div id="root" data-rendered="true">${canonicalBody}</div>${bodyScripts}</body>`);
     fs.writeFileSync(file, html);
     count++;
   }

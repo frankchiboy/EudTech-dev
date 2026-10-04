@@ -11,7 +11,7 @@ export const getEudTechProducts = (isEnglish: boolean): Product[] => [
     id: 3,
     title: isEnglish ? 'FinSight Financial AI System' : 'FinSight 金融AI系統',
     description: isEnglish
-      ? 'FinSight is a financial language-understanding and data API framework. It combines raw financial data with LLMs for real-time insights and decision support.'
+      ? 'FinSight is a financial language-understanding and data API framework. It combines raw financial data with LLMs for insights and decision support.'
       : 'FinSight 是金融語言理解與資料 API 框架，結合原始金融資料與 LLM，提供即時洞察與決策輔助。',
     icon: React.createElement(Shield, { className: "h-8 w-8 text-blue-800" }),
     image: "https://images.pexels.com/photos/7567529/pexels-photo-7567529.jpeg",
@@ -152,7 +152,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     id: 5,
     title: isEnglish ? 'Comino Grando Rackable Workstation' : 'Comino Grando 機架式工作站',
     description: isEnglish
-      ? 'Rackable liquid-cooled platform with up to 8 GPUs and 2 CPUs. Confirm compatibility, remote management, power redundancy and site conditions for the selected build.'
+      ? 'Rackable liquid-cooled platform with up to 8 GPUs and 2 CPUs. Confirm compatibility, remote management, power redundancy and site conditions.'
       : '可上架液冷平台，最高支援 8 張 GPU 與 2 顆 CPU；依選定配置確認相容性、遠端管理、電源備援與場地條件。',
     icon: React.createElement(Server, { className: "h-8 w-8 text-purple-700" }),
     image: "/grando-8gpu-server.jpg",
@@ -223,7 +223,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     id: 6,
     title: isEnglish ? 'Comino GRANDO Liquid-cooled Workstation' : 'Comino GRANDO 液冷工作站',
     description: isEnglish
-      ? 'Liquid-cooled workstation for AI development and simulation. Current popular Blackwell configurations use 2× RTX 5090 with Threadripper PRO, 256GB or 512GB RAM, and dual NVMe storage.'
+      ? 'Liquid-cooled AI workstation. Current popular Blackwell builds use 2× RTX 5090, Threadripper PRO, 256GB or 512GB RAM and dual NVMe storage.'
       : '適合 AI 開發與模擬的液冷工作站；目前原廠熱門 Blackwell 配置採 2 張 RTX 5090、Threadripper PRO、256GB 或 512GB RAM 與雙 NVMe。',
     icon: React.createElement(Monitor, { className: "h-8 w-8 text-indigo-700" }),
     image: "/vendor/comino/grando-blackwell-official.jpg",
@@ -270,7 +270,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     id: 7,
     title: isEnglish ? 'Comino Grando Server' : 'Comino Grando 伺服器',
     description: isEnglish
-      ? '4U liquid-cooled server platform with up to 8 GPUs and 2 CPUs. Confirm power redundancy, hot-swappable PSU/SSD options and cooling monitoring for the selected build.'
+      ? '4U liquid-cooled server with up to 8 GPUs and 2 CPUs. Confirm power redundancy, hot-swappable PSU/SSD options and cooling monitoring.'
       : '4U 液冷伺服器平台，最高支援 8 張 GPU 與 2 顆 CPU；電源備援、電源／SSD 熱插拔選項與冷卻監控依選定配置確認。',
     icon: React.createElement(Server, { className: "h-8 w-8 text-red-700" }),
     image: "/GRANDO_RM-M-CRPS_9004_8xGPU_21.jpg",
@@ -524,7 +524,7 @@ export const getCyabraProducts = (isEnglish: boolean): Product[] => [
     id: 11,
     title: isEnglish ? 'Cyabra Enterprise Access' : 'Cyabra 企業導入',
     description: isEnglish
-      ? 'Enterprise delivery options across SaaS, Managed Services, real-time alerts, on-premises deployment, and API access, scoped to the organisation’s monitoring and integration needs.'
+      ? 'Cyabra enterprise options include SaaS, Managed Services, alerts, on-premises deployment and API access, scoped to monitoring and integration needs.'
       : '依組織監測與整合需求，規劃 SaaS、Managed Services、即時警示、On-Prem 與 API 等企業導入方式。',
     icon: React.createElement(Shield, { className: "h-8 w-8 text-[#003daa]" }),
     image: "/vendor/cyabra/topic-proliferation.svg",

@@ -68,9 +68,52 @@ const ProductDetails: React.FC = () => {
     );
   }
 
+  const brandName = [5, 6, 7].includes(product.id)
+    ? 'Comino'
+    : [10, 11].includes(product.id)
+      ? 'Cyabra'
+      : 'EudTech';
+  const productUrl = `https://eudaemonia.tech/products/${product.id}/`;
+  const sharedSchema = {
+    '@context': 'https://schema.org',
+    name: product.title,
+    description: product.description,
+    url: productUrl,
+    image: product.image.startsWith('http') ? product.image : `https://eudaemonia.tech${product.image}`
+  };
+  const structuredData = [1, 5, 6, 7].includes(product.id)
+    ? {
+        ...sharedSchema,
+        '@type': 'Product',
+        '@id': `${productUrl}#product`,
+        category: productCategory,
+        brand: { '@type': 'Brand', name: brandName },
+        additionalProperty: Object.entries(product.specs).map(([name, value]) => ({
+          '@type': 'PropertyValue',
+          name,
+          value
+        }))
+      }
+    : product.id === 11
+      ? {
+          ...sharedSchema,
+          '@type': 'Service',
+          '@id': `${productUrl}#service`,
+          serviceType: productCategory,
+          brand: { '@type': 'Brand', name: brandName }
+        }
+      : {
+          ...sharedSchema,
+          '@type': 'SoftwareApplication',
+          '@id': `${productUrl}#software`,
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: isEnglish ? 'Web or on-premises deployment' : '網頁或地端部署',
+          author: { '@type': 'Organization', name: brandName }
+        };
+
   return (
     <>
-      <SEOHead title={product.title} description={product.description} url={`https://eudaemonia.tech/products/${product.id}/`} image={product.image} imageAlt={product.title} isEnglish={isEnglish} />
+      <SEOHead title={product.title} description={product.description} url={productUrl} image={product.image} imageAlt={product.title} isEnglish={isEnglish} structuredData={structuredData} />
       <div className="min-h-screen bg-neutral-50 dark:bg-gray-900 overflow-x-hidden pt-16">
       {/* Product Header */}
       <div className="bg-white dark:bg-gray-800">

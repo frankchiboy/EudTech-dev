@@ -4,8 +4,19 @@ import { useLocation } from 'react-router-dom';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import discoveryDates from '../../../public/discovery-lastmod.json';
 import englishCopy from '../../data/englishSeoPages.json';
+import organization from '../../data/organization.json';
 
 const SITE_ORIGIN = 'https://eudaemonia.tech';
+const breadcrumbLabels: Record<string, { zh: string; en: string }> = {
+  about: { zh: '關於 EudTech', en: 'About EudTech' },
+  careers: { zh: '職業機會', en: 'Careers' },
+  configurator: { zh: '配置器', en: 'Configurator' },
+  contact: { zh: '聯絡 EudTech', en: 'Contact EudTech' },
+  privacy: { zh: '隱私與資料使用', en: 'Privacy and data use' },
+  products: { zh: '產品與品牌', en: 'Products and brands' },
+  resources: { zh: '採購資源', en: 'Resources' },
+  solutions: { zh: '解決方案', en: 'Solutions' }
+};
 
 interface SEOHeadProps {
   title?: string;
@@ -89,20 +100,48 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     .filter(item => !['Organization', 'WebSite'].includes(String(item['@type'])))
     .filter(item => !(item['@type'] === 'FAQPage' && basePath.startsWith('/configurator'))).map(item => {
     const copy = localizeSchema(item) as Record<string, unknown>;
-    if (copy['@type'] === 'Article' && dates) {
+    if (['Article', 'WebPage', 'CollectionPage'].includes(String(copy['@type'])) && dates) {
       copy.url = canonicalUrl;
-      copy.datePublished = dates.publishedAt;
       copy.dateModified = dates.modifiedAt;
-      copy.mainEntityOfPage = canonicalUrl;
+      if (copy['@type'] === 'Article') {
+        copy.datePublished = dates.publishedAt;
+        copy.mainEntityOfPage = canonicalUrl;
+      }
     }
     if (typeof copy.url === 'string' && new URL(copy.url, SITE_ORIGIN).pathname === basePath) copy.url = canonicalUrl;
     return copy;
   });
+  if (shouldIndex && !structuredDataItems.some((item) => item['@type'] === 'BreadcrumbList')) {
+    const segments = basePath.split('/').filter(Boolean);
+    const breadcrumbUrl = (segmentCount: number) => {
+      const pathname = `/${segments.slice(0, segmentCount).join('/')}`;
+      return canonicalPageUrl(`${SITE_ORIGIN}${isEnglish ? `/en${pathname}` : pathname}`, SITE_ORIGIN);
+    };
+    structuredDataItems.push({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: isEnglish ? 'Home' : '首頁',
+          item: isEnglish ? `${SITE_ORIGIN}/en/` : `${SITE_ORIGIN}/`
+        },
+        ...segments.map((segment, index) => ({
+          '@type': 'ListItem',
+          position: index + 2,
+          name: index === segments.length - 1
+            ? fullTitle.replace(/\s*[|｜]\s*EudTech.*$/i, '').trim()
+            : breadcrumbLabels[segment]?.[isEnglish ? 'en' : 'zh'] || segment.replace(/-/g, ' '),
+          item: breadcrumbUrl(index + 1)
+        }))
+      ]
+    });
+  }
   structuredDataItems.unshift(
     {
-      '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE_ORIGIN}/#organization`,
-      name: 'EudTech', alternateName: 'Eudaemonia Technology', url: `${SITE_ORIGIN}/`,
-      email: 'quote@eudaemonia.tech', logo: `${SITE_ORIGIN}/logo.svg`
+      '@context': 'https://schema.org', ...organization
     },
     {
       '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE_ORIGIN}/#website`,

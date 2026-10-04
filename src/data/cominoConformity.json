@@ -1,0 +1,113 @@
+{
+  "reviewedAt": "2026-10-04",
+  "title": {
+    "zh": "原廠型號別符合性聲明",
+    "en": "Model-specific manufacturer declarations"
+  },
+  "intro": {
+    "zh": "下列為 Comino 原廠公開網址及其可檢索文字所列的型號範圍。中文查閱稿翻譯已能核對的關鍵欄位，並保留原始網址；採購時仍須向原廠取得可驗證原檔及所引用報告。",
+    "en": "The entries below identify model scope from Comino's public URLs and indexed text. The Chinese reference editions translate verifiable key fields and retain the original URLs. Obtain verifiable originals and cited reports from the manufacturer for procurement."
+  },
+  "translationBoundary": {
+    "zh": "繁體中文查閱稿由 EudTech 依原廠公開索引文字整理，並非 Comino 核發文件，也不是原始 PDF 的逐頁、簽章或版面複本。2026-10-04 原廠主機拒絕連線，故無原始檔 SHA-256；若與可驗證英文原文不一致，以英文原文為準。",
+    "en": "The Traditional Chinese reference editions were prepared by EudTech from publicly indexed manufacturer text. They are not Comino-issued documents or page, signature, or layout replicas of the source PDFs. The manufacturer host refused connections on 2026-10-04, so no source-file SHA-256 is available. A verifiable English original prevails."
+  },
+  "fccBoundary": {
+    "zh": "截至 2026-10-04，未在 Comino 公開官方來源確認 GRANDO RM-M 或 RM-M-CRPS 的型號別 FCC 聲明、授權或測試報告。若標案要求 FCC 證據，須由原廠提供與最終交付型號及 BOM 相符的文件；舊版 COMINO N1 聲明不能作為 GRANDO 證據。",
+    "en": "As of 2026-10-04, no model-specific FCC declaration, authorization, or test report for GRANDO RM-M or RM-M-CRPS was verified in Comino's public official sources. If FCC evidence is required, obtain manufacturer evidence matching the final model and BOM. A legacy COMINO N1 declaration does not evidence GRANDO."
+  },
+  "documents": [
+    {
+      "id": "rm-m-ce",
+      "kind": "CE",
+      "title": { "zh": "RM-M 歐盟符合性聲明關鍵欄位", "en": "RM-M EU Declaration of Conformity" },
+      "sourceTitle": "Declaration of Conformity",
+      "source": "https://faq.comino.com/declaration-of-conformity/declaration_of_conformity_ce_rm-m.pdf",
+      "readerHrefZh": "/vendor/comino/documents/comino-rm-m-ce-declaration-2024-zh-tw.html",
+      "hrefZh": "/vendor/comino/documents/comino-rm-m-ce-declaration-2024-zh-TW.pdf",
+      "previewHrefZh": "/vendor/comino/documents/comino-rm-m-ce-declaration-2024-zh-TW-pages/page-01.webp",
+      "issuer": "CMNO Logica SIA",
+      "signer": "Janis Buls · Director",
+      "date": "2024-05",
+      "model": "RM-M",
+      "submodels": ["RM-M-V1", "RM-M-V2"],
+      "products": ["Comino Grando Workstation", "Comino Grando AI", "Comino Grando Forensic", "Comino Grando VP", "Comino Grando Rendering"],
+      "directives": ["2014/30/EU EMC", "2014/35/EU LVD", "2011/65/EU RoHS"],
+      "standards": ["EN 55032:2015/A11:2020", "EN 55035:2017/A11:2020", "EN IEC 61000-3-2:2019", "EN 61000-3-3:2013/A2:2021/AC:2022-01", "EN IEC 62368-1:2020", "IEC 63000:2018"],
+      "reports": ["EMC report LEITC-TR-23-161", "Safety test reports No.: blank in indexed source text"],
+      "summary": {
+        "zh": "原廠自我符合性聲明涵蓋 RM-M-V1／V2，列出 EMC 報告 LEITC-TR-23-161；可檢索文字中的安全測試報告編號欄為空白。",
+        "en": "The manufacturer self-declaration covers RM-M-V1/V2 and cites EMC report LEITC-TR-23-161. The safety-test report number field is blank in the indexed source text."
+      }
+    },
+    {
+      "id": "rm-m-crps-ce",
+      "kind": "CE",
+      "title": { "zh": "RM-M-CRPS 歐盟符合性聲明關鍵欄位", "en": "RM-M-CRPS EU Declaration of Conformity" },
+      "sourceTitle": "Declaration of Conformity RM-M-CRPS",
+      "source": "https://faq.comino.com/declaration-of-conformity/declaration_of_conformity_ce_rm-m-crps.pdf",
+      "readerHrefZh": "/vendor/comino/documents/comino-rm-m-crps-ce-declaration-2024-zh-tw.html",
+      "hrefZh": "/vendor/comino/documents/comino-rm-m-crps-ce-declaration-2024-zh-TW.pdf",
+      "previewHrefZh": "/vendor/comino/documents/comino-rm-m-crps-ce-declaration-2024-zh-TW-pages/page-01.webp",
+      "issuer": "CMNO Logica SIA",
+      "signer": "Janis Buls · Director",
+      "date": "2024-05",
+      "model": "RM-M-CRPS",
+      "submodels": ["RM-M-CRPS-V1", "RM-M-CRPS-V2", "RM-M-CRPS-DUALBLADE"],
+      "products": ["Comino Grando Server", "Comino Grando AI", "Comino Grando Forensic", "Comino Grando VP", "Comino Grando Rendering"],
+      "directives": ["2014/30/EU EMC", "2014/35/EU LVD", "2011/65/EU RoHS"],
+      "standards": ["EN 55032:2015/A11:2020", "EN 55035:2017/A11:2020", "EN IEC 61000-3-2:2019", "EN 61000-3-3:2013/A2:2021/AC:2022-01", "EN IEC 62368-1:2020", "EN IEC 63000:2018"],
+      "reports": ["EMC report LEITC-TR-23-163", "Safety report 004TP24"],
+      "summary": {
+        "zh": "原廠自我符合性聲明涵蓋 RM-M-CRPS-V1／V2／DUALBLADE，列出 EMC 報告 LEITC-TR-23-163 與安全報告 004TP24；若採購要求，仍應取得所引用報告副本。",
+        "en": "The manufacturer self-declaration covers RM-M-CRPS-V1/V2/DUALBLADE and cites EMC report LEITC-TR-23-163 and safety report 004TP24. Obtain copies of the cited reports when procurement requires them."
+      }
+    },
+    {
+      "id": "rm-m-rohs-reach",
+      "kind": "RoHS / REACH",
+      "title": { "zh": "RM-M RoHS／REACH 自我聲明關鍵欄位", "en": "RM-M RoHS/REACH manufacturer declaration" },
+      "sourceTitle": "Declaration of Conformity RoHS RM-M",
+      "source": "https://faq.comino.com/declaration-of-conformity/declaration_of_conformity_rohs_reach_rm-m.pdf",
+      "readerHrefZh": "/vendor/comino/documents/comino-rm-m-rohs-reach-declaration-2024-zh-tw.html",
+      "hrefZh": "/vendor/comino/documents/comino-rm-m-rohs-reach-declaration-2024-zh-TW.pdf",
+      "previewHrefZh": "/vendor/comino/documents/comino-rm-m-rohs-reach-declaration-2024-zh-TW-pages/page-01.webp",
+      "issuer": "CMNO Logica SIA",
+      "signer": "Janis Buls · Director",
+      "date": "2024-05",
+      "model": "RM-M",
+      "submodels": ["RM-M-V1", "RM-M-V2"],
+      "products": ["Comino Grando Workstation", "Comino Grando AI", "Comino Grando Forensic", "Comino Grando VP", "Comino Grando Rendering"],
+      "directives": ["2011/65/EU RoHS", "2015/863/EU RoHS amendment", "REACH downstream-user declaration"],
+      "standards": ["Lead 0.1%", "Mercury 0.1%", "Cadmium 0.01%", "Hexavalent chromium 0.1%", "PBB 0.1%", "DEHP 0.1%", "BBP 0.1%", "DBP 0.1%", "DIBP 0.1%"],
+      "reports": ["Manufacturer states no Candidate List SVHC is used", "Indexed source text lists nine substance limits and does not list PBDE"],
+      "summary": {
+        "zh": "原廠針對 RM-M-V1／V2 的 RoHS／REACH 自我聲明，非第三方測試證書；仍須依最終型號、BOM、文件日期及供應鏈資料核對。",
+        "en": "A manufacturer RoHS/REACH self-declaration for RM-M-V1/V2, not a third-party test certificate. Review the final model, BOM, document date, and supply-chain evidence."
+      }
+    },
+    {
+      "id": "rm-m-crps-rohs-reach",
+      "kind": "RoHS / REACH",
+      "title": { "zh": "RM-M-CRPS RoHS／REACH 自我聲明關鍵欄位", "en": "RM-M-CRPS RoHS/REACH manufacturer declaration" },
+      "sourceTitle": "Declaration of Conformity RoHS RM-M-CRPS",
+      "source": "https://faq.comino.com/declaration-of-conformity/declaration_of_conformity_rohs_reach_rm-m-crps.pdf",
+      "readerHrefZh": "/vendor/comino/documents/comino-rm-m-crps-rohs-reach-declaration-2024-zh-tw.html",
+      "hrefZh": "/vendor/comino/documents/comino-rm-m-crps-rohs-reach-declaration-2024-zh-TW.pdf",
+      "previewHrefZh": "/vendor/comino/documents/comino-rm-m-crps-rohs-reach-declaration-2024-zh-TW-pages/page-01.webp",
+      "issuer": "CMNO Logica SIA",
+      "signer": "Janis Buls · Director",
+      "date": "2024-05",
+      "model": "RM-M-CRPS",
+      "submodels": ["RM-M-CRPS-V1", "RM-M-CRPS-V2", "RM-M-CRPS-DUALBLADE"],
+      "products": ["Comino Grando Server", "Comino Grando AI", "Comino Grando Forensic", "Comino Grando VP", "Comino Grando Rendering"],
+      "directives": ["2011/65/EU RoHS", "2015/863/EU RoHS amendment", "REACH downstream-user declaration"],
+      "standards": ["Lead 0.1%", "Mercury 0.1%", "Cadmium 0.01%", "Hexavalent chromium 0.1%", "PBB 0.1%", "DEHP 0.1%", "BBP 0.1%", "DBP 0.1%", "DIBP 0.1%"],
+      "reports": ["Manufacturer states no Candidate List SVHC is used", "Indexed source text lists nine substance limits and does not list PBDE"],
+      "summary": {
+        "zh": "原廠針對 RM-M-CRPS-V1／V2／DUALBLADE 的 RoHS／REACH 自我聲明，非第三方測試證書；仍須依最終型號、BOM、文件日期及供應鏈資料核對。",
+        "en": "A manufacturer RoHS/REACH self-declaration for RM-M-CRPS-V1/V2/DUALBLADE, not a third-party test certificate. Review the final model, BOM, document date, and supply-chain evidence."
+      }
+    }
+  ]
+}

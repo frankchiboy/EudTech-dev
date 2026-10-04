@@ -11,9 +11,8 @@ const applicationEmail = 'quote@eudaemonia.tech';
 
 const CareersPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
-  const careersUrl = 'https://eudaemonia.tech/careers';
+  const careersUrl = 'https://eudaemonia.tech/careers/';
   const organizationName = 'EudTech';
-  const applyEmail = 'quote@eudaemonia.tech';
 
   const jobData = [
     {
@@ -321,19 +320,37 @@ const CareersPage: React.FC = () => {
   const jobPostingStructuredData = {
     '@context': 'https://schema.org',
     '@graph': jobData.map((job) => {
-      const isTaiwanRemote = job.location.zh.includes('遠端');
+      const title = isEnglish ? job.title.en : job.title.zh;
+      const responsibilities = isEnglish ? job.responsibilities.en : job.responsibilities.zh;
+      const requirements = isEnglish ? job.requirements.en : job.requirements.zh;
+      const location = isEnglish ? job.location.en : job.location.zh;
+      const workTime = isEnglish ? job.workTime.en : job.workTime.zh;
+      const isTaiwanRemote = job.location.zh.startsWith('台灣') && job.location.zh.includes('遠端');
       const isTaipeiHybrid = job.location.zh.includes('台北');
+      const isFullTime = job.workTime.zh.includes('全職');
+      const localizedCareersUrl = isEnglish
+        ? 'https://eudaemonia.tech/en/careers/'
+        : careersUrl;
 
       return {
         '@type': 'JobPosting',
-        title: job.title.zh,
-        description: [
-          job.responsibilities.zh.join('；'),
-          `條件需求：${job.requirements.zh.join('；')}`,
-          `工作地點：${job.location.zh}`,
-          `工作時間：${job.workTime.zh}`,
-          `應徵方式：請寄送履歷與期待薪資至 ${applyEmail}`,
-        ].join('\n\n'),
+        inLanguage: isEnglish ? 'en' : 'zh-TW',
+        title,
+        description: isEnglish
+          ? [
+              `Job responsibilities: ${responsibilities.join('; ')}`,
+              `Requirements: ${requirements.join('; ')}`,
+              `Location: ${location}`,
+              `Working hours: ${workTime}`,
+              'How to apply: Select “Apply now” and attach your CV and expected salary.',
+            ].join('\n\n')
+          : [
+              `工作內容：${responsibilities.join('；')}`,
+              `條件需求：${requirements.join('；')}`,
+              `工作地點：${location}`,
+              `工作時間：${workTime}`,
+              '應徵方式：點選「立即應徵」，並附上履歷與期待薪資。',
+            ].join('\n\n'),
         identifier: {
           '@type': 'PropertyValue',
           name: organizationName,
@@ -341,7 +358,7 @@ const CareersPage: React.FC = () => {
         },
         datePosted: '2026-04-16',
         validThrough: '2026-12-31T23:59:00+08:00',
-        employmentType: 'FULL_TIME',
+        ...(isFullTime ? { employmentType: 'FULL_TIME' } : {}),
         hiringOrganization: {
           '@type': 'Organization',
           name: organizationName,
@@ -350,13 +367,11 @@ const CareersPage: React.FC = () => {
         },
         applicantLocationRequirements: {
           '@type': 'Country',
-          name: 'Taiwan',
+          name: isEnglish ? 'Taiwan' : '台灣',
         },
-        directApply: true,
-        industry: 'Artificial Intelligence',
-        jobBenefits: '醫療與休假福利',
-        workHours: job.workTime.zh,
-        url: `${careersUrl}#job-${job.id}`,
+        industry: isEnglish ? 'Artificial Intelligence' : '人工智慧',
+        workHours: workTime,
+        url: `${localizedCareersUrl}#job-${job.id}`,
         ...(isTaiwanRemote
           ? {
               jobLocationType: 'TELECOMMUTE',
@@ -368,7 +383,7 @@ const CareersPage: React.FC = () => {
                 '@type': 'Place',
                 address: {
                   '@type': 'PostalAddress',
-                  addressLocality: 'Taipei',
+                  addressLocality: isEnglish ? 'Taipei' : '台北',
                   addressCountry: 'TW',
                 },
               },

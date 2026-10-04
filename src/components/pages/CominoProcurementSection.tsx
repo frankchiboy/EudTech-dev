@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import reference from '../../data/cominoProcurement.json';
+import conformity from '../../data/cominoConformity.json';
 import { tx } from './SitePagePrimitives';
 import { cominoQuestionSource } from '../../utils/seo/cominoQuestions';
 
@@ -29,6 +30,26 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
           </div>
         </article>)}
       </div>
+
+      <section id="model-declarations" aria-labelledby="model-declarations-heading">
+        <h3 id="model-declarations-heading" className="comino-reference-heading">{tx(conformity.title, isEnglish)}</h3>
+        <p>{tx(conformity.intro, isEnglish)}</p>
+        <p className="comino-condition">{tx(conformity.translationBoundary, isEnglish)}</p>
+        <div className="comino-document-grid" aria-label={text('Comino 型號別符合性聲明', 'Comino model-specific declarations')}>
+          {conformity.documents.map(document => <article className="comino-document" key={document.id}>
+            <p className="comino-eyebrow">{document.kind} · {document.date}</p>
+            <h4 className="text-lg font-semibold">{tx(document.title, isEnglish)}</h4>
+            <p><strong>{text('型號：', 'Model: ')}</strong>{document.model}<br/><strong>{text('子型號：', 'Submodels: ')}</strong>{document.submodels.join(' · ')}</p>
+            <p>{tx(document.summary, isEnglish)}</p>
+            <div className="comino-document-links">
+              {!isEnglish && <a href={document.readerHrefZh}>閱讀繁中關鍵欄位查閱稿</a>}
+              {!isEnglish && <a href={document.hrefZh} download>下載繁中查閱稿 PDF</a>}
+              <a href={document.source} target="_blank" rel="noreferrer">{text('原廠英文 PDF 網址', 'Manufacturer PDF URL')}</a>
+            </div>
+          </article>)}
+        </div>
+        <p className="comino-condition"><strong>{text('FCC 證據邊界：', 'FCC evidence boundary: ')}</strong>{tx(conformity.fccBoundary, isEnglish)}</p>
+      </section>
 
       <h3 className="comino-reference-heading">{text('可供規格研議的功能與證據', 'Functions and evidence for specification review')}</h3>
       <div className="comino-reference-table-wrap" role="region" aria-label={text('功能與驗收參考表，可水平捲動', 'Functions and acceptance reference table, scrollable horizontally')} tabIndex={0}>

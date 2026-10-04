@@ -878,4 +878,32 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://eudaemonia.tech/vendor/comino/documents/comino-rm-m-ce-declaration-2024-zh-tw</loc>
+    <lastmod>2026-10-04</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/vendor/comino/documents/comino-rm-m-crps-ce-declaration-2024-zh-tw</loc>
+    <lastmod>2026-10-04</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/vendor/comino/documents/comino-rm-m-rohs-reach-declaration-2024-zh-tw</loc>
+    <lastmod>2026-10-04</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://eudaemonia.tech/vendor/comino/documents/comino-rm-m-crps-rohs-reach-declaration-2024-zh-tw</loc>
+    <lastmod>2026-10-04</lastmod>
+
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

@@ -2,15 +2,15 @@ export type PqcText = readonly [string, string];
 
 export const pqcExperts = [
   {
-    id: 'frank-hsu', name: 'Chung-hao (Frank) Hsu', image: '/vendor/pqc/chung-hao-frank-hsu.png',
-    focus: ['PQC 與硬體研究', 'PQC & hardware research'],
-    degree: ['國立中興大學電機系（dropout）', 'Electrical Engineering, National Chung Hsing University (dropout)'],
-    expertise: ['FPGA · 後量子密碼 · 音訊隱寫術', 'FPGA · Post-quantum cryptography · Audio steganography'],
+    id: 'frank-hsu', name: 'Chung-hao (Frank) Hsu', image: '/vendor/pqc/home-chung-hao-frank-hsu.webp',
+    focus: ['PQC 專案與工程研究', 'PQC projects & engineering research'],
+    degree: ['EudTech 專案負責人／技術窗口', 'EudTech project lead / technical contact'],
+    expertise: ['FPGA · 密碼導入規劃 · 音訊隱寫研究', 'FPGA · Cryptographic migration planning · Audio steganography research'],
     detail: ['研究關注延伸至形式邏輯與溯因推理（IBE），從假設、推理到可驗證的技術判斷。', 'Research interests also include formal logic and abductive reasoning (IBE), connecting assumptions and inference to testable technical judgments.'],
-    href: 'https://eudtech.ai/#team', source: ['完整研究與學術背景', 'Full research and academic background']
+    href: 'https://eudtech.ai/#team', source: ['EudTech 團隊資料', 'EudTech team profile']
   },
   {
-    id: 'hung-jr-shiu', name: 'Hung-Jr Shiu', image: '/vendor/pqc/hung-jr-shiu.png',
+    id: 'hung-jr-shiu', name: 'Hung-Jr Shiu', image: '/vendor/pqc/home-hung-jr-shiu.webp',
     focus: ['密碼學與演算法研究', 'Cryptography & algorithms'],
     degree: ['國立臺灣大學電機工程博士', 'Ph.D. in Electrical Engineering, National Taiwan University'],
     expertise: ['國立臺北大學資訊工程學系助理教授', 'Assistant Professor, Computer Science and Information Engineering, National Taipei University'],
