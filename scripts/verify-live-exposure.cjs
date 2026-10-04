@@ -35,7 +35,6 @@ const MIN_STATIC_SEO_TEXT_LENGTH = 1200;
 const MIN_STATIC_SEO_HIGHLIGHTS = 3;
 const MIN_STATIC_SEO_SPEC_ROWS = 3;
 const MIN_STATIC_SEO_CHECKLIST_ITEMS = 3;
-const MIN_STATIC_SEO_FAQ_ITEMS = 4;
 const MIN_STATIC_SEO_RELATED_LINKS = 4;
 
 function unique(values) {
@@ -453,9 +452,8 @@ async function checkPages(errors) {
     const socialPreview = socialPreviewByUrl.get(url);
     const pathname = new URL(url).pathname;
     const isDynamicConfigurator = /^\/configurator(?:\/|$)/.test(pathname);
-    const expectedPageTypes = pathname === '/solutions/' ? ['CollectionPage', 'WebPage'] : ['WebPage', 'CollectionPage'];
-    const pageSchema = jsonLd.find((item) => expectedPageTypes.includes(item['@type']));
-    const expectedPageType = pageSchema?.['@type'] || expectedPageTypes[0];
+    const pageSchema = jsonLd.find((item) => item['@type'] === 'WebPage');
+    const expectedPageType = 'WebPage';
     const staticBodyText = bodyText(html);
     const staticHighlights = listItemCount(html, 'static-seo-highlights');
     const staticSpecRows = tableRowCount(html, 'static-seo-specs');
@@ -513,6 +511,9 @@ async function checkPages(errors) {
     assert(jsonLd.some((item) => item['@type'] === 'Organization'), errors, `${url} missing Organization JSON-LD.`);
     assert(jsonLd.some((item) => item['@type'] === 'WebSite'), errors, `${url} missing WebSite JSON-LD.`);
     assert(jsonLd.some((item) => item['@type'] === 'BreadcrumbList'), errors, `${url} missing BreadcrumbList JSON-LD.`);
+    if (pathname === '/solutions/') {
+      assert(jsonLd.some((item) => item['@type'] === 'CollectionPage'), errors, `${url} missing CollectionPage JSON-LD.`);
+    }
     if (isDynamicConfigurator) {
       assert(html.includes('data-static-seo-fallback'), errors, `${url} missing dynamic configurator SEO body fallback.`);
       assert(!html.includes('data-rendered="true"'), errors, `${url} must not prerender live configurator availability.`);
@@ -522,20 +523,18 @@ async function checkPages(errors) {
       assert(staticHighlights >= MIN_STATIC_SEO_HIGHLIGHTS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_HIGHLIGHTS} highlights; found ${staticHighlights}.`);
       assert(staticSpecRows >= MIN_STATIC_SEO_SPEC_ROWS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_SPEC_ROWS} spec rows; found ${staticSpecRows}.`);
       assert(staticChecklistItems >= MIN_STATIC_SEO_CHECKLIST_ITEMS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_CHECKLIST_ITEMS} checklist items; found ${staticChecklistItems}.`);
-      assert(staticFaqQuestions.length >= MIN_STATIC_SEO_FAQ_ITEMS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_FAQ_ITEMS} FAQ items; found ${staticFaqQuestions.length}.`);
       assert(staticRelatedLinks.length >= MIN_STATIC_SEO_RELATED_LINKS, errors, `${url} static SEO fallback needs at least ${MIN_STATIC_SEO_RELATED_LINKS} related links; found ${staticRelatedLinks.length}.`);
       assert(staticRelatedLinks.every((link) => link.href.startsWith(siteOrigin) && link.text), errors, `${url} static SEO related links must use crawlable EudTech URLs and anchor text.`);
       assert(staticRelatedLinks.every((link) => link.href !== url), errors, `${url} static SEO related links should not point to the same canonical URL.`);
-      assert(Boolean(faqSchema), errors, `${url} missing FAQPage JSON-LD for visible static SEO FAQs.`);
-      assert(faqSchemaQuestions.length >= MIN_STATIC_SEO_FAQ_ITEMS, errors, `${url} FAQPage JSON-LD needs at least ${MIN_STATIC_SEO_FAQ_ITEMS} entries; found ${faqSchemaQuestions.length}.`);
-      assert(staticFaqQuestions.every((question) => faqSchemaQuestions.includes(question)), errors, `${url} FAQPage JSON-LD is missing a visible static SEO FAQ question.`);
+      assert(staticFaqQuestions.length === 0, errors, `${url} dynamic configurator fallback must not expose FAQ content that disappears after hydration.`);
+      assert(!faqSchema, errors, `${url} dynamic configurator fallback must not emit FAQPage JSON-LD without matching runtime FAQ content.`);
     } else {
       assert(html.includes('id="root" data-rendered="true"'), errors, `${url} missing the rendered application body.`);
       assert(!html.includes('data-static-seo-fallback'), errors, `${url} should expose the rendered page instead of a duplicate SEO fallback.`);
       assert((html.match(/<h1\b/gi) || []).length === 1, errors, `${url} should expose exactly one rendered H1.`);
       assert(html.includes('id="main-content"') && /<nav\b/i.test(html) && /<footer\b/i.test(html), errors, `${url} rendered page is missing its primary layout.`);
       assert(staticBodyText.length >= MIN_STATIC_SEO_TEXT_LENGTH, errors, `${url} rendered page body is too short: ${staticBodyText.length}.`);
-      assert(staticBodyText.includes('quote@eudaemonia.tech'), errors, `${url} rendered page is missing the quote contact email.`);
+      assert(/href=["']\/(?:contact|configurator)(?:\/|\?|["'])/i.test(html), errors, `${url} rendered page is missing a crawlable contact or configurator path.`);
       if (faqSchema) {
         assert(faqSchemaQuestions.every((question) => staticBodyText.includes(htmlText(question))), errors, `${url} FAQPage JSON-LD contains a question that is not visible.`);
       }
