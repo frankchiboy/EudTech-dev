@@ -13,7 +13,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 
 ## 繁體中文頁面 / Traditional Chinese pages
 
-- [AWS 雲端銷售、GPU 運算與社群情報｜EudTech](https://eudaemonia.tech/): EudTech 提供整合的 AWS 雲端銷售與導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。
+- [PQC、AWS 雲端、GPU 運算與社群情報｜EudTech](https://eudaemonia.tech/): EudTech 提供 PQC 密碼遷移顧問、AWS 雲端服務、Comino 液冷 GPU 系統與 Cyabra 社群情報，從需求評估到採購與導入規劃。
 - [Comino Grando GPU 伺服器報價配置器](https://eudaemonia.tech/configurator/): 配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。
 - [AI 與數位服務解決方案總覽｜EudTech](https://eudaemonia.tech/solutions/): 從 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。
 - [企業 AWS 雲端銷售與導入](https://eudaemonia.tech/solutions/aws/): 協助企業規劃 AWS 運算、儲存、資料庫與生成式 AI，整合需求評估、採購報價、導入與維運範圍。
@@ -65,7 +65,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 ## English pages
 
 - [Careers - Join Our Team](https://eudaemonia.tech/en/careers/): Join EudTech and be part of the future of AI technology. Explore our openings, responsibilities, requirements and application process.
-- [AWS Cloud Sales, GPU Infrastructure & Social Intelligence](https://eudaemonia.tech/en/): EudTech helps enterprises, research teams and public institutions in Taiwan plan AWS cloud services, Comino GPU systems and Cyabra social intelligence.
+- [PQC, AWS Cloud, GPU Systems & Social Intelligence](https://eudaemonia.tech/en/): Explore EudTech PQC migration advisory, AWS cloud services, Comino liquid-cooled GPU systems and Cyabra social intelligence, from evaluation to procurement planning.
 - [AI & Digital Solutions](https://eudaemonia.tech/en/solutions/): Choose an EudTech service for AWS cloud sales, GPU infrastructure or Cyabra social intelligence.
 - [Comino Liquid-Cooled GPU Servers & AI Workstations](https://eudaemonia.tech/en/solutions/ai-infrastructure/): Plan Comino GRANDO GPU servers and workstations in Taiwan with workload sizing, power and cooling review, manufacturer documents and procurement evidence.
 - [Cyabra Social Intelligence & Brand Protection](https://eudaemonia.tech/en/solutions/social-intelligence/): EudTech uses Cyabra to help communications, security and public-sector teams analyse inauthentic profiles, coordinated activity, narratives and brand risk.

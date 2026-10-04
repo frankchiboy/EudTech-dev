@@ -6,11 +6,28 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     if (hash) {
-      const element = document.getElementById(hash.slice(1));
-      if (element) {
+      const scrollToAnchor = () => {
+        const element = document.getElementById(hash.slice(1));
+        if (!element) return false;
         window.scrollTo({ top: Math.max(0, element.getBoundingClientRect().top + window.scrollY - 100), behavior: 'auto' });
-        return;
-      }
+        return true;
+      };
+      if (scrollToAnchor()) return;
+
+      // Lazy routes may mount after this effect. Keep the anchor intent until
+      // its section exists, and cancel it when the visitor navigates elsewhere.
+      const observer = new MutationObserver(() => {
+        if (scrollToAnchor()) {
+          observer.disconnect();
+          window.clearTimeout(timeout);
+        }
+      });
+      const timeout = window.setTimeout(() => observer.disconnect(), 5000);
+      observer.observe(document.body, { childList: true, subtree: true });
+      return () => {
+        observer.disconnect();
+        window.clearTimeout(timeout);
+      };
     }
     if (pathname === '/') {
       // 檢查是否有從 sessionStorage 傳遞的滾動目標

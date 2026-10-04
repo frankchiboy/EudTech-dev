@@ -8,12 +8,14 @@
     ]
   },
   "/": {
-    "title": "AWS Cloud Sales, GPU Infrastructure & Social Intelligence",
-    "description": "EudTech helps enterprises, research teams and public institutions in Taiwan plan AWS cloud services, Comino GPU systems and Cyabra social intelligence.",
+    "title": "PQC, AWS Cloud, GPU Systems & Social Intelligence",
+    "description": "Explore EudTech PQC migration advisory, AWS cloud services, Comino liquid-cooled GPU systems and Cyabra social intelligence, from evaluation to procurement planning.",
+    "keywords": "PQC, post-quantum cryptography, AWS cloud services, Comino GPU systems, liquid-cooled workstations, Cyabra social intelligence, EudTech",
     "highlights": [
-      "Plan AWS services, usage, procurement quotes, deployment and support scope.",
-      "Plan liquid-cooled GPU infrastructure around workloads, power, space, heat removal and acceptance criteria.",
-      "Use Cyabra social intelligence to examine profiles, coordinated activity, narratives and brand risk."
+      "PQC · Expert advisory: Map cryptographic assets, pilot architectures and plan a phased migration with research and engineering expertise.",
+      "AWS · Cloud services: Bring service selection, budget estimates and deployment planning together, from compute and storage to Amazon Bedrock.",
+      "COMINO · Liquid-cooled computing: Evaluate models, software, cooling, power and space to choose a deskside workstation or rack-based multi-GPU system.",
+      "CYABRA · Social intelligence: Connect profiles, content and behavior with AI investigations, news-claim analysis and narrative alerts."
     ]
   },
   "/solutions": {

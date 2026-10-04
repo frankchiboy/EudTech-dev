@@ -1,3 +1,4 @@
+const homepageContent = require('../src/data/homepageContent.json');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
 const { canonicalPageUrl } = require('./seo-url-helpers.cjs');
 const { SITE_INFORMATION_ROUTES } = require('./site-information-routes.cjs');
@@ -78,10 +79,10 @@ function getConfiguratorSocialPreviewRoutes() {
   const routes = [
     {
       path: '/',
-      title: 'AWS 雲端銷售、GPU 運算與社群情報｜EudTech',
-      description: 'EudTech 提供整合的 AWS 雲端銷售與導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
+      title: `${homepageContent.zh.seo.title}｜EudTech`,
+      description: homepageContent.zh.seo.description,
       sourceImage: DEFAULT_SOURCE_IMAGE,
-      imageAlt: 'EudTech AWS 雲端銷售、GPU 運算與社群情報解決方案'
+      imageAlt: homepageContent.zh.seo.title
     },
     {
       path: '/configurator',

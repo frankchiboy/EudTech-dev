@@ -1,3 +1,4 @@
+const homepageContent = require('../src/data/homepageContent.json');
 const fs = require('fs');
 const { formatSeoTitle, publicProductRoutes, englishRoutes, careersRoute } = require('./seo-public-pages.cjs');
 const dates = require('../public/discovery-lastmod.json').entries;
@@ -312,31 +313,20 @@ const siteInformationRoutes = SITE_INFORMATION_ROUTES.map((route) => ({
 const routes = [
   {
     path: '/',
-    title: 'AWS 雲端銷售、GPU 運算與社群情報｜EudTech',
-    description: 'EudTech 提供整合的 AWS 雲端銷售與導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
-    keywords: 'AWS 雲端銷售, AWS 採購, 雲端移轉, AI GPU 伺服器, Comino Grando, Cyabra 社群情報, EudTech',
-    lead: 'EudTech 將 AWS 雲端銷售、液冷 GPU 運算基礎設施及社群情報，連接到企業、研究單位與公部門的實際工作與決策流程。',
-    imageAlt: 'EudTech AWS 雲端銷售、GPU 運算與社群情報解決方案',
+    title: `${homepageContent.zh.seo.title}｜EudTech`,
+    description: homepageContent.zh.seo.description,
+    keywords: homepageContent.zh.seo.keywords,
+    lead: homepageContent.zh.seo.description,
+    imageAlt: homepageContent.zh.seo.title,
     configuratorHref: '/configurator',
     quoteHref: '/configurator?request=true',
     relatedLinks: [
-      routeLink('/solutions', 'AI 解決方案總覽'),
-      routeLink('/solutions/aws', 'AWS 雲端銷售與導入'),
-      routeLink('/solutions/ai-infrastructure', 'AI 運算基礎設施'),
-      routeLink('/solutions/social-intelligence', '社群情報與品牌保護'),
-      routeLink('/products', '產品與品牌'),
+      ...homepageContent.zh.services.map((service) => routeLink(service.href, service.primary)),
+      routeLink('/resources', '採購與規劃指南'),
       routeLink('/contact', '聯絡與諮詢')
     ],
-    highlights: [
-      'AWS 雲端銷售整合服務選型、用量估算、採購報價與導入規劃。',
-      'AI 運算基礎設施從工作負載連到配置、詢價與部署。',
-      'Cyabra 社群情報協助辨識假帳號、敘事與品牌風險。'
-    ],
-    specs: [
-      { label: '方案一', value: 'AWS 雲端銷售與導入' },
-      { label: '方案二', value: 'AI GPU 運算基礎設施' },
-      { label: '方案三', value: 'Cyabra 社群情報' }
-    ],
+    highlights: homepageContent.zh.services.map((service) => `${service.category}：${service.body}`),
+    specs: homepageContent.zh.services.map((service) => ({ label: service.category, value: service.capabilities })),
     schema: [
       {
         '@context': 'https://schema.org',

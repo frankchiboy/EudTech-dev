@@ -4,6 +4,7 @@ import { useThemeContext } from '../contexts/ThemeContext';
 import { useLanguageContext } from '../contexts/LanguageContext';
 import NavBar from './navigation/NavBar';
 import HeroSection from './hero/HeroSection';
+import homepageContent from '../data/homepageContent.json';
 import HomeSolutionsSection from './HomeSolutionsSection';
 import HomeBrandPartnersSection from './HomeBrandPartnersSection';
 import Footer from './Footer';
@@ -70,20 +71,12 @@ const AppRoutes: React.FC = () => {
             <Route path="/" element={
               <>
                 <SEOHead
-                  title={isEnglish ? 'AWS Cloud Sales, GPU Infrastructure, and Social Intelligence' : 'AWS 雲端銷售、GPU 運算與社群情報'}
-                  description={
-                    isEnglish
-                      ? 'EudTech provides AWS cloud sales and implementation, AI GPU infrastructure, and Cyabra social intelligence solutions.'
-                      : 'EudTech 提供AWS 雲端銷售與導入服務、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
-                  }
-                  keywords={
-                    isEnglish
-                      ? 'AI GPU server, GPU server quote, Comino Grando, NVIDIA H200 server, RTX PRO 6000 workstation, liquid cooled GPU server, Taiwan AI workstation'
-                      : 'AI GPU 伺服器, GPU 伺服器報價, Comino Grando, NVIDIA H200 伺服器, RTX PRO 6000 工作站, 液冷 GPU 伺服器, 台灣 AI 工作站'
-                  }
+                  title={homepageContent[isEnglish ? 'en' : 'zh'].seo.title}
+                  description={homepageContent[isEnglish ? 'en' : 'zh'].seo.description}
+                  keywords={homepageContent[isEnglish ? 'en' : 'zh'].seo.keywords}
                   url="https://eudaemonia.tech/"
                   image={getConfiguratorSocialPreviewPath('/')}
-                  imageAlt={isEnglish ? 'EudTech AI GPU servers and Comino configurator' : 'EudTech AI GPU 伺服器與 Comino 配置器'}
+                  imageAlt={homepageContent[isEnglish ? 'en' : 'zh'].seo.title}
                   structuredData={homeStructuredData}
                   isEnglish={isEnglish}
                 />

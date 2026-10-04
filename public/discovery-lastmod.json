@@ -2,7 +2,7 @@
   "version": 1,
   "entries": {
     "https://eudaemonia.tech/": {
-      "hash": "79f8cc9c30ad2903bab767102debaee31f4e9cd21c671aa7a7d65f1d4e0e421d",
+      "hash": "f42b8e4cc3208faa3c4efe31713da5a15c2d5f29f6907fb461b209aa0af4f22c",
       "publishedAt": "2026-08-17",
       "modifiedAt": "2026-10-04"
     },
@@ -247,7 +247,7 @@
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/en/": {
-      "hash": "fb537aa7722c09a3432673cc618f0ffcec0c1f6087e108079d008d4592a412ef",
+      "hash": "7a3ac8b42db758100b0e1a133f5a35f734d54ab6c086045d77810d00b9968c4b",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-04"
     },

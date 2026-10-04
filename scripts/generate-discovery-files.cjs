@@ -1,3 +1,4 @@
+const homepageContent = require('../src/data/homepageContent.json');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -105,12 +106,12 @@ const productUrls = CONFIGURATOR_PRODUCT_SEO.map((product) => ({
 }));
 const homepageUrl = {
   loc: `${siteOrigin}/`,
-  title: 'AWS 雲端銷售、GPU 運算與社群情報｜EudTech',
-  description: 'EudTech 提供整合的 AWS 雲端銷售與導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。',
+  title: `${homepageContent.zh.seo.title}｜EudTech`,
+  description: homepageContent.zh.seo.description,
   priority: '1.0',
   source: {
-    title: 'AWS 雲端銷售、GPU 運算與社群情報｜EudTech',
-    description: 'EudTech 提供整合的 AWS 雲端銷售與導入、AI GPU 運算基礎設施及 Cyabra 社群情報解決方案。'
+    title: `${homepageContent.zh.seo.title}｜EudTech`,
+    description: homepageContent.zh.seo.description
   }
 };
 const solutionHubUrl = {
@@ -428,8 +429,8 @@ const formatFaqs = (faqs) =>
 
 const llms = `# EudTech 官網資料導覽 / Website reference
 
-EudTech 提供企業 AWS 雲端銷售與導入、Comino 液冷 GPU 基礎設施，以及 Cyabra 社群情報方案。
-EudTech provides AWS cloud sales and implementation, AI GPU infrastructure, Comino liquid-cooled systems, and Cyabra social intelligence solutions.
+${homepageContent.zh.seo.description}
+${homepageContent.en.seo.description}
 
 ${llmsDirectory}
 

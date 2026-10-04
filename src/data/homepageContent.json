@@ -1,0 +1,108 @@
+{
+  "zh": {
+    "seo": {
+      "title": "PQC、AWS 雲端、GPU 運算與社群情報",
+      "description": "EudTech 提供 PQC 密碼遷移顧問、AWS 雲端服務、Comino 液冷 GPU 系統與 Cyabra 社群情報，從需求評估到採購與導入規劃。",
+      "keywords": "PQC, 後量子密碼, AWS 雲端服務, Comino GPU 伺服器, 液冷工作站, Cyabra 社群情報, EudTech"
+    },
+    "services": [
+      {
+        "id": "pqc",
+        "category": "PQC · 專家顧問",
+        "title": "為下一代威脅，規劃密碼遷移。",
+        "body": "從密碼資產盤點、架構試點到分階段遷移，以研究與工程判斷，釐清你的導入路線。",
+        "capabilities": "資產盤點 · 架構試點 · 遷移規劃",
+        "href": "/solutions/pqc",
+        "anchor": "#pqc-start",
+        "primary": "認識 PQC 方案與專家",
+        "secondary": "三個問題，找到導入起點"
+      },
+      {
+        "id": "aws",
+        "category": "AWS · 雲端服務",
+        "title": "把雲端需求，接到採購與上線。",
+        "body": "從運算、儲存、資料庫到 Amazon Bedrock，整合服務選型、預算估算與導入規劃。",
+        "capabilities": "運算 · 儲存 · 資料庫 · 生成式 AI",
+        "href": "/solutions/aws",
+        "anchor": "#aws-services",
+        "primary": "探索 AWS 雲端服務",
+        "secondary": "依工作負載選服務"
+      },
+      {
+        "id": "comino",
+        "category": "COMINO · 液冷運算",
+        "title": "讓多 GPU 算力，適合你的工作環境。",
+        "body": "一起評估模型、軟體、散熱、供電與空間，選擇桌邊工作站或機架式多 GPU 配置。",
+        "capabilities": "液冷工作站 · GPU 伺服器 · 遠端評估",
+        "href": "/solutions/ai-infrastructure",
+        "anchor": "#test-drive",
+        "primary": "探索 Comino 運算方案",
+        "secondary": "了解原廠免費遠端試用"
+      },
+      {
+        "id": "cyabra",
+        "category": "CYABRA · 社群情報",
+        "title": "看清聲量背後，誰在推動敘事。",
+        "body": "連結帳號、內容與行為，透過 AI 調查、新聞查核與敘事預警，掌握社群風險。",
+        "capabilities": "AI 自動調查 · 新聞查核 · 危機預警",
+        "href": "/solutions/social-intelligence",
+        "anchor": "#updates",
+        "primary": "探索 Cyabra 社群情報",
+        "secondary": "看看三項新功能"
+      }
+    ]
+  },
+  "en": {
+    "seo": {
+      "title": "PQC, AWS Cloud, GPU Systems & Social Intelligence",
+      "description": "Explore EudTech PQC migration advisory, AWS cloud services, Comino liquid-cooled GPU systems and Cyabra social intelligence, from evaluation to procurement planning.",
+      "keywords": "PQC, post-quantum cryptography, AWS cloud services, Comino GPU systems, liquid-cooled workstations, Cyabra social intelligence, EudTech"
+    },
+    "services": [
+      {
+        "id": "pqc",
+        "category": "PQC · Expert advisory",
+        "title": "Plan your cryptographic migration.",
+        "body": "Map cryptographic assets, pilot architectures and plan a phased migration with research and engineering expertise.",
+        "capabilities": "Asset inventory · Architecture pilots · Migration planning",
+        "href": "/solutions/pqc",
+        "anchor": "#pqc-start",
+        "primary": "Meet the PQC experts",
+        "secondary": "Find your starting point in 3 questions"
+      },
+      {
+        "id": "aws",
+        "category": "AWS · Cloud services",
+        "title": "From cloud requirements to deployment.",
+        "body": "Bring service selection, budget estimates and deployment planning together, from compute and storage to Amazon Bedrock.",
+        "capabilities": "Compute · Storage · Databases · Generative AI",
+        "href": "/solutions/aws",
+        "anchor": "#aws-services",
+        "primary": "Explore AWS cloud services",
+        "secondary": "Choose services for your workload"
+      },
+      {
+        "id": "comino",
+        "category": "COMINO · Liquid-cooled computing",
+        "title": "Fit multi-GPU computing to your workspace.",
+        "body": "Evaluate models, software, cooling, power and space to choose a deskside workstation or rack-based multi-GPU system.",
+        "capabilities": "Liquid-cooled workstations · GPU servers · Remote evaluation",
+        "href": "/solutions/ai-infrastructure",
+        "anchor": "#test-drive",
+        "primary": "Explore Comino GPU systems",
+        "secondary": "See the free manufacturer test drive"
+      },
+      {
+        "id": "cyabra",
+        "category": "CYABRA · Social intelligence",
+        "title": "See who is driving the conversation.",
+        "body": "Connect profiles, content and behavior with AI investigations, news-claim analysis and narrative alerts.",
+        "capabilities": "AI investigations · News-claim analysis · Narrative alerts",
+        "href": "/solutions/social-intelligence",
+        "anchor": "#updates",
+        "primary": "Explore Cyabra social intelligence",
+        "secondary": "Discover three new capabilities"
+      }
+    ]
+  }
+}
