@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CominoSewpEvidence from './CominoSewpEvidence';
 
 /** Manufacturer statements are distinct from configuration-specific procurement evidence. */
 export default function CominoComplianceSection({ isEnglish }: { isEnglish: boolean }) {
@@ -7,7 +8,7 @@ export default function CominoComplianceSection({ isEnglish }: { isEnglish: bool
   const topics = [
     {
       title: text('TAA 符合性', 'TAA compliance'),
-      body: text('Comino 的採購簡報將 TAA 符合性列為產品特色。若案件有此要求，須依適用採購條款，核對供貨機型、原產地與原廠符合性文件。', 'Comino’s procurement presentation identifies TAA compliance as a product attribute. Where required, review the supplied model, country of origin and manufacturer documentation against the applicable procurement terms.'),
+      body: text('NASA SEWP 公開型錄將 Comino RM V2S 的 D9612 配置列為 TAA 合規，詳見下方查詢紀錄。採購時仍須核對實際供貨機型、原產地與符合性文件。', 'NASA SEWP’s public catalog lists the Comino RM V2S D9612 configuration as TAA compliant; see the record below. Review the actual supplied model, country of origin and compliance documentation for each purchase.'),
       evidence: text('確認文件：指定機型的原產地與 TAA 聲明。', 'Evidence to confirm: model-specific origin and TAA declarations.'),
     },
     {
@@ -37,6 +38,7 @@ export default function CominoComplianceSection({ isEnglish }: { isEnglish: bool
         <h3>{topic.title}</h3><p>{topic.body}</p><p className="comino-small comino-compliance-evidence">{topic.evidence}</p>
       </article>)}</div>
       <p className="comino-condition">{text('TAA 不等於所有零件均為非中國製，也不是資安認證。原廠簡報的說明不取代指定配置的正式聲明，亦不代表自動符合所有政府標案；實際供貨與符合性須以採購條款及正式文件確認。', 'TAA compliance does not mean every component is made outside China, and it is not a cybersecurity certification. Manufacturer presentation statements do not replace declarations for a specific configuration or establish eligibility for every government tender. Confirm supply and compliance against the procurement terms and formal documentation.')}</p>
+      <CominoSewpEvidence isEnglish={isEnglish} />
       <div className="comino-sources"><span>{text('資料依據', 'Source context')}</span><span className="comino-compliance-source">{text('Comino 原廠簡報〈Compliance & Trust〉；適用範圍須依機型確認。', 'Comino manufacturer presentation, “Compliance & Trust”; applicability requires model-specific confirmation.')}</span><a href="https://www.acquisition.gov/far/25.001" target="_blank" rel="noreferrer">{text('美國 FAR：貿易協定原產地規則（英文）', 'U.S. FAR: trade-agreement origin rules')}</a></div>
       <div className="comino-actions"><a className="comino-button" href="#procurement">{text('查看採購參考與文件', 'Review procurement references')}</a><Link className="comino-button comino-button-secondary" to="/contact">{text('討論採購條件', 'Discuss procurement requirements')}</Link></div>
     </div>
