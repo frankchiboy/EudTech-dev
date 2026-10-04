@@ -33,6 +33,43 @@
 .comino-notes p,.comino-operation-notes p{margin-top:.5rem}
 .comino-story .comino-condition{padding:1.3rem 1.5rem;margin-top:2.5rem;border-left:3px solid var(--comino-accent);background:var(--comino-surface)}
 .comino-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
+.comino-compliance{scroll-margin-top:6rem}
+.comino-compliance .comino-two{gap:2rem 3.5rem}
+.comino-compliance .comino-compliance-evidence{color:var(--comino-accent);font-weight:600}
+.comino-compliance .comino-compliance-source{font-weight:400;color:var(--comino-muted)}
+.comino-sewp{margin-top:3rem;padding:2rem;border:1px solid var(--comino-line);border-radius:.75rem;scroll-margin-top:7rem}
+.comino-sewp-heading{display:flex;align-items:start;gap:2rem;justify-content:space-between}
+.comino-sewp-heading>div{max-width:760px}
+.comino-sewp-heading h3{font-size:clamp(1.3rem,2.2vw,1.75rem)}
+.comino-story .comino-sewp-date{flex:0 0 auto;margin:0;font-size:.875rem;font-variant-numeric:tabular-nums}
+.comino-sewp-date time{color:var(--comino-ink)}
+.comino-sewp-record{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);margin-top:2rem;background:var(--comino-surface);border-radius:.5rem}
+.comino-sewp-product,.comino-sewp-status{padding:1.5rem}
+.comino-sewp-status{border-left:1px solid var(--comino-line)}
+.comino-story .comino-sewp-label{font-size:.875rem;font-weight:600;margin:0;color:var(--comino-muted)}
+.comino-sewp-product h4{font-size:1.5rem;font-weight:700;margin:.4rem 0 0}
+.comino-sewp-product>p:not(.comino-sewp-label){margin-top:.25rem}
+.comino-sewp-identifiers{display:grid;gap:.75rem;margin-top:1.25rem}
+.comino-sewp-identifiers>div{display:grid;grid-template-columns:minmax(135px,.8fr) minmax(0,1fr);gap:.75rem}
+.comino-sewp-identifiers dt,.comino-sewp-fields dt{font-size:.875rem;color:var(--comino-muted)}
+.comino-sewp-identifiers dd,.comino-sewp-fields dd{margin:0;overflow-wrap:anywhere;font-weight:600}
+.comino-story .comino-sewp-value{display:flex;flex-wrap:wrap;align-items:center;gap:.85rem;color:var(--comino-ink);margin-top:1rem}
+.comino-sewp-value>span{display:inline-flex;align-items:center;justify-content:center;min-width:3rem;min-height:3rem;background:#d1fae5;color:#065f46;font-size:1.5rem;font-weight:750;border-radius:.4rem}
+.dark .comino-sewp-value>span{background:#064e3b;color:#a7f3d0}
+.comino-sewp-value strong{font-size:1.2rem;font-weight:650}
+.comino-sewp-screenshot{margin:2rem 0 0}
+.comino-sewp-screenshot>a{display:block;border:1px solid var(--comino-line);border-radius:.5rem;overflow:hidden;background:#fff;cursor:zoom-in}
+.comino-sewp-screenshot img{display:block;width:100%;height:auto}
+.comino-sewp-screenshot figcaption{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 1.5rem;margin-top:.75rem;color:var(--comino-muted);font-size:.875rem;line-height:1.8}
+.comino-sewp-screenshot figcaption>span{flex:1 1 24rem}
+.comino-sewp-screenshot figcaption>a{color:var(--comino-accent);font-weight:600;text-decoration:underline;text-underline-offset:.2em}
+.comino-sewp-screenshot a:focus-visible{outline:3px solid var(--comino-accent);outline-offset:4px}
+.comino-story .comino-sewp-scope{font-size:.9375rem;margin-top:1.25rem}
+.comino-story .comino-sewp-query-path{margin-top:1rem}
+.comino-sewp-details{margin-top:1.5rem;border-bottom:0}
+.comino-sewp-details .comino-details-content{padding-bottom:0}
+.comino-sewp-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
+@media(max-width:767px){.comino-sewp{padding:1.25rem}.comino-sewp-heading{display:block}.comino-story .comino-sewp-date{margin-top:1rem}.comino-sewp-record{grid-template-columns:1fr}.comino-sewp-status{border-left:0;border-top:1px solid var(--comino-line)}.comino-sewp-fields{grid-template-columns:1fr}.comino-sewp-identifiers>div{grid-template-columns:1fr;gap:0}.comino-sewp-product,.comino-sewp-status{padding:1.25rem}}
 .comino-deployment{border:1px solid var(--comino-line);border-radius:.75rem;overflow:hidden;background:white}
 .dark .comino-deployment{background:#020617}
 .comino-deployment>img{width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#e5e7eb}

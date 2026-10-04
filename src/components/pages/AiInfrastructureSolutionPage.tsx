@@ -5,6 +5,7 @@ import { VENDOR_EVIDENCE, vendorEvidenceHref } from '../../data/vendorEvidence';
 import { Bilingual, PageShell, tx } from './SitePagePrimitives';
 import './AiInfrastructureSolutionPage.css';
 import CominoProcurementSection from './CominoProcurementSection';
+import CominoComplianceSection from './CominoComplianceSection';
 import CominoTestDriveSection from './CominoTestDriveSection';
 import testDrive from '../../data/cominoTestDrive.json';
 import { cominoQuestionsSchema } from '../../utils/seo/cominoQuestions';
@@ -126,6 +127,7 @@ const AiInfrastructureSolutionPage: React.FC = () => {
         </div>
       </section>
 
+      <CominoComplianceSection isEnglish={isEnglish} />
       <CominoProcurementSection isEnglish={isEnglish} />
 
       <section className="comino-section" aria-labelledby="delivery-heading">
