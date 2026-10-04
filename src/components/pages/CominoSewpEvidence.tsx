@@ -2,6 +2,7 @@ import React from 'react';
 
 const lookupUrl = 'https://www.sewp.nasa.gov/sewpv/sewp5public/provider';
 const recordUrl = `${lookupUrl}/getProviderItemDetails/22067/7/10/0/0`;
+const screenshotUrl = '/vendor/comino/evidence/nasa-sewp-rmv2s-d9612-20261004.png';
 
 /** A dated, configuration-specific catalogue record; not a brand certification. */
 export default function CominoSewpEvidence({ isEnglish }: { isEnglish: boolean }) {
@@ -34,6 +35,23 @@ export default function CominoSewpEvidence({ isEnglish }: { isEnglish: boolean }
         <p>{text('適用於這筆型錄項目中的指定配置。', 'Applies to the specific configuration in this catalog line item.')}</p>
       </div>
     </div>
+
+    <figure className="comino-sewp-screenshot">
+      <a href={screenshotUrl} target="_blank" rel="noopener noreferrer" aria-label={text('放大 NASA SEWP 查詢結果截圖（另開分頁）', 'Enlarge the NASA SEWP lookup screenshot (opens a new tab)')}>
+        <img
+          src={screenshotUrl}
+          width={1736}
+          height={790}
+          loading="lazy"
+          decoding="async"
+          alt={text('NASA SEWP 官方查詢結果：Comino Holding Ltd.、Blue Tech、料號 D9612、CLIN BTD9612-63615；TAA 欄位為 C。', 'NASA SEWP lookup result for Comino Holding Ltd., supplied by Blue Tech: part D9612, CLIN BTD9612-63615, with C in the TAA field.')}
+        />
+      </a>
+      <figcaption>
+        <span>{text('NASA SEWP 官方查詢畫面｜擷取日期：2026-10-04。供直接閱覽，最新狀態以官方查詢為準。', 'NASA SEWP lookup screenshot, captured on 2026-10-04. Shown here for convenience; consult the official lookup for the latest status.')}</span>
+        <a href={screenshotUrl} target="_blank" rel="noopener noreferrer">{text('放大查看截圖', 'View full-size screenshot')} ↗</a>
+      </figcaption>
+    </figure>
 
     <p className="comino-sewp-scope">{text('這是合約商在 NASA SEWP 型錄中申報的產品狀態，並非 NASA 核發的認證證書。其他 Comino／GRANDO 機型與客製配置，仍須逐案確認原產地及 TAA 聲明。', 'This is the product status reported by the contract holder in NASA SEWP, rather than a NASA-issued certificate. Other Comino/GRANDO models and custom configurations require their own origin and TAA documentation.')}</p>
 
