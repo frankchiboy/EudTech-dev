@@ -60,11 +60,11 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'nvidia-h200-server',
     title: {
-      en: 'NVIDIA H200 Server Quote, Availability, and Price Planning',
+      en: 'NVIDIA H200 Server Quote & Planning',
       zh: 'NVIDIA H200 伺服器報價、供貨與價格規劃｜AI 訓練與推論'
     },
     description: {
-      en: 'Plan an NVIDIA H200 server quote for AI training, HPC, or inference. EudTech confirms current availability, price, and delivery only after GPU count, CPU, memory, storage, power, cooling, and networking are defined.',
+      en: 'Plan an NVIDIA H200 server quote for AI training, HPC, or inference. Submit a configuration so EudTech can confirm current availability, pricing, and delivery.',
       zh: '規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路；EudTech 會依實際配置確認目前供貨、價格與交期。'
     },
     keywords: {
@@ -139,11 +139,11 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'rtx-pro-6000-workstation',
     title: {
-      en: 'RTX PRO 6000 AI Workstation Quote Configurator for Local Inference',
+      en: 'RTX PRO 6000 Workstation for Local AI | Quote Configurator',
       zh: 'RTX PRO 6000 本地 AI 推論工作站報價配置器'
     },
     description: {
-      en: 'Configure RTX PRO 6000 workstations for local AI inference, rendering, visualization, and simulation, then send the build to EudTech for Taiwan quote follow-up.',
+      en: 'Configure an RTX PRO 6000 workstation for local AI inference, rendering, visualization, or simulation. Send the build to EudTech for a Taiwan quote.',
       zh: '配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。'
     },
     keywords: {
@@ -198,11 +198,11 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'ai-workstation-taiwan',
     title: {
-      en: 'AI Workstation Taiwan Configurator',
+      en: 'AI Workstations & GPU Systems in Taiwan',
       zh: '台灣 AI 工作站配置器'
     },
     description: {
-      en: 'Choose between deskside AI workstations, rackable GPU systems, and integration-kit paths for Taiwan teams that need GPU acceleration, local inference, model development, rendering, or simulation workloads.',
+      en: 'Compare deskside AI workstations, rackable GPU systems, and integration kits for Taiwan teams building local inference, AI models, rendering, or simulation.',
       zh: '為台灣團隊在桌邊 AI 工作站、可上架 GPU 系統與整合套件之間進行選型，支援 GPU 加速、本地推論、模型開發、渲染與模擬工作負載。'
     },
     keywords: {
@@ -334,11 +334,11 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'gpu-server-quote',
     title: {
-      en: 'GPU Server Quote and AI RFQ Configurator for H200 or RTX PRO 6000',
+      en: 'GPU Server Quote & RFQ Configurator',
       zh: 'GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000'
     },
     description: {
-      en: 'Create an RFQ-ready GPU server quote request for an H200 server or RTX PRO 6000 workstation. Capture the hardware and deployment factors EudTech needs to confirm configuration-specific price and delivery.',
+      en: 'Prepare an H200 server or RTX PRO 6000 workstation RFQ. Include hardware and deployment details so EudTech can confirm configuration-specific pricing and delivery.',
       zh: '建立可供 RFQ 使用的 GPU 伺服器報價需求，選擇 H200 伺服器或 RTX PRO 6000 工作站，並整理 EudTech 確認依配置價格與交期所需的硬體及部署因素。'
     },
     keywords: {
@@ -406,7 +406,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       zh: 'H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？'
     },
     description: {
-      en: 'H200 vs RTX PRO 6000: compare dense AI training and HPC server deployment with local AI inference and workstation deployment, then open the matching configurator for a Taiwan quote-ready configuration.',
+      en: 'Compare H200 servers for AI training and HPC with RTX PRO 6000 workstations for local inference. Review the workload fit and open a Taiwan quote configurator.',
       zh: 'H200 vs RTX PRO 6000：比較高密度 AI 訓練與 HPC 伺服器部署，以及本地 AI 推論與工作站部署，再進入對應配置器準備台灣可詢價的配置。'
     },
     keywords: {
@@ -770,11 +770,11 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     slug: 'supermicro-comino-gpu-server-comparison',
     kind: 'comparison',
     title: {
-      en: 'Supermicro and Comino GPU Server Procurement Workflow Comparison',
+      en: 'Supermicro vs Comino GPU Server Procurement',
       zh: 'Supermicro 與 Comino GPU 伺服器採購流程比較'
     },
     description: {
-      en: 'Compare the procurement workflow, configuration traceability, and quote handoff for a conventional Supermicro RFQ and a Comino Grando configurator-led request. This page does not claim a hardware performance benchmark.',
+      en: 'Compare Supermicro RFQ and Comino Grando configurator workflows, configuration tracking, and quote handoff. This guide makes no hardware-performance claims.',
       zh: '比較傳統 Supermicro RFQ 與 Comino Grando 配置器詢價的採購流程、配置可追蹤性與報價交接；本頁不宣稱硬體效能基準測試結果。'
     },
     keywords: {
@@ -829,11 +829,11 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'ai-inference-server-taiwan',
     title: {
-      en: 'AI Inference Server Quote Configurator for Taiwan LLM and Private Model Deployment',
+      en: 'AI Inference Server for LLMs | Taiwan Quote',
       zh: 'AI 推論伺服器報價配置器｜台灣 LLM 與私有模型部署'
     },
     description: {
-      en: 'Configure an AI inference server for Taiwan LLM and private model serving, with concurrency, GPU memory, system RAM, NVMe, networking, deployment, and quote follow-up context.',
+      en: 'Plan a Taiwan AI inference server for LLMs and private models. Capture concurrency, GPU memory, RAM, storage, networking, and deployment needs for a quote.',
       zh: '為台灣 LLM 與私有模型服務配置 AI 推論伺服器，保留併發量、GPU 記憶體、系統記憶體、NVMe、網路、部署與報價追蹤脈絡。'
     },
     keywords: {
@@ -1073,11 +1073,11 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     slug: 'ai-server-procurement-case-taiwan',
     kind: 'guide',
     title: {
-      en: 'Taiwan AI Server Procurement Case Guide with Configurator Quote Flow',
+      en: 'Taiwan AI Server Procurement Guide & Quote Flow',
       zh: '台灣 AI 伺服器採購案例指南與配置器詢價流程'
     },
     description: {
-      en: 'Map Taiwan AI server procurement scenarios to EudTech configurator quote paths for H200 servers, RTX PRO 6000 workstations, rackable systems, and liquid-cooling requirements.',
+      en: 'Match Taiwan AI server procurement needs to quote paths for H200 servers, RTX PRO 6000 workstations, rack systems, and liquid cooling.',
       zh: '將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。'
     },
     keywords: {
