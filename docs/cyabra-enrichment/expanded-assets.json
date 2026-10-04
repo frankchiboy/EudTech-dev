@@ -1,0 +1,853 @@
+[
+  {
+    "id": "official-42",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-42.webp",
+    "width": 1252,
+    "height": 836,
+    "title": {
+      "zh": "平台總覽：帳號清單與調查指標",
+      "en": "Platform overview: profiles and investigation metrics"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "screenshot",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/feature-prod-1.png",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "B6",
+    "original_sha256": "656d60c79759cdd00d54f7e2859d0e914627c852184538eb77982861be6c9506",
+    "sha256": "b20dc794bd9ae9d3dc7cae2ba778a64176e67ea180fd889f7b08d08d5df4fec7",
+    "bytes": 69874
+  },
+  {
+    "id": "official-43",
+    "source": "https://cyabra.com/blog/introducing-cyabras-new-conflicting-locations-feature-exposes-deception/",
+    "path": "/vendor/cyabra/2026/gallery/official-43.webp",
+    "width": 463,
+    "height": 567,
+    "title": {
+      "zh": "位置不一致：檢視帳號清單",
+      "en": "Conflicting locations: profile list"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "screenshot",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/image-1-9.png",
+    "source_page_observed": "https://cyabra.com/blog/introducing-cyabras-new-conflicting-locations-feature-exposes-deception/",
+    "candidate": "9",
+    "original_sha256": "8f318db0097cc3a63682ae0816c770343949e7312898434e4c72424ea10fde60",
+    "sha256": "d929bfeda5edff7ebe933fe2d35ce45064c6c4d72436d6b360e05bf3023298e8",
+    "bytes": 22836
+  },
+  {
+    "id": "official-44",
+    "source": "https://cyabra.com/case-studies/",
+    "path": "/vendor/cyabra/2026/gallery/official-44.webp",
+    "width": 400,
+    "height": 400,
+    "title": {
+      "zh": "American Eagle：原廠案例情境圖",
+      "en": "American Eagle: vendor case context"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/American-eagle-bots.svg",
+    "source_page_observed": "https://cyabra.com/case-studies/",
+    "candidate": "43",
+    "original_sha256": "3935c3b176e253d11ada254ef2c86681c17c548d738771ef4070b462809dae2c",
+    "sha256": "6cac6eb20875b126a96c2cea4620f23882f269b50ee247b77fcf62832859602a",
+    "bytes": 21624
+  },
+  {
+    "id": "official-45",
+    "source": "https://cyabra.com/case-studies/",
+    "path": "/vendor/cyabra/2026/gallery/official-45.webp",
+    "width": 598,
+    "height": 540,
+    "title": {
+      "zh": "Amazon：原廠帳號群集分析",
+      "en": "Amazon: profile cluster analysis"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/09/Screenshot-2026-09-08-at-2.14.56-PM.png",
+    "source_page_observed": "https://cyabra.com/case-studies/",
+    "candidate": "44",
+    "original_sha256": "02691883ff6c79f43d5786a2753fa451d48f878597f131114f42f369fbbcaa42",
+    "sha256": "408cd518b4c802e9ccbde924112caf4d5b614f9e1461b1738c2b8564aba66da6",
+    "bytes": 49086
+  },
+  {
+    "id": "official-46",
+    "source": "https://cyabra.com/case-studies/",
+    "path": "/vendor/cyabra/2026/gallery/official-46.webp",
+    "width": 1080,
+    "height": 1080,
+    "title": {
+      "zh": "Sony：情緒與內容量變化",
+      "en": "Sony: sentiment and content trends"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/09/1-1.png",
+    "source_page_observed": "https://cyabra.com/case-studies/",
+    "candidate": "45",
+    "original_sha256": "c5c552f397ca5cead6dda216311713aac8fad47a8244e90c80e65671830f9dc1",
+    "sha256": "67fefbb2e3f0b12a8b5d7978d54d08758f50e954018bfca6eb108ca9fbd0700d",
+    "bytes": 26494
+  },
+  {
+    "id": "official-47",
+    "source": "https://cyabra.com/case-studies/",
+    "path": "/vendor/cyabra/2026/gallery/official-47.webp",
+    "width": 1200,
+    "height": 630,
+    "title": {
+      "zh": "Spotify：依帳號類型比較情緒",
+      "en": "Spotify: sentiment by profile type"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/09/4-1.png",
+    "source_page_observed": "https://cyabra.com/case-studies/",
+    "candidate": "46",
+    "original_sha256": "9773f174b6dd6855f58d08cabfbce8d6007b35fd3e4fc84ceba1f33a63da09f8",
+    "sha256": "b9936cba1a1eb15cc223c7013f689fceb3e5090dce177015b1fd1074fb95edd7",
+    "bytes": 31786
+  },
+  {
+    "id": "official-48",
+    "source": "https://cyabra.com/case-studies/",
+    "path": "/vendor/cyabra/2026/gallery/official-48.webp",
+    "width": 1200,
+    "height": 630,
+    "title": {
+      "zh": "Starbucks：貼文與帳號標記範例",
+      "en": "Starbucks: posts and profile classifications"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/09/7-1.png",
+    "source_page_observed": "https://cyabra.com/case-studies/",
+    "candidate": "47",
+    "original_sha256": "61c7ccda217fc485543ac0b879268d6203e305677b945f591da2ed752a11b34b",
+    "sha256": "bd9c3b52681a164fb9752465c0a5eaa20bd8404ff819cffa71a42ccd4fd5bebb",
+    "bytes": 54420
+  },
+  {
+    "id": "official-49",
+    "source": "https://cyabra.com/case-studies/",
+    "path": "/vendor/cyabra/2026/gallery/official-49.webp",
+    "width": 1080,
+    "height": 1080,
+    "title": {
+      "zh": "Target：互動量與話題變化",
+      "en": "Target: engagement and discussion trends"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/09/2-1.png",
+    "source_page_observed": "https://cyabra.com/case-studies/",
+    "candidate": "48",
+    "original_sha256": "e0344e35be81de06f7fec41be161b168b6616a5034d95d4eddb779c2f87b991c",
+    "sha256": "a36c93e2d5be3a45326f6fb57e97e44a6ea8a15db22988d8166f235d408bc002",
+    "bytes": 63886
+  },
+  {
+    "id": "official-50",
+    "source": "https://cyabra.com/case-studies/",
+    "path": "/vendor/cyabra/2026/gallery/official-50.webp",
+    "width": 1200,
+    "height": 630,
+    "title": {
+      "zh": "Uber：標籤與敘事關係網絡",
+      "en": "Uber: hashtag and narrative network"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/09/13-1.png",
+    "source_page_observed": "https://cyabra.com/case-studies/",
+    "candidate": "49",
+    "original_sha256": "247a36859827d197c65361fe9fd16eeb68c9273c73ccd9e79a623bccc634ce19",
+    "sha256": "29df59488e29c6c29d70dc12a7136019e03e05f99a112f72a5b5663dafce281a",
+    "bytes": 99354
+  },
+  {
+    "id": "official-51",
+    "source": "https://cyabra.com/case-studies/",
+    "path": "/vendor/cyabra/2026/gallery/official-51.webp",
+    "width": 1200,
+    "height": 630,
+    "title": {
+      "zh": "世界盃票務：不真實帳號占比圖",
+      "en": "World Cup ticketing: inauthentic profile share"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/09/16.png",
+    "source_page_observed": "https://cyabra.com/case-studies/",
+    "candidate": "50",
+    "original_sha256": "c418efeb4a0df29ffdf1440ed91611532a6b96d05b058a0b68d54e1d05ae0ffe",
+    "sha256": "ebadd5c0bc04a6e55712c7f42abadcb1d194aaa32bb682cd0820f6766ae32da2",
+    "bytes": 12442
+  },
+  {
+    "id": "official-52",
+    "source": "https://cyabra.com/case-studies/us-state-department/",
+    "path": "/vendor/cyabra/2026/gallery/official-52.webp",
+    "width": 1004,
+    "height": 666,
+    "title": {
+      "zh": "美國國務院：影響行動群組",
+      "en": "US State Department: influence campaign clusters"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/network-influence-campaign-clusters.jpg",
+    "source_page_observed": "https://cyabra.com/case-studies/us-state-department/",
+    "candidate": "53",
+    "original_sha256": "f8dc05b92ef1f5f9b2c47d28442dbd53997971829208bbfe9cad7a0b15ef97fb",
+    "sha256": "0be4c266328facafdecd46e8e81d9590cea2dfd6da43883160fef4efce5a5dc9",
+    "bytes": 67864
+  },
+  {
+    "id": "official-53",
+    "source": "https://cyabra.com/case-studies/us-state-department/",
+    "path": "/vendor/cyabra/2026/gallery/official-53.webp",
+    "width": 953,
+    "height": 561,
+    "title": {
+      "zh": "美國國務院：內容與情緒趨勢",
+      "en": "US State Department: content and sentiment trends"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Screenshot-2026-02-26-141614.png",
+    "source_page_observed": "https://cyabra.com/case-studies/us-state-department/",
+    "candidate": "54",
+    "original_sha256": "59099428422245ad1810167ec83a5b822f3cf2274ca395ce36256a577784660b",
+    "sha256": "32b414d0dc3d26033a09b022f1d5aaf65e0b10b9a33d4b4386629ea7bfe86803",
+    "bytes": 25090
+  },
+  {
+    "id": "official-54",
+    "source": "https://cyabra.com/case-studies/warner-media/",
+    "path": "/vendor/cyabra/2026/gallery/official-54.webp",
+    "width": 697,
+    "height": 387,
+    "title": {
+      "zh": "Warner Media：討論量時間線",
+      "en": "Warner Media: conversation timeline"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Group-219.png",
+    "source_page_observed": "https://cyabra.com/case-studies/warner-media/",
+    "candidate": "64",
+    "original_sha256": "4d6ccb992f72718d4737ad2467c35e036d8a00de70e7fc1433d9d10807a00858",
+    "sha256": "b5217ee6bd1c8aeaad46c2d28ebcc11ee1b23f9a1763720e8acc78267e82278e",
+    "bytes": 15698
+  },
+  {
+    "id": "official-55",
+    "source": "https://cyabra.com/case-studies/warner-media/",
+    "path": "/vendor/cyabra/2026/gallery/official-55.webp",
+    "width": 752,
+    "height": 412,
+    "title": {
+      "zh": "Warner Media：跨平台帳號比較",
+      "en": "Warner Media: profiles across platforms"
+    },
+    "group": "case-studies",
+    "groupTitle": {
+      "zh": "案例研究",
+      "en": "Case studies"
+    },
+    "kind": "case",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/Group-218.png",
+    "source_page_observed": "https://cyabra.com/case-studies/warner-media/",
+    "candidate": "65",
+    "original_sha256": "b71f3d9f1f247f4a20c4efd1acdc4dbd39a7e5e0962d216f33fbbf6162f636a3",
+    "sha256": "530b5eab235ba881a59c8cc99da01308e72dc73df288c87447618b350658f831",
+    "bytes": 13666
+  },
+  {
+    "id": "official-56",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-56.webp",
+    "width": 328,
+    "height": 357,
+    "title": {
+      "zh": "流程概念：整理公開社群來源",
+      "en": "Workflow concept: public social sources"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/process-collage-1.png",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "80",
+    "original_sha256": "be7dc7b8fbc207796444a91f5d1391046457e3be038305aadbc17c122b8a6f2f",
+    "sha256": "8b5f1be1cbf212c4196f519f2d1a3cc00a9fce2ef127bacd22e3397db9180482",
+    "bytes": 28146
+  },
+  {
+    "id": "official-57",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-57.webp",
+    "width": 433,
+    "height": 423,
+    "title": {
+      "zh": "流程概念：內容分析與資訊整理",
+      "en": "Workflow concept: content analysis and enrichment"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/process-collage-2.png",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "81",
+    "original_sha256": "209af1b08c017082ab8814f19e0b2b2dcfc6fd60c2c9106c31c055133753e0bc",
+    "sha256": "3c0267cd5a0fbcdcbc0ccd636595c351e0d1a6a1e245b83f6ad1de5b974a2aa9",
+    "bytes": 45926
+  },
+  {
+    "id": "official-58",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-58.webp",
+    "width": 265,
+    "height": 412,
+    "title": {
+      "zh": "流程概念：帳號與特徵辨識",
+      "en": "Workflow concept: profile and signal analysis"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/process-collage-3.png",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "82",
+    "original_sha256": "5330f234d981a35405c3ae42600a03c93b00d2988a26c8356920613c49207472",
+    "sha256": "0558c0171554fd201e8f2a68f31067fa504602a5fd60b1328020699fa338581f",
+    "bytes": 22978
+  },
+  {
+    "id": "official-59",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-59.webp",
+    "width": 686,
+    "height": 485,
+    "title": {
+      "zh": "流程概念：連結訊號與洞察",
+      "en": "Workflow concept: connecting signals and insights"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/process-collage-4.png",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "83",
+    "original_sha256": "71eff0007794fa25b3fb6e14878bae573dc85d8285bfa90f0d48a86dfd72a5d6",
+    "sha256": "2948bccf177bdb335137c5bdf6eeb0ba4891fa273eb0912b17ed7f7875c45527",
+    "bytes": 58130
+  },
+  {
+    "id": "official-60",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-60.webp",
+    "width": 486,
+    "height": 486,
+    "title": {
+      "zh": "整合概念：接入既有情報工具",
+      "en": "Integration concept: connecting intelligence tools"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/we-cover-1.png",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "97",
+    "original_sha256": "a54c5b89352478d7e3ed3a659686f1c26ef038111fb553b95df34a98b96c7dff",
+    "sha256": "c39d5d29d500bf70db2edfde016fa1d5509484dec8e55783fe558a0e2e3f6d11",
+    "bytes": 22824
+  },
+  {
+    "id": "official-61",
+    "source": "https://cyabra.com/solutions/banking-and-finance/",
+    "path": "/vendor/cyabra/2026/gallery/official-61.webp",
+    "width": 950,
+    "height": 600,
+    "title": {
+      "zh": "分層分析示意：關係網絡",
+      "en": "Layered analysis illustration: relationship network"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/layer-base.png",
+    "source_page_observed": "https://cyabra.com/solutions/banking-and-finance/",
+    "candidate": "147",
+    "original_sha256": "a56bef19916dc6e1c0d9b4bc522c28d51eeefc27a08dd00e5bc78ef4a74540e8",
+    "sha256": "87fcebf94099ce6a799e4ac65f7ee8788f1a7ee7844a906d34d7ae7287146072",
+    "bytes": 32766
+  },
+  {
+    "id": "official-62",
+    "source": "https://cyabra.com/solutions/banking-and-finance/",
+    "path": "/vendor/cyabra/2026/gallery/official-62.webp",
+    "width": 977,
+    "height": 617,
+    "title": {
+      "zh": "分層分析示意：帳號群集",
+      "en": "Layered analysis illustration: profile clusters"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/layer-1.png",
+    "source_page_observed": "https://cyabra.com/solutions/banking-and-finance/",
+    "candidate": "148",
+    "original_sha256": "1bfa17604016575ab3bc9480d1943d43b619a9274f0c70a11da6b8a46db29fd0",
+    "sha256": "4e1fddef0c3c6a30869421410404f5e51ad6e3ca1d6ce3beb87c008f0134e371",
+    "bytes": 44078
+  },
+  {
+    "id": "official-63",
+    "source": "https://cyabra.com/solutions/banking-and-finance/",
+    "path": "/vendor/cyabra/2026/gallery/official-63.webp",
+    "width": 950,
+    "height": 600,
+    "title": {
+      "zh": "分層分析示意：群組連結",
+      "en": "Layered analysis illustration: connected communities"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/layer-2.png",
+    "source_page_observed": "https://cyabra.com/solutions/banking-and-finance/",
+    "candidate": "149",
+    "original_sha256": "6acfa11c838f70378259432258b6dcf724d451866c81d0ca518feee9cef8cb28",
+    "sha256": "d5e01a8e38237920fdc051f54e1b62c171b551d0674fcebf5b83b51f5c1a13d4",
+    "bytes": 24358
+  },
+  {
+    "id": "official-64",
+    "source": "https://cyabra.com/solutions/banking-and-finance/",
+    "path": "/vendor/cyabra/2026/gallery/official-64.webp",
+    "width": 950,
+    "height": 600,
+    "title": {
+      "zh": "分層分析示意：調查儀表板",
+      "en": "Layered analysis illustration: investigation dashboard"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/02/layer-3.png",
+    "source_page_observed": "https://cyabra.com/solutions/banking-and-finance/",
+    "candidate": "150",
+    "original_sha256": "82cc80fdabf56d503c89a1b6294623c133ad8582f43c13f9e65608be4b821506",
+    "sha256": "cbe9da4c43aa9f46efa56fd9637b46dfe2a20e58c09aed53d4bd454a20a82bf9",
+    "bytes": 33516
+  },
+  {
+    "id": "official-65",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-65.webp",
+    "width": 300,
+    "height": 300,
+    "title": {
+      "zh": "功能概念：帳號真實性",
+      "en": "Capability concept: authenticity"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/03/Scan-Identity-1.webp",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "72",
+    "original_sha256": "0b3e495b8e42e7e69b8ff06e504ba784905ce8a299841d6356e0163c2edb3d24",
+    "sha256": "f68f51a320eaa7c8ee317f69682272e3b5164c7afe973042a97543feb0ea27cb",
+    "bytes": 9784
+  },
+  {
+    "id": "official-66",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-66.webp",
+    "width": 300,
+    "height": 300,
+    "title": {
+      "zh": "功能概念：敘事與情緒",
+      "en": "Capability concept: narratives and sentiment"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/03/MultiDirections-1.webp",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "74",
+    "original_sha256": "6c901f4e454e28a66976824fbd89f0820558c8d0027648b1af211960a8cf6afc",
+    "sha256": "e54f6b1ea9be1194c8e03f7d1cb18c25705bacd7c9d40448502e915435d312db",
+    "bytes": 14234
+  },
+  {
+    "id": "official-67",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-67.webp",
+    "width": 300,
+    "height": 300,
+    "title": {
+      "zh": "功能概念：敘事預警",
+      "en": "Capability concept: narrative alerts"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/03/weavy-Gemini-3-Nano-Banana-Pro-0122-2-1.webp",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "76",
+    "original_sha256": "f40b4bee1b118ce95d6cba6aa4e413dd4dd7eb7d96506d677b56379c112f8164",
+    "sha256": "54e5993e716a32655d187d6277f3308eb272ade187f42959bc29d0a3c9a8de2c",
+    "bytes": 9958
+  },
+  {
+    "id": "official-68",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-68.webp",
+    "width": 300,
+    "height": 300,
+    "title": {
+      "zh": "功能概念：深偽偵測",
+      "en": "Capability concept: deepfake detection"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/03/weavy-Gemini-3-Nano-Banana-Pro-0042-2-1.webp",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "77",
+    "original_sha256": "36a565c82f15af52c57b454001d0202ba66064239a5ac89fdc1a5caf871a08d6",
+    "sha256": "21d1b0a2cb9cb7a2f189c2a6c96999c134217c7b2d46e6656d652eb48adc7c50",
+    "bytes": 17276
+  },
+  {
+    "id": "official-69",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-69.webp",
+    "width": 300,
+    "height": 300,
+    "title": {
+      "zh": "功能概念：冒名偵測",
+      "en": "Capability concept: impersonation detection"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/03/Deepfake1-1.webp",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "78",
+    "original_sha256": "0a0a6b663f9962ee926ca95f0049a24460c0a2952e11b8dc48d5deaad52a4236",
+    "sha256": "bacb8a422262294d41bedd52a7052e9bddbd8f3e0c02ffff2f1c4abd94d949ab",
+    "bytes": 13462
+  },
+  {
+    "id": "official-70",
+    "source": "https://cyabra.com/product/",
+    "path": "/vendor/cyabra/2026/gallery/official-70.webp",
+    "width": 300,
+    "height": 300,
+    "title": {
+      "zh": "功能概念：證據與應對",
+      "en": "Capability concept: evidence and mitigation"
+    },
+    "group": "workflow",
+    "groupTitle": {
+      "zh": "概念與分析流程",
+      "en": "Concepts & workflow"
+    },
+    "kind": "illustration",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/03/ShieldLock-1.webp",
+    "source_page_observed": "https://cyabra.com/product/",
+    "candidate": "79",
+    "original_sha256": "74dfaf77d8862b24c59dcd14b0c05d32ad10bf1528d8111c32d5d669828b4eae",
+    "sha256": "57ea97ebb2cffda0248b55728351430051ffdfe9fb208861039fe258a0656712",
+    "bytes": 11326
+  },
+  {
+    "id": "official-71",
+    "source": "https://cyabra.com/playbooks/culture-vs-counterfeit-the-marketers-guide-to-the-comment-section/",
+    "path": "/vendor/cyabra/2026/gallery/official-71.webp",
+    "width": 1600,
+    "height": 900,
+    "title": {
+      "zh": "留言區實務：真實文化與偽造聲量",
+      "en": "Culture vs. Counterfeit: the comment section"
+    },
+    "group": "playbooks",
+    "groupTitle": {
+      "zh": "實務指南",
+      "en": "Playbooks"
+    },
+    "kind": "guide",
+    "remote": "https://cyabra.com/wp-content/uploads/2025/11/TEXTS-pdf.jpg",
+    "source_page_observed": "https://cyabra.com/playbooks/5-ways-to-spot-a-viral-crisis-before-it-explodes/",
+    "candidate": "163",
+    "original_sha256": "96a979826f6bdd7d20e33783ca0148e92037de1269f24d4667fb402714b6defd",
+    "sha256": "b11bafe2333a24475488ba836f31b41bfbd154ed5057d7016dcf1a081f258ddc",
+    "bytes": 63434
+  },
+  {
+    "id": "official-72",
+    "source": "https://cyabra.com/playbooks/the-pr-playbook-for-stopping-facebook-disinformation-campaigns/",
+    "path": "/vendor/cyabra/2026/gallery/official-72.webp",
+    "width": 1600,
+    "height": 900,
+    "title": {
+      "zh": "公關指南：回應 Facebook 假資訊行動",
+      "en": "PR playbook: Facebook disinformation campaigns"
+    },
+    "group": "playbooks",
+    "groupTitle": {
+      "zh": "實務指南",
+      "en": "Playbooks"
+    },
+    "kind": "guide",
+    "remote": "https://cyabra.com/wp-content/uploads/2025/09/TEXTS-copy-pdf.jpg",
+    "source_page_observed": "https://cyabra.com/playbooks/5-ways-to-spot-a-viral-crisis-before-it-explodes/",
+    "candidate": "164",
+    "original_sha256": "95f8ed9a1d53f78c637040fbdcbbcafaee70d2faf18df208ea1aad207c3f17d3",
+    "sha256": "07b9f1d3641378a59d6388e04c9fd215fe3a2123ddbddf1b7b926d34330fa62e",
+    "bytes": 76936
+  },
+  {
+    "id": "official-73",
+    "source": "https://cyabra.com/playbooks/deepfakes-your-brand-just-got-deepfaked/",
+    "path": "/vendor/cyabra/2026/gallery/official-73.webp",
+    "width": 1600,
+    "height": 900,
+    "title": {
+      "zh": "深偽應對：五步處理計畫",
+      "en": "Deepfakes: a five-step response plan"
+    },
+    "group": "playbooks",
+    "groupTitle": {
+      "zh": "實務指南",
+      "en": "Playbooks"
+    },
+    "kind": "guide",
+    "remote": "https://cyabra.com/wp-content/uploads/2025/09/TEXTS-pdf.jpg",
+    "source_page_observed": "https://cyabra.com/playbooks/5-ways-to-spot-a-viral-crisis-before-it-explodes/",
+    "candidate": "165",
+    "original_sha256": "c1658a0a144f430f88a4fa2c5017c53fc7bdab1e9074ec1468708414e9d64ca0",
+    "sha256": "c13872fd516e6259323c9111630c3a97c1ead51729c5f3c198d0ef503467bcd5",
+    "bytes": 55500
+  },
+  {
+    "id": "official-74",
+    "source": "https://cyabra.com/playbooks/5-ways-to-spot-a-viral-crisis-before-it-explodes/",
+    "path": "/vendor/cyabra/2026/gallery/official-74.webp",
+    "width": 1600,
+    "height": 900,
+    "title": {
+      "zh": "危機預警：五種提早辨識方式",
+      "en": "Five ways to spot a viral crisis"
+    },
+    "group": "playbooks",
+    "groupTitle": {
+      "zh": "實務指南",
+      "en": "Playbooks"
+    },
+    "kind": "guide",
+    "remote": "https://cyabra.com/wp-content/uploads/2025/08/TEXTS-pdf.jpg",
+    "source_page_observed": "https://cyabra.com/playbooks/culture-vs-counterfeit-the-marketers-guide-to-the-comment-section/",
+    "candidate": "166",
+    "original_sha256": "ddb801d0d836a041c276965f87031eecbdf1385daec0a13344b4f9b094e06e89",
+    "sha256": "16c75048a6a2f6eeba7970b705fce4d60180a8c73f5c890ca8117113868167f2",
+    "bytes": 70226
+  },
+  {
+    "id": "official-75",
+    "source": "https://cyabra.com/playbooks/how-to-get-harmful-profiles-removed/",
+    "path": "/vendor/cyabra/2026/gallery/official-75.webp",
+    "width": 1024,
+    "height": 576,
+    "title": {
+      "zh": "有害假帳號：提出移除申請的指南",
+      "en": "Harmful profiles: a removal request guide"
+    },
+    "group": "playbooks",
+    "groupTitle": {
+      "zh": "實務指南",
+      "en": "Playbooks"
+    },
+    "kind": "guide",
+    "remote": "https://cyabra.com/wp-content/uploads/2025/07/TEXTS-pdf-1024x576.jpg",
+    "source_page_observed": "https://cyabra.com/playbooks/",
+    "candidate": "71",
+    "original_sha256": "aeee2c1db58b4362c12c0c48ced6cb20ef11d73a901392eca2893959d70d7238",
+    "sha256": "289e5add49bfde12ef156f140455d9a98503ac6564e03ae61c8a1765a51344ff",
+    "bytes": 34996
+  },
+  {
+    "id": "official-76",
+    "source": "https://cyabra.com/blog/introducing-cyabras-coordinated-activity-detection/",
+    "path": "/vendor/cyabra/2026/gallery/official-76.webp",
+    "width": 1448,
+    "height": 1086,
+    "title": {
+      "zh": "協同行動 AI Agent：原廠發布主視覺",
+      "en": "Coordinated activity AI agent: launch artwork"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "artwork",
+    "remote": "https://cyabra.com/wp-content/uploads/2024/07/ChatGPT-Image-Jul-23-2026-12_20_05-AM.png",
+    "source_page_observed": "https://cyabra.com/blog/introducing-cyabras-coordinated-activity-detection/",
+    "candidate": "B1",
+    "original_sha256": "18c8e5cc19a65eff1ca909aab8851639c71a83dd844425ae8b3fba3e8f177c29",
+    "sha256": "e6d9e6dcf0b17d379a4e3b01b1b56ee0b8ea9e839c5294d767398fbf4ac3348e",
+    "bytes": 39696
+  },
+  {
+    "id": "official-77",
+    "source": "https://cyabra.com/blog/introducing-cyabras-new-conflicting-locations-feature-exposes-deception/",
+    "path": "/vendor/cyabra/2026/gallery/official-77.webp",
+    "width": 1600,
+    "height": 900,
+    "title": {
+      "zh": "位置不一致：原廠發布主視覺",
+      "en": "Conflicting locations: launch artwork"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "artwork",
+    "remote": "https://cyabra.com/wp-content/uploads/2026/01/BLOG-DESIGNS-3-pdf.jpg",
+    "source_page_observed": "https://cyabra.com/blog/introducing-cyabras-new-conflicting-locations-feature-exposes-deception/",
+    "candidate": "B2",
+    "original_sha256": "149bddd997ff260aa9184725b701b050a60a61eab1184224187f7daae8b899e6",
+    "sha256": "9f19343063ee78647dc5703fd524bb704aabce0a6d295988ba7cc8239f7c5977",
+    "bytes": 61684
+  },
+  {
+    "id": "official-78",
+    "source": "https://cyabra.com/blog/introducing-news-claims-analysis-verify-what-the-news-is-actually-saying/",
+    "path": "/vendor/cyabra/2026/gallery/official-78.webp",
+    "width": 1536,
+    "height": 1024,
+    "title": {
+      "zh": "新聞主張查核：原廠發布主視覺",
+      "en": "News claims analysis: launch artwork"
+    },
+    "group": "new",
+    "groupTitle": {
+      "zh": "2026 新功能",
+      "en": "New in 2026"
+    },
+    "kind": "artwork",
+    "remote": "https://cyabra.com/wp-content/uploads/2025/04/ChatGPT-Image-Apr-23-2026-11_07_24-AM.png",
+    "source_page_observed": "https://cyabra.com/blog/introducing-news-claims-analysis-verify-what-the-news-is-actually-saying/",
+    "candidate": "B3",
+    "original_sha256": "b15e25e589ae81dd365146e26e1a03d902d0c286ac3784a4b0a92cb7d2025438",
+    "sha256": "d31208bbba8edbba4b892d16f2ad546a0f2251d79048184f71e8ed0f9137bd9a",
+    "bytes": 70190
+  }
+]

@@ -372,3 +372,7 @@ const { copyToClipboard, hasCopied } = useClipboard();
 ---
 
 **© 2024 優達盟資訊科技有限公司**# Updated Sun Sep 21 19:37:51 CST 2025
+
+## 正式發布前的統一測試站
+
+網站更新完成後，一律先合併至 `codex/website-next-update`，並在 [整合測試站](https://codex-website-next-update--website-eudtech.netlify.app/) 驗收。功能分支或 PR 的臨時預覽不取代此入口。只有使用者明確核准後，才由已驗收的測試版本進入 `main` 與正式站。完整規範見 [開發中版本管理辦法](docs/開發中版本管理辦法.md)。

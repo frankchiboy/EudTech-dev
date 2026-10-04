@@ -241,3 +241,7 @@
 ## 2026-09-05 - Whole-site Content Optimisation
 
 1. `/goal 全站內容 不是程式碼 是內容 優化載測試站給我`
+
+## 2026-10-04 - 唯一整合測試分支與 Cyabra 合併
+
+> 合併到 `codex/website-next-update` 才對 這才是唯一上正式站前的測試分支
