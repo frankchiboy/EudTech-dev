@@ -97,7 +97,7 @@ function getConfiguratorSocialPreviewRoutes() {
       title: 'AI 與數位服務解決方案總覽｜EudTech',
       description: '從 PQC 遷移顧問、AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 四大導入路徑。',
       sourceImage: DEFAULT_SOURCE_IMAGE,
-      imageAlt: 'EudTech AI 解決方案總覽'
+      imageAlt: 'AI 與數位服務解決方案｜EudTech'
     },
     {
       path: '/solutions/aws',
