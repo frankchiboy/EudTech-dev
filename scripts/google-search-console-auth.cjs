@@ -4,6 +4,9 @@ const path = require('path');
 
 const GOOGLE_SEARCH_CONSOLE_SCOPE = 'https://www.googleapis.com/auth/webmasters';
 const DEFAULT_TOKEN_PATH = '/Users/serverc/WorkSpace-AI/google_token.json';
+const DEFAULT_GCLOUD_ACCOUNT = 'frankchiboy@gmail.com';
+const DEFAULT_IMPERSONATED_SERVICE_ACCOUNT =
+  'eudtech-search-console@personal-gmail-vault.iam.gserviceaccount.com';
 
 function readTokenFile() {
   const tokenPath = path.resolve(process.env.GOOGLE_SEARCH_CONSOLE_TOKEN_PATH || DEFAULT_TOKEN_PATH);
@@ -63,14 +66,44 @@ async function getSearchConsoleAccessToken() {
   try {
     return await getSearchConsoleUserToken();
   } catch (userTokenError) {
-    // Continue to Application Default Credentials only when the durable user token is unavailable.
+    // Continue to gcloud-based credentials only when the durable user token is unavailable.
   }
 
   const env = { ...process.env };
   delete env.GOOGLE_APPLICATION_CREDENTIALS;
 
+  const gcloudAccount = process.env.GOOGLE_SEARCH_CONSOLE_GCLOUD_ACCOUNT || DEFAULT_GCLOUD_ACCOUNT;
+  const impersonatedServiceAccount =
+    process.env.GOOGLE_SEARCH_CONSOLE_IMPERSONATE_SERVICE_ACCOUNT || DEFAULT_IMPERSONATED_SERVICE_ACCOUNT;
+  let impersonationError;
+
   try {
-    return execFileSync(
+    const token = execFileSync(
+      'gcloud',
+      [
+        'auth',
+        'print-access-token',
+        `--account=${gcloudAccount}`,
+        `--impersonate-service-account=${impersonatedServiceAccount}`,
+        `--scopes=${GOOGLE_SEARCH_CONSOLE_SCOPE}`,
+        '--quiet'
+      ],
+      {
+        env,
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'pipe']
+      }
+    ).trim();
+    if (!token) {
+      throw new Error('gcloud returned an empty impersonated access token.');
+    }
+    return token;
+  } catch (error) {
+    impersonationError = error;
+  }
+
+  try {
+    const token = execFileSync(
       'gcloud',
       ['auth', 'application-default', 'print-access-token', `--scopes=${GOOGLE_SEARCH_CONSOLE_SCOPE}`],
       {
@@ -79,9 +112,15 @@ async function getSearchConsoleAccessToken() {
         stdio: ['ignore', 'pipe', 'pipe']
       }
     ).trim();
-  } catch (error) {
+    if (!token) {
+      throw new Error('gcloud returned an empty Application Default Credentials access token.');
+    }
+    return token;
+  } catch (adcError) {
     throw new Error(
-      `Unable to get Google Search Console ADC access token with ${GOOGLE_SEARCH_CONSOLE_SCOPE}. Run gcloud auth application-default login with the Search Console scope first. ${error.message}`
+      `Unable to get a Google Search Console access token with ${GOOGLE_SEARCH_CONSOLE_SCOPE}. ` +
+        `Dedicated impersonation failed: ${impersonationError.message}. ` +
+        `Application Default Credentials failed: ${adcError.message}`
     );
   }
 }
@@ -89,5 +128,7 @@ async function getSearchConsoleAccessToken() {
 module.exports = {
   GOOGLE_SEARCH_CONSOLE_SCOPE,
   DEFAULT_TOKEN_PATH,
+  DEFAULT_GCLOUD_ACCOUNT,
+  DEFAULT_IMPERSONATED_SERVICE_ACCOUNT,
   getSearchConsoleAccessToken
 };
