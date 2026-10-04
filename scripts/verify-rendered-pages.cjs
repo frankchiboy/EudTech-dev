@@ -3,8 +3,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { englishRoutes } = require('./seo-public-pages.cjs');
 const procurement = require('../src/data/cominoProcurement.json');
+const discoveryDates = require('../public/discovery-lastmod.json');
 const dist = path.resolve(__dirname, '../dist');
 const text = value => value.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
+const canonicalPathByAlias = new Map(Object.keys(discoveryDates.entries).map(value => {
+  const canonicalPath = new URL(value).pathname;
+  return [canonicalPath === '/' ? '/' : canonicalPath.replace(/\/$/, ''), canonicalPath];
+}));
 let rendered = 0, dynamic = 0;
 for (const route of englishRoutes()) for (const en of [false, true]) {
   const pathname = `${en ? '/en' : ''}${route.path}`;
@@ -20,6 +25,12 @@ for (const route of englishRoutes()) for (const en of [false, true]) {
   assert.ok(html.includes('id="main-content"') && html.includes('<nav') && html.includes('<footer'), `Missing actual page layout: ${pathname}`);
   assert.equal((html.match(/<h1\b/g) || []).length, 1, `One visible H1 required: ${pathname}`);
   assert.ok(!html.includes('<!--$!-->'), `Unresolved React suspense: ${pathname}`);
+  for (const href of [...html.matchAll(/\bhref="(\/[^\"]*)"/g)].map(match => match[1])) {
+    const link = new URL(href, 'https://eudaemonia.tech');
+    const alias = link.pathname === '/' ? '/' : link.pathname.replace(/\/$/, '');
+    const canonicalPath = canonicalPathByAlias.get(alias);
+    if (canonicalPath) assert.equal(link.pathname, canonicalPath, `Internal page link must use canonical trailing slash: ${pathname} -> ${href}`);
+  }
   const title = html.match(/<title\b[^>]*>(.*?)<\/title>/)[1];
   const meta = (kind, name) => html.match(new RegExp(`<meta[^>]+${kind}="${name}"[^>]+content="([^"]*)"`))?.[1];
   const description = meta('name', 'description');
@@ -31,8 +42,9 @@ for (const route of englishRoutes()) for (const en of [false, true]) {
   assert.ok(html.includes('https://eudaemonia.tech/#organization') && html.includes('https://eudaemonia.tech/#website'), `Missing linked publisher: ${pathname}`);
   const body = text(html.match(/<body>[\s\S]*?<\/body>/)[0]);
   assert.ok(body.length > 400, `Incomplete page content: ${pathname}`);
-  for (const match of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
-    const schema = JSON.parse(match[1]);
+  const schemas = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+  assert.ok(schemas.some(schema => schema['@type'] === 'BreadcrumbList'), `Missing BreadcrumbList: ${pathname}`);
+  for (const schema of schemas) {
     if (schema['@type'] === 'FAQPage') for (const faq of schema.mainEntity) {
       assert.ok(body.includes(text(faq.name)), `FAQ question missing from visible content: ${pathname}`);
       assert.ok(body.includes(text(faq.acceptedAnswer.text)), `FAQ answer missing from visible content: ${pathname}`);

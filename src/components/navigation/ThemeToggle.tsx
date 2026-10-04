@@ -5,6 +5,7 @@ import { ThemeMode } from '../../types';
 interface ThemeToggleProps {
   themeMode: ThemeMode;
   isDarkMode: boolean;
+  isEnglish: boolean;
   toggleDarkMode: () => void;
   textColorClass: string;
   mobile?: boolean;
@@ -13,6 +14,7 @@ interface ThemeToggleProps {
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ 
   themeMode, 
   isDarkMode, 
+  isEnglish,
   toggleDarkMode, 
   textColorClass,
   mobile = false 
@@ -42,6 +44,14 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
   };
 
   const getAriaLabel = () => {
+    if (isEnglish) {
+      return `Change theme mode (currently: ${
+        themeMode === 'system'
+          ? `system (${isDarkMode ? 'dark' : 'light'})`
+          : themeMode === 'dark' ? 'dark mode' : 'light mode'
+      })`;
+    }
+
     return `切換主題模式 (目前: ${
       themeMode === 'system' 
         ? `跟隨系統 (${isDarkMode ? '深色' : '淺色'})`

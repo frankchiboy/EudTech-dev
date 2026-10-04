@@ -9,7 +9,7 @@
   },
   "/": {
     "title": "PQC, AWS Cloud, GPU Systems & Social Intelligence",
-    "description": "Explore EudTech PQC migration advisory, AWS cloud services, Comino liquid-cooled GPU systems and Cyabra social intelligence, from evaluation to procurement planning.",
+    "description": "Explore EudTech PQC migration, AWS cloud, Comino liquid-cooled GPU systems and Cyabra social intelligence for procurement and deployment planning.",
     "keywords": "PQC, post-quantum cryptography, AWS cloud services, Comino GPU systems, liquid-cooled workstations, Cyabra social intelligence, EudTech",
     "highlights": [
       "PQC · Expert advisory: Map cryptographic assets, pilot architectures and plan a phased migration with research and engineering expertise.",
@@ -20,16 +20,17 @@
   },
   "/solutions": {
     "title": "AI & Digital Solutions",
-    "description": "Choose an EudTech service for AWS cloud sales, GPU infrastructure or Cyabra social intelligence.",
+    "description": "Choose among EudTech's four solution lines: PQC migration advisory, AWS cloud sales, GPU infrastructure and Cyabra social intelligence.",
     "highlights": [
+      "PQC migration advisory: inventory cryptographic assets, validate controlled pilots and plan phased migration governance.",
       "AWS cloud sales: service selection, usage estimates, procurement quotes and deployment planning.",
       "AI infrastructure: turn workload and site requirements into a configuration, quote and deployment plan.",
       "Social intelligence: define an issue, evidence requirements and the decisions the analysis must support."
     ]
   },
   "/solutions/ai-infrastructure": {
-    "title": "Comino Liquid-Cooled GPU Servers & AI Workstations",
-    "description": "Plan Comino GRANDO GPU servers and workstations in Taiwan with workload sizing, power and cooling review, manufacturer documents and procurement evidence.",
+    "title": "Comino Liquid-Cooled GPU Servers & Workstations",
+    "description": "Plan Comino GRANDO GPU servers and workstations in Taiwan, including workload sizing, power, cooling, manufacturer documents and procurement evidence.",
     "highlights": [
       "Choose deskside or rack deployment from noise, available space, power, heat removal and sustained workload requirements.",
       "The closed internal cooling loop transfers heat to the radiator; room ventilation and air conditioning still require review.",
@@ -67,19 +68,20 @@
     ]
   },
   "/about": {
-    "title": "About EudTech | Eudaemonia Technology",
-    "description": "Eudaemonia Technology helps enterprises, researchers and public institutions connect AWS cloud services, compute systems and intelligence tools to practical workflows.",
+    "title": "About Eudaemonia Technology",
+    "description": "EudTech helps enterprises, researchers and public institutions plan PQC migration, AWS cloud, AI infrastructure and social intelligence delivery.",
     "highlights": [
       "Requirements, sources, approvals, acceptance criteria and ownership are written down.",
-      "EudTech combines cloud procurement, workload-led hardware planning and evidence-led intelligence.",
+      "EudTech combines PQC migration advisory, cloud procurement, workload-led hardware planning and evidence-led intelligence.",
       "Bring one concrete problem to identify the information and scope needed for the next step."
     ]
   },
   "/contact": {
     "title": "Contact EudTech",
-    "description": "Discuss an AWS cloud service, GPU configuration or social intelligence need with EudTech. Start with the workload, existing systems and intended outcome.",
+    "description": "Discuss a PQC migration, AWS cloud service, GPU configuration or social intelligence need with EudTech. Start with your environment and intended outcome.",
     "highlights": [
       "Send your question to quote@eudaemonia.tech or use the consultation form.",
+      "For PQC migration, include the systems, cryptographic dependencies, data lifetime and compliance requirements in scope.",
       "For GPU systems, include software, workload, deployment location and available power and cooling.",
       "For AWS services, include applications, expected usage, regions and your target launch date.",
       "EudTech will propose the next step: discovery, a pilot, configuration review, a demonstration or a formal quote."
@@ -107,7 +109,7 @@
     ]
   },
   "/solutions/aws": {
-    "title": "AWS Cloud Sales | Planning, Quotes & Deployment",
+    "title": "AWS Cloud Sales, Quotes & Deployment",
     "description": "Plan AWS compute, storage, databases and generative AI with EudTech, from requirements and quotes to deployment and support scope.",
     "highlights": [
       "Plan AWS compute, storage and backup, databases, and generative AI around your workload.",
@@ -117,7 +119,7 @@
   },
   "/solutions/pqc": {
     "title": "PQC Migration & Expert Advisory",
-    "description": "Meet the experts behind cryptographic inventories, PQC architecture pilots, and phased migration. Explore academic backgrounds and ML-DSA implementation research.",
+    "description": "Meet the experts guiding cryptographic inventories, PQC architecture pilots and phased migration, backed by academic and ML-DSA implementation research.",
     "keywords": "PQC, post-quantum cryptography, cryptographic inventory, ML-DSA, ML-KEM, migration advisory",
     "highlights": [
       "Research and academic backgrounds of Chung-hao (Frank) Hsu and Hung-Jr Shiu.",

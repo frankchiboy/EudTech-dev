@@ -14,6 +14,8 @@ const {
 } = require('./configurator-social-preview-routes.cjs');
 const { SITE_INFORMATION_ROUTES } = require('./site-information-routes.cjs');
 const cominoReference = require('../src/data/cominoProcurement.json');
+const cominoConformity = require('../src/data/cominoConformity.json');
+const organization = require('../src/data/organization.json');
 const cominoTestDrive = require('../src/data/cominoTestDrive.json');
 
 const distDir = path.resolve(__dirname, '..', 'dist');
@@ -43,28 +45,7 @@ const productSeoById = new Map((CONFIGURATOR_PRODUCT_SEO || []).map((product) =>
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
 const organizationId = `${siteRootUrl}#organization`;
 const websiteId = `${siteRootUrl}#website`;
-const eudTechOrganization = {
-  '@type': 'Organization',
-  '@id': organizationId,
-  name: 'EudTech',
-  alternateName: 'Eudaemonia Technology',
-  url: siteRootUrl,
-  email: 'quote@eudaemonia.tech',
-  logo: {
-    '@type': 'ImageObject',
-    url: `${siteOrigin}/logo.svg`
-  },
-  areaServed: {
-    '@type': 'Country',
-    name: 'Taiwan'
-  },
-  contactPoint: {
-    '@type': 'ContactPoint',
-    contactType: 'sales',
-    email: 'quote@eudaemonia.tech',
-    availableLanguage: ['zh-TW', 'en']
-  }
-};
+const eudTechOrganization = organization;
 const eudTechWebSite = {
   '@type': 'WebSite',
   '@id': websiteId,
@@ -176,8 +157,8 @@ function configuratorHubItemList() {
 const solutionHubRoute = {
   path: '/solutions',
   title: 'AI 與數位服務解決方案總覽｜EudTech',
-  description: '從企業 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
-  keywords: 'AI 解決方案, AWS 雲端銷售, AWS 採購, 雲端移轉, AI 運算基礎設施, Cyabra 社群情報, EudTech',
+  description: '從 PQC 遷移顧問、企業 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 四大導入路徑。',
+  keywords: 'AI 解決方案, PQC 遷移顧問, 後量子密碼, AWS 雲端銷售, AWS 採購, 雲端移轉, AI 運算基礎設施, Cyabra 社群情報, EudTech',
   lead: '從需要改善的營運流程、數位服務、運算工作負載或社群風險開始，進入有明確內容、下一步及可追蹤交付的方案。',
   image: defaultImage,
   imageAlt: 'EudTech AI 解決方案總覽',
@@ -185,6 +166,7 @@ const solutionHubRoute = {
   configuratorHref: '/configurator',
   quoteHref: '/configurator?request=true',
   relatedLinks: [
+    routeLink('/solutions/pqc', 'PQC 後量子密碼遷移'),
     routeLink('/solutions/aws', 'AWS 雲端銷售與導入'),
     routeLink('/solutions/ai-infrastructure', 'AI 運算基礎設施'),
     routeLink('/solutions/social-intelligence', '社群情報與品牌保護'),
@@ -193,17 +175,19 @@ const solutionHubRoute = {
     routeLink('/contact', '聯絡與諮詢')
   ],
   highlights: [
+    'PQC 遷移顧問：密碼資產盤點、試點驗證與分階段遷移治理。',
     'AWS 雲端銷售：服務選型、用量估算、採購報價與導入規劃。',
     'AI 運算基礎設施：從工作負載到可採購配置。',
     '社群情報：分析假帳號、敘事、擴散與品牌風險。'
   ],
   specs: [
-    { label: '方案一', value: 'AWS 雲端銷售與導入' },
-    { label: '方案二', value: 'AI 運算基礎設施' },
-    { label: '方案三', value: 'Cyabra 社群情報' }
+    { label: '方案一', value: 'PQC 後量子密碼遷移' },
+    { label: '方案二', value: 'AWS 雲端銷售與導入' },
+    { label: '方案三', value: 'AI 運算基礎設施' },
+    { label: '方案四', value: 'Cyabra 社群情報' }
   ],
   faq: [
-    ['如何選擇 EudTech 解決方案？', '需要串接既有系統、建立品牌入口、改善企業流程或導入 Agent 時，選擇 AWS 雲端銷售；需要 GPU 伺服器或工作站時選擇 AI 運算基礎設施；需要分析社群風險時選擇社群情報。'],
+    ['如何選擇 EudTech 解決方案？', '需要盤點密碼資產、驗證後量子密碼或規劃遷移時，選擇 PQC 遷移顧問；需要串接既有系統、建立品牌入口、改善企業流程或導入 Agent 時，選擇 AWS 雲端銷售；需要 GPU 伺服器或工作站時選擇 AI 運算基礎設施；需要分析社群風險時選擇社群情報。'],
     ['方案是否可以先做小範圍驗證？', '可以。EudTech 會先定義問題、資料、負責人、證據與成功指標，再以可操作範圍開始。'],
     ['AI 運算方案可以直接配置嗎？', '可以。AI 運算基礎設施頁會連到 Comino 配置器，保留可分享配置並送出詢價。'],
     ['如何開始諮詢？', '使用聯絡頁選擇需求類型，再透過 Microsoft Bookings 或 quote@eudaemonia.tech 安排下一步。']
@@ -221,13 +205,14 @@ const solutionHubRoute = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: 'AI 解決方案',
-      description: 'EudTech 的 AWS 雲端銷售、AI 運算基礎設施及 Cyabra 社群情報三大方案。',
+      description: 'EudTech 的 PQC 遷移顧問、AWS 雲端銷售、AI 運算基礎設施及 Cyabra 社群情報四大方案。',
       url: pageUrl('/solutions'),
       publisher: eudTechOrganization,
       mainEntity: {
         '@type': 'ItemList',
-        name: 'EudTech 三大解決方案',
+        name: 'EudTech 四大解決方案',
         itemListElement: [
+          ['PQC 後量子密碼遷移', '/solutions/pqc'],
           ['AWS 雲端銷售與導入', '/solutions/aws'],
           ['AI 運算基礎設施', '/solutions/ai-infrastructure'],
           ['社群情報與品牌保護', '/solutions/social-intelligence']
@@ -838,7 +823,8 @@ function staticProcurementReference(route) {
       const source = document ? `<a href="${escapeHtml(document.readerHrefZh)}#page-${criterion.page}">中文譯本第 ${escapeHtml(criterion.pages)} 頁</a>` : '';
       return `<li><h3>${escapeHtml(criterion.title.zh)}</h3><p>${escapeHtml(criterion.requirement.zh)}</p><p>${escapeHtml(criterion.evidence.zh)} ${source}</p></li>`;
     }).join('');
-    return `<section id="procurement" aria-labelledby="static-seo-procurement"><h2 id="static-seo-procurement">${escapeHtml(reference.title.zh)}</h2><p>文件查核日期：${escapeHtml(reference.reviewedAt)}</p><p>${escapeHtml(reference.translationNote.zh)} 翻譯日期：${escapeHtml(reference.translatedAt)}</p><ul>${documents}</ul><h3>可供規格研議的功能與證據</h3><ul>${criteria}</ul><h3>數值與適用條件</h3><ul>${['cooling', 'power', 'noise', 'temperature'].map((key) => `<li>${escapeHtml(reference.specs[key].zh)}</li>`).join('')}</ul><p>${escapeHtml(reference.conformityNote.zh)}</p><p>${escapeHtml(reference.procurementNote.zh)} <a href="${escapeHtml(reference.procurementSource)}">政府採購法第 26 條</a></p></section>`;
+    const declarations = cominoConformity.documents.map((document) => `<li><a href="${escapeHtml(document.readerHrefZh)}">${escapeHtml(document.title.zh)}：繁中關鍵欄位查閱稿</a> — ${escapeHtml(document.summary.zh)} <a href="${escapeHtml(document.hrefZh)}" download>下載 PDF</a> <a href="${escapeHtml(document.source)}">原廠英文 PDF 網址</a></li>`).join('');
+    return `<section id="procurement" aria-labelledby="static-seo-procurement"><h2 id="static-seo-procurement">${escapeHtml(reference.title.zh)}</h2><p>文件查核日期：${escapeHtml(reference.reviewedAt)}</p><p>${escapeHtml(reference.translationNote.zh)} 翻譯日期：${escapeHtml(reference.translatedAt)}</p><ul>${documents}</ul><h3>${escapeHtml(cominoConformity.title.zh)}</h3><p>${escapeHtml(cominoConformity.translationBoundary.zh)}</p><ul>${declarations}</ul><p>${escapeHtml(cominoConformity.fccBoundary.zh)}</p><h3>可供規格研議的功能與證據</h3><ul>${criteria}</ul><h3>數值與適用條件</h3><ul>${['cooling', 'power', 'noise', 'temperature'].map((key) => `<li>${escapeHtml(reference.specs[key].zh)}</li>`).join('')}</ul><p>${escapeHtml(reference.conformityNote.zh)}</p><p>${escapeHtml(reference.procurementNote.zh)} <a href="${escapeHtml(reference.procurementSource)}">政府採購法第 26 條</a></p></section>`;
   }
   if (route.path === '/resources' || route.path === '/products' || route.path.startsWith('/configurator')) {
     return `<section aria-labelledby="static-seo-procurement"><h2 id="static-seo-procurement">${escapeHtml(cominoReference.title.zh)}</h2><p>${escapeHtml(cominoReference.configurationNote.zh)}</p><a href="${escapeHtml(cominoReference.href)}">查看功能、適用條件與原廠文件</a></section>`;
@@ -1070,7 +1056,12 @@ function injectHead(baseHtml, route) {
         `<meta data-rh="true" property="article:modified_time" content="${dateFor(route).modifiedAt}">`
       ]
     : [];
-  const schemaItems = [webPageSchema(route, { title, url, image, imageAlt }), ...routeSchema(route)].map(item =>
+  const routeSchemas = routeSchema(route);
+  const baseEntitySchemas = [
+    { '@context': 'https://schema.org', ...eudTechOrganization },
+    { '@context': 'https://schema.org', ...eudTechWebSite }
+  ].filter((baseSchema) => !routeSchemas.some((item) => item?.['@type'] === baseSchema['@type']));
+  const schemaItems = [...baseEntitySchemas, webPageSchema(route, { title, url, image, imageAlt }), ...routeSchemas].map(item =>
     item && ['WebPage','CollectionPage','Article'].includes(item['@type'])
       ? {...item, url, dateModified:dateFor(route).modifiedAt, ...(item['@type']==='Article'?{datePublished:dateFor(route).publishedAt}:{})} : item);
   const managedHead = [

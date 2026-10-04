@@ -228,6 +228,7 @@ const NavBar: React.FC<NavBarProps> = ({
             <ThemeToggle
               themeMode={themeMode}
               isDarkMode={isDarkMode}
+              isEnglish={isEnglish}
               toggleDarkMode={toggleDarkMode}
               textColorClass={textColorClass}
             />
@@ -243,6 +244,7 @@ const NavBar: React.FC<NavBarProps> = ({
             <ThemeToggle
               themeMode={themeMode}
               isDarkMode={isDarkMode}
+              isEnglish={isEnglish}
               toggleDarkMode={toggleDarkMode}
               textColorClass={textColorClass}
               mobile

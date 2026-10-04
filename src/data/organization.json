@@ -1,0 +1,40 @@
+{
+  "@type": "Organization",
+  "@id": "https://eudaemonia.tech/#organization",
+  "name": "EudTech",
+  "legalName": "優達盟資訊科技有限公司",
+  "alternateName": [
+    "Eudaemonia Technology Ltd.",
+    "Eudaemonia Technology",
+    "優達盟資訊科技"
+  ],
+  "url": "https://eudaemonia.tech/",
+  "email": "quote@eudaemonia.tech",
+  "foundingDate": "2024-04-08",
+  "taxID": "93583557",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://eudaemonia.tech/logo.svg"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "中山北路二段77巷8號14樓",
+    "addressLocality": "中山區",
+    "addressRegion": "臺北市",
+    "postalCode": "104",
+    "addressCountry": "TW"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Taiwan"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": "quote@eudaemonia.tech",
+    "availableLanguage": ["zh-TW", "en"]
+  },
+  "sameAs": [
+    "https://findit.sme.gov.tw/en/Startup/ekhiSnpzRnR1c3hwcWlZc1Y2UUZtdz09/Basic"
+  ]
+}

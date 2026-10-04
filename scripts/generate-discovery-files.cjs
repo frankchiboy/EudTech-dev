@@ -8,6 +8,7 @@ const { getConfiguratorSocialPreviewRoutes } = require('./configurator-social-pr
 const { SITE_INFORMATION_ROUTES } = require('./site-information-routes.cjs');
 const { publicProductRoutes, englishRoutes, careersRoute } = require('./seo-public-pages.cjs');
 const cominoReference = require('../src/data/cominoProcurement.json');
+const cominoConformity = require('../src/data/cominoConformity.json');
 
 const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
@@ -117,11 +118,11 @@ const homepageUrl = {
 const solutionHubUrl = {
   loc: pageUrl('/solutions'),
   title: 'AI 與數位服務解決方案總覽｜EudTech',
-  description: '從 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
+  description: '從 PQC 遷移顧問、AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 四大導入路徑。',
   priority: '0.93',
   source: {
     title: 'AI 與數位服務解決方案總覽｜EudTech',
-    description: 'EudTech 的 AWS 雲端銷售、AI 運算基礎設施及 Cyabra 社群情報三大方案。',
+    description: 'EudTech 的 PQC 遷移顧問、AWS 雲端銷售、AI 運算基礎設施及 Cyabra 社群情報四大方案。',
     solutionSlugs: CONFIGURATOR_SEO_PAGES.map((page) => page.slug)
   }
 };
@@ -181,14 +182,15 @@ const sitemapEntries = [
 for (const route of [...publicProductRoutes(), careersRoute]) sitemapEntries.push({loc:pageUrl(route.path),title:route.title,description:route.description,source:route,priority:'0.7',changefreq:'monthly'});
 for (const route of englishRoutes()) sitemapEntries.push({loc:pageUrl(`/en${route.path}`),title:route.title,description:route.description,source:route,priority:'0.7',changefreq:'monthly'});
 for (const document of cominoReference.documents) sitemapEntries.push({loc:`${siteOrigin}${document.readerHrefZh.replace(/\.html$/, '').toLowerCase()}`,title:document.title.zh,description:document.description.zh,source:document,priority:'0.6',changefreq:'monthly'});
+for (const document of cominoConformity.documents) sitemapEntries.push({loc:`${siteOrigin}${document.readerHrefZh.replace(/\.html$/, '').toLowerCase()}`,title:document.title.zh,description:document.summary.zh,source:document,priority:'0.6',changefreq:'monthly'});
 const previousLastmodManifest = readLastmodManifest();
 const sourcePages = {'/':'src/data/content.ts','/solutions':'src/components/pages/SolutionsOverviewPage.tsx','/solutions/aws':'src/components/pages/AwsCloudSolutionPage.tsx','/solutions/ai-infrastructure':'src/components/pages/AiInfrastructureSolutionPage.tsx','/solutions/social-intelligence':'src/components/pages/SocialIntelligenceSolutionPage.tsx','/products':'src/components/pages/ProductsOverviewPage.tsx','/resources':'src/components/pages/ResourcesOverviewPage.tsx','/about':'src/components/pages/AboutPage.tsx','/contact':'src/components/pages/ContactPage.tsx','/privacy':'src/components/pages/PrivacyPage.tsx','/careers':'src/components/CareersPage.tsx'};
 function bodyFingerprint(loc) {
   const pathname=(new URL(loc).pathname.replace(/^\/en(?=\/|$)/,'').replace(/\/$/,'') || '/');
   const files = sourcePages[pathname] ? [sourcePages[pathname]] : [];
-  if (pathname==='/solutions/ai-infrastructure') files.push('src/data/cominoProcurement.json','src/data/cominoTestDrive.json');
+  if (pathname==='/solutions/ai-infrastructure') files.push('src/data/cominoProcurement.json','src/data/cominoConformity.json','src/data/cominoTestDrive.json');
   if (/^\/products\/\d+$/.test(pathname)) files.push('src/data/productData.ts');
-  if (pathname.startsWith('/vendor/')) files.push('docs/comino-document-translations-zh.json');
+  if (pathname.startsWith('/vendor/')) files.push('docs/comino-document-translations-zh.json','src/data/cominoConformity.json');
   return files.map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'..',file))).digest('hex')]);
 }
 const lastmodEntries = Object.fromEntries(sitemapEntries.map((entry) => {
@@ -387,6 +389,28 @@ ${cominoReference.documents.map(document => `### ${document.title.zh} / ${docume
 - English PDF: ${siteOrigin}${document.href}
 - Manufacturer source: ${document.source}`).join('\n\n')}
 
+## Comino 型號別符合性聲明 / Model-specific declarations
+
+${cominoConformity.translationBoundary.zh}
+${cominoConformity.translationBoundary.en}
+
+- 文件查核 / Reviewed: ${cominoConformity.reviewedAt}
+
+${cominoConformity.documents.map(document => `### ${document.title.zh} / ${document.title.en}
+
+- Model: ${document.model}
+- Submodels: ${document.submodels.join(', ')}
+- 中文查閱稿 / Chinese reference reader: ${documentReaderUrl(document)}
+- 中文查閱稿 PDF / Chinese reference PDF: ${siteOrigin}${document.hrefZh}
+- Manufacturer source URL: ${document.source}
+- ${document.summary.zh}
+- ${document.summary.en}`).join('\n\n')}
+
+### FCC 證據邊界 / FCC evidence boundary
+
+${cominoConformity.fccBoundary.zh}
+${cominoConformity.fccBoundary.en}
+
 ## Comino 採購問答 / Procurement questions
 
 以下為 EudTech 的選型解讀，請連同原廠文件及交付型號、BOM 核對。
@@ -458,7 +482,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - Company: EudTech / Eudaemonia Technology
 - Region: Taiwan
 - Contact: quote@eudaemonia.tech
-- Services: AWS cloud sales and implementation, Comino AI infrastructure, and Cyabra social intelligence.
+- Services: PQC migration advisory, AWS cloud sales and implementation, Comino AI infrastructure, and Cyabra social intelligence.
 - Configurable items: GPU, CPU, RAM, OS drive, data drives, power supply, and networking.
 - Public pricing: not published. Availability, pricing, warranty and acceptance criteria require a confirmed quotation and BOM.
 

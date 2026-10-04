@@ -65,7 +65,7 @@
     {
       "id": "procurement-document-scope",
       "question": { "zh": "這裡的中文規格書可以當作 CE／FCC 認證文件嗎？", "en": "Can the translated datasheet serve as CE/FCC conformity evidence?" },
-      "answer": { "zh": "不可以。這裡提供的是原廠技術資料及 EudTech 繁體中文譯本，並非原廠核發的符合性聲明或測試報告。CE／FCC 等適用文件須另行核對交付型號、BOM、日期與適用範圍；不能由規格書推定所有 GPU 配置都經過相同測試。", "en": "No. These are manufacturer technical documents and EudTech's Traditional Chinese translations, not manufacturer-issued conformity declarations or test reports. Review applicable CE/FCC documents separately against the supplied model, BOM, date and scope. A datasheet does not establish that every GPU configuration underwent the same tests." },
+      "answer": { "zh": "不可以。規格書是技術資料，不是符合性聲明或測試報告。本頁另列 RM-M／RM-M-CRPS 的原廠 CE 與 RoHS／REACH 自我聲明網址及繁中關鍵欄位查閱稿，仍須依最終交付型號、BOM、日期、範圍及引用報告核對。尚未確認上述型號的原廠 FCC 型號別文件，不能由規格書或舊版 COMINO N1 聲明推定。", "en": "No. A datasheet is technical information, not a conformity declaration or test report. This page separately lists manufacturer CE and RoHS/REACH self-declaration URLs for RM-M/RM-M-CRPS with Chinese key-field reference editions. Review the final model, BOM, date, scope, and cited reports. No model-specific manufacturer FCC evidence for these models has been verified; do not infer it from the datasheet or a legacy COMINO N1 declaration." },
       "documentId": "server-datasheet", "page": 1
     }
   ],
@@ -109,7 +109,7 @@
       "id": "conformity",
       "title": { "zh": "型號相符的符合性證據", "en": "Conformity evidence matching the model" },
       "requirement": { "zh": "依設備用途及適用法規，要求與交付型號、配置相符的安全、電磁相容及限用物質證據。", "en": "Request safety, electromagnetic-compatibility and restricted-substance evidence matching the supplied model and configuration under applicable requirements." },
-      "evidence": { "zh": "核對 CE／FCC／RoHS／REACH 等適用文件的型號、日期、範圍及引用報告；臺灣適用之商品檢驗要求另行確認。", "en": "Review model, date, scope and referenced reports in applicable CE, FCC, RoHS or REACH documents; confirm Taiwan product-inspection requirements separately." },
+      "evidence": { "zh": "先核對本頁所列 RM-M／RM-M-CRPS 原廠 CE 及 RoHS／REACH 自我聲明的型號、日期、範圍與引用報告；FCC 證據須向原廠另取，臺灣商品檢驗要求亦另行確認。", "en": "Start with the listed manufacturer CE and RoHS/REACH self-declarations for RM-M/RM-M-CRPS, checking model, date, scope, and cited reports. Obtain FCC evidence separately from the manufacturer and confirm Taiwan product-inspection requirements." },
       "documentId": null, "pages": null, "page": null
     }
   ],

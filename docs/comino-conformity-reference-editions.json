@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-10-04",
+  "documents": [
+    {
+      "id": "rm-m-ce",
+      "pdf": "public/vendor/comino/documents/comino-rm-m-ce-declaration-2024-zh-TW.pdf",
+      "reader": "public/vendor/comino/documents/comino-rm-m-ce-declaration-2024-zh-tw.html",
+      "pages": 1,
+      "sourceSha256": null
+    },
+    {
+      "id": "rm-m-crps-ce",
+      "pdf": "public/vendor/comino/documents/comino-rm-m-crps-ce-declaration-2024-zh-TW.pdf",
+      "reader": "public/vendor/comino/documents/comino-rm-m-crps-ce-declaration-2024-zh-tw.html",
+      "pages": 1,
+      "sourceSha256": null
+    },
+    {
+      "id": "rm-m-rohs-reach",
+      "pdf": "public/vendor/comino/documents/comino-rm-m-rohs-reach-declaration-2024-zh-TW.pdf",
+      "reader": "public/vendor/comino/documents/comino-rm-m-rohs-reach-declaration-2024-zh-tw.html",
+      "pages": 1,
+      "sourceSha256": null
+    },
+    {
+      "id": "rm-m-crps-rohs-reach",
+      "pdf": "public/vendor/comino/documents/comino-rm-m-crps-rohs-reach-declaration-2024-zh-TW.pdf",
+      "reader": "public/vendor/comino/documents/comino-rm-m-crps-rohs-reach-declaration-2024-zh-tw.html",
+      "pages": 1,
+      "sourceSha256": null
+    }
+  ]
+}

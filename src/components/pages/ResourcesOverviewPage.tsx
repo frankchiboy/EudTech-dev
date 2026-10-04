@@ -97,6 +97,23 @@ const ResourcesOverviewPage: React.FC = () => {
   const featuredResources = FEATURED_RESOURCE_SLUGS
     .map((slug) => CONFIGURATOR_SEO_PAGES.find((page) => page.slug === slug))
     .filter((page): page is NonNullable<typeof page> => Boolean(page));
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': 'https://eudaemonia.tech/resources/#collection',
+    name: isEnglish ? 'GPU server procurement resources' : 'GPU 伺服器選型與採購資源',
+    description: isEnglish ? 'Guides for GPU server selection, cooling, RFQs, and Taiwan procurement.' : 'GPU 伺服器選型、散熱、RFQ 與台灣採購指南。',
+    url: 'https://eudaemonia.tech/resources/',
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: featuredResources.map((page, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: isEnglish ? page.title.en : page.title.zh,
+        url: `https://eudaemonia.tech/solutions/${page.slug}/`
+      }))
+    }
+  };
 
   return (
     <PageShell
@@ -106,6 +123,7 @@ const ResourcesOverviewPage: React.FC = () => {
         en: 'Choose a GPU server or AI workstation by workload, plan power and cooling, prepare an RFQ, and proceed to configuration and formal quoting.'
       }}
       path="/resources"
+      structuredData={structuredData}
     >
       <PageHero
         eyebrow={{ zh: 'GPU 伺服器選型與採購', en: 'GPU server selection and procurement' }}

@@ -53,7 +53,24 @@ const ProductsOverviewPage: React.FC = () => {
       products: getCyabraProducts(isEnglish).slice(0, 2).map(product => ({ ...product, href: `/products/${product.id}` }))
     }
   ];
-  return <PageShell title={{ zh: '產品與品牌｜EudTech', en: 'Products and brands | EudTech' }} description={{ zh: '瀏覽 AWS 雲端銷售服務、Comino 液冷 AI 運算及 Cyabra 社群情報產品。', en: 'Explore AWS cloud sales services, Comino liquid-cooled AI systems, and Cyabra social intelligence products.' }} path="/products">
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': 'https://eudaemonia.tech/products/#collection',
+    name: isEnglish ? 'EudTech products and brands' : 'EudTech 產品與品牌',
+    description: isEnglish ? 'AWS cloud services, Comino liquid-cooled AI systems, and Cyabra social intelligence.' : 'AWS 雲端服務、Comino 液冷 AI 運算與 Cyabra 社群情報。',
+    url: 'https://eudaemonia.tech/products/',
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: groups.map((group, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: tx(group.title, isEnglish),
+        url: `https://eudaemonia.tech${group.href}/`
+      }))
+    }
+  };
+  return <PageShell title={{ zh: '產品與品牌｜EudTech', en: 'Products and brands | EudTech' }} description={{ zh: '瀏覽 AWS 雲端銷售服務、Comino 液冷 AI 運算及 Cyabra 社群情報產品。', en: 'Explore AWS cloud sales services, Comino liquid-cooled AI systems, and Cyabra social intelligence products.' }} path="/products" structuredData={structuredData}>
     <PageHero eyebrow={{ zh: '產品與品牌', en: 'Products & brands' }} title={{ zh: '先看產品能力，再進入導入或採購', en: 'Start with product capability, then move to implementation or procurement' }} lead={{ zh: '每個分類都說明原廠能力、EudTech 交付方式與產品明細，並提供諮詢或配置器入口。', en: 'Each category sets out vendor capability, EudTech delivery, and product details, with a route to consultation or the configurator.' }} isEnglish={isEnglish} />
     <section className="py-20"><div className="mx-auto max-w-7xl space-y-12 px-6 lg:px-8">{groups.map(({ label, title, body, icon: Icon, href, image, imageAlt, imageContain, imageCaption, source, products }) => <article key={tx(title, isEnglish)} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900"><div className="grid lg:grid-cols-[0.84fr_1.16fr]"><div className={`relative min-h-[280px] overflow-hidden ${imageContain ? 'bg-white' : 'bg-slate-100 dark:bg-slate-950'}`}><img src={image} alt={tx(imageAlt, isEnglish)} loading="lazy" decoding="async" className={`absolute inset-0 h-full w-full ${imageContain ? 'object-contain p-6' : 'object-cover'}`} /></div><div className="p-7 sm:p-9"><div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between"><div><div className="inline-flex rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-800 dark:bg-cyan-950 dark:text-cyan-200">{tx(label, isEnglish)}</div><Icon className="mt-5 h-7 w-7 text-cyan-600 dark:text-cyan-300" /><h2 className="mt-5 text-2xl font-bold">{tx(title, isEnglish)}</h2><p className="mt-3 max-w-2xl leading-7 text-slate-600 dark:text-slate-300">{tx(body, isEnglish)}</p></div><Link to={href} className="inline-flex shrink-0 items-center text-sm font-semibold text-cyan-700 dark:text-cyan-300">{isEnglish ? 'View solution' : '查看解決方案'}<ArrowRight className="ml-2 h-4 w-4" /></Link></div><p className="mt-5 text-xs leading-5 text-slate-500 dark:text-slate-400">{tx(imageCaption, isEnglish)} <SourceLink href={source.href} label={source.label} isEnglish={isEnglish} /></p></div></div><div className="grid border-t border-slate-200 dark:border-slate-800 md:grid-cols-3">{products.map((product) => <Link key={product.id} to={product.href} className="border-b border-slate-200 p-6 transition hover:bg-cyan-50 dark:border-slate-800 dark:hover:bg-cyan-950/30 md:border-b-0 md:border-r last:md:border-r-0"><span className="inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">{tx(label, isEnglish)}</span><h3 className="mt-4 font-semibold">{product.title}</h3><p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{product.description}</p><span className="mt-4 inline-flex items-center text-xs font-semibold text-cyan-700 dark:text-cyan-300">{isEnglish ? 'Product details' : '產品詳情'}<ArrowRight className="ml-1 h-3 w-3" /></span></Link>)}</div></article>)}</div></section>
     <section className="border-y border-slate-200 bg-slate-50 py-16 dark:border-slate-800 dark:bg-slate-900/60"><div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-3 lg:px-8">{[
