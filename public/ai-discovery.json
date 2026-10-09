@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "site": "https://eudaemonia.tech",
+  "generatedAt": "2026-10-09T19:45:59.074Z",
+  "languages": [
+    "zh-TW",
+    "en"
+  ],
+  "discovery": {
+    "robots": "https://eudaemonia.tech/robots.txt",
+    "sitemapIndex": "https://eudaemonia.tech/sitemap-index.xml",
+    "llms": "https://eudaemonia.tech/llms.txt",
+    "llmsFull": "https://eudaemonia.tech/llms-full.txt",
+    "rss": "https://eudaemonia.tech/feed.xml",
+    "jsonFeed": "https://eudaemonia.tech/feed.json"
+  },
+  "permittedAgents": [
+    "Googlebot",
+    "Bingbot",
+    "OAI-SearchBot",
+    "ChatGPT-User",
+    "PerplexityBot",
+    "Perplexity-User",
+    "ClaudeBot",
+    "Claude-User",
+    "Claude-SearchBot"
+  ],
+  "authority": {
+    "version": 1,
+    "lastVerified": "2026-10-10",
+    "entity": {
+      "name": "EudTech",
+      "legalName": "優達盟資訊科技有限公司",
+      "taxID": "93583557",
+      "url": "https://eudaemonia.tech/"
+    },
+    "sources": [
+      {
+        "id": "moea-findit",
+        "type": "government_profile",
+        "authority": "經濟部中小及新創企業署 FINDIT",
+        "url": "https://findit.sme.gov.tw/en/Startup/ekhiSnpzRnR1c3hwcWlZc1Y2UUZtdz09/Basic",
+        "supports": [
+          "legal_name",
+          "tax_id",
+          "location",
+          "business_profile"
+        ],
+        "status": "verified"
+      },
+      {
+        "id": "moea-gcis-2025-12",
+        "type": "government_registry_report",
+        "authority": "經濟部商工行政服務",
+        "url": "https://serv.gcis.nat.gov.tw/pub/cmpy/reportAction.do?fileName=11412DOC.pdf&method=report&reportClass=cmpy&subPath=11412",
+        "supports": [
+          "legal_name",
+          "tax_id",
+          "registered_address"
+        ],
+        "status": "verified"
+      },
+      {
+        "id": "comino-partner-directory",
+        "type": "manufacturer_partner_directory",
+        "authority": "Comino",
+        "url": "https://www.comino.com/en/company",
+        "supports": [
+          "eudtech_name",
+          "taiwan_location",
+          "website",
+          "contact",
+          "ai_system_integrator_description"
+        ],
+        "status": "verified"
+      }
+    ],
+    "scopeNote": "Each source supports only the listed fields. Product configuration, supply, compliance and commercial terms still require model-specific documents and a formal quotation."
+  }
+}

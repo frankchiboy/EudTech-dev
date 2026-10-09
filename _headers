@@ -36,6 +36,9 @@
 
 /discovery-lastmod.json
   Cache-Control: public, max-age=3600, must-revalidate
+
+/ai-discovery.json
+  Cache-Control: public, max-age=3600, must-revalidate
   X-Content-Type-Options: nosniff
 
 /configurator-links.html

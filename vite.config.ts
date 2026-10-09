@@ -31,6 +31,7 @@ const PUBLIC_FILE_ALLOWLIST = [
   'feed.xml',
   'feed.json',
   'discovery-lastmod.json',
+  'ai-discovery.json',
   'configurator-links.html',
   'llms.txt',
   'llms-full.txt',

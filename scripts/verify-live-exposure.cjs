@@ -28,6 +28,7 @@ const requiredDiscoveryUrls = [
   `${siteOrigin}/feed.xml`,
   `${siteOrigin}/feed.json`,
   `${siteOrigin}/discovery-lastmod.json`,
+  `${siteOrigin}/ai-discovery.json`,
   `${siteOrigin}/llms.txt`,
   `${siteOrigin}/llms-full.txt`
 ];
@@ -362,6 +363,7 @@ function checkDiscoveryFiles(discovery, errors) {
   const feed = discovery.find((item) => item.url.endsWith('/feed.xml'))?.text || '';
   const feedJsonText = discovery.find((item) => item.url.endsWith('/feed.json'))?.text || '';
   const lastmodManifestText = discovery.find((item) => item.url.endsWith('/discovery-lastmod.json'))?.text || '';
+  const aiDiscoveryText = discovery.find((item) => item.url.endsWith('/ai-discovery.json'))?.text || '';
   const llms = discovery.find((item) => item.url.endsWith('/llms.txt'))?.text || '';
   const llmsFull = discovery.find((item) => item.url.endsWith('/llms-full.txt'))?.text || '';
   const sitemapLocs = new Set(collectXmlLocs(sitemap));
@@ -369,6 +371,7 @@ function checkDiscoveryFiles(discovery, errors) {
   const sitemapIndexLocs = new Set(collectXmlLocs(sitemapIndex));
   let feedJson;
   let lastmodManifest;
+  let aiDiscovery;
   try {
     feedJson = JSON.parse(feedJsonText);
   } catch {
@@ -378,6 +381,11 @@ function checkDiscoveryFiles(discovery, errors) {
     lastmodManifest = JSON.parse(lastmodManifestText);
   } catch {
     lastmodManifest = undefined;
+  }
+  try {
+    aiDiscovery = JSON.parse(aiDiscoveryText);
+  } catch {
+    aiDiscovery = undefined;
   }
   const feedJsonLinks = new Set((feedJson?.items || []).map((item) => item.url).filter(Boolean));
 
@@ -392,7 +400,7 @@ function checkDiscoveryFiles(discovery, errors) {
   assert(robots.includes(`Sitemap: ${siteOrigin}/image-sitemap.xml`), errors, 'robots.txt missing image-sitemap.xml.');
   assert(robots.includes(`Sitemap: ${siteOrigin}/feed.xml`), errors, 'robots.txt missing feed.xml.');
   assert(robots.includes(`Sitemap: ${siteOrigin}/sitemap-index.xml`), errors, 'robots.txt missing sitemap-index.xml.');
-  for (const crawler of ['Googlebot', 'Bingbot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'ClaudeBot']) {
+  for (const crawler of ['Googlebot', 'Bingbot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Perplexity-User', 'ClaudeBot', 'Claude-User', 'Claude-SearchBot']) {
     assert(new RegExp(`User-agent: ${crawler}\\s+Allow: /`, 'i').test(robots), errors, `robots.txt must allow ${crawler}.`);
   }
   assert(sitemapIndexLocs.has(`${siteOrigin}/sitemap.xml`), errors, 'sitemap-index.xml missing sitemap.xml.');
@@ -410,6 +418,7 @@ function checkDiscoveryFiles(discovery, errors) {
 
   assert(feedJson?.version === 'https://jsonfeed.org/version/1.1', errors, 'feed.json missing valid JSON Feed version.');
   assert(lastmodManifest?.version === 1 && lastmodManifest?.entries, errors, 'discovery-lastmod.json missing a valid manifest.');
+  assert(aiDiscovery?.version === 1 && aiDiscovery?.authority?.sources?.length >= 3, errors, 'ai-discovery.json missing authority sources.');
   for (const url of requiredPageUrls) {
     assert(/^[a-f0-9]{64}$/i.test(lastmodManifest?.entries?.[url]?.hash || ''), errors, `discovery-lastmod.json missing ${url}.`);
   }

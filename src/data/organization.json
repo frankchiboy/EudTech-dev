@@ -35,6 +35,21 @@
     "availableLanguage": ["zh-TW", "en"]
   },
   "sameAs": [
-    "https://findit.sme.gov.tw/en/Startup/ekhiSnpzRnR1c3hwcWlZc1Y2UUZtdz09/Basic"
+    "https://findit.sme.gov.tw/en/Startup/ekhiSnpzRnR1c3hwcWlZc1Y2UUZtdz09/Basic",
+    "https://www.comino.com/en/company"
+  ],
+  "subjectOf": [
+    {
+      "@type": "WebPage",
+      "name": "FINDIT startup profile for Eudaemonia Technology LTD",
+      "url": "https://findit.sme.gov.tw/en/Startup/ekhiSnpzRnR1c3hwcWlZc1Y2UUZtdz09/Basic",
+      "publisher": { "@type": "GovernmentOrganization", "name": "Small and Medium Enterprise and Startup Administration, Ministry of Economic Affairs" }
+    },
+    {
+      "@type": "WebPage",
+      "name": "Comino partner listing for Eudaemonia Tech in Taiwan",
+      "url": "https://www.comino.com/en/company",
+      "publisher": { "@type": "Organization", "name": "Comino" }
+    }
   ]
 }
