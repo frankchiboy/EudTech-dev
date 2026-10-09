@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, BadgeCheck, Bot, FileClock, KeyRound, Layers3, RefreshCw, ShieldCheck, UserCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath } from '../../utils/seo/socialPreview';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight, Home } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../../common/SiteLink';
 import { classNames } from '../../../utils/helpers';
 
 interface BreadcrumbItem {

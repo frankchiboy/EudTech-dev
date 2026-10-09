@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Blocks, Cloud, Check, Cpu, Radar, ShieldCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import { VENDOR_EVIDENCE } from '../../data/vendorEvidence';
 import { ActionLink, PageHero, PageShell, SourceLink, tx } from './SitePagePrimitives';

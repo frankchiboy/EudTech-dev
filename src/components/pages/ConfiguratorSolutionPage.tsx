@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import NotFoundPage from './NotFoundPage';
 import { ArrowRight, CheckCircle2, Cpu, ExternalLink, Mail, Server } from 'lucide-react';
 import { useLanguageContext } from '../../contexts/LanguageContext';

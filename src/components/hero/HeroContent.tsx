@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 
 interface HeroContentProps {
   content: {

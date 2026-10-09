@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { SiteLink as RouterLink } from '../../common/SiteLink';
 import { ChevronRight } from 'lucide-react';
 import { Link } from '../../ui/Typography';
 import { Flex } from '../../ui/Layout';

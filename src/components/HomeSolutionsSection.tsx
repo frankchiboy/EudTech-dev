@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from './common/SiteLink';
 import homepageContent from '../data/homepageContent.json';
 import './HomePageSections.css';
 

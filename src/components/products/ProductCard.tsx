@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import { ChevronRight } from 'lucide-react';
 import { Product } from '../../data/models/Product';
 import OptimizedCard from '../ui/OptimizedCard';

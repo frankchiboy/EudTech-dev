@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Cpu, Shield, Cloud } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import { getCominoProducts, getCyabraProducts } from '../../data/productData';
 import { VENDOR_EVIDENCE } from '../../data/vendorEvidence';

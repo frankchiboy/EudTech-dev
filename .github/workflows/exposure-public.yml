@@ -65,6 +65,9 @@ jobs:
       - name: Prepare report directory
         run: mkdir -p reports
 
+      - name: Verify navigation URL contracts
+        run: npm run test:navigation
+
       - name: Build SEO assets
         shell: bash
         run: |

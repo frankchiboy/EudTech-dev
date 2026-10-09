@@ -92,4 +92,14 @@ for (const p of ['index.html', 'en/index.html']) {
   const html = fs.readFileSync(path.join(dist, p), 'utf8');
   assert.ok(html.includes('fetchPriority="high"') && html.includes('960w,') && html.includes('2560w'), `Responsive priority hero missing: ${p}`);
 }
+for (const p of ['contact/index.html', 'en/contact/index.html']) {
+  const html = fs.readFileSync(path.join(dist, p), 'utf8');
+  const organization = require('../src/data/organization.json');
+  assert.match(html, new RegExp('<a[^>]+href="mailto:' + organization.email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"'), `Contact email must work without JavaScript: ${p}`);
+  assert.match(html, /<a[^>]+href="https:\/\/outlook\.office\.com\/book\/[^"]+"[^>]+target="_blank"[^>]+rel="noopener noreferrer"/, `Booking must be a native, safe link: ${p}`);
+  const schemas = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+  const contact = schemas.find(schema => schema['@type'] === 'ContactPage');
+  assert.equal(contact?.url, `https://eudaemonia.tech/${p.replace('index.html', '')}`, `Contact schema must match the page language: ${p}`);
+  assert.equal(contact?.mainEntity?.['@id'], organization['@id'], `Contact page must identify the same organization: ${p}`);
+}
 console.log(JSON.stringify({ ok: true, renderedPages: rendered, liveConfiguratorFallbacks: dynamic, visibleFaqParity: true, procurementCitations: procurement.faqs.length * 2 }));

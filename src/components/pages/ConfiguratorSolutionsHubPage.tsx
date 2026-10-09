@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import { ArrowRight, Cpu, FileCheck2, GitCompare, Server, Snowflake } from 'lucide-react';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import {

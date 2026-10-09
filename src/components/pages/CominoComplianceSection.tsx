@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import CominoSewpEvidence from './CominoSewpEvidence';
 
 /** Manufacturer statements are distinct from configuration-specific procurement evidence. */

@@ -190,6 +190,7 @@ const sourcePages = {'/':'src/data/content.ts','/solutions':'src/components/page
 function bodyFingerprint(loc) {
   const pathname=(new URL(loc).pathname.replace(/^\/en(?=\/|$)/,'').replace(/\/$/,'') || '/');
   const files = sourcePages[pathname] ? [sourcePages[pathname]] : [];
+  if (pathname==='/contact') files.push('src/components/contact/ContactInfo.tsx','src/components/contact/OnlineMeetingBooking.tsx','src/data/siteArchitecture.ts','src/data/organization.json');
   if (pathname==='/about') files.push('src/data/authoritySources.json','src/data/organization.json');
   if (pathname==='/solutions/ai-infrastructure') files.push('src/data/cominoProcurement.json','src/data/cominoConformity.json','src/data/cominoTestDrive.json');
   if (/^\/products\/\d+$/.test(pathname)) files.push('src/data/productData.ts');

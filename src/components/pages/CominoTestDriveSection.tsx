@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import testDrive from '../../data/cominoTestDrive.json';
 import { tx } from './SitePagePrimitives';

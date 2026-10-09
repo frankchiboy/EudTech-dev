@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from './common/SiteLink';
 import Logo from './common/Logo';
 import { SITE_NAVIGATION_GROUPS, SITE_CTA } from '../data/siteArchitecture';
 

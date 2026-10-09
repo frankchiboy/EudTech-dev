@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from './SiteLink';
 
 interface LogoProps {
   inverse?: boolean;

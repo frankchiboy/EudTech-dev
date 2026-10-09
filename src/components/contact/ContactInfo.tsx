@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calendar, Clock, Globe, Mail } from 'lucide-react';
+import organization from '../../data/organization.json';
 import { useI18n } from '../../i18n/I18nProvider';
 
 const ContactInfo: React.FC = () => {
@@ -14,7 +15,8 @@ const ContactInfo: React.FC = () => {
     {
       icon: Mail,
       label: isEnglish ? 'Email' : '電子郵件',
-      value: 'quote@eudaemonia.tech',
+      value: organization.email,
+      href: 'mailto:' + organization.email,
     },
     {
       icon: Clock,
@@ -29,7 +31,7 @@ const ContactInfo: React.FC = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-blue-800 via-indigo-700 to-teal-700 dark:from-blue-700 dark:via-indigo-600 dark:to-teal-600 p-12 text-white relative overflow-hidden">
+    <div className="bg-gradient-to-br from-blue-800 via-indigo-700 to-teal-700 dark:from-blue-700 dark:via-indigo-600 dark:to-teal-600 min-w-0 p-6 sm:p-10 lg:p-12 text-white relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzR2Nmg2di02aC02em02IDZ2Nmg2di02aC02em0tNiA2djZoNnYtNmgtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-40"></div>
       <div className="relative z-10">
         <h3 className="mb-6 text-2xl font-bold">
@@ -47,18 +49,18 @@ const ContactInfo: React.FC = () => {
           const Icon = item.icon;
           return (
             <div key={item.label} className="group flex items-start transition-transform duration-300 hover:translate-x-1">
-              <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 shadow-lg transition-all duration-300 group-hover:bg-white/20">
+              <div className="mr-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 shadow-lg transition-all duration-300 group-hover:bg-white/20">
                 <Icon className="h-5 w-5" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm opacity-75">{item.label}</p>
-                <p className="font-medium">{item.value}</p>
+                {item.href ? <a href={item.href} className="break-all font-medium underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">{item.value}</a> : <p className="font-medium">{item.value}</p>}
               </div>
             </div>
           );
         })}
 
-        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-blue-700/50 to-transparent"></div>
+        <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-blue-700/50 to-transparent"></div>
       </div>
     </div>
   );
