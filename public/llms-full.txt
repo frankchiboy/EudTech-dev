@@ -11,6 +11,24 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - Configurable items: GPU, CPU, RAM, OS drive, data drives, power supply, and networking.
 - Public pricing: not published. Availability, pricing, warranty and acceptance criteria require a confirmed quotation and BOM.
 
+## 公司與引用來源 / Company and sources
+
+- 公司名稱 / Legal name: 優達盟資訊科技有限公司
+- English name: Eudaemonia Technology Ltd.
+- 統一編號 / Taiwan business number: 93583557
+- 設立日期 / Established: 2024-04-08
+- 登記地址 / Registered office: 臺北市中山區中山北路二段77巷8號14樓
+- 公司資料 / Company details: https://eudaemonia.tech/about/#verified-company-identity
+- English details: https://eudaemonia.tech/en/about/#verified-company-identity
+- 來源查核日期 / Sources last checked: 2026-10-10
+
+- [政府 FINDIT 公司資料 / Government-backed FINDIT company profile](https://findit.sme.gov.tw/en/Startup/ekhiSnpzRnR1c3hwcWlZc1Y2UUZtdz09/Basic): 查閱公司名稱、統一編號、所在地與業務介紹。 Company name, Taiwan business number, location and business profile.
+- [經濟部 2025 年 12 月公司登記資料 / MOEA company registry report — December 2025](https://serv.gcis.nat.gov.tw/pub/cmpy/reportAction.do?fileName=11412DOC.pdf&method=report&reportClass=cmpy&subPath=11412): 核對 2025 年 12 月登記資料中的公司名稱、統一編號與地址；此為歷史月份資料。 Company name, Taiwan business number and registered address in the December 2025 report. This is a historical monthly record.
+- [Comino 原廠合作夥伴名錄 / Comino manufacturer partner directory](https://www.comino.com/en/company): 原廠名錄列有 Eudaemonia Tech、台灣所在地、官網與聯絡方式，並介紹 AI 系統整合業務。 The manufacturer lists Eudaemonia Tech in Taiwan, its website and contact details, and describes its AI system integration business.
+
+公司與合作身分來源不等於特定型號的供貨、合規或商務承諾；這些項目仍須依型號文件與正式報價確認。
+Each source supports only the listed fields. Product configuration, supply, compliance and commercial terms still require model-specific documents and a formal quotation.
+
 ## 繁體中文頁面 / Traditional Chinese pages
 
 - [PQC、AWS 雲端、GPU 運算與社群情報｜EudTech](https://eudaemonia.tech/): EudTech 提供 PQC 密碼遷移顧問、AWS 雲端服務、Comino 液冷 GPU 系統與 Cyabra 社群情報，從需求評估到採購與導入規劃。
@@ -22,7 +40,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - [GPU 伺服器選型與採購｜EudTech](https://eudaemonia.tech/resources/): 依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。
 - [Comino 液冷 GPU 伺服器、AI 工作站與機關採購](https://eudaemonia.tech/solutions/ai-infrastructure/): 從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。
 - [社群情報與品牌保護｜EudTech](https://eudaemonia.tech/solutions/social-intelligence/): EudTech 以 Cyabra 協助企業與公部門分析假帳號、協調式社群行為、敘事擴散及品牌風險。
-- [關於 EudTech｜優達盟資訊科技](https://eudaemonia.tech/about/): 了解優達盟資訊科技在 PQC 遷移顧問、AWS 雲端服務、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。
+- [關於 EudTech｜優達盟資訊科技](https://eudaemonia.tech/about/): 了解 EudTech PQC 遷移顧問、AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。
 - [聯絡 EudTech｜開始諮詢](https://eudaemonia.tech/contact/): 選擇 PQC 遷移顧問、AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。
 - [隱私與資料使用｜EudTech](https://eudaemonia.tech/privacy/): EudTech 說明詢價與聯絡資料、客戶來源追蹤、必要識別碼、資料保存及資料請求方式。
 - [INTEGRATION KIT 8x H200 配置器](https://eudaemonia.tech/configurator/27/): 配置 INTEGRATION KIT 8x H200，保留 NVIDIA H200 141GB GPU 與 AMD 雙 EPYC 平台假設，供 EudTech 追蹤正式報價。
@@ -71,7 +89,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - [Cyabra Social Intelligence & Brand Protection](https://eudaemonia.tech/en/solutions/social-intelligence/): EudTech uses Cyabra to help communications, security and public-sector teams analyse inauthentic profiles, coordinated activity, narratives and brand risk.
 - [Products & Brands](https://eudaemonia.tech/en/products/): Explore AWS cloud sales services, Comino liquid-cooled GPU workstations and servers, and Cyabra social intelligence.
 - [GPU Server Selection & Procurement Resources](https://eudaemonia.tech/en/resources/): Compare GPU server and workstation requirements, plan power and cooling, prepare an RFQ and review procurement documents with EudTech.
-- [About Eudaemonia Technology](https://eudaemonia.tech/en/about/): EudTech helps enterprises, researchers and public institutions plan PQC migration, AWS cloud, AI infrastructure and social intelligence delivery.
+- [About Eudaemonia Technology](https://eudaemonia.tech/en/about/): EudTech helps enterprises, researchers and public institutions plan PQC migration, AWS cloud, AI infrastructure and social intelligence delivery, with verifiable company and manufacturer sources.
 - [Contact EudTech](https://eudaemonia.tech/en/contact/): Discuss a PQC migration, AWS cloud service, GPU configuration or social intelligence need with EudTech. Start with your environment and intended outcome.
 - [Privacy & Data Use](https://eudaemonia.tech/en/privacy/): Learn how EudTech handles contact and quote data, customer-source attribution, retention, service providers and data requests.
 - [Comino GRANDO GPU Server Configurator](https://eudaemonia.tech/en/configurator/): Configure Comino GRANDO GPU servers and AI workstations, review GPU, CPU, memory, storage, power and networking, and request a formal quote in Taiwan.
@@ -341,7 +359,7 @@ No. A datasheet is technical information, not a conformity declaration or test r
 ### 關於 EudTech｜優達盟資訊科技
 
 - URL: https://eudaemonia.tech/about/
-- Description: 了解優達盟資訊科技在 PQC 遷移顧問、AWS 雲端服務、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。
+- Description: 了解 EudTech PQC 遷移顧問、AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。
 - Lead: EudTech 協助企業、研究單位與公部門把 PQC 遷移、AWS 雲端服務、運算設備與情報工具導入實際工作流程。
 - Highlights:
   - PQC 密碼資產盤點、試點與遷移治理。

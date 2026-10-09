@@ -189,3 +189,22 @@ jobs:
         with:
           name: public-exposure-reports
           path: reports/
+
+  ai-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+      - name: Verify AI discovery regression cases
+        run: node --test scripts/ai-discovery-checks.test.cjs
+      - name: Audit the deployed revision in both languages
+        run: node scripts/audit-ai-discovery.cjs --expect-commit="$GITHUB_SHA" --output=reports/ai-discovery-live.json
+      - name: Upload AI discovery report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ai-discovery-report
+          path: reports/ai-discovery-live.json

@@ -14,7 +14,7 @@ Explore EudTech PQC migration, AWS cloud, Comino liquid-cooled GPU systems and C
 - [GPU 伺服器選型與採購｜EudTech](https://eudaemonia.tech/resources/): 依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。
 - [Comino 液冷 GPU 伺服器、AI 工作站與機關採購](https://eudaemonia.tech/solutions/ai-infrastructure/): 從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。
 - [社群情報與品牌保護｜EudTech](https://eudaemonia.tech/solutions/social-intelligence/): EudTech 以 Cyabra 協助企業與公部門分析假帳號、協調式社群行為、敘事擴散及品牌風險。
-- [關於 EudTech｜優達盟資訊科技](https://eudaemonia.tech/about/): 了解優達盟資訊科技在 PQC 遷移顧問、AWS 雲端服務、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。
+- [關於 EudTech｜優達盟資訊科技](https://eudaemonia.tech/about/): 了解 EudTech PQC 遷移顧問、AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。
 - [聯絡 EudTech｜開始諮詢](https://eudaemonia.tech/contact/): 選擇 PQC 遷移顧問、AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。
 - [隱私與資料使用｜EudTech](https://eudaemonia.tech/privacy/): EudTech 說明詢價與聯絡資料、客戶來源追蹤、必要識別碼、資料保存及資料請求方式。
 - [INTEGRATION KIT 8x H200 配置器](https://eudaemonia.tech/configurator/27/): 配置 INTEGRATION KIT 8x H200，保留 NVIDIA H200 141GB GPU 與 AMD 雙 EPYC 平台假設，供 EudTech 追蹤正式報價。
@@ -63,7 +63,7 @@ Explore EudTech PQC migration, AWS cloud, Comino liquid-cooled GPU systems and C
 - [Cyabra Social Intelligence & Brand Protection](https://eudaemonia.tech/en/solutions/social-intelligence/): EudTech uses Cyabra to help communications, security and public-sector teams analyse inauthentic profiles, coordinated activity, narratives and brand risk.
 - [Products & Brands](https://eudaemonia.tech/en/products/): Explore AWS cloud sales services, Comino liquid-cooled GPU workstations and servers, and Cyabra social intelligence.
 - [GPU Server Selection & Procurement Resources](https://eudaemonia.tech/en/resources/): Compare GPU server and workstation requirements, plan power and cooling, prepare an RFQ and review procurement documents with EudTech.
-- [About Eudaemonia Technology](https://eudaemonia.tech/en/about/): EudTech helps enterprises, researchers and public institutions plan PQC migration, AWS cloud, AI infrastructure and social intelligence delivery.
+- [About Eudaemonia Technology](https://eudaemonia.tech/en/about/): EudTech helps enterprises, researchers and public institutions plan PQC migration, AWS cloud, AI infrastructure and social intelligence delivery, with verifiable company and manufacturer sources.
 - [Contact EudTech](https://eudaemonia.tech/en/contact/): Discuss a PQC migration, AWS cloud service, GPU configuration or social intelligence need with EudTech. Start with your environment and intended outcome.
 - [Privacy & Data Use](https://eudaemonia.tech/en/privacy/): Learn how EudTech handles contact and quote data, customer-source attribution, retention, service providers and data requests.
 - [Comino GRANDO GPU Server Configurator](https://eudaemonia.tech/en/configurator/): Configure Comino GRANDO GPU servers and AI workstations, review GPU, CPU, memory, storage, power and networking, and request a formal quote in Taiwan.

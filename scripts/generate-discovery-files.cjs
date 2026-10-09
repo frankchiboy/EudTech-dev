@@ -1,3 +1,5 @@
+const authoritySources = require('../src/data/authoritySources.json');
+const organization = require('../src/data/organization.json');
 const homepageContent = require('../src/data/homepageContent.json');
 const fs = require('fs');
 const path = require('path');
@@ -188,6 +190,7 @@ const sourcePages = {'/':'src/data/content.ts','/solutions':'src/components/page
 function bodyFingerprint(loc) {
   const pathname=(new URL(loc).pathname.replace(/^\/en(?=\/|$)/,'').replace(/\/$/,'') || '/');
   const files = sourcePages[pathname] ? [sourcePages[pathname]] : [];
+  if (pathname==='/about') files.push('src/data/authoritySources.json','src/data/organization.json');
   if (pathname==='/solutions/ai-infrastructure') files.push('src/data/cominoProcurement.json','src/data/cominoConformity.json','src/data/cominoTestDrive.json');
   if (/^\/products\/\d+$/.test(pathname)) files.push('src/data/productData.ts');
   if (pathname.startsWith('/vendor/')) files.push('docs/comino-document-translations-zh.json','src/data/cominoConformity.json');
@@ -494,6 +497,22 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - Services: PQC migration advisory, AWS cloud sales and implementation, Comino AI infrastructure, and Cyabra social intelligence.
 - Configurable items: GPU, CPU, RAM, OS drive, data drives, power supply, and networking.
 - Public pricing: not published. Availability, pricing, warranty and acceptance criteria require a confirmed quotation and BOM.
+
+## 公司與引用來源 / Company and sources
+
+- 公司名稱 / Legal name: ${organization.legalName}
+- English name: ${organization.alternateName[0]}
+- 統一編號 / Taiwan business number: ${organization.taxID}
+- 設立日期 / Established: ${organization.foundingDate}
+- 登記地址 / Registered office: ${organization.address.addressRegion}${organization.address.addressLocality}${organization.address.streetAddress}
+- 公司資料 / Company details: ${siteOrigin}/about/#verified-company-identity
+- English details: ${siteOrigin}/en/about/#verified-company-identity
+- 來源查核日期 / Sources last checked: ${authoritySources.lastVerified}
+
+${authoritySources.sources.map(source => `- [${source.title.zh} / ${source.title.en}](${source.url}): ${source.description.zh} ${source.description.en}`).join('\n')}
+
+公司與合作身分來源不等於特定型號的供貨、合規或商務承諾；這些項目仍須依型號文件與正式報價確認。
+${authoritySources.scopeNote}
 
 ${llmsDirectory}
 
@@ -817,11 +836,10 @@ fs.writeFileSync(path.join(publicDir, 'feed.json'), `${jsonFeed}\n`);
 fs.writeFileSync(path.join(publicDir, 'llms.txt'), llms);
 fs.writeFileSync(path.join(publicDir, 'llms-full.txt'), llmsFull);
 fs.writeFileSync(path.join(publicDir, 'configurator-links.html'), configuratorLinksHtml);
-const authoritySources = require('../src/data/authoritySources.json');
 fs.writeFileSync(path.join(publicDir, 'ai-discovery.json'), `${JSON.stringify({
   version: 1,
   site: siteOrigin,
-  generatedAt: new Date().toISOString(),
+  contentUpdated: latestModifiedAt,
   languages: ['zh-TW', 'en'],
   discovery: {
     robots: `${siteOrigin}/robots.txt`,
@@ -832,6 +850,7 @@ fs.writeFileSync(path.join(publicDir, 'ai-discovery.json'), `${JSON.stringify({
     jsonFeed: `${siteOrigin}/feed.json`
   },
   permittedAgents: ['Googlebot', 'Bingbot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Perplexity-User', 'ClaudeBot', 'Claude-User', 'Claude-SearchBot'],
+  entity: organization,
   authority: authoritySources
 }, null, 2)}\n`);
 fs.writeFileSync(

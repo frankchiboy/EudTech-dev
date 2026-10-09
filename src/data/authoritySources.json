@@ -13,24 +13,64 @@
       "type": "government_profile",
       "authority": "經濟部中小及新創企業署 FINDIT",
       "url": "https://findit.sme.gov.tw/en/Startup/ekhiSnpzRnR1c3hwcWlZc1Y2UUZtdz09/Basic",
-      "supports": ["legal_name", "tax_id", "location", "business_profile"],
-      "status": "verified"
+      "supports": [
+        "legal_name",
+        "tax_id",
+        "location",
+        "business_profile"
+      ],
+      "status": "verified",
+      "title": {
+        "zh": "政府 FINDIT 公司資料",
+        "en": "Government-backed FINDIT company profile"
+      },
+      "description": {
+        "zh": "查閱公司名稱、統一編號、所在地與業務介紹。",
+        "en": "Company name, Taiwan business number, location and business profile."
+      }
     },
     {
       "id": "moea-gcis-2025-12",
       "type": "government_registry_report",
       "authority": "經濟部商工行政服務",
       "url": "https://serv.gcis.nat.gov.tw/pub/cmpy/reportAction.do?fileName=11412DOC.pdf&method=report&reportClass=cmpy&subPath=11412",
-      "supports": ["legal_name", "tax_id", "registered_address"],
-      "status": "verified"
+      "supports": [
+        "legal_name",
+        "tax_id",
+        "registered_address"
+      ],
+      "status": "verified",
+      "title": {
+        "zh": "經濟部 2025 年 12 月公司登記資料",
+        "en": "MOEA company registry report — December 2025"
+      },
+      "description": {
+        "zh": "核對 2025 年 12 月登記資料中的公司名稱、統一編號與地址；此為歷史月份資料。",
+        "en": "Company name, Taiwan business number and registered address in the December 2025 report. This is a historical monthly record."
+      },
+      "recordPeriod": "2025-12"
     },
     {
       "id": "comino-partner-directory",
       "type": "manufacturer_partner_directory",
       "authority": "Comino",
       "url": "https://www.comino.com/en/company",
-      "supports": ["eudtech_name", "taiwan_location", "website", "contact", "ai_system_integrator_description"],
-      "status": "verified"
+      "supports": [
+        "eudtech_name",
+        "taiwan_location",
+        "website",
+        "contact",
+        "ai_system_integrator_description"
+      ],
+      "status": "verified",
+      "title": {
+        "zh": "Comino 原廠合作夥伴名錄",
+        "en": "Comino manufacturer partner directory"
+      },
+      "description": {
+        "zh": "原廠名錄列有 Eudaemonia Tech、台灣所在地、官網與聯絡方式，並介紹 AI 系統整合業務。",
+        "en": "The manufacturer lists Eudaemonia Tech in Taiwan, its website and contact details, and describes its AI system integration business."
+      }
     }
   ],
   "scopeNote": "Each source supports only the listed fields. Product configuration, supply, compliance and commercial terms still require model-specific documents and a formal quotation."
