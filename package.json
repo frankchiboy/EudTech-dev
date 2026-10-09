@@ -64,6 +64,7 @@
     "report:search-console": "node scripts/report-google-search-console.cjs",
     "report:ga4-configurator": "node scripts/report-ga4-configurator.cjs",
     "report:ga4-ai-referrals": "node scripts/report-ga4-ai-referrals.cjs --output=reports/ga4-ai-referrals.json",
+    "test:navigation": "node --test scripts/navigation-contract.test.cjs",
     "test:ai-discovery": "node --test scripts/ai-discovery-checks.test.cjs",
     "audit:ai-discovery": "node scripts/audit-ai-discovery.cjs --output=reports/ai-discovery-live.json",
     "verify:live-exposure": "node scripts/verify-live-exposure.cjs",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import { VENDOR_EVIDENCE, vendorEvidenceHref } from '../../data/vendorEvidence';
 import { Bilingual, PageShell, tx } from './SitePagePrimitives';

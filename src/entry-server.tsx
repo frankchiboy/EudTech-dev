@@ -23,7 +23,7 @@ export function render(initialPath: string): Promise<{ body: string; head: strin
     });
     const app = (
       <StrictMode>
-        <StaticRouter location={initialPath} basename={isEnglishPath(initialPath) ? '/en' : '/'}>
+        <StaticRouter location={initialPath} basename={isEnglishPath(initialPath) ? '/en/' : '/'}>
           <App initialPath={initialPath} helmetContext={context} />
         </StaticRouter>
       </StrictMode>

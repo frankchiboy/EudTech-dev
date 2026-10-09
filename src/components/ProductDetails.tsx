@@ -1,5 +1,6 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { SiteLink as Link } from './common/SiteLink';
 import { ArrowLeft, Bot, Braces, CheckCircle2, Database, LineChart, Shield } from 'lucide-react';
 import { useLanguageContext } from '../contexts/LanguageContext';
 import { handleNavClick } from '../utils/helpers/navigation';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import reference from '../../data/cominoProcurement.json';
 import conformity from '../../data/cominoConformity.json';
 import { tx } from './SitePagePrimitives';

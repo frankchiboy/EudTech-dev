@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Database, ShieldCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from './common/SiteLink';
 
 interface FinSightEnterpriseCtaProps {
   isEnglish: boolean;

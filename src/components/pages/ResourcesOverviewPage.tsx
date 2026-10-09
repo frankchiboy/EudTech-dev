@@ -11,7 +11,7 @@ import {
   Settings2,
   Snowflake
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import { CONFIGURATOR_SEO_PAGES } from '../../data/configuratorSeoPages';
 import { VENDOR_EVIDENCE, vendorEvidenceHref } from '../../data/vendorEvidence';

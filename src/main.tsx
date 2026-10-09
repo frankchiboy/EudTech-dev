@@ -9,7 +9,7 @@ const root = document.getElementById('root')!;
 const initialPath = window.location.pathname;
 const app = (
   <StrictMode>
-    <BrowserRouter basename={isEnglishPath(initialPath) ? '/en' : '/'}>
+    <BrowserRouter basename={isEnglishPath(initialPath) ? '/en/' : '/'}>
       <App initialPath={initialPath} />
     </BrowserRouter>
   </StrictMode>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckCircle2, Cpu, Network, Radar, ShieldCheck, Cloud } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import { VENDOR_EVIDENCE } from '../../data/vendorEvidence';
 import organization from '../../data/organization.json';

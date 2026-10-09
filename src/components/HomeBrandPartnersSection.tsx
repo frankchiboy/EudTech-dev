@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from './common/SiteLink';
 
 const HomeBrandPartnersSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish }) => {
   const steps = isEnglish ? [

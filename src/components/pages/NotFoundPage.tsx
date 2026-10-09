@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { SiteLink as Link } from '../common/SiteLink';
 import SEOHead from '../common/SEOHead';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 
