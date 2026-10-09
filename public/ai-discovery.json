@@ -1,7 +1,7 @@
 {
   "version": 1,
   "site": "https://eudaemonia.tech",
-  "generatedAt": "2026-10-09T19:45:59.074Z",
+  "contentUpdated": "2026-10-10",
   "languages": [
     "zh-TW",
     "en"
@@ -25,6 +25,69 @@
     "Claude-User",
     "Claude-SearchBot"
   ],
+  "entity": {
+    "@type": "Organization",
+    "@id": "https://eudaemonia.tech/#organization",
+    "name": "EudTech",
+    "legalName": "優達盟資訊科技有限公司",
+    "alternateName": [
+      "Eudaemonia Technology Ltd.",
+      "Eudaemonia Technology",
+      "優達盟資訊科技"
+    ],
+    "url": "https://eudaemonia.tech/",
+    "email": "quote@eudaemonia.tech",
+    "foundingDate": "2024-04-08",
+    "taxID": "93583557",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eudaemonia.tech/logo.svg"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "中山北路二段77巷8號14樓",
+      "addressLocality": "中山區",
+      "addressRegion": "臺北市",
+      "postalCode": "104",
+      "addressCountry": "TW"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Taiwan"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "quote@eudaemonia.tech",
+      "availableLanguage": [
+        "zh-TW",
+        "en"
+      ]
+    },
+    "sameAs": [
+      "https://findit.sme.gov.tw/en/Startup/ekhiSnpzRnR1c3hwcWlZc1Y2UUZtdz09/Basic"
+    ],
+    "subjectOf": [
+      {
+        "@type": "WebPage",
+        "name": "FINDIT startup profile for Eudaemonia Technology LTD",
+        "url": "https://findit.sme.gov.tw/en/Startup/ekhiSnpzRnR1c3hwcWlZc1Y2UUZtdz09/Basic",
+        "publisher": {
+          "@type": "GovernmentOrganization",
+          "name": "Small and Medium Enterprise and Startup Administration, Ministry of Economic Affairs"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "name": "Comino partner listing for Eudaemonia Tech in Taiwan",
+        "url": "https://www.comino.com/en/company",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Comino"
+        }
+      }
+    ]
+  },
   "authority": {
     "version": 1,
     "lastVerified": "2026-10-10",
@@ -46,7 +109,15 @@
           "location",
           "business_profile"
         ],
-        "status": "verified"
+        "status": "verified",
+        "title": {
+          "zh": "政府 FINDIT 公司資料",
+          "en": "Government-backed FINDIT company profile"
+        },
+        "description": {
+          "zh": "查閱公司名稱、統一編號、所在地與業務介紹。",
+          "en": "Company name, Taiwan business number, location and business profile."
+        }
       },
       {
         "id": "moea-gcis-2025-12",
@@ -58,7 +129,16 @@
           "tax_id",
           "registered_address"
         ],
-        "status": "verified"
+        "status": "verified",
+        "title": {
+          "zh": "經濟部 2025 年 12 月公司登記資料",
+          "en": "MOEA company registry report — December 2025"
+        },
+        "description": {
+          "zh": "核對 2025 年 12 月登記資料中的公司名稱、統一編號與地址；此為歷史月份資料。",
+          "en": "Company name, Taiwan business number and registered address in the December 2025 report. This is a historical monthly record."
+        },
+        "recordPeriod": "2025-12"
       },
       {
         "id": "comino-partner-directory",
@@ -72,7 +152,15 @@
           "contact",
           "ai_system_integrator_description"
         ],
-        "status": "verified"
+        "status": "verified",
+        "title": {
+          "zh": "Comino 原廠合作夥伴名錄",
+          "en": "Comino manufacturer partner directory"
+        },
+        "description": {
+          "zh": "原廠名錄列有 Eudaemonia Tech、台灣所在地、官網與聯絡方式，並介紹 AI 系統整合業務。",
+          "en": "The manufacturer lists Eudaemonia Tech in Taiwan, its website and contact details, and describes its AI system integration business."
+        }
       }
     ],
     "scopeNote": "Each source supports only the listed fields. Product configuration, supply, compliance and commercial terms still require model-specific documents and a formal quotation."

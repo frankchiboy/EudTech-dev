@@ -75,7 +75,7 @@ const SITE_INFORMATION_ROUTES = [
   {
     path: '/about',
     title: '關於 EudTech｜優達盟資訊科技',
-    description: '了解優達盟資訊科技在 PQC 遷移顧問、AWS 雲端服務、AI 運算基礎設施及社群情報領域的定位、能力與工作方式。',
+    description: '了解 EudTech PQC 遷移顧問、AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。',
     keywords: '優達盟資訊科技, EudTech, PQC 遷移顧問, 後量子密碼, 雲端導入, AI 基礎設施, 社群情報',
     lead: 'EudTech 協助企業、研究單位與公部門把 PQC 遷移、AWS 雲端服務、運算設備與情報工具導入實際工作流程。',
     sourceImage: '/comino-facility-1.jpg',
