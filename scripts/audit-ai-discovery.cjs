@@ -11,7 +11,16 @@ const requiredFiles = ['/robots.txt', '/sitemap-index.xml', '/llms.txt', '/llms-
 const pages = ['/', '/about/', '/solutions/ai-infrastructure/'];
 
 async function probe(url, userAgent = 'EudTech-AI-Discovery-Audit/1.0') {
-  const response = await fetch(url, { headers: { 'user-agent': userAgent, accept: 'text/html,application/json,text/plain,*/*' }, redirect: 'follow' });
+  let response;
+  let lastError;
+  for (let attempt = 1; attempt <= 4; attempt += 1) {
+    try {
+      response = await fetch(`${url}${url.includes('?') ? '&' : '?'}audit=${Date.now()}`, { headers: { 'user-agent': userAgent, accept: 'text/html,application/json,text/plain,*/*' }, redirect: 'follow' });
+      if (response.status < 500 && response.status !== 403) break;
+    } catch (error) { lastError = error; }
+    await new Promise(resolve => setTimeout(resolve, attempt * 500));
+  }
+  if (!response) throw lastError || new Error(`Unable to fetch ${url}`);
   const body = await response.text();
   return {
     url,
