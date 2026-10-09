@@ -275,7 +275,16 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
 Allow: /
 
 Sitemap: ${siteOrigin}/sitemap.xml
@@ -808,6 +817,23 @@ fs.writeFileSync(path.join(publicDir, 'feed.json'), `${jsonFeed}\n`);
 fs.writeFileSync(path.join(publicDir, 'llms.txt'), llms);
 fs.writeFileSync(path.join(publicDir, 'llms-full.txt'), llmsFull);
 fs.writeFileSync(path.join(publicDir, 'configurator-links.html'), configuratorLinksHtml);
+const authoritySources = require('../src/data/authoritySources.json');
+fs.writeFileSync(path.join(publicDir, 'ai-discovery.json'), `${JSON.stringify({
+  version: 1,
+  site: siteOrigin,
+  generatedAt: new Date().toISOString(),
+  languages: ['zh-TW', 'en'],
+  discovery: {
+    robots: `${siteOrigin}/robots.txt`,
+    sitemapIndex: `${siteOrigin}/sitemap-index.xml`,
+    llms: `${siteOrigin}/llms.txt`,
+    llmsFull: `${siteOrigin}/llms-full.txt`,
+    rss: `${siteOrigin}/feed.xml`,
+    jsonFeed: `${siteOrigin}/feed.json`
+  },
+  permittedAgents: ['Googlebot', 'Bingbot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Perplexity-User', 'ClaudeBot', 'Claude-User', 'Claude-SearchBot'],
+  authority: authoritySources
+}, null, 2)}\n`);
 fs.writeFileSync(
   lastmodManifestPath,
   `${JSON.stringify({ version: 1, entries: lastmodEntries }, null, 2)}\n`

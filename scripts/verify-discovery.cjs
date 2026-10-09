@@ -33,6 +33,7 @@ const llmsFullText = readPublicFile('llms-full.txt');
 const robotsText = readPublicFile('robots.txt');
 const configuratorLinksHtml = readPublicFile('configurator-links.html');
 const lastmodManifestText = readPublicFile('discovery-lastmod.json');
+const aiDiscoveryText = readPublicFile('ai-discovery.json');
 const rootDir = path.resolve(__dirname, '..');
 const headersText = fs.readFileSync(path.join(rootDir, '_headers'), 'utf8');
 const netlifyToml = fs.readFileSync(path.join(rootDir, 'netlify.toml'), 'utf8');
@@ -57,6 +58,8 @@ try {
 }
 const feedJsonLinks = new Set(feedJson ? collectJsonFeedLinks(feedJson) : []);
 const errors = [];
+let aiDiscovery;
+try { aiDiscovery = JSON.parse(aiDiscoveryText); } catch (error) { aiDiscovery = undefined; }
 
 const requireAll = (label, values, predicate) => {
   values.forEach((value) => {
@@ -100,6 +103,12 @@ requireAll('sitemap-index.xml', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/ima
 requireAll('robots.txt', [`${siteOrigin}/sitemap.xml`, `${siteOrigin}/image-sitemap.xml`, `${siteOrigin}/feed.xml`, `${siteOrigin}/sitemap-index.xml`], (url) =>
   robotsText.includes(`Sitemap: ${url}`)
 );
+requireAll('robots.txt AI agents', ['OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Perplexity-User', 'ClaudeBot', 'Claude-User', 'Claude-SearchBot'], (agent) =>
+  robotsText.includes(`User-agent: ${agent}`)
+);
+if (!aiDiscovery || aiDiscovery.version !== 1 || !Array.isArray(aiDiscovery.permittedAgents) || !aiDiscovery.authority?.sources?.length) {
+  errors.push('ai-discovery.json missing valid discovery and authority data.');
+}
 requireAll('image-sitemap.xml page loc', socialPreviewRoutes.map((route) => route.canonicalUrl), (url) => imageSitemapPageLocs.has(url));
 requireAll('image-sitemap.xml image loc', socialPreviewRoutes.map((route) => route.socialImageUrl), (url) => imageSitemapImageLocs.has(url));
 
@@ -123,6 +132,7 @@ const requiredHeaderRules = [
   '/feed.xml',
   '/feed.json',
   '/discovery-lastmod.json',
+  '/ai-discovery.json',
   '/configurator-links.html',
   '/llms*.txt',
   '/social/configurator/*',
@@ -149,6 +159,10 @@ if (!/\/feed\.json[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText))
 
 if (!/\/discovery-lastmod\.json[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
   errors.push('root _headers missing discovery manifest cache-control rule.');
+}
+
+if (!/\/ai-discovery\.json[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
+  errors.push('root _headers missing AI discovery cache-control rule.');
 }
 
 if (!/\/configurator-links\.html[\s\S]*max-age=3600[\s\S]*must-revalidate/i.test(headersText)) {
