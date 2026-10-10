@@ -9,6 +9,7 @@ import CominoComplianceSection from './CominoComplianceSection';
 import CominoTestDriveSection from './CominoTestDriveSection';
 import testDrive from '../../data/cominoTestDrive.json';
 import { cominoQuestionsSchema } from '../../utils/seo/cominoQuestions';
+import { getResponsiveNetlifyImageProps } from '../../utils/performance/netlifyImageCdn';
 
 const kit = '/vendor/comino/sales-kit-0911/';
 const questions = [
@@ -42,10 +43,16 @@ const localizedKitImages = new Set(['liquid-airflow', 'monitoring-qdc']);
 const StoryFigure: React.FC<{ src: string; alt: Bilingual; caption: Bilingual; isEnglish: boolean; eager?: boolean }> = ({ src: originalSrc, alt, caption, isEnglish, eager }) => {
   const imageName = originalSrc.startsWith(kit) ? originalSrc.slice(kit.length).replace(/\.webp$/, '') : '';
   const src = isEnglish && localizedKitImages.has(imageName) ? `${kit}${imageName}-en.webp` : originalSrc;
+  const imageProps = eager ? getResponsiveNetlifyImageProps(src, {
+    widths: [480, 768, 960, 1280, 1600],
+    sizes: '(max-width: 639px) calc(100vw - 2.5rem), (max-width: 827px) calc(100vw - 3rem), (max-width: 1023px) 780px, (max-width: 1263px) calc(50vw - 3.25rem), 580px',
+    quality: 85,
+    format: 'webp'
+  }) : { src };
   return (
   <figure className="comino-figure">
     <a href={src} target="_blank" rel="noreferrer" aria-label={(isEnglish ? 'Open full image: ' : '開啟完整圖片：') + tx(alt, isEnglish)}>
-      <img src={src} alt={tx(alt, isEnglish)} width={eager ? 1600 : 1800} height={eager ? 1070 : 1013} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'} decoding="async" />
+      <img {...imageProps} alt={tx(alt, isEnglish)} width={eager ? 1600 : 1800} height={eager ? 1070 : 1013} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'} decoding="async" />
     </a>
     <figcaption><span>{tx(caption, isEnglish)}</span><a href={src} target="_blank" rel="noreferrer">{isEnglish ? 'View full image' : '查看完整圖片'}</a></figcaption>
   </figure>
