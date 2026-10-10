@@ -38,7 +38,10 @@ function renderEnglishPage(baseHtml, route) {
   const title = formatSeoTitle(route.title), url = enUrl(route.path), zh = absolute(route.path);
   const image = social.get(route.path) || new URL(route.image || (route.path==='/careers'?'/brand-provenance/eudtech-brand-careers.webp':'/social/configurator/home.jpg'), origin).href;
   const article = ['comparison','guide','checklist'].includes(route.kind);
-  const related = englishRoutes().filter(r => r.path !== route.path && (['/resources','/products','/solutions','/configurator'].includes(route.path) || ['/solutions','/configurator','/resources','/contact'].includes(r.path)));
+  const routes = englishRoutes();
+  const related = route.relatedPaths
+    ? route.relatedPaths.map(path => routes.find(candidate => candidate.path === path)).filter(Boolean)
+    : routes.filter(r => r.path !== route.path && (['/resources','/products','/solutions','/configurator'].includes(route.path) || ['/solutions','/configurator','/resources','/contact'].includes(r.path)));
   const relatedItemList = related.length ? {
     '@context':'https://schema.org','@type':'ItemList','@id':`${url}#related-links`,name:`Related pages for ${route.title}`,
     itemListElement:related.map((item,index)=>({'@type':'ListItem',position:index+1,name:item.title,url:enUrl(item.path)}))

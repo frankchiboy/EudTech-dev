@@ -1,5 +1,6 @@
 export type ConfiguratorSeoPage = {
   slug: string;
+  relatedSlugs: string[];
   kind?: 'solution' | 'comparison' | 'guide' | 'checklist';
   title: {
     en: string;
@@ -59,6 +60,7 @@ export const SITE_ORIGIN = 'https://eudaemonia.tech';
 export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'nvidia-h200-server',
+    relatedSlugs: ["h200-vs-rtx-pro-6000", "h200-gpu-server-rfq-taiwan", "gpu-server-power-planning", "liquid-cooled-gpu-server"],
     title: {
       en: 'NVIDIA H200 Server Quote & Planning',
       zh: 'NVIDIA H200 伺服器報價、供貨與價格規劃｜AI 訓練與推論'
@@ -138,6 +140,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'rtx-pro-6000-workstation',
+    relatedSlugs: ["rtx-pro-6000-local-ai-inference", "ai-workstation-taiwan", "h200-vs-rtx-pro-6000", "ai-inference-server-taiwan"],
     title: {
       en: 'RTX PRO 6000 Workstation Quote Configurator',
       zh: 'RTX PRO 6000 本地 AI 推論工作站報價配置器'
@@ -197,6 +200,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'ai-workstation-taiwan',
+    relatedSlugs: ["rtx-pro-6000-workstation", "rtx-pro-6000-local-ai-inference", "h200-vs-rtx-pro-6000", "gpu-server-quote"],
     title: {
       en: 'AI Workstations & GPU Systems in Taiwan',
       zh: '台灣 AI 工作站配置器'
@@ -269,6 +273,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'liquid-cooled-gpu-server',
+    relatedSlugs: ["liquid-cooling-ai-server-procurement", "gpu-server-power-planning", "rack-ai-server-deployment", "supermicro-comino-gpu-server-comparison"],
     title: {
       en: 'Liquid-Cooled GPU Server Quote Configurator',
       zh: '液冷 GPU 伺服器散熱與報價配置器'
@@ -333,6 +338,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'gpu-server-quote',
+    relatedSlugs: ["gpu-server-rfq-checklist", "comino-grando-configurator-taiwan", "taiwan-public-procurement-gpu-server", "h200-gpu-server-rfq-taiwan"],
     title: {
       en: 'GPU Server Quote & RFQ Configurator',
       zh: 'GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000'
@@ -400,6 +406,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'h200-vs-rtx-pro-6000',
+    relatedSlugs: ["nvidia-h200-server", "rtx-pro-6000-workstation", "rtx-pro-6000-local-ai-inference", "ai-inference-server-taiwan"],
     kind: 'comparison',
     title: {
       en: 'H200 vs RTX PRO 6000 for Training & Inference',
@@ -468,6 +475,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'gpu-server-rfq-checklist',
+    relatedSlugs: ["gpu-server-quote", "taiwan-public-procurement-gpu-server", "gpu-server-power-planning", "ai-server-procurement-case-taiwan"],
     kind: 'checklist',
     title: {
       en: 'GPU Server RFQ Checklist for AI Procurement',
@@ -528,6 +536,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'liquid-cooling-ai-server-procurement',
+    relatedSlugs: ["liquid-cooled-gpu-server", "gpu-server-power-planning", "rack-ai-server-deployment", "taiwan-public-procurement-gpu-server"],
     kind: 'guide',
     title: {
       en: 'Liquid-Cooling AI Server Procurement Guide',
@@ -588,6 +597,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'gpu-server-power-planning',
+    relatedSlugs: ["rack-ai-server-deployment", "liquid-cooling-ai-server-procurement", "nvidia-h200-server", "gpu-server-rfq-checklist"],
     kind: 'guide',
     title: {
       en: 'GPU Server Power Planning Configurator',
@@ -648,6 +658,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'rack-ai-server-deployment',
+    relatedSlugs: ["gpu-server-power-planning", "liquid-cooled-gpu-server", "liquid-cooling-ai-server-procurement", "gpu-server-rfq-checklist"],
     kind: 'guide',
     title: {
       en: 'Rack AI Server Deployment Configurator',
@@ -708,6 +719,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'taiwan-public-procurement-gpu-server',
+    relatedSlugs: ["ai-server-procurement-case-taiwan", "gpu-server-rfq-checklist", "liquid-cooling-ai-server-procurement", "supermicro-comino-gpu-server-comparison"],
     kind: 'checklist',
     title: {
       en: 'Taiwan Public Procurement GPU Server Checklist',
@@ -768,6 +780,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'supermicro-comino-gpu-server-comparison',
+    relatedSlugs: ["liquid-cooled-gpu-server", "rack-ai-server-deployment", "gpu-server-rfq-checklist", "taiwan-public-procurement-gpu-server"],
     kind: 'comparison',
     title: {
       en: 'Supermicro vs Comino GPU Server Procurement',
@@ -828,6 +841,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'ai-inference-server-taiwan',
+    relatedSlugs: ["h200-vs-rtx-pro-6000", "rtx-pro-6000-local-ai-inference", "ai-workstation-taiwan", "nvidia-h200-server"],
     title: {
       en: 'AI Inference Server for LLMs | Taiwan Quote',
       zh: 'AI 推論伺服器報價配置器｜台灣 LLM 與私有模型部署'
@@ -891,6 +905,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'comino-grando-configurator-taiwan',
+    relatedSlugs: ["gpu-server-quote", "gpu-server-rfq-checklist", "nvidia-h200-server", "rtx-pro-6000-workstation"],
     kind: 'guide',
     title: {
       en: 'Comino Grando Configurator Taiwan Quote Guide',
@@ -951,6 +966,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'h200-gpu-server-rfq-taiwan',
+    relatedSlugs: ["nvidia-h200-server", "gpu-server-rfq-checklist", "gpu-server-power-planning", "taiwan-public-procurement-gpu-server"],
     kind: 'checklist',
     title: {
       en: 'NVIDIA H200 Server RFQ Checklist for Taiwan',
@@ -1011,6 +1027,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'rtx-pro-6000-local-ai-inference',
+    relatedSlugs: ["rtx-pro-6000-workstation", "ai-workstation-taiwan", "h200-vs-rtx-pro-6000", "ai-inference-server-taiwan"],
     kind: 'guide',
     title: {
       en: 'RTX PRO 6000 Local AI Workstation Quote',
@@ -1071,6 +1088,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'ai-server-procurement-case-taiwan',
+    relatedSlugs: ["taiwan-public-procurement-gpu-server", "gpu-server-rfq-checklist", "h200-gpu-server-rfq-taiwan", "gpu-server-quote"],
     kind: 'guide',
     title: {
       en: 'Taiwan AI Server Procurement & Quote Guide',
@@ -1133,3 +1151,9 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
 
 export const getConfiguratorSeoPage = (slug?: string) =>
   CONFIGURATOR_SEO_PAGES.find((page) => page.slug === slug);
+
+// Curated next reads are shared by the visible pages and static SEO output.
+export const getRelatedConfiguratorSeoPages = (slug: string): ConfiguratorSeoPage[] =>
+  (getConfiguratorSeoPage(slug)?.relatedSlugs || [])
+    .map(getConfiguratorSeoPage)
+    .filter((page): page is ConfiguratorSeoPage => Boolean(page));

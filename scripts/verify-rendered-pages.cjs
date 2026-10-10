@@ -4,6 +4,7 @@ const path = require('node:path');
 const { englishRoutes } = require('./seo-public-pages.cjs');
 const procurement = require('../src/data/cominoProcurement.json');
 const discoveryDates = require('../public/discovery-lastmod.json');
+const { CONFIGURATOR_SEO_PAGES, getRelatedConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs').readConfiguratorSeoPages();
 const dist = path.resolve(__dirname, '../dist');
 const text = value => value.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
 const canonicalPathByAlias = new Map(Object.keys(discoveryDates.entries).map(value => {
@@ -23,6 +24,9 @@ for (const route of englishRoutes()) for (const en of [false, true]) {
   assert.ok(html.includes('id="root" data-rendered="true"'), `Missing rendered app: ${pathname}`);
   assert.ok(!html.includes('data-static-seo-fallback'), `Separate SEO copy must not replace the actual page: ${pathname}`);
   assert.ok(html.includes('id="main-content"') && html.includes('<nav') && html.includes('<footer'), `Missing actual page layout: ${pathname}`);
+  assert.match(html, /<main[^>]+id="main-content"[^>]+tabindex="-1"/i, `Skip-link destination must receive focus: ${pathname}`);
+  assert.ok(html.includes(en ? 'Skip to main content' : '跳到主要內容'), `Skip link must use the page language: ${pathname}`);
+  assert.ok(html.includes(`aria-label="${en ? 'EudTech home' : 'EudTech 首頁'}"`), `Home link must use the page language: ${pathname}`);
   assert.equal((html.match(/<h1\b/g) || []).length, 1, `One visible H1 required: ${pathname}`);
   assert.ok(!html.includes('<!--$!-->'), `Unresolved React suspense: ${pathname}`);
   for (const href of [...html.matchAll(/\bhref="(\/[^\"]*)"/g)].map(match => match[1])) {
@@ -92,6 +96,30 @@ for (const p of ['index.html', 'en/index.html']) {
   const html = fs.readFileSync(path.join(dist, p), 'utf8');
   assert.ok(html.includes('fetchPriority="high"') && html.includes('960w,') && html.includes('2560w'), `Responsive priority hero missing: ${p}`);
 }
+const inboundGuides = new Set();
+for (const page of CONFIGURATOR_SEO_PAGES) {
+  assert.equal(new Set(page.relatedSlugs).size, 4, `Four distinct related guides required: ${page.slug}`);
+  assert.ok(!page.relatedSlugs.includes(page.slug), `A guide must not recommend itself: ${page.slug}`);
+  const related = getRelatedConfiguratorSeoPages(page.slug);
+  assert.equal(related.length, page.relatedSlugs.length, `Unknown related guide: ${page.slug}`);
+  page.relatedSlugs.forEach(slug => inboundGuides.add(slug));
+  for (const en of [false, true]) {
+    const prefix = en ? '/en' : '';
+    const pathname = `${prefix}/solutions/${page.slug}/`;
+    const html = fs.readFileSync(path.join(dist, pathname, 'index.html'), 'utf8');
+    const section = html.match(/<section id="related-guides"[\s\S]*?<\/section>/)?.[0];
+    assert.ok(section, `Missing related guides section: ${pathname}`);
+    const links = [...section.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
+    assert.deepEqual(links, [`${prefix}/resources/`, ...page.relatedSlugs.map(slug => `${prefix}/solutions/${slug}/`)], `Visible related links must match editorial selection and language: ${pathname}`);
+    const schemas = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+    const list = schemas.find(schema => schema['@id'] === `https://eudaemonia.tech${pathname}#related-guides`);
+    assert.ok(list, `Related guides schema must identify a real section: ${pathname}`);
+    assert.deepEqual(list.itemListElement.map(item => item.url), links.slice(1).map(href => `https://eudaemonia.tech${href}`), `Related schema and visible links must agree: ${pathname}`);
+    assert.deepEqual(list.itemListElement.map(item => item.name), Array.from(related, item => item.title[en ? 'en' : 'zh']), `Related schema labels must use the page language: ${pathname}`);
+    assert.ok(html.includes(`aria-label="${en ? 'Breadcrumb' : '目前位置'}"`) && html.includes('aria-current="page"'), `Missing visible hierarchy: ${pathname}`);
+  }
+}
+assert.equal(inboundGuides.size, CONFIGURATOR_SEO_PAGES.length, 'Every guide needs a relevant inbound guide link');
 for (const p of ['contact/index.html', 'en/contact/index.html']) {
   const html = fs.readFileSync(path.join(dist, p), 'utf8');
   const organization = require('../src/data/organization.json');

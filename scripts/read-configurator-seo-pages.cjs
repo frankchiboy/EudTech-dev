@@ -41,6 +41,7 @@ function readConfiguratorSeoPages() {
   return {
     SITE_ORIGIN: module.exports.SITE_ORIGIN,
     CONFIGURATOR_SEO_PAGES: module.exports.CONFIGURATOR_SEO_PAGES,
+    getRelatedConfiguratorSeoPages: module.exports.getRelatedConfiguratorSeoPages,
     CONFIGURATOR_PRODUCT_SEO: productModule.exports.CONFIGURATOR_PRODUCT_SEO
   };
 }

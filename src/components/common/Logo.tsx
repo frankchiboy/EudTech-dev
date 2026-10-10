@@ -1,16 +1,18 @@
 import React, { useId } from 'react';
 import { SiteLink as Link } from './SiteLink';
+import { useLanguageContext } from '../../contexts/LanguageContext';
 
 interface LogoProps {
   inverse?: boolean;
 }
 
 const Logo: React.FC<LogoProps> = ({ inverse = false }) => {
+  const { isEnglish } = useLanguageContext();
   const gradientId = useId().replace(/:/g, '');
   const darkGradientId = `${gradientId}-dark`;
 
   return (
-    <Link to="/" aria-label="EudTech 首頁" className="flex items-center rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+    <Link to="/" aria-label={isEnglish ? 'EudTech home' : 'EudTech 首頁'} className="flex items-center rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
       <div className="relative mt-1">
         <svg 
           width="56" 
