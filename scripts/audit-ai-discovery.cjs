@@ -2,6 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { robotsAllows, checkPage, checkFile, textOnly } = require('./ai-discovery-checks.cjs');
+const serviceQuestions = require('../src/data/serviceQuestions.json');
 const origin = String(process.env.SITE_ORIGIN || 'https://eudaemonia.tech').replace(/\/$/, '');
 const outputArg = process.argv.find(value => value.startsWith('--output='));
 const output = outputArg ? path.resolve(outputArg.slice('--output='.length)) : '';
@@ -9,7 +10,8 @@ const allowPreviewNoindex = process.argv.includes('--preview') && new URL(origin
 const agents = ['Googlebot','Bingbot','OAI-SearchBot','ChatGPT-User','PerplexityBot','Perplexity-User','ClaudeBot','Claude-User','Claude-SearchBot'];
 const requiredFiles = ['/robots.txt','/sitemap-index.xml','/sitemap.xml','/llms.txt','/llms-full.txt','/feed.xml','/feed.json','/ai-discovery.json'];
 const pages = ['/','/about/','/solutions/ai-infrastructure/','/solutions/aws/','/solutions/pqc/','/solutions/social-intelligence/','/resources/','/contact/'].flatMap(p => [p, '/en' + p]);
-const botPages = ['/solutions/ai-infrastructure/','/en/solutions/ai-infrastructure/'];
+const botPages = ['/solutions/ai-infrastructure/', ...serviceQuestions.services.map(service => service.path)]
+  .flatMap(pathname => [pathname, '/en' + pathname]);
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function probe(pathname, userAgent = 'EudTech-AI-Discovery-Audit/2.0') {
   const url = origin + pathname;

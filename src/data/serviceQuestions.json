@@ -1,0 +1,213 @@
+{
+  "services": [
+    {
+      "id": "aws",
+      "path": "/solutions/aws/",
+      "sectionId": "aws-procurement-faq",
+      "title": {
+        "zh": "AWS 雲端採購問答",
+        "en": "AWS cloud procurement questions"
+      },
+      "questions": [
+        {
+          "id": "aws-procurement-scope",
+          "question": {
+            "zh": "機關採購 AWS，規格至少要寫哪些交付？",
+            "en": "What should an AWS procurement scope deliver?"
+          },
+          "answer": {
+            "zh": "至少應寫明帳戶與 payer 歸屬、Organizations／IAM／MFA／KMS 管理、部署區域、架構與成本假設、RTO／RPO、備份還原測試、CloudTrail 與事件通報、責任矩陣、移交及終止時的匯出與刪除。各項內容依本案資料分級與服務範圍確認。",
+            "en": "At minimum, define account and payer ownership, Organizations/IAM/MFA/KMS administration, regions, architecture and cost assumptions, RTO/RPO, restore tests, CloudTrail and incident notification, the responsibility matrix, handover, and export/deletion at exit. Confirm each item for the project’s data classification and service scope."
+          }
+        },
+        {
+          "id": "aws-cost-breakdown",
+          "question": {
+            "zh": "AWS 用量費與導入服務如何分開？",
+            "en": "How are AWS usage and implementation services separated?"
+          },
+          "answer": {
+            "zh": "正式報價應分列 AWS 用量、AWS Support、導入或移轉服務、維運服務、稅與匯率假設；Savings Plans 或 Reserved Instances 等承諾用量也要另列期間、付款及使用假設。",
+            "en": "A formal quote should separate AWS consumption, AWS Support, implementation or migration, managed support, tax, and exchange-rate assumptions. Any Savings Plans or Reserved Instances commitment should state its term, payment, and utilization assumptions separately."
+          }
+        },
+        {
+          "id": "aws-account-ownership",
+          "question": {
+            "zh": "帳戶、root 與加密金鑰最後由誰掌握？",
+            "en": "Who controls the account, root user, and encryption keys?"
+          },
+          "answer": {
+            "zh": "應在建置前以書面確認客戶、EudTech 與其他供應商的角色。機關通常需要可移交的帳戶、身分、日誌與金鑰管理安排；任何代管權限都應有範圍、期限、稽核與撤銷方式。",
+            "en": "Confirm customer, EudTech, and other supplier roles in writing before deployment. A public-sector customer normally needs transferable arrangements for accounts, identities, logs, and key management. Any delegated administration should have scope, duration, audit, and revocation terms."
+          }
+        },
+        {
+          "id": "aws-disaster-recovery",
+          "question": {
+            "zh": "備份存在，就代表災難復原可驗收嗎？",
+            "en": "Does having backups prove disaster recovery?"
+          },
+          "answer": {
+            "zh": "不代表。要先定義 RTO、RPO、備份範圍、保存與跨區策略，再用還原演練證明資料與服務能在約定時間內恢復；測試結果、例外與責任人都應留下紀錄。",
+            "en": "No. Define RTO, RPO, backup scope, retention, and cross-region strategy, then use restore exercises to show that data and services recover within the agreed target. Record results, exceptions, and owners."
+          }
+        },
+        {
+          "id": "aws-commercial-role",
+          "question": {
+            "zh": "EudTech 是否自稱 AWS reseller 或 APN 夥伴？",
+            "en": "Does EudTech claim AWS reseller or APN partner status?"
+          },
+          "answer": {
+            "zh": "本頁不以未公開驗證的夥伴資格作為採購依據。EudTech 的實際商業角色、計費方、帳戶安排、可供服務及支援範圍，均在正式報價與合約中逐項確認。",
+            "en": "This page does not rely on unverified public partner status. EudTech’s commercial role, billing party, account arrangement, available services, and support scope are confirmed item by item in the formal quote and contract."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pqc",
+      "path": "/solutions/pqc/",
+      "sectionId": "pqc-questions",
+      "title": {
+        "zh": "PQC 遷移問答",
+        "en": "PQC migration questions"
+      },
+      "questions": [
+        {
+          "id": "pqc-migration-start",
+          "question": {
+            "zh": "現在就需要把所有系統換掉嗎？",
+            "en": "Do we need to replace every system now?"
+          },
+          "answer": {
+            "zh": "先做資產盤點、需求排序與供應商確認，再分階段測試與替換。每次變更都需要相容性、效能與回復驗證。",
+            "en": "Begin with inventory, prioritization, and vendor checks. Stage replacements with compatibility, performance, and rollback validation."
+          }
+        },
+        {
+          "id": "pqc-migration-coverage",
+          "question": {
+            "zh": "網站啟用 PQC，就代表全公司完成了嗎？",
+            "en": "Does enabling PQC on a website complete the migration?"
+          },
+          "answer": {
+            "zh": "還要逐段檢查邊緣到來源站、內部服務、金鑰管理及簽章流程。TLS 金鑰建立支援 PQC，不表示憑證簽章也已遷移。",
+            "en": "Check edge-to-origin traffic, internal services, key management, and signing separately. PQC key establishment does not imply migrated certificate signatures."
+          }
+        },
+        {
+          "id": "pqc-certification",
+          "question": {
+            "zh": "採用 NIST 演算法，就等於通過認證嗎？",
+            "en": "Does using a NIST algorithm mean certification?"
+          },
+          "answer": {
+            "zh": "演算法標準、實作正確性與密碼模組驗證是不同層次，需核對產品、版本及驗證範圍。",
+            "en": "Algorithm standards, implementation correctness, and cryptographic module validation are separate. Check the product, version, and validation scope."
+          }
+        },
+        {
+          "id": "pqc-qkd-steganography",
+          "question": {
+            "zh": "PQC 與隱寫術、QKD 有什麼差別？",
+            "en": "How does PQC differ from steganography and QKD?"
+          },
+          "answer": {
+            "zh": "PQC 使用傳統電腦可執行的密碼演算法抵抗已知量子攻擊；隱寫術關注資訊存在的隱藏；QKD 需要量子通道及設備。本服務聚焦 PQC 遷移。",
+            "en": "PQC uses algorithms on conventional computers to resist known quantum attacks. Steganography hides the presence of information; QKD requires quantum channels and equipment. This service focuses on PQC migration."
+          }
+        },
+        {
+          "id": "pqc-scope-and-cost",
+          "question": {
+            "zh": "如何確認費用與時程？",
+            "en": "How are costs and timelines confirmed?"
+          },
+          "answer": {
+            "zh": "先確認資產數量、應用範圍、測試環境與供應商支援，再分別約定評估、試點、遷移與維運範圍。",
+            "en": "Confirm assets, applications, test environments, and vendor support, then agree the assessment, pilot, migration, and support scope."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cyabra",
+      "path": "/solutions/social-intelligence/",
+      "sectionId": "faq",
+      "title": {
+        "zh": "Cyabra 社群情報問答",
+        "en": "Cyabra social intelligence questions"
+      },
+      "questions": [
+        {
+          "id": "cyabra-social-listening",
+          "question": {
+            "zh": "與一般社群聆聽工具有什麼不同？",
+            "en": "How does Cyabra complement social listening?"
+          },
+          "answer": {
+            "zh": "一般社群聆聽協助掌握提及量與情緒。Cyabra 進一步分析參與帳號、行為與協同關係，讓團隊理解聲量的真實性，以及背後是否存在有組織的操作。",
+            "en": "Social listening measures mentions and sentiment. Cyabra adds profile authenticity, behavior, and coordination analysis to explain who is driving that activity."
+          }
+        },
+        {
+          "id": "cyabra-data-scope",
+          "question": {
+            "zh": "分析的是哪些資料？",
+            "en": "What data does it analyze?"
+          },
+          "answer": {
+            "zh": "依原廠資料方法教材，分析以公開的社群與新聞資料為基礎，並依來源、議題與掃描設定採集及抽樣。不是私訊讀取服務，也不代表涵蓋每一則網路內容。",
+            "en": "The vendor methodology describes collection and sampling of publicly available social and news data according to the source, topic, and scan settings. It does not imply access to private messages or exhaustive coverage."
+          }
+        },
+        {
+          "id": "cyabra-language-coverage",
+          "question": {
+            "zh": "可以分析中文與跨國議題嗎？",
+            "en": "Can it investigate multilingual topics?"
+          },
+          "answer": {
+            "zh": "原廠提供多語言敘事與情緒分析；技術教材也列有中文。實際平台、語言、歷史期間及資料量，會依需求與授權範圍確認。",
+            "en": "Cyabra provides multilingual narrative and sentiment analysis, and its technical materials include Chinese. Platform, language, history, and volume requirements are confirmed for each scope and license."
+          }
+        },
+        {
+          "id": "cyabra-human-review",
+          "question": {
+            "zh": "AI 判斷可以直接當作事實嗎？",
+            "en": "Should an AI finding be treated as a confirmed fact?"
+          },
+          "answer": {
+            "zh": "應連同判斷理由、原始來源與情境一起檢視。團隊可使用系統整理的證據安排調查與回應；帳號分類、位置線索與媒體判讀仍需要人員確認。",
+            "en": "Review findings alongside their reasons, sources, and context. Profile classifications, location indicators, and media assessments support investigation and require human review."
+          }
+        },
+        {
+          "id": "cyabra-content-removal",
+          "question": {
+            "zh": "發現冒名或違規內容，會自動下架嗎？",
+            "en": "Does detection automatically remove content?"
+          },
+          "answer": {
+            "zh": "Cyabra 可整理證據、對照平台政策並支援減害工作。內容是否下架由各社群平台依政策審查決定。",
+            "en": "Cyabra supports evidence preparation, policy mapping, and mitigation workflows. Removal decisions remain with each social platform."
+          }
+        },
+        {
+          "id": "cyabra-getting-started",
+          "question": {
+            "zh": "EudTech 如何協助開始？",
+            "en": "How does EudTech help a team get started?"
+          },
+          "answer": {
+            "zh": "先從一個品牌、人物或公共議題開始，確認監測問題、平台與語言、分析期間、交付格式及決策負責人，再安排原廠展示、授權評估與操作培訓。",
+            "en": "Start with a brand, person, or public issue. Define the question, sources, languages, time range, deliverables, and decision owner, then plan a demo, licensing assessment, and training."
+          }
+        }
+      ]
+    }
+  ]
+}

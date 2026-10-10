@@ -1,6 +1,7 @@
 const authoritySources = require('../src/data/authoritySources.json');
 const organization = require('../src/data/organization.json');
 const homepageContent = require('../src/data/homepageContent.json');
+const serviceQuestions = require('../src/data/serviceQuestions.json');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -190,7 +191,11 @@ const sourcePages = {'/':'src/data/content.ts','/solutions':'src/components/page
 function bodyFingerprint(loc) {
   const pathname=(new URL(loc).pathname.replace(/^\/en(?=\/|$)/,'').replace(/\/$/,'') || '/');
   const guide = CONFIGURATOR_SEO_PAGES.find(page => pathname === `/solutions/${page.slug}`);
+  const service = serviceQuestions.services.find(item => item.path === `${pathname}/`);
   const files = sourcePages[pathname] ? [sourcePages[pathname]] : [];
+  if (service) files.push('src/components/pages/ServiceFaqList.tsx');
+  if (service?.id === 'pqc') files.push('src/components/pages/PqcAdvisoryPage.tsx', 'src/data/pqcAdvisory.ts');
+  if (service?.id === 'cyabra') files.push('src/components/pages/CyabraExperiencePage.tsx', 'src/data/cyabraExperience.ts');
   if (pathname==='/contact') files.push('src/components/contact/ContactInfo.tsx','src/components/contact/OnlineMeetingBooking.tsx','src/data/siteArchitecture.ts','src/data/organization.json');
   if (pathname==='/about') files.push('src/data/authoritySources.json','src/data/organization.json');
   if (pathname==='/solutions/ai-infrastructure') files.push('src/data/cominoProcurement.json','src/data/cominoConformity.json','src/data/cominoTestDrive.json');
@@ -199,7 +204,8 @@ function bodyFingerprint(loc) {
   if (pathname.startsWith('/vendor/')) files.push('docs/comino-document-translations-zh.json','src/data/cominoConformity.json');
   return [
     ...files.map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'..',file))).digest('hex')]),
-    ...(guide ? [['manufacturerSources', contentHash(getConfiguratorGuideSources(guide.slug))]] : [])
+    ...(guide ? [['manufacturerSources', contentHash(getConfiguratorGuideSources(guide.slug))]] : []),
+    ...(service ? [['serviceQuestions', contentHash(service)]] : [])
   ];
 }
 const lastmodEntries = Object.fromEntries(sitemapEntries.map((entry) => {
@@ -525,6 +531,23 @@ ${authoritySources.scopeNote}
 ${llmsDirectory}
 
 ${cominoDocumentContext}
+
+## 服務問答 / Service questions
+
+以下為 EudTech 的服務與技術範圍說明，與各服務頁的可見問答一致；正式範圍、授權與費用仍依個案確認。
+These EudTech explanations match the visible service-page answers. Confirm formal scope, licensing, and costs for each engagement.
+
+${serviceQuestions.services.map(service => `### ${service.title.zh} / ${service.title.en}
+
+${service.questions.map(question => `#### ${question.question.zh}
+
+${question.answer.zh}
+答案連結: ${siteOrigin}${service.path}#${question.id}
+
+#### ${question.question.en}
+
+${question.answer.en}
+Answer URL: ${siteOrigin}/en${service.path}#${question.id}`).join('\n\n')}`).join('\n\n')}
 
 ## Site Information Routes
 

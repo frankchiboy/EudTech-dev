@@ -4,6 +4,8 @@ import { useLanguageContext } from '../../contexts/LanguageContext';
 import { cyabraCapabilities, cyabraLearning, cyabraScenarios, bilingual as b } from '../../data/cyabraExperience';
 import { ActionLink, PageShell, tx, type Bilingual } from './SitePagePrimitives';
 import './CyabraExperiencePage.css';
+import ServiceFaqList from './ServiceFaqList';
+import { serviceQuestionsSchema } from '../../utils/seo/serviceQuestions';
 import { CyabraNewFeatures, CyabraOfficialGallery, CyabraPublicGuides } from './CyabraNewFeatures';
 
 const icons = [Network, Fingerprint, Layers, BellRing, Search, ScanFace, ShieldCheck, FileText];
@@ -26,18 +28,9 @@ const CyabraExperiencePage: React.FC = () => {
     const next = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? (index + 1) % length : event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? (index - 1 + length) % length : event.key === 'Home' ? 0 : event.key === 'End' ? length - 1 : null;
     if (next !== null) { event.preventDefault(); update(next); refs.current[next]?.focus(); }
   };
-  const faqs = [
-    {q:b('與一般社群聆聽工具有什麼不同？','How does Cyabra complement social listening?'),a:b('一般社群聆聽協助掌握提及量與情緒。Cyabra 進一步分析參與帳號、行為與協同關係，讓團隊理解聲量的真實性，以及背後是否存在有組織的操作。','Social listening measures mentions and sentiment. Cyabra adds profile authenticity, behavior, and coordination analysis to explain who is driving that activity.')},
-    {q:b('分析的是哪些資料？','What data does it analyze?'),a:b('依原廠資料方法教材，分析以公開的社群與新聞資料為基礎，並依來源、議題與掃描設定採集及抽樣。不是私訊讀取服務，也不代表涵蓋每一則網路內容。','The vendor methodology describes collection and sampling of publicly available social and news data according to the source, topic, and scan settings. It does not imply access to private messages or exhaustive coverage.')},
-    {q:b('可以分析中文與跨國議題嗎？','Can it investigate multilingual topics?'),a:b('原廠提供多語言敘事與情緒分析；技術教材也列有中文。實際平台、語言、歷史期間及資料量，會依需求與授權範圍確認。','Cyabra provides multilingual narrative and sentiment analysis, and its technical materials include Chinese. Platform, language, history, and volume requirements are confirmed for each scope and license.')},
-    {q:b('AI 判斷可以直接當作事實嗎？','Should an AI finding be treated as a confirmed fact?'),a:b('應連同判斷理由、原始來源與情境一起檢視。團隊可使用系統整理的證據安排調查與回應；帳號分類、位置線索與媒體判讀仍需要人員確認。','Review findings alongside their reasons, sources, and context. Profile classifications, location indicators, and media assessments support investigation and require human review.')},
-    {q:b('發現冒名或違規內容，會自動下架嗎？','Does detection automatically remove content?'),a:b('Cyabra 可整理證據、對照平台政策並支援減害工作。內容是否下架由各社群平台依政策審查決定。','Cyabra supports evidence preparation, policy mapping, and mitigation workflows. Removal decisions remain with each social platform.')},
-    {q:b('EudTech 如何協助開始？','How does EudTech help a team get started?'),a:b('先從一個品牌、人物或公共議題開始，確認監測問題、平台與語言、分析期間、交付格式及決策負責人，再安排原廠展示、授權評估與操作培訓。','Start with a brand, person, or public issue. Define the question, sources, languages, time range, deliverables, and decision owner, then plan a demo, licensing assessment, and training.')}
-  ];
-
   const structuredData = [
-    { '@context': 'https://schema.org', '@type': 'Service', name: t(b('Cyabra 敘事情報與威脅分析', 'Cyabra narrative intelligence and threat analysis')), serviceType: t(b('帳號真實性、協同行動、敘事預警與證據報告', 'Profile authenticity, coordinated activity, narrative alerts, and evidence reporting')), provider: { '@id': 'https://eudaemonia.tech/#organization' }, areaServed: { '@type': 'Country', name: 'Taiwan' }, url: 'https://eudaemonia.tech/solutions/social-intelligence/' },
-    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(item => ({ '@type': 'Question', name: t(item.q), acceptedAnswer: { '@type': 'Answer', text: t(item.a) } })) }
+    { '@context': 'https://schema.org', '@type': 'Service', '@id': 'https://eudaemonia.tech/solutions/social-intelligence/#service', name: t(b('Cyabra 敘事情報與威脅分析', 'Cyabra narrative intelligence and threat analysis')), serviceType: t(b('帳號真實性、協同行動、敘事預警與證據報告', 'Profile authenticity, coordinated activity, narrative alerts, and evidence reporting')), provider: { '@id': 'https://eudaemonia.tech/#organization' }, areaServed: { '@type': 'Country', name: 'Taiwan' }, url: 'https://eudaemonia.tech/solutions/social-intelligence/' },
+    serviceQuestionsSchema('cyabra', isEnglish)
   ];
 
   return <PageShell title={b('Cyabra 敘事情報與威脅分析', 'Cyabra Narrative Intelligence & Threat Analysis')} description={b('從帳號真實性、協同行動與敘事預警，到深偽辨識、證據報告與實務培訓。探索 EudTech 的 Cyabra 社群情報方案。','Explore Cyabra authenticity, coordination, narrative alerts, deepfake detection, evidence reports, and training with EudTech.')} path="/solutions/social-intelligence" structuredData={structuredData}>
@@ -112,7 +105,7 @@ const CyabraExperiencePage: React.FC = () => {
         ['04',b('接入既有環境','Integrate'),'API / On-Prem',b('評估系統整合或地端需求，另行確認可用範圍。','Assess integration or on-premises needs and confirm availability.')]
       ].map(([num,title,label,body])=><article key={num as string}><span>{num as string}</span><h3>{t(title as Bilingual)}</h3><strong>{label as string}</strong><p>{t(body as Bilingual)}</p></article>)}</div></div></section>
 
-      <section id="faq" className="cy-section cy-faq-section"><div className="cy-container cy-faq-layout"><div><p className="cy-eyebrow">A FEW THINGS TO KNOW</p><h2>{t(b('開始之前，先把問題說清楚。','Clarity before you begin.'))}</h2><p className="cy-muted">{t(b('資料、能力與交付範圍，都值得先確認。','Align on data, capabilities, and deliverables.'))}</p></div><div className="cy-faq-list">{faqs.map(item=><details key={item.q.en}><summary>{t(item.q)}<ChevronDown size={18}/></summary><p>{t(item.a)}</p></details>)}</div></div></section>
+      <section id="faq" className="cy-section cy-faq-section"><div className="cy-container cy-faq-layout"><div><p className="cy-eyebrow">A FEW THINGS TO KNOW</p><h2>{t(b('開始之前，先把問題說清楚。','Clarity before you begin.'))}</h2><p className="cy-muted">{t(b('資料、能力與交付範圍，都值得先確認。','Align on data, capabilities, and deliverables.'))}</p></div><ServiceFaqList serviceId="cyabra" isEnglish={isEnglish} className="cy-faq-list" summaryIcon={<ChevronDown size={18} aria-hidden="true" />} /></div></section>
 
       <section className="cy-cta"><div className="cy-container"><div><p className="cy-eyebrow">LET’S MAKE SENSE OF IT</p><h2>{t(b('從你最關心的一個議題開始。','Start with the issue that matters to you.'))}</h2><p>{t(b('告訴我們你要保護的品牌、人物或公共議題，一起定義值得採取行動的情報。','Tell us about the brand, person, or public issue you care about. Together, we’ll define the intelligence your team can act on.'))}</p></div><ActionLink href="/contact">{t(b('與 EudTech 討論需求','Talk to EudTech'))}</ActionLink></div></section>
     </div>
