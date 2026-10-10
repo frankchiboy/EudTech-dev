@@ -9,12 +9,15 @@ import Footer from '../Footer';
 import {
   SITE_ORIGIN,
   getConfiguratorSeoPage,
-  getRelatedConfiguratorSeoPages
+  getRelatedConfiguratorSeoPages,
+  getConfiguratorGuideSources,
+  getConfiguratorGuideSourceHref
 } from '../../data/configuratorSeoPages';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath, getConfiguratorSocialPreviewUrl } from '../../utils/seo/socialPreview';
 import { getSeoSchemaDate } from '../../utils/seo/schemaDate';
 import { getResponsiveNetlifyImageProps } from '../../utils/performance/netlifyImageCdn';
+import discoveryDates from '../../../public/discovery-lastmod.json';
 
 const getText = (value: { en: string; zh: string }, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
 const SITE_ROOT_URL = canonicalPageUrl(SITE_ORIGIN);
@@ -94,17 +97,20 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
       ? {
           '@context': 'https://schema.org',
           '@type': 'Article',
+          '@id': `${pageUrl}#article`,
           headline: name,
           description,
           image: pageImage,
           datePublished: schemaDate,
           dateModified: schemaDate,
           author: {
+            '@id': `${SITE_ORIGIN}/#organization`,
             '@type': 'Organization',
             name: 'EudTech',
             url: SITE_ROOT_URL
           },
           publisher: {
+            '@id': `${SITE_ORIGIN}/#organization`,
             '@type': 'Organization',
             name: 'EudTech',
             url: SITE_ROOT_URL,
@@ -113,7 +119,8 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
               url: `${SITE_ORIGIN}/logo.svg`
             }
           },
-          mainEntityOfPage: pageUrl
+          mainEntityOfPage: pageUrl,
+          citation: getConfiguratorGuideSources(slug).map(source => getConfiguratorGuideSourceHref(source, isEnglish))
         }
       : {
           '@context': 'https://schema.org',
@@ -137,8 +144,11 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
+      '@id': `${pageUrl}#questions`,
       mainEntity: page.faqs.map((faq) => ({
         '@type': 'Question',
+        '@id': `${pageUrl}#${faq.id}`,
+        url: `${pageUrl}#${faq.id}`,
         name: getText(faq.question, isEnglish),
         acceptedAnswer: {
           '@type': 'Answer',
@@ -162,6 +172,9 @@ const ConfiguratorSolutionPage: React.FC = () => {
   const configuratorHref = canonicalConfiguratorPath(page.configuratorHref);
   const quoteHref = canonicalConfiguratorPath(page.quoteHref);
   const relatedPages = getRelatedConfiguratorSeoPages(page.slug);
+  const sources = getConfiguratorGuideSources(page.slug);
+  const localizedPageUrl = canonicalPageUrl(`${SITE_ORIGIN}${isEnglish ? '/en' : ''}/solutions/${page.slug}`);
+  const modifiedAt = discoveryDates.entries[localizedPageUrl as keyof typeof discoveryDates.entries]?.modifiedAt;
   const heroImage = getResponsiveNetlifyImageProps(page.image, {
     widths: HERO_IMAGE_WIDTHS,
     sizes: HERO_IMAGE_SIZES,
@@ -215,6 +228,11 @@ const ConfiguratorSolutionPage: React.FC = () => {
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-200">
                 {getText(page.lead, isEnglish)}
+              </p>
+              <p className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-300">
+                <span>{isEnglish ? 'Prepared by ' : '整理：'}<Link to="/about/#verified-company-identity" rel="author" className="underline underline-offset-4">EudTech</Link></span>
+                {modifiedAt && <span>{isEnglish ? 'Updated: ' : '更新：'}<time dateTime={modifiedAt}>{modifiedAt}</time></span>}
+                <a href="#reference-sources" className="underline underline-offset-4">{isEnglish ? 'Manufacturer sources' : '查看原廠資料'}</a>
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -291,17 +309,24 @@ const ConfiguratorSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="border-y border-gray-200 bg-gray-50 py-16 dark:border-gray-800 dark:bg-gray-900">
+        <section id="questions" aria-labelledby="questions-heading" className="scroll-mt-28 border-y border-gray-200 bg-gray-50 py-16 dark:border-gray-800 dark:bg-gray-900">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <h2 id="questions-heading" className="text-3xl font-bold">{isEnglish ? 'Procurement questions and answers' : '採購常見問答'}</h2>
+            <nav aria-label={isEnglish ? 'Jump to an answer' : '快速前往答案'} className="my-8">
+              <ul className="space-y-3">
+                {page.faqs.map(faq => <li key={faq.id}><a href={`#${faq.id}`} className="text-sm font-medium leading-6 text-emerald-700 underline underline-offset-4 dark:text-emerald-300">{getText(faq.question, isEnglish)}</a></li>)}
+              </ul>
+            </nav>
             <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
               {page.faqs.map((faq) => (
-                <article key={getText(faq.question, isEnglish)} className="rounded-lg bg-white p-6 shadow-sm dark:bg-gray-950">
-                  <h2 className="text-lg font-semibold text-gray-950 dark:text-white">
+                <article key={faq.id} id={faq.id} className="scroll-mt-28 rounded-lg bg-white p-6 shadow-sm dark:bg-gray-950">
+                  <h3 className="text-lg font-semibold text-gray-950 dark:text-white">
                     {getText(faq.question, isEnglish)}
-                  </h2>
+                  </h3>
                   <p className="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
                     {getText(faq.answer, isEnglish)}
                   </p>
+                  <a href={`#${faq.id}`} aria-label={`${isEnglish ? 'Link to answer: ' : '答案連結：'}${getText(faq.question, isEnglish)}`} className="mt-4 inline-flex text-sm font-medium text-emerald-700 underline underline-offset-4 dark:text-emerald-300">{isEnglish ? 'Link to this answer' : '此答案的連結'}</a>
                 </article>
               ))}
             </div>
@@ -337,7 +362,22 @@ const ConfiguratorSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section id="related-guides" aria-labelledby="related-guides-heading" className="bg-white py-16 dark:bg-gray-950">
+        <section id="reference-sources" aria-labelledby="reference-sources-heading" className="scroll-mt-28 border-y border-gray-200 bg-gray-50 py-16 dark:border-gray-800 dark:bg-gray-900">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <h2 id="reference-sources-heading" className="text-2xl font-bold">{isEnglish ? 'Manufacturer reference sources' : '原廠查證資料'}</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-gray-600 dark:text-gray-300">{isEnglish ? 'Use these sources to check hardware and deployment requirements. EudTech prepares the procurement guidance; the exact configuration, availability, pricing and acceptance terms are confirmed in the formal quotation.' : '以下資料供查核硬體與部署條件。採購建議由 EudTech 整理；實際配置、供貨、價格及驗收條件依正式報價確認。'}</p>
+            <ul className="mt-8 grid gap-5 md:grid-cols-2">
+              {sources.map(source => (
+                <li key={source.id} className="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+                  <a href={getConfiguratorGuideSourceHref(source, isEnglish)} className="font-semibold text-emerald-700 underline underline-offset-4 dark:text-emerald-300">{getText(source.title, isEnglish)}{!isEnglish && source.hrefZh ? '（繁體中文譯本）' : ''}</a>
+                  <p className="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">{getText(source.description, isEnglish)}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section id="related-guides" aria-labelledby="related-guides-heading" className="scroll-mt-28 bg-white py-16 dark:bg-gray-950">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex flex-col justify-between gap-6 border-b border-gray-200 pb-8 dark:border-gray-800 lg:flex-row lg:items-end">
               <div>
