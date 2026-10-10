@@ -3,6 +3,7 @@ const organization = require('../src/data/organization.json');
 const homepageContent = require('../src/data/homepageContent.json');
 const serviceQuestions = require('../src/data/serviceQuestions.json');
 const fs = require('fs');
+const h200Availability = require('../src/data/h200Availability.json');
 const path = require('path');
 const crypto = require('crypto');
 const { readConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs');
@@ -142,11 +143,11 @@ const awsCloudUrl = {
 const configuratorUrl = {
   loc: pageUrl('/configurator'),
   title: 'Comino Grando GPU 伺服器報價配置器',
-  description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。',
+  description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並登記需求。Comino H200 目前無貨，補貨時間未定。',
   priority: '0.95',
   source: {
     title: 'Comino Grando GPU 伺服器報價配置器',
-    description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。',
+    description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並登記需求。Comino H200 目前無貨，補貨時間未定。',
     productIds: CONFIGURATOR_PRODUCT_SEO.map((product) => product.id)
   }
 };
@@ -481,6 +482,9 @@ const formatFaqs = (faqs, slug) =>
 
 const llms = `# EudTech 官網資料導覽 / Website reference
 
+${h200Availability.detail.zh}
+${h200Availability.detail.en}
+
 ${homepageContent.zh.seo.description}
 ${homepageContent.en.seo.description}
 
@@ -502,6 +506,9 @@ Use the configurator to prepare GPU, CPU, RAM, storage, power and networking req
 `;
 
 const llmsFull = `# EudTech Solutions Full Context
+
+${h200Availability.detail.zh}
+${h200Availability.detail.en}
 
 Generated for AI assistants, search tools, and researchers that need a structured summary of EudTech solutions, products, resources, and configurator routes.
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import H200AvailabilityNotice from './common/H200AvailabilityNotice';
 import { useParams } from 'react-router-dom';
 import { SiteLink as Link } from './common/SiteLink';
 import { ArrowLeft, Bot, Braces, CheckCircle2, Database, LineChart, Shield } from 'lucide-react';
@@ -147,6 +148,7 @@ const ProductDetails: React.FC = () => {
                   {product.title}
                 </h1>
               </div>
+              {/h200/i.test(JSON.stringify([product.specs, product.detailedDescription])) && <H200AvailabilityNotice isEnglish={isEnglish} />}
               {product.id === 3 ? (
                 <div className="mb-8">
                   <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-4">

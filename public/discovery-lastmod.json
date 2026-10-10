@@ -7,9 +7,9 @@
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/configurator/": {
-      "hash": "4a2cfd11df4853371929ac792f22e8630283f024a0c32385455a62530143e4e5",
+      "hash": "d66f05f99826f0e5da71bc86268e093b22b9e617503dc243541263049dc16220",
       "publishedAt": "2026-07-12",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/": {
       "hash": "2c8691ce8813d40618994584d88df80420d3b582da70a7a7093fdb537b50e174",
@@ -37,7 +37,7 @@
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/ai-infrastructure/": {
-      "hash": "6d2d0e33d13e7da8df1dcc8c4cdf0ae5d2156b57ce065a7cbd4cae2e123de8b8",
+      "hash": "715d1205152060da6f1f56462a4dc2b8098dee7182dadc2c1047b1bac7558613",
       "publishedAt": "2026-08-16",
       "modifiedAt": "2026-10-10"
     },
@@ -62,179 +62,179 @@
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/configurator/27/": {
-      "hash": "5639c3a28fe88d8f34201e9270ec81eadad6a9f60aee2bb2408d7fcd6e006b5b",
+      "hash": "84f7d608a814d157429e99d051c935c805213bda4d0a184d65365e5b490355e6",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/configurator/36/": {
-      "hash": "423a7024fbe8a32643b496c6b1d9126646ac289466ab280864a153a3350235c3",
+      "hash": "6036a34847e34404d80a071a83ad0b9b3495a9e2c18edcc508f98e7bf4b39772",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/configurator/29/": {
-      "hash": "5f2c7695db12ba7e088e3c9ec22341e87de6154048182eb4a00760d91a304f96",
+      "hash": "c029012e4c0f8fcc28690b7ec9484bbb2957368946a7fc259ac3697c021ce57d",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/configurator/28/": {
-      "hash": "6c88876eed2bfb1b53037bc5d08de5cf46ac8e377693a14951bafa9792649c76",
+      "hash": "08ac1629d215bb103c19a0c4f2a7c83cdd3619522d73814660273c4cb83420ef",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/configurator/23/": {
-      "hash": "73756441ec8ddad0319e105fe7b8b97ea8e30774a190335ca91d1cb7255db12b",
+      "hash": "fa9cf76230d2e730f0bd2764dec43e9388458dcabe78b34aa0adeab7ea34d804",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/configurator/34/": {
-      "hash": "d229bcd7111689443b599a762328413f230eeb277e37b65b531b377989fd918c",
+      "hash": "8aea4ac4e17de814d63b7972286e8c2d835549234e2083a3e55b9ce72729d2b1",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/configurator/30/": {
-      "hash": "284462e5ab91aa0932f54bd63a5b57fd9559c8777d3528e7955d391400b7d52f",
+      "hash": "b8759ece84c49cc074dd86ce58012380f48388990f31e90257d0c7768c004757",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/configurator/22/": {
-      "hash": "812d15816650c6a698f28d15a8c5d6ea43b51b2225ea8111f4f4f3214b83c891",
+      "hash": "e228035f64baf54a678a2df8a9bf29dced409b859469ef4f96c05f363be04d7c",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/configurator/13/": {
-      "hash": "c618dccf45ff9db6780a41e486c1c274ede3f7ce2908c326c04ea1af8caddea1",
+      "hash": "8c01928525e70a9834c07ea49856b24bf938abb87258615365036d2606874491",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/configurator/5/": {
-      "hash": "87906265a50b8a9be7c22d31888969b489f4d9632561426cfdef35714493f0b1",
+      "hash": "e12afd5dbc6b32aecd81263e166883ed5e889f1257aab333d35a2da73ae0f461",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/configurator/21/": {
-      "hash": "6d1e6d7540f105c5ab398d3b2b452a638fd04e286e59dfa89c591af3da7de1ba",
+      "hash": "3fad05555c0bc12890b6883acd4eeb055815d548f5941bf5bbd9f45df26e0469",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/nvidia-h200-server/": {
-      "hash": "2f98ae516e3c073b7dc41b6a0b316c2ab7a499b7474f5c0ab7ac953221dec4a2",
+      "hash": "b12409c43641a371e89dcd48fd88bab3514a796f16140341a18f6e45830e373d",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/": {
-      "hash": "f4195ded6ba976f34739fd33dabd6b644d7afefb938ff05a3f75e3d379b7beaf",
+      "hash": "61212d06232a10d93a3a4866f98b21e7d7b0664c95278005f4f138d70f5dcf8c",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/ai-workstation-taiwan/": {
-      "hash": "b4810d01e2d58e73d278a55f4a772f4c9fd493261f8f65a0aa7ba7a303c3fa2f",
+      "hash": "ffd95e98282997ab65f49035ce0e29879956942cb76d7d7e997798b359f6ab82",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/": {
-      "hash": "e10e82bdda2ddfcb26aa8e129e375fef28cc158448397cee16e5c712e3d66f35",
+      "hash": "f46eaad0c8923a02dff7b79b35f4dc6070320926b1bc66779494ef02c7fe7f55",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/gpu-server-quote/": {
-      "hash": "187ee00637a077a2764b7ffe237f0efbb2585d1741f46193d2160eb6489bc2b9",
+      "hash": "42e60a0468c69a51c5f686805ddab6551d615293aaaa4403a32e69d2224ea6f8",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/": {
-      "hash": "93738f78a93a61402d8ae194ed535a255cb9fb9666b256ee6c9fd103edbbf95f",
+      "hash": "e80a4b127422db152f67037f84122d24b69185f6ef01479e062aa2e9ec749cf7",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/": {
-      "hash": "1e17f1f38757ead7803a23021b046dbc0e91ae4fe99b5e67b8b2ec72301cb3d1",
+      "hash": "362e99adcbe732329a1050ce471027a64499e91d627282bc2fd4a0801aaf1e74",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/": {
-      "hash": "245a63942a43ba395238ab369a24c6b52dced5e72df34e537336d356db33b59b",
+      "hash": "f8df143b968857ad3aededf71a8009c38e4e25189911f5d3f3ab0f04a30b77da",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/gpu-server-power-planning/": {
-      "hash": "83c6e38210c890df12971b6f9ffa66bf6e096c09054ef99b36da2e60465c32d0",
+      "hash": "fa4827d66ed73168b1fa092fd4974e372cfe9244546aa546a777e937fa7df292",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/rack-ai-server-deployment/": {
-      "hash": "1edb78ebf2441e9ee9d2d94f678016298c61f2550b6b1898fbfaab099eac29a9",
+      "hash": "e61af7faacc4a98b57d6744405fbd3527027911346a3b3f3c8ff86bcdb88c8c6",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/": {
-      "hash": "978e2af416b7179d364f1ab84554b5e6c77aef9cacf9a44d796970f30b0bce88",
+      "hash": "f81b11abccdf57cb0d599fcb5d8f1422fcca6c8f530fd9d81a7cd28b8456bae3",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/": {
-      "hash": "0bb134e0c74a74fd26d95b54d711c82f1b28a09a660b3c775f24244c163e2ccd",
+      "hash": "aab1a9fc9f06b7bd731d93af03d0731a10719f29654bd2a53ce7ed4df117c763",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/ai-inference-server-taiwan/": {
-      "hash": "ebdcc2649b313b4d710bb35cc20adf3f89c8f191450cc69fe79494f6daf17862",
+      "hash": "6797898c0253cc844bf32bd100473bdfa66df6cd29a55d5e780d551545d4c7c1",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/": {
-      "hash": "7f31f2bdc8af353ebdd69e1bfb58cf1d54016d92b3faa0ff10d0f0b6a81f07c9",
+      "hash": "e0e714d183ee1b8769d2c22a66005d6ef706f351e65c23d955053b2897d1843d",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/": {
-      "hash": "a4433a33dab133307b2f4879d68ee49a0d26cfdffc4be8f70694e9ae809bf16c",
+      "hash": "6b90d276d7ad66f8f6a8caa64edcdefaa5ddd5b0c54ab7ff42bfdc2bdb278481",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/": {
-      "hash": "cdf4904b6125bf657f407dcea06db0f88028f6bc27da23f43f03a6c5bd7329ff",
+      "hash": "e092e112dd6c21369940534e72383a6de6c453d322e0dc7ba86c81b68351eb31",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/": {
-      "hash": "28a4ec9b357248da9c5e14692f200bb5dd289c3ed72f96be79fab4fd04ccc878",
+      "hash": "71a48199e7951ddf316783ff14c17e3373629837663842b5e065bba813fef68e",
       "publishedAt": "2026-09-05",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/products/3/": {
-      "hash": "64b94e1cc98b7b9e9be9aa53b6ebea248f42995163387bedf9848af3c6b3621e",
+      "hash": "374467cb9ad3a62e9c6a61532425e5e627af6951617bbee4a5455ef72247018a",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/products/1/": {
-      "hash": "adea46745fbe0d9839ff7d0ee51d03ef5402991408e91a2b188c0f426f5fd000",
+      "hash": "fc54f308b3c5ca06f5680b48066289701b48a6e9314fbc32c3ab43ce6bb3ad0d",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/products/5/": {
-      "hash": "3beaddf0e9621ec24504caeaa5242f98193124cbed6d5d95077cd6ef64b6f668",
+      "hash": "577f52769a4baf408aa048accf69ecc30418374c04749786125c6dbf8d320d8e",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/products/6/": {
-      "hash": "eb4f8538b1c9204203416a73cabe9a84d77dd74294c39b37e0d4828c147e9f36",
+      "hash": "943d64ce2977053967bce4792f5921d126657b79d4f9c79123391d8dc3f064fa",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/products/7/": {
-      "hash": "aaf430f83f309e396855c7804109800ac1df25e5a689d9203279b1e8424b48d7",
+      "hash": "13bf35d7675337c5a1fafe06616cf2d448b97ffb45d254ac93d468d02fa98513",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/products/10/": {
-      "hash": "20fe3112f473254445d9795ad1231927415acf44de0ab5aa3e3a8ab5a21a1dda",
+      "hash": "97648d86ab0943441fbb1f79b626dc8afd783aca0e850f72221ae2501cadc153",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/products/11/": {
-      "hash": "b4791666e105eb845e64724cdaba6aa8892707bd945d866b617fcb6404222739",
+      "hash": "85751b03a33afb40d00ad64f0e12d1ab5ddbe116ff0ca05192d64ce0164e6b6c",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/careers/": {
       "hash": "5a1b559428409057fdcf8f8ddef6307924dcfae5735434b32156584cac0b494d",
@@ -257,7 +257,7 @@
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/ai-infrastructure/": {
-      "hash": "0de877a71c2a97b24d6fabe86daafab5a44331fa1ba40332ccd72b26a762d1e1",
+      "hash": "de05f2fad4beccb8338802dd675b3aa3ba4371aebd77bbe5014e36ce5caf4137",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
@@ -292,9 +292,9 @@
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/en/configurator/": {
-      "hash": "7f850b4a90145a7e74f4164b0656ff3a41d51f0c674696cbe9b6e7a806f372f1",
+      "hash": "fd8008f7e616a2882e79f6541af23092df15097201445ed933e1dadc16267206",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/aws/": {
       "hash": "e564736c6cac2ea17aa695f881f2064b71b69bf2465a179e2335eaf5e7841f0b",
@@ -307,94 +307,94 @@
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/nvidia-h200-server/": {
-      "hash": "27b7e89658083fcbf573719deef4807ed75f1d9346dad02dc6ff1edc7e086ad7",
+      "hash": "accfc3df7f3978b91001f5cae22a01eb0a287703f3e43fcfddc69d97fb46db67",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/rtx-pro-6000-workstation/": {
-      "hash": "de74abcf9b7bb0f18a89f10075f05a41b4d1deb19d8c81f9febd3888cec016e0",
+      "hash": "beae4e9f80338bea74851494db7228e793d519700ff69b68e6b081ea9dc74a3e",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/": {
-      "hash": "ffb333c01914c3e15c5578c0d5533a57252df2f58c9cd1abe615e95f156a4a00",
+      "hash": "b252e0886c3f343d0e498843d48897a1502131e779aa82f901cbc1f1d8915c3c",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/liquid-cooled-gpu-server/": {
-      "hash": "6439280a48edf5b4bef8b261b1067c7dec11be7e36002806914fb480347b09c0",
+      "hash": "7fdaca620f6e9b9f68ca4c9cb3422e796b07f85c858b775186f39a43b3a5e66b",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/gpu-server-quote/": {
-      "hash": "e886e64efddab6fb7a93338bf3868d9dcaba74f05bedb1cbbfe5eb960b22264a",
+      "hash": "fec59ced12c80fe96d1393fdc1939cd0485af20771ec83757f4f60423a5f02c9",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/": {
-      "hash": "f932147d7b874e638c5eddba875c10d0eaa7f4408acd9a5ac4de4e34606c1c95",
+      "hash": "5edd621b5d26cbdc1719fca3df9f4ac18635876cd64caa1c192d10bc008f6ab1",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/gpu-server-rfq-checklist/": {
-      "hash": "0084d7ae291989d624acf183061a0977af193073d2846490334576e6b578f5c5",
+      "hash": "a5c66cbaceb0a7212e110a32d8e37b790115e43bb757f01dec9ecef54f0819a4",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/liquid-cooling-ai-server-procurement/": {
-      "hash": "6759163be352bc3ea32b3fa4cbe60fefb0d4f4dde84415b4eabacf62966e7651",
+      "hash": "7a12fb0432459aa4f6f10891468ae59a957d00e9a8e96a2173dbfba92ab82ff5",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/gpu-server-power-planning/": {
-      "hash": "4809239bc3fadd0a22e29830db192e179e2ef4444c245cc345d26493f91e3de9",
+      "hash": "ce667ff86f9552fe57633f1e6561ca4a4b731da072ae8204c49ce77d3cdd5df0",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/rack-ai-server-deployment/": {
-      "hash": "2470f619670f8eeaf58e018e7786a47e513ff2efd97b2afd6921c5c8563ba56d",
+      "hash": "df4be99c3094cb2862abe28245c77c5a5ff1f789b5cd9717ca9d997ae3aeb09a",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/taiwan-public-procurement-gpu-server/": {
-      "hash": "1847376e01a38c920f0df65d7668d4b5f7e9b718f76fc110c30934e5fbe27e63",
+      "hash": "3ba8386ec31d2afd353163566e8a49be13c812e635f52ee6a4f82beefe9bd972",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/supermicro-comino-gpu-server-comparison/": {
-      "hash": "b69441570884a92ab9523336d854462d8eae4103f9c6a1f70c1daa7b4f2cdd83",
+      "hash": "d6679647c785cedcbb9a2ce5a6400dd0e8e65decae1a3a0dad5def7ffce8b357",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/ai-inference-server-taiwan/": {
-      "hash": "8b2799644460bfd6bfc450dd1b591678928522f77b69281112016d0168098710",
+      "hash": "a31fed8a81ebd67591855b4bbc415f2e9b320f4f7213fbb1115939b23bb032fa",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/comino-grando-configurator-taiwan/": {
-      "hash": "62cd6d0b4921a2cfd8c7d97a7e251f5aea75a7bd9267ced4941f2a0a4f9b5aa1",
+      "hash": "132f3337505172e7b6ecf86be997bcb5428d4147032f53ef76636c726567650d",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/h200-gpu-server-rfq-taiwan/": {
-      "hash": "47b1c3ac19b4603088ef02e97c074c2681ab6e0af9250e5207db611d430f9537",
+      "hash": "7ae9bfb3f2700041b243201e721c0494b928ac7f401b4a77bc1fc62e137ca75e",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/rtx-pro-6000-local-ai-inference/": {
-      "hash": "a544693392240648909e98b1be64627daf0589c2eda74ba51029c97e3fb076dc",
+      "hash": "4d24056ab4e6b11ce552ccdd0d3218372c56a0be7343fc3568747333ec5f15f0",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/solutions/ai-server-procurement-case-taiwan/": {
-      "hash": "06734df998f9d1ac31d95ae29943fb0d081bb4b7fe892f7ce1685222f7760851",
+      "hash": "013b786ae2cef195651f425660f4d71fb1f9c8b2eab60050185b5b98108c5277",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/configurator/27/": {
-      "hash": "e88e29bb4913ab185a0a4b24c5c7677264bb6028ce16ea640527a302c6ea5c65",
+      "hash": "b54dee45fe7d9d61a91d8b47f25a945e15bd7e34ef992b78799349c3b248e26f",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/configurator/36/": {
       "hash": "24f4240d1106b4a73f3267d58ed6733ce087df0f543021901a0785c6a02c8445",
@@ -402,14 +402,14 @@
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/en/configurator/29/": {
-      "hash": "d3cf628e2a1c5f1dfa196487232c1d7e74c5dea5802411cc2db09b4fb5b486be",
+      "hash": "96077b40f83af3f961b12adcb74ad4f145946735c0a49c9bc8eb29855a6aff77",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/configurator/28/": {
-      "hash": "0b536d78c86ab8142c9497c218a4501834b7a58834ab661b8796fb525994e8cd",
+      "hash": "2ebc2013a90639506148255df7202409c6ed4ec1051892d12870fcca0d564632",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/configurator/23/": {
       "hash": "af1a3d3d80b80243b4b76eb5078bac7258dc1f671b96d3a3b564702b37f7ec25",
@@ -422,9 +422,9 @@
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/en/configurator/30/": {
-      "hash": "d81191aca8b6790332870f48c48bced0720f922a6b3ecddd013df3958bd8fd59",
+      "hash": "f01a0067b2a1df93deec8bbe07106ac384c47b34db1ea2869043a1a4b1e2c854",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/configurator/22/": {
       "hash": "31da222c47df30543cbc9b097f50376b66f705dbffe9d8f6be87aab860e7bf4b",
@@ -447,39 +447,39 @@
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/en/products/3/": {
-      "hash": "32e13a8cfe2fb83a34c79044c4fff17ec002562fd8fda3ba7f00cbf5119c0890",
+      "hash": "60a9a37f86fd8e24840a21511778a114210eca415a9211632d47cb290c310410",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/products/1/": {
-      "hash": "fb3defdf713c3da9874f7f94fe6b520e840d9ccbac3fe692c2023a3c2ab6cbd1",
+      "hash": "0f1d1a53655f36fad1a8a9b63890c969946c08ce1415e5ab17cf6a6349005db9",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/products/5/": {
-      "hash": "bcb7a6656ae183816ca3c644db5ba59994e60c2db8445c5c0211336442096bee",
+      "hash": "04b41f5aeb22d718ffd0cf1a47ac07640e3940b31ebc876092a64a3ad34e04c3",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/products/6/": {
-      "hash": "888f2de91f64503379145335ea59a78d411ffbba8c6797e43f2f6f08f1c70c31",
+      "hash": "d4e6a519b92f0913e802d90e5b56adec131b7ff623f5526a1a594945214d6334",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/products/7/": {
-      "hash": "a8c64b9ca32f1b44c22499d4c1182e181a83c95645e88e686cfe7b5e610c2107",
+      "hash": "87bf9a8278876f0997fe980449063e2826436ac87b471a730a4100d66fb57699",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/products/10/": {
-      "hash": "4b7d3b6e16d1582a9cc0440fb75731dfc7e5e305dae269b70c834fa24dc9772a",
+      "hash": "c076cc088e05c3399e57af2ac325228fb83f997276d43f97ffec4ad7696e0a7e",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/products/11/": {
-      "hash": "d2761fed2ba5e486a7f362f200bf6af0815d938d44f775a828b69fb4328b5a87",
+      "hash": "8f536188fa33fc66983a12bdd47dcde2f01e73a28d915888b5841e7033fce02e",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw": {
       "hash": "6a72186610d5b34a55c29cc6b28e856c69e5017478de8ff7dd50360936edfda9",

@@ -1,0 +1,25 @@
+{
+  "asOf": "2026-10-08",
+  "reviewedAt": "2026-10-10",
+  "productIds": [27, 28, 29, 30],
+  "title": {
+    "zh": "Comino H200 供貨狀態：目前無貨，補貨時間未定",
+    "en": "Comino H200 supply status: unavailable; no restock ETA"
+  },
+  "summary": {
+    "zh": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。",
+    "en": "Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only."
+  },
+  "detail": {
+    "zh": "依 Comino 2026-10-08 供貨回覆，目前沒有 H200 GPU，亦無法預估恢復供應時間。本站 H200 規格、文件與配置入口僅供技術評估及需求登記，不代表現貨、可接單或確定交期。供貨恢復、可報價配置及交付時程，須另經原廠與 EudTech 書面確認。",
+    "en": "According to Comino’s supply update dated 2026-10-08, H200 GPUs are unavailable and there is no forecast for availability. H200 specifications, documents and configurator entries on this site are for technical evaluation and recording requirements only; they do not indicate stock, order acceptance or a confirmed delivery date. Resumed supply, quotable configurations and delivery schedules require separate written confirmation from Comino and EudTech."
+  },
+  "question": {
+    "zh": "Comino H200 有現貨或確定交期嗎？",
+    "en": "Is Comino H200 in stock or available with a confirmed delivery date?"
+  },
+  "action": {
+    "zh": "查詢供貨與替代配置",
+    "en": "Enquire about supply and alternatives"
+  }
+}

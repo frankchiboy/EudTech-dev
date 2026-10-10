@@ -29,6 +29,7 @@ function readConfiguratorSeoPages() {
   const productCompiled = ts.transpileModule(productSource, {
     compilerOptions: {
       module: ts.ModuleKind.CommonJS,
+      esModuleInterop: true,
       target: ts.ScriptTarget.ES2020
     }
   }).outputText;
@@ -37,7 +38,7 @@ function readConfiguratorSeoPages() {
   vm.runInNewContext(productCompiled, {
     exports: productModule.exports,
     module: productModule,
-    require,
+    require: createRequire(productSourcePath),
     console
   });
 

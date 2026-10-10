@@ -87,7 +87,7 @@ function getConfiguratorSocialPreviewRoutes() {
     {
       path: '/configurator',
       title: 'Comino Grando GPU 伺服器報價配置器',
-      description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。',
+      description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並登記需求。Comino H200 目前無貨，補貨時間未定。',
       sourceImage: DEFAULT_SOURCE_IMAGE,
       imageAlt: 'Comino Grando GPU 伺服器報價配置器'
     },

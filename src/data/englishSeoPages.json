@@ -101,7 +101,7 @@
   },
   "/configurator": {
     "title": "Comino GRANDO GPU Server Configurator",
-    "description": "Configure Comino GRANDO GPU servers and AI workstations, review GPU, CPU, memory, storage, power and networking, and request a formal quote in Taiwan.",
+    "description": "Configure Comino GRANDO GPU servers and AI workstations, review GPU, CPU, memory, storage, power and networking, and request a formal quote in Taiwan. Comino H200 is currently unavailable with no restock ETA; H200 configurations are for evaluation only.",
     "highlights": [
       "Compare available Comino platforms and select the components needed for your workload.",
       "Keep a shareable configuration link for technical and procurement review.",

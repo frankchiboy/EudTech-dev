@@ -1,8 +1,10 @@
 import cominoReference from './cominoProcurement.json';
+import h200Availability from './h200Availability.json';
 import h200RtxComparison from './h200RtxComparison.json';
 
 export type ConfiguratorSeoPage = {
   slug: string;
+  supplyNotice?: boolean;
   relatedSlugs: string[];
   sourceIds: string[];
   kind?: 'solution' | 'comparison' | 'guide' | 'checklist';
@@ -69,24 +71,24 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     sourceIds: ["h200","server"],
     relatedSlugs: ["h200-vs-rtx-pro-6000", "h200-gpu-server-rfq-taiwan", "gpu-server-power-planning", "liquid-cooled-gpu-server"],
     title: {
-      en: 'NVIDIA H200 Server Quote & Planning',
-      zh: 'NVIDIA H200 伺服器報價、供貨與價格規劃｜AI 訓練與推論'
+      en: 'NVIDIA H200 Specifications & Supply Enquiries',
+      zh: 'NVIDIA H200 伺服器規格評估與供貨查詢'
     },
     description: {
-      en: 'Plan an NVIDIA H200 server quote for AI training, HPC, or inference. Submit a configuration so EudTech can confirm availability, pricing, and delivery.',
-      zh: '規劃 NVIDIA H200 伺服器報價時，先對齊 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路；EudTech 會依實際配置確認目前供貨、價格與交期。'
+      en: 'Review NVIDIA H200 server requirements for AI training, HPC or inference and register your configuration for a supply assessment.',
+      zh: '評估 NVIDIA H200 伺服器的 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，並登記配置供後續供貨評估。'
     },
     keywords: {
       en: 'NVIDIA H200 server, H200 server price, H200 GPU server quote, H200 AI inference server, NVIDIA H200 next generation AI inference, AI training server, HPC GPU server, liquid cooled GPU server, Taiwan AI server',
       zh: 'NVIDIA H200 伺服器, H200 伺服器價格, NVIDIA H200 價格, H200 GPU 伺服器報價, H200 AI 推論伺服器, NVIDIA H200 下一代 AI 推論, AI 訓練伺服器, HPC GPU 伺服器, 液冷 GPU 伺服器, 台灣 AI 伺服器'
     },
     hero: {
-      en: 'NVIDIA H200 server quote and price planning',
-      zh: 'NVIDIA H200 伺服器報價與價格規劃'
+      en: 'NVIDIA H200 server specifications and supply enquiries',
+      zh: 'NVIDIA H200 伺服器規格評估與供貨查詢'
     },
     lead: {
-      en: 'For Taiwan procurement, set the GPU count, CPU, memory, storage, power, cooling, and networking for an H200 server. Send the exact build to EudTech. EudTech confirms availability, price, and delivery for that configuration.',
-      zh: '台灣採購 H200 伺服器，先在配置器設定 GPU 數量、CPU、記憶體、儲存、電源、散熱與網路。送出完整配置後，EudTech 依該配置確認供貨、價格與交期。'
+      en: 'For Taiwan procurement planning, record the GPU count, CPU, memory, storage, power, cooling and networking requirements. EudTech can review technical requirements and alternatives while H200 supply remains unavailable.',
+      zh: '台灣採購規劃可先記錄 GPU 數量、CPU、記憶體、儲存、電源、散熱與網路需求。H200 目前無貨期間，EudTech 可協助審查技術需求及評估替代配置。'
     },
     image: '/grando-8gpu-server.jpg',
     imageAlt: {
@@ -369,8 +371,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       zh: 'GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000'
     },
     description: {
-      en: 'Prepare an H200 server or RTX PRO 6000 workstation RFQ with the hardware and deployment details EudTech needs to confirm pricing and delivery.',
-      zh: '建立可供 RFQ 使用的 GPU 伺服器報價需求，選擇 H200 伺服器或 RTX PRO 6000 工作站，並整理 EudTech 確認依配置價格與交期所需的硬體及部署因素。'
+      en: 'Prepare hardware and deployment requirements for GPU server assessment. H200 enquiries currently cover supply checks and alternatives; pricing and delivery require written confirmation.',
+      zh: '整理 GPU 伺服器的硬體與部署需求供評估。H200 詢問目前以供貨查詢及替代配置評估為主；價格與交期須經書面確認。'
     },
     keywords: {
       en: 'GPU server quote, GPU server price, GPU server pricing, GPU server quote configurator, AI server quote, AI server RFQ quote, GPU workstation quote, server configurator, EudTech configurator',
@@ -381,8 +383,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       zh: 'GPU 伺服器報價、價格規劃與 RFQ 入口'
     },
     lead: {
-      en: 'Choose an H200 server or an RTX PRO 6000 workstation. Replace vague RFQ notes with a configuration URL that records GPU, CPU, RAM, storage, power, cooling, and network. EudTech uses it to confirm price and delivery.',
-      zh: '先選 H200 伺服器或 RTX PRO 6000 工作站。再用配置連結取代模糊的 RFQ 備註，記錄 GPU、CPU、RAM、儲存、電源、散熱與網路。EudTech 依此確認價格與交期。'
+      en: 'Choose an H200 server or an RTX PRO 6000 workstation. Replace vague RFQ notes with a configuration URL that records GPU, CPU, RAM, storage, power, cooling, and network. EudTech uses it to assess technical feasibility and supply; price and delivery remain subject to written confirmation.',
+      zh: '先選 H200 伺服器或 RTX PRO 6000 工作站。再用配置連結取代模糊的 RFQ 備註，記錄 GPU、CPU、RAM、儲存、電源、散熱與網路。EudTech 依此評估技術可行性與供貨；價格與交期須另經書面確認。'
     },
     image: '/grando-rackable-01.jpg',
     imageAlt: {
@@ -1216,6 +1218,19 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ]
   }
 ];
+
+// Keep the dated supply statement identical in visible pages, FAQs and discovery files.
+for (const page of CONFIGURATOR_SEO_PAGES) {
+  if (!/h200/i.test(JSON.stringify([page.title, page.lead, page.highlights, page.faqs])) && !h200Availability.productIds.some(id => page.configuratorHref === `/configurator/${id}`)) continue;
+  page.supplyNotice = true;
+  page.description = {
+    zh: `${h200Availability.summary.zh} ${page.description.zh}`,
+    en: `${h200Availability.summary.en} ${page.description.en}`
+  };
+  const existing = page.faqs.find(faq => faq.id === 'faq-how-is-nvidia-h200-server-availability-confirmed');
+  if (existing) existing.answer = h200Availability.detail;
+  else page.faqs.unshift({ id: 'faq-comino-h200-availability', question: h200Availability.question, answer: h200Availability.detail });
+}
 
 export const getConfiguratorSeoPage = (slug?: string) =>
   CONFIGURATOR_SEO_PAGES.find((page) => page.slug === slug);

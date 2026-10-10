@@ -1,4 +1,5 @@
 import React from 'react';
+import H200AvailabilityNotice from '../common/H200AvailabilityNotice';
 import { SiteLink as Link } from '../common/SiteLink';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import { VENDOR_EVIDENCE, vendorEvidenceHref } from '../../data/vendorEvidence';
@@ -93,6 +94,7 @@ const AiInfrastructureSolutionPage: React.FC = () => {
         </div>
       </section>
 
+      <div className="comino-wrap"><H200AvailabilityNotice isEnglish={isEnglish} /></div>
       <CominoTestDriveSection isEnglish={isEnglish} />
 
       <section className="comino-section comino-tint" aria-labelledby="site-heading">
