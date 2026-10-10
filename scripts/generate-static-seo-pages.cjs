@@ -20,7 +20,7 @@ const cominoTestDrive = require('../src/data/cominoTestDrive.json');
 
 const distDir = path.resolve(__dirname, '..', 'dist');
 const indexPath = path.join(distDir, 'index.html');
-const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
+const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO, getRelatedConfiguratorSeoPages } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const siteRootUrl = canonicalPageUrl(siteOrigin, siteOrigin);
 const siteSuffix = 'EudTech - 下一代AI解決方案';
@@ -699,13 +699,8 @@ function solutionRelatedLinks(page) {
   ]
     .join(' ')
     .toLowerCase();
-  const links = [
-    routeLink('/solutions/gpu-server-quote', 'GPU 伺服器報價流程'),
-    routeLink('/solutions/gpu-server-rfq-checklist', 'GPU 伺服器 RFQ 檢核表'),
-    routeLink('/solutions/nvidia-h200-server', 'NVIDIA H200 伺服器配置'),
-    routeLink('/solutions/rtx-pro-6000-workstation', 'RTX PRO 6000 工作站配置'),
-    routeLink('/solutions/liquid-cooling-ai-server-procurement', '液冷 AI 伺服器採購')
-  ].filter((link) => link.href !== pageUrl(`/solutions/${page.slug}`));
+  const links = getRelatedConfiguratorSeoPages(page.slug)
+    .map(related => routeLink(`/solutions/${related.slug}`, getZh(related.title)));
 
   const productLinks = CONFIGURATOR_PRODUCT_SEO.map((product, index) => ({
     product,

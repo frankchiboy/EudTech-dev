@@ -65,7 +65,7 @@ const AppRoutes: React.FC = () => {
         toggleDarkMode={toggleDarkMode}
       />
       <MarketingEvents />
-      <main id="main-content" role="main">
+      <main id="main-content" tabIndex={-1} className="focus:outline-none">
         <Suspense fallback={<p role="status" className="p-24 text-center">{isEnglish ? 'Loading…' : '載入中…'}</p>}>
         <Routes>
             <Route path="/" element={

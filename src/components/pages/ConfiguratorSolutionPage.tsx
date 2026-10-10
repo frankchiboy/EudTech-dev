@@ -7,9 +7,9 @@ import { useLanguageContext } from '../../contexts/LanguageContext';
 import SEOHead from '../common/SEOHead';
 import Footer from '../Footer';
 import {
-  CONFIGURATOR_SEO_PAGES,
   SITE_ORIGIN,
-  getConfiguratorSeoPage
+  getConfiguratorSeoPage,
+  getRelatedConfiguratorSeoPages
 } from '../../data/configuratorSeoPages';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath, getConfiguratorSocialPreviewUrl } from '../../utils/seo/socialPreview';
@@ -56,6 +56,18 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
   return [
     {
       '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': `${pageUrl}#related-guides`,
+      name: isEnglish ? 'Related procurement guides' : '延伸採購指南',
+      itemListElement: getRelatedConfiguratorSeoPages(slug).map((related, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: getText(related.title, isEnglish),
+        url: canonicalPageUrl(`${SITE_ORIGIN}/solutions/${related.slug}`)
+      }))
+    },
+    {
+      '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
         {
@@ -67,7 +79,7 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
         {
           '@type': 'ListItem',
           position: 2,
-          name: isEnglish ? 'Configurator Solutions' : '配置器解決方案',
+          name: isEnglish ? 'Solutions' : '解決方案',
           item: canonicalPageUrl(`${SITE_ORIGIN}/solutions`)
         },
         {
@@ -149,7 +161,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
   const pageUrl = canonicalPageUrl(`${SITE_ORIGIN}/solutions/${page.slug}`);
   const configuratorHref = canonicalConfiguratorPath(page.configuratorHref);
   const quoteHref = canonicalConfiguratorPath(page.quoteHref);
-  const relatedPages = CONFIGURATOR_SEO_PAGES.filter((item) => item.slug !== page.slug).slice(0, 4);
+  const relatedPages = getRelatedConfiguratorSeoPages(page.slug);
   const heroImage = getResponsiveNetlifyImageProps(page.image, {
     widths: HERO_IMAGE_WIDTHS,
     sizes: HERO_IMAGE_SIZES,
@@ -189,6 +201,15 @@ const ConfiguratorSolutionPage: React.FC = () => {
 
           <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-28">
             <div className="max-w-3xl">
+              <nav aria-label={isEnglish ? 'Breadcrumb' : '目前位置'} className="mb-6 text-sm text-gray-200">
+                <ol className="flex flex-wrap items-center gap-x-2 gap-y-2">
+                  <li><Link to="/" className="rounded underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">{isEnglish ? 'Home' : '首頁'}</Link></li>
+                  <li aria-hidden="true">/</li>
+                  <li><Link to="/solutions/" className="rounded underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300">{isEnglish ? 'Solutions' : '解決方案'}</Link></li>
+                  <li aria-hidden="true">/</li>
+                  <li aria-current="page" className="min-w-0 break-words">{getText(page.title, isEnglish)}</li>
+                </ol>
+              </nav>
               <h1 className="text-4xl font-bold leading-tight tracking-normal sm:text-5xl lg:text-6xl">
                 {getText(page.hero, isEnglish)}
               </h1>
@@ -316,12 +337,12 @@ const ConfiguratorSolutionPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="bg-white py-16 dark:bg-gray-950">
+        <section id="related-guides" aria-labelledby="related-guides-heading" className="bg-white py-16 dark:bg-gray-950">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex flex-col justify-between gap-6 border-b border-gray-200 pb-8 dark:border-gray-800 lg:flex-row lg:items-end">
               <div>
-                <h2 className="text-2xl font-bold text-gray-950 dark:text-white">
-                  {isEnglish ? 'Related configurator entry points' : '相關配置器入口'}
+                <h2 id="related-guides-heading" className="text-2xl font-bold text-gray-950 dark:text-white">
+                  {isEnglish ? 'Related procurement guides' : '延伸採購指南'}
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
                   {isEnglish
@@ -330,10 +351,10 @@ const ConfiguratorSolutionPage: React.FC = () => {
                 </p>
               </div>
               <Link
-                to="/solutions"
+                to="/resources/"
                 className="inline-flex items-center text-sm font-semibold text-emerald-600 hover:text-emerald-500 dark:text-emerald-400"
               >
-                {isEnglish ? 'View all entry points' : '查看全部入口'}
+                {isEnglish ? 'All GPU procurement resources' : '全部 GPU 採購資源'}
                 <ExternalLink className="ml-2 h-4 w-4" />
               </Link>
             </div>
