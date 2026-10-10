@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { SiteLink as Link } from '../common/SiteLink';
 import NotFoundPage from './NotFoundPage';
+import GpuComparisonTable from './GpuComparisonTable';
 import { ArrowRight, CheckCircle2, Cpu, ExternalLink, Mail, Server } from 'lucide-react';
 import { useLanguageContext } from '../../contexts/LanguageContext';
 import SEOHead from '../common/SEOHead';
@@ -120,6 +121,7 @@ const buildStructuredData = (slug: string, isEnglish: boolean) => {
             }
           },
           mainEntityOfPage: pageUrl,
+          ...(page.comparison ? { hasPart: { '@type': 'WebPageElement', '@id': `${pageUrl}#${page.comparison.id}`, url: `${pageUrl}#${page.comparison.id}`, name: getText(page.comparison.title, isEnglish), text: getText(page.comparison.summary, isEnglish), inLanguage: isEnglish ? 'en' : 'zh-TW' } } : {}),
           citation: getConfiguratorGuideSources(slug).map(source => getConfiguratorGuideSourceHref(source, isEnglish))
         }
       : {
@@ -234,6 +236,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
                 {modifiedAt && <span>{isEnglish ? 'Updated: ' : '更新：'}<time dateTime={modifiedAt}>{modifiedAt}</time></span>}
                 <a href="#reference-sources" className="underline underline-offset-4">{isEnglish ? 'Manufacturer sources' : '查看原廠資料'}</a>
               </p>
+              {page.comparison && <a href={`#${page.comparison.id}`} className="mt-6 inline-flex text-sm font-semibold text-emerald-300 underline underline-offset-4">{isEnglish ? 'Compare memory, bandwidth and power' : '直接比較記憶體、頻寬與功耗'}</a>}
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Link
                   to={configuratorHref}
@@ -273,6 +276,11 @@ const ConfiguratorSolutionPage: React.FC = () => {
             </div>
           </div>
         </section>
+
+        {page.comparison && <GpuComparisonTable comparison={page.comparison} isEnglish={isEnglish} sourceLinks={page.comparison.sourceIds.map(id => {
+          const source = sources.find(item => item.id === id)!;
+          return { id, title: getText(source.title, isEnglish), href: getConfiguratorGuideSourceHref(source, isEnglish) };
+        })} />}
 
         <section className="bg-white py-16 dark:bg-gray-950">
           <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">

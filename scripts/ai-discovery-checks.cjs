@@ -1,3 +1,4 @@
+const { checkGpuComparison, checkGpuComparisonReference } = require('./gpu-comparison-checks.cjs');
 const organization = require('../src/data/organization.json');
 const authority = require('../src/data/authoritySources.json');
 const serviceQuestions = require('../src/data/serviceQuestions.json');
@@ -69,6 +70,7 @@ function checkPage(result, pathname, { allowPreviewNoindex = false } = {}) {
     for (const value of [organization.taxID, organization.foundingDate]) if (!textOnly(main).includes(value)) fail('missing company fact ' + value);
     for (const source of authority.sources) if (!main.includes(source.description[en ? 'en' : 'zh'])) fail('missing source scope ' + source.id);
   }
+  errors.push(...checkGpuComparison(html, pathname, schemas).map(message => pathname + ': ' + message));
   const service = serviceQuestions.services.find(item => item.path === zh);
   if (service) {
     const language = en ? 'en' : 'zh';
@@ -106,6 +108,7 @@ function checkFile(result, pathname) {
   } else if (pathname.endsWith('.xml')) {
     if (!/xml/i.test(result.contentType) || !/<(?:sitemapindex|urlset|rss)\b/.test(body)) fail('invalid XML discovery response');
   } else if (!/^text\/(?:plain|markdown)/i.test(result.contentType) || body.trim().length < 50) fail('missing text discovery content');
+  if (pathname === '/llms-full.txt') errors.push(...checkGpuComparisonReference(body));
   if (pathname === '/llms-full.txt') for (const service of serviceQuestions.services) for (const question of service.questions) {
     for (const language of ['zh', 'en']) {
       const url = `${root}${language === 'en' ? '/en' : ''}${service.path}#${question.id}`;

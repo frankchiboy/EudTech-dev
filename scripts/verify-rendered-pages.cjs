@@ -1,3 +1,4 @@
+const { checkGpuComparison } = require('./gpu-comparison-checks.cjs');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -154,6 +155,7 @@ for (const page of CONFIGURATOR_SEO_PAGES) {
         assert.ok(fs.existsSync(path.join(dist, en ? document.href : document.readerHrefZh)), `Missing source document: ${source.id}`);
       }
     }
+    assert.deepEqual(checkGpuComparison(html, pathname, schemas), [], `GPU comparison consistency: ${pathname}`);
     const article = schemas.find(schema => schema['@type'] === 'Article');
     if (article) {
       assert.deepEqual(article.citation, sourceLinks, `Article citations must match visible sources: ${pathname}`);

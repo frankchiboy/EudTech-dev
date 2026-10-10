@@ -59,7 +59,7 @@ Each source supports only the listed fields. Product configuration, supply, comp
 - [台灣 AI 工作站配置器](https://eudaemonia.tech/solutions/ai-workstation-taiwan/): 為台灣團隊在桌邊 AI 工作站、可上架 GPU 系統與整合套件之間進行選型，支援 GPU 加速、本地推論、模型開發、渲染與模擬工作負載。
 - [液冷 GPU 伺服器散熱與報價配置器](https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/): 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。
 - [GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000](https://eudaemonia.tech/solutions/gpu-server-quote/): 建立可供 RFQ 使用的 GPU 伺服器報價需求，選擇 H200 伺服器或 RTX PRO 6000 工作站，並整理 EudTech 確認依配置價格與交期所需的硬體及部署因素。
-- [H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？](https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/): H200 vs RTX PRO 6000：比較高密度 AI 訓練與 HPC 伺服器部署，以及本地 AI 推論與工作站部署，再進入對應配置器準備台灣可詢價的配置。
+- [H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？](https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/): 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與 96 GB 記憶體、頻寬、功耗、原廠來源及詢價條件。
 - [AI 採購 GPU 伺服器 RFQ 檢核表](https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/): 在送出 GPU 伺服器報價需求前，先整理 GPU、CPU、RAM、儲存、電源、網路、散熱與部署假設。
 - [液冷 AI 伺服器採購指南](https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/): 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。
 - [GPU 伺服器電力規劃配置器](https://eudaemonia.tech/solutions/gpu-server-power-planning/): 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。
@@ -100,7 +100,7 @@ Each source supports only the listed fields. Product configuration, supply, comp
 - [AI Workstations & GPU Systems in Taiwan](https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/): Compare AI workstations, rackable GPU systems, and integration kits for Taiwan teams building local inference, AI models, rendering, or simulation.
 - [Liquid-Cooled GPU Server Quote Configurator](https://eudaemonia.tech/en/solutions/liquid-cooled-gpu-server/): Explore GPU server cooling and liquid-cooled GPU server configurations for sustained AI and HPC workloads, then request a formal quote from EudTech.
 - [GPU Server Quote & RFQ Configurator](https://eudaemonia.tech/en/solutions/gpu-server-quote/): Prepare an H200 server or RTX PRO 6000 workstation RFQ with the hardware and deployment details EudTech needs to confirm pricing and delivery.
-- [H200 vs RTX PRO 6000 for Training & Inference](https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/): Compare H200 servers for AI training and HPC with RTX PRO 6000 workstations for local inference, then open the matching Taiwan quote configurator.
+- [H200 vs RTX PRO 6000 for Training & Inference](https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/): Compare H200 SXM/NVL and RTX PRO 6000 Blackwell Workstation Edition: 141 GB vs 96 GB, memory bandwidth, GPU power, official sources and quote requirements.
 - [GPU Server RFQ Checklist for AI Procurement](https://eudaemonia.tech/en/solutions/gpu-server-rfq-checklist/): Prepare a GPU server RFQ with clear GPU, CPU, RAM, storage, power, networking, cooling, and deployment assumptions before requesting a quote.
 - [Liquid-Cooling AI Server Procurement Guide](https://eudaemonia.tech/en/solutions/liquid-cooling-ai-server-procurement/): Plan liquid-cooled AI server procurement around GPU density, sustained workloads, rack deployment, power capacity, and quote-ready configuration details.
 - [GPU Server Power Planning Configurator](https://eudaemonia.tech/en/solutions/gpu-server-power-planning/): Plan GPU server power capacity, redundant power supplies, GPU count, CPU platform, memory, storage, and network assumptions before requesting a quote.
@@ -1151,10 +1151,10 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: comparison
 - Configurator URL: https://eudaemonia.tech/configurator/
 - Quote URL: https://eudaemonia.tech/configurator/?request=true
-- Description: H200 vs RTX PRO 6000：比較高密度 AI 訓練與 HPC 伺服器部署，以及本地 AI 推論與工作站部署，再進入對應配置器準備台灣可詢價的配置。 / Compare H200 servers for AI training and HPC with RTX PRO 6000 workstations for local inference, then open the matching Taiwan quote configurator.
+- Description: 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與 96 GB 記憶體、頻寬、功耗、原廠來源及詢價條件。 / Compare H200 SXM/NVL and RTX PRO 6000 Blackwell Workstation Edition: 141 GB vs 96 GB, memory bandwidth, GPU power, official sources and quote requirements.
 - Keywords: H200 vs RTX PRO 6000, H200 RTX PRO 6000 差異, H200 vs RTX PRO 6000 報價, NVIDIA H200 伺服器比較, RTX PRO 6000 工作站比較, AI 訓練 GPU 與推論工作站, AI GPU 比較, GPU 伺服器採購 / H200 vs RTX PRO 6000, H200 RTX PRO 6000 difference, H200 vs RTX PRO 6000 quote, NVIDIA H200 server comparison, RTX PRO 6000 workstation comparison, AI training GPU vs inference workstation, AI GPU comparison, GPU server procurement
 - Hero: H200 vs RTX PRO 6000：依 AI 工作負載與部署型態選擇 / H200 vs RTX PRO 6000: choose by AI workload and deployment model
-- Lead: 用這份 H200 vs RTX PRO 6000 比較，先判斷專案方向。是高密度 AI 訓練與 HPC 伺服器部署，還是本地推論與工作站彈性。再用對應配置器保留完整硬體假設，供報價審查。 / Use this H200 vs RTX PRO 6000 comparison to choose between dense AI training or HPC servers and local inference on workstations. Then keep the exact hardware assumptions in the matching configurator for quote review.
+- Lead: 先比較 GPU 版本、記憶體、功耗及部署需求。H200 與 RTX PRO 6000 都可用於 AI 工作負載，依模型、軟體與實測效能選擇，再保留完整配置供報價審查。 / Compare the exact GPU editions, memory, power and deployment requirements. Both H200 and RTX PRO 6000 can serve AI workloads; choose from the model, software and measured performance, then preserve the full configuration for quote review.
 - Image: https://eudaemonia.tech/grando-8gpu-server.jpg
 - Image alt: NVIDIA H200 GPU 伺服器與 RTX PRO 6000 工作站配置比較 / Comparison of NVIDIA H200 GPU server and RTX PRO 6000 workstation configurations
 - Highlights:
@@ -1165,6 +1165,18 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
   - H200 適合 / Best H200 fit: 訓練、HPC、高密度多 GPU 伺服器 / Training, HPC, dense multi-GPU server use
   - RTX PRO 適合 / Best RTX PRO fit: 本地推論、渲染、模擬、工作站 / Local inference, rendering, simulation, workstation use
   - 決策輸出 / Decision output: 配置連結與詢價 / Configuration URL and quote request
+- Manufacturer comparison (checked 2026-10-10):
+  - Chinese URL: https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/#gpu-comparison
+  - English URL: https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/#gpu-comparison
+  - H200 與 RTX PRO 6000：原廠規格對照 / H200 vs RTX PRO 6000: manufacturer specifications
+  - H200 SXM 與 NVL 每顆 GPU 均有 141 GB HBM3e、4.8 TB/s 記憶體頻寬；RTX PRO 6000 Blackwell Workstation Edition 為 96 GB GDDR7 ECC、1,792 GB/s。H200 可用於訓練與推論；RTX PRO 6000 也可用於本地開發、微調與推論。先確認模型所需記憶體、軟體及部署條件，再比較實測結果。 / Each H200 SXM or NVL GPU provides 141 GB HBM3e and 4.8 TB/s memory bandwidth. RTX PRO 6000 Blackwell Workstation Edition provides 96 GB GDDR7 ECC and 1,792 GB/s. H200 supports training and inference; RTX PRO 6000 also supports local development, fine-tuning and inference. Establish model memory, software and deployment requirements before comparing measured results.
+  - 本表比較 H200 SXM、H200 NVL 與 RTX PRO 6000 Blackwell Workstation Edition。RTX PRO 6000 Max-Q Workstation Edition 為 300 W，Server Edition 為 400–600 W；採購時必須寫明版本。 / This table covers H200 SXM, H200 NVL and RTX PRO 6000 Blackwell Workstation Edition. RTX PRO 6000 Max-Q Workstation Edition is rated at 300 W and Server Edition at 400–600 W; specify the edition in the purchase requirements.
+  - 每顆 GPU 記憶體 / Memory per GPU: H200 SXM: 141 GB HBM3e; H200 NVL: 141 GB HBM3e; RTX PRO 6000 Blackwell Workstation Edition: 96 GB GDDR7 ECC
+  - 記憶體頻寬 / Memory bandwidth: H200 SXM: 4.8 TB/s; H200 NVL: 4.8 TB/s; RTX PRO 6000 Blackwell Workstation Edition: 1,792 GB/s
+  - 原廠 GPU 功耗規格 / Manufacturer GPU power rating: H200 SXM: 700 W; H200 NVL: 600 W; RTX PRO 6000 Blackwell Workstation Edition: 600 W
+    H200 為可配置的最高 TDP；RTX 為最大功耗。整機用電還須計入 CPU、記憶體、儲存、冷卻與其他元件。 / H200 values are configurable maximum TDP; the RTX value is maximum power consumption. System power must also account for the CPU, RAM, storage, cooling and other components.
+  - 介面與外型 / Interface and form factor: H200 SXM: SXM; H200 NVL: PCIe / dual-slot; RTX PRO 6000 Blackwell Workstation Edition: PCIe 5.0 x16 / dual-slot
+  - 頻寬與功耗規格不能直接換算為 tokens/s、訓練速度或整機耗電。以下是 EudTech 的比較方法：以相同模型、精度、輸入／輸出長度、同時使用量、軟體版本與 GPU 數量測試，再核對延遲、吞吐量及報價。 / Bandwidth and power specifications do not directly determine tokens/s, training speed or whole-system consumption. EudTech recommends comparing the same model, precision, input/output lengths, concurrency, software versions and GPU count, then reviewing latency, throughput and quotations.
 - FAQs:
   - Q: AI 訓練採購應該先看 H200 嗎？ / Should AI training buyers start with H200?
     A: 高密度訓練或共用伺服器部署，先看 H200。本地開發或視覺化，通常以 RTX PRO 6000 為起點。 / For dense training and shared server deployment, start with H200. For local development or visualisation, RTX PRO 6000 is usually the better starting point.
@@ -1179,7 +1191,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
     Answer URL (zh-TW): https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/#faq-which-option-should-i-open-first-for-quote-review
     Answer URL (en): https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/#faq-which-option-should-i-open-first-for-quote-review
   - Q: H200 與 RTX PRO 6000 最簡單的選擇方式是什麼？ / What is the simplest way to choose between H200 and RTX PRO 6000?
-    A: 高密度共用訓練、HPC 或機架部署選 H200。本地推論、開發、視覺化或以工作站為主的部署選 RTX PRO 6000。兩條路徑都要報價審查時，分享兩個配置器連結。 / Pick H200 for dense shared training, HPC, or rack deployment. Pick RTX PRO 6000 for local inference, development, visualisation, or a workstation-first deployment. Share both configurator links when both paths need quote review.
+    A: 先確認 GPU 版本、模型記憶體需求、軟體及部署限制。H200 也支援推論，RTX PRO 6000 也支援開發與微調。以相同工作負載比較延遲與吞吐量，再針對完整配置詢價。 / First identify the GPU edition, model memory needs, software and deployment limits. H200 also supports inference, and RTX PRO 6000 supports development and fine-tuning. Compare latency and throughput under the same workload, then request quotes for the exact configurations.
     Answer URL (zh-TW): https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/#faq-what-is-the-simplest-way-to-choose-between-h200-and-rtx-pro-6000
     Answer URL (en): https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/#faq-what-is-the-simplest-way-to-choose-between-h200-and-rtx-pro-6000
 - Manufacturer reference sources (hardware and deployment; commercial terms require a formal EudTech quote):
@@ -1191,6 +1203,10 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
     Scope: 對照 Workstation、Max-Q 與 Server Edition 的差異，確認選定版本及部署條件。 / Compare Workstation, Max-Q and Server Edition variants to confirm the selected version and deployment requirements.
     Reference (zh-TW): https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000-family/
     Reference (en): https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000-family/
+  - NVIDIA RTX PRO 6000 Blackwell Workstation Edition 規格 / NVIDIA RTX PRO 6000 Blackwell Workstation Edition specifications
+    Scope: 核對 Workstation Edition 的 96 GB GDDR7 ECC、1,792 GB/s 頻寬與 600 W 功耗；Max-Q 與 Server Edition 另依版本確認。 / Verify Workstation Edition memory of 96 GB GDDR7 ECC, 1,792 GB/s bandwidth and 600 W power; check Max-Q and Server Edition separately.
+    Reference (zh-TW): https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000/
+    Reference (en): https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000/
   - GRANDO Server／可上架工作站規格書 / GRANDO Server / Rackable Workstation Datasheet
     Scope: 冷卻範圍、維護、監控、供電、4U 機構與環境條件；可用於功能及部署需求審查。 / Cooling coverage, service, monitoring, power, 4U chassis and environmental conditions for functional and deployment review.
     Reference (zh-TW): https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw

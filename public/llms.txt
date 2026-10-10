@@ -33,7 +33,7 @@ Explore EudTech PQC migration, AWS cloud, Comino liquid-cooled GPU systems and C
 - [台灣 AI 工作站配置器](https://eudaemonia.tech/solutions/ai-workstation-taiwan/): 為台灣團隊在桌邊 AI 工作站、可上架 GPU 系統與整合套件之間進行選型，支援 GPU 加速、本地推論、模型開發、渲染與模擬工作負載。
 - [液冷 GPU 伺服器散熱與報價配置器](https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/): 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。
 - [GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000](https://eudaemonia.tech/solutions/gpu-server-quote/): 建立可供 RFQ 使用的 GPU 伺服器報價需求，選擇 H200 伺服器或 RTX PRO 6000 工作站，並整理 EudTech 確認依配置價格與交期所需的硬體及部署因素。
-- [H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？](https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/): H200 vs RTX PRO 6000：比較高密度 AI 訓練與 HPC 伺服器部署，以及本地 AI 推論與工作站部署，再進入對應配置器準備台灣可詢價的配置。
+- [H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？](https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/): 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與 96 GB 記憶體、頻寬、功耗、原廠來源及詢價條件。
 - [AI 採購 GPU 伺服器 RFQ 檢核表](https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/): 在送出 GPU 伺服器報價需求前，先整理 GPU、CPU、RAM、儲存、電源、網路、散熱與部署假設。
 - [液冷 AI 伺服器採購指南](https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/): 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。
 - [GPU 伺服器電力規劃配置器](https://eudaemonia.tech/solutions/gpu-server-power-planning/): 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。
@@ -74,7 +74,7 @@ Explore EudTech PQC migration, AWS cloud, Comino liquid-cooled GPU systems and C
 - [AI Workstations & GPU Systems in Taiwan](https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/): Compare AI workstations, rackable GPU systems, and integration kits for Taiwan teams building local inference, AI models, rendering, or simulation.
 - [Liquid-Cooled GPU Server Quote Configurator](https://eudaemonia.tech/en/solutions/liquid-cooled-gpu-server/): Explore GPU server cooling and liquid-cooled GPU server configurations for sustained AI and HPC workloads, then request a formal quote from EudTech.
 - [GPU Server Quote & RFQ Configurator](https://eudaemonia.tech/en/solutions/gpu-server-quote/): Prepare an H200 server or RTX PRO 6000 workstation RFQ with the hardware and deployment details EudTech needs to confirm pricing and delivery.
-- [H200 vs RTX PRO 6000 for Training & Inference](https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/): Compare H200 servers for AI training and HPC with RTX PRO 6000 workstations for local inference, then open the matching Taiwan quote configurator.
+- [H200 vs RTX PRO 6000 for Training & Inference](https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/): Compare H200 SXM/NVL and RTX PRO 6000 Blackwell Workstation Edition: 141 GB vs 96 GB, memory bandwidth, GPU power, official sources and quote requirements.
 - [GPU Server RFQ Checklist for AI Procurement](https://eudaemonia.tech/en/solutions/gpu-server-rfq-checklist/): Prepare a GPU server RFQ with clear GPU, CPU, RAM, storage, power, networking, cooling, and deployment assumptions before requesting a quote.
 - [Liquid-Cooling AI Server Procurement Guide](https://eudaemonia.tech/en/solutions/liquid-cooling-ai-server-procurement/): Plan liquid-cooled AI server procurement around GPU density, sustained workloads, rack deployment, power capacity, and quote-ready configuration details.
 - [GPU Server Power Planning Configurator](https://eudaemonia.tech/en/solutions/gpu-server-power-planning/): Plan GPU server power capacity, redundant power supplies, GPU count, CPU platform, memory, storage, and network assumptions before requesting a quote.

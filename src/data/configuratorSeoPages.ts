@@ -1,10 +1,12 @@
 import cominoReference from './cominoProcurement.json';
+import h200RtxComparison from './h200RtxComparison.json';
 
 export type ConfiguratorSeoPage = {
   slug: string;
   relatedSlugs: string[];
   sourceIds: string[];
   kind?: 'solution' | 'comparison' | 'guide' | 'checklist';
+  comparison?: typeof h200RtxComparison;
   title: {
     en: string;
     zh: string;
@@ -432,7 +434,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'h200-vs-rtx-pro-6000',
-    sourceIds: ["h200","rtx","server"],
+    comparison: h200RtxComparison,
+    sourceIds: ["h200","rtx","rtx-workstation","server"],
     relatedSlugs: ["nvidia-h200-server", "rtx-pro-6000-workstation", "rtx-pro-6000-local-ai-inference", "ai-inference-server-taiwan"],
     kind: 'comparison',
     title: {
@@ -440,8 +443,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       zh: 'H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？'
     },
     description: {
-      en: 'Compare H200 servers for AI training and HPC with RTX PRO 6000 workstations for local inference, then open the matching Taiwan quote configurator.',
-      zh: 'H200 vs RTX PRO 6000：比較高密度 AI 訓練與 HPC 伺服器部署，以及本地 AI 推論與工作站部署，再進入對應配置器準備台灣可詢價的配置。'
+      en: 'Compare H200 SXM/NVL and RTX PRO 6000 Blackwell Workstation Edition: 141 GB vs 96 GB, memory bandwidth, GPU power, official sources and quote requirements.',
+      zh: '比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與 96 GB 記憶體、頻寬、功耗、原廠來源及詢價條件。'
     },
     keywords: {
       en: 'H200 vs RTX PRO 6000, H200 RTX PRO 6000 difference, H200 vs RTX PRO 6000 quote, NVIDIA H200 server comparison, RTX PRO 6000 workstation comparison, AI training GPU vs inference workstation, AI GPU comparison, GPU server procurement',
@@ -452,8 +455,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       zh: 'H200 vs RTX PRO 6000：依 AI 工作負載與部署型態選擇'
     },
     lead: {
-      en: 'Use this H200 vs RTX PRO 6000 comparison to choose between dense AI training or HPC servers and local inference on workstations. Then keep the exact hardware assumptions in the matching configurator for quote review.',
-      zh: '用這份 H200 vs RTX PRO 6000 比較，先判斷專案方向。是高密度 AI 訓練與 HPC 伺服器部署，還是本地推論與工作站彈性。再用對應配置器保留完整硬體假設，供報價審查。'
+      en: 'Compare the exact GPU editions, memory, power and deployment requirements. Both H200 and RTX PRO 6000 can serve AI workloads; choose from the model, software and measured performance, then preserve the full configuration for quote review.',
+      zh: '先比較 GPU 版本、記憶體、功耗及部署需求。H200 與 RTX PRO 6000 都可用於 AI 工作負載，依模型、軟體與實測效能選擇，再保留完整配置供報價審查。'
     },
     image: '/grando-8gpu-server.jpg',
     imageAlt: {
@@ -500,7 +503,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       {
         id: 'faq-what-is-the-simplest-way-to-choose-between-h200-and-rtx-pro-6000',
         question: { en: 'What is the simplest way to choose between H200 and RTX PRO 6000?', zh: 'H200 與 RTX PRO 6000 最簡單的選擇方式是什麼？' },
-        answer: { en: 'Pick H200 for dense shared training, HPC, or rack deployment. Pick RTX PRO 6000 for local inference, development, visualisation, or a workstation-first deployment. Share both configurator links when both paths need quote review.', zh: '高密度共用訓練、HPC 或機架部署選 H200。本地推論、開發、視覺化或以工作站為主的部署選 RTX PRO 6000。兩條路徑都要報價審查時，分享兩個配置器連結。' }
+        answer: { en: 'First identify the GPU edition, model memory needs, software and deployment limits. H200 also supports inference, and RTX PRO 6000 supports development and fine-tuning. Compare latency and throughput under the same workload, then request quotes for the exact configurations.', zh: '先確認 GPU 版本、模型記憶體需求、軟體及部署限制。H200 也支援推論，RTX PRO 6000 也支援開發與微調。以相同工作負載比較延遲與吞吐量，再針對完整配置詢價。' }
       }
     ]
   },
@@ -1250,6 +1253,12 @@ const GUIDE_SOURCES: ConfiguratorGuideSource[] = [
     title: { zh: 'NVIDIA RTX PRO 6000 Blackwell 原廠規格', en: 'NVIDIA RTX PRO 6000 Blackwell official specifications' },
     description: { zh: '對照 Workstation、Max-Q 與 Server Edition 的差異，確認選定版本及部署條件。', en: 'Compare Workstation, Max-Q and Server Edition variants to confirm the selected version and deployment requirements.' },
     href: 'https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000-family/'
+  },
+  {
+    id: 'rtx-workstation',
+    title: { zh: 'NVIDIA RTX PRO 6000 Blackwell Workstation Edition 規格', en: 'NVIDIA RTX PRO 6000 Blackwell Workstation Edition specifications' },
+    description: { zh: '核對 Workstation Edition 的 96 GB GDDR7 ECC、1,792 GB/s 頻寬與 600 W 功耗；Max-Q 與 Server Edition 另依版本確認。', en: 'Verify Workstation Edition memory of 96 GB GDDR7 ECC, 1,792 GB/s bandwidth and 600 W power; check Max-Q and Server Edition separately.' },
+    href: 'https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000/'
   },
   {
     id: 'supermicro',
