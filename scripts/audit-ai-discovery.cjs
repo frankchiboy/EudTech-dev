@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const fs = require('node:fs');
+const { comparisonPath } = require('./gpu-comparison-checks.cjs');
 const path = require('node:path');
 const { robotsAllows, checkPage, checkFile, textOnly } = require('./ai-discovery-checks.cjs');
 const serviceQuestions = require('../src/data/serviceQuestions.json');
@@ -9,8 +10,8 @@ const output = outputArg ? path.resolve(outputArg.slice('--output='.length)) : '
 const allowPreviewNoindex = process.argv.includes('--preview') && new URL(origin).hostname.endsWith('--website-eudtech.netlify.app');
 const agents = ['Googlebot','Bingbot','OAI-SearchBot','ChatGPT-User','PerplexityBot','Perplexity-User','ClaudeBot','Claude-User','Claude-SearchBot'];
 const requiredFiles = ['/robots.txt','/sitemap-index.xml','/sitemap.xml','/llms.txt','/llms-full.txt','/feed.xml','/feed.json','/ai-discovery.json'];
-const pages = ['/','/about/','/solutions/ai-infrastructure/','/solutions/aws/','/solutions/pqc/','/solutions/social-intelligence/','/resources/','/contact/'].flatMap(p => [p, '/en' + p]);
-const botPages = ['/solutions/ai-infrastructure/', ...serviceQuestions.services.map(service => service.path)]
+const pages = ['/','/about/','/solutions/ai-infrastructure/','/solutions/aws/','/solutions/pqc/','/solutions/social-intelligence/','/resources/','/contact/',comparisonPath].flatMap(p => [p, '/en' + p]);
+const botPages = [comparisonPath, '/solutions/ai-infrastructure/', ...serviceQuestions.services.map(service => service.path)]
   .flatMap(pathname => [pathname, '/en' + pathname]);
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function probe(pathname, userAgent = 'EudTech-AI-Discovery-Audit/2.0') {

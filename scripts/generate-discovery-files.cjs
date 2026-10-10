@@ -200,12 +200,14 @@ function bodyFingerprint(loc) {
   if (pathname==='/about') files.push('src/data/authoritySources.json','src/data/organization.json');
   if (pathname==='/solutions/ai-infrastructure') files.push('src/data/cominoProcurement.json','src/data/cominoConformity.json','src/data/cominoTestDrive.json');
   if (guide) files.push('src/components/pages/ConfiguratorSolutionPage.tsx');
+  if (guide?.comparison) files.push('src/components/pages/GpuComparisonTable.tsx');
   if (/^\/products\/\d+$/.test(pathname)) files.push('src/data/productData.ts');
   if (pathname.startsWith('/vendor/')) files.push('docs/comino-document-translations-zh.json','src/data/cominoConformity.json');
   return [
     ...files.map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'..',file))).digest('hex')]),
     ...(guide ? [['manufacturerSources', contentHash(getConfiguratorGuideSources(guide.slug))]] : []),
-    ...(service ? [['serviceQuestions', contentHash(service)]] : [])
+    ...(service ? [['serviceQuestions', contentHash(service)]] : []),
+    ...(guide?.comparison ? [['gpuComparison', contentHash(guide.comparison)]] : [])
   ];
 }
 const lastmodEntries = Object.fromEntries(sitemapEntries.map((entry) => {
@@ -604,7 +606,15 @@ ${CONFIGURATOR_SEO_PAGES.map(
 ${formatHighlights(page.highlights)}
 - Specification cues:
 ${formatSpecs(page.specs)}
-- FAQs:
+${page.comparison ? `- Manufacturer comparison (checked ${page.comparison.reviewedAt}):
+  - Chinese URL: ${pageUrl(`/solutions/${page.slug}`)}#${page.comparison.id}
+  - English URL: ${pageUrl(`/en/solutions/${page.slug}`)}#${page.comparison.id}
+  - ${localized(page.comparison.title)}
+  - ${localized(page.comparison.summary)}
+  - ${localized(page.comparison.scope)}
+${page.comparison.rows.map(row => `  - ${localized(row.label)}: ${page.comparison.columns.map((column, i) => `${column}: ${row.values[i]}`).join('; ')}${row.note ? `\n    ${localized(row.note)}` : ''}`).join('\n')}
+  - ${localized(page.comparison.boundary)}
+` : ''}- FAQs:
 ${formatFaqs(page.faqs, page.slug)}
 - Manufacturer reference sources (hardware and deployment; commercial terms require a formal EudTech quote):
 ${getConfiguratorGuideSources(page.slug).map(source => `  - ${localized(source.title)}
