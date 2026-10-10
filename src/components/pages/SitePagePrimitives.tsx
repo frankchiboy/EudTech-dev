@@ -5,6 +5,7 @@ import { useLanguageContext } from '../../contexts/LanguageContext';
 import SEOHead from '../common/SEOHead';
 import Footer from '../Footer';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
+import { getResponsiveNetlifyImageProps } from '../../utils/performance/netlifyImageCdn';
 
 export type Bilingual = { zh: string; en: string };
 export const tx = (value: Bilingual, isEnglish: boolean) => (isEnglish ? value.en : value.zh);
@@ -35,7 +36,15 @@ export const PageHero: React.FC<{
   <section className="relative isolate overflow-hidden bg-slate-950 pb-20 pt-32 text-white sm:pb-24">
     {image && (
       <>
-        <img src={image} alt={imageAlt ? tx(imageAlt, isEnglish) : ''} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: imagePosition }} loading="eager" fetchPriority="high" decoding="async" />
+        <img
+          {...getResponsiveNetlifyImageProps(image, { widths: [768, 960, 1280, 1536], sizes: '100vw', quality: 85, format: 'webp' })}
+          alt={imageAlt ? tx(imageAlt, isEnglish) : ''}
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+          style={{ objectPosition: imagePosition }}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/45" aria-hidden="true" />
         <div className="absolute inset-0 -z-10 bg-slate-950/35" aria-hidden="true" />
       </>
