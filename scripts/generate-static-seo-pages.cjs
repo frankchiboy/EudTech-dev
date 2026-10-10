@@ -1,4 +1,5 @@
 const homepageContent = require('../src/data/homepageContent.json');
+const h200Availability = require('../src/data/h200Availability.json');
 const fs = require('fs');
 const { formatSeoTitle, publicProductRoutes, englishRoutes, careersRoute } = require('./seo-public-pages.cjs');
 const dates = require('../public/discovery-lastmod.json').entries;
@@ -328,7 +329,7 @@ const routes = [
   {
     path: '/configurator',
     title: 'Comino Grando GPU 伺服器報價配置器',
-    description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。',
+    description: '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並登記需求。Comino H200 目前無貨，補貨時間未定。',
     keywords: 'Comino Grando 配置器, GPU 伺服器配置器, NVIDIA H200 伺服器, RTX PRO 6000 工作站, AI 工作站 台灣, GPU 伺服器報價',
     lead: '使用 EudTech 配置器建立 Comino Grando GPU 伺服器或 AI 工作站需求，確認 GPU、CPU、記憶體、儲存、電源與網路後送出報價。',
     imageAlt: 'Comino Grando GPU 伺服器報價配置器',
@@ -353,7 +354,7 @@ const routes = [
     faq: [
       ['Comino Grando 配置器可以配置哪些項目？', '可以配置 Comino Grando GPU 伺服器與 AI 工作站，包含 GPU、CPU、RAM、OS Drive、Data Drive、Power Supply 與 Network 選項。'],
       ['配置器可以送出 GPU 伺服器報價需求嗎？', '可以。取得報價流程會送出目前配置、配置連結與聯絡資料，讓 EudTech 後續追蹤正式報價。'],
-      ['配置器有涵蓋 NVIDIA H200 與 RTX PRO 6000 嗎？', '有。配置器包含 NVIDIA H200 伺服器、RTX PRO 6000 工作站與伺服器，以及相關 Comino Grando 配置入口。'],
+      ['配置器有涵蓋 NVIDIA H200 與 RTX PRO 6000 嗎？', '有。配置器包含 NVIDIA H200 伺服器、RTX PRO 6000 工作站與伺服器，以及相關 Comino Grando 配置入口。Comino H200 目前無貨，補貨時間未定；配置僅供評估。'],
       ['這個配置器適合 RFQ 前置準備嗎？', '適合。配置器可把 GPU、CPU、記憶體、儲存、電源與網路選項整理成可分享連結，供技術與採購團隊審查。']
     ],
     schema: [
@@ -828,9 +829,10 @@ function staticProcurementReference(route) {
 }
 
 function staticSeoFallback(route) {
+  const h200Related = /h200/i.test(JSON.stringify([route.title, route.description, route.specs]));
   const links = dedupeLinks([
     route.configuratorHref ? { label: '開啟配置器', href: pageUrl(route.configuratorHref) } : null,
-    route.quoteHref ? { label: '取得報價', href: pageUrl(route.quoteHref) } : null,
+    route.quoteHref ? { label: h200Related ? h200Availability.action.zh : '取得報價', href: pageUrl(route.quoteHref) } : null,
     route.path !== '/solutions' ? { label: '查看解決方案', href: pageUrl('/solutions') } : null
   ].filter(Boolean));
   const relatedLinks = dedupeLinks(route.relatedLinks || []);
@@ -846,6 +848,7 @@ function staticSeoFallback(route) {
         <div class="static-seo-kicker">EudTech</div>
         <h1 id="static-seo-title">${escapeHtml(route.title)}</h1>
         <p class="static-seo-lead">${escapeHtml(route.lead || route.description)}</p>
+        ${h200Related ? `<aside data-h200-supply-status="${h200Availability.asOf}"><h2>${escapeHtml(h200Availability.title.zh)}</h2><p>${escapeHtml(h200Availability.detail.zh)}</p></aside>` : ''}
         <nav class="static-seo-actions" aria-label="配置器曝光入口">
           ${links.map((link) => `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>`).join('\n          ')}
         </nav>

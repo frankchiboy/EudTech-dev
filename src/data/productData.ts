@@ -174,7 +174,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     specs: isEnglish ? {
       'Maximum Cooling Capacity': cominoSpec('cooling', true),
       'Motherboard': 'Up to EATX & EBB',
-      'GPUs': 'Up to 8; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200; AMD: W7800, W7900',
+      'GPUs': 'Up to 8; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200 (unavailable; no restock ETA); AMD: W7800, W7900',
       'CPUs': 'Up to 2; Intel Xeon W-2400/2500 & 3400/3500, Xeon Scalable 4th/5th Gen, XEON 6; AMD Threadripper PRO 5000WX/7000WX/9000WX, EPYC 9004/9005',
       'RAM': 'Up to 2TB *',
       'Storage': 'Back panel hot swap cages: up to 4x hot swap SSDs (4x 7mm or 2x 15mm) and up to 4 more instead of 4th PSU; Internal 3.5" cage up to 4x 3.5" or 4x 2.5" 15mm or 12x 2.5" 7mm; Internal 2.5" slots: up to 4x 2.5" SSD 7mm *',
@@ -193,7 +193,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     } : {
       '最大冷卻能力': cominoSpec('cooling', false),
       '主機板': '支援EATX & EBB',
-      'GPU': '最高8顆；NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200；AMD: W7800, W7900',
+      'GPU': '最高8顆；NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200（目前無貨，補貨時間未定）；AMD: W7800, W7900',
       'CPU': '最高2顆；Intel Xeon W-2400/2500 & 3400/3500, Xeon Scalable 4/5代, XEON 6；AMD Threadripper PRO 5000WX/7000WX/9000WX, EPYC 9004/9005',
       '記憶體': '最高2TB *',
       '儲存': '背板熱插拔：最高4顆SSD（4x 7mm或2x 15mm），可再加4顆（取代第4顆電源）；內部3.5吋托架最高4顆3.5吋或4顆2.5吋15mm或12顆2.5吋7mm；內部2.5吋槽最高4顆2.5吋SSD 7mm *',
@@ -296,7 +296,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     specs: isEnglish ? {
       'Maximum Cooling Capacity': cominoSpec('cooling', true),
       'Motherboard': 'Up to EATX & EBB',
-      'GPUs': 'Up to 8; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200; AMD: W7800, W7900',
+      'GPUs': 'Up to 8; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200 (unavailable; no restock ETA); AMD: W7800, W7900',
       'CPUs': 'Up to 2; Single socket: Intel Xeon W-2400/2500 & 3400/3500, Intel Xeon Scalable 4th Gen, 5th Gen, XEON 6, AMD Threadripper PRO 5000WX, 7000WX, 9000WX, AMD EPYC 9004/9005; Dual socket: Intel Xeon Scalable 4th & 5th Gen, XEON 6, AMD EPYC 9004/9005',
       'RAM': 'Up to 2TB *',
       'Storage': 'Back panel hot swap cages: up to 4x hot swap SSDs (4x 7mm or 2x 15mm) and up to 4 more (4x 7mm or 2x 15mm) instead of 4th PSU; Internal 3.5" cage up to 4x 3.5" or 4x 2.5" 15mm or 12x 2.5" 7mm; Internal 2.5" slots: up to 4x 2.5" SSD 7mm *',
@@ -304,7 +304,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
     } : {
       '最大冷卻能力': cominoSpec('cooling', false),
       '主機板': '支援EATX & EBB',
-      'GPU': '最高8顆；NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200；AMD: W7800, W7900',
+      'GPU': '最高8顆；NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200（目前無貨，補貨時間未定）；AMD: W7800, W7900',
       'CPU': '最高2顆；單插槽：Intel Xeon W-2400/2500 & 3400/3500, Intel Xeon Scalable 4代, 5代, XEON 6, AMD Threadripper PRO 5000WX, 7000WX, 9000WX, AMD EPYC 9004/9005；雙插槽：Intel Xeon Scalable 4代 & 5代, XEON 6, AMD EPYC 9004/9005',
       '記憶體': '最高2TB *',
       '儲存': '背板熱插拔架：最多4顆熱插拔SSD（4x 7mm或2x 15mm）並可再加4顆（4x 7mm或2x 15mm）取代第4顆電源；內部3.5吋架最多4顆3.5吋或4顆2.5吋15mm或12顆2.5吋7mm；內部2.5吋插槽：最多4顆2.5吋SSD 7mm *',
@@ -387,7 +387,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
         {
           title: 'Available configurations',
           configurations: [
-            'DUAL EPYC or XEON / 8x NVIDIA H200 / 2TB RAM / 2TB NVME',
+            'DUAL EPYC or XEON / 8x NVIDIA H200 (unavailable; no restock ETA) / 2TB RAM / 2TB NVME',
             'DUAL EPYC or XEON / 8x NVIDIA H100 / 2TB RAM / 2TB NVME'
           ]
         }
@@ -403,7 +403,7 @@ export const getCominoProducts = (isEnglish: boolean): Product[] => [
         {
           title: '可用配置',
           configurations: [
-            '雙EPYC或XEON / 8x NVIDIA H200 / 2TB記憶體 / 2TB NVME',
+            '雙EPYC或XEON / 8x NVIDIA H200（目前無貨，補貨時間未定） / 2TB記憶體 / 2TB NVME',
             '雙EPYC或XEON / 8x NVIDIA H100 / 2TB記憶體 / 2TB NVME'
           ]
         }

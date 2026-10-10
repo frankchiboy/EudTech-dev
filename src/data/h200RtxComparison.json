@@ -1,16 +1,96 @@
 {
   "id": "gpu-comparison",
   "reviewedAt": "2026-10-10",
-  "title": { "zh": "H200 與 RTX PRO 6000：原廠規格對照", "en": "H200 vs RTX PRO 6000: manufacturer specifications" },
-  "summary": { "zh": "H200 SXM 與 NVL 每顆 GPU 均有 141 GB HBM3e、4.8 TB/s 記憶體頻寬；RTX PRO 6000 Blackwell Workstation Edition 為 96 GB GDDR7 ECC、1,792 GB/s。H200 可用於訓練與推論；RTX PRO 6000 也可用於本地開發、微調與推論。先確認模型所需記憶體、軟體及部署條件，再比較實測結果。", "en": "Each H200 SXM or NVL GPU provides 141 GB HBM3e and 4.8 TB/s memory bandwidth. RTX PRO 6000 Blackwell Workstation Edition provides 96 GB GDDR7 ECC and 1,792 GB/s. H200 supports training and inference; RTX PRO 6000 also supports local development, fine-tuning and inference. Establish model memory, software and deployment requirements before comparing measured results." },
-  "scope": { "zh": "本表比較 H200 SXM、H200 NVL 與 RTX PRO 6000 Blackwell Workstation Edition。RTX PRO 6000 Max-Q Workstation Edition 為 300 W，Server Edition 為 400–600 W；採購時必須寫明版本。", "en": "This table covers H200 SXM, H200 NVL and RTX PRO 6000 Blackwell Workstation Edition. RTX PRO 6000 Max-Q Workstation Edition is rated at 300 W and Server Edition at 400–600 W; specify the edition in the purchase requirements." },
-  "columns": ["H200 SXM", "H200 NVL", "RTX PRO 6000 Blackwell Workstation Edition"],
-  "rows": [
-    { "label": { "zh": "每顆 GPU 記憶體", "en": "Memory per GPU" }, "values": ["141 GB HBM3e", "141 GB HBM3e", "96 GB GDDR7 ECC"], "sourceIds": ["h200", "rtx-workstation"] },
-    { "label": { "zh": "記憶體頻寬", "en": "Memory bandwidth" }, "values": ["4.8 TB/s", "4.8 TB/s", "1,792 GB/s"], "sourceIds": ["h200", "rtx-workstation"] },
-    { "label": { "zh": "原廠 GPU 功耗規格", "en": "Manufacturer GPU power rating" }, "values": ["700 W", "600 W", "600 W"], "sourceIds": ["h200", "rtx-workstation"], "note": { "zh": "H200 為可配置的最高 TDP；RTX 為最大功耗。整機用電還須計入 CPU、記憶體、儲存、冷卻與其他元件。", "en": "H200 values are configurable maximum TDP; the RTX value is maximum power consumption. System power must also account for the CPU, RAM, storage, cooling and other components." } },
-    { "label": { "zh": "介面與外型", "en": "Interface and form factor" }, "values": ["SXM", "PCIe / dual-slot", "PCIe 5.0 x16 / dual-slot"], "sourceIds": ["h200", "rtx"] }
+  "title": {
+    "zh": "H200 與 RTX PRO 6000：原廠規格對照",
+    "en": "H200 vs RTX PRO 6000: manufacturer specifications"
+  },
+  "summary": {
+    "zh": "H200 SXM 與 NVL 每顆 GPU 均有 141 GB HBM3e、4.8 TB/s 記憶體頻寬；RTX PRO 6000 Blackwell Workstation Edition 為 96 GB GDDR7 ECC、1,792 GB/s。H200 可用於訓練與推論；RTX PRO 6000 也可用於本地開發、微調與推論。先確認模型所需記憶體、軟體及部署條件，再比較實測結果。",
+    "en": "Each H200 SXM or NVL GPU provides 141 GB HBM3e and 4.8 TB/s memory bandwidth. RTX PRO 6000 Blackwell Workstation Edition provides 96 GB GDDR7 ECC and 1,792 GB/s. H200 supports training and inference; RTX PRO 6000 also supports local development, fine-tuning and inference. Establish model memory, software and deployment requirements before comparing measured results."
+  },
+  "scope": {
+    "zh": "本表比較 H200 SXM、H200 NVL 與 RTX PRO 6000 Blackwell Workstation Edition。RTX PRO 6000 Max-Q Workstation Edition 為 300 W，Server Edition 為 400–600 W；採購時必須寫明版本。",
+    "en": "This table covers H200 SXM, H200 NVL and RTX PRO 6000 Blackwell Workstation Edition. RTX PRO 6000 Max-Q Workstation Edition is rated at 300 W and Server Edition at 400–600 W; specify the edition in the purchase requirements."
+  },
+  "columns": [
+    "H200 SXM",
+    "H200 NVL",
+    "RTX PRO 6000 Blackwell Workstation Edition"
   ],
-  "boundary": { "zh": "頻寬與功耗規格不能直接換算為 tokens/s、訓練速度或整機耗電。以下是 EudTech 的比較方法：以相同模型、精度、輸入／輸出長度、同時使用量、軟體版本與 GPU 數量測試，再核對延遲、吞吐量及報價。", "en": "Bandwidth and power specifications do not directly determine tokens/s, training speed or whole-system consumption. EudTech recommends comparing the same model, precision, input/output lengths, concurrency, software versions and GPU count, then reviewing latency, throughput and quotations." },
-  "sourceIds": ["h200", "rtx-workstation", "rtx"]
+  "rows": [
+    {
+      "label": {
+        "zh": "每顆 GPU 記憶體",
+        "en": "Memory per GPU"
+      },
+      "values": [
+        "141 GB HBM3e",
+        "141 GB HBM3e",
+        "96 GB GDDR7 ECC"
+      ],
+      "sourceIds": [
+        "h200",
+        "rtx-workstation"
+      ]
+    },
+    {
+      "label": {
+        "zh": "記憶體頻寬",
+        "en": "Memory bandwidth"
+      },
+      "values": [
+        "4.8 TB/s",
+        "4.8 TB/s",
+        "1,792 GB/s"
+      ],
+      "sourceIds": [
+        "h200",
+        "rtx-workstation"
+      ]
+    },
+    {
+      "label": {
+        "zh": "原廠 GPU 功耗規格",
+        "en": "Manufacturer GPU power rating"
+      },
+      "values": [
+        "700 W",
+        "600 W",
+        "600 W"
+      ],
+      "sourceIds": [
+        "h200",
+        "rtx-workstation"
+      ],
+      "note": {
+        "zh": "H200 為可配置的最高 TDP；RTX 為最大功耗。整機用電還須計入 CPU、記憶體、儲存、冷卻與其他元件。",
+        "en": "H200 values are configurable maximum TDP; the RTX value is maximum power consumption. System power must also account for the CPU, RAM, storage, cooling and other components."
+      }
+    },
+    {
+      "label": {
+        "zh": "介面與外型",
+        "en": "Interface and form factor"
+      },
+      "values": [
+        "SXM",
+        "PCIe / dual-slot",
+        "PCIe 5.0 x16 / dual-slot"
+      ],
+      "sourceIds": [
+        "h200",
+        "rtx"
+      ]
+    }
+  ],
+  "boundary": {
+    "zh": "頻寬與功耗規格不能直接換算為 tokens/s、訓練速度或整機耗電。以下是 EudTech 的比較方法：以相同模型、精度、輸入／輸出長度、同時使用量、軟體版本與 GPU 數量測試，再核對延遲、吞吐量及報價。 Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。",
+    "en": "Bandwidth and power specifications do not directly determine tokens/s, training speed or whole-system consumption. EudTech recommends comparing the same model, precision, input/output lengths, concurrency, software versions and GPU count, then reviewing latency, throughput and quotations. Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only."
+  },
+  "sourceIds": [
+    "h200",
+    "rtx-workstation",
+    "rtx"
+  ]
 }

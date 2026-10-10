@@ -1,3 +1,5 @@
+import h200Availability from './h200Availability.json';
+
 export type LocalizedText = {
   en: string;
   zh: string;
@@ -66,8 +68,8 @@ const buildDefaultProductFaqs = ({
       zh: `${deviceName} 詢價會包含哪些資訊？`
     },
     answer: {
-      en: `It includes the selected ${gpuFocus.en}, ${cpuPlatform.en}, memory, NVMe storage, power, and networking, plus the configurator URL. EudTech uses this record to prepare the quote.`,
-      zh: `詢價會送出已選的 ${gpuFocus.zh}、${cpuPlatform.zh}、記憶體、NVMe 儲存、電源與網路，並附上配置器連結。EudTech 依此回覆報價。`
+      en: `It includes the selected ${gpuFocus.en}, ${cpuPlatform.en}, memory, NVMe storage, power, and networking, plus the configurator URL. EudTech uses this record to assess the request; a quotation depends on confirmed supply.`,
+      zh: `詢價會送出已選的 ${gpuFocus.zh}、${cpuPlatform.zh}、記憶體、NVMe 儲存、電源與網路，並附上配置器連結。EudTech 依此評估需求，能否報價須先確認供貨。`
     }
   },
   {
@@ -121,7 +123,10 @@ const buildProductSeo = ({
 }: ProductSeoInput): ConfiguratorProductSeo => ({
   id,
   title,
-  description,
+  description: /h200/i.test(deviceName) ? {
+    zh: `${h200Availability.summary.zh} ${description.zh}`,
+    en: `${h200Availability.summary.en} ${description.en}`
+  } : description,
   keywords,
   image,
   imageAlt,
@@ -136,8 +141,8 @@ const buildProductSeo = ({
   configuratorHref: `/configurator/${id}`,
   quoteHref: `/configurator/${id}?request=true`,
   relatedProductIds,
-  exposureNotes,
-  faqs: [...faqs, ...buildDefaultProductFaqs({ deviceName, gpuFocus, formFactor, cpuPlatform })],
+  exposureNotes: /h200/i.test(deviceName) ? [h200Availability.detail, ...exposureNotes] : exposureNotes,
+  faqs: [...(/h200/i.test(deviceName) ? [{ question: h200Availability.question, answer: h200Availability.detail }] : []), ...faqs, ...buildDefaultProductFaqs({ deviceName, gpuFocus, formFactor, cpuPlatform })],
   properties: [
     { name: { en: 'GPU focus', zh: 'GPU 重點' }, value: gpuFocus },
     { name: { en: 'Form factor', zh: '機構型態' }, value: formFactor },

@@ -1,4 +1,6 @@
 import React from 'react';
+import H200AvailabilityNotice from '../common/H200AvailabilityNotice';
+import h200Availability from '../../data/h200Availability.json';
 import { useParams } from 'react-router-dom';
 import { SiteLink as Link } from '../common/SiteLink';
 import NotFoundPage from './NotFoundPage';
@@ -173,6 +175,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
   const pageUrl = canonicalPageUrl(`${SITE_ORIGIN}/solutions/${page.slug}`);
   const configuratorHref = canonicalConfiguratorPath(page.configuratorHref);
   const quoteHref = canonicalConfiguratorPath(page.quoteHref);
+  const isH200Enquiry = h200Availability.productIds.some(id => new URL(quoteHref, SITE_ORIGIN).pathname === `/configurator/${id}/`);
   const relatedPages = getRelatedConfiguratorSeoPages(page.slug);
   const sources = getConfiguratorGuideSources(page.slug);
   const localizedPageUrl = canonicalPageUrl(`${SITE_ORIGIN}${isEnglish ? '/en' : ''}/solutions/${page.slug}`);
@@ -237,6 +240,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
                 <a href="#reference-sources" className="underline underline-offset-4">{isEnglish ? 'Manufacturer sources' : '查看原廠資料'}</a>
               </p>
               {page.comparison && <a href={`#${page.comparison.id}`} className="mt-6 inline-flex text-sm font-semibold text-emerald-300 underline underline-offset-4">{isEnglish ? 'Compare memory, bandwidth and power' : '直接比較記憶體、頻寬與功耗'}</a>}
+              {page.supplyNotice && <H200AvailabilityNotice isEnglish={isEnglish} />}
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Link
                   to={configuratorHref}
@@ -252,7 +256,7 @@ const ConfiguratorSolutionPage: React.FC = () => {
                   className="inline-flex items-center justify-center rounded-md border border-white/35 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/70"
                 >
                   <Mail className="mr-2 h-4 w-4" />
-                  {isEnglish ? 'Request quote' : '取得報價'}
+                  {isH200Enquiry ? h200Availability.action[isEnglish ? 'en' : 'zh'] : isEnglish ? 'Request quote' : '取得報價'}
                 </Link>
               </div>
             </div>

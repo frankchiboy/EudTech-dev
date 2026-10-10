@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import H200AvailabilityNotice from '../common/H200AvailabilityNotice';
+import h200Availability from '../../data/h200Availability.json';
 import { createPortal } from 'react-dom';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { SiteLink as Link } from '../common/SiteLink';
@@ -206,7 +208,7 @@ const getConfiguratorHomeFaqs = (language: ConfiguratorLocale): StructuredFaqIte
         {
           question: 'Does the configurator cover NVIDIA H200 and RTX PRO 6000 systems?',
           answer:
-            'Yes. It includes NVIDIA H200 server paths, RTX PRO 6000 workstation and server paths, and related Comino Grando configurations.'
+            'Yes. It includes NVIDIA H200 server paths, RTX PRO 6000 workstation and server paths, and related Comino Grando configurations. Comino H200 is currently unavailable with no restock ETA; configurations are for evaluation only.'
         },
         {
           question: 'Is the configurator suitable for Taiwan RFQ preparation?',
@@ -225,7 +227,7 @@ const getConfiguratorHomeFaqs = (language: ConfiguratorLocale): StructuredFaqIte
         },
         {
           question: '配置器有涵蓋 NVIDIA H200 與 RTX PRO 6000 系統嗎？',
-          answer: '有。配置器包含 NVIDIA H200 伺服器路徑、RTX PRO 6000 工作站與伺服器路徑，以及相關 Comino Grando 配置。'
+          answer: '有。配置器包含 NVIDIA H200 伺服器路徑、RTX PRO 6000 工作站與伺服器路徑，以及相關 Comino Grando 配置。Comino H200 目前無貨，補貨時間未定；配置僅供評估。'
         },
         {
           question: '這個配置器適合台灣 RFQ 準備使用嗎？',
@@ -718,6 +720,7 @@ const ProductCard = ({
 
       <div className="grando-product-meta">
         <h3>{device.name}</h3>
+        {/h200/i.test(device.name) && <H200AvailabilityNotice isEnglish={language === 'en'} compact />}
         {gpu ? (
           <p>
             <Layers className="h-4 w-4" />
@@ -751,7 +754,7 @@ const ProductCard = ({
             navigate(`/configurator/${device.id}?request=true`);
           }}
         >
-          {copy.requestQuote}
+          {/h200/i.test(device.name) ? h200Availability.action[language] : copy.requestQuote}
         </button>
       </footer>
     </article>
@@ -831,8 +834,8 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
         }
         description={
           language === 'en'
-            ? 'Configure Comino Grando GPU servers, RTX PRO 6000 workstations, NVIDIA H200 systems, storage, power, and networking, then send an RFQ-ready quote request to EudTech.'
-            : '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並送出可供 RFQ 使用的報價需求。'
+            ? 'Configure Comino Grando GPU servers, RTX PRO 6000 workstations, NVIDIA H200 systems, storage, power, and networking, then register requirements with EudTech. Comino H200 is currently unavailable with no restock ETA.'
+            : '配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並登記需求。Comino H200 目前無貨，補貨時間未定。'
         }
         keywords={
           language === 'en'
@@ -852,6 +855,7 @@ const ConfiguratorHome = ({ language }: { language: ConfiguratorLocale }) => {
       <section className="grando-page grando-list-page">
       <div className="grando-list-shell">
         <h1>{copy.homeTitle}</h1>
+        <H200AvailabilityNotice isEnglish={language === 'en'} />
 
         <div className="grando-selector-panel">
           <span className="grando-floating-label">{copy.selectorLabel}</span>
@@ -1295,6 +1299,7 @@ const QuotePanel = ({
   const moduleLabels = CONFIGURATOR_MODULE_LABELS[language];
   const missingModules = CONFIGURATOR_REQUIRED_MODULES.filter((moduleKey) => !spec[moduleKey]);
   const quoteReady = configurationReady && missingModules.length === 0;
+  const hasH200 = /h200/i.test([spec.gpu?.name, spec.device?.name].join(' '));
   const configurationSummary = {
     device: spec.device?.name || copy.systemFallback,
     gpu: `${spec.gpu?.total_quantity || 1}x ${formatLocalizedSpecValue('gpu', spec.gpu, language) || copy.notProvided}`,
@@ -1309,6 +1314,7 @@ const QuotePanel = ({
     network: formatLocalizedSpecValue('network', spec.network, language) || copy.notProvided
   };
   const quoteSummary = [
+    ...(hasH200 ? [h200Availability.detail[language]] : []),
     `${copy.device}: ${configurationSummary.device}`,
     `${copy.model}: ${modelName}`,
     `${moduleLabels.gpu}: ${configurationSummary.gpu}`,
@@ -1567,6 +1573,7 @@ const QuotePanel = ({
 
   return (
     <div className="grando-quote-panel" ref={quotePanelRef}>
+      {hasH200 && <H200AvailabilityNotice isEnglish={language === 'en'} compact />}
       {!quoteReady ? (
         <p className="grando-button-note" role="status">
           {copy.incompleteSnapshot} {missingModules.map((moduleKey) => moduleLabels[moduleKey]).join(', ')}
@@ -1582,7 +1589,7 @@ const QuotePanel = ({
         </button>
       ) : quoteReady ? (
         <button type="button" className="grando-button grando-quote-button" onClick={handleOpenQuoteForm}>
-          {copy.getQuote}
+          {hasH200 ? h200Availability.action[language] : copy.getQuote}
         </button>
       ) : (
         <button type="button" className="grando-button grando-quote-button grando-quote-button-error" disabled>
@@ -1610,8 +1617,9 @@ const QuotePanel = ({
             <header className="grando-quote-dialog-header">
               <div>
                 <span>{copy.quoteRecipientLabel}: {QUOTE_RECIPIENT_EMAIL}</span>
-                <h3 id="grando-quote-title">{copy.quoteModalTitle}</h3>
+                <h3 id="grando-quote-title">{hasH200 ? h200Availability.action[language] : copy.quoteModalTitle}</h3>
                 <p>{copy.quoteModalLead}</p>
+                {hasH200 && <H200AvailabilityNotice isEnglish={language === 'en'} />}
               </div>
               <button type="button" className="grando-icon-button" onClick={closeQuoteForm} aria-label={copy.closeQuoteForm}>
                 <X className="h-5 w-5" />
@@ -1936,6 +1944,7 @@ const ConfiguratorDetail = ({ pid, language }: { pid: string; language: Configur
       />
       <section className="grando-page grando-detail-page">
       <BackgroundSlider images={backgroundImages} language={language} />
+      {(h200Availability.productIds.includes(Number(pid)) || /h200/i.test(spec.gpu?.name || '')) && <div className="relative z-10 mx-auto max-w-7xl px-6 pt-6"><H200AvailabilityNotice isEnglish={language === 'en'} /></div>}
 
       {dataSource === 'fallback' ? (
         <div className="grando-data-notice grando-data-notice-detail" role="status">

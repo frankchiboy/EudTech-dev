@@ -148,7 +148,7 @@ export const products = (isEnglish: boolean): ProductImage[] => [
     specs: isEnglish ? {
       'Maximum Cooling Capacity': '6500 W Maximum cooling capacity is ensured @ 20°C intake air T and "performance mode" of the cooling system',
       'Motherboard': 'Up to EATX & EBB',
-      'GPUs': 'Rackable Workstation up to 6; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200; AMD: W7800, W7900',
+      'GPUs': 'Rackable Workstation up to 6; NVIDIA: 5090, RTX A6000, RTX 6000 ADA, RTX PRO 6000, A40, L40, L40S, A100, H100, H200 (unavailable; no restock ETA); AMD: W7800, W7900',
       'CPUs': 'Up to 2; Single Socket: Intel Xeon W-2400/2500 & 3400/3500, Intel Xeon Scalable 4th Gen, 5th Gen, XEON 6, AMD Threadripper PRO 5000WX, 7000WX, 9000WX, AMD EPYC 9004/9005; Dual Socket: Intel Xeon Scalable 4th Gen & 5th Gen, XEON 6, AMD EPYC 9004/9005',
       'RAM': 'Up to 2TB *',
       'Storage': 'Back panel hot swap cages: up to 4x hot swap SSDs (4x 7mm or 2x 15mm) and up to 4 more (4x 7mm or 2x 15mm) instead of 4th PSU; Internal 3.5" cage up to 4x 3.5’’ or 4x2.5" 15mm or 12x 2.5" 7mm; Internal 2.5" slots: up to 4x 2.5’’ SSD 7mm',
@@ -156,7 +156,7 @@ export const products = (isEnglish: boolean): ProductImage[] => [
     } : {
       '最大散熱能力': '6500 W @ 20°C 進氣，效能模式',
       '主機板': '支援EATX與EBB',
-      'GPU': '機架式工作站最多6張；NVIDIA: 5090、RTX A6000、RTX 6000 ADA、RTX PRO 6000、A40、L40、L40S、A100、H100、H200；AMD: W7800、W7900',
+      'GPU': '機架式工作站最多6張；NVIDIA: 5090、RTX A6000、RTX 6000 ADA、RTX PRO 6000、A40、L40、L40S、A100、H100、H200（目前無貨，補貨時間未定）；AMD: W7800、W7900',
       'CPU': '最多2顆；單插槽：Intel Xeon W-2400/2500 & 3400/3500、Intel Xeon Scalable 4代、5代、XEON 6、AMD Threadripper PRO 5000WX、7000WX、9000WX、AMD EPYC 9004/9005；雙插槽：Intel Xeon Scalable 4代 & 5代、XEON 6、AMD EPYC 9004/9005',
       '記憶體': '最高2TB *',
       '儲存': '背板熱插拔架：最多4顆熱插拔SSD（4x 7mm或2x 15mm）並可再加4顆（4x 7mm或2x 15mm）取代第4顆電源；內部3.5吋架最多4顆3.5吋或4顆2.5吋15mm或12顆2.5吋7mm；內部2.5吋插槽：最多4顆2.5吋SSD 7mm *',
@@ -238,11 +238,11 @@ export const products = (isEnglish: boolean): ProductImage[] => [
         '工作與儲存溫度範圍': '儲存：-5.50ºC / 23.122ºF；工作：3.38ºC / 38.100ºF *'
       },
       relevantConfigurations: isEnglish ? [
-        'DUAL EPYC or XEON / 8x NVIDIA H200 / 2TB RAM / 2TB NVME',
+        'DUAL EPYC or XEON / 8x NVIDIA H200 (unavailable; no restock ETA) / 2TB RAM / 2TB NVME',
         'DUAL EPYC or XEON / 8x NVIDIA H100 / 2TB RAM / 2TB NVME',
         'DUAL EPYC or XEON / 8x NVIDIA RTX PRO 6000 / 2TB RAM / 2TB NVME'
       ] : [
-        '雙EPYC或XEON / 8x NVIDIA H200 / 2TB記憶體 / 2TB NVME',
+        '雙EPYC或XEON / 8x NVIDIA H200（目前無貨，補貨時間未定） / 2TB記憶體 / 2TB NVME',
         '雙EPYC或XEON / 8x NVIDIA H100 / 2TB記憶體 / 2TB NVME',
         '雙EPYC或XEON / 8x NVIDIA RTX PRO 6000 / 2TB記憶體 / 2TB NVME'
       ],
@@ -406,7 +406,7 @@ export const products = (isEnglish: boolean): ProductImage[] => [
     specs: isEnglish ? {
       'Maximum Cooling Capacity': '4500 W @ 20°C intake air, performance mode',
       'Motherboard': 'Up to EATX & EBB',
-      'GPUs': 'Up to 8; RTX A6000, RTX 6000 ADA, A40, L40, L40S, A100, H100, H200; AMD: W7800, W7900',
+      'GPUs': 'Up to 8; RTX A6000, RTX 6000 ADA, A40, L40, L40S, A100, H100, H200 (unavailable; no restock ETA); AMD: W7800, W7900',
       'CPUs': 'Up to 2; Single: • Intel: Xeon W-2400/2500 & 3400/3500, • Xeon Scalable 4th & 5th Gen, XEON 6 • AMD: Threadripper PRO 5000WX, 7000WX, EPYC 9004/9005 Dual: • Intel: Xeon Scalable 4th & 5th Gen, XEON 6 • AMD: EPYC 9004/9005',
       'RAM': 'Up to 2TB *',
       'Storage': 'Back panel hot swap cages: up to 4x hot swap SSDs (4x 7mm or 2x 15mm) and up to 4 more instead of 4th PSU; Internal 3.5" cage up to 4x 3.5" or 4x 2.5" 15mm or 12x 2.5" 7mm; Internal 2.5" slots: up to 4x 2.5" SSD 7mm',
@@ -414,7 +414,7 @@ export const products = (isEnglish: boolean): ProductImage[] => [
     } : {
       '最大冷卻能力': '4500 W 在20°C進氣溫度與冷卻系統"效能模式"下確保最大冷卻能力',
       '主機板': '最高支援EATX與EBB',
-      'GPU': '最多8張；RTX A6000、RTX 6000 ADA、A40、L40、L40S、A100、H100、H200；AMD: W7800、W7900',
+      'GPU': '最多8張；RTX A6000、RTX 6000 ADA、A40、L40、L40S、A100、H100、H200（目前無貨，補貨時間未定）；AMD: W7800、W7900',
       'CPU': '最多2顆；單插槽：Intel Xeon W-2400/2500 & 3400/3500、Intel Xeon Scalable 4代、5代、XEON 6、AMD Threadripper PRO 5000WX、7000WX、9000WX、AMD EPYC 9004/9005；雙插槽：Intel Xeon Scalable 4代 & 5代、XEON 6、AMD EPYC 9004/9005',
       '記憶體': '最高2TB *',
       '儲存': '背板熱插拔架：最多4顆熱插拔SSD（4x 7mm或2x 15mm）並可再加4顆取代第4顆電源；內部3.5吋架最多4顆3.5吋或4顆2.5吋15mm或12顆2.5吋7mm；內部2.5吋插槽：最多4顆2.5吋SSD 7mm',
@@ -515,7 +515,7 @@ export const products = (isEnglish: boolean): ProductImage[] => [
         {
           title: 'Available Configurations',
           configurations: [
-            'DUAL EPYC or XEON / 8x NVIDIA H200 / 2TB RAM / 2TB NVME',
+            'DUAL EPYC or XEON / 8x NVIDIA H200 (unavailable; no restock ETA) / 2TB RAM / 2TB NVME',
             'DUAL EPYC or XEON / 8x NVIDIA H100 / 2TB RAM / 2TB NVME'
           ]
         }
@@ -531,7 +531,7 @@ export const products = (isEnglish: boolean): ProductImage[] => [
         {
           title: '可用配置',
           configurations: [
-            '雙EPYC或XEON / 8x NVIDIA H200 / 2TB記憶體 / 2TB NVME',
+            '雙EPYC或XEON / 8x NVIDIA H200（目前無貨，補貨時間未定） / 2TB記憶體 / 2TB NVME',
             '雙EPYC或XEON / 8x NVIDIA H100 / 2TB記憶體 / 2TB NVME'
           ]
         }
