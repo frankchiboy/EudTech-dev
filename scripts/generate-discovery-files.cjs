@@ -12,7 +12,7 @@ const { publicProductRoutes, englishRoutes, careersRoute } = require('./seo-publ
 const cominoReference = require('../src/data/cominoProcurement.json');
 const cominoConformity = require('../src/data/cominoConformity.json');
 
-const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO } = readConfiguratorSeoPages();
+const { SITE_ORIGIN, CONFIGURATOR_SEO_PAGES, CONFIGURATOR_PRODUCT_SEO, getConfiguratorGuideSources, getConfiguratorGuideSourceHref } = readConfiguratorSeoPages();
 const siteOrigin = SITE_ORIGIN || 'https://eudaemonia.tech';
 const publicDir = path.resolve(__dirname, '..', 'public');
 const pageUrl = (routePath) => canonicalPageUrl(`${siteOrigin}${routePath}`, siteOrigin);
@@ -189,13 +189,18 @@ const previousLastmodManifest = readLastmodManifest();
 const sourcePages = {'/':'src/data/content.ts','/solutions':'src/components/pages/SolutionsOverviewPage.tsx','/solutions/aws':'src/components/pages/AwsCloudSolutionPage.tsx','/solutions/ai-infrastructure':'src/components/pages/AiInfrastructureSolutionPage.tsx','/solutions/social-intelligence':'src/components/pages/SocialIntelligenceSolutionPage.tsx','/products':'src/components/pages/ProductsOverviewPage.tsx','/resources':'src/components/pages/ResourcesOverviewPage.tsx','/about':'src/components/pages/AboutPage.tsx','/contact':'src/components/pages/ContactPage.tsx','/privacy':'src/components/pages/PrivacyPage.tsx','/careers':'src/components/CareersPage.tsx'};
 function bodyFingerprint(loc) {
   const pathname=(new URL(loc).pathname.replace(/^\/en(?=\/|$)/,'').replace(/\/$/,'') || '/');
+  const guide = CONFIGURATOR_SEO_PAGES.find(page => pathname === `/solutions/${page.slug}`);
   const files = sourcePages[pathname] ? [sourcePages[pathname]] : [];
   if (pathname==='/contact') files.push('src/components/contact/ContactInfo.tsx','src/components/contact/OnlineMeetingBooking.tsx','src/data/siteArchitecture.ts','src/data/organization.json');
   if (pathname==='/about') files.push('src/data/authoritySources.json','src/data/organization.json');
   if (pathname==='/solutions/ai-infrastructure') files.push('src/data/cominoProcurement.json','src/data/cominoConformity.json','src/data/cominoTestDrive.json');
+  if (guide) files.push('src/components/pages/ConfiguratorSolutionPage.tsx');
   if (/^\/products\/\d+$/.test(pathname)) files.push('src/data/productData.ts');
   if (pathname.startsWith('/vendor/')) files.push('docs/comino-document-translations-zh.json','src/data/cominoConformity.json');
-  return files.map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'..',file))).digest('hex')]);
+  return [
+    ...files.map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,'..',file))).digest('hex')]),
+    ...(guide ? [['manufacturerSources', contentHash(getConfiguratorGuideSources(guide.slug))]] : [])
+  ];
 }
 const lastmodEntries = Object.fromEntries(sitemapEntries.map((entry) => {
   const hash = contentHash({
@@ -456,11 +461,13 @@ const relatedProductUrls = (product) =>
     .filter(Boolean)
     .map((candidate) => `  - ${localized(candidate.model)}: ${pageUrl(candidate.configuratorHref)}`)
     .join('\n');
-const formatFaqs = (faqs) =>
+const formatFaqs = (faqs, slug) =>
   faqs
     .map(
       (faq) => `  - Q: ${localized(faq.question)}
-    A: ${localized(faq.answer)}`
+    A: ${localized(faq.answer)}
+    Answer URL (zh-TW): ${pageUrl(`/solutions/${slug}`)}#${faq.id}
+    Answer URL (en): ${pageUrl(`/en/solutions/${slug}`)}#${faq.id}`
     )
     .join('\n');
 
@@ -575,7 +582,12 @@ ${formatHighlights(page.highlights)}
 - Specification cues:
 ${formatSpecs(page.specs)}
 - FAQs:
-${formatFaqs(page.faqs)}`
+${formatFaqs(page.faqs, page.slug)}
+- Manufacturer reference sources (hardware and deployment; commercial terms require a formal EudTech quote):
+${getConfiguratorGuideSources(page.slug).map(source => `  - ${localized(source.title)}
+    Scope: ${localized(source.description)}
+    Reference (zh-TW): ${getConfiguratorGuideSourceHref(source, false)}
+    Reference (en): ${getConfiguratorGuideSourceHref(source, true)}`).join('\n')}`
 ).join('\n\n')}
 
 ## 選擇閱讀入口 / Choosing a starting point

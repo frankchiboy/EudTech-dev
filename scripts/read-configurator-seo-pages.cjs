@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const ts = require('typescript');
+const { createRequire } = require('node:module');
 
 function readConfiguratorSeoPages() {
   const sourcePath = path.resolve(__dirname, '..', 'src', 'data', 'configuratorSeoPages.ts');
@@ -9,6 +10,7 @@ function readConfiguratorSeoPages() {
   const compiled = ts.transpileModule(source, {
     compilerOptions: {
       module: ts.ModuleKind.CommonJS,
+      esModuleInterop: true,
       target: ts.ScriptTarget.ES2020
     }
   }).outputText;
@@ -17,7 +19,8 @@ function readConfiguratorSeoPages() {
   vm.runInNewContext(compiled, {
     exports: module.exports,
     module,
-    require,
+    require: createRequire(sourcePath),
+    URL,
     console
   });
 
@@ -42,6 +45,8 @@ function readConfiguratorSeoPages() {
     SITE_ORIGIN: module.exports.SITE_ORIGIN,
     CONFIGURATOR_SEO_PAGES: module.exports.CONFIGURATOR_SEO_PAGES,
     getRelatedConfiguratorSeoPages: module.exports.getRelatedConfiguratorSeoPages,
+    getConfiguratorGuideSources: module.exports.getConfiguratorGuideSources,
+    getConfiguratorGuideSourceHref: module.exports.getConfiguratorGuideSourceHref,
     CONFIGURATOR_PRODUCT_SEO: productModule.exports.CONFIGURATOR_PRODUCT_SEO
   };
 }

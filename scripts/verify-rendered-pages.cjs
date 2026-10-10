@@ -4,7 +4,7 @@ const path = require('node:path');
 const { englishRoutes } = require('./seo-public-pages.cjs');
 const procurement = require('../src/data/cominoProcurement.json');
 const discoveryDates = require('../public/discovery-lastmod.json');
-const { CONFIGURATOR_SEO_PAGES, getRelatedConfiguratorSeoPages } = require('./read-configurator-seo-pages.cjs').readConfiguratorSeoPages();
+const { CONFIGURATOR_SEO_PAGES, getRelatedConfiguratorSeoPages, getConfiguratorGuideSources, getConfiguratorGuideSourceHref } = require('./read-configurator-seo-pages.cjs').readConfiguratorSeoPages();
 const dist = path.resolve(__dirname, '../dist');
 const text = value => value.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
 const canonicalPathByAlias = new Map(Object.keys(discoveryDates.entries).map(value => {
@@ -97,6 +97,8 @@ for (const p of ['index.html', 'en/index.html']) {
   assert.ok(html.includes('fetchPriority="high"') && html.includes('960w,') && html.includes('2560w'), `Responsive priority hero missing: ${p}`);
 }
 const inboundGuides = new Set();
+const discoveryText = fs.readFileSync(path.join(dist, 'llms-full.txt'), 'utf8');
+let answerPermalinks = 0;
 for (const page of CONFIGURATOR_SEO_PAGES) {
   assert.equal(new Set(page.relatedSlugs).size, 4, `Four distinct related guides required: ${page.slug}`);
   assert.ok(!page.relatedSlugs.includes(page.slug), `A guide must not recommend itself: ${page.slug}`);
@@ -112,6 +114,44 @@ for (const page of CONFIGURATOR_SEO_PAGES) {
     const links = [...section.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
     assert.deepEqual(links, [`${prefix}/resources/`, ...page.relatedSlugs.map(slug => `${prefix}/solutions/${slug}/`)], `Visible related links must match editorial selection and language: ${pathname}`);
     const schemas = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+    const faqSchema = schemas.find(schema => schema['@type'] === 'FAQPage');
+    const pageUrl = `https://eudaemonia.tech${pathname}`;
+    assert.equal(faqSchema['@id'], `${pageUrl}#questions`, `FAQ section identifier: ${pathname}`);
+    const allIds = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+    assert.equal(new Set(allIds).size, allIds.length, `Duplicate HTML IDs: ${pathname}`);
+    assert.equal(new Set(Array.from(page.faqs, faq => faq.id)).size, page.faqs.length, `Duplicate answer IDs: ${pathname}`);
+    for (const faq of page.faqs) {
+      assert.match(faq.id, /^faq-[a-z0-9]+(?:-[a-z0-9]+)*$/, `Invalid answer anchor: ${pathname}`);
+      const question = faqSchema.mainEntity.find(item => item.url === `${pageUrl}#${faq.id}`);
+      assert.equal(question?.['@id'], `${pageUrl}#${faq.id}`, `Question schema must resolve to the answer: ${pathname}`);
+      assert.ok(allIds.includes(faq.id) && html.includes(`href="#${faq.id}"`), `Visible answer permalink missing: ${pathname}`);
+      assert.ok(discoveryText.includes(`${pageUrl}#${faq.id}`), `Discovery answer link missing: ${pathname}`);
+      answerPermalinks++;
+    }
+    const sourceSection = html.match(/<section id="reference-sources"[\s\S]*?<\/section>/)?.[0];
+    assert.ok(sourceSection, `Manufacturer sources missing: ${pathname}`);
+    const sourceLinks = [...sourceSection.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
+    const sources = getConfiguratorGuideSources(page.slug);
+    const expectedSourceLinks = Array.from(sources, source => getConfiguratorGuideSourceHref(source, en));
+    assert.ok(sources.length >= 2 && new Set(expectedSourceLinks).size === sources.length, `Distinct relevant sources required: ${pathname}`);
+    assert.deepEqual(sourceLinks, expectedSourceLinks, `Source URLs must match the page language: ${pathname}`);
+    for (const source of sources) {
+      assert.ok(text(sourceSection).includes(source.description[en ? 'en' : 'zh']), `Source scope missing: ${pathname}`);
+      assert.ok(discoveryText.includes(getConfiguratorGuideSourceHref(source, en)), `Discovery source missing: ${pathname}`);
+      if (source.hrefZh) {
+        const document = procurement.documents.find(doc => doc.href === source.href);
+        assert.ok(document && source.hrefZh === document.readerHrefZh.replace(/\.html$/, '').toLowerCase(), `Translation route drift: ${source.id}`);
+        assert.ok(fs.existsSync(path.join(dist, en ? document.href : document.readerHrefZh)), `Missing source document: ${source.id}`);
+      }
+    }
+    const article = schemas.find(schema => schema['@type'] === 'Article');
+    if (article) {
+      assert.deepEqual(article.citation, sourceLinks, `Article citations must match visible sources: ${pathname}`);
+      assert.equal(article.author['@id'], 'https://eudaemonia.tech/#organization', `Article author identity: ${pathname}`);
+    }
+    const modifiedAt = discoveryDates.entries[pageUrl].modifiedAt;
+    assert.ok(html.includes(`<time dateTime="${modifiedAt}">${modifiedAt}</time>`) || html.includes(`<time datetime="${modifiedAt}">${modifiedAt}</time>`), `Visible revision date mismatch: ${pathname}`);
+    assert.ok((html.match(/<a\b[^>]*rel="author"[^>]*>/g) || []).some(link => link.includes(`href="${prefix}/about/#verified-company-identity"`)), `Missing visible publisher link: ${pathname}`);
     const list = schemas.find(schema => schema['@id'] === `https://eudaemonia.tech${pathname}#related-guides`);
     assert.ok(list, `Related guides schema must identify a real section: ${pathname}`);
     assert.deepEqual(list.itemListElement.map(item => item.url), links.slice(1).map(href => `https://eudaemonia.tech${href}`), `Related schema and visible links must agree: ${pathname}`);
@@ -130,4 +170,4 @@ for (const p of ['contact/index.html', 'en/contact/index.html']) {
   assert.equal(contact?.url, `https://eudaemonia.tech/${p.replace('index.html', '')}`, `Contact schema must match the page language: ${p}`);
   assert.equal(contact?.mainEntity?.['@id'], organization['@id'], `Contact page must identify the same organization: ${p}`);
 }
-console.log(JSON.stringify({ ok: true, renderedPages: rendered, liveConfiguratorFallbacks: dynamic, visibleFaqParity: true, procurementCitations: procurement.faqs.length * 2 }));
+console.log(JSON.stringify({ ok: true, renderedPages: rendered, liveConfiguratorFallbacks: dynamic, visibleFaqParity: true, guideSources: CONFIGURATOR_SEO_PAGES.length * 2, answerPermalinks, procurementCitations: procurement.faqs.length * 2 }));

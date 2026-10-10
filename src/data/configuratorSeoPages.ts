@@ -1,6 +1,9 @@
+import cominoReference from './cominoProcurement.json';
+
 export type ConfiguratorSeoPage = {
   slug: string;
   relatedSlugs: string[];
+  sourceIds: string[];
   kind?: 'solution' | 'comparison' | 'guide' | 'checklist';
   title: {
     en: string;
@@ -44,6 +47,7 @@ export type ConfiguratorSeoPage = {
     };
   }>;
   faqs: Array<{
+    id: string;
     question: {
       en: string;
       zh: string;
@@ -60,6 +64,7 @@ export const SITE_ORIGIN = 'https://eudaemonia.tech';
 export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   {
     slug: 'nvidia-h200-server',
+    sourceIds: ["h200","server"],
     relatedSlugs: ["h200-vs-rtx-pro-6000", "h200-gpu-server-rfq-taiwan", "gpu-server-power-planning", "liquid-cooled-gpu-server"],
     title: {
       en: 'NVIDIA H200 Server Quote & Planning',
@@ -117,22 +122,27 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-can-i-request-a-quote-without-choosing-every-component',
         question: { en: 'Can I request a quote without choosing every component?', zh: '沒有選完所有零件也可以詢價嗎？' },
         answer: { en: 'Yes. The configurator sends the current selection, and EudTech follows up on incomplete or optional items.', zh: '可以。配置器會送出目前的選擇狀態，未完成或選配項目由 EudTech 後續確認。' }
       },
       {
+        id: 'faq-is-this-page-for-taiwan-procurement',
         question: { en: 'Is this page for Taiwan procurement?', zh: '這個頁面適合台灣採購使用嗎？' },
         answer: { en: 'Yes. EudTech handles local consultation and quote follow-up for Taiwan buyers.', zh: '適合。EudTech 為台灣客戶提供本地諮詢與報價追蹤。' }
       },
       {
+        id: 'faq-is-h200-suitable-for-planning-inference-on-newer-ai-models',
         question: { en: 'Is H200 suitable for planning inference on newer AI models?', zh: 'H200 適合下一代 AI 推論規劃嗎？' },
         answer: { en: 'Yes. An H200 configuration lets the team review GPU memory, CPU, RAM, storage, power, and networking in one quote path. The same path covers training, HPC, and inference.', zh: '適合。H200 配置可在同一條詢價路徑中審查 GPU 記憶體、CPU、RAM、儲存、電源與網路。訓練、HPC 與推論需求都適用。' }
       },
       {
+        id: 'faq-how-is-h200-server-pricing-determined',
         question: { en: 'How is H200 server pricing determined?', zh: '如何確認 H200 伺服器價格？' },
         answer: { en: 'EudTech confirms the price from the submitted configuration and does not publish one fixed amount. GPU count, CPU platform, memory, NVMe storage, power, cooling, networking, delivery, and supply conditions all affect the final quote.', zh: 'EudTech 依送出的配置確認價格，不公布單一固定金額。價格受 GPU 數量、CPU 平台、記憶體與 NVMe 儲存影響。電力、散熱、網路、交期與供應條件也會改變最終報價。' }
       },
       {
+        id: 'faq-how-is-nvidia-h200-server-availability-confirmed',
         question: { en: 'How is NVIDIA H200 server availability confirmed?', zh: 'NVIDIA H200 伺服器供貨狀態如何確認？' },
         answer: { en: 'EudTech confirms availability and delivery after reviewing the submitted GPU count, platform, and delivery requirements. This page is not an in-stock commitment.', zh: 'EudTech 會在審查送出的 GPU 數量、平台與交付需求後，確認供貨與交期。本頁不代表現貨承諾。' }
       }
@@ -140,6 +150,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'rtx-pro-6000-workstation',
+    sourceIds: ["rtx","server"],
     relatedSlugs: ["rtx-pro-6000-local-ai-inference", "ai-workstation-taiwan", "h200-vs-rtx-pro-6000", "ai-inference-server-taiwan"],
     title: {
       en: 'RTX PRO 6000 Workstation Quote Configurator',
@@ -189,10 +200,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-can-i-compare-rtx-pro-6000-and-h200-builds',
         question: { en: 'Can I compare RTX PRO 6000 and H200 builds?', zh: '可以比較 RTX PRO 6000 與 H200 配置嗎？' },
         answer: { en: 'Yes. Configure one build on the workstation path and one on the rackable path, then share both links with EudTech.', zh: '可以。分別在工作站與機架式路徑完成配置，再把兩個連結交給 EudTech 比較。' }
       },
       {
+        id: 'faq-does-the-quote-request-include-storage-and-cpu-choices',
         question: { en: 'Does the quote request include storage and CPU choices?', zh: '詢價會包含儲存與 CPU 選項嗎？' },
         answer: { en: 'Yes. The submitted message includes the selected GPU, CPU, RAM, storage, and the configuration URL.', zh: '會。送出內容包含已選 GPU、CPU、RAM、儲存與配置連結。' }
       }
@@ -200,6 +213,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'ai-workstation-taiwan',
+    sourceIds: ["rtx","server"],
     relatedSlugs: ["rtx-pro-6000-workstation", "rtx-pro-6000-local-ai-inference", "h200-vs-rtx-pro-6000", "gpu-server-quote"],
     title: {
       en: 'AI Workstations & GPU Systems in Taiwan',
@@ -254,18 +268,22 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-can-eudtech-help-if-the-configuration-is-only-a-first-draft',
         question: { en: 'Can EudTech help if the configuration is only a first draft?', zh: '配置只是初稿也可以請 EudTech 協助嗎？' },
         answer: { en: 'Yes. Send the draft, and EudTech refines it around workload, budget, and deployment needs.', zh: '可以。送出初稿後，EudTech 依工作負載、預算與部署需求協助調整。' }
       },
       {
+        id: 'faq-is-this-only-for-large-servers',
         question: { en: 'Is this only for large servers?', zh: '這只適合大型伺服器嗎？' },
         answer: { en: 'No. The configurator covers deskside workstations, rackable systems, and integration kits, so teams can start from the form that fits their site.', zh: '不是。配置器涵蓋桌邊工作站、可上架系統與整合套件。團隊可從符合部署場域的型態開始。' }
       },
       {
+        id: 'faq-when-should-a-taiwan-ai-workstation-project-use-a-rackable-path',
         question: { en: 'When should a Taiwan AI workstation project use a rackable path?', zh: '台灣 AI 工作站專案何時應改看可上架路徑？' },
         answer: { en: 'Use a rackable path when the site already needs rack placement, power planning, network integration, or cooling coordination. Start deskside when those constraints are not part of the project.', zh: '交付場域已需要機架配置或電力規劃時，改看可上架路徑。需要網路整合或散熱協調時也一樣。尚未有這些限制時，先從桌邊路徑開始。' }
       },
       {
+        id: 'faq-when-is-an-integration-kit-a-better-starting-point',
         question: { en: 'When is an integration kit a better starting point?', zh: '什麼情況適合先看整合套件？' },
         answer: { en: 'Start with an integration kit when the buyer already plans the chassis, rack, cooling, or integration work and needs a component-level quote.', zh: '採購方已規劃機箱、機架、散熱或整合作業時，先看整合套件。這條路徑適合零組件層級的配置與報價討論。' }
       }
@@ -273,6 +291,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'liquid-cooled-gpu-server',
+    sourceIds: ["server","quick-start"],
     relatedSlugs: ["liquid-cooling-ai-server-procurement", "gpu-server-power-planning", "rack-ai-server-deployment", "supermicro-comino-gpu-server-comparison"],
     title: {
       en: 'Liquid-Cooled GPU Server Quote Configurator',
@@ -323,14 +342,17 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-why-start-with-a-configurator-for-liquid-cooling',
         question: { en: 'Why start with a configurator for liquid cooling?', zh: '為什麼液冷需求要先用配置器？' },
         answer: { en: 'Liquid-cooled systems depend on GPU count, power, storage, networking, and deployment constraints. A configuration link makes those assumptions explicit.', zh: '液冷系統受 GPU 數量、電源、儲存、網路與部署條件影響。配置連結可把這些假設清楚列出。' }
       },
       {
+        id: 'faq-what-should-buyers-check-when-planning-gpu-server-cooling',
         question: { en: 'What should buyers check when planning GPU server cooling?', zh: '規劃 GPU 伺服器散熱時應先確認什麼？' },
         answer: { en: 'Confirm GPU count, power capacity, rack or workstation form factor, storage density, networking, and room deployment before requesting a quote.', zh: '先確認 GPU 數量、電源容量、機架或工作站型態。再確認儲存密度、網路與機房部署假設，然後送出詢價。' }
       },
       {
+        id: 'faq-can-i-share-the-configuration-internally-before-sending-it',
         question: { en: 'Can I share the configuration internally before sending it?', zh: '可以先在內部分享配置再送出嗎？' },
         answer: { en: 'Yes. Use the Share button in the configurator, then send the quote request when the configuration is ready.', zh: '可以。先用配置器的分享按鈕，配置確認後再送出詢價。' }
       }
@@ -338,6 +360,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'gpu-server-quote',
+    sourceIds: ["server","quick-start"],
     relatedSlugs: ["gpu-server-rfq-checklist", "comino-grando-configurator-taiwan", "taiwan-public-procurement-gpu-server", "h200-gpu-server-rfq-taiwan"],
     title: {
       en: 'GPU Server Quote & RFQ Configurator',
@@ -391,14 +414,17 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-what-happens-after-i-submit-a-quote-request',
         question: { en: 'What happens after I submit a quote request?', zh: '送出詢價後會發生什麼？' },
         answer: { en: 'EudTech receives the configuration summary and contact details, then follows up by email or phone.', zh: 'EudTech 收到配置摘要與聯絡資料後，透過 Email 或電話聯繫。' }
       },
       {
+        id: 'faq-can-i-use-the-configurator-link-in-an-rfq-process',
         question: { en: 'Can I use the configurator link in an RFQ process?', zh: '配置器連結可以放進 RFQ 流程嗎？' },
         answer: { en: 'Yes. The share link preserves the selected configuration, so technical reviewers see the same hardware assumptions.', zh: '可以。分享連結保留已選配置，技術審查者看到的是同一組硬體假設。' }
       },
       {
+        id: 'faq-why-is-there-no-single-public-gpu-server-price',
         question: { en: 'Why is there no single public GPU server price?', zh: '為什麼沒有單一公開的 GPU 伺服器價格？' },
         answer: { en: 'The price depends on GPU count and model, CPU platform, memory, storage, power, cooling, networking, delivery, and supply conditions. The configurator records those variables so EudTech can return a configuration-specific quote.', zh: '價格取決於 GPU 數量與型號、CPU 平台、記憶體與儲存。電力、散熱、網路、交期與供應條件也會影響。配置器記錄這些變因，EudTech 再依配置回覆報價。' }
       }
@@ -406,6 +432,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'h200-vs-rtx-pro-6000',
+    sourceIds: ["h200","rtx","server"],
     relatedSlugs: ["nvidia-h200-server", "rtx-pro-6000-workstation", "rtx-pro-6000-local-ai-inference", "ai-inference-server-taiwan"],
     kind: 'comparison',
     title: {
@@ -456,18 +483,22 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-should-ai-training-buyers-start-with-h200',
         question: { en: 'Should AI training buyers start with H200?', zh: 'AI 訓練採購應該先看 H200 嗎？' },
         answer: { en: 'For dense training and shared server deployment, start with H200. For local development or visualisation, RTX PRO 6000 is usually the better starting point.', zh: '高密度訓練或共用伺服器部署，先看 H200。本地開發或視覺化，通常以 RTX PRO 6000 為起點。' }
       },
       {
+        id: 'faq-can-eudtech-compare-both-configurations-in-one-quote-discussion',
         question: { en: 'Can EudTech compare both configurations in one quote discussion?', zh: 'EudTech 可以在同一次報價討論比較兩種配置嗎？' },
         answer: { en: 'Yes. Share the H200 and RTX PRO 6000 configurator URLs so both sides compare the same component assumptions.', zh: '可以。分享 H200 與 RTX PRO 6000 的配置器連結，雙方依同一組零組件假設比較。' }
       },
       {
+        id: 'faq-which-option-should-i-open-first-for-quote-review',
         question: { en: 'Which option should I open first for quote review?', zh: '報價審查應該先開哪一種配置？' },
         answer: { en: 'Open H200 first for dense training, HPC, or shared server deployment. Open RTX PRO 6000 first for local inference, workstation deployment, visualisation, or simulation.', zh: '高密度訓練、HPC 或共用伺服器部署，先開 H200。本地推論、工作站部署、視覺化或模擬，先開 RTX PRO 6000。' }
       },
       {
+        id: 'faq-what-is-the-simplest-way-to-choose-between-h200-and-rtx-pro-6000',
         question: { en: 'What is the simplest way to choose between H200 and RTX PRO 6000?', zh: 'H200 與 RTX PRO 6000 最簡單的選擇方式是什麼？' },
         answer: { en: 'Pick H200 for dense shared training, HPC, or rack deployment. Pick RTX PRO 6000 for local inference, development, visualisation, or a workstation-first deployment. Share both configurator links when both paths need quote review.', zh: '高密度共用訓練、HPC 或機架部署選 H200。本地推論、開發、視覺化或以工作站為主的部署選 RTX PRO 6000。兩條路徑都要報價審查時，分享兩個配置器連結。' }
       }
@@ -475,6 +506,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'gpu-server-rfq-checklist',
+    sourceIds: ["server","quick-start"],
     relatedSlugs: ["gpu-server-quote", "taiwan-public-procurement-gpu-server", "gpu-server-power-planning", "ai-server-procurement-case-taiwan"],
     kind: 'checklist',
     title: {
@@ -525,10 +557,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-what-should-be-ready-before-sending-a-gpu-server-rfq',
         question: { en: 'What should be ready before sending a GPU server RFQ?', zh: '送出 GPU 伺服器 RFQ 前應該準備什麼？' },
         answer: { en: 'Prepare the target workload, preferred GPU class, memory and storage expectations, power constraints, networking requirements, and deployment timeline.', zh: '準備目標工作負載、偏好的 GPU 等級、記憶體與儲存需求。再確認電源限制、網路需求與部署時程。' }
       },
       {
+        id: 'faq-can-the-configurator-replace-a-written-rfq',
         question: { en: 'Can the configurator replace a written RFQ?', zh: '配置器可以取代書面 RFQ 嗎？' },
         answer: { en: 'No. It provides the technical configuration context. Formal procurement documents can reference the configurator URL for the selected hardware assumptions.', zh: '不能。配置器提供技術配置脈絡。正式採購文件可引用配置器連結，作為已選硬體假設。' }
       }
@@ -536,6 +570,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'liquid-cooling-ai-server-procurement',
+    sourceIds: ["server","quick-start"],
     relatedSlugs: ["liquid-cooled-gpu-server", "gpu-server-power-planning", "rack-ai-server-deployment", "taiwan-public-procurement-gpu-server"],
     kind: 'guide',
     title: {
@@ -586,10 +621,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-when-should-procurement-consider-liquid-cooled-gpu-servers',
         question: { en: 'When should procurement consider liquid-cooled GPU servers?', zh: '什麼情境應該考慮液冷 GPU 伺服器？' },
         answer: { en: 'Consider liquid cooling when GPU density, sustained load, rack limits, or power and thermal planning become central to the deployment.', zh: '當 GPU 密度、長時間負載或機架限制成為部署核心時，考慮液冷。電源與散熱規劃成為重點時也一樣。' }
       },
       {
+        id: 'faq-why-use-a-configurator-before-discussing-liquid-cooling',
         question: { en: 'Why use a configurator before discussing liquid cooling?', zh: '為什麼討論液冷前要先使用配置器？' },
         answer: { en: 'The configurator keeps GPU count, CPU, memory, storage, power, and networking assumptions together, which makes the cooling and procurement review more precise.', zh: '配置器把 GPU 數量、CPU、記憶體、儲存、電源與網路假設放在一起。散熱與採購審查會更精準。' }
       }
@@ -597,6 +634,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'gpu-server-power-planning',
+    sourceIds: ["server","quick-start"],
     relatedSlugs: ["rack-ai-server-deployment", "liquid-cooling-ai-server-procurement", "nvidia-h200-server", "gpu-server-rfq-checklist"],
     kind: 'guide',
     title: {
@@ -647,10 +685,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-why-include-power-planning-in-a-gpu-server-quote',
         question: { en: 'Why include power planning in a GPU server quote?', zh: '為什麼 GPU 伺服器報價要包含電力規劃？' },
         answer: { en: 'High-density GPU systems depend on power capacity and redundancy. Recording these assumptions before quote review reduces unclear follow-up questions.', zh: '高密度 GPU 系統受電力容量與冗餘設計影響。報價審查前先記錄這些假設，可減少後續追問。' }
       },
       {
+        id: 'faq-does-the-configurator-replace-facility-planning',
         question: { en: 'Does the configurator replace facility planning?', zh: '配置器可以取代機房規劃嗎？' },
         answer: { en: 'No. It gives facility and IT teams the hardware and power context to review before formal deployment planning.', zh: '不能。配置器提供硬體與電力脈絡，讓機房與 IT 團隊在正式部署規劃前審查。' }
       }
@@ -658,6 +698,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'rack-ai-server-deployment',
+    sourceIds: ["server","quick-start"],
     relatedSlugs: ["gpu-server-power-planning", "liquid-cooled-gpu-server", "liquid-cooling-ai-server-procurement", "gpu-server-rfq-checklist"],
     kind: 'guide',
     title: {
@@ -708,10 +749,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-when-should-i-use-the-rack-deployment-entry-point',
         question: { en: 'When should I use the rack deployment entry point?', zh: '什麼時候應該使用機架部署入口？' },
         answer: { en: 'Use it when rack, facility, IT, and procurement teams need to review the same GPU server assumptions.', zh: '當機架、機房、IT 與採購團隊需要審查同一組 GPU 伺服器假設時使用。' }
       },
       {
+        id: 'faq-can-this-help-before-a-formal-site-survey',
         question: { en: 'Can this help before a formal site survey?', zh: '正式場勘前可以使用嗎？' },
         answer: { en: 'Yes. The configurator does not replace a site survey, but it gives the discussion a concrete hardware baseline.', zh: '可以。配置器不取代場勘，但能提供具體的硬體基準供討論。' }
       }
@@ -719,6 +762,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'taiwan-public-procurement-gpu-server',
+    sourceIds: ["server","quick-start"],
     relatedSlugs: ["ai-server-procurement-case-taiwan", "gpu-server-rfq-checklist", "liquid-cooling-ai-server-procurement", "supermicro-comino-gpu-server-comparison"],
     kind: 'checklist',
     title: {
@@ -769,10 +813,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-is-this-legal-procurement-advice',
         question: { en: 'Is this legal procurement advice?', zh: '這是政府採購法律建議嗎？' },
         answer: { en: 'No. This page is a technical and quote-preparation checklist. The responsible procurement team should still review the formal procurement wording.', zh: '不是。本頁是技術與詢價準備檢核表。正式採購文字仍由負責的採購團隊審查。' }
       },
       {
+        id: 'faq-how-does-the-configurator-help-public-sector-review',
         question: { en: 'How does the configurator help public-sector review?', zh: '配置器如何協助公部門審查？' },
         answer: { en: 'It keeps the selected hardware assumptions in a URL, so technical reviewers and purchasing staff discuss the same configuration.', zh: '配置器用連結保留已選硬體假設。技術審查與採購人員因此討論同一份配置。' }
       }
@@ -780,6 +826,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'supermicro-comino-gpu-server-comparison',
+    sourceIds: ["supermicro","server"],
     relatedSlugs: ["liquid-cooled-gpu-server", "rack-ai-server-deployment", "gpu-server-rfq-checklist", "taiwan-public-procurement-gpu-server"],
     kind: 'comparison',
     title: {
@@ -830,10 +877,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-does-this-page-compare-hardware-performance',
         question: { en: 'Does this page compare hardware performance?', zh: '這頁有比較硬體效能嗎？' },
         answer: { en: 'No. This page compares procurement workflow and configuration traceability. Review official specifications and configuration-specific performance evidence separately before deciding on hardware.', zh: '沒有。本頁比較採購流程與配置可追蹤性。硬體決策前，另外審查官方規格與選定配置的效能證據。' }
       },
       {
+        id: 'faq-why-compare-with-a-configurator-workflow',
         question: { en: 'Why compare with a configurator workflow?', zh: '為什麼要比較配置器流程？' },
         answer: { en: 'A configurator workflow keeps the selected GPU, CPU, memory, storage, power, and network assumptions visible, which makes RFQ review more consistent.', zh: '配置器流程保留已選 GPU、CPU、記憶體、儲存、電源與網路假設。RFQ 審查會更一致。' }
       }
@@ -841,6 +890,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'ai-inference-server-taiwan',
+    sourceIds: ["h200","rtx","server"],
     relatedSlugs: ["h200-vs-rtx-pro-6000", "rtx-pro-6000-local-ai-inference", "ai-workstation-taiwan", "nvidia-h200-server"],
     title: {
       en: 'AI Inference Server for LLMs | Taiwan Quote',
@@ -890,14 +940,17 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-should-inference-buyers-choose-a-workstation-or-a-rack-server',
         question: { en: 'Should inference buyers choose a workstation or a rack server?', zh: '推論需求應該選工作站還是機架式伺服器？' },
         answer: { en: 'It depends on concurrency, uptime, GPU density, rack availability, and management needs. The configurator keeps both options open for review.', zh: '取決於併發量、可用性、GPU 密度、機架條件與管理需求。配置器可保留兩個方向供審查。' }
       },
       {
+        id: 'faq-can-eudtech-help-size-an-inference-server-from-a-draft-configuration',
         question: { en: 'Can EudTech help size an inference server from a draft configuration?', zh: 'EudTech 可以依初稿配置協助估算推論伺服器規格嗎？' },
         answer: { en: 'Yes. Send the draft configuration with workload notes, and EudTech follows up on GPU memory, system RAM, storage, and networking.', zh: '可以。送出初稿配置與工作負載備註。EudTech 會追蹤 GPU 記憶體、系統記憶體、儲存與網路假設。' }
       },
       {
+        id: 'faq-what-should-be-included-in-an-ai-inference-server-quote-request',
         question: { en: 'What should be included in an AI inference server quote request?', zh: 'AI 推論伺服器詢價應包含哪些資訊？' },
         answer: { en: 'Include model size, expected concurrency, response-time target, GPU memory, system RAM, NVMe storage, networking, and operating model. State whether the deployment is a workstation or a rack server. The configurator keeps the hardware choices for that review.', zh: '包含模型規模、預期併發量、回應時間目標、GPU 記憶體與系統記憶體。再加上 NVMe 儲存、網路、維運模式，以及部署為工作站或機架伺服器。配置器會保留硬體選項供審查。' }
       }
@@ -905,6 +958,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'comino-grando-configurator-taiwan',
+    sourceIds: ["server","quick-start"],
     relatedSlugs: ["gpu-server-quote", "gpu-server-rfq-checklist", "nvidia-h200-server", "rtx-pro-6000-workstation"],
     kind: 'guide',
     title: {
@@ -955,10 +1009,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-is-this-the-main-comino-grando-configurator-entry',
         question: { en: 'Is this the main Comino Grando configurator entry?', zh: '這是 Comino Grando 配置器的主要入口嗎？' },
         answer: { en: 'Yes. This guide leads buyers to the Grando configurator and the related product routes to prepare a quote request.', zh: '是。此指南引導採購者進入 Grando 配置器與相關產品路徑，準備詢價。' }
       },
       {
+        id: 'faq-does-eudtech-handle-taiwan-quote-follow-up-for-comino-grando',
         question: { en: 'Does EudTech handle Taiwan quote follow-up for Comino Grando?', zh: 'EudTech 會追蹤 Comino Grando 的台灣報價嗎？' },
         answer: { en: 'Yes. EudTech receives the submitted configuration and follows up through quote@eudaemonia.tech.', zh: '會。EudTech 接收送出的配置，並透過 quote@eudaemonia.tech 追蹤報價。' }
       }
@@ -966,6 +1022,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'h200-gpu-server-rfq-taiwan',
+    sourceIds: ["h200","server"],
     relatedSlugs: ["nvidia-h200-server", "gpu-server-rfq-checklist", "gpu-server-power-planning", "taiwan-public-procurement-gpu-server"],
     kind: 'checklist',
     title: {
@@ -1016,10 +1073,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-which-h200-route-should-i-start-from',
         question: { en: 'Which H200 route should I start from?', zh: 'H200 需求應該從哪個路徑開始？' },
         answer: { en: 'Start from SERVER 6xH200 when the team is comparing high-density H200 server assumptions. Adjust the configuration, then send the quote request.', zh: '團隊正在比較高密度 H200 伺服器假設時，先從 SERVER 6xH200 開始。調整配置後再送出詢價。' }
       },
       {
+        id: 'faq-can-this-checklist-replace-a-formal-rfq-document',
         question: { en: 'Can this checklist replace a formal RFQ document?', zh: '這份檢核表可以取代正式 RFQ 文件嗎？' },
         answer: { en: 'No. It prepares the configuration context. The formal RFQ and quote still depend on the final project requirement.', zh: '不能。它用於準備配置脈絡。正式 RFQ 與報價仍依最終專案需求確認。' }
       }
@@ -1027,6 +1086,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'rtx-pro-6000-local-ai-inference',
+    sourceIds: ["rtx","server"],
     relatedSlugs: ["rtx-pro-6000-workstation", "ai-workstation-taiwan", "h200-vs-rtx-pro-6000", "ai-inference-server-taiwan"],
     kind: 'guide',
     title: {
@@ -1077,10 +1137,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-when-should-i-choose-rtx-pro-6000-instead-of-h200',
         question: { en: 'When should I choose RTX PRO 6000 instead of H200?', zh: '什麼情況適合選 RTX PRO 6000 而不是 H200？' },
         answer: { en: 'Choose RTX PRO 6000 for workstation, visualisation, and local inference planning. H200 is usually reviewed for higher-memory server workloads. EudTech can compare both quote paths from the submitted configurations.', zh: '工作站、視覺化與本地推論規劃選 RTX PRO 6000。H200 通常用於較高記憶體需求的伺服器工作負載。EudTech 可依送出的配置比較兩條報價路徑。' }
       },
       {
+        id: 'faq-can-i-use-this-page-for-llm-workstation-quote-planning',
         question: { en: 'Can I use this page for LLM workstation quote planning?', zh: '這個頁面可以用於 LLM 工作站詢價規劃嗎？' },
         answer: { en: 'Yes. Add workload notes on model size, concurrency, storage, and deployment needs in the quote request form.', zh: '可以。在詢價表單補充模型規模、併發量、儲存與部署需求等工作負載備註。' }
       }
@@ -1088,6 +1150,7 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
   },
   {
     slug: 'ai-server-procurement-case-taiwan',
+    sourceIds: ["server","quick-start"],
     relatedSlugs: ["taiwan-public-procurement-gpu-server", "gpu-server-rfq-checklist", "h200-gpu-server-rfq-taiwan", "gpu-server-quote"],
     kind: 'guide',
     title: {
@@ -1138,10 +1201,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
     ],
     faqs: [
       {
+        id: 'faq-why-use-a-case-guide-before-opening-the-configurator',
         question: { en: 'Why use a case guide before opening the configurator?', zh: '為什麼開啟配置器前要先看案例指南？' },
         answer: { en: 'A case guide helps non-technical stakeholders choose the right starting path before the detailed hardware options are selected.', zh: '案例指南協助非技術的利害關係人先選對起點，再進入詳細硬體選項。' }
       },
       {
+        id: 'faq-how-should-a-team-use-this-case-guide',
         question: { en: 'How should a team use this case guide?', zh: '團隊應該如何使用這份案例指南？' },
         answer: { en: 'Choose the closest workload and deployment scenario, open the linked configurator, and submit the selected hardware assumptions for technical and quote review.', zh: '選最接近的工作負載與部署情境，開啟連結的配置器。再提交已選硬體假設，供技術與報價審查。' }
       }
@@ -1157,3 +1222,51 @@ export const getRelatedConfiguratorSeoPages = (slug: string): ConfiguratorSeoPag
   (getConfiguratorSeoPage(slug)?.relatedSlugs || [])
     .map(getConfiguratorSeoPage)
     .filter((page): page is ConfiguratorSeoPage => Boolean(page));
+
+export interface ConfiguratorGuideSource {
+  id: string;
+  title: { zh: string; en: string };
+  description: { zh: string; en: string };
+  href: string;
+  hrefZh?: string;
+}
+
+const GUIDE_SOURCES: ConfiguratorGuideSource[] = [
+  ...cominoReference.documents.map(document => ({
+    id: document.id === 'server-datasheet' ? 'server' : document.id,
+    title: document.title,
+    description: document.description,
+    href: document.href,
+    hrefZh: document.readerHrefZh.replace(/\.html$/, '').toLowerCase()
+  })),
+  {
+    id: 'h200',
+    title: { zh: 'NVIDIA H200 原廠規格', en: 'NVIDIA H200 official specifications' },
+    description: { zh: '查閱 H200 SXM 與 NVL 的記憶體、功耗、外型及互連規格，確認報價中的 GPU 版本。', en: 'Check H200 SXM and NVL memory, power, form factor and interconnect specifications against the GPU version in the quote.' },
+    href: 'https://www.nvidia.com/en-us/data-center/h200/'
+  },
+  {
+    id: 'rtx',
+    title: { zh: 'NVIDIA RTX PRO 6000 Blackwell 原廠規格', en: 'NVIDIA RTX PRO 6000 Blackwell official specifications' },
+    description: { zh: '對照 Workstation、Max-Q 與 Server Edition 的差異，確認選定版本及部署條件。', en: 'Compare Workstation, Max-Q and Server Edition variants to confirm the selected version and deployment requirements.' },
+    href: 'https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000-family/'
+  },
+  {
+    id: 'supermicro',
+    title: { zh: 'Supermicro GPU 伺服器原廠產品目錄', en: 'Supermicro official GPU server portfolio' },
+    description: { zh: '先確認具體伺服器型號與平台，再對照供電、GPU 支援、散熱與擴充需求。', en: 'Identify the exact server model and platform before comparing power, GPU support, cooling and expansion requirements.' },
+    href: 'https://www.supermicro.com/en/products/gpu'
+  }
+];
+
+export const getConfiguratorGuideSources = (slug?: string): ConfiguratorGuideSource[] => {
+  const page = getConfiguratorSeoPage(slug);
+  return (page?.sourceIds || []).map(id => {
+    const source = GUIDE_SOURCES.find(item => item.id === id);
+    if (!source) throw new Error('Unknown guide source: ' + id);
+    return source;
+  });
+};
+
+export const getConfiguratorGuideSourceHref = (source: ConfiguratorGuideSource, isEnglish: boolean): string =>
+  new URL(isEnglish ? source.href : source.hrefZh || source.href, SITE_ORIGIN).href;
