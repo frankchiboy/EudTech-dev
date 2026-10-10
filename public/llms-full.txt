@@ -277,6 +277,177 @@ No. A datasheet is technical information, not a conformity declaration or test r
 - Answer URL: https://eudaemonia.tech/en/solutions/ai-infrastructure/#procurement-document-scope
 - Cited document: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3.pdf#page=1
 
+## 服務問答 / Service questions
+
+以下為 EudTech 的服務與技術範圍說明，與各服務頁的可見問答一致；正式範圍、授權與費用仍依個案確認。
+These EudTech explanations match the visible service-page answers. Confirm formal scope, licensing, and costs for each engagement.
+
+### AWS 雲端採購問答 / AWS cloud procurement questions
+
+#### 機關採購 AWS，規格至少要寫哪些交付？
+
+至少應寫明帳戶與 payer 歸屬、Organizations／IAM／MFA／KMS 管理、部署區域、架構與成本假設、RTO／RPO、備份還原測試、CloudTrail 與事件通報、責任矩陣、移交及終止時的匯出與刪除。各項內容依本案資料分級與服務範圍確認。
+答案連結: https://eudaemonia.tech/solutions/aws/#aws-procurement-scope
+
+#### What should an AWS procurement scope deliver?
+
+At minimum, define account and payer ownership, Organizations/IAM/MFA/KMS administration, regions, architecture and cost assumptions, RTO/RPO, restore tests, CloudTrail and incident notification, the responsibility matrix, handover, and export/deletion at exit. Confirm each item for the project’s data classification and service scope.
+Answer URL: https://eudaemonia.tech/en/solutions/aws/#aws-procurement-scope
+
+#### AWS 用量費與導入服務如何分開？
+
+正式報價應分列 AWS 用量、AWS Support、導入或移轉服務、維運服務、稅與匯率假設；Savings Plans 或 Reserved Instances 等承諾用量也要另列期間、付款及使用假設。
+答案連結: https://eudaemonia.tech/solutions/aws/#aws-cost-breakdown
+
+#### How are AWS usage and implementation services separated?
+
+A formal quote should separate AWS consumption, AWS Support, implementation or migration, managed support, tax, and exchange-rate assumptions. Any Savings Plans or Reserved Instances commitment should state its term, payment, and utilization assumptions separately.
+Answer URL: https://eudaemonia.tech/en/solutions/aws/#aws-cost-breakdown
+
+#### 帳戶、root 與加密金鑰最後由誰掌握？
+
+應在建置前以書面確認客戶、EudTech 與其他供應商的角色。機關通常需要可移交的帳戶、身分、日誌與金鑰管理安排；任何代管權限都應有範圍、期限、稽核與撤銷方式。
+答案連結: https://eudaemonia.tech/solutions/aws/#aws-account-ownership
+
+#### Who controls the account, root user, and encryption keys?
+
+Confirm customer, EudTech, and other supplier roles in writing before deployment. A public-sector customer normally needs transferable arrangements for accounts, identities, logs, and key management. Any delegated administration should have scope, duration, audit, and revocation terms.
+Answer URL: https://eudaemonia.tech/en/solutions/aws/#aws-account-ownership
+
+#### 備份存在，就代表災難復原可驗收嗎？
+
+不代表。要先定義 RTO、RPO、備份範圍、保存與跨區策略，再用還原演練證明資料與服務能在約定時間內恢復；測試結果、例外與責任人都應留下紀錄。
+答案連結: https://eudaemonia.tech/solutions/aws/#aws-disaster-recovery
+
+#### Does having backups prove disaster recovery?
+
+No. Define RTO, RPO, backup scope, retention, and cross-region strategy, then use restore exercises to show that data and services recover within the agreed target. Record results, exceptions, and owners.
+Answer URL: https://eudaemonia.tech/en/solutions/aws/#aws-disaster-recovery
+
+#### EudTech 是否自稱 AWS reseller 或 APN 夥伴？
+
+本頁不以未公開驗證的夥伴資格作為採購依據。EudTech 的實際商業角色、計費方、帳戶安排、可供服務及支援範圍，均在正式報價與合約中逐項確認。
+答案連結: https://eudaemonia.tech/solutions/aws/#aws-commercial-role
+
+#### Does EudTech claim AWS reseller or APN partner status?
+
+This page does not rely on unverified public partner status. EudTech’s commercial role, billing party, account arrangement, available services, and support scope are confirmed item by item in the formal quote and contract.
+Answer URL: https://eudaemonia.tech/en/solutions/aws/#aws-commercial-role
+
+### PQC 遷移問答 / PQC migration questions
+
+#### 現在就需要把所有系統換掉嗎？
+
+先做資產盤點、需求排序與供應商確認，再分階段測試與替換。每次變更都需要相容性、效能與回復驗證。
+答案連結: https://eudaemonia.tech/solutions/pqc/#pqc-migration-start
+
+#### Do we need to replace every system now?
+
+Begin with inventory, prioritization, and vendor checks. Stage replacements with compatibility, performance, and rollback validation.
+Answer URL: https://eudaemonia.tech/en/solutions/pqc/#pqc-migration-start
+
+#### 網站啟用 PQC，就代表全公司完成了嗎？
+
+還要逐段檢查邊緣到來源站、內部服務、金鑰管理及簽章流程。TLS 金鑰建立支援 PQC，不表示憑證簽章也已遷移。
+答案連結: https://eudaemonia.tech/solutions/pqc/#pqc-migration-coverage
+
+#### Does enabling PQC on a website complete the migration?
+
+Check edge-to-origin traffic, internal services, key management, and signing separately. PQC key establishment does not imply migrated certificate signatures.
+Answer URL: https://eudaemonia.tech/en/solutions/pqc/#pqc-migration-coverage
+
+#### 採用 NIST 演算法，就等於通過認證嗎？
+
+演算法標準、實作正確性與密碼模組驗證是不同層次，需核對產品、版本及驗證範圍。
+答案連結: https://eudaemonia.tech/solutions/pqc/#pqc-certification
+
+#### Does using a NIST algorithm mean certification?
+
+Algorithm standards, implementation correctness, and cryptographic module validation are separate. Check the product, version, and validation scope.
+Answer URL: https://eudaemonia.tech/en/solutions/pqc/#pqc-certification
+
+#### PQC 與隱寫術、QKD 有什麼差別？
+
+PQC 使用傳統電腦可執行的密碼演算法抵抗已知量子攻擊；隱寫術關注資訊存在的隱藏；QKD 需要量子通道及設備。本服務聚焦 PQC 遷移。
+答案連結: https://eudaemonia.tech/solutions/pqc/#pqc-qkd-steganography
+
+#### How does PQC differ from steganography and QKD?
+
+PQC uses algorithms on conventional computers to resist known quantum attacks. Steganography hides the presence of information; QKD requires quantum channels and equipment. This service focuses on PQC migration.
+Answer URL: https://eudaemonia.tech/en/solutions/pqc/#pqc-qkd-steganography
+
+#### 如何確認費用與時程？
+
+先確認資產數量、應用範圍、測試環境與供應商支援，再分別約定評估、試點、遷移與維運範圍。
+答案連結: https://eudaemonia.tech/solutions/pqc/#pqc-scope-and-cost
+
+#### How are costs and timelines confirmed?
+
+Confirm assets, applications, test environments, and vendor support, then agree the assessment, pilot, migration, and support scope.
+Answer URL: https://eudaemonia.tech/en/solutions/pqc/#pqc-scope-and-cost
+
+### Cyabra 社群情報問答 / Cyabra social intelligence questions
+
+#### 與一般社群聆聽工具有什麼不同？
+
+一般社群聆聽協助掌握提及量與情緒。Cyabra 進一步分析參與帳號、行為與協同關係，讓團隊理解聲量的真實性，以及背後是否存在有組織的操作。
+答案連結: https://eudaemonia.tech/solutions/social-intelligence/#cyabra-social-listening
+
+#### How does Cyabra complement social listening?
+
+Social listening measures mentions and sentiment. Cyabra adds profile authenticity, behavior, and coordination analysis to explain who is driving that activity.
+Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-social-listening
+
+#### 分析的是哪些資料？
+
+依原廠資料方法教材，分析以公開的社群與新聞資料為基礎，並依來源、議題與掃描設定採集及抽樣。不是私訊讀取服務，也不代表涵蓋每一則網路內容。
+答案連結: https://eudaemonia.tech/solutions/social-intelligence/#cyabra-data-scope
+
+#### What data does it analyze?
+
+The vendor methodology describes collection and sampling of publicly available social and news data according to the source, topic, and scan settings. It does not imply access to private messages or exhaustive coverage.
+Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-data-scope
+
+#### 可以分析中文與跨國議題嗎？
+
+原廠提供多語言敘事與情緒分析；技術教材也列有中文。實際平台、語言、歷史期間及資料量，會依需求與授權範圍確認。
+答案連結: https://eudaemonia.tech/solutions/social-intelligence/#cyabra-language-coverage
+
+#### Can it investigate multilingual topics?
+
+Cyabra provides multilingual narrative and sentiment analysis, and its technical materials include Chinese. Platform, language, history, and volume requirements are confirmed for each scope and license.
+Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-language-coverage
+
+#### AI 判斷可以直接當作事實嗎？
+
+應連同判斷理由、原始來源與情境一起檢視。團隊可使用系統整理的證據安排調查與回應；帳號分類、位置線索與媒體判讀仍需要人員確認。
+答案連結: https://eudaemonia.tech/solutions/social-intelligence/#cyabra-human-review
+
+#### Should an AI finding be treated as a confirmed fact?
+
+Review findings alongside their reasons, sources, and context. Profile classifications, location indicators, and media assessments support investigation and require human review.
+Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-human-review
+
+#### 發現冒名或違規內容，會自動下架嗎？
+
+Cyabra 可整理證據、對照平台政策並支援減害工作。內容是否下架由各社群平台依政策審查決定。
+答案連結: https://eudaemonia.tech/solutions/social-intelligence/#cyabra-content-removal
+
+#### Does detection automatically remove content?
+
+Cyabra supports evidence preparation, policy mapping, and mitigation workflows. Removal decisions remain with each social platform.
+Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-content-removal
+
+#### EudTech 如何協助開始？
+
+先從一個品牌、人物或公共議題開始，確認監測問題、平台與語言、分析期間、交付格式及決策負責人，再安排原廠展示、授權評估與操作培訓。
+答案連結: https://eudaemonia.tech/solutions/social-intelligence/#cyabra-getting-started
+
+#### How does EudTech help a team get started?
+
+Start with a brand, person, or public issue. Define the question, sources, languages, time range, deliverables, and decision owner, then plan a demo, licensing assessment, and training.
+Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-getting-started
+
 ## Site Information Routes
 
 ### PQC 後量子密碼導入與專家顧問

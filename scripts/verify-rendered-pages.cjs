@@ -4,6 +4,8 @@ const path = require('node:path');
 const { englishRoutes } = require('./seo-public-pages.cjs');
 const procurement = require('../src/data/cominoProcurement.json');
 const discoveryDates = require('../public/discovery-lastmod.json');
+const serviceQuestions = require('../src/data/serviceQuestions.json');
+const { checkPage, checkFile } = require('./ai-discovery-checks.cjs');
 const { CONFIGURATOR_SEO_PAGES, getRelatedConfiguratorSeoPages, getConfiguratorGuideSources, getConfiguratorGuideSourceHref } = require('./read-configurator-seo-pages.cjs').readConfiguratorSeoPages();
 const dist = path.resolve(__dirname, '../dist');
 const text = value => value.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
@@ -98,6 +100,14 @@ for (const p of ['index.html', 'en/index.html']) {
 }
 const inboundGuides = new Set();
 const discoveryText = fs.readFileSync(path.join(dist, 'llms-full.txt'), 'utf8');
+let serviceAnswerPermalinks = 0;
+for (const service of serviceQuestions.services) for (const en of [false, true]) {
+  const pathname = `${en ? '/en' : ''}${service.path}`;
+  const html = fs.readFileSync(path.join(dist, pathname, 'index.html'), 'utf8');
+  assert.deepEqual(checkPage({ status: 200, contentType: 'text/html', body: html, userAgent: 'build' }, pathname), [], `Service answer parity: ${pathname}`);
+  serviceAnswerPermalinks += service.questions.length;
+}
+assert.deepEqual(checkFile({ status: 200, contentType: 'text/plain', body: discoveryText }, '/llms-full.txt'), [], 'Service discovery answers must match visible pages');
 let answerPermalinks = 0;
 for (const page of CONFIGURATOR_SEO_PAGES) {
   assert.equal(new Set(page.relatedSlugs).size, 4, `Four distinct related guides required: ${page.slug}`);
@@ -170,4 +180,4 @@ for (const p of ['contact/index.html', 'en/contact/index.html']) {
   assert.equal(contact?.url, `https://eudaemonia.tech/${p.replace('index.html', '')}`, `Contact schema must match the page language: ${p}`);
   assert.equal(contact?.mainEntity?.['@id'], organization['@id'], `Contact page must identify the same organization: ${p}`);
 }
-console.log(JSON.stringify({ ok: true, renderedPages: rendered, liveConfiguratorFallbacks: dynamic, visibleFaqParity: true, guideSources: CONFIGURATOR_SEO_PAGES.length * 2, answerPermalinks, procurementCitations: procurement.faqs.length * 2 }));
+console.log(JSON.stringify({ ok: true, renderedPages: rendered, liveConfiguratorFallbacks: dynamic, visibleFaqParity: true, guideSources: CONFIGURATOR_SEO_PAGES.length * 2, answerPermalinks, serviceAnswerPermalinks, procurementCitations: procurement.faqs.length * 2 }));

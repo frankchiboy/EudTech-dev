@@ -1,5 +1,6 @@
 const organization = require('../src/data/organization.json');
 const authority = require('../src/data/authoritySources.json');
+const serviceQuestions = require('../src/data/serviceQuestions.json');
 const root = 'https://eudaemonia.tech';
 const attrs = tag => Object.fromEntries([...tag.matchAll(/([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)].map(m => [m[1].toLowerCase(), m[2] ?? m[3]]));
 const tags = (html, name) => [...html.matchAll(new RegExp('<' + name + '\\b[^>]*>', 'gi'))].map(m => attrs(m[0]));
@@ -68,6 +69,25 @@ function checkPage(result, pathname, { allowPreviewNoindex = false } = {}) {
     for (const value of [organization.taxID, organization.foundingDate]) if (!textOnly(main).includes(value)) fail('missing company fact ' + value);
     for (const source of authority.sources) if (!main.includes(source.description[en ? 'en' : 'zh'])) fail('missing source scope ' + source.id);
   }
+  const service = serviceQuestions.services.find(item => item.path === zh);
+  if (service) {
+    const language = en ? 'en' : 'zh';
+    const faq = schemas.find(item => item['@type'] === 'FAQPage' && item['@id'] === `${expected}#${service.sectionId}`);
+    if (faq?.inLanguage !== (en ? 'en' : 'zh-TW') || faq?.mainEntity?.length !== service.questions.length) fail('incomplete localized service questions');
+    if (!schemas.some(item => item['@type'] === 'Service' && item['@id'] === `${expected}#service`)) fail('missing linked service identity');
+    const details = tags(main, 'details');
+    const links = tags(main, 'a');
+    for (const item of service.questions) {
+      if (details.filter(detail => detail.id === item.id).length !== 1) fail('missing or duplicate answer anchor ' + item.id);
+      if (!links.some(link => link.href === `#${item.id}`)) fail('missing visible answer permalink ' + item.id);
+      const question = faq?.mainEntity?.find(q => q['@id'] === `${expected}#${item.id}`);
+      if (question?.url !== `${expected}#${item.id}` || question?.name !== item.question[language]) fail('incorrect service question ' + item.id);
+      if (question?.acceptedAnswer?.url !== `${expected}#${item.id}` || question?.acceptedAnswer?.text !== item.answer[language] || question?.acceptedAnswer?.author?.['@id'] !== organization['@id']) fail('inconsistent service answer ' + item.id);
+      const block = main.match(new RegExp(`<details[^>]+id="${item.id}"[^>]*>([\\s\\S]*?)<\\/details>`))?.[1] || '';
+      const decoded = textOnly(block).replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+      if (!decoded.includes(item.question[language]) || !decoded.includes(item.answer[language])) fail('answer not present in initial HTML ' + item.id);
+    }
+  }
   return errors;
 }
 function checkFile(result, pathname) {
@@ -86,6 +106,12 @@ function checkFile(result, pathname) {
   } else if (pathname.endsWith('.xml')) {
     if (!/xml/i.test(result.contentType) || !/<(?:sitemapindex|urlset|rss)\b/.test(body)) fail('invalid XML discovery response');
   } else if (!/^text\/(?:plain|markdown)/i.test(result.contentType) || body.trim().length < 50) fail('missing text discovery content');
+  if (pathname === '/llms-full.txt') for (const service of serviceQuestions.services) for (const question of service.questions) {
+    for (const language of ['zh', 'en']) {
+      const url = `${root}${language === 'en' ? '/en' : ''}${service.path}#${question.id}`;
+      if (!body.includes(url) || !body.includes(question.question[language]) || !body.includes(question.answer[language])) fail('missing localized service answer ' + language + '/' + question.id);
+    }
+  }
   return errors;
 }
 module.exports = { robotsAllows, checkPage, checkFile, textOnly };
