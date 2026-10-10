@@ -940,7 +940,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
   - 適合需要同時審查 GPU 記憶體、電力與部署密度的推論規劃。 / Fits inference planning where GPU memory, power, and deployment density must be reviewed together.
   - 配置器把 GPU、CPU、記憶體、儲存與電源選項保留在同一份配置。 / The configurator keeps GPU, CPU, memory, storage, and power selections in one place.
   - 詢價內容附可分享的配置連結，方便採購與技術審查。 / The quote request includes a shareable configuration link for procurement and technical review.
-  - 價格依最終 GPU 數量、平台、記憶體、儲存、電力、散熱與交付需求確認。 / Price depends on the final GPU count, platform, memory, storage, power, cooling, and delivery requirements.
+  - H200 目前無貨，補貨時間未定；恢復供應並確認配置後，才能評估報價。 / H200 is currently unavailable with no restock ETA. Pricing can be assessed after supply resumes and the configuration is confirmed.
 - Specification cues:
   - GPU 重點 / GPU focus: NVIDIA H200 141GB 選項 / NVIDIA H200 141GB options
   - 機構型態 / Form factor: 可上架 Grando 液冷系統 / Rackable liquid-cooled Grando systems
@@ -959,7 +959,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
     Answer URL (zh-TW): https://eudaemonia.tech/solutions/nvidia-h200-server/#faq-is-h200-suitable-for-planning-inference-on-newer-ai-models
     Answer URL (en): https://eudaemonia.tech/en/solutions/nvidia-h200-server/#faq-is-h200-suitable-for-planning-inference-on-newer-ai-models
   - Q: 如何確認 H200 伺服器價格？ / How is H200 server pricing determined?
-    A: EudTech 依送出的配置確認價格，不公布單一固定金額。價格受 GPU 數量、CPU 平台、記憶體與 NVMe 儲存影響。電力、散熱、網路、交期與供應條件也會改變最終報價。 / EudTech confirms the price from the submitted configuration and does not publish one fixed amount. GPU count, CPU platform, memory, NVMe storage, power, cooling, networking, delivery, and supply conditions all affect the final quote.
+    A: Comino H200 目前無貨，補貨時間未定。送出配置僅記錄需求，不代表已確認報價或交期。恢復供應後，須由 EudTech 與 Comino 另以書面確認可報價的 GPU 數量、CPU 平台、記憶體、儲存、電力、散熱、網路及交付條件。 / Comino H200 is currently unavailable with no restock ETA. A submitted configuration records requirements only and does not confirm a quote or delivery date. Once supply resumes, EudTech and Comino must confirm the quotable GPU count, CPU platform, memory, storage, power, cooling, networking and delivery terms in writing.
     Answer URL (zh-TW): https://eudaemonia.tech/solutions/nvidia-h200-server/#faq-how-is-h200-server-pricing-determined
     Answer URL (en): https://eudaemonia.tech/en/solutions/nvidia-h200-server/#faq-how-is-h200-server-pricing-determined
   - Q: NVIDIA H200 伺服器供貨狀態如何確認？ / How is NVIDIA H200 server availability confirmed?
