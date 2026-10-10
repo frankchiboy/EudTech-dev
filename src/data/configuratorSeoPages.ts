@@ -115,8 +115,8 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
         zh: '詢價內容附可分享的配置連結，方便採購與技術審查。'
       },
       {
-        en: 'Price depends on the final GPU count, platform, memory, storage, power, cooling, and delivery requirements.',
-        zh: '價格依最終 GPU 數量、平台、記憶體、儲存、電力、散熱與交付需求確認。'
+        en: 'H200 is currently unavailable with no restock ETA. Pricing can be assessed after supply resumes and the configuration is confirmed.',
+        zh: 'H200 目前無貨，補貨時間未定；恢復供應並確認配置後，才能評估報價。'
       }
     ],
     specs: [
@@ -143,12 +143,12 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
       {
         id: 'faq-how-is-h200-server-pricing-determined',
         question: { en: 'How is H200 server pricing determined?', zh: '如何確認 H200 伺服器價格？' },
-        answer: { en: 'EudTech confirms the price from the submitted configuration and does not publish one fixed amount. GPU count, CPU platform, memory, NVMe storage, power, cooling, networking, delivery, and supply conditions all affect the final quote.', zh: 'EudTech 依送出的配置確認價格，不公布單一固定金額。價格受 GPU 數量、CPU 平台、記憶體與 NVMe 儲存影響。電力、散熱、網路、交期與供應條件也會改變最終報價。' }
+        answer: { en: 'Comino H200 is currently unavailable with no restock ETA. A submitted configuration records requirements only and does not confirm a quote or delivery date. Once supply resumes, EudTech and Comino must confirm the quotable GPU count, CPU platform, memory, storage, power, cooling, networking and delivery terms in writing.', zh: 'Comino H200 目前無貨，補貨時間未定。送出配置僅記錄需求，不代表已確認報價或交期。恢復供應後，須由 EudTech 與 Comino 另以書面確認可報價的 GPU 數量、CPU 平台、記憶體、儲存、電力、散熱、網路及交付條件。' }
       },
       {
         id: 'faq-how-is-nvidia-h200-server-availability-confirmed',
         question: { en: 'How is NVIDIA H200 server availability confirmed?', zh: 'NVIDIA H200 伺服器供貨狀態如何確認？' },
-        answer: { en: 'EudTech confirms availability and delivery after reviewing the submitted GPU count, platform, and delivery requirements. This page is not an in-stock commitment.', zh: 'EudTech 會在審查送出的 GPU 數量、平台與交付需求後，確認供貨與交期。本頁不代表現貨承諾。' }
+        answer: h200Availability.detail
       }
     ]
   },

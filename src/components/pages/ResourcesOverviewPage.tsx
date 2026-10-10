@@ -17,6 +17,7 @@ import { CONFIGURATOR_SEO_PAGES } from '../../data/configuratorSeoPages';
 import { VENDOR_EVIDENCE, vendorEvidenceHref } from '../../data/vendorEvidence';
 import cominoReference from '../../data/cominoProcurement.json';
 import { ActionLink, PageHero, PageShell, SourceLink, tx } from './SitePagePrimitives';
+import H200AvailabilityNotice from '../common/H200AvailabilityNotice';
 
 const FEATURED_RESOURCE_SLUGS = [
   'h200-vs-rtx-pro-6000',
@@ -143,6 +144,10 @@ const ResourcesOverviewPage: React.FC = () => {
           </>
         }
       />
+
+      <div className="mx-auto max-w-7xl px-6 pt-8 lg:px-8">
+        <H200AvailabilityNotice isEnglish={isEnglish} />
+      </div>
 
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

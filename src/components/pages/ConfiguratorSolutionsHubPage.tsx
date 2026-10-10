@@ -8,6 +8,8 @@ import {
   SITE_ORIGIN
 } from '../../data/configuratorSeoPages';
 import SEOHead from '../common/SEOHead';
+import H200AvailabilityNotice from '../common/H200AvailabilityNotice';
+import h200Availability from '../../data/h200Availability.json';
 import Footer from '../Footer';
 import { canonicalPageUrl } from '../../utils/seo/canonicalUrl';
 import { getConfiguratorSocialPreviewPath, getConfiguratorSocialPreviewUrl } from '../../utils/seo/socialPreview';
@@ -30,8 +32,8 @@ const buildStructuredData = (isEnglish: boolean) => {
   const pageUrl = canonicalPageUrl(`${SITE_ORIGIN}/solutions`);
   const name = isEnglish ? 'Configurator Solutions' : '配置器解決方案';
   const description = isEnglish
-    ? 'A central index of EudTech configurator entry points for GPU server quotes, NVIDIA H200 systems, RTX PRO 6000 workstations, RFQ checklists, and liquid-cooling AI server procurement.'
-    : 'EudTech 配置器入口索引，集中 GPU 伺服器報價、NVIDIA H200、RTX PRO 6000 工作站、RFQ 檢核表與液冷 AI 伺服器採購頁面。';
+    ? `EudTech entry points for GPU server specifications, supply enquiries and RFQ preparation. ${h200Availability.summary.en}`
+    : `EudTech GPU 伺服器規格、供貨查詢與 RFQ 準備入口。${h200Availability.summary.zh}`;
 
   return [
     {
@@ -86,8 +88,8 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
     ? 'GPU Server Quote and Configurator Solutions'
     : 'GPU 伺服器報價與配置器解決方案';
   const description = isEnglish
-    ? 'Open EudTech quote-ready configurator paths for NVIDIA H200 GPU servers, RTX PRO 6000 workstations, AI inference servers, RFQ checklists, and liquid-cooling procurement.'
-    : '開啟 EudTech 可用於報價的配置器入口，包含 NVIDIA H200 GPU 伺服器、RTX PRO 6000 工作站、AI 推論伺服器、RFQ 檢核表與液冷採購。';
+    ? `Review GPU server configurations, supply enquiries and RFQ checklists. ${h200Availability.summary.en}`
+    : `查看 GPU 伺服器配置、供貨查詢與 RFQ 檢核表。${h200Availability.summary.zh}`;
   const keywords = isEnglish
     ? 'GPU server quote, AI server quote, configurator solutions, NVIDIA H200 server, RTX PRO 6000 workstation, GPU server RFQ, liquid cooling AI server'
     : 'GPU 伺服器報價, AI 伺服器報價, 配置器解決方案, NVIDIA H200 伺服器, RTX PRO 6000 工作站, GPU 伺服器 RFQ, 液冷 AI 伺服器';
@@ -134,9 +136,10 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
               </h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-200">
                 {isEnglish
-                  ? 'Choose your buying intent first, then open the matching configurator. It keeps the GPU, CPU, memory, storage, power, and network choices that EudTech quotes from.'
-                  : '先依採購意圖選擇入口，再進入對應的配置器。配置會保留 GPU、CPU、記憶體、儲存、電源與網路選項，供 EudTech 回覆報價。'}
+                  ? 'Choose your requirements, then open the matching configurator. It records GPU, CPU, memory, storage, power and networking choices for EudTech to review alongside supply conditions.'
+                  : '先依需求選擇入口，再進入對應的配置器。配置會記錄 GPU、CPU、記憶體、儲存、電源與網路選項，供 EudTech 一併確認需求與供貨條件。'}
               </p>
+              <H200AvailabilityNotice isEnglish={isEnglish} />
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Link
                   to="/configurator/"
@@ -203,7 +206,7 @@ const ConfiguratorSolutionsHubPage: React.FC = () => {
             <dl className="grid gap-4 sm:grid-cols-2">
               {[
                 [isEnglish ? 'Need a quote' : '需要報價', isEnglish ? 'Start from the GPU server quote or AI server quote page when you need a formal quote.' : '需要 GPU 伺服器或 AI 伺服器的正式報價時，從報價頁開始。'],
-                [isEnglish ? 'GPU already chosen' : '已選定 GPU', isEnglish ? 'Go straight to the H200 or RTX PRO 6000 entry point when the GPU is already decided.' : '已鎖定 H200 或 RTX PRO 6000 時，直接進入產品入口。'],
+                [isEnglish ? 'GPU already chosen' : '已選定 GPU', isEnglish ? `Review the relevant GPU specification and supply enquiry page. ${h200Availability.summary.en}` : `查看對應 GPU 的規格與供貨查詢頁。${h200Availability.summary.zh}`],
                 [isEnglish ? 'Still comparing' : '仍在比較', isEnglish ? 'Read the H200 vs RTX PRO 6000 procurement comparison while the choice is still open.' : '還在 H200 與 RTX PRO 6000 之間取捨時，先看採購比較。'],
                 [isEnglish ? 'Preparing RFQ and deployment' : '準備 RFQ 與部署', isEnglish ? 'Use the RFQ checklist and liquid-cooling procurement guide when preparing documents or a deployment.' : '準備 RFQ 或規劃液冷部署時，使用檢核表與採購指南。']
               ].map(([term, detail]) => (
