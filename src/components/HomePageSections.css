@@ -5,7 +5,7 @@
 .home-eyebrow{color:var(--home-accent);font-size:13px;line-height:1.6;font-weight:700;letter-spacing:.13em;margin:0 0 12px}
 .home-section-intro h2,.home-partner-layout h2,.home-delivery h2,.home-next-step h2{font-size:clamp(26px,3vw,38px);line-height:1.35;font-weight:700;letter-spacing:-.035em;margin:0;text-wrap:balance}
 .home-section-intro>p:last-child,.home-muted{font-size:17px;line-height:1.85;color:var(--home-muted);margin-top:18px}
-.home-solution-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.home-solution-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .home-solution-card{min-width:0;overflow:hidden;border:1px solid var(--home-line);border-radius:20px;background:var(--home-card);display:flex;flex-direction:column;box-shadow:0 8px 28px #07203805}
 .home-service-media{height:200px;background:radial-gradient(ellipse at 50% 100%,#164457,#0a1b2c 75%);overflow:hidden}
 .home-experts{display:flex;height:100%;align-items:center;justify-content:center;gap:40px;padding:12px 20px}
@@ -59,5 +59,5 @@
 .home-step-visual{float:right;width:56px;height:56px;object-fit:contain;margin:0 0 10px 14px}
 .home-delivery h3{font-size:18px;font-weight:600;margin:12px 0 8px;line-height:1.5}
 .home-delivery li p{color:var(--home-muted);font-size:15px;line-height:1.8;margin:0}
-@media(max-width:1023px){.home-partner-layout{grid-template-columns:1fr;gap:25px}.home-partner-links{max-width:600px}.home-delivery-intro{display:block}.home-service-content{padding:24px}.home-next-step{padding:30px}}
+@media(max-width:1023px){.home-solution-grid{grid-template-columns:1fr}.home-partner-layout{grid-template-columns:1fr;gap:25px}.home-partner-links{max-width:600px}.home-delivery-intro{display:block}.home-service-content{padding:24px}.home-next-step{padding:30px}}
 @media(max-width:639px){.home-container{padding:0 20px}.home-overview{padding:52px 0}.home-section-intro{margin-bottom:26px}.home-section-intro>p:last-child{font-size:16px}.home-solution-grid{grid-template-columns:1fr;gap:20px}.home-service-media{height:184px}.home-experts{gap:20px;padding:12px}.home-experts img{width:118px;height:118px}.home-experts figcaption{font-size:12px}.home-service-content{padding:23px}.home-service-content h3{font-size:24px}.home-service-description{font-size:15px}.home-service-capabilities{font-size:12px}.home-next-step{display:block;padding:27px 24px}.home-next-actions{margin-top:22px}.home-partners{padding:46px 0 54px}.home-partner-layout h2,.home-delivery h2{font-size:25px}.home-partner-links{gap:12px}.home-partner-links>a>span:last-child{font-size:12px;padding:10px 7px}.home-delivery{margin-top:36px;padding-top:32px}.home-delivery ol{grid-template-columns:1fr;gap:24px;margin-top:22px}.home-delivery li{padding-left:35px;position:relative}.home-step-number{position:absolute;left:0;top:3px}.home-delivery h3{margin-top:0}}

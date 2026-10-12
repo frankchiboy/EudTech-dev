@@ -122,11 +122,11 @@ const homepageUrl = {
 const solutionHubUrl = {
   loc: pageUrl('/solutions'),
   title: 'AI 與數位服務解決方案總覽｜EudTech',
-  description: '從 PQC 遷移顧問、AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 四大導入路徑。',
+  description: '從 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
   priority: '0.93',
   source: {
     title: 'AI 與數位服務解決方案總覽｜EudTech',
-    description: 'EudTech 的 PQC 遷移顧問、AWS 雲端銷售、AI 運算基礎設施及 Cyabra 社群情報四大方案。',
+    description: 'EudTech 的 AWS 雲端銷售、AI 運算基礎設施及 Cyabra 社群情報三大方案。',
     solutionSlugs: CONFIGURATOR_SEO_PAGES.map((page) => page.slug)
   }
 };
@@ -195,7 +195,6 @@ function bodyFingerprint(loc) {
   const service = serviceQuestions.services.find(item => item.path === `${pathname}/`);
   const files = sourcePages[pathname] ? [sourcePages[pathname]] : [];
   if (service) files.push('src/components/pages/ServiceFaqList.tsx');
-  if (service?.id === 'pqc') files.push('src/components/pages/PqcAdvisoryPage.tsx', 'src/data/pqcAdvisory.ts');
   if (service?.id === 'cyabra') files.push('src/components/pages/CyabraExperiencePage.tsx', 'src/data/cyabraExperience.ts');
   if (pathname==='/contact') files.push('src/components/contact/ContactInfo.tsx','src/components/contact/OnlineMeetingBooking.tsx','src/data/siteArchitecture.ts','src/data/organization.json');
   if (pathname==='/about') files.push('src/data/authoritySources.json','src/data/organization.json');
@@ -517,7 +516,7 @@ Generated for AI assistants, search tools, and researchers that need a structure
 - Company: EudTech / Eudaemonia Technology
 - Region: Taiwan
 - Contact: quote@eudaemonia.tech
-- Services: PQC migration advisory, AWS cloud sales and implementation, Comino AI infrastructure, and Cyabra social intelligence.
+- Services: AWS cloud sales and implementation, Comino AI infrastructure, and Cyabra social intelligence.
 - Configurable items: GPU, CPU, RAM, OS drive, data drives, power supply, and networking.
 - Public pricing: not published. Availability, pricing, warranty and acceptance criteria require a confirmed quotation and BOM.
 

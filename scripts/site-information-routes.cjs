@@ -1,7 +1,6 @@
 const cominoReference = require('../src/data/cominoProcurement.json');
 
 const SITE_INFORMATION_ROUTES = [
-  { path: '/solutions/pqc', title: 'PQC 後量子密碼導入與專家顧問', description: '從密碼資產盤點到架構試點與遷移治理，認識 EudTech 專家團隊、學術背景與 ML-DSA 實作研究。', keywords: 'PQC, 後量子密碼, 密碼資產盤點, ML-DSA, ML-KEM, 遷移顧問', lead: '由研究背景支撐導入決策，規劃可審查的密碼資產盤點、試點驗證與分階段遷移。', sourceImage: '/vendor/pqc/hung-jr-shiu.png', imageAlt: 'Hung-Jr Shiu 密碼學研究專家肖像', priority: '0.85', changefreq: 'monthly', highlights: ['Chung-hao (Frank) Hsu 與 Hung-Jr Shiu 的研究專長與學術背景。', '密碼資產盤點、架構試點及遷移治理。', 'NIST 標準、供應商依賴與可驗證交付。'], specs: [{label: '服務', value: 'PQC 導入顧問'}, {label: '研究', value: '密碼學、FPGA 與 ML-DSA 實作'}, {label: '交付', value: '資產清冊、試點驗證與遷移路線圖'}], relatedLinks: ['/solutions', '/contact', '/about', '/solutions/ai-infrastructure'] },
   {
     path: '/products',
     title: '產品與品牌｜EudTech',
@@ -75,30 +74,30 @@ const SITE_INFORMATION_ROUTES = [
   {
     path: '/about',
     title: '關於 EudTech｜優達盟資訊科技',
-    description: '了解 EudTech PQC 遷移顧問、AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。',
-    keywords: '優達盟資訊科技, EudTech, PQC 遷移顧問, 後量子密碼, 雲端導入, AI 基礎設施, 社群情報',
-    lead: 'EudTech 協助企業、研究單位與公部門把 PQC 遷移、AWS 雲端服務、運算設備與情報工具導入實際工作流程。',
+    description: '了解 EudTech AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。',
+    keywords: '優達盟資訊科技, EudTech, 雲端導入, AI 基礎設施, 社群情報',
+    lead: 'EudTech 協助企業、研究單位與公部門把 AWS 雲端服務、運算設備與情報工具導入實際工作流程。',
     sourceImage: '/comino-facility-1.jpg',
     imageAlt: 'EudTech 公司能力與工作方式',
     priority: '0.65',
     changefreq: 'monthly',
-    highlights: ['PQC 密碼資產盤點、試點與遷移治理。', '系統整合與事件驅動流程。', '人員核准、權限與稽核治理。', '可操作、可量測、可擴大的交付方式。'],
-    specs: [{ label: '公司', value: '優達盟資訊科技有限公司' }, { label: '能力範圍', value: 'PQC 遷移顧問、AWS 雲端服務、運算基礎設施與社群情報' }, { label: '工作方法', value: '目標、證據、負責人與下一步明確化' }],
-    relatedLinks: ['/solutions', '/solutions/pqc', '/products', '/careers', '/contact', '/privacy']
+    highlights: ['系統整合與事件驅動流程。', '人員核准、權限與稽核治理。', '可操作、可量測、可擴大的交付方式。'],
+    specs: [{ label: '公司', value: '優達盟資訊科技有限公司' }, { label: '能力範圍', value: 'AWS 雲端服務、運算基礎設施與社群情報' }, { label: '工作方法', value: '目標、證據、負責人與下一步明確化' }],
+    relatedLinks: ['/solutions', '/products', '/careers', '/contact', '/privacy']
   },
   {
     path: '/contact',
     title: '聯絡 EudTech｜開始諮詢',
-    description: '選擇 PQC 遷移顧問、AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。',
-    keywords: 'EudTech 聯絡, PQC 遷移諮詢, AWS 雲端服務 諮詢, GPU 伺服器詢價, Cyabra 諮詢',
+    description: '選擇 AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。',
+    keywords: 'EudTech 聯絡, AWS 雲端服務 諮詢, GPU 伺服器詢價, Cyabra 諮詢',
     lead: '先選擇需求類型，再安排正確的顧問、配置或情報諮詢。',
     sourceImage: '/comino-facility-1.jpg',
     imageAlt: '聯絡 EudTech 開始 雲端導入或設備諮詢',
     priority: '0.75',
     changefreq: 'monthly',
-    highlights: ['PQC 密碼資產盤點、試點與遷移規劃。', 'AWS 雲端銷售與導入。', 'GPU 伺服器、工作站與液冷系統。', 'Cyabra 社群情報與品牌保護。'],
-    specs: [{ label: '聯絡信箱', value: 'quote@eudaemonia.tech' }, { label: '諮詢類型', value: 'PQC 遷移、AWS 雲端服務、AI 運算與社群情報' }, { label: '會議方式', value: 'Microsoft Bookings 線上預約' }],
-    relatedLinks: ['/solutions', '/solutions/pqc', '/products', '/configurator', '/about']
+    highlights: ['AWS 雲端銷售與導入。', 'GPU 伺服器、工作站與液冷系統。', 'Cyabra 社群情報與品牌保護。'],
+    specs: [{ label: '聯絡信箱', value: 'quote@eudaemonia.tech' }, { label: '諮詢類型', value: 'AWS 雲端服務、AI 運算與社群情報' }, { label: '會議方式', value: 'Microsoft Bookings 線上預約' }],
+    relatedLinks: ['/solutions', '/products', '/configurator', '/about']
   },
   {
     path: '/privacy',

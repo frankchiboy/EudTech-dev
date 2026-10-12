@@ -59,7 +59,7 @@ for (const route of englishRoutes()) for (const en of [false, true]) {
   }
   rendered++;
 }
-assert.equal(rendered, 72);
+assert.equal(rendered, 70);
 assert.equal(dynamic, 24);
 assert.ok(!fs.existsSync(path.join(dist, 'entry-server.js')), 'Server code must not be published');
 assert.ok(!fs.existsSync(path.join(dist, '.vite/manifest.json')), 'Build manifest must stay outside the published directory');
@@ -90,14 +90,16 @@ for (const p of ['solutions/ai-infrastructure/index.html', 'en/solutions/ai-infr
     }
   }
 }
-for (const p of ['solutions/pqc/index.html', 'en/solutions/pqc/index.html']) {
-  const html = fs.readFileSync(path.join(dist, p), 'utf8');
-  assert.match(html, /<link[^>]+rel="stylesheet"[^>]+href="\/assets\/PqcAdvisoryPage-[^"]+\.css"/, `PQC first-paint styles missing: ${p}`);
-  assert.ok(html.includes('Chung-hao (Frank) Hsu') && html.includes('Hung-Jr Shiu'), `PQC expert credentials must render without JavaScript: ${p}`);
-}
 for (const p of ['index.html', 'en/index.html']) {
   const html = fs.readFileSync(path.join(dist, p), 'utf8');
   assert.ok(html.includes('fetchPriority="high"') && html.includes('960w,') && html.includes('2560w'), `Responsive priority hero missing: ${p}`);
+}
+for (const prefix of ['', 'en/']) {
+  assert.ok(!fs.existsSync(path.join(dist, prefix, 'solutions/pqc/index.html')), 'Retired service route must not be generated');
+  for (const p of ['index.html', 'solutions/index.html', 'about/index.html', 'contact/index.html']) {
+    const html = fs.readFileSync(path.join(dist, prefix, p), 'utf8');
+    assert.ok(!/\bPQC\b|後量子|post-quantum/i.test(html), `Retired service remains in ${prefix}${p}`);
+  }
 }
 const inboundGuides = new Set();
 const discoveryText = fs.readFileSync(path.join(dist, 'llms-full.txt'), 'utf8');

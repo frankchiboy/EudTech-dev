@@ -3,22 +3,21 @@
 依 Comino 2026-10-08 供貨回覆，目前沒有 H200 GPU，亦無法預估恢復供應時間。本站 H200 規格、文件與配置入口僅供技術評估及需求登記，不代表現貨、可接單或確定交期。供貨恢復、可報價配置及交付時程，須另經原廠與 EudTech 書面確認。
 According to Comino’s supply update dated 2026-10-08, H200 GPUs are unavailable and there is no forecast for availability. H200 specifications, documents and configurator entries on this site are for technical evaluation and recording requirements only; they do not indicate stock, order acceptance or a confirmed delivery date. Resumed supply, quotable configurations and delivery schedules require separate written confirmation from Comino and EudTech.
 
-EudTech 提供 PQC 密碼遷移顧問、AWS 雲端服務、Comino 液冷 GPU 系統與 Cyabra 社群情報，從需求評估到採購與導入規劃。
-Explore EudTech PQC migration, AWS cloud, Comino liquid-cooled GPU systems and Cyabra social intelligence for procurement and deployment planning.
+EudTech 提供 AWS 雲端服務、Comino 液冷 GPU 系統與 Cyabra 社群情報，從需求評估到採購與導入規劃。
+Explore EudTech AWS cloud, Comino liquid-cooled GPU systems and Cyabra social intelligence for procurement and deployment planning.
 
 ## 繁體中文頁面 / Traditional Chinese pages
 
-- [PQC、AWS 雲端、GPU 運算與社群情報｜EudTech](https://eudaemonia.tech/): EudTech 提供 PQC 密碼遷移顧問、AWS 雲端服務、Comino 液冷 GPU 系統與 Cyabra 社群情報，從需求評估到採購與導入規劃。
+- [AWS 雲端、GPU 運算與社群情報｜EudTech](https://eudaemonia.tech/): EudTech 提供 AWS 雲端服務、Comino 液冷 GPU 系統與 Cyabra 社群情報，從需求評估到採購與導入規劃。
 - [Comino Grando GPU 伺服器報價配置器](https://eudaemonia.tech/configurator/): 配置 Comino Grando GPU 伺服器、RTX PRO 6000 工作站、NVIDIA H200 系統、儲存、電源與網路，並登記需求。Comino H200 目前無貨，補貨時間未定。
-- [AI 與數位服務解決方案總覽｜EudTech](https://eudaemonia.tech/solutions/): 從 PQC 遷移顧問、AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 四大導入路徑。
+- [AI 與數位服務解決方案總覽｜EudTech](https://eudaemonia.tech/solutions/): 從 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。
 - [企業 AWS 雲端銷售與導入](https://eudaemonia.tech/solutions/aws/): 協助企業規劃 AWS 運算、儲存、資料庫與生成式 AI，整合需求評估、採購報價、導入與維運範圍。
-- [PQC 後量子密碼導入與專家顧問](https://eudaemonia.tech/solutions/pqc/): 從密碼資產盤點到架構試點與遷移治理，認識 EudTech 專家團隊、學術背景與 ML-DSA 實作研究。
 - [產品與品牌｜EudTech](https://eudaemonia.tech/products/): 瀏覽 AWS 雲端銷售服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。
 - [GPU 伺服器選型與採購｜EudTech](https://eudaemonia.tech/resources/): 依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。
 - [Comino 液冷 GPU 伺服器、AI 工作站與機關採購](https://eudaemonia.tech/solutions/ai-infrastructure/): 從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。
 - [社群情報與品牌保護｜EudTech](https://eudaemonia.tech/solutions/social-intelligence/): EudTech 以 Cyabra 協助企業與公部門分析假帳號、協調式社群行為、敘事擴散及品牌風險。
-- [關於 EudTech｜優達盟資訊科技](https://eudaemonia.tech/about/): 了解 EudTech PQC 遷移顧問、AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。
-- [聯絡 EudTech｜開始諮詢](https://eudaemonia.tech/contact/): 選擇 PQC 遷移顧問、AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。
+- [關於 EudTech｜優達盟資訊科技](https://eudaemonia.tech/about/): 了解 EudTech AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。
+- [聯絡 EudTech｜開始諮詢](https://eudaemonia.tech/contact/): 選擇 AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。
 - [隱私與資料使用｜EudTech](https://eudaemonia.tech/privacy/): EudTech 說明詢價與聯絡資料、客戶來源追蹤、必要識別碼、資料保存及資料請求方式。
 - [INTEGRATION KIT 8x H200 配置器](https://eudaemonia.tech/configurator/27/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 配置 INTEGRATION KIT 8x H200，保留 NVIDIA H200 141GB GPU 與 AMD 雙 EPYC 平台假設，供 EudTech 追蹤正式報價。
 - [INTEGRATION KIT 8x PRO 6000 配置器](https://eudaemonia.tech/configurator/36/): 配置 INTEGRATION KIT 8x PRO 6000，保留 NVIDIA RTX PRO 6000 96GB GPU 與 AMD 雙 EPYC 平台假設供報價審查。
@@ -60,18 +59,17 @@ Explore EudTech PQC migration, AWS cloud, Comino liquid-cooled GPU systems and C
 ## English pages
 
 - [Careers - Join Our Team](https://eudaemonia.tech/en/careers/): Join EudTech and be part of the future of AI technology. Explore our openings, responsibilities, requirements and application process.
-- [PQC, AWS Cloud, GPU Systems & Social Intelligence](https://eudaemonia.tech/en/): Explore EudTech PQC migration, AWS cloud, Comino liquid-cooled GPU systems and Cyabra social intelligence for procurement and deployment planning.
-- [AI & Digital Solutions](https://eudaemonia.tech/en/solutions/): Choose among EudTech's four solution lines: PQC migration advisory, AWS cloud sales, GPU infrastructure and Cyabra social intelligence.
+- [AWS Cloud, GPU Systems & Social Intelligence](https://eudaemonia.tech/en/): Explore EudTech AWS cloud, Comino liquid-cooled GPU systems and Cyabra social intelligence for procurement and deployment planning.
+- [AI & Digital Solutions](https://eudaemonia.tech/en/solutions/): Choose among EudTech's three solution lines: AWS cloud sales, GPU infrastructure and Cyabra social intelligence.
 - [Comino Liquid-Cooled GPU Servers & Workstations](https://eudaemonia.tech/en/solutions/ai-infrastructure/): Plan Comino GRANDO GPU servers and workstations in Taiwan, including workload sizing, power, cooling, manufacturer documents and procurement evidence.
 - [Cyabra Social Intelligence & Brand Protection](https://eudaemonia.tech/en/solutions/social-intelligence/): EudTech uses Cyabra to help communications, security and public-sector teams analyse inauthentic profiles, coordinated activity, narratives and brand risk.
 - [Products & Brands](https://eudaemonia.tech/en/products/): Explore AWS cloud sales services, Comino liquid-cooled GPU workstations and servers, and Cyabra social intelligence.
 - [GPU Server Selection & Procurement Resources](https://eudaemonia.tech/en/resources/): Compare GPU server and workstation requirements, plan power and cooling, prepare an RFQ and review procurement documents with EudTech.
-- [About Eudaemonia Technology](https://eudaemonia.tech/en/about/): EudTech helps enterprises, researchers and public institutions plan PQC migration, AWS cloud, AI infrastructure and social intelligence delivery, with verifiable company and manufacturer sources.
-- [Contact EudTech](https://eudaemonia.tech/en/contact/): Discuss a PQC migration, AWS cloud service, GPU configuration or social intelligence need with EudTech. Start with your environment and intended outcome.
+- [About Eudaemonia Technology](https://eudaemonia.tech/en/about/): EudTech helps enterprises, researchers and public institutions plan AWS cloud, AI infrastructure and social intelligence delivery, with verifiable company and manufacturer sources.
+- [Contact EudTech](https://eudaemonia.tech/en/contact/): Discuss an AWS cloud service, GPU configuration or social intelligence need with EudTech. Start with your environment and intended outcome.
 - [Privacy & Data Use](https://eudaemonia.tech/en/privacy/): Learn how EudTech handles contact and quote data, customer-source attribution, retention, service providers and data requests.
 - [Comino GRANDO GPU Server Configurator](https://eudaemonia.tech/en/configurator/): Configure Comino GRANDO GPU servers and AI workstations, review GPU, CPU, memory, storage, power and networking, and request a formal quote in Taiwan. Comino H200 is currently unavailable with no restock ETA; H200 configurations are for evaluation only.
 - [AWS Cloud Sales, Quotes & Deployment](https://eudaemonia.tech/en/solutions/aws/): Plan AWS compute, storage, databases and generative AI with EudTech, from requirements and quotes to deployment and support scope.
-- [PQC Migration & Expert Advisory](https://eudaemonia.tech/en/solutions/pqc/): Meet the experts guiding cryptographic inventories, PQC architecture pilots and phased migration, backed by academic and ML-DSA implementation research.
 - [NVIDIA H200 Specifications & Supply Enquiries](https://eudaemonia.tech/en/solutions/nvidia-h200-server/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Review NVIDIA H200 server requirements for AI training, HPC or inference and register your configuration for a supply assessment.
 - [RTX PRO 6000 Workstation Quote Configurator](https://eudaemonia.tech/en/solutions/rtx-pro-6000-workstation/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Configure an RTX PRO 6000 workstation for local AI inference, rendering, visualization, or simulation. Send the build to EudTech for a Taiwan quote.
 - [AI Workstations & GPU Systems in Taiwan](https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/): Compare AI workstations, rackable GPU systems, and integration kits for Taiwan teams building local inference, AI models, rendering, or simulation.

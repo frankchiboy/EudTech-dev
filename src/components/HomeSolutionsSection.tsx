@@ -10,21 +10,15 @@ const HomeSolutionsSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish }) =
     <section className="home-overview" aria-labelledby="home-solutions-heading">
       <div className="home-container">
         <header className="home-section-intro">
-          <p className="home-eyebrow">{isEnglish ? 'Four areas of expertise' : '四大解決方案'}</p>
+          <p className="home-eyebrow">{isEnglish ? 'Three areas of expertise' : '三大解決方案'}</p>
           <h2 id="home-solutions-heading">{isEnglish ? 'Find your next technology starting point.' : '找到你的下一個技術起點。'}</h2>
-          <p>{isEnglish ? 'From cryptographic migration and cloud procurement to GPU computing and social intelligence. Choose your goal and take the next step.' : '從密碼遷移、雲端採購到 GPU 運算與社群情報，選擇你的目標，展開下一步。'}</p>
+          <p>{isEnglish ? 'From cloud procurement to GPU computing and social intelligence. Choose your goal and take the next step.' : '從雲端採購到 GPU 運算與社群情報，選擇你的目標，展開下一步。'}</p>
         </header>
         <div className="home-solution-grid">
           {content.services.map((item) => (
             <article key={item.id} className={`home-solution-card home-solution-${item.id}`}>
               <div className="home-service-media">
-                {item.id === 'pqc' ? (
-                  <div className="home-experts">
-                    {[['chung-hao-frank-hsu', 'Chung-hao (Frank) Hsu'], ['hung-jr-shiu', 'Hung-Jr Shiu']].map(([slug, name]) => (
-                      <figure key={slug}><img src={`/vendor/pqc/home-${slug}.webp`} width="240" height="240" alt={name} loading="lazy" decoding="async" /><figcaption>{name}</figcaption></figure>
-                    ))}
-                  </div>
-                ) : item.id === 'aws' ? (
+                {item.id === 'aws' ? (
                   <div className="home-aws-visual" aria-label={isEnglish ? 'AWS: EC2 compute, S3 storage, RDS databases and Bedrock generative AI' : 'AWS：EC2 運算、S3 儲存、RDS 資料庫與 Bedrock 生成式 AI'}>
                     <span className="home-aws-wordmark">AWS<span aria-hidden="true" /></span>
                     <div>{['EC2', 'S3', 'RDS', 'Bedrock'].map((name) => <span key={name}>{name}</span>)}</div>

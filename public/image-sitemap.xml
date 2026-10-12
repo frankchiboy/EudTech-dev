@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://eudaemonia.tech/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/home.jpg</image:loc>
     </image:image>
@@ -93,7 +93,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/solutions.jpg</image:loc>
     </image:image>
@@ -103,13 +103,6 @@
     <lastmod>2026-10-10</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/solutions-aws.jpg</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://eudaemonia.tech/solutions/pqc/</loc>
-    <lastmod>2026-10-10</lastmod>
-    <image:image>
-      <image:loc>https://eudaemonia.tech/social/configurator/solutions-pqc.jpg</image:loc>
     </image:image>
   </url>
   <url>
@@ -142,14 +135,14 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/about/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/about.jpg</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://eudaemonia.tech/contact/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <image:image>
       <image:loc>https://eudaemonia.tech/social/configurator/contact.jpg</image:loc>
     </image:image>
