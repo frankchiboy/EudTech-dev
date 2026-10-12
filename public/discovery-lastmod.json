@@ -2,9 +2,9 @@
   "version": 1,
   "entries": {
     "https://eudaemonia.tech/": {
-      "hash": "81ec55b134527b19134df52798dbc9f735956f15eddf075391dcd47e648dfb31",
+      "hash": "27d0aee7b0560388183735cd6974f1bc2d0cd1486438e197b90bb17a6665d28d",
       "publishedAt": "2026-08-17",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-12"
     },
     "https://eudaemonia.tech/configurator/": {
       "hash": "d66f05f99826f0e5da71bc86268e093b22b9e617503dc243541263049dc16220",
@@ -12,17 +12,12 @@
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/solutions/": {
-      "hash": "2c8691ce8813d40618994584d88df80420d3b582da70a7a7093fdb537b50e174",
+      "hash": "a12c85b002d7848224d320b2e682fa9a9c36bb4110b25e48c36b639d5e99d459",
       "publishedAt": "2026-08-17",
-      "modifiedAt": "2026-10-10"
+      "modifiedAt": "2026-10-12"
     },
     "https://eudaemonia.tech/solutions/aws/": {
       "hash": "51c5d4b587f6986c4a3bd11d0e88f2369c5d11df1c3f76bbaccec813e1e20dce",
-      "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-10"
-    },
-    "https://eudaemonia.tech/solutions/pqc/": {
-      "hash": "5f14f24915296ba6c59e759bbfb78dcdc82ff93daa70c38593d6b7beffad8a05",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },
@@ -47,14 +42,14 @@
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/about/": {
-      "hash": "aa99513ed953c520693985c171a7ab99dff5572cef572658ded69598b8f852a8",
+      "hash": "d6d636a61f2c64500bf1850b8750884665f17498d3ede8cc012cd0885b5b2b22",
       "publishedAt": "2026-09-05",
-      "modifiedAt": "2026-10-10"
+      "modifiedAt": "2026-10-12"
     },
     "https://eudaemonia.tech/contact/": {
-      "hash": "87d369673940965763fee9565517199d6da6c037b4728c88c9c2a993edd87315",
+      "hash": "b15ba18534467b248d4c58ae4fb150271f485f8b1d3badba2292b39835658d69",
       "publishedAt": "2026-08-16",
-      "modifiedAt": "2026-10-10"
+      "modifiedAt": "2026-10-12"
     },
     "https://eudaemonia.tech/privacy/": {
       "hash": "9ac234008e734c5c443ebb888c121508293917bd287bcd00e7d049b792e1856c",
@@ -247,14 +242,14 @@
       "modifiedAt": "2026-10-04"
     },
     "https://eudaemonia.tech/en/": {
-      "hash": "114c78f2ec0cf62809fe50102d790eed89ac5aef45b478c971ac501611944233",
+      "hash": "e24e8a921536f35271dd985b479445b4ae43af4ec8e395dbeadaf4c0d1837217",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-04"
+      "modifiedAt": "2026-10-12"
     },
     "https://eudaemonia.tech/en/solutions/": {
-      "hash": "a713fa1cc5ea3eed953545c95ca5102522b13a67c5c2db81bf8215e660bf52a0",
+      "hash": "7be098b49b428bee77482fb3edb5b4f5b06b053d96d80980a7784a8cde55efeb",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-10"
+      "modifiedAt": "2026-10-12"
     },
     "https://eudaemonia.tech/en/solutions/ai-infrastructure/": {
       "hash": "de05f2fad4beccb8338802dd675b3aa3ba4371aebd77bbe5014e36ce5caf4137",
@@ -277,14 +272,14 @@
       "modifiedAt": "2026-10-10"
     },
     "https://eudaemonia.tech/en/about/": {
-      "hash": "26d19a55ac410134d102d9bc0d40954f3f3e4b9a68a77baa14ee69a73fcd641a",
+      "hash": "d9326f5e94e433a83d6542e3d84812b9d37f50983cbdbde372ac41e9e75a68d8",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-10"
+      "modifiedAt": "2026-10-12"
     },
     "https://eudaemonia.tech/en/contact/": {
-      "hash": "547fbac3924697489aded7e7cede416bcfae30acbe866e53e8f7a5e8a7dacf24",
+      "hash": "db3a4242d64d1bc662ec289cf0a6014a7b9ea3792fae828c7f4c8773ffac2dbb",
       "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-10"
+      "modifiedAt": "2026-10-12"
     },
     "https://eudaemonia.tech/en/privacy/": {
       "hash": "efb0a478396217aeddcbc5de8e504f313e629f37a34af5e66e1853bf71f69601",
@@ -298,11 +293,6 @@
     },
     "https://eudaemonia.tech/en/solutions/aws/": {
       "hash": "e564736c6cac2ea17aa695f881f2064b71b69bf2465a179e2335eaf5e7841f0b",
-      "publishedAt": "2026-10-04",
-      "modifiedAt": "2026-10-10"
-    },
-    "https://eudaemonia.tech/en/solutions/pqc/": {
-      "hash": "371e2ff8f420bcf9cb7c1135a8be000b60f7c06a0a573b2fd22b0496a66e824b",
       "publishedAt": "2026-10-04",
       "modifiedAt": "2026-10-10"
     },

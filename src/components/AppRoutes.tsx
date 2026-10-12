@@ -20,7 +20,6 @@ const CareersPage = lazy(() => import('./CareersPage'));
 const AtomicComponentsDemo = lazy(() => import('./demo/AtomicComponentsDemo'));
 const GrandoConfigurator = lazy(() => import('./configurator/GrandoConfigurator'));
 const ConfiguratorSolutionPage = lazy(() => import('./pages/ConfiguratorSolutionPage'));
-const PqcAdvisoryPage = lazy(() => import('./pages/PqcAdvisoryPage'));
 const AwsCloudSolutionPage = lazy(() => import('./pages/AwsCloudSolutionPage'));
 const ProductDetails = lazy(() => import('./ProductDetails'));
 const SolutionsOverviewPage = lazy(() => import('./pages/SolutionsOverviewPage'));
@@ -90,7 +89,6 @@ const AppRoutes: React.FC = () => {
             <Route path="/configurator" element={<GrandoConfigurator />} />
             <Route path="/configurator/:pid" element={<GrandoConfigurator />} />
             <Route path="/solutions" element={<SolutionsOverviewPage />} />
-            <Route path="/solutions/pqc" element={<PqcAdvisoryPage />} />
             <Route path="/solutions/aws" element={<AwsCloudSolutionPage />} />
             <Route path="/solutions/ai-agent" element={<Navigate replace to="/solutions/aws" />} />
             <Route path="/solutions/headless-saas" element={<Navigate replace to="/solutions/aws" />} />

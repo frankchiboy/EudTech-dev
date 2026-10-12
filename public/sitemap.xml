@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://eudaemonia.tech/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/"/>
@@ -20,7 +20,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/solutions/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/"/>
@@ -35,15 +35,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/aws/"/>
     <changefreq>weekly</changefreq>
     <priority>0.92</priority>
-  </url>
-  <url>
-    <loc>https://eudaemonia.tech/solutions/pqc/</loc>
-    <lastmod>2026-10-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/pqc/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/pqc/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/pqc/"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://eudaemonia.tech/products/</loc>
@@ -83,7 +74,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/about/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/about/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/about/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/about/"/>
@@ -92,7 +83,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/contact/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/contact/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/contact/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/contact/"/>
@@ -443,7 +434,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/en/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/"/>
@@ -452,7 +443,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/en/solutions/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/"/>
@@ -497,7 +488,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/en/about/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/about/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/about/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/about/"/>
@@ -506,7 +497,7 @@
   </url>
   <url>
     <loc>https://eudaemonia.tech/en/contact/</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/contact/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/contact/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/contact/"/>
@@ -537,15 +528,6 @@
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/aws/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/aws/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/aws/"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://eudaemonia.tech/en/solutions/pqc/</loc>
-    <lastmod>2026-10-10</lastmod>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eudaemonia.tech/solutions/pqc/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eudaemonia.tech/en/solutions/pqc/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eudaemonia.tech/solutions/pqc/"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

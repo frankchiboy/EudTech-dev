@@ -5,7 +5,7 @@
     <link>https://eudaemonia.tech/solutions/</link>
     <description>EudTech AWS cloud sales, AI infrastructure, social intelligence, products, resources, and consultation entry points.</description>
     <language>zh-TW</language>
-    <lastBuildDate>Sat, 10 Oct 2026 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 12 Oct 2026 00:00:00 +0800</lastBuildDate>
     <atom:link href="https://eudaemonia.tech/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Comino Grando GPU 伺服器報價配置器</title>
@@ -18,8 +18,8 @@
       <title>AI 與數位服務解決方案總覽｜EudTech</title>
       <link>https://eudaemonia.tech/solutions/</link>
       <guid>https://eudaemonia.tech/solutions/</guid>
-      <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
-      <description>從 PQC 遷移顧問、AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 四大導入路徑。</description>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 +0800</pubDate>
+      <description>從 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。</description>
     </item>
     <item>
       <title>企業 AWS 雲端銷售與導入</title>
@@ -27,13 +27,6 @@
       <guid>https://eudaemonia.tech/solutions/aws/</guid>
       <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
       <description>協助企業規劃 AWS 運算、儲存、資料庫與生成式 AI，整合需求評估、採購報價、導入與維運範圍。</description>
-    </item>
-    <item>
-      <title>PQC 後量子密碼導入與專家顧問</title>
-      <link>https://eudaemonia.tech/solutions/pqc/</link>
-      <guid>https://eudaemonia.tech/solutions/pqc/</guid>
-      <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
-      <description>從密碼資產盤點到架構試點與遷移治理，認識 EudTech 專家團隊、學術背景與 ML-DSA 實作研究。</description>
     </item>
     <item>
       <title>產品與品牌｜EudTech</title>
@@ -67,15 +60,15 @@
       <title>關於 EudTech｜優達盟資訊科技</title>
       <link>https://eudaemonia.tech/about/</link>
       <guid>https://eudaemonia.tech/about/</guid>
-      <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
-      <description>了解 EudTech PQC 遷移顧問、AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。</description>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 +0800</pubDate>
+      <description>了解 EudTech AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。</description>
     </item>
     <item>
       <title>聯絡 EudTech｜開始諮詢</title>
       <link>https://eudaemonia.tech/contact/</link>
       <guid>https://eudaemonia.tech/contact/</guid>
-      <pubDate>Sat, 10 Oct 2026 00:00:00 +0800</pubDate>
-      <description>選擇 PQC 遷移顧問、AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。</description>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 +0800</pubDate>
+      <description>選擇 AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。</description>
     </item>
     <item>
       <title>隱私與資料使用｜EudTech</title>

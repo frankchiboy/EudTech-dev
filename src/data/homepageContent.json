@@ -1,22 +1,11 @@
 {
   "zh": {
     "seo": {
-      "title": "PQC、AWS 雲端、GPU 運算與社群情報",
-      "description": "EudTech 提供 PQC 密碼遷移顧問、AWS 雲端服務、Comino 液冷 GPU 系統與 Cyabra 社群情報，從需求評估到採購與導入規劃。",
-      "keywords": "PQC, 後量子密碼, AWS 雲端服務, Comino GPU 伺服器, 液冷工作站, Cyabra 社群情報, EudTech"
+      "title": "AWS 雲端、GPU 運算與社群情報",
+      "description": "EudTech 提供 AWS 雲端服務、Comino 液冷 GPU 系統與 Cyabra 社群情報，從需求評估到採購與導入規劃。",
+      "keywords": "AWS 雲端服務, Comino GPU 伺服器, 液冷工作站, Cyabra 社群情報, EudTech"
     },
     "services": [
-      {
-        "id": "pqc",
-        "category": "PQC · 專家顧問",
-        "title": "為下一代威脅，規劃密碼遷移。",
-        "body": "從密碼資產盤點、架構試點到分階段遷移，以研究與工程判斷，釐清你的導入路線。",
-        "capabilities": "資產盤點 · 架構試點 · 遷移規劃",
-        "href": "/solutions/pqc",
-        "anchor": "#pqc-start",
-        "primary": "認識 PQC 方案與專家",
-        "secondary": "三個問題，找到導入起點"
-      },
       {
         "id": "aws",
         "category": "AWS · 雲端服務",
@@ -54,22 +43,11 @@
   },
   "en": {
     "seo": {
-      "title": "PQC, AWS Cloud, GPU Systems & Social Intelligence",
-      "description": "Explore EudTech PQC migration, AWS cloud, Comino liquid-cooled GPU systems and Cyabra social intelligence for procurement and deployment planning.",
-      "keywords": "PQC, post-quantum cryptography, AWS cloud services, Comino GPU systems, liquid-cooled workstations, Cyabra social intelligence, EudTech"
+      "title": "AWS Cloud, GPU Systems & Social Intelligence",
+      "description": "Explore EudTech AWS cloud, Comino liquid-cooled GPU systems and Cyabra social intelligence for procurement and deployment planning.",
+      "keywords": "AWS cloud services, Comino GPU systems, liquid-cooled workstations, Cyabra social intelligence, EudTech"
     },
     "services": [
-      {
-        "id": "pqc",
-        "category": "PQC · Expert advisory",
-        "title": "Plan your cryptographic migration.",
-        "body": "Map cryptographic assets, pilot architectures and plan a phased migration with research and engineering expertise.",
-        "capabilities": "Asset inventory · Architecture pilots · Migration planning",
-        "href": "/solutions/pqc",
-        "anchor": "#pqc-start",
-        "primary": "Meet the PQC experts",
-        "secondary": "Find your starting point in 3 questions"
-      },
       {
         "id": "aws",
         "category": "AWS · Cloud services",

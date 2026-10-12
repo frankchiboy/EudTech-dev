@@ -158,8 +158,8 @@ function configuratorHubItemList() {
 const solutionHubRoute = {
   path: '/solutions',
   title: 'AI 與數位服務解決方案總覽｜EudTech',
-  description: '從 PQC 遷移顧問、企業 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 四大導入路徑。',
-  keywords: 'AI 解決方案, PQC 遷移顧問, 後量子密碼, AWS 雲端銷售, AWS 採購, 雲端移轉, AI 運算基礎設施, Cyabra 社群情報, EudTech',
+  description: '從 企業 AWS 雲端銷售、AI 運算工作負載或社群情報需求，選擇 EudTech 三大導入路徑。',
+  keywords: 'AI 解決方案, AWS 雲端銷售, AWS 採購, 雲端移轉, AI 運算基礎設施, Cyabra 社群情報, EudTech',
   lead: '從需要改善的營運流程、數位服務、運算工作負載或社群風險開始，進入有明確內容、下一步及可追蹤交付的方案。',
   image: defaultImage,
   imageAlt: 'EudTech AI 解決方案總覽',
@@ -167,7 +167,6 @@ const solutionHubRoute = {
   configuratorHref: '/configurator',
   quoteHref: '/configurator?request=true',
   relatedLinks: [
-    routeLink('/solutions/pqc', 'PQC 後量子密碼遷移'),
     routeLink('/solutions/aws', 'AWS 雲端銷售與導入'),
     routeLink('/solutions/ai-infrastructure', 'AI 運算基礎設施'),
     routeLink('/solutions/social-intelligence', '社群情報與品牌保護'),
@@ -176,19 +175,17 @@ const solutionHubRoute = {
     routeLink('/contact', '聯絡與諮詢')
   ],
   highlights: [
-    'PQC 遷移顧問：密碼資產盤點、試點驗證與分階段遷移治理。',
     'AWS 雲端銷售：服務選型、用量估算、採購報價與導入規劃。',
     'AI 運算基礎設施：從工作負載到可採購配置。',
     '社群情報：分析假帳號、敘事、擴散與品牌風險。'
   ],
   specs: [
-    { label: '方案一', value: 'PQC 後量子密碼遷移' },
-    { label: '方案二', value: 'AWS 雲端銷售與導入' },
-    { label: '方案三', value: 'AI 運算基礎設施' },
-    { label: '方案四', value: 'Cyabra 社群情報' }
+    { label: '方案一', value: 'AWS 雲端銷售與導入' },
+    { label: '方案二', value: 'AI 運算基礎設施' },
+    { label: '方案三', value: 'Cyabra 社群情報' }
   ],
   faq: [
-    ['如何選擇 EudTech 解決方案？', '需要盤點密碼資產、驗證後量子密碼或規劃遷移時，選擇 PQC 遷移顧問；需要串接既有系統、建立品牌入口、改善企業流程或導入 Agent 時，選擇 AWS 雲端銷售；需要 GPU 伺服器或工作站時選擇 AI 運算基礎設施；需要分析社群風險時選擇社群情報。'],
+    ['如何選擇 EudTech 解決方案？', '需要串接既有系統、建立品牌入口、改善企業流程或導入 Agent 時，選擇 AWS 雲端銷售；需要 GPU 伺服器或工作站時選擇 AI 運算基礎設施；需要分析社群風險時選擇社群情報。'],
     ['方案是否可以先做小範圍驗證？', '可以。EudTech 會先定義問題、資料、負責人、證據與成功指標，再以可操作範圍開始。'],
     ['AI 運算方案可以直接配置嗎？', '可以。AI 運算基礎設施頁會連到 Comino 配置器，保留可分享配置並送出詢價。'],
     ['如何開始諮詢？', '使用聯絡頁選擇需求類型，再透過 Microsoft Bookings 或 quote@eudaemonia.tech 安排下一步。']
@@ -206,14 +203,13 @@ const solutionHubRoute = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: 'AI 解決方案',
-      description: 'EudTech 的 PQC 遷移顧問、AWS 雲端銷售、AI 運算基礎設施及 Cyabra 社群情報四大方案。',
+      description: 'EudTech 的 AWS 雲端銷售、AI 運算基礎設施及 Cyabra 社群情報三大方案。',
       url: pageUrl('/solutions'),
       publisher: eudTechOrganization,
       mainEntity: {
         '@type': 'ItemList',
-        name: 'EudTech 四大解決方案',
+        name: 'EudTech 三大解決方案',
         itemListElement: [
-          ['PQC 後量子密碼遷移', '/solutions/pqc'],
           ['AWS 雲端銷售與導入', '/solutions/aws'],
           ['AI 運算基礎設施', '/solutions/ai-infrastructure'],
           ['社群情報與品牌保護', '/solutions/social-intelligence']
