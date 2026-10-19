@@ -27,12 +27,13 @@
     ]
   },
   "/solutions/ai-infrastructure": {
-    "title": "Comino Liquid-Cooled GPU Servers & Workstations",
-    "description": "Plan Comino GRANDO GPU servers and workstations in Taiwan, including workload sizing, power, cooling, manufacturer documents and procurement evidence.",
+    "title": "Comino Sealed-Liquid-Loop GPU Servers & Procurement Requirements",
+    "description": "Plan Comino GRANDO sealed-liquid-loop GPU systems with manufacturer evidence, outcome-based public-procurement requirements and measurable acceptance criteria.",
     "highlights": [
       "Choose deskside or rack deployment from noise, available space, power, heat removal and sustained workload requirements.",
-      "The closed internal cooling loop transfers heat to the radiator; room ventilation and air conditioning still require review.",
-      "Review the selected GPU and CPU platform, memory, storage, software and inter-GPU communication as one system.",
+      "The Sealed Liquid Loop transfers heat to internal radiators without facility water; room ventilation and air conditioning still require review.",
+      "Distinguish the confirmed eight-GPU RTX PRO 6000 complete system from project configurations and Integration Kits with different cooling boundaries.",
+      "Form requirements through a needs record, market comparison, measurable outcomes and an acceptance method applied consistently to every offer.",
       "Confirm monitoring, quick disconnect procedures, warranty and power redundancy against the selected model and load.",
       "Use the GRANDO Server v2.3 datasheet and RM v2.0.2 guide as technical references; conformity and test evidence must match the delivered configuration."
     ]

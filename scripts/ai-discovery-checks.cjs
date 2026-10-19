@@ -103,12 +103,20 @@ function checkFile(result, pathname) {
       if (pathname === '/ai-discovery.json') {
         if (JSON.stringify(data.entity) !== JSON.stringify(organization)) fail('entity differs from source');
         if (JSON.stringify(data.authority) !== JSON.stringify(authority)) fail('authority differs from source');
+        const comino = data.featuredReferences?.find(item => item.id === 'comino-sealed-liquid-loop-procurement');
+        if (!comino || !comino.urls?.zh || !comino.urls?.en || comino.sources?.length < 2) fail('missing Comino procurement reference');
+        if (!/Sealed Liquid Loop/.test(comino?.facts?.coolingArchitecture || '') || !/768GB/.test(comino?.facts?.confirmedEightGpuSystem || '')) fail('incomplete Comino procurement facts');
       } else if (!Array.isArray(data.items) || !data.items.length) fail('empty feed');
     } catch { fail('invalid JSON'); }
   } else if (pathname.endsWith('.xml')) {
     if (!/xml/i.test(result.contentType) || !/<(?:sitemapindex|urlset|rss)\b/.test(body)) fail('invalid XML discovery response');
   } else if (!/^text\/(?:plain|markdown)/i.test(result.contentType) || body.trim().length < 50) fail('missing text discovery content');
-  if (pathname === '/llms-full.txt') errors.push(...checkGpuComparisonReference(body));
+  if (pathname === '/llms-full.txt') {
+    errors.push(...checkGpuComparisonReference(body));
+    for (const value of ['Sealed Liquid Loop', '8 × NVIDIA RTX PRO 6000 Blackwell Server Edition 96GB', '768GB aggregate GPU memory', 'Integration Kit', '#lawful-procurement-specification']) {
+      if (!body.includes(value)) fail(`missing Comino procurement reference: ${value}`);
+    }
+  }
   if (pathname === '/llms-full.txt') for (const service of serviceQuestions.services) for (const question of service.questions) {
     for (const language of ['zh', 'en']) {
       const url = `${root}${language === 'en' ? '/en' : ''}${service.path}#${question.id}`;

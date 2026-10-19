@@ -1220,12 +1220,19 @@ export const CONFIGURATOR_SEO_PAGES: ConfiguratorSeoPage[] = [
 ];
 
 // Keep the dated supply statement identical in visible pages, FAQs and discovery files.
+const conciseMetaDescription = (prefix: string, description: string, maxLength: number) => {
+  const combined = `${prefix} ${description}`;
+  if (combined.length <= maxLength) return combined;
+  const available = Math.max(20, maxLength - prefix.length - 2);
+  const clipped = description.slice(0, available).replace(/\s+\S*$/, '').replace(/[，,;；:\s]+$/, '');
+  return `${prefix} ${clipped}…`;
+};
 for (const page of CONFIGURATOR_SEO_PAGES) {
   if (!/h200/i.test(JSON.stringify([page.title, page.lead, page.highlights, page.faqs])) && !h200Availability.productIds.some(id => page.configuratorHref === `/configurator/${id}`)) continue;
   page.supplyNotice = true;
   page.description = {
-    zh: `${h200Availability.summary.zh} ${page.description.zh}`,
-    en: `${h200Availability.summary.en} ${page.description.en}`
+    zh: conciseMetaDescription('H200 目前無貨，補貨時間未定。', page.description.zh, 90),
+    en: conciseMetaDescription('H200 unavailable; no restock ETA.', page.description.en, 158)
   };
   const existing = page.faqs.find(faq => faq.id === 'faq-how-is-nvidia-h200-server-availability-confirmed');
   if (existing) existing.answer = h200Availability.detail;

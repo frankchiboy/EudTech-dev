@@ -60,9 +60,9 @@
     {
       "id": "https://eudaemonia.tech/solutions/ai-infrastructure/",
       "url": "https://eudaemonia.tech/solutions/ai-infrastructure/",
-      "title": "Comino 液冷 GPU 伺服器、AI 工作站與機關採購",
-      "summary": "從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。",
-      "content_text": "Comino 液冷 GPU 伺服器、AI 工作站與機關採購\n\n從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。\n\nhttps://eudaemonia.tech/solutions/ai-infrastructure/",
+      "title": "Comino 密封式液冷 GPU 伺服器與機關採購規格",
+      "summary": "Comino GRANDO 密封式液冷迴路、八卡 RTX PRO 6000、768GB GPU 記憶體、原廠文件、機關需求論證與可量測驗收參考。",
+      "content_text": "Comino 密封式液冷 GPU 伺服器與機關採購規格\n\nComino GRANDO 密封式液冷迴路、八卡 RTX PRO 6000、768GB GPU 記憶體、原廠文件、機關需求論證與可量測驗收參考。\n\nhttps://eudaemonia.tech/solutions/ai-infrastructure/",
       "date_published": "2026-08-16T00:00:00+08:00",
       "date_modified": "2026-10-19T00:00:00+08:00"
     },
@@ -205,19 +205,19 @@
       "id": "https://eudaemonia.tech/solutions/nvidia-h200-server/",
       "url": "https://eudaemonia.tech/solutions/nvidia-h200-server/",
       "title": "NVIDIA H200 伺服器規格評估與供貨查詢",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 評估 NVIDIA H200 伺服器的 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，並登記配置供後續供貨評估。",
-      "content_text": "NVIDIA H200 伺服器規格評估與供貨查詢\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 評估 NVIDIA H200 伺服器的 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，並登記配置供後續供貨評估。\n\nhttps://eudaemonia.tech/solutions/nvidia-h200-server/",
+      "summary": "H200 目前無貨，補貨時間未定。 評估 NVIDIA H200 伺服器的 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，並登記配置供後續供貨評估。",
+      "content_text": "NVIDIA H200 伺服器規格評估與供貨查詢\n\nH200 目前無貨，補貨時間未定。 評估 NVIDIA H200 伺服器的 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，並登記配置供後續供貨評估。\n\nhttps://eudaemonia.tech/solutions/nvidia-h200-server/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/",
       "url": "https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/",
       "title": "RTX PRO 6000 本地 AI 推論工作站報價配置器",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。",
-      "content_text": "RTX PRO 6000 本地 AI 推論工作站報價配置器\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。\n\nhttps://eudaemonia.tech/solutions/rtx-pro-6000-workstation/",
+      "summary": "H200 目前無貨，補貨時間未定。 配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。",
+      "content_text": "RTX PRO 6000 本地 AI 推論工作站報價配置器\n\nH200 目前無貨，補貨時間未定。 配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。\n\nhttps://eudaemonia.tech/solutions/rtx-pro-6000-workstation/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/ai-workstation-taiwan/",
@@ -232,28 +232,28 @@
       "id": "https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/",
       "url": "https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/",
       "title": "液冷 GPU 伺服器散熱與報價配置器",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。",
-      "content_text": "液冷 GPU 伺服器散熱與報價配置器\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。\n\nhttps://eudaemonia.tech/solutions/liquid-cooled-gpu-server/",
+      "summary": "H200 目前無貨，補貨時間未定。 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。",
+      "content_text": "液冷 GPU 伺服器散熱與報價配置器\n\nH200 目前無貨，補貨時間未定。 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。\n\nhttps://eudaemonia.tech/solutions/liquid-cooled-gpu-server/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/gpu-server-quote/",
       "url": "https://eudaemonia.tech/solutions/gpu-server-quote/",
       "title": "GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 整理 GPU 伺服器的硬體與部署需求供評估。H200 詢問目前以供貨查詢及替代配置評估為主；價格與交期須經書面確認。",
-      "content_text": "GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 整理 GPU 伺服器的硬體與部署需求供評估。H200 詢問目前以供貨查詢及替代配置評估為主；價格與交期須經書面確認。\n\nhttps://eudaemonia.tech/solutions/gpu-server-quote/",
+      "summary": "H200 目前無貨，補貨時間未定。 整理 GPU 伺服器的硬體與部署需求供評估。H200 詢問目前以供貨查詢及替代配置評估為主；價格與交期須經書面確認。",
+      "content_text": "GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000\n\nH200 目前無貨，補貨時間未定。 整理 GPU 伺服器的硬體與部署需求供評估。H200 詢問目前以供貨查詢及替代配置評估為主；價格與交期須經書面確認。\n\nhttps://eudaemonia.tech/solutions/gpu-server-quote/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/",
       "url": "https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/",
       "title": "H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與 96 GB 記憶體、頻寬、功耗、原廠來源及詢價條件。",
-      "content_text": "H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與 96 GB 記憶體、頻寬、功耗、原廠來源及詢價條件。\n\nhttps://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/",
+      "summary": "H200 目前無貨，補貨時間未定。 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與…",
+      "content_text": "H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？\n\nH200 目前無貨，補貨時間未定。 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與…\n\nhttps://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/",
@@ -268,28 +268,28 @@
       "id": "https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/",
       "url": "https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/",
       "title": "液冷 AI 伺服器採購指南",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。",
-      "content_text": "液冷 AI 伺服器採購指南\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。\n\nhttps://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/",
+      "summary": "H200 目前無貨，補貨時間未定。 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。",
+      "content_text": "液冷 AI 伺服器採購指南\n\nH200 目前無貨，補貨時間未定。 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。\n\nhttps://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/gpu-server-power-planning/",
       "url": "https://eudaemonia.tech/solutions/gpu-server-power-planning/",
       "title": "GPU 伺服器電力規劃配置器",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。",
-      "content_text": "GPU 伺服器電力規劃配置器\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。\n\nhttps://eudaemonia.tech/solutions/gpu-server-power-planning/",
+      "summary": "H200 目前無貨，補貨時間未定。 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。",
+      "content_text": "GPU 伺服器電力規劃配置器\n\nH200 目前無貨，補貨時間未定。 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。\n\nhttps://eudaemonia.tech/solutions/gpu-server-power-planning/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/rack-ai-server-deployment/",
       "url": "https://eudaemonia.tech/solutions/rack-ai-server-deployment/",
       "title": "機架式 AI 伺服器部署配置器",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 整理機架式 AI 伺服器部署需求，包含 GPU 密度、機架型態、電力、散熱、儲存、網路與可報價配置細節。",
-      "content_text": "機架式 AI 伺服器部署配置器\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 整理機架式 AI 伺服器部署需求，包含 GPU 密度、機架型態、電力、散熱、儲存、網路與可報價配置細節。\n\nhttps://eudaemonia.tech/solutions/rack-ai-server-deployment/",
+      "summary": "H200 目前無貨，補貨時間未定。 整理機架式 AI 伺服器部署需求，包含 GPU 密度、機架型態、電力、散熱、儲存、網路與可報價配置細節。",
+      "content_text": "機架式 AI 伺服器部署配置器\n\nH200 目前無貨，補貨時間未定。 整理機架式 AI 伺服器部署需求，包含 GPU 密度、機架型態、電力、散熱、儲存、網路與可報價配置細節。\n\nhttps://eudaemonia.tech/solutions/rack-ai-server-deployment/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/",
@@ -331,28 +331,28 @@
       "id": "https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/",
       "url": "https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/",
       "title": "NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU 平台、RAM、NVMe、電源、網路、機架、散熱與報價追蹤需求。",
-      "content_text": "NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU 平台、RAM、NVMe、電源、網路、機架、散熱與報價追蹤需求。\n\nhttps://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/",
+      "summary": "H200 目前無貨，補貨時間未定。 為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU…",
+      "content_text": "NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表\n\nH200 目前無貨，補貨時間未定。 為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU…\n\nhttps://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/",
       "url": "https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/",
       "title": "RTX PRO 6000 本地 AI 推論工作站報價指南",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe 與網路脈絡。",
-      "content_text": "RTX PRO 6000 本地 AI 推論工作站報價指南\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe 與網路脈絡。\n\nhttps://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/",
+      "summary": "H200 目前無貨，補貨時間未定。 規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe…",
+      "content_text": "RTX PRO 6000 本地 AI 推論工作站報價指南\n\nH200 目前無貨，補貨時間未定。 規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe…\n\nhttps://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     },
     {
       "id": "https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/",
       "url": "https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/",
       "title": "台灣 AI 伺服器採購案例指南與配置器詢價流程",
-      "summary": "Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。",
-      "content_text": "台灣 AI 伺服器採購案例指南與配置器詢價流程\n\nComino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。\n\nhttps://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/",
+      "summary": "H200 目前無貨，補貨時間未定。 將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000…",
+      "content_text": "台灣 AI 伺服器採購案例指南與配置器詢價流程\n\nH200 目前無貨，補貨時間未定。 將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000…\n\nhttps://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/",
       "date_published": "2026-09-05T00:00:00+08:00",
-      "date_modified": "2026-10-10T00:00:00+08:00"
+      "date_modified": "2026-10-19T00:00:00+08:00"
     }
   ]
 }

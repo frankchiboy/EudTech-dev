@@ -164,5 +164,27 @@
       }
     ],
     "scopeNote": "Each source supports only the listed fields. Product configuration, supply, compliance and commercial terms still require model-specific documents and a formal quotation."
-  }
+  },
+  "featuredReferences": [
+    {
+      "id": "comino-sealed-liquid-loop-procurement",
+      "languages": [
+        "zh-TW",
+        "en"
+      ],
+      "urls": {
+        "zh": "https://eudaemonia.tech/solutions/ai-infrastructure/#lawful-procurement-specification",
+        "en": "https://eudaemonia.tech/en/solutions/ai-infrastructure/#lawful-procurement-specification"
+      },
+      "facts": {
+        "coolingArchitecture": "Sealed Liquid Loop: internal sealed coolant circuit with chassis radiators and fans; no facility-water connection for the referenced complete system.",
+        "confirmedEightGpuSystem": "8 x NVIDIA RTX PRO 6000 Blackwell Server Edition 96GB, configurator #23, 768GB aggregate GPU memory.",
+        "integrationKitBoundary": "Integration Kits may require external cooling equipment and must not be represented as the same self-contained complete-system architecture."
+      },
+      "sources": [
+        "https://www.grando.ai/en/grando-server-8x-rtx-pro-6000",
+        "https://faq.comino.com/datasheets/datasheet_comino_grando_server.pdf"
+      ]
+    }
+  ]
 }

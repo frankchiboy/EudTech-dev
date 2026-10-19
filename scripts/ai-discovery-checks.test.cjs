@@ -57,6 +57,15 @@ test('200 HTML fallback, malformed JSON and mismatched authority cannot pass as 
   assert.ok(checkFile(response(page('/')),'/ai-discovery.json').length);
   assert.ok(checkFile({...response('{broken'),contentType:'application/json'},'/feed.json').length);
   assert.ok(checkFile({...response('{}'),contentType:'application/json'},'/ai-discovery.json').length);
-  const data={entity:organization,authority:require('../src/data/authoritySources.json')};
+  const data={
+    entity:organization,
+    authority:require('../src/data/authoritySources.json'),
+    featuredReferences:[{
+      id:'comino-sealed-liquid-loop-procurement',
+      urls:{zh:'https://eudaemonia.tech/solutions/ai-infrastructure/#lawful-procurement-specification',en:'https://eudaemonia.tech/en/solutions/ai-infrastructure/#lawful-procurement-specification'},
+      facts:{coolingArchitecture:'Sealed Liquid Loop',confirmedEightGpuSystem:'8 x RTX PRO 6000, 768GB aggregate GPU memory'},
+      sources:['https://www.grando.ai/en/grando-server-8x-rtx-pro-6000','https://faq.comino.com/datasheets/datasheet_comino_grando_server.pdf']
+    }]
+  };
   assert.deepEqual(checkFile({...response(JSON.stringify(data)),contentType:'application/json'},'/ai-discovery.json'),[]);
 });

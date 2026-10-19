@@ -40,7 +40,7 @@ Each source supports only the listed fields. Product configuration, supply, comp
 - [企業 AWS 雲端銷售與導入](https://eudaemonia.tech/solutions/aws/): 協助企業規劃 AWS 運算、儲存、資料庫與生成式 AI，整合需求評估、採購報價、導入與維運範圍。
 - [產品與品牌｜EudTech](https://eudaemonia.tech/products/): 瀏覽 AWS 雲端銷售服務、Comino 液冷 AI 運算系統及 Cyabra 社群情報產品。
 - [GPU 伺服器選型與採購｜EudTech](https://eudaemonia.tech/resources/): 依工作負載選擇 GPU 伺服器或 AI 工作站，規劃電力散熱、準備 RFQ，並進入配置與正式報價。
-- [Comino 液冷 GPU 伺服器、AI 工作站與機關採購](https://eudaemonia.tech/solutions/ai-infrastructure/): 從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。
+- [Comino 密封式液冷 GPU 伺服器與機關採購規格](https://eudaemonia.tech/solutions/ai-infrastructure/): Comino GRANDO 密封式液冷迴路、八卡 RTX PRO 6000、768GB GPU 記憶體、原廠文件、機關需求論證與可量測驗收參考。
 - [社群情報與品牌保護｜EudTech](https://eudaemonia.tech/solutions/social-intelligence/): EudTech 以 Cyabra 協助企業與公部門分析假帳號、協調式社群行為、敘事擴散及品牌風險。
 - [關於 EudTech｜優達盟資訊科技](https://eudaemonia.tech/about/): 了解 EudTech AWS 雲端銷售與導入、Comino 液冷 AI 運算、Cyabra 社群情報，以及可核對的公司與原廠合作資料。
 - [聯絡 EudTech｜開始諮詢](https://eudaemonia.tech/contact/): 選擇 AWS 雲端服務、AI 運算設備或社群情報需求，透過 Microsoft Bookings 或 Email 與 EudTech 安排下一步。
@@ -56,23 +56,23 @@ Each source supports only the listed fields. Product configuration, supply, comp
 - [WORKSTATION 2x5090 AI 工作站配置器](https://eudaemonia.tech/configurator/13/): 配置 WORKSTATION 2x5090，保留 NVIDIA GeForce RTX 5090 GPU 與 AMD Threadripper PRO 平台假設。
 - [RACKABLE WS 4x PRO 6000 配置器](https://eudaemonia.tech/configurator/5/): 配置 RACKABLE WS 4x PRO 6000，保留 RTX PRO 6000 GPU 與 AMD 雙 EPYC 平台假設，供正式報價追蹤。
 - [RACKABLE WS 6x5090 配置器](https://eudaemonia.tech/configurator/21/): 配置 RACKABLE WS 6x5090，保留 NVIDIA GeForce RTX 5090 GPU 與 AMD EPYC 平台假設，供 AI 工作站報價審查。
-- [NVIDIA H200 伺服器規格評估與供貨查詢](https://eudaemonia.tech/solutions/nvidia-h200-server/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 評估 NVIDIA H200 伺服器的 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，並登記配置供後續供貨評估。
-- [RTX PRO 6000 本地 AI 推論工作站報價配置器](https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。
+- [NVIDIA H200 伺服器規格評估與供貨查詢](https://eudaemonia.tech/solutions/nvidia-h200-server/): H200 目前無貨，補貨時間未定。 評估 NVIDIA H200 伺服器的 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，並登記配置供後續供貨評估。
+- [RTX PRO 6000 本地 AI 推論工作站報價配置器](https://eudaemonia.tech/solutions/rtx-pro-6000-workstation/): H200 目前無貨，補貨時間未定。 配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。
 - [台灣 AI 工作站配置器](https://eudaemonia.tech/solutions/ai-workstation-taiwan/): 為台灣團隊在桌邊 AI 工作站、可上架 GPU 系統與整合套件之間進行選型，支援 GPU 加速、本地推論、模型開發、渲染與模擬工作負載。
-- [液冷 GPU 伺服器散熱與報價配置器](https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。
-- [GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000](https://eudaemonia.tech/solutions/gpu-server-quote/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 整理 GPU 伺服器的硬體與部署需求供評估。H200 詢問目前以供貨查詢及替代配置評估為主；價格與交期須經書面確認。
-- [H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？](https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與 96 GB 記憶體、頻寬、功耗、原廠來源及詢價條件。
+- [液冷 GPU 伺服器散熱與報價配置器](https://eudaemonia.tech/solutions/liquid-cooled-gpu-server/): H200 目前無貨，補貨時間未定。 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。
+- [GPU 伺服器報價與 AI RFQ 配置器｜H200 或 RTX PRO 6000](https://eudaemonia.tech/solutions/gpu-server-quote/): H200 目前無貨，補貨時間未定。 整理 GPU 伺服器的硬體與部署需求供評估。H200 詢問目前以供貨查詢及替代配置評估為主；價格與交期須經書面確認。
+- [H200 vs RTX PRO 6000：AI 訓練與本地推論怎麼選？](https://eudaemonia.tech/solutions/h200-vs-rtx-pro-6000/): H200 目前無貨，補貨時間未定。 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與…
 - [AI 採購 GPU 伺服器 RFQ 檢核表](https://eudaemonia.tech/solutions/gpu-server-rfq-checklist/): 在送出 GPU 伺服器報價需求前，先整理 GPU、CPU、RAM、儲存、電源、網路、散熱與部署假設。
-- [液冷 AI 伺服器採購指南](https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。
-- [GPU 伺服器電力規劃配置器](https://eudaemonia.tech/solutions/gpu-server-power-planning/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。
-- [機架式 AI 伺服器部署配置器](https://eudaemonia.tech/solutions/rack-ai-server-deployment/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 整理機架式 AI 伺服器部署需求，包含 GPU 密度、機架型態、電力、散熱、儲存、網路與可報價配置細節。
+- [液冷 AI 伺服器採購指南](https://eudaemonia.tech/solutions/liquid-cooling-ai-server-procurement/): H200 目前無貨，補貨時間未定。 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。
+- [GPU 伺服器電力規劃配置器](https://eudaemonia.tech/solutions/gpu-server-power-planning/): H200 目前無貨，補貨時間未定。 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。
+- [機架式 AI 伺服器部署配置器](https://eudaemonia.tech/solutions/rack-ai-server-deployment/): H200 目前無貨，補貨時間未定。 整理機架式 AI 伺服器部署需求，包含 GPU 密度、機架型態、電力、散熱、儲存、網路與可報價配置細節。
 - [台灣公部門 GPU 伺服器採購檢核表](https://eudaemonia.tech/solutions/taiwan-public-procurement-gpu-server/): 為台灣公部門 GPU 伺服器採購討論整理工作負載、配置、報價、交付、保固與審查假設。
 - [Supermicro 與 Comino GPU 伺服器採購流程比較](https://eudaemonia.tech/solutions/supermicro-comino-gpu-server-comparison/): 比較傳統 Supermicro RFQ 與 Comino Grando 配置器詢價的採購流程、配置可追蹤性與報價交接；本頁不宣稱硬體效能基準測試結果。
 - [AI 推論伺服器報價配置器｜台灣 LLM 與私有模型部署](https://eudaemonia.tech/solutions/ai-inference-server-taiwan/): 為台灣 LLM 與私有模型服務配置 AI 推論伺服器，保留併發量、GPU 記憶體、系統記憶體、NVMe、網路、部署與報價追蹤脈絡。
 - [Comino Grando 台灣報價配置器指南](https://eudaemonia.tech/solutions/comino-grando-configurator-taiwan/): 使用 Comino Grando 配置器準備台灣 GPU 伺服器與 AI 工作站詢價，保留 GPU、CPU、記憶體、儲存、電源與網路脈絡。
-- [NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表](https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU 平台、RAM、NVMe、電源、網路、機架、散熱與報價追蹤需求。
-- [RTX PRO 6000 本地 AI 推論工作站報價指南](https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe 與網路脈絡。
-- [台灣 AI 伺服器採購案例指南與配置器詢價流程](https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/): Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。
+- [NVIDIA H200 GPU 伺服器台灣採購 RFQ 檢核表](https://eudaemonia.tech/solutions/h200-gpu-server-rfq-taiwan/): H200 目前無貨，補貨時間未定。 為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU…
+- [RTX PRO 6000 本地 AI 推論工作站報價指南](https://eudaemonia.tech/solutions/rtx-pro-6000-local-ai-inference/): H200 目前無貨，補貨時間未定。 規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe…
+- [台灣 AI 伺服器採購案例指南與配置器詢價流程](https://eudaemonia.tech/solutions/ai-server-procurement-case-taiwan/): H200 目前無貨，補貨時間未定。 將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000…
 - [FinSight 金融AI系統](https://eudaemonia.tech/products/3/): FinSight 是金融語言理解與資料 API 框架，結合原始金融資料與 LLM，提供即時洞察與決策輔助。
 - [EudTech Select AI伺服器](https://eudaemonia.tech/products/1/): 企業級 AI 伺服器，針對大型語言模型與 AI 工作負載配置。
 - [Comino Grando 機架式工作站](https://eudaemonia.tech/products/5/): 可上架液冷平台，最高支援 8 張 GPU 與 2 顆 CPU；依選定配置確認相容性、遠端管理、電源備援與場地條件。
@@ -87,7 +87,7 @@ Each source supports only the listed fields. Product configuration, supply, comp
 - [Careers - Join Our Team](https://eudaemonia.tech/en/careers/): Join EudTech and be part of the future of AI technology. Explore our openings, responsibilities, requirements and application process.
 - [AWS Cloud, GPU Systems & Social Intelligence](https://eudaemonia.tech/en/): Explore EudTech AWS cloud, Comino liquid-cooled GPU systems and Cyabra social intelligence for procurement and deployment planning.
 - [AI & Digital Solutions](https://eudaemonia.tech/en/solutions/): Choose among EudTech's three solution lines: AWS cloud sales, GPU infrastructure and Cyabra social intelligence.
-- [Comino Liquid-Cooled GPU Servers & Workstations](https://eudaemonia.tech/en/solutions/ai-infrastructure/): Plan Comino GRANDO GPU servers and workstations in Taiwan, including workload sizing, power, cooling, manufacturer documents and procurement evidence.
+- [Comino Sealed-Liquid-Loop GPU Servers & Procurement Requirements](https://eudaemonia.tech/en/solutions/ai-infrastructure/): Plan Comino GRANDO sealed-liquid-loop GPU systems with manufacturer evidence, outcome-based public-procurement requirements and measurable acceptance criteria.
 - [Cyabra Social Intelligence & Brand Protection](https://eudaemonia.tech/en/solutions/social-intelligence/): EudTech uses Cyabra to help communications, security and public-sector teams analyse inauthentic profiles, coordinated activity, narratives and brand risk.
 - [Products & Brands](https://eudaemonia.tech/en/products/): Explore AWS cloud sales services, Comino liquid-cooled GPU workstations and servers, and Cyabra social intelligence.
 - [GPU Server Selection & Procurement Resources](https://eudaemonia.tech/en/resources/): Compare GPU server and workstation requirements, plan power and cooling, prepare an RFQ and review procurement documents with EudTech.
@@ -96,23 +96,23 @@ Each source supports only the listed fields. Product configuration, supply, comp
 - [Privacy & Data Use](https://eudaemonia.tech/en/privacy/): Learn how EudTech handles contact and quote data, customer-source attribution, retention, service providers and data requests.
 - [Comino GRANDO GPU Server Configurator](https://eudaemonia.tech/en/configurator/): Configure Comino GRANDO GPU servers and AI workstations, review GPU, CPU, memory, storage, power and networking, and request a formal quote in Taiwan. Comino H200 is currently unavailable with no restock ETA; H200 configurations are for evaluation only.
 - [AWS Cloud Sales, Quotes & Deployment](https://eudaemonia.tech/en/solutions/aws/): Plan AWS compute, storage, databases and generative AI with EudTech, from requirements and quotes to deployment and support scope.
-- [NVIDIA H200 Specifications & Supply Enquiries](https://eudaemonia.tech/en/solutions/nvidia-h200-server/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Review NVIDIA H200 server requirements for AI training, HPC or inference and register your configuration for a supply assessment.
-- [RTX PRO 6000 Workstation Quote Configurator](https://eudaemonia.tech/en/solutions/rtx-pro-6000-workstation/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Configure an RTX PRO 6000 workstation for local AI inference, rendering, visualization, or simulation. Send the build to EudTech for a Taiwan quote.
+- [NVIDIA H200 Specifications & Supply Enquiries](https://eudaemonia.tech/en/solutions/nvidia-h200-server/): H200 unavailable; no restock ETA. Review NVIDIA H200 server requirements for AI training, HPC or inference and register your configuration for a supply…
+- [RTX PRO 6000 Workstation Quote Configurator](https://eudaemonia.tech/en/solutions/rtx-pro-6000-workstation/): H200 unavailable; no restock ETA. Configure an RTX PRO 6000 workstation for local AI inference, rendering, visualization, or simulation. Send the build to…
 - [AI Workstations & GPU Systems in Taiwan](https://eudaemonia.tech/en/solutions/ai-workstation-taiwan/): Compare AI workstations, rackable GPU systems, and integration kits for Taiwan teams building local inference, AI models, rendering, or simulation.
-- [Liquid-Cooled GPU Server Quote Configurator](https://eudaemonia.tech/en/solutions/liquid-cooled-gpu-server/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Explore GPU server cooling and liquid-cooled GPU server configurations for sustained AI and HPC workloads, then request a formal quote from EudTech.
-- [GPU Server Quote & RFQ Configurator](https://eudaemonia.tech/en/solutions/gpu-server-quote/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Prepare hardware and deployment requirements for GPU server assessment. H200 enquiries currently cover supply checks and alternatives; pricing and delivery require written confirmation.
-- [H200 vs RTX PRO 6000 for Training & Inference](https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Compare H200 SXM/NVL and RTX PRO 6000 Blackwell Workstation Edition: 141 GB vs 96 GB, memory bandwidth, GPU power, official sources and quote requirements.
+- [Liquid-Cooled GPU Server Quote Configurator](https://eudaemonia.tech/en/solutions/liquid-cooled-gpu-server/): H200 unavailable; no restock ETA. Explore GPU server cooling and liquid-cooled GPU server configurations for sustained AI and HPC workloads, then request a…
+- [GPU Server Quote & RFQ Configurator](https://eudaemonia.tech/en/solutions/gpu-server-quote/): H200 unavailable; no restock ETA. Prepare hardware and deployment requirements for GPU server assessment. H200 enquiries currently cover supply checks and…
+- [H200 vs RTX PRO 6000 for Training & Inference](https://eudaemonia.tech/en/solutions/h200-vs-rtx-pro-6000/): H200 unavailable; no restock ETA. Compare H200 SXM/NVL and RTX PRO 6000 Blackwell Workstation Edition: 141 GB vs 96 GB, memory bandwidth, GPU power…
 - [GPU Server RFQ Checklist for AI Procurement](https://eudaemonia.tech/en/solutions/gpu-server-rfq-checklist/): Prepare a GPU server RFQ with clear GPU, CPU, RAM, storage, power, networking, cooling, and deployment assumptions before requesting a quote.
-- [Liquid-Cooling AI Server Procurement Guide](https://eudaemonia.tech/en/solutions/liquid-cooling-ai-server-procurement/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Plan liquid-cooled AI server procurement around GPU density, sustained workloads, rack deployment, power capacity, and quote-ready configuration details.
-- [GPU Server Power Planning Configurator](https://eudaemonia.tech/en/solutions/gpu-server-power-planning/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Plan GPU server power capacity, redundant power supplies, GPU count, CPU platform, memory, storage, and network assumptions before requesting a quote.
-- [Rack AI Server Deployment Configurator](https://eudaemonia.tech/en/solutions/rack-ai-server-deployment/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Prepare rack AI server deployment requirements with GPU density, rack form factor, power, cooling, storage, networking, and configuration details.
+- [Liquid-Cooling AI Server Procurement Guide](https://eudaemonia.tech/en/solutions/liquid-cooling-ai-server-procurement/): H200 unavailable; no restock ETA. Plan liquid-cooled AI server procurement around GPU density, sustained workloads, rack deployment, power capacity, and…
+- [GPU Server Power Planning Configurator](https://eudaemonia.tech/en/solutions/gpu-server-power-planning/): H200 unavailable; no restock ETA. Plan GPU server power capacity, redundant power supplies, GPU count, CPU platform, memory, storage, and network…
+- [Rack AI Server Deployment Configurator](https://eudaemonia.tech/en/solutions/rack-ai-server-deployment/): H200 unavailable; no restock ETA. Prepare rack AI server deployment requirements with GPU density, rack form factor, power, cooling, storage, networking…
 - [Taiwan Public Procurement GPU Server Checklist](https://eudaemonia.tech/en/solutions/taiwan-public-procurement-gpu-server/): Prepare Taiwan public-sector GPU server procurement discussions with clear workload, configuration, quote, delivery, warranty, and review assumptions.
 - [Supermicro vs Comino GPU Server Procurement](https://eudaemonia.tech/en/solutions/supermicro-comino-gpu-server-comparison/): Compare Supermicro RFQ and Comino Grando configurator workflows, configuration tracking, and quote handoff. This guide makes no performance claims.
 - [AI Inference Server for LLMs | Taiwan Quote](https://eudaemonia.tech/en/solutions/ai-inference-server-taiwan/): Plan a Taiwan AI inference server for LLMs and private models. Capture concurrency, GPU memory, RAM, storage, networking, and deployment needs for a quote.
 - [Comino Grando Configurator Taiwan Quote Guide](https://eudaemonia.tech/en/solutions/comino-grando-configurator-taiwan/): Use the Comino Grando configurator to prepare GPU server and AI workstation quote requests with GPU, CPU, memory, storage, power, and networking context.
-- [NVIDIA H200 Server RFQ Checklist for Taiwan](https://eudaemonia.tech/en/solutions/h200-gpu-server-rfq-taiwan/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Prepare a Taiwan H200 server RFQ covering GPU count, CPU, RAM, NVMe, power, networking, rack, cooling and quote follow-up.
-- [RTX PRO 6000 Local AI Workstation Quote](https://eudaemonia.tech/en/solutions/rtx-pro-6000-local-ai-inference/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Plan an RTX PRO 6000 workstation quote for local AI inference, visualization and simulation, with GPU, CPU, RAM, NVMe and network requirements.
-- [Taiwan AI Server Procurement & Quote Guide](https://eudaemonia.tech/en/solutions/ai-server-procurement-case-taiwan/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Match Taiwan AI server procurement needs to quote paths for H200 servers, RTX PRO 6000 workstations, rack systems, and liquid cooling.
+- [NVIDIA H200 Server RFQ Checklist for Taiwan](https://eudaemonia.tech/en/solutions/h200-gpu-server-rfq-taiwan/): H200 unavailable; no restock ETA. Prepare a Taiwan H200 server RFQ covering GPU count, CPU, RAM, NVMe, power, networking, rack, cooling and quote follow-up.
+- [RTX PRO 6000 Local AI Workstation Quote](https://eudaemonia.tech/en/solutions/rtx-pro-6000-local-ai-inference/): H200 unavailable; no restock ETA. Plan an RTX PRO 6000 workstation quote for local AI inference, visualization and simulation, with GPU, CPU, RAM, NVMe and…
+- [Taiwan AI Server Procurement & Quote Guide](https://eudaemonia.tech/en/solutions/ai-server-procurement-case-taiwan/): H200 unavailable; no restock ETA. Match Taiwan AI server procurement needs to quote paths for H200 servers, RTX PRO 6000 workstations, rack systems, and…
 - [INTEGRATION KIT 8x H200 Configurator](https://eudaemonia.tech/en/configurator/27/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Configure an INTEGRATION KIT 8x H200 build with NVIDIA H200 141GB GPUs and AMD dual EPYC platform assumptions before EudTech quote follow-up.
 - [INTEGRATION KIT 8x PRO 6000 Configurator](https://eudaemonia.tech/en/configurator/36/): Configure an INTEGRATION KIT 8x PRO 6000 build with NVIDIA RTX PRO 6000 96GB GPUs and AMD dual EPYC platform assumptions for quote review.
 - [SERVER 6xH200 GPU Server Configurator](https://eudaemonia.tech/en/configurator/29/): Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Configure a SERVER 6xH200 AI GPU server with NVIDIA H200 141GB GPUs, AMD EPYC platform, RAM, NVMe, power, and network assumptions.
@@ -216,6 +216,23 @@ The Traditional Chinese reference editions were prepared by EudTech from publicl
 
 截至 2026-10-04，未在 Comino 公開官方來源確認 GRANDO RM-M 或 RM-M-CRPS 的型號別 FCC 聲明、授權或測試報告。若標案要求 FCC 證據，須由原廠提供與最終交付型號及 BOM 相符的文件；舊版 COMINO N1 聲明不能作為 GRANDO 證據。
 As of 2026-10-04, no model-specific FCC declaration, authorization, or test report for GRANDO RM-M or RM-M-CRPS was verified in Comino's public official sources. If FCC evidence is required, obtain manufacturer evidence matching the final model and BOM. A legacy COMINO N1 declaration does not evidence GRANDO.
+
+## Comino 密封式液冷與八卡採購重點 / Sealed-liquid-loop and eight-GPU procurement facts
+
+- 主頁 / Main reference: https://eudaemonia.tech/solutions/ai-infrastructure/#lawful-procurement-specification
+- English reference: https://eudaemonia.tech/en/solutions/ai-infrastructure/#lawful-procurement-specification
+- 密封式液冷迴路 / Sealed Liquid Loop: 冷卻液在機內密封管路循環，機內散熱器與風扇將熱排入室內；八卡 RTX PRO 6000 GRANDO 完整整機不需外接設施冷卻水，但室內空調、通風與供電仍須規劃。 / Coolant circulates in sealed internal pipework. Internal radiators and fans reject heat into the room. The eight-GPU RTX PRO 6000 GRANDO complete system does not require facility water, while room cooling, ventilation and power still require planning.
+- 已確認標準八卡整機 / Confirmed standard eight-GPU system: 8 × NVIDIA RTX PRO 6000 Blackwell Server Edition 96GB，配置器 #23，GPU 記憶體合計 768GB。768GB 是八張卡容量總和，不是單一共享記憶體。 / Configurator #23 uses eight NVIDIA RTX PRO 6000 Blackwell Server Edition 96GB GPUs, 768GB aggregate GPU memory. The aggregate is not one shared memory pool.
+- 配置邊界 / Configuration boundary: 規格書所列最高八卡的其他 GPU 系列，須由原廠依主機板、冷頭、供電與散熱逐案書面確認；8× H200 Integration Kit 與機內自足完整整機不同，可能需要外接冷卻設備，且 H200 供貨及交期須取得當次書面確認。 / Other GPU families listed up to eight devices require written manufacturer confirmation of the motherboard, cold plates, power and cooling. An 8× H200 Integration Kit has a different boundary from a self-contained complete system and may require external cooling; H200 availability and lead time require current written confirmation.
+- 原廠八卡產品頁 / Manufacturer eight-GPU page: https://www.grando.ai/en/grando-server-8x-rtx-pro-6000
+- 原廠 GRANDO Server 規格書 / Manufacturer datasheet: https://faq.comino.com/datasheets/datasheet_comino_grando_server.pdf
+
+### 機關形成規格的四步驟 / Four steps for forming requirements
+
+1. **需求紀錄 / Document the need** — 寫明模型、精度、資料量、併發、訓練或推論時限，以及現場電力、空調、機櫃與維護限制。 / State the model, precision, data volume, concurrency, training or inference deadline, plus site power, room cooling, rack and service constraints.
+2. **市場調查 / Compare the market** — 比較可達成相同目的的完整整機、其他 GPU 數量或容量，以及不同冷卻架構；記錄採用或排除的理由。 / Compare complete systems, alternative GPU counts or capacities, and cooling architectures that can achieve the same purpose; record the reason for including or excluding each route.
+3. **規格文字 / Write measurable requirements** — 優先寫可量測的功能、效益、介面與場地結果。只有無法精確描述時，才引用品牌或型號，並依採購法處理同等品及審查基準。 / Prefer measurable functions, outcomes, interfaces and site results. Refer to a brand or model only where the requirement cannot otherwise be described precisely, and apply the statutory equivalent-product and evaluation rules.
+4. **驗收設計 / Define acceptance** — 在公告前定義測試資料、環境溫度、工作負載、測試時數、效能門檻及失敗判定，並對所有投標方案使用相同方法。 / Before publication, define test data, ambient temperature, workload, duration, performance thresholds and failure criteria, and apply the same method to all offered solutions.
 
 ## Comino 採購問答 / Procurement questions
 
@@ -455,11 +472,11 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
   - 設備方向: GPU 伺服器、工作站或整合套件
   - 下一步: 協助選型、建立配置或準備 RFQ
 
-### Comino 液冷 GPU 伺服器、AI 工作站與機關採購
+### Comino 密封式液冷 GPU 伺服器與機關採購規格
 
 - URL: https://eudaemonia.tech/solutions/ai-infrastructure/
-- Description: 從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。
-- Lead: 多 GPU 算力，也要適合你的工作環境。從桌邊工作站到機架式多 GPU 系統，Comino GRANDO 以封閉式液冷為核心。EudTech 依工作負載評估噪音、空間、供電與散熱，整理成可配置、可詢價的方案。
+- Description: Comino GRANDO 密封式液冷迴路、八卡 RTX PRO 6000、768GB GPU 記憶體、原廠文件、機關需求論證與可量測驗收參考。
+- Lead: 從工作負載與場地限制形成可驗收規格，並以原廠文件區分八卡密封式液冷完整整機、待確認配置及可能需要外接冷卻設備的 Integration Kit。
 - Highlights:
   - 買得到 GPU，不代表場地已經準備好。先確認設備旁是否有人工作、空間與電力，以及連續運作時間。
   - 把熱帶到散熱器，讓機箱空間留給運算。冷卻液傳遞高熱元件的熱，散熱器與氣流將熱排入周圍環境。
@@ -887,7 +904,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: solution
 - Configurator URL: https://eudaemonia.tech/configurator/29/
 - Quote URL: https://eudaemonia.tech/configurator/29/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 評估 NVIDIA H200 伺服器的 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，並登記配置供後續供貨評估。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Review NVIDIA H200 server requirements for AI training, HPC or inference and register your configuration for a supply assessment.
+- Description: H200 目前無貨，補貨時間未定。 評估 NVIDIA H200 伺服器的 GPU 數量、CPU、記憶體、儲存、電力、散熱與網路，並登記配置供後續供貨評估。 / H200 unavailable; no restock ETA. Review NVIDIA H200 server requirements for AI training, HPC or inference and register your configuration for a supply…
 - Keywords: NVIDIA H200 伺服器, H200 伺服器價格, NVIDIA H200 價格, H200 GPU 伺服器報價, H200 AI 推論伺服器, NVIDIA H200 下一代 AI 推論, AI 訓練伺服器, HPC GPU 伺服器, 液冷 GPU 伺服器, 台灣 AI 伺服器 / NVIDIA H200 server, H200 server price, H200 GPU server quote, H200 AI inference server, NVIDIA H200 next generation AI inference, AI training server, HPC GPU server, liquid cooled GPU server, Taiwan AI server
 - Hero: NVIDIA H200 伺服器規格評估與供貨查詢 / NVIDIA H200 server specifications and supply enquiries
 - Lead: 台灣採購規劃可先記錄 GPU 數量、CPU、記憶體、儲存、電源、散熱與網路需求。H200 目前無貨期間，EudTech 可協助審查技術需求及評估替代配置。 / For Taiwan procurement planning, record the GPU count, CPU, memory, storage, power, cooling and networking requirements. EudTech can review technical requirements and alternatives while H200 supply remains unavailable.
@@ -940,7 +957,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: solution
 - Configurator URL: https://eudaemonia.tech/configurator/34/
 - Quote URL: https://eudaemonia.tech/configurator/34/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Configure an RTX PRO 6000 workstation for local AI inference, rendering, visualization, or simulation. Send the build to EudTech for a Taiwan quote.
+- Description: H200 目前無貨，補貨時間未定。 配置 RTX PRO 6000 工作站，適用於本地 AI 推論、渲染、視覺化與模擬，並可送交 EudTech 追蹤台灣報價。 / H200 unavailable; no restock ETA. Configure an RTX PRO 6000 workstation for local AI inference, rendering, visualization, or simulation. Send the build to…
 - Keywords: RTX PRO 6000 工作站, RTX PRO 6000 報價, AI 工作站, GPU 工作站報價, NVIDIA 工作站 台灣, 本地 AI 推論工作站 / RTX PRO 6000 workstation, RTX PRO 6000 quote, AI workstation, GPU workstation quote, NVIDIA workstation Taiwan, local AI inference workstation
 - Hero: RTX PRO 6000 AI 工作站報價與配置 / RTX PRO 6000 AI workstation quote and configuration
 - Lead: 先用工作站配置器設定 GPU、CPU、記憶體、NVMe 儲存與網路。再針對本地 AI 與視覺化工作負載送出詢價。 / Use the workstation configurator to set the GPU, CPU, memory, NVMe storage, and networking. Then send the quote request for local AI and visualisation workloads.
@@ -1032,7 +1049,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: solution
 - Configurator URL: https://eudaemonia.tech/configurator/29/
 - Quote URL: https://eudaemonia.tech/configurator/29/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Explore GPU server cooling and liquid-cooled GPU server configurations for sustained AI and HPC workloads, then request a formal quote from EudTech.
+- Description: H200 目前無貨，補貨時間未定。 探索 GPU 伺服器散熱與液冷 GPU 伺服器配置，面向長時間 AI 與 HPC 工作負載，並可向 EudTech 取得正式報價。 / H200 unavailable; no restock ETA. Explore GPU server cooling and liquid-cooled GPU server configurations for sustained AI and HPC workloads, then request a…
 - Keywords: GPU 伺服器散熱, 液冷 GPU 伺服器, 液冷 AI 伺服器, Comino Grando, GPU 伺服器配置器, AI 伺服器報價 台灣 / GPU server cooling, liquid cooled GPU server, liquid cooling AI server, Comino Grando, GPU server configurator, AI server quote Taiwan
 - Hero: 持續高密度運算的 GPU 伺服器散熱與液冷系統 / GPU server cooling and liquid-cooled systems for sustained density
 - Lead: 報價討論前，先用配置器記錄 GPU 密度與散熱敏感的硬體選項。儲存與電源需求也一併記錄。 / Record GPU density, cooling-sensitive hardware choices, storage, and power needs in the configurator before the quote discussion.
@@ -1080,7 +1097,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: solution
 - Configurator URL: https://eudaemonia.tech/configurator/
 - Quote URL: https://eudaemonia.tech/configurator/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 整理 GPU 伺服器的硬體與部署需求供評估。H200 詢問目前以供貨查詢及替代配置評估為主；價格與交期須經書面確認。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Prepare hardware and deployment requirements for GPU server assessment. H200 enquiries currently cover supply checks and alternatives; pricing and delivery require written confirmation.
+- Description: H200 目前無貨，補貨時間未定。 整理 GPU 伺服器的硬體與部署需求供評估。H200 詢問目前以供貨查詢及替代配置評估為主；價格與交期須經書面確認。 / H200 unavailable; no restock ETA. Prepare hardware and deployment requirements for GPU server assessment. H200 enquiries currently cover supply checks and…
 - Keywords: GPU 伺服器報價, GPU 伺服器價格, GPU 伺服器預算, GPU 伺服器報價配置器, AI 伺服器報價, AI 伺服器價格, AI 伺服器 RFQ 報價, GPU 工作站報價, 伺服器配置器, EudTech 配置器 / GPU server quote, GPU server price, GPU server pricing, GPU server quote configurator, AI server quote, AI server RFQ quote, GPU workstation quote, server configurator, EudTech configurator
 - Hero: GPU 伺服器報價、價格規劃與 RFQ 入口 / GPU server quote, price planning, and RFQ entry point
 - Lead: 先選 H200 伺服器或 RTX PRO 6000 工作站。再用配置連結取代模糊的 RFQ 備註，記錄 GPU、CPU、RAM、儲存、電源、散熱與網路。EudTech 依此評估技術可行性與供貨；價格與交期須另經書面確認。 / Choose an H200 server or an RTX PRO 6000 workstation. Replace vague RFQ notes with a configuration URL that records GPU, CPU, RAM, storage, power, cooling, and network. EudTech uses it to assess technical feasibility and supply; price and delivery remain subject to written confirmation.
@@ -1128,7 +1145,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: comparison
 - Configurator URL: https://eudaemonia.tech/configurator/
 - Quote URL: https://eudaemonia.tech/configurator/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與 96 GB 記憶體、頻寬、功耗、原廠來源及詢價條件。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Compare H200 SXM/NVL and RTX PRO 6000 Blackwell Workstation Edition: 141 GB vs 96 GB, memory bandwidth, GPU power, official sources and quote requirements.
+- Description: H200 目前無貨，補貨時間未定。 比較 H200 SXM／NVL 與 RTX PRO 6000 Blackwell Workstation Edition：141 GB 與… / H200 unavailable; no restock ETA. Compare H200 SXM/NVL and RTX PRO 6000 Blackwell Workstation Edition: 141 GB vs 96 GB, memory bandwidth, GPU power…
 - Keywords: H200 vs RTX PRO 6000, H200 RTX PRO 6000 差異, H200 vs RTX PRO 6000 報價, NVIDIA H200 伺服器比較, RTX PRO 6000 工作站比較, AI 訓練 GPU 與推論工作站, AI GPU 比較, GPU 伺服器採購 / H200 vs RTX PRO 6000, H200 RTX PRO 6000 difference, H200 vs RTX PRO 6000 quote, NVIDIA H200 server comparison, RTX PRO 6000 workstation comparison, AI training GPU vs inference workstation, AI GPU comparison, GPU server procurement
 - Hero: H200 vs RTX PRO 6000：依 AI 工作負載與部署型態選擇 / H200 vs RTX PRO 6000: choose by AI workload and deployment model
 - Lead: 先比較 GPU 版本、記憶體、功耗及部署需求。H200 與 RTX PRO 6000 都可用於 AI 工作負載，依模型、軟體與實測效能選擇，再保留完整配置供報價審查。 / Compare the exact GPU editions, memory, power and deployment requirements. Both H200 and RTX PRO 6000 can serve AI workloads; choose from the model, software and measured performance, then preserve the full configuration for quote review.
@@ -1238,7 +1255,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: guide
 - Configurator URL: https://eudaemonia.tech/configurator/29/
 - Quote URL: https://eudaemonia.tech/configurator/29/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Plan liquid-cooled AI server procurement around GPU density, sustained workloads, rack deployment, power capacity, and quote-ready configuration details.
+- Description: H200 目前無貨，補貨時間未定。 依 GPU 密度、長時間工作負載、機架部署、電源容量與可報價配置細節規劃液冷 AI 伺服器採購。 / H200 unavailable; no restock ETA. Plan liquid-cooled AI server procurement around GPU density, sustained workloads, rack deployment, power capacity, and…
 - Keywords: 液冷 AI 伺服器採購, 液冷 GPU 伺服器報價, AI 資料中心散熱, 高密度 GPU 伺服器, Comino 液冷 / liquid cooling AI server procurement, liquid cooled GPU server quote, AI data center cooling, GPU density server, Comino liquid cooling
 - Hero: 液冷 AI 伺服器採購從清楚的配置開始 / Liquid-cooled AI server procurement starts with a clear configuration
 - Lead: 液冷 GPU 系統應在同一條詢價路徑中評估。項目包含 GPU 數量、熱負載、機架限制、電源容量、儲存、網路與服務追蹤。 / Evaluate liquid-cooled GPU systems with GPU count, heat load, rack constraints, power capacity, storage, networking, and service follow-up in one quote path.
@@ -1281,7 +1298,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: guide
 - Configurator URL: https://eudaemonia.tech/configurator/29/
 - Quote URL: https://eudaemonia.tech/configurator/29/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Plan GPU server power capacity, redundant power supplies, GPU count, CPU platform, memory, storage, and network assumptions before requesting a quote.
+- Description: H200 目前無貨，補貨時間未定。 在送出報價需求前，先規劃 GPU 伺服器電力容量、冗餘電源、GPU 數量、CPU 平台、記憶體、儲存與網路假設。 / H200 unavailable; no restock ETA. Plan GPU server power capacity, redundant power supplies, GPU count, CPU platform, memory, storage, and network…
 - Keywords: GPU 伺服器電力規劃, GPU 伺服器冗餘電源, AI 伺服器電力容量, GPU 伺服器報價, 資料中心 GPU 電力 / GPU server power planning, redundant power supply GPU server, AI server power capacity, GPU server quote, data center GPU power
 - Hero: 報價審查前的 GPU 伺服器電力規劃 / GPU server power planning before quote review
 - Lead: 用配置器記錄 GPU 數量、電源設計、CPU、記憶體、儲存與網路假設。這些假設會留在同一條可審查的詢價路徑。 / Keep GPU count, power supply design, CPU, memory, storage, and networking assumptions in one reviewable quote path with the configurator.
@@ -1324,7 +1341,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: guide
 - Configurator URL: https://eudaemonia.tech/configurator/29/
 - Quote URL: https://eudaemonia.tech/configurator/29/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 整理機架式 AI 伺服器部署需求，包含 GPU 密度、機架型態、電力、散熱、儲存、網路與可報價配置細節。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Prepare rack AI server deployment requirements with GPU density, rack form factor, power, cooling, storage, networking, and configuration details.
+- Description: H200 目前無貨，補貨時間未定。 整理機架式 AI 伺服器部署需求，包含 GPU 密度、機架型態、電力、散熱、儲存、網路與可報價配置細節。 / H200 unavailable; no restock ETA. Prepare rack AI server deployment requirements with GPU density, rack form factor, power, cooling, storage, networking…
 - Keywords: 機架式 AI 伺服器部署, 機架式 GPU 伺服器, AI 機架伺服器報價, GPU 伺服器機架規劃, AI 資料中心伺服器 / rack AI server deployment, rackmount GPU server, AI rack server quote, GPU server rack planning, AI data center server
 - Hero: 機架式 AI 伺服器部署從可分享的配置開始 / Rack AI server deployment starts with a shareable configuration
 - Lead: 部署討論包含機架空間、電力、散熱、GPU 數量、儲存與網路假設時，從這裡開始。 / Start here when the deployment discussion covers rack space, power, cooling, GPU count, storage, and network assumptions.
@@ -1531,7 +1548,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: checklist
 - Configurator URL: https://eudaemonia.tech/configurator/29/
 - Quote URL: https://eudaemonia.tech/configurator/29/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU 平台、RAM、NVMe、電源、網路、機架、散熱與報價追蹤需求。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Prepare a Taiwan H200 server RFQ covering GPU count, CPU, RAM, NVMe, power, networking, rack, cooling and quote follow-up.
+- Description: H200 目前無貨，補貨時間未定。 為台灣採購準備 NVIDIA H200 GPU 伺服器 RFQ，對齊 GPU 數量、CPU… / H200 unavailable; no restock ETA. Prepare a Taiwan H200 server RFQ covering GPU count, CPU, RAM, NVMe, power, networking, rack, cooling and quote follow-up.
 - Keywords: H200 GPU 伺服器 RFQ, NVIDIA H200 伺服器 台灣, H200 伺服器報價, H200 AI 訓練伺服器, GPU 伺服器採購檢核表, H200 液冷伺服器 / H200 GPU server RFQ, NVIDIA H200 server Taiwan, H200 server quote, H200 AI training server, GPU server procurement checklist, H200 liquid cooled server
 - Hero: 送出詢價前的 H200 GPU 伺服器 RFQ 準備 / H200 GPU server RFQ preparation before the quote request
 - Lead: 用 H200 配置器路徑保留已選 GPU、CPU、RAM、儲存、電源與網路假設，再送出詢價。 / Use the H200 configurator path to keep the selected GPU, CPU, RAM, storage, power, and network assumptions before sending the quote request.
@@ -1574,7 +1591,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: guide
 - Configurator URL: https://eudaemonia.tech/configurator/34/
 - Quote URL: https://eudaemonia.tech/configurator/34/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe 與網路脈絡。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Plan an RTX PRO 6000 workstation quote for local AI inference, visualization and simulation, with GPU, CPU, RAM, NVMe and network requirements.
+- Description: H200 目前無貨，補貨時間未定。 規劃 RTX PRO 6000 工作站報價，適用於本地 AI 推論、視覺化、模擬與模型開發，並保留 GPU、CPU、RAM、NVMe… / H200 unavailable; no restock ETA. Plan an RTX PRO 6000 workstation quote for local AI inference, visualization and simulation, with GPU, CPU, RAM, NVMe and…
 - Keywords: RTX PRO 6000 本地推論, RTX PRO 6000 工作站報價, 本地 AI 推論工作站, AI 工作站 台灣, GPU 工作站報價, RTX PRO 6000 LLM / RTX PRO 6000 local inference, RTX PRO 6000 workstation quote, local AI inference workstation, AI workstation Taiwan, GPU workstation quote, RTX PRO 6000 LLM
 - Hero: 本地 AI 的 RTX PRO 6000 工作站報價脈絡 / RTX PRO 6000 workstation quote context for local AI
 - Lead: 用工作站配置器比較 RTX PRO 6000 與 H200 或可上架系統，再送出詢價。 / Use the workstation configurator to compare RTX PRO 6000 options with H200 or rackable systems before sending a quote request.
@@ -1617,7 +1634,7 @@ Answer URL: https://eudaemonia.tech/en/solutions/social-intelligence/#cyabra-get
 - Kind: guide
 - Configurator URL: https://eudaemonia.tech/configurator/
 - Quote URL: https://eudaemonia.tech/configurator/?request=true
-- Description: Comino H200 目前無貨，補貨時間未定；配置僅供規格評估與供貨查詢。 將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000 工作站、可上架系統與液冷需求。 / Comino H200 is currently unavailable with no restock ETA. Configurations are for specification review and supply enquiries only. Match Taiwan AI server procurement needs to quote paths for H200 servers, RTX PRO 6000 workstations, rack systems, and liquid cooling.
+- Description: H200 目前無貨，補貨時間未定。 將台灣 AI 伺服器採購情境對應到 EudTech 配置器詢價路徑，涵蓋 H200 伺服器、RTX PRO 6000… / H200 unavailable; no restock ETA. Match Taiwan AI server procurement needs to quote paths for H200 servers, RTX PRO 6000 workstations, rack systems, and…
 - Keywords: AI 伺服器採購 台灣, GPU 伺服器採購 台灣, AI 伺服器報價案例, EudTech 配置器, 液冷 AI 伺服器採購, GPU 工作站採購 / AI server procurement Taiwan, GPU server procurement Taiwan, AI server quote case, EudTech configurator, liquid cooled AI server procurement, GPU workstation procurement
 - Hero: 台灣 AI 伺服器採購情境與配置器路徑 / Configurator-driven AI server procurement cases for Taiwan teams
 - Lead: 先選最接近的採購情境，再開啟對應配置器路徑。保留硬體假設，供後續報價追蹤。 / Choose the closest procurement scenario, open the matching configurator path, and keep the selected hardware assumptions ready for quote follow-up.
