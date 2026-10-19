@@ -20,7 +20,7 @@ const questions = [
 ];
 const cooling = [
   { title: { zh: '冷卻模組接住熱', en: 'Cooling blocks collect heat' }, body: { zh: '高熱元件透過冷卻模組散熱，減少每張 GPU 各自配置大型散熱器所占的空間。', en: 'Cooling blocks transfer heat from high-load components, reducing the space required for individual GPU heatsinks.' } },
-  { title: { zh: '冷卻液把熱帶走', en: 'Coolant transports heat' }, body: { zh: '管路將熱傳遞至機箱散熱器；冷卻模組、管路與機箱一起設計。', en: 'Pipework carries heat to the chassis radiator. Blocks, pipework and chassis are designed as one system.' } },
+  { title: { zh: '冷卻液把熱帶走', en: 'Coolant transports heat' }, body: { zh: '密封式液冷迴路（Sealed Liquid Loop）讓冷卻液在機內循環，將熱傳遞至機箱散熱器；冷卻模組、管路與機箱一起設計。', en: 'A sealed liquid loop circulates coolant inside the system and carries heat to the chassis radiator. Blocks, pipework and chassis are designed as one system.' } },
   { title: { zh: '氣流把熱排出機箱', en: 'Airflow releases heat' }, body: { zh: '散熱器透過氣流向外排熱，前段進氣也照顧 RAM 等仍需氣冷的元件。', en: 'Airflow removes heat through the radiator, while intake air also cools components such as RAM.' } },
 ];
 const workloads = [
@@ -63,7 +63,7 @@ const StoryFigure: React.FC<{ src: string; alt: Bilingual; caption: Bilingual; i
 const AiInfrastructureSolutionPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
   const text = (zh: string, en: string) => isEnglish ? en : zh;
-  const actions = <div className="comino-actions"><Link className="comino-button" to="/contact">{text('討論我的部署需求', 'Discuss my deployment')}</Link><a className="comino-button comino-button-secondary" href="#test-drive">{tx(testDrive.entryLabel, isEnglish)}</a><Link className="comino-button comino-button-secondary" to="/configurator?request=true">{text('我已知道規格，開始配置', 'I know my specification')}</Link><a className="comino-button comino-button-secondary" href="#procurement">{text('機關採購參考與文件', 'Procurement reference and documents')}</a></div>;
+  const actions = <div className="comino-actions"><Link className="comino-button" to="/contact">{text('討論我的部署需求', 'Discuss my deployment')}</Link><a className="comino-button comino-button-secondary" href="#test-drive">{tx(testDrive.entryLabel, isEnglish)}</a><Link className="comino-button comino-button-secondary" to="/configurator?request=true">{text('我已知道規格，開始配置', 'I know my specification')}</Link><a className="comino-button comino-button-secondary" href="#procurement">{text('市場調查與需求論證', 'Market research and needs justification')}</a></div>;
   const structuredData = [
     {
       '@context': 'https://schema.org',
@@ -80,14 +80,14 @@ const AiInfrastructureSolutionPage: React.FC = () => {
     cominoQuestionsSchema(isEnglish)
   ];
 
-  return <PageShell title={{ zh: 'Comino 液冷 GPU 伺服器、AI 工作站與機關採購', en: 'Comino Liquid-Cooled GPU Servers & Workstations' }} description={{ zh: '從工作負載、場地與液冷配置，到機關採購參考、原廠文件及驗收條件，規劃 AI 伺服器與工作站。', en: 'Plan Comino GRANDO GPU servers and workstations in Taiwan, including workload sizing, power, cooling, manufacturer documents and procurement evidence.' }} path="/solutions/ai-infrastructure" structuredData={structuredData}>
+  return <PageShell title={{ zh: 'Comino 密封式液冷 GPU 伺服器與機關需求論證', en: 'Comino sealed-liquid-loop GPU servers and procurement planning' }} description={{ zh: 'Comino GRANDO 密封式液冷迴路（Sealed Liquid Loop）：從機內循環散熱與場地需求，到政府採購的市場調查、功能效益規格及可量測驗收證據。', en: 'Plan Comino GRANDO sealed liquid loop systems from self-contained cooling and site needs to public-procurement market research, outcome-based requirements and measurable acceptance evidence.' }} path="/solutions/ai-infrastructure" structuredData={structuredData}>
     <div className="comino-story">
       <section className="comino-hero" aria-labelledby="comino-title">
         <div className="comino-wrap comino-split">
           <div>
             <p className="comino-eyebrow">{text('AI 運算基礎設施', 'AI infrastructure')} · Comino GRANDO</p>
             <h1 id="comino-title">{text('Comino GRANDO 液冷 GPU 伺服器與 AI 工作站採購', 'Comino GRANDO liquid-cooled GPU servers and AI workstations')}</h1>
-            <p className="comino-lead">{text('從桌邊工作站到機架式多 GPU 系統，Comino GRANDO 以封閉式液冷為核心。EudTech 依你的工作負載，評估噪音、空間、供電與散熱，整理成可配置、可詢價的方案。', 'From deskside workstations to rack-mounted multi-GPU systems, Comino GRANDO is built around closed-loop liquid cooling. EudTech reviews your workload, noise, space, power and cooling needs to prepare a configuration and quotation.')}</p>
+            <p className="comino-lead">{text('從桌邊工作站到機架式多 GPU 系統，Comino GRANDO 以密封式液冷迴路（Sealed Liquid Loop）為核心。EudTech 依你的工作負載，評估噪音、空間、供電與散熱，整理成可配置、可詢價的方案。', 'From deskside workstations to rack-mounted multi-GPU systems, Comino GRANDO is built around a sealed liquid loop. EudTech reviews your workload, noise, space, power and cooling needs to prepare a configuration and quotation.')}</p>
             {actions}
           </div>
           <StoryFigure src={VENDOR_EVIDENCE.comino.image} alt={VENDOR_EVIDENCE.comino.imageAlt} caption={{ zh: 'GRANDO 原廠實機：GPU 冷卻模組、管路與後段散熱器一起設計。', en: 'Official GRANDO system: GPU cooling blocks, pipework and rear radiator designed together.' }} isEnglish={isEnglish} eager />
@@ -111,7 +111,7 @@ const AiInfrastructureSolutionPage: React.FC = () => {
             <StoryFigure src={kit + 'liquid-airflow.webp'} alt={{ zh: 'GRANDO 冷卻液與氣流原理圖：藍紅色管路為冷卻液，波浪箭頭為氣流', en: 'GRANDO cooling diagram: blue and red pipes represent coolant; wavy arrows represent airflow' }} caption={{ zh: '原廠 Sales Kit 0911：實色管路是冷卻液，波浪箭頭是氣流。', en: 'Manufacturer Sales Kit 0911: solid pipes show coolant; wavy arrows show airflow.' }} isEnglish={isEnglish} />
             <ol className="comino-notes">{cooling.map((item, index) => <li key={item.title.en}><span className="comino-number">0{index + 1}</span><div><h3>{tx(item.title, isEnglish)}</h3><p>{tx(item.body, isEnglish)}</p></div></li>)}</ol>
           </div>
-          <p className="comino-condition"><strong>{text('不接冷卻塔，不等於不需要空調。', 'No cooling tower does not mean no room cooling.')} </strong>{text('本頁介紹的機內封閉循環方案不需另接冷卻塔；熱仍會排入室內，現場空調、通風與供電仍須確認。', 'The self-contained design described here does not require an external cooling tower. Heat still enters the room, so air conditioning, ventilation and power must be checked.')}</p>
+          <p className="comino-condition"><strong>{text('不接冷卻塔，不等於不需要空調。', 'No cooling tower does not mean no room cooling.')} </strong>{text('本頁介紹的密封式液冷迴路（Sealed Liquid Loop）整機方案不需外接設施冷卻水或冷卻塔；熱仍會排入室內，現場空調、通風與供電仍須確認。', 'The sealed-liquid-loop complete-system design described here does not require facility water or an external cooling tower. Heat still enters the room, so air conditioning, ventilation and power must be checked.')}</p>
         </div>
       </section>
 
