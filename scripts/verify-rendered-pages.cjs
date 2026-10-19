@@ -71,6 +71,19 @@ for (const p of ['solutions/ai-infrastructure/index.html', 'en/solutions/ai-infr
   const pageUrl = `https://eudaemonia.tech/${en ? 'en/' : ''}solutions/ai-infrastructure/`;
   const schemas = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
   const faqSchema = schemas.find(schema => schema['@type'] === 'FAQPage');
+  const serviceSchema = schemas.find(schema => schema['@type'] === 'Service');
+  const howToSchema = schemas.find(schema => schema['@type'] === 'HowTo');
+  const articleSchema = schemas.find(schema => schema['@type'] === 'TechArticle');
+  assert.equal(serviceSchema?.url, pageUrl, `Service URL must match language page: ${p}`);
+  assert.equal(serviceSchema?.inLanguage, en ? 'en' : 'zh-TW', `Service language mismatch: ${p}`);
+  assert.equal(howToSchema?.step?.length, procurement.specificationSteps.length, `Incomplete procurement HowTo: ${p}`);
+  assert.equal(articleSchema?.mainEntityOfPage, pageUrl, `TechArticle URL mismatch: ${p}`);
+  assert.ok(articleSchema?.citation?.includes('https://www.grando.ai/en/grando-server-8x-rtx-pro-6000'), `Missing manufacturer citation: ${p}`);
+  for (const step of procurement.specificationSteps) {
+    const language = en ? 'en' : 'zh';
+    assert.ok(html.includes(step.title[language]) && html.includes(step.body[language]), `Procurement step missing from visible HTML: ${p}/${step.id}`);
+    assert.ok(howToSchema.step.some(item => item.name === step.title[language] && item.text === step.body[language]), `Procurement step schema mismatch: ${p}/${step.id}`);
+  }
   assert.equal(faqSchema?.mainEntity.length, procurement.faqs.length, `Missing procurement answers: ${p}`);
   for (const faq of procurement.faqs) {
     const question = faqSchema.mainEntity.find(item => item.url === `${pageUrl}#${faq.id}`);

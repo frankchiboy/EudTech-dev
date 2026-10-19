@@ -10,6 +10,7 @@ import CominoComplianceSection from './CominoComplianceSection';
 import CominoTestDriveSection from './CominoTestDriveSection';
 import testDrive from '../../data/cominoTestDrive.json';
 import { cominoQuestionsSchema } from '../../utils/seo/cominoQuestions';
+import procurementReference from '../../data/cominoProcurement.json';
 import { getResponsiveNetlifyImageProps } from '../../utils/performance/netlifyImageCdn';
 
 const kit = '/vendor/comino/sales-kit-0911/';
@@ -63,19 +64,61 @@ const StoryFigure: React.FC<{ src: string; alt: Bilingual; caption: Bilingual; i
 const AiInfrastructureSolutionPage: React.FC = () => {
   const { isEnglish } = useLanguageContext();
   const text = (zh: string, en: string) => isEnglish ? en : zh;
+  const pageUrl = `https://eudaemonia.tech${isEnglish ? '/en' : ''}/solutions/ai-infrastructure/`;
   const actions = <div className="comino-actions"><Link className="comino-button" to="/contact">{text('討論我的部署需求', 'Discuss my deployment')}</Link><a className="comino-button comino-button-secondary" href="#test-drive">{tx(testDrive.entryLabel, isEnglish)}</a><Link className="comino-button comino-button-secondary" to="/configurator?request=true">{text('我已知道規格，開始配置', 'I know my specification')}</Link><a className="comino-button comino-button-secondary" href="#procurement">{text('市場調查與需求論證', 'Market research and needs justification')}</a></div>;
   const structuredData = [
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      '@id': 'https://eudaemonia.tech/solutions/ai-infrastructure/#service',
+      '@id': `${pageUrl}#service`,
       name: text('Comino GRANDO 液冷 GPU 系統規劃與採購服務', 'Comino GRANDO liquid-cooled GPU system planning and procurement'),
       description: text('依工作負載、場地、供電與散熱條件規劃 Comino GRANDO 液冷 GPU 工作站或伺服器，並提供配置審查、正式報價與驗收規劃。', 'Plan a Comino GRANDO liquid-cooled GPU workstation or server around workload, site, power, and heat-removal requirements, with configuration review, formal quotation, and acceptance planning.'),
       serviceType: text('液冷 GPU 伺服器與 AI 工作站規劃', 'Liquid-cooled GPU server and AI workstation planning'),
-      url: 'https://eudaemonia.tech/solutions/ai-infrastructure/',
+      url: pageUrl,
+      inLanguage: isEnglish ? 'en' : 'zh-TW',
       provider: { '@id': 'https://eudaemonia.tech/#organization' },
       brand: { '@type': 'Brand', name: 'Comino', url: 'https://www.comino.com/en/company' },
       areaServed: { '@type': 'Country', name: 'Taiwan' }
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      '@id': `${pageUrl}#procurement-how-to`,
+      name: text('機關如何形成 GPU 伺服器採購規格', 'How to form a GPU-server procurement requirement'),
+      description: text('從需求紀錄、市場調查、可量測規格到一致驗收的四步驟。', 'Four steps from needs records and market research to measurable requirements and consistent acceptance.'),
+      inLanguage: isEnglish ? 'en' : 'zh-TW',
+      url: `${pageUrl}#lawful-procurement-specification`,
+      step: procurementReference.specificationSteps.map((step, index) => ({
+        '@type': 'HowToStep',
+        position: index + 1,
+        name: tx(step.title, isEnglish),
+        text: tx(step.body, isEnglish),
+        url: `${pageUrl}#lawful-procurement-specification`
+      }))
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      '@id': `${pageUrl}#procurement-reference`,
+      headline: text('Comino 密封式液冷 GPU 伺服器與機關規格參考', 'Comino sealed-liquid-loop GPU servers and procurement reference'),
+      description: text('整理密封式液冷迴路、八卡 RTX PRO 6000、768GB GPU 記憶體、整合套件邊界及可量測驗收方式。', 'A referenced guide to sealed liquid loops, eight RTX PRO 6000 GPUs, 768GB aggregate GPU memory, Integration Kit boundaries and measurable acceptance.'),
+      inLanguage: isEnglish ? 'en' : 'zh-TW',
+      mainEntityOfPage: pageUrl,
+      dateModified: '2026-10-19',
+      author: { '@id': 'https://eudaemonia.tech/#organization' },
+      publisher: { '@id': 'https://eudaemonia.tech/#organization' },
+      about: [
+        { '@type': 'Thing', name: 'Comino GRANDO' },
+        { '@type': 'Thing', name: 'Sealed Liquid Loop' },
+        { '@type': 'Thing', name: 'NVIDIA RTX PRO 6000 Blackwell Server Edition' },
+        { '@type': 'Thing', name: text('政府採購規格', 'Public procurement requirements') }
+      ],
+      citation: [
+        'https://www.grando.ai/en/grando-server-8x-rtx-pro-6000',
+        'https://faq.comino.com/datasheets/datasheet_comino_grando_server.pdf',
+        'https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=A0030057&flno=26'
+      ],
+      isAccessibleForFree: true
     },
     cominoQuestionsSchema(isEnglish)
   ];

@@ -62,10 +62,7 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
         <p className="comino-eyebrow">{text('政府採購規格形成方式', 'How to form public-procurement requirements')}</p>
         <h3>{text('先證明需要，再寫功能、效益與驗收門檻', 'Establish the need first, then state functions, outcomes and acceptance thresholds')}</h3>
         <ol className="comino-procurement-steps">
-          <li>{text('需求紀錄：寫明模型、精度、資料量、併發、訓練或推論時限，以及現場電力、空調、機櫃與維護限制。', 'Need record: state the model, precision, data volume, concurrency, training or inference deadline, plus site power, room cooling, rack and service constraints.')}</li>
-          <li>{text('市場調查：比較可達成相同目的的完整整機、其他 GPU 數量或容量，以及不同冷卻架構；記錄採用或排除的理由。', 'Market research: compare complete systems, alternative GPU counts or capacities, and cooling architectures that can achieve the same purpose; record the reason for including or excluding each route.')}</li>
-          <li>{text('規格文字：優先寫可量測的功能、效益、介面與場地結果。只有無法精確描述時，才引用品牌或型號，並依採購法處理同等品及審查基準。', 'Requirement wording: prefer measurable functions, outcomes, interfaces and site results. Refer to a brand or model only where the requirement cannot otherwise be described precisely, and apply the statutory equivalent-product and evaluation rules.')}</li>
-          <li>{text('驗收設計：在公告前定義測試資料、環境溫度、工作負載、測試時數、效能門檻及失敗判定，並對所有投標方案使用相同方法。', 'Acceptance design: before publication, define test data, ambient temperature, workload, duration, performance thresholds and failure criteria, and apply the same method to all offered solutions.')}</li>
+          {reference.specificationSteps.map(step => <li key={step.id}><strong>{tx(step.title, isEnglish)}：</strong>{tx(step.body, isEnglish)}</li>)}
         </ol>
         <div className="comino-document-links">
           <a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=A0030057&flno=26" target="_blank" rel="noreferrer">{text('政府採購法第 26 條', 'Government Procurement Act, Article 26')}</a>

@@ -48,6 +48,14 @@ function renderEnglishPage(baseHtml, route) {
     itemListElement:related.map((item,index)=>({'@type':'ListItem',position:index+1,name:item.title,url:enUrl(item.path)}))
   } : null;
   const configuratorProduct = configuratorProductByPath.get(route.path);
+  const visibleConfiguratorProducts = route.path === '/configurator'
+    ? CONFIGURATOR_PRODUCT_SEO
+    : configuratorProduct
+      ? [
+          ...CONFIGURATOR_PRODUCT_SEO.filter(product => product.productId !== configuratorProduct.productId && product.category.en === configuratorProduct.category.en),
+          ...CONFIGURATOR_PRODUCT_SEO.filter(product => product.productId !== configuratorProduct.productId && product.category.en !== configuratorProduct.category.en)
+        ].slice(0, 4)
+      : [];
   const configuratorSchemas = configuratorProduct ? [
     {
       '@context':'https://schema.org','@type':'WebApplication',name:configuratorProduct.title.en,
@@ -100,7 +108,7 @@ function renderEnglishPage(baseHtml, route) {
     ...[['zh-Hant',zh],['en',url],['x-default',zh]].map(([lang,href])=>`<link data-rh="true" rel="alternate" hreflang="${lang}" href="${href}">`),
     ...schemas.map(s=>`<script data-rh="true" type="application/ld+json">${json(s)}</script>`),style
   ].join('\n');
-  const body = `<main class="seo-content" data-static-seo-fallback><nav aria-label="Main navigation"><a href="${enUrl('/')}">EudTech</a><a href="${enUrl('/solutions')}">Solutions</a><a href="${enUrl('/products')}">Products</a><a href="${enUrl('/contact')}">Contact</a><a lang="zh-Hant" href="${zh}">繁體中文</a></nav><h1>${escape(route.title)}</h1><p>${escape(route.lead || route.description)}</p>${/h200/i.test(JSON.stringify([route.title, route.description, route.specs])) ? `<aside data-h200-supply-status="${h200Availability.asOf}"><h2>${escape(h200Availability.title.en)}</h2><p>${escape(h200Availability.detail.en)}</p></aside>` : ''}${route.highlights?.length?`<h2>Overview</h2><ul>${route.highlights.map(h=>`<li>${escape(h)}</li>`).join('')}</ul>`:''}${route.specs?.length?`<h2>Specifications and service scope</h2><table><tbody>${route.specs.map(s=>`<tr><th scope="row">${escape(s.label)}</th><td>${escape(s.value)}</td></tr>`).join('')}</tbody></table>`:''}${route.path==='/solutions/ai-infrastructure'?testDrive()+procurement():''}${route.faq?.length?`<h2>Frequently asked questions</h2>${route.faq.map(([q,a])=>`<h3>${escape(q)}</h3><p>${escape(a)}</p>`).join('')}`:''}<h2>Explore related resources</h2><ul>${related.map(r=>`<li><a href="${enUrl(r.path)}">${escape(r.title)}</a></li>`).join('')}</ul><p><a href="mailto:quote@eudaemonia.tech">quote@eudaemonia.tech</a></p></main>`;
+  const body = `<main class="seo-content" data-static-seo-fallback><nav aria-label="Main navigation"><a href="${enUrl('/')}">EudTech</a><a href="${enUrl('/solutions')}">Solutions</a><a href="${enUrl('/products')}">Products</a><a href="${enUrl('/contact')}">Contact</a><a lang="zh-Hant" href="${zh}">繁體中文</a></nav><h1>${escape(route.title)}</h1><p>${escape(route.lead || route.description)}</p>${/h200/i.test(JSON.stringify([route.title, route.description, route.specs])) ? `<aside data-h200-supply-status="${h200Availability.asOf}"><h2>${escape(h200Availability.title.en)}</h2><p>${escape(h200Availability.detail.en)}</p></aside>` : ''}${route.highlights?.length?`<h2>Overview</h2><ul>${route.highlights.map(h=>`<li>${escape(h)}</li>`).join('')}</ul>`:''}${route.specs?.length?`<h2>Specifications and service scope</h2><table><tbody>${route.specs.map(s=>`<tr><th scope="row">${escape(s.label)}</th><td>${escape(s.value)}</td></tr>`).join('')}</tbody></table>`:''}${route.path==='/solutions/ai-infrastructure'?testDrive()+procurement():''}${route.faq?.length?`<h2>Frequently asked questions</h2>${route.faq.map(([q,a])=>`<h3>${escape(q)}</h3><p>${escape(a)}</p>`).join('')}`:''}${visibleConfiguratorProducts.length?`<h2>${route.path === '/configurator' ? 'GPU server and workstation configurations' : 'Compare related configurations'}</h2><ul>${visibleConfiguratorProducts.map(product=>`<li><a href="${enUrl(product.configuratorHref)}">${escape(product.title.en)}</a> — ${escape(product.description.en)}</li>`).join('')}</ul>`:''}<h2>Explore related resources</h2><ul>${related.map(r=>`<li><a href="${enUrl(r.path)}">${escape(r.title)}</a></li>`).join('')}</ul><p><a href="mailto:quote@eudaemonia.tech">quote@eudaemonia.tech</a></p></main>`;
   return cleanHead(baseHtml).replace(/<html lang="[^"]*"/, '<html lang="en"').replace('</head>',head+'</head>').replace('<div id="root"></div>',`<div id="root">${body}</div>`);
 }
 

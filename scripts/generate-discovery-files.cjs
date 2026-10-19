@@ -198,7 +198,7 @@ function bodyFingerprint(loc) {
   if (service?.id === 'cyabra') files.push('src/components/pages/CyabraExperiencePage.tsx', 'src/data/cyabraExperience.ts');
   if (pathname==='/contact') files.push('src/components/contact/ContactInfo.tsx','src/components/contact/OnlineMeetingBooking.tsx','src/data/siteArchitecture.ts','src/data/organization.json');
   if (pathname==='/about') files.push('src/data/authoritySources.json','src/data/organization.json');
-  if (pathname==='/solutions/ai-infrastructure') files.push('src/data/cominoProcurement.json','src/data/cominoConformity.json','src/data/cominoTestDrive.json');
+  if (pathname==='/solutions/ai-infrastructure') files.push('src/components/pages/CominoProcurementSection.tsx','src/data/cominoProcurement.json','src/data/cominoConformity.json','src/data/cominoTestDrive.json');
   if (guide) files.push('src/components/pages/ConfiguratorSolutionPage.tsx');
   if (guide?.comparison) files.push('src/components/pages/GpuComparisonTable.tsx');
   if (/^\/products\/\d+$/.test(pathname)) files.push('src/data/productData.ts');
@@ -436,6 +436,20 @@ ${cominoConformity.documents.map(document => `### ${document.title.zh} / ${docum
 
 ${cominoConformity.fccBoundary.zh}
 ${cominoConformity.fccBoundary.en}
+
+## Comino 密封式液冷與八卡採購重點 / Sealed-liquid-loop and eight-GPU procurement facts
+
+- 主頁 / Main reference: ${pageUrl('/solutions/ai-infrastructure')}#lawful-procurement-specification
+- English reference: ${pageUrl('/en/solutions/ai-infrastructure')}#lawful-procurement-specification
+- 密封式液冷迴路 / Sealed Liquid Loop: 冷卻液在機內密封管路循環，機內散熱器與風扇將熱排入室內；八卡 RTX PRO 6000 GRANDO 完整整機不需外接設施冷卻水，但室內空調、通風與供電仍須規劃。 / Coolant circulates in sealed internal pipework. Internal radiators and fans reject heat into the room. The eight-GPU RTX PRO 6000 GRANDO complete system does not require facility water, while room cooling, ventilation and power still require planning.
+- 已確認標準八卡整機 / Confirmed standard eight-GPU system: 8 × NVIDIA RTX PRO 6000 Blackwell Server Edition 96GB，配置器 #23，GPU 記憶體合計 768GB。768GB 是八張卡容量總和，不是單一共享記憶體。 / Configurator #23 uses eight NVIDIA RTX PRO 6000 Blackwell Server Edition 96GB GPUs, 768GB aggregate GPU memory. The aggregate is not one shared memory pool.
+- 配置邊界 / Configuration boundary: 規格書所列最高八卡的其他 GPU 系列，須由原廠依主機板、冷頭、供電與散熱逐案書面確認；8× H200 Integration Kit 與機內自足完整整機不同，可能需要外接冷卻設備，且 H200 供貨及交期須取得當次書面確認。 / Other GPU families listed up to eight devices require written manufacturer confirmation of the motherboard, cold plates, power and cooling. An 8× H200 Integration Kit has a different boundary from a self-contained complete system and may require external cooling; H200 availability and lead time require current written confirmation.
+- 原廠八卡產品頁 / Manufacturer eight-GPU page: https://www.grando.ai/en/grando-server-8x-rtx-pro-6000
+- 原廠 GRANDO Server 規格書 / Manufacturer datasheet: https://faq.comino.com/datasheets/datasheet_comino_grando_server.pdf
+
+### 機關形成規格的四步驟 / Four steps for forming requirements
+
+${cominoReference.specificationSteps.map((step, index) => `${index + 1}. **${step.title.zh} / ${step.title.en}** — ${step.body.zh} / ${step.body.en}`).join('\n')}
 
 ## Comino 採購問答 / Procurement questions
 
@@ -903,7 +917,24 @@ fs.writeFileSync(path.join(publicDir, 'ai-discovery.json'), `${JSON.stringify({
   },
   permittedAgents: ['Googlebot', 'Bingbot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Perplexity-User', 'ClaudeBot', 'Claude-User', 'Claude-SearchBot'],
   entity: organization,
-  authority: authoritySources
+  authority: authoritySources,
+  featuredReferences: [{
+    id: 'comino-sealed-liquid-loop-procurement',
+    languages: ['zh-TW', 'en'],
+    urls: {
+      zh: `${pageUrl('/solutions/ai-infrastructure')}#lawful-procurement-specification`,
+      en: `${pageUrl('/en/solutions/ai-infrastructure')}#lawful-procurement-specification`
+    },
+    facts: {
+      coolingArchitecture: 'Sealed Liquid Loop: internal sealed coolant circuit with chassis radiators and fans; no facility-water connection for the referenced complete system.',
+      confirmedEightGpuSystem: '8 x NVIDIA RTX PRO 6000 Blackwell Server Edition 96GB, configurator #23, 768GB aggregate GPU memory.',
+      integrationKitBoundary: 'Integration Kits may require external cooling equipment and must not be represented as the same self-contained complete-system architecture.'
+    },
+    sources: [
+      'https://www.grando.ai/en/grando-server-8x-rtx-pro-6000',
+      'https://faq.comino.com/datasheets/datasheet_comino_grando_server.pdf'
+    ]
+  }]
 }, null, 2)}\n`);
 fs.writeFileSync(
   lastmodManifestPath,

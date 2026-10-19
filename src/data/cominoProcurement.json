@@ -14,6 +14,40 @@
     "zh": "配置器記錄選型與詢價需求；正式規格、供貨、符合性文件及驗收條件，須對應確認後的整機型號與零件清單（BOM）。",
     "en": "The configurator records selection and quote requirements. Formal specifications, availability, conformity documents and acceptance terms must match the confirmed system model and bill of materials (BOM)."
   },
+  "specificationSteps": [
+    {
+      "id": "needs-record",
+      "title": { "zh": "需求紀錄", "en": "Document the need" },
+      "body": {
+        "zh": "寫明模型、精度、資料量、併發、訓練或推論時限，以及現場電力、空調、機櫃與維護限制。",
+        "en": "State the model, precision, data volume, concurrency, training or inference deadline, plus site power, room cooling, rack and service constraints."
+      }
+    },
+    {
+      "id": "market-research",
+      "title": { "zh": "市場調查", "en": "Compare the market" },
+      "body": {
+        "zh": "比較可達成相同目的的完整整機、其他 GPU 數量或容量，以及不同冷卻架構；記錄採用或排除的理由。",
+        "en": "Compare complete systems, alternative GPU counts or capacities, and cooling architectures that can achieve the same purpose; record the reason for including or excluding each route."
+      }
+    },
+    {
+      "id": "requirement-wording",
+      "title": { "zh": "規格文字", "en": "Write measurable requirements" },
+      "body": {
+        "zh": "優先寫可量測的功能、效益、介面與場地結果。只有無法精確描述時，才引用品牌或型號，並依採購法處理同等品及審查基準。",
+        "en": "Prefer measurable functions, outcomes, interfaces and site results. Refer to a brand or model only where the requirement cannot otherwise be described precisely, and apply the statutory equivalent-product and evaluation rules."
+      }
+    },
+    {
+      "id": "acceptance-design",
+      "title": { "zh": "驗收設計", "en": "Define acceptance" },
+      "body": {
+        "zh": "在公告前定義測試資料、環境溫度、工作負載、測試時數、效能門檻及失敗判定，並對所有投標方案使用相同方法。",
+        "en": "Before publication, define test data, ambient temperature, workload, duration, performance thresholds and failure criteria, and apply the same method to all offered solutions."
+      }
+    }
+  ],
   "specs": {
     "cooling": {
       "zh": "最高 6.5kW；20°C 進氣、性能模式，依配置確認",
