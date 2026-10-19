@@ -17,6 +17,13 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
         <p className="comino-small">{text('文件查核日期：', 'Documents reviewed: ')}<time dateTime={reference.reviewedAt}>{reference.reviewedAt}</time></p>
       </div>
 
+      <nav className="comino-procurement-nav" aria-label={text('採購規格快速導覽', 'Procurement quick navigation')}>
+        <a href="#lawful-procurement-specification">{text('01 規格形成步驟', '01 Define requirements')}</a>
+        <a href="#sealed-liquid-loop">{text('02 密封式液冷規格', '02 Sealed liquid loop')}</a>
+        <a href="#eight-gpu-procurement-specification">{text('03 八卡配置與範例', '03 Eight-GPU configurations')}</a>
+        <a href="#procurement-acceptance">{text('04 證據與驗收', '04 Evidence and acceptance')}</a>
+        <a href="#model-declarations">{text('原廠符合性文件', 'Manufacturer declarations')}</a>
+      </nav>
       <p className="comino-small">{tx(reference.translationNote, isEnglish)} {text('翻譯日期：', 'Translation date: ')}<time dateTime={reference.translatedAt}>{reference.translatedAt}</time></p>
       <div className="comino-document-grid" aria-label={text('原廠文件與中文譯本', 'Manufacturer documents')}>
         {reference.documents.map(document => <article className="comino-document" key={document.id}>
@@ -54,7 +61,7 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
       <article id="lawful-procurement-specification" className="comino-document scroll-mt-28">
         <p className="comino-eyebrow">{text('政府採購規格形成方式', 'How to form public-procurement requirements')}</p>
         <h3>{text('先證明需要，再寫功能、效益與驗收門檻', 'Establish the need first, then state functions, outcomes and acceptance thresholds')}</h3>
-        <ol>
+        <ol className="comino-procurement-steps">
           <li>{text('需求紀錄：寫明模型、精度、資料量、併發、訓練或推論時限，以及現場電力、空調、機櫃與維護限制。', 'Need record: state the model, precision, data volume, concurrency, training or inference deadline, plus site power, room cooling, rack and service constraints.')}</li>
           <li>{text('市場調查：比較可達成相同目的的完整整機、其他 GPU 數量或容量，以及不同冷卻架構；記錄採用或排除的理由。', 'Market research: compare complete systems, alternative GPU counts or capacities, and cooling architectures that can achieve the same purpose; record the reason for including or excluding each route.')}</li>
           <li>{text('規格文字：優先寫可量測的功能、效益、介面與場地結果。只有無法精確描述時，才引用品牌或型號，並依採購法處理同等品及審查基準。', 'Requirement wording: prefer measurable functions, outcomes, interfaces and site results. Refer to a brand or model only where the requirement cannot otherwise be described precisely, and apply the statutory equivalent-product and evaluation rules.')}</li>
@@ -80,10 +87,10 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
 
       <article id="eight-gpu-procurement-specification" className="comino-document scroll-mt-28">
         <p className="comino-eyebrow">{text('八卡整機市場資訊與需求論證', 'Eight-GPU market information and needs justification')}</p>
-        <h3>{text('八卡、768GB 與密封式液冷：先做必要性論證，再決定是否列入', 'Eight GPUs, 768GB and sealed liquid cooling: establish necessity before inclusion')}</h3>
+        <h3>{text('八卡與 768GB：配置比較及規格範例', 'Eight GPUs and 768GB: configurations and specification examples')}</h3>
         <p>{text('Comino 八卡 RTX PRO 6000 完整整機可證明此配置在市場上有具體產品，但不能反向證明每一個機關都需要八卡、每卡 96GB 或特定冷卻架構。機關應先以模型、精度、併發、完成時限、跨卡通訊與場地條件驗證必要性；若較少 GPU、不同單卡容量或其他散熱方案也能達成相同目的，就應允許其參與。', 'The Comino eight-GPU RTX PRO 6000 complete system demonstrates that such a configuration exists in the market. It does not establish that every agency needs eight GPUs, 96GB per GPU or a particular cooling architecture. Necessity should first be tested against the model, precision, concurrency, completion deadline, inter-GPU communication and site conditions. If fewer GPUs, a different per-GPU capacity or another cooling approach can achieve the same purpose, those solutions should remain eligible.')}</p>
         <div className="comino-reference-table-wrap" role="region" aria-label={text('八卡配置適用範圍，可水平捲動', 'Eight-GPU configuration scope, scrollable horizontally')} tabIndex={0}>
-          <table className="comino-reference-table">
+          <table className="comino-reference-table comino-configuration-table">
             <caption>{text('區分原廠標準整機、待確認配置與整合套件。', 'Distinguish standard complete systems, configurations requiring confirmation and Integration Kits.')}</caption>
             <thead><tr><th scope="col">{text('配置', 'Configuration')}</th><th scope="col">{text('適用狀態與確認事項', 'Status and required confirmation')}</th></tr></thead>
             <tbody>
@@ -107,15 +114,15 @@ const CominoProcurementSection: React.FC<{ isEnglish: boolean }> = ({ isEnglish 
         </div>
       </article>
 
-      <h3 className="comino-reference-heading">{text('可供規格研議的功能與證據', 'Functions and evidence for specification review')}</h3>
+      <h3 id="procurement-acceptance" className="comino-reference-heading scroll-mt-28">{text('可供規格研議的功能與證據', 'Functions and evidence for specification review')}</h3>
       <div className="comino-reference-table-wrap" role="region" aria-label={text('功能與驗收參考表，可水平捲動', 'Functions and acceptance reference table, scrollable horizontally')} tabIndex={0}>
-        <table className="comino-reference-table">
+        <table className="comino-reference-table comino-acceptance-table">
           <caption>{text('依實際需求選用，並以交付配置驗證。', 'Select criteria by need and verify the supplied configuration.')}</caption>
           <thead><tr><th scope="col">{text('編號', 'No.')}</th><th scope="col">{text('需求方向', 'Requirement')}</th><th scope="col">{text('可研議的要求', 'Suggested review')}</th><th scope="col">{text('證據與驗收', 'Evidence and acceptance')}</th></tr></thead>
           <tbody>{reference.criteria.map((criterion, index) => {
             const document = reference.documents.find(item => item.id === criterion.documentId);
             return <tr key={criterion.id}>
-              <td>{index + 1}</td>
+              <td className="comino-criterion-number">{index + 1}</td>
               <th scope="row">{tx(criterion.title, isEnglish)}</th>
               <td>{tx(criterion.requirement, isEnglish)}</td>
               <td>{tx(criterion.evidence, isEnglish)}{document && <a href={isEnglish ? `${document.href}#page=${criterion.page}` : `${document.readerHrefZh}#page-${criterion.page}`} target="_blank" rel="noreferrer">{text('中文譯本', 'Manufacturer document')} · {text('第 ', 'pp. ')}{criterion.pages}{text(' 頁', '')}</a>}</td>
