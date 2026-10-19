@@ -6,26 +6,56 @@
     "en": "Traditional Chinese editions translated by EudTech are available in Chinese mode. They retain the original figures, values and page numbering; the English manufacturer originals prevail in case of discrepancy."
   },
   "href": "/solutions/ai-infrastructure/#procurement",
-  "title": { "zh": "機關採購參考", "en": "Public-sector procurement reference" },
+  "title": {
+    "zh": "市場調查與需求論證參考",
+    "en": "Market research and requirements-justification reference"
+  },
   "configurationNote": {
     "zh": "配置器記錄選型與詢價需求；正式規格、供貨、符合性文件及驗收條件，須對應確認後的整機型號與零件清單（BOM）。",
     "en": "The configurator records selection and quote requirements. Formal specifications, availability, conformity documents and acceptance terms must match the confirmed system model and bill of materials (BOM)."
   },
   "specs": {
-    "cooling": { "zh": "最高 6.5kW；20°C 進氣、性能模式，依配置確認", "en": "Up to 6.5kW at 20°C intake in performance mode; confirm for the configuration" },
-    "power": { "zh": "最多 4×2000W CRPS（180–264V）；90–140V 時每模組最高 1000W。4+0 無備援；3+1、2+2 須核算實際負載", "en": "Up to 4×2000W CRPS at 180–264V; up to 1000W per module at 90–140V. 4+0 has no redundancy; size 3+1 or 2+2 for the actual load" },
-    "noise": { "zh": "原廠平台參考 39–70dB；依配置、進氣溫度、負載與量測方式確認", "en": "Manufacturer platform reference: 39–70dB; confirm configuration, intake temperature, load and measurement method" },
-    "temperature": { "zh": "儲存 −5–50°C；操作 3–38°C，依配置確認", "en": "Storage: −5–50°C; operation: 3–38°C, depending on configuration" },
-    "fans": { "zh": "原廠列示 3×6200RPM 或 3×3000RPM；依配置及聲學需求確認", "en": "Manufacturer lists 3×6200RPM or 3×3000RPM; confirm for the configuration and acoustic requirements" },
-    "coverage": { "zh": "CPU 及 VRM、GPU 及 GDDR／VRM；依交付冷板配置確認", "en": "CPU and VRM; GPU and GDDR/VRM. Confirm the cooling-block configuration supplied" }
+    "cooling": {
+      "zh": "最高 6.5kW；20°C 進氣、性能模式，依配置確認",
+      "en": "Up to 6.5kW at 20°C intake in performance mode; confirm for the configuration"
+    },
+    "power": {
+      "zh": "最多 4×2000W CRPS（180–264V）；90–140V 時每模組最高 1000W。4+0 無備援；3+1、2+2 須核算實際負載",
+      "en": "Up to 4×2000W CRPS at 180–264V; up to 1000W per module at 90–140V. 4+0 has no redundancy; size 3+1 or 2+2 for the actual load"
+    },
+    "noise": {
+      "zh": "原廠平台參考 39–70dB；依配置、進氣溫度、負載與量測方式確認",
+      "en": "Manufacturer platform reference: 39–70dB; confirm configuration, intake temperature, load and measurement method"
+    },
+    "temperature": {
+      "zh": "儲存 −5–50°C；操作 3–38°C，依配置確認",
+      "en": "Storage: −5–50°C; operation: 3–38°C, depending on configuration"
+    },
+    "fans": {
+      "zh": "原廠列示 3×6200RPM 或 3×3000RPM；依配置及聲學需求確認",
+      "en": "Manufacturer lists 3×6200RPM or 3×3000RPM; confirm for the configuration and acoustic requirements"
+    },
+    "coverage": {
+      "zh": "CPU 及 VRM、GPU 及 GDDR／VRM；依交付冷板配置確認",
+      "en": "CPU and VRM; GPU and GDDR/VRM. Confirm the cooling-block configuration supplied"
+    }
   },
   "documents": [
     {
       "id": "server-datasheet",
-      "title": { "zh": "GRANDO Server／可上架工作站規格書", "en": "GRANDO Server / Rackable Workstation Datasheet" },
+      "title": {
+        "zh": "GRANDO Server／可上架工作站規格書",
+        "en": "GRANDO Server / Rackable Workstation Datasheet"
+      },
       "version": "v2.3",
-      "language": { "zh": "繁體中文譯本 · 14 頁", "en": "Original manufacturer PDF in English · 14 pages" },
-      "description": { "zh": "冷卻範圍、維護、監控、供電、4U 機構與環境條件；可用於功能及部署需求審查。", "en": "Cooling coverage, service, monitoring, power, 4U chassis and environmental conditions for functional and deployment review." },
+      "language": {
+        "zh": "繁體中文譯本 · 14 頁",
+        "en": "Original manufacturer PDF in English · 14 pages"
+      },
+      "description": {
+        "zh": "冷卻範圍、維護、監控、供電、4U 機構與環境條件；可用於功能及部署需求審查。",
+        "en": "Cooling coverage, service, monitoring, power, 4U chassis and environmental conditions for functional and deployment review."
+      },
       "href": "/vendor/comino/documents/grando-server-datasheet-v2.3.pdf",
       "hrefZh": "/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.pdf",
       "readerHrefZh": "/vendor/comino/documents/grando-server-datasheet-v2.3-zh-TW.html",
@@ -33,10 +63,19 @@
     },
     {
       "id": "quick-start",
-      "title": { "zh": "GRANDO RM 快速使用指南", "en": "GRANDO RM Quick Start Guide" },
+      "title": {
+        "zh": "GRANDO RM 快速使用指南",
+        "en": "GRANDO RM Quick Start Guide"
+      },
       "version": "v2.0.2",
-      "language": { "zh": "繁體中文譯本 · 2 頁", "en": "Original manufacturer PDF in English · 2 pages" },
-      "description": { "zh": "安裝方向、啟動、散熱模式、冷卻液維護及斷電恢復設定；適合部署與教育訓練準備。", "en": "Installation orientation, startup, cooling profiles, coolant maintenance and power-loss recovery settings for deployment and training." },
+      "language": {
+        "zh": "繁體中文譯本 · 2 頁",
+        "en": "Original manufacturer PDF in English · 2 pages"
+      },
+      "description": {
+        "zh": "安裝方向、啟動、散熱模式、冷卻液維護及斷電恢復設定；適合部署與教育訓練準備。",
+        "en": "Installation orientation, startup, cooling profiles, coolant maintenance and power-loss recovery settings for deployment and training."
+      },
       "href": "/vendor/comino/documents/grando-rm-quick-start-v2.0.2.pdf",
       "hrefZh": "/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.pdf",
       "readerHrefZh": "/vendor/comino/documents/grando-rm-quick-start-v2.0.2-zh-TW.html",
@@ -46,71 +85,191 @@
   "faqs": [
     {
       "id": "procurement-power",
-      "question": { "zh": "四顆電源就代表有完整備援嗎？", "en": "Do four power supplies guarantee redundancy?" },
-      "answer": { "zh": "不一定。4+0 沒有備援；3+1 或 2+2 仍須核對輸入電壓、每個模組的可用功率及整機負載。需要備援時，應在約定的 CPU／GPU 負載下，驗證一個電源模組故障後仍能維持必要作業。", "en": "Not automatically. A 4+0 arrangement has no redundancy. A 3+1 or 2+2 arrangement still requires checking input voltage, available power per module and total system load. If redundancy is required, verify essential operation after one power-module failure at the agreed CPU/GPU load." },
-      "documentId": "server-datasheet", "page": 10
+      "question": {
+        "zh": "四顆電源就代表有完整備援嗎？",
+        "en": "Do four power supplies guarantee redundancy?"
+      },
+      "answer": {
+        "zh": "不一定。4+0 沒有備援；3+1 或 2+2 仍須核對輸入電壓、每個模組的可用功率及整機負載。需要備援時，應在約定的 CPU／GPU 負載下，驗證一個電源模組故障後仍能維持必要作業。",
+        "en": "Not automatically. A 4+0 arrangement has no redundancy. A 3+1 or 2+2 arrangement still requires checking input voltage, available power per module and total system load. If redundancy is required, verify essential operation after one power-module failure at the agreed CPU/GPU load."
+      },
+      "documentId": "server-datasheet",
+      "page": 10
     },
     {
       "id": "procurement-acoustics",
-      "question": { "zh": "可以直接把 39dB 當成所有配置的噪音保證嗎？", "en": "Is 39dB guaranteed for every configuration?" },
-      "answer": { "zh": "不能。原廠規格書列出的是 39–70dB 平台參考範圍。部署前須確認選定機型、GPU／CPU 配置、進氣溫度、工作負載與量測方式，再約定噪音驗收條件；辦公室或實驗室也應評估設備與使用者的距離。", "en": "No. The manufacturer datasheet gives a platform reference range of 39–70dB. Confirm the selected model, GPU/CPU configuration, intake temperature, workload and measurement method before agreeing acoustic acceptance criteria. For an office or lab, also assess the distance between the system and its users." },
-      "documentId": "server-datasheet", "page": 10
+      "question": {
+        "zh": "可以直接把 39dB 當成所有配置的噪音保證嗎？",
+        "en": "Is 39dB guaranteed for every configuration?"
+      },
+      "answer": {
+        "zh": "不能。原廠規格書列出的是 39–70dB 平台參考範圍。部署前須確認選定機型、GPU／CPU 配置、進氣溫度、工作負載與量測方式，再約定噪音驗收條件；辦公室或實驗室也應評估設備與使用者的距離。",
+        "en": "No. The manufacturer datasheet gives a platform reference range of 39–70dB. Confirm the selected model, GPU/CPU configuration, intake temperature, workload and measurement method before agreeing acoustic acceptance criteria. For an office or lab, also assess the distance between the system and its users."
+      },
+      "documentId": "server-datasheet",
+      "page": 10
     },
     {
       "id": "procurement-service",
-      "question": { "zh": "快速斷開接頭（QDC）代表 GPU 可以熱插拔嗎？", "en": "Do quick-disconnect couplings make GPUs hot-swappable?" },
-      "answer": { "zh": "不能只憑 QDC 推定 GPU 可熱插拔。QDC 是方便維護的液冷介面；實際更換仍須依原廠的停機、冷卻液處理與復機程序。若要求不停機維護，必須另外取得對應整機與零件的明確支援證據。", "en": "QDC alone does not establish GPU hot-swap support. It is a liquid-cooling service interface. Replacement must follow the manufacturer's shutdown, coolant-handling and return-to-service procedures. Any requirement for maintenance without shutdown needs explicit support for the complete system and affected components." },
-      "documentId": "server-datasheet", "page": 4
+      "question": {
+        "zh": "快速斷開接頭（QDC）代表 GPU 可以熱插拔嗎？",
+        "en": "Do quick-disconnect couplings make GPUs hot-swappable?"
+      },
+      "answer": {
+        "zh": "不能只憑 QDC 推定 GPU 可熱插拔。QDC 是方便維護的液冷介面；實際更換仍須依原廠的停機、冷卻液處理與復機程序。若要求不停機維護，必須另外取得對應整機與零件的明確支援證據。",
+        "en": "QDC alone does not establish GPU hot-swap support. It is a liquid-cooling service interface. Replacement must follow the manufacturer's shutdown, coolant-handling and return-to-service procedures. Any requirement for maintenance without shutdown needs explicit support for the complete system and affected components."
+      },
+      "documentId": "server-datasheet",
+      "page": 4
     },
     {
       "id": "procurement-document-scope",
-      "question": { "zh": "這裡的中文規格書可以當作 CE／FCC 認證文件嗎？", "en": "Can the translated datasheet serve as CE/FCC conformity evidence?" },
-      "answer": { "zh": "不可以。規格書是技術資料，不是符合性聲明或測試報告。本頁另列 RM-M／RM-M-CRPS 的原廠 CE 與 RoHS／REACH 自我聲明網址及繁中關鍵欄位查閱稿，仍須依最終交付型號、BOM、日期、範圍及引用報告核對。尚未確認上述型號的原廠 FCC 型號別文件，不能由規格書或舊版 COMINO N1 聲明推定。", "en": "No. A datasheet is technical information, not a conformity declaration or test report. This page separately lists manufacturer CE and RoHS/REACH self-declaration URLs for RM-M/RM-M-CRPS with Chinese key-field reference editions. Review the final model, BOM, date, scope, and cited reports. No model-specific manufacturer FCC evidence for these models has been verified; do not infer it from the datasheet or a legacy COMINO N1 declaration." },
-      "documentId": "server-datasheet", "page": 1
+      "question": {
+        "zh": "這裡的中文規格書可以當作 CE／FCC 認證文件嗎？",
+        "en": "Can the translated datasheet serve as CE/FCC conformity evidence?"
+      },
+      "answer": {
+        "zh": "不可以。這裡提供的是原廠技術資料及 EudTech 繁體中文譯本，並非原廠核發的符合性聲明或測試報告。CE／FCC 等適用文件須另行核對交付型號、BOM、日期與適用範圍；不能由規格書推定所有 GPU 配置都經過相同測試。",
+        "en": "No. These are manufacturer technical documents and EudTech's Traditional Chinese translations, not manufacturer-issued conformity declarations or test reports. Review applicable CE/FCC documents separately against the supplied model, BOM, date and scope. A datasheet does not establish that every GPU configuration underwent the same tests."
+      },
+      "documentId": "server-datasheet",
+      "page": 1
+    },
+    {
+      "id": "procurement-vram-total",
+      "question": {
+        "zh": "八張 96GB GPU 的 768GB 是單一共享記憶體嗎？",
+        "en": "Is 768GB across eight 96GB GPUs a single shared memory pool?"
+      },
+      "answer": {
+        "zh": "不是。768GB 是八張卡的實體顯示記憶體容量加總，並不保證單一程式能直接使用全部容量。機關應指定模型、精度、上下文長度、併發及軟體環境，驗證跨 GPU 分配與實際工作負載；驗收時逐卡核對型號、數量及容量。",
+        "en": "No. 768GB is the sum of physical memory across eight cards, not a guarantee that one application can use it as a single pool. Specify the model, precision, context length, concurrency and software environment, then validate multi-GPU allocation with the actual workload. Check each GPU model, count and capacity at acceptance."
+      },
+      "documentId": "server-datasheet",
+      "page": 10
+    },
+    {
+      "id": "procurement-room-cooling",
+      "question": {
+        "zh": "密封式液冷整機不接外部水路，就不需要空調嗎？",
+        "en": "Does a sealed-loop system without facility water eliminate room cooling?"
+      },
+      "answer": {
+        "zh": "不是。機內散熱器仍將設備熱量排入室內，須依所報配置的耗電與排熱量規劃空調及通風。規格應要求廠商提出完整整機冷卻架構及場地條件，並在約定的環境溫度與負載下驗證穩定運作。如機關已就場地限制論證不得使用外接冷卻設備，需外接冷卻設備的整合套件即不符合該項需求；未有此必要性時，應依相同工作負載、場地條件及驗收門檻比較。",
+        "en": "No. Internal radiators still reject system heat into the room. Size room cooling and ventilation for the offered configuration’s power draw and heat output. Require the complete system cooling architecture and site conditions, then verify stable operation at the agreed ambient temperature and load. If documented site constraints require operation without external cooling equipment, an integration kit that requires such equipment does not meet that requirement. Without that justified constraint, compare solutions under the same workload, site conditions and acceptance thresholds."
+      },
+      "documentId": "server-datasheet",
+      "page": 10
     }
   ],
   "criteria": [
     {
       "id": "coverage",
-      "title": { "zh": "散熱範圍與持續運算", "en": "Cooling coverage and sustained compute" },
-      "requirement": { "zh": "說明 CPU、GPU、顯示記憶體與供電元件的散熱範圍；依指定工作負載與進氣溫度驗證連續運算。", "en": "Describe cooling for CPU, GPU, graphics memory and power components. Validate sustained operation at the agreed workload and intake temperature." },
-      "evidence": { "zh": "冷卻配置圖、元件溫度、功耗、吞吐量與降頻紀錄。", "en": "Cooling layout, component temperatures, power, throughput and throttling records." },
-      "documentId": "server-datasheet", "pages": "4, 8, 10", "page": 4
+      "title": {
+        "zh": "密封式液冷迴路、散熱範圍與持續運算",
+        "en": "Sealed liquid loop, cooling coverage and sustained compute"
+      },
+      "requirement": {
+        "zh": "先訂定持續運算、進氣溫度、場地介面、噪音及維護目標；經需求論證確有必要時，再要求機內自足的液冷架構。密封式液冷迴路可作為市場方案說明，並應接受達成相同功能與驗收標準的其他架構。",
+        "en": "Define sustained-compute, intake-temperature, site-interface, acoustic and maintenance outcomes first. Require a self-contained liquid-cooling architecture only when supported by needs justification. A sealed liquid loop may be identified as a market solution while allowing other architectures that meet the same functional and acceptance criteria."
+      },
+      "evidence": {
+        "zh": "冷卻配置圖、元件溫度、功耗、吞吐量與降頻紀錄。",
+        "en": "Cooling layout, component temperatures, power, throughput and throttling records."
+      },
+      "documentId": "server-datasheet",
+      "pages": "4, 8, 10",
+      "page": 4
     },
     {
       "id": "service",
-      "title": { "zh": "可維護的液冷設計", "en": "Serviceable liquid cooling" },
-      "requirement": { "zh": "提出元件更換、冷卻液處理、防漏及恢復服務程序；有維修時間需求時，以實作驗證。", "en": "Provide procedures for component replacement, coolant handling, leak prevention and return to service. Demonstrate service time when required." },
-      "evidence": { "zh": "維護手冊、接頭操作示範及更換後檢查。QDC 不代表所有元件皆可熱插拔。", "en": "Service manual, coupling demonstration and checks after replacement. QDC does not make every component hot-swappable." },
-      "documentId": "server-datasheet", "pages": "4", "page": 4
+      "title": {
+        "zh": "可維護的液冷設計",
+        "en": "Serviceable liquid cooling"
+      },
+      "requirement": {
+        "zh": "提出元件更換、冷卻液處理、防漏及恢復服務程序；有維修時間需求時，以實作驗證。",
+        "en": "Provide procedures for component replacement, coolant handling, leak prevention and return to service. Demonstrate service time when required."
+      },
+      "evidence": {
+        "zh": "維護手冊、接頭操作示範及更換後檢查。QDC 不代表所有元件皆可熱插拔。",
+        "en": "Service manual, coupling demonstration and checks after replacement. QDC does not make every component hot-swappable."
+      },
+      "documentId": "server-datasheet",
+      "pages": "4",
+      "page": 4
     },
     {
       "id": "monitoring",
-      "title": { "zh": "監控與異常紀錄", "en": "Monitoring and event records" },
-      "requirement": { "zh": "列明可監測及記錄的溫度、風扇、幫浦與冷卻狀態，以及標準配備、選配和告警方式。", "en": "List monitored and logged temperatures, fans, pumps and cooling states, with standard or optional features and alert methods." },
-      "evidence": { "zh": "監控畫面、異常及歷史紀錄。液位感測器依選配確認；資安功能另行核對。", "en": "Monitoring views, events and history. Confirm optional coolant-level sensing; review security functions separately." },
-      "documentId": "quick-start", "pages": "2", "page": 2
+      "title": {
+        "zh": "監控與異常紀錄",
+        "en": "Monitoring and event records"
+      },
+      "requirement": {
+        "zh": "列明可監測及記錄的溫度、風扇、幫浦與冷卻狀態，以及標準配備、選配和告警方式。",
+        "en": "List monitored and logged temperatures, fans, pumps and cooling states, with standard or optional features and alert methods."
+      },
+      "evidence": {
+        "zh": "監控畫面、異常及歷史紀錄。液位感測器依選配確認；資安功能另行核對。",
+        "en": "Monitoring views, events and history. Confirm optional coolant-level sensing; review security functions separately."
+      },
+      "documentId": "quick-start",
+      "pages": "2",
+      "page": 2
     },
     {
       "id": "power",
-      "title": { "zh": "指定負載下的電源備援", "en": "Power redundancy at the specified load" },
-      "requirement": { "zh": "若用途需要備援，應在指定 CPU／GPU 負載下，驗證一組電源模組故障時維持必要作業。", "en": "When redundancy is required, verify that essential operation continues after one power-module failure at the specified CPU/GPU load." },
-      "evidence": { "zh": "輸入電壓、可用功率計算與故障測試。4+0 無備援；3+1、2+2 須依負載核算。", "en": "Input voltage, available-power calculations and a failure test. 4+0 has no redundancy; size 3+1 or 2+2 for the load." },
-      "documentId": "server-datasheet", "pages": "10", "page": 10
+      "title": {
+        "zh": "指定負載下的電源備援",
+        "en": "Power redundancy at the specified load"
+      },
+      "requirement": {
+        "zh": "若用途需要備援，應在指定 CPU／GPU 負載下，驗證一組電源模組故障時維持必要作業。",
+        "en": "When redundancy is required, verify that essential operation continues after one power-module failure at the specified CPU/GPU load."
+      },
+      "evidence": {
+        "zh": "輸入電壓、可用功率計算與故障測試。4+0 無備援；3+1、2+2 須依負載核算。",
+        "en": "Input voltage, available-power calculations and a failure test. 4+0 has no redundancy; size 3+1 or 2+2 for the load."
+      },
+      "documentId": "server-datasheet",
+      "pages": "10",
+      "page": 10
     },
     {
       "id": "site",
-      "title": { "zh": "場地、密度與聲學條件", "en": "Site, density and acoustics" },
-      "requirement": { "zh": "依現場機櫃、供電、空調與使用者距離設定空間、GPU 容量及噪音需求，並保留維護空間。", "en": "Set space, GPU capacity and acoustic requirements from the rack, power, room cooling and user distance. Allow service access." },
-      "evidence": { "zh": "完整 BOM、尺寸重量、排熱與聲學測試條件。平台最高值不能直接當作每個配置的保證。", "en": "Complete BOM, dimensions, weight, heat removal and acoustic test conditions. Platform maxima are not guarantees for every build." },
-      "documentId": "server-datasheet", "pages": "8–12", "page": 8
+      "title": {
+        "zh": "場地、密度與聲學條件",
+        "en": "Site, density and acoustics"
+      },
+      "requirement": {
+        "zh": "依現場機櫃、供電、空調與使用者距離設定空間、GPU 容量及噪音需求，並保留維護空間。",
+        "en": "Set space, GPU capacity and acoustic requirements from the rack, power, room cooling and user distance. Allow service access."
+      },
+      "evidence": {
+        "zh": "完整 BOM、尺寸重量、排熱與聲學測試條件。平台最高值不能直接當作每個配置的保證。",
+        "en": "Complete BOM, dimensions, weight, heat removal and acoustic test conditions. Platform maxima are not guarantees for every build."
+      },
+      "documentId": "server-datasheet",
+      "pages": "8–12",
+      "page": 8
     },
     {
       "id": "conformity",
-      "title": { "zh": "型號相符的符合性證據", "en": "Conformity evidence matching the model" },
-      "requirement": { "zh": "依設備用途及適用法規，要求與交付型號、配置相符的安全、電磁相容及限用物質證據。", "en": "Request safety, electromagnetic-compatibility and restricted-substance evidence matching the supplied model and configuration under applicable requirements." },
-      "evidence": { "zh": "先核對本頁所列 RM-M／RM-M-CRPS 原廠 CE 及 RoHS／REACH 自我聲明的型號、日期、範圍與引用報告；FCC 證據須向原廠另取，臺灣商品檢驗要求亦另行確認。", "en": "Start with the listed manufacturer CE and RoHS/REACH self-declarations for RM-M/RM-M-CRPS, checking model, date, scope, and cited reports. Obtain FCC evidence separately from the manufacturer and confirm Taiwan product-inspection requirements." },
-      "documentId": null, "pages": null, "page": null
+      "title": {
+        "zh": "型號相符的符合性證據",
+        "en": "Conformity evidence matching the model"
+      },
+      "requirement": {
+        "zh": "依設備用途及適用法規，要求與交付型號、配置相符的安全、電磁相容及限用物質證據。",
+        "en": "Request safety, electromagnetic-compatibility and restricted-substance evidence matching the supplied model and configuration under applicable requirements."
+      },
+      "evidence": {
+        "zh": "核對 CE／FCC／RoHS／REACH 等適用文件的型號、日期、範圍及引用報告；臺灣適用之商品檢驗要求另行確認。",
+        "en": "Review model, date, scope and referenced reports in applicable CE, FCC, RoHS or REACH documents; confirm Taiwan product-inspection requirements separately."
+      },
+      "documentId": null,
+      "pages": null,
+      "page": null
     }
   ],
   "conformityNote": {
@@ -118,8 +277,8 @@
     "en": "Datasheets and guides are technical information. Review CE/FCC conformity declarations, RoHS/REACH declarations and relevant test reports against the confirmed model and BOM. Declarations and test reports serve different purposes; do not assume every GPU build has undergone the same tests."
   },
   "procurementNote": {
-    "zh": "供市場調查與需求研議參考。機關應依實際功能、效益及現場條件決定必要要求，並依法保留符合需求的等效方案。",
-    "en": "For market research and requirements planning. The procuring entity determines necessary requirements from function, benefit and site conditions, allowing equivalent solutions that meet the requirements under applicable procurement rules."
+    "zh": "供公開市場調查及需求論證參考。公告金額以上採購，機關應依實際功能或效益訂定招標文件，逐項記錄特殊或較嚴格門檻的必要性，並以可量測方法驗收。是否限制競爭取決於必要性及規格的目的與效果，不以可供應廠商家數單獨判斷；「或同等品」也不能補正欠缺必要性的門檻。",
+    "en": "For public market research and requirements justification. For procurements at or above the publication threshold, tender documents should be based on actual functions or benefits, with the necessity of special or stricter thresholds documented and acceptance measured objectively. Competitive restriction is assessed from necessity and from the purpose and effect of the specification, not supplier count alone; the words ‘or equivalent’ do not cure a threshold that lacks needs justification."
   },
   "procurementSource": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=A0030057&flno=26"
 }

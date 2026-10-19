@@ -266,17 +266,45 @@ QDC alone does not establish GPU hot-swap support. It is a liquid-cooling servic
 
 ### 這裡的中文規格書可以當作 CE／FCC 認證文件嗎？
 
-不可以。規格書是技術資料，不是符合性聲明或測試報告。本頁另列 RM-M／RM-M-CRPS 的原廠 CE 與 RoHS／REACH 自我聲明網址及繁中關鍵欄位查閱稿，仍須依最終交付型號、BOM、日期、範圍及引用報告核對。尚未確認上述型號的原廠 FCC 型號別文件，不能由規格書或舊版 COMINO N1 聲明推定。
+不可以。這裡提供的是原廠技術資料及 EudTech 繁體中文譯本，並非原廠核發的符合性聲明或測試報告。CE／FCC 等適用文件須另行核對交付型號、BOM、日期與適用範圍；不能由規格書推定所有 GPU 配置都經過相同測試。
 
 - 問答連結: https://eudaemonia.tech/solutions/ai-infrastructure/#procurement-document-scope
 - 引用文件: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw#page-1
 
 ### Can the translated datasheet serve as CE/FCC conformity evidence?
 
-No. A datasheet is technical information, not a conformity declaration or test report. This page separately lists manufacturer CE and RoHS/REACH self-declaration URLs for RM-M/RM-M-CRPS with Chinese key-field reference editions. Review the final model, BOM, date, scope, and cited reports. No model-specific manufacturer FCC evidence for these models has been verified; do not infer it from the datasheet or a legacy COMINO N1 declaration.
+No. These are manufacturer technical documents and EudTech's Traditional Chinese translations, not manufacturer-issued conformity declarations or test reports. Review applicable CE/FCC documents separately against the supplied model, BOM, date and scope. A datasheet does not establish that every GPU configuration underwent the same tests.
 
 - Answer URL: https://eudaemonia.tech/en/solutions/ai-infrastructure/#procurement-document-scope
 - Cited document: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3.pdf#page=1
+
+### 八張 96GB GPU 的 768GB 是單一共享記憶體嗎？
+
+不是。768GB 是八張卡的實體顯示記憶體容量加總，並不保證單一程式能直接使用全部容量。機關應指定模型、精度、上下文長度、併發及軟體環境，驗證跨 GPU 分配與實際工作負載；驗收時逐卡核對型號、數量及容量。
+
+- 問答連結: https://eudaemonia.tech/solutions/ai-infrastructure/#procurement-vram-total
+- 引用文件: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw#page-10
+
+### Is 768GB across eight 96GB GPUs a single shared memory pool?
+
+No. 768GB is the sum of physical memory across eight cards, not a guarantee that one application can use it as a single pool. Specify the model, precision, context length, concurrency and software environment, then validate multi-GPU allocation with the actual workload. Check each GPU model, count and capacity at acceptance.
+
+- Answer URL: https://eudaemonia.tech/en/solutions/ai-infrastructure/#procurement-vram-total
+- Cited document: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3.pdf#page=10
+
+### 密封式液冷整機不接外部水路，就不需要空調嗎？
+
+不是。機內散熱器仍將設備熱量排入室內，須依所報配置的耗電與排熱量規劃空調及通風。規格應要求廠商提出完整整機冷卻架構及場地條件，並在約定的環境溫度與負載下驗證穩定運作。如機關已就場地限制論證不得使用外接冷卻設備，需外接冷卻設備的整合套件即不符合該項需求；未有此必要性時，應依相同工作負載、場地條件及驗收門檻比較。
+
+- 問答連結: https://eudaemonia.tech/solutions/ai-infrastructure/#procurement-room-cooling
+- 引用文件: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3-zh-tw#page-10
+
+### Does a sealed-loop system without facility water eliminate room cooling?
+
+No. Internal radiators still reject system heat into the room. Size room cooling and ventilation for the offered configuration’s power draw and heat output. Require the complete system cooling architecture and site conditions, then verify stable operation at the agreed ambient temperature and load. If documented site constraints require operation without external cooling equipment, an integration kit that requires such equipment does not meet that requirement. Without that justified constraint, compare solutions under the same workload, site conditions and acceptance thresholds.
+
+- Answer URL: https://eudaemonia.tech/en/solutions/ai-infrastructure/#procurement-room-cooling
+- Cited document: https://eudaemonia.tech/vendor/comino/documents/grando-server-datasheet-v2.3.pdf#page=10
 
 ## 服務問答 / Service questions
 
