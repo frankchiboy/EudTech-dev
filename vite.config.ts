@@ -109,6 +109,7 @@ const PUBLIC_DIRECTORY_ALLOWLIST = [
   'images/configurator/devices',
   'images/configurator/backgrounds',
   'matter-mail',
+  'local-rag',
   'social',
   'vendor'
 ];
